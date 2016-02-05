@@ -1,0 +1,61 @@
+                NetHack 3.4.3 -- Android port
+
+This directory contains files needed to build NetHack for use on handheld
+devices running the Android operating systems, such as the HTC Dream
+(T-Mobile G1).
+
+The game is built as native C code, cross-compiled for the CPU of the target
+platform. On top of this, an Android Java application provides the user
+interface, which in its initial form mostly operates as an ANSI terminal
+emulator displaying the TTY UI of NetHack.
+
+Due to the nature of the game, it will probably work best if you have a
+physical keyboard, and run the game in landscape mode. There is
+limited support for scrolling in portrait mode, and using a soft keyboard.
+
+For building this port of the game, you will need Linux or similar UNIX-like
+system (the author used Fedora Core 11). You will need to download and install
+the Android SDK, as well as the NDK (currently available at
+developer.android.com). Make sure you can build a simple native code
+application, such as the 'hello-jni' sample included with the NDK, before
+trying to build the full game. You will probably also want to install Eclipse
+and configure it for the NDK, though it's probably possible somehow to build
+from the command line as well.
+
+Once that's set up, the procedure for building the game is:
+1. Unpack the source tree somewhere.
+2. Open 'sys/android/setup.sh' in a text editor, and change ANDROID_NDK_DIR to
+   indicate the path where you have installed the Android NDK.
+3. Verify options in 'include/config.h' and elsewhere, if you want anything
+   different than the standard configuration.
+4. Run Eclipse and create a new project, importing the source code from
+   'sys/android/NetHackApp'.
+5. Make 'sys/android' your current directory, and run 'setup.sh'. This should
+   create some symbolic links and do other preparations to make your source
+   tree ready to build the Android port.
+6. Go to the 'dat' folder, and type 'make'. This builds the data files,
+   using tools built for the host computer.
+7. Go to your NDK directory (as specified as ANDROID_NDK_DIR).
+8. Type 'make APP=NetHackNative' to build the native code.
+9. Go back to Eclipse, build and launch the application.
+
+Note: the approach above assumes that any data files generated on the host
+computer are compatible with the target platform. There might be big/little
+endian issues or other problems, but using a regular Intel-based PC
+(running 32 bit Linux) and compiling for ARM (HTC Hero, etc) there are
+no problems known to the author.
+
+For the latest version of this Android port of NetHack, see
+  http://code.google.com/p/nethack-android/
+
+For more information about how to control this port of NetHack, press the
+Menu button when the game is running to access the About dialog.
+
+As always, this port of NetHack comes with no warranty. It started out as
+a simple personal project which was made available for the public. Feel free
+to try to contact me if you have a problem or feature request, but my time
+for this project is fairly limited.
+
+Fredrik Farnstrom
+farnstrom@gmail.com
+October 12, 2009

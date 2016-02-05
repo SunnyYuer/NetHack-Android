@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Display" >
+        <ListPreference
+            android:defaultValue="Unspecified"
+            android:entries="@array/OrientationEntries"
+            android:entryValues="@array/OrientationValues"
+            android:key="Orientation"
+            android:title="Orientation" />
+        <ListPreference
+            android:defaultValue="AndroidTiled"
+            android:entries="@array/UIModeEntries"
+            android:entryValues="@array/UIModeValues"
+            android:key="UIMode"
+            android:title="UI Mode" />
+
+        <com.nethackff.NetHackListPreferenceTileSet
+            android:key="TileSet"
+            android:title="Tile Set" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="Fullscreen"
+            android:summary="If set, the notification bar will be hidden."
+            android:title="Fullscreen" />
+
+        <ListPreference
+            android:defaultValue="WhiteOnBlack"
+            android:entries="@array/ColorModeEntries"
+            android:entryValues="@array/ColorModeValues"
+            android:key="ColorMode"
+            android:title="Background Color" />
+        <ListPreference
+            android:defaultValue="Amiga"
+            android:entries="@array/CharacterSetEntries"
+            android:entryValues="@array/CharacterSetValues"
+            android:key="CharacterSet"
+            android:title="Character Set" />
+        <ListPreference
+            android:defaultValue="Amiga"
+            android:entries="@array/CharacterColorSetEntries"
+            android:entryValues="@array/CharacterColorSetValues"
+            android:key="CharacterColorSet"
+            android:title="Character Color Set" />
+        <ListPreference
+            android:defaultValue="FontSize10"
+            android:entries="@array/FontSizeEntries"
+            android:entryValues="@array/FontSizeValues"
+            android:key="FontSize"
+            android:title="Font Size" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="AllowTextReformat"
+            android:summary="If set, text and menu views may use word wrapping to fit on screen."
+            android:title="Allow Text Reformat" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="ScrollToFollowPlayer"
+            android:summary="If set, the map may scroll to keep the player on screen."
+            android:title="Scroll to Follow Player" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="ScrollSmoothly"
+            android:summary="When moving the map to a new position, scrolling will happen smoothly."
+            android:title="Scroll Smoothly" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Input" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="MoveWithTrackball"
+            android:title="Move with Trackball" />
+
+        <ListPreference
+            android:defaultValue="Grid3x3"
+            android:entries="@array/TouchscreenTapEntries"
+            android:entryValues="@array/TouchscreenTapValues"
+            android:key="TouchscreenTap"
+            android:title="Touchscreen Tap" />
+        <ListPreference
+            android:defaultValue="MouseClick"
+            android:entries="@array/TouchscreenHoldEntries"
+            android:entryValues="@array/TouchscreenHoldValues"
+            android:key="TouchscreenHold"
+            android:title="Touchscreen Hold" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="AllowContextSensitive"
+            android:summary="If set, trackball/touchscreen directions can open doors, pick up objects, etc.."
+            android:title="Allow Context Sensitive Input" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="StickyAlt"
+            android:title="Sticky Alt Keys" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="StickyCtrl"
+            android:title="Sticky Ctrl Key" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="StickyShift"
+            android:title="Sticky Shift Keys" />
+
+        <Preference
+            android:key="keyBindings"
+            android:title="Key Bindings..." />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="KeyboardShownInPortrait"
+            android:title="Virtual Keyboard in Portrait" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="KeyboardShownInLandscape"
+            android:title="Virtual Keyboard in Landscape" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Nethack Config File" >
+        <Preference
+            android:key="editConfig"
+            android:title="Edit Config" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Backup">
+        <Preference
+            android:key="backupImportSettings"
+            android:title="Backup/Import Settings..."/>
+        <!-- Preference
+            android:key="backupConfig"
+            android:title="Backup Config File"/>
+        <Preference 
+            android:key="backupPreferences"
+            android:title="Backup Preferences"/>
+        <Preference
+            android:key="backupKeyBindings"
+            android:title="Backup Key Bindings"/>
+        <Preference 
+            android:key="importConfig"
+            android:title="Import Config File"/>
+        <Preference
+            android:key="importPreferences"
+            android:title="Import Preferences"/>
+        <Preference 
+            android:key="importKeyBindings"
+            android:title="Import Key Bindings"/-->
+    </PreferenceCategory>
+
+</PreferenceScreen>

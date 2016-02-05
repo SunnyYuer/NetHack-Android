@@ -1,0 +1,26 @@
+# *** CHARACTER GRAPHICS ***
+#
+# See the on-line help or the Guidebook for which symbols are in which
+# positions.
+#
+# Note that the hack.font has special graphics characters from 192 on.
+
+# An example using the hack.font graphics character set:
+DUNGEON =  032 192 193 194 195 196 197 198 216 214 \
+	   215 213 217 145 146 147 148 035 035 217 \
+	   218 229 060 062 060 062 095 124 092 035 \
+	   123 125 042 125 042 042 035 035 046 035 \
+	   125
+
+TRAPS =    094 094 094 094 094 094 094 094 094 094 \
+	   094 094 094 094 094 094 094 034 094 094 \
+	   094 094
+
+EFFECTS =  241 240 242 243 042 033 123 125	   \
+	   064 038 042 035			   \
+	   244 245 246 247 239 248 249 250	   \
+	   230 234 231 236 212 237 232 235 233
+
+WARNINGS =  048 049 050 051 052 053
+
+OPTIONS=eight_bit_tty

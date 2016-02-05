@@ -1,0 +1,108 @@
+1.3.3 (December 1, 2010)
+------------------------
+
+- Prefer SD card installation of the application itself on Android 2.2.
+- Allow SD card installation of the application's data files (all Android versions).
+- Generally more robust installation procedure.
+
+1.3.2 (August 26, 2010)
+-----------------------
+
+- Added touchscreen movement options (3x3 grid or travel, plus long press options).
+- Improved context sensitivity when using trackball, for picking up stuff,
+  opening/kick doors, etc.
+- 'number_pad' option works better, allowing use of the trackball.
+
+1.3.1 (July 31, 2010)
+---------------------
+
+- Tile drawing.
+- Loading of tile sets from external packages.
+- NetHack "standard 16x16" tile set included.
+- Option to auto-scroll with player movement.
+- Option to use smooth scrolling.
+- Basic zoom functionality.
+- Key binding improvements: Back button remapping, option to block or forward to system.
+
+1.2.5 (July 6, 2010)
+--------------------
+
+- Made Ctrl-P work in "Android TTY" mode.
+- Added prompt to destroy old game, if the recovery failed.
+- Fixed text background bug with Amiga colors.
+- Fixed cursor position when refreshing the screen (on orientation change, etc).
+- Fixed display wraparound bug.
+- More reliable auto-saving.
+
+1.2.4 (July 2, 2010)
+--------------------
+
+- Added option to use Amiga or IBMgraphics character sets.
+- Added option to use Amiga or DOS colors.
+- Added option to lock the orientation.
+- Added virtual keyboard toggle in preference menu.
+- Stability and error handling fixes.
+- Better save game reovery support.
+
+1.2.3 (June 25, 2010)
+---------------------
+
+- Changed file locking to prevent "Cannot lock perm for unknown reason"
+  error on Samsung phones.
+
+1.2.2 (June 21, 2010)
+---------------------
+
+- Replaced use of external commands.
+- Made use of proper function for getting application directory.
+- May fix crashes on startup reported on some systems.
+
+1.2.1 (June 20, 2010)
+---------------------
+
+- Much improved virtual keyboard.
+- Added choice between "Pure TTY" and "Android TTY" UI mode:
+-- Multi-line message bar.
+-- Fullscreen menus and text.
+-- Optional word wrapping of menus and text.
+-- Non-scrolling message and status bars.
+- Added text size option.
+- Added white background mode as an option.
+- Improved fullscreen experience.
+- Enabled access to nethack.cnf file.
+
+1.1.3 (November 12, 2009)
+-------------------------
+
+- Hopefully fixed crashes on startup under Android 2.0 (for Motorola
+  Droid, etc).
+
+1.1.2 (October 24, 2009)
+------------------------
+
+- Implemented auto-saving (and loading) if the application gets shut down
+  by Android.
+- Added credit text for icon contribution.
+
+1.1.1 (October 21, 2009)
+------------------------
+
+- Added preferences screen.
+- Added support for mapping Search/Camera/Alt/Shift keys
+  to Alt/Shift/Ctrl/Keyboard.
+- Implemented sticky modifier keys (optional).
+- Added icon, contributed by 'miserlou'.
+- Added basic trackball support (4 directions only for now, plus pickup).
+- Made update threads sleep when the application is paused.
+- Made the application shut down more cleanly when the native code quits.
+- Added a data file containing version information.
+- Added a check so that assets are not copied again if already present
+  (for much faster startup).
+- Added notification text when copying assets on the first startup.
+- Added warning about the game not being automatically saved if
+  Android kills the application.
+
+1.0 (October 15, 2009)
+----------------------
+
+- Initial release.

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="TileSetNames">
+		<item>Standard 16x16</item>
+	</string-array>
+	<string-array name="TileSetBitmaps">
+		<item>x11tiles</item>
+	</string-array>
+	<string-array name="TileSetInfo">
+		<item>Standard 16x16 - from standard NetHack distribution</item>
+	</string-array>
+	<integer-array name="TileSetTileSizesX">
+		<item>16</item>
+	</integer-array>
+	<integer-array name="TileSetTileSizesY">
+		<item>16</item>
+	</integer-array>
+	<integer-array name="TileSetDefaultZoom">
+		<item>100</item>
+	</integer-array>
+</resources>
