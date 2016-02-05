@@ -10,6 +10,8 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.util.Log;
+import android.view.View;
 
 public class NetHackTerminalView extends NetHackView
 {
@@ -789,13 +791,13 @@ for(int pass = 0; pass < 2; pass++)
 						}
 						if(col >= 0)
 						{
-//String s = "";
+String s = "";
 							for(int i = col + 1, j = 0; i <= col0; i++)
 							{
 								nextRowTxt[j] = rowTxt[i];
 								nextRowFmt[j] = rowFmt[i];
 								j++;
-//s += nextRowTxt[j - 1];
+s += nextRowTxt[j - 1];
 							}
 						}
 						else
@@ -834,7 +836,7 @@ for(int pass = 0; pass < 2; pass++)
 				cursorindex = -1;
 
 				// TEMP
-//				String rowTxtTmp = new String(rowTxt);
+				String rowTxtTmp = new String(rowTxt);
 				displayedLines++;
 
 				if(!blankline)

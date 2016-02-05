@@ -207,8 +207,8 @@ public class NetHackView extends View
 		computeSizePixels();
 		int newScrollX = (int)Math.round(centerXRel*squareSizeX - getWidth()*0.5f);
 		int newScrollY = (int)Math.round(centerYRel*squareSizeY - getHeight()*0.5f);
-//		int unclampedScrollX = newScrollX;
-//		int unclampedScrollY = newScrollY;
+		int unclampedScrollX = newScrollX;
+		int unclampedScrollY = newScrollY;
 		scrollToLimited1(newScrollX, newScrollY, false);
 		desiredCenterPosX *= ((float)squareSizeX)/oldSquareWidth;
 		desiredCenterPosY *= ((float)squareSizeY)/oldSquareHeight;

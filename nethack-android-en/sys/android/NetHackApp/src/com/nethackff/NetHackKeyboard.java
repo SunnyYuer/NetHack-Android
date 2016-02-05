@@ -1,8 +1,11 @@
 package com.nethackff;
 
+import android.content.Context;
+import android.app.Activity;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
+import android.util.Log;
 
 public class NetHackKeyboard implements OnKeyboardActionListener
 {

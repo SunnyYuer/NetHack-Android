@@ -8,4 +8,12 @@
 		android:id="@+id/preferences"
 		android:title="@string/preferences"   
     />
+	<item
+		android:id="@+id/exportconfig"
+		android:title="@string/menu_exportconfig"   
+    />
+	<item
+		android:id="@+id/importconfig"
+		android:title="@string/menu_importconfig"   
+    />
 </menu>  

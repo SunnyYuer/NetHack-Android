@@ -4,20 +4,32 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Window;
-
+import java.io.BufferedReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+//import java.io.FileDescriptor;
+//import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 
 public class NetHackApp extends Activity
@@ -295,36 +307,8 @@ public class NetHackApp extends Activity
 
 		// TODO: Make sure we remove the actual XML data for this.
 		//setContentView(R.layout.install);
-		setDefaultPreferences();
 
 		installer = new NetHackInstaller(this.getAssets(), this, true);
-	}
-
-
-	private void setDefaultPreferences()
-	{
-		SharedPreferences keyMapPrefs = getSharedPreferences(getString(R.string.keyMapPreferences), Context.MODE_PRIVATE);
-		if(keyMapPrefs.getAll().isEmpty())
-		{
-			resetKeyBindingsToDefaults(keyMapPrefs);
-		}
-	}
-
-
-	public static void resetKeyBindingsToDefaults(SharedPreferences keyMapPrefs)
-	{
-		SharedPreferences.Editor editor = keyMapPrefs.edit();
-		
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_BACK), KeyAction.ForwardToSystem.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_CAMERA), KeyAction.VirtualKeyboard.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_SEARCH), KeyAction.CtrlKey.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_VOLUME_UP), KeyAction.ZoomIn.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_VOLUME_DOWN), KeyAction.ZoomOut.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_ALT_LEFT), KeyAction.AltKey.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_SHIFT_LEFT), KeyAction.ShiftKey.name());
-		editor.putString(Integer.toString(KeyEvent.KEYCODE_SHIFT_RIGHT), KeyAction.ShiftKey.name());
-
-		editor.commit();
 	}
 
 	public void onConfigurationChanged(Configuration newConfig)
@@ -340,7 +324,7 @@ public class NetHackApp extends Activity
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.menu, menu);
+		getMenuInflater().inflate(R.layout.menu, menu);
 		return true;
 	}
 
