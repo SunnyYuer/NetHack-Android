@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">迷宫骇客</string>
+	<string name="about">关于</string>
+	<string name="about_msg">安卓版本 1.3.3\n原作者Fredrik Farnstrom\n邮箱farnstrom@gmail.com\n有关NetHack更多信息www.nethack.org.\n原安卓英文版, 见\nhttp://code.google.com/p/nethack-android/\n汉化版或有任何汉化建议，见\nhttps://github.com/SunnyEric/NetHack_android</string>
+	<string name="about_title">NetHack 3.4.3  迷宫骇客</string>
+	<string name="uimodechanged_msg">新的界面模式在重启之后生效。</string>
+	<string name="uimodechanged_title">界面模式已改变</string>
+	<string name="menu_exportconfig">导出配置</string>
+	<string name="menu_importconfig">导入配置</string>
+	<string name="configexport_msg">导出你的游戏配置文件到 </string>
+	<string name="configexport_title">导出配置文件</string>
+	<string name="configexport_failed">导出失败到该目录</string>
+	<string name="configexport_success">配置已导出到</string>
+	<string name="configimport_msg">从以下目录导入游戏配置文件</string>
+	<string name="configimport_title">导入配置文件</string>
+	<string name="configimport_failed">从该目录导入失败</string>
+	<string name="configimport_failed2">如果是从SD卡复制，请确认它没有安装在你的电脑上。</string>
+	<string name="configimport_success">配置已从该目录导入</string>
+	<string name="configimport_success2">这些设置在重启后生效。</string>
+	<string name="config_defaultfile">/sdcard/NetHack.cnf</string>
+	<string name="dialog_OK">确定</string>
+	<string name="dialog_Cancel">取消</string>
+	<string name="dialog_Success">成功</string>
+	<string name="dialog_Error">错误</string>
+	<string name="dialog_msg_ask_install_location">请选择数据安装位置(推荐SD卡)</string>
+	<string name="dialog_msg_existing_external_installation_unavailable">SD卡中存有安装文件，但是好像不可用。请选择</string>
+	<string name="dialog_msg_install_progress">安装到</string>
+	<string name="dialog_msg_move_install_progress">移动到</string>
+	<string name="dialog_msg_move_old_installation">发现手机内存中存有安装文件。这个版本的迷宫骇客通常把数据安装到SD卡中。你想把已存在的安装移动到SD卡吗？保存游戏文件所需。</string>
+	<string name="dialog_msg_sd_card_not_found">应用程序通常安装数据到SD卡中，但是无法访问SD卡。请选择</string>
+	<string name="dialog_button_exit">退出</string>
+	<string name="dialog_button_install_on_internal_memory">手机内存</string>
+	<string name="dialog_button_install_on_sd_card">SD卡</string>
+	<string name="dialog_button_keep_existing_installation">保留存在的安装文件</string>
+	<string name="dialog_button_move_to_sd_card">移动到SD卡</string>
+	<string name="dialog_button_retry">重试</string>
+	<string name="dialog_button_reinstall_on_internal_memory">重新安装到手机内存</string>
+	<string name="dialog_button_use_internal_memory">使用手机内存</string>
+	<string name="preferences">设置</string>
+	<string-array name="KeyActions">
+		<item>无</item>
+		<item>虚拟键盘</item>
+		<item>Alt键</item>
+		<item>Ctrl键</item>
+		<item>Shift键</item>
+		<item>Esc键</item>
+		<item>放大</item>
+		<item>缩小</item>
+		<item>正向系统 </item>
+	</string-array>
+	<string-array name="KeyActionValues">
+		<item>None</item>
+		<item>VirtualKeyboard</item>
+		<item>AltKey</item>
+		<item>CtrlKey</item>
+		<item>ShiftKey</item>
+		<item>EscKey</item>
+		<item>ZoomIn</item>
+		<item>ZoomOut</item>
+		<item>ForwardToSystem</item>
+	</string-array>
+	<string-array name="UIModeEntries">
+		<item>Pure TTY</item>
+		<item>Android TTY</item>
+		<item>Android Tiled</item>
+	</string-array>
+	<string-array name="UIModeValues">
+		<item>PureTTY</item>
+		<item>AndroidTTY</item>
+		<item>AndroidTiled</item>
+	</string-array>
+	<string-array name="ColorModeEntries">
+		<item>黑色</item>
+		<item>白色</item>
+	</string-array>
+	<string-array name="ColorModeValues">
+		<item>WhiteOnBlack</item>
+		<item>BlackOnWhite</item>
+	</string-array>
+	<string-array name="FontSizeEntries">
+		<item>10号</item>
+		<item>11号</item>
+		<item>12号</item>
+		<item>13号</item>
+		<item>14号</item>
+		<item>15号</item>
+	</string-array>
+	<string-array name="FontSizeValues">
+		<item>FontSize10</item>
+		<item>FontSize11</item>
+		<item>FontSize12</item>
+		<item>FontSize13</item>
+		<item>FontSize14</item>
+		<item>FontSize15</item>
+	</string-array>
+	<string-array name="TouchscreenTapEntries">
+		<item>无</item>
+		<item>九宫格</item>
+		<item>鼠标点击</item>
+	</string-array>
+	<string-array name="TouchscreenTapValues">
+		<item>Disabled</item>
+		<item>Grid3x3</item>
+		<item>MouseClick</item>
+	</string-array>
+	<string-array name="TouchscreenHoldEntries">
+		<item>无</item>
+		<item>鼠标点击</item>
+		<item>位置中心</item>
+		<item>玩家中心</item>
+	</string-array>
+	<string-array name="TouchscreenHoldValues">
+		<item>Disabled</item>
+		<item>MouseClick</item>
+		<item>CenterOnLocation</item>
+		<item>CenterOnPlayer</item>
+	</string-array>
+	<string-array name="CharacterSetEntries">
+		<item>128 char ANSI</item>
+		<item>IBM</item>
+		<item>Amiga</item>
+	</string-array>
+	<string-array name="CharacterSetValues">
+		<item>ANSI128</item>
+		<item>IBM</item>
+		<item>Amiga</item>
+	</string-array>
+	<string-array name="CharacterColorSetEntries">
+		<item>16 color ANSI terminal</item>
+		<item>IBM</item>
+		<item>Amiga</item>
+	</string-array>
+	<string-array name="CharacterColorSetValues">
+		<item>AnsiTerminal</item>
+		<item>IBM</item>
+		<item>Amiga</item>
+	</string-array>
+	<string-array name="OrientationEntries">
+		<item>自动旋转</item>
+		<item>竖屏</item>
+		<item>横屏</item>
+		<item>不明确</item>
+	</string-array>
+	<string-array name="OrientationValues">
+		<item>Sensor</item>
+		<item>Portrait</item>
+		<item>Landscape</item>
+		<item>Unspecified</item>
+	</string-array>
+</resources>

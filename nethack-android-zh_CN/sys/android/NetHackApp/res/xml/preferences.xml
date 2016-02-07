@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="显示">
+		<ListPreference
+			android:title="旋转屏幕"
+			android:key="Orientation"
+			android:defaultValue="Unspecified"
+			android:entries="@array/OrientationEntries"
+			android:entryValues="@array/OrientationValues"/>
+
+		<ListPreference
+			android:title="界面模式"
+			android:key="UIMode"
+			android:defaultValue="AndroidTiled"
+			android:entries="@array/UIModeEntries"
+			android:entryValues="@array/UIModeValues"/>
+
+		<com.nethackff.NetHackListPreferenceTileSet
+			android:title="图形风格"
+			android:key="TileSet"/>
+
+
+		<CheckBoxPreference android:key="Fullscreen"
+			android:title="全屏"
+			android:summary="如果设置，通知栏将被隐藏。"
+			android:defaultValue="true"/>
+
+		<ListPreference
+			android:title="背景颜色"
+			android:key="ColorMode"
+			android:defaultValue="WhiteOnBlack"
+			android:entries="@array/ColorModeEntries"
+			android:entryValues="@array/ColorModeValues"/>
+
+		<ListPreference
+			android:title="字符集"
+			android:key="CharacterSet"
+			android:defaultValue="Amiga"
+			android:entries="@array/CharacterSetEntries"
+			android:entryValues="@array/CharacterSetValues"/>
+
+		<ListPreference
+			android:title="字符颜色集"
+			android:key="CharacterColorSet"
+			android:defaultValue="Amiga"
+			android:entries="@array/CharacterColorSetEntries"
+			android:entryValues="@array/CharacterColorSetValues"/>
+
+		<ListPreference
+			android:title="字体大小"
+			android:key="FontSize"
+			android:defaultValue="FontSize10"
+			android:entries="@array/FontSizeEntries"
+			android:entryValues="@array/FontSizeValues"/>
+
+		<CheckBoxPreference android:key="AllowTextReformat"
+			android:title="允许文本格式化"
+			android:summary="如果设置，文本和菜单视图将会使用文字来适应屏幕。"
+			android:defaultValue="true"/>
+
+		<CheckBoxPreference android:key="ScrollToFollowPlayer"
+			android:title="跟随玩家滚动"
+			android:summary="如果设置，地图会自动滚动到玩家所在。"
+			android:defaultValue="true"/>
+
+		<CheckBoxPreference android:key="ScrollSmoothly"
+			android:title="平滑滚动"
+			android:summary="当移动位置时，地图会平滑地滚动。"
+			android:defaultValue="true"/>
+
+	</PreferenceCategory>
+	<PreferenceCategory android:title="输入">
+		<CheckBoxPreference android:key="MoveWithTrackball"
+			android:title="用鼠标移动"
+			android:defaultValue="true"/>
+		<ListPreference
+			android:title="触屏点击"
+			android:key="TouchscreenTap"
+			android:defaultValue="Grid3x3"
+			android:entries="@array/TouchscreenTapEntries"
+			android:entryValues="@array/TouchscreenTapValues"/>
+
+		<ListPreference
+			android:title="触摸屏"
+			android:key="TouchscreenHold"
+			android:defaultValue="MouseClick"
+			android:entries="@array/TouchscreenHoldEntries"
+			android:entryValues="@array/TouchscreenHoldValues"/>
+
+		<CheckBoxPreference android:key="AllowContextSensitive"
+			android:title="允许智能输入"
+			android:summary="如果设置，点击触摸屏的方向可以打开门，捡起物体，等等。"
+			android:defaultValue="true"/>
+		
+		<CheckBoxPreference android:key="StickyAlt"
+			android:title="粘滞键Alt"
+			android:defaultValue="false"/>
+		<CheckBoxPreference android:key="StickyCtrl"
+			android:title="粘滞键Ctrl"
+			android:defaultValue="false"/>
+		<CheckBoxPreference android:key="StickyShift"
+			android:title="粘滞键Shift"
+			android:defaultValue="false"/>
+		<PreferenceScreen
+			android:title="键绑定">
+			<ListPreference
+				android:title="返回按钮"
+				android:summary="选择返回按钮的功能。"
+				android:key="BackButtonFunc"
+				android:defaultValue="ForwardToSystem"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="相机按钮"
+				android:summary="选择相机按钮的功能。"
+				android:key="CameraButtonFunc"
+				android:defaultValue="VirtualKeyboard"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="搜索按钮"
+				android:summary="选择搜索按钮的功能。"
+				android:key="SearchButtonFunc"
+				android:defaultValue="CtrlKey"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="左Alt键"
+				android:summary="选择左Alt键的功能。"
+				android:key="LeftAltKeyFunc"
+				android:defaultValue="AltKey"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="右Alt键"
+				android:summary="选择右Alt键的功能。"
+				android:key="RightAltKeyFunc"
+				android:defaultValue="AltKey"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="左Shift键"
+				android:summary="选择左Shift键的功能。"
+				android:key="LeftShiftKeyFunc"
+				android:defaultValue="ShiftKey"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="右Shift键"
+				android:summary="选择右Shift键的功能。"
+				android:key="RightShiftKeyFunc"
+				android:defaultValue="ShiftKey"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="音量增大按钮"
+				android:summary="选择音量增大按钮的功能。"
+				android:key="VolumeUpButtonFunc"
+				android:defaultValue="ZoomIn"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+			<ListPreference
+				android:title="音量减小按钮"
+				android:summary="选择音量减小按钮的功能。"
+				android:key="VolumeDownButtonFunc"
+				android:defaultValue="ZoomOut"
+				android:entries="@array/KeyActions"
+				android:entryValues="@array/KeyActionValues"/>
+
+		</PreferenceScreen>
+
+		<CheckBoxPreference android:key="KeyboardShownInPortrait"
+			android:title="竖屏下的虚拟键盘"
+			android:defaultValue="true"/>
+
+		<CheckBoxPreference android:key="KeyboardShownInLandscape"
+			android:title="横屏下的虚拟键盘"
+			android:defaultValue="false"/>
+
+	</PreferenceCategory>
+</PreferenceScreen>

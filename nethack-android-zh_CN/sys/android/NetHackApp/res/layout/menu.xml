@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">  
+	<item
+		android:id="@+id/about"
+		android:title="@string/about"   
+    />
+	<item
+		android:id="@+id/preferences"
+		android:title="@string/preferences"   
+    />
+	<item
+		android:id="@+id/exportconfig"
+		android:title="@string/menu_exportconfig"   
+    />
+	<item
+		android:id="@+id/importconfig"
+		android:title="@string/menu_importconfig"   
+    />
+</menu>  

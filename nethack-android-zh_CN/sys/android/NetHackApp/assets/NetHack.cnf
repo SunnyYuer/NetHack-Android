@@ -1,0 +1,20 @@
+# A '#' at the beginning of a line means the rest of the line is a comment.
+
+# This is an example configuration file.
+# If several people are to use it, don't specify "name" or personal
+# prefences like "dogname" or "packorder" in OPTIONS.
+
+# To change configuration, comment out the unwanted configurations, and
+# remove the comment from the configuration you want.
+
+# Some options to set personal preferences.  If several people are to
+# use it, options like these should not be set here - use the command line
+#OPTIONS=name:Janet-V,female,dogname:Fido,fruit:apricot
+#OPTIONS=packorder:")[%?+/=!(*0_`,scores:10t/2a,noverbose
+#OPTIONS=gender:male
+#OPTIONS=role:random
+#OPTIONS=race:random 
+#OPTIONS=align:chaotic
+# Other general options
+#OPTIONS=time,rest_on_space,noautopickup
+
