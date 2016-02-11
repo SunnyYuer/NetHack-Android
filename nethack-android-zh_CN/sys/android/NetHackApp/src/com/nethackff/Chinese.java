@@ -13,6 +13,7 @@ public class Chinese {
 	{
 		if(s.length()==0) return s;
 		if(s.matches(".{1,2}[0-9]{1,2};[0-9]{1,2}.{1,2}")) return s;
+		if(s.matches(".{2}H.{2}J")) return s;
 		System.out.println(s.length()+s);
 		s=gameStart(s);
 		if(pro>=10&&pro<20) s=gameIn(s);
@@ -53,7 +54,7 @@ public class Chinese {
 		if(t>=0) pro=7;
 		t=s.indexOf("St:");
 		if(t>=0) pro=7;
-		t=s.indexOf("Dlvl:");
+		t=s.indexOf("Exp:");
 		if(t>=0) pro=7;
 		t=s.indexOf("Do you");
 		if(t>=0) pro=20;
@@ -78,6 +79,7 @@ public class Chinese {
 		
 		if(pro==1)
 		{
+			s=s.replaceAll("Enter a name for your character", "为 你 的 角 色 输 入 一 个 名 字 ");
 			s=s.replaceAll("Who are you", "你 叫 什 么 ");
 			s=s.replaceAll("Shall I pick a character's race, role, gender and alignment for you", 
 				"要 我 为 你 随 机 选 择 角 色 的 职 业 、 种 族 、 性 别 和 阵 营 吗 ");
@@ -198,6 +200,8 @@ public class Chinese {
 	private String gameIn(String s)
 	{
 		int t=-1;
+		t=s.indexOf("Amulets");
+		if(t>=0) s=amulet(s);
 		t=s.indexOf("Weapons");
 		if(t>=0) s=weapon(s);
 		t=s.indexOf("Armor");
@@ -220,12 +224,21 @@ public class Chinese {
 		if(t>=0) s=gem(s);
 		t=s.indexOf("Statues");
 		if(t>=0) s=statue(s);
+		
 		t=s.indexOf("Currently known spells");
 		if(t>=0) pro=11;
 		t=s.indexOf("Choose which spell");
 		if(t>=0) pro=11;
 		t=s.indexOf("Base Att");
 		if(t>=0) pro=12;
+		t=s.indexOf("Current Att");
+		if(t>=0) pro=12;
+		t=s.indexOf("mode");
+		if(t>=0) pro=13;
+		t=s.indexOf("normal game");
+		if(t>=0) pro=13;
+		t=s.indexOf("file");
+		if(t>=0) pro=13;
 		
 		if(pro==11)
 		{
@@ -233,6 +246,7 @@ public class Chinese {
 		}
 		if(pro==12)
 		{
+			s=abi(s);
 			s=s.replaceAll("Base Attributes", "基 本 属 性 ");
 			s=s.replaceAll("Starting", "起 始.");
 			s=s.replaceAll("Current", "当 前.");
@@ -247,6 +261,18 @@ public class Chinese {
 			s=s.replaceAll("Neutral", "中 立    ");
 			s=s.replaceAll("Lawful", "秩 序   ");
 			s=god(s);
+		}
+		if(pro==13)
+		{
+			s=s.replaceAll("Beware! From explore mode there will be no return to", 
+					"注 意 ！ 进 入 探 索 模 式 就 不 能 回 到 ");
+			s=s.replaceAll("Resuming normal game", "保 持 一 般 模 式 ");
+			s=s.replaceAll("normal game", "一 般 模 式 ");
+			s=s.replaceAll("You are now in non-scoring explore mode", "现 在 是 无 分 数 探 索 模 式 ");
+			s=s.replaceAll("You are in non-scoring discovery mode", "现 在 是 无 分 数 探 索 模 式 ");
+			s=s.replaceAll("There seems to be an old save file", "这 里 有 旧 的 保 存 记 录 ");
+			s=s.replaceAll("Overwrite the", "覆 盖 ");
+			s=s.replaceAll("old file", "旧 的 保 存 记 录 ");
 		}
 		s=info(s);
 		return s;
@@ -264,6 +290,9 @@ public class Chinese {
 				"你 想 看 下 你 消 灭 怪 物 吗 ");
 		s=s.replaceAll("Do you want to see your conduct", "你 想 看 下 你 的 成 就 吗 ");
 		s=s.replaceAll("Do youwant to see your conduct", "你 想 看 下 你 的 成 就 吗 ");
+		s=s.replaceAll("Do you want to enter explore mode", "你 想 进 入 探 索 模 式 吗 ");
+		s=s.replaceAll("Do you want", "你 想 ");
+		s=s.replaceAll("to keep the save file", "保 留 保 存 记 录 吗 ");
 		
 		if(pro==21)
 		{
@@ -272,7 +301,6 @@ public class Chinese {
 		if(pro==22)
 		{
 			s=s.replaceAll("Vanquished creatures", "被 消 灭 的 怪 物 ");
-			s=monster(s);
 			s=s.replaceAll("creatures vanquished", "被 消 灭 的 怪 物 ");
 		}
 		if(pro==23)
@@ -322,7 +350,6 @@ public class Chinese {
 			s=s.replaceAll("IN", "息 ");
 			s=s.replaceAll("PEACE", "  吧 ");
 			s=s.replaceAll("Au", "金 ");
-			s=monster(s);
 		}
 		if(pro==25)
 		{
@@ -361,6 +388,37 @@ public class Chinese {
 		return s;
 	}
 	
+	private String abi(String s)
+	{
+		s=s.replaceAll("Current Attributes", "当 前 属 性 ");
+		s=s.replaceAll("You are piously aligned", "你 是 虔 诚 的 信 仰 者 ");
+		s=s.replaceAll("You are sleep resistant", "你 具 有 沉 睡 抵 抗 ");
+		s=s.replaceAll("You are poison resistant", "你 具 有 毒 抵 抗 ");
+		s=s.replaceAll("You are magic-protected", "你 具 有 魔 法 抵 抗 ");
+		s=s.replaceAll("You see invisible", "你 可 以 看 见 不 可 见 的 东 西 ");
+		s=s.replaceAll("You are telepathic", "你 具 有 心 灵 感 应 ");
+		s=s.replaceAll("You have infravision", "你 具 有 夜 视 能 力 ");
+		s=s.replaceAll("You aggravate monsters", "你 会 拉 怪 的 仇 恨 ");
+		s=s.replaceAll("You have slower digestion", "你 具 有 慢 消 化 能 力 ");
+		s=s.replaceAll("You are protected", "你 被 保 护 着 ");
+		s=s.replaceAll("You are fast", "你 的 速 度 快 ");
+		s=s.replaceAll("You are unlucky", "你 现 在 不 幸 运 ");
+		s=s.replaceAll("You are very unlucky", "你 现 在 非 常 不 幸 运 ");
+		s=s.replaceAll("You can not safely pray", "你 不 能 安 全 地 祈 祷 ");
+		s=s.replaceAll("You have been ", "你 ");
+		s=s.replaceAll(" times", "次 ");
+		return s;
+	}
+	
+	private String amulet(String s)
+	{
+		s=s.replaceAll("Amulets", "护 身 符.");
+		s=s.replaceAll("being worn", "穿 着 ");
+		s=s.replaceAll("- an ", "- ");
+		s=s.replaceAll("- a ", "- ");
+		return s;
+	}
+	
 	private String weapon(String s)
 	{
 		s=s.replaceAll("Weapons", "武 器.");
@@ -370,7 +428,6 @@ public class Chinese {
 		s=s.replaceAll("in quiver", "准 备 ");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -380,7 +437,6 @@ public class Chinese {
 		s=s.replaceAll("being worn", "穿 着 ");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -389,7 +445,6 @@ public class Chinese {
 		s=s.replaceAll("Comestibles", "食 物.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -398,7 +453,6 @@ public class Chinese {
 		s=s.replaceAll("Scrolls", "卷 轴.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -407,7 +461,6 @@ public class Chinese {
 		s=s.replaceAll("Spellbooks", "魔 法 书.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -416,7 +469,6 @@ public class Chinese {
 		s=s.replaceAll("Potions", "药 水.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -427,7 +479,6 @@ public class Chinese {
 		s=s.replaceAll("- a ", "- ");
 		s=s.replaceAll("on right hand", "右 手 上 ");
 		s=s.replaceAll("on left hand", "左 手 上 ");
-		s=state(s);
 		return s;
 	}
 	
@@ -436,7 +487,6 @@ public class Chinese {
 		s=s.replaceAll("Wands", "魔 杖.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -445,7 +495,6 @@ public class Chinese {
 		s=s.replaceAll("Tools", "工 具.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -455,7 +504,6 @@ public class Chinese {
 		s=s.replaceAll("in quiver", "准 备 ");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -464,7 +512,6 @@ public class Chinese {
 		s=s.replaceAll("Boulders/Statues", "巨 石 / 雕 像.");
 		s=s.replaceAll("- an ", "- ");
 		s=s.replaceAll("- a ", "- ");
-		s=state(s);
 		return s;
 	}
 	
@@ -497,6 +544,20 @@ public class Chinese {
 		s=s.replaceAll("You hear bubbling water", "你 听 到 潺 潺 的 水 声 ");
 		s=s.replaceAll("You hear water falling on coins", "你 听 到 水 滴 在 金 币 上 的 声 音 ");
 		s=s.replaceAll("You hear a door open", "你 听 到 有 门 开 的 声 音 ");
+		s=s.replaceAll("You hear a chugging sound", "你 听 到 隆 隆 的 声 音 ");
+		s=s.replaceAll("You hear the splashing of a naiad", "你 听 到 仙 女 溅 水 的 声 音 ");
+		s=s.replaceAll("You hear someone counting money", "你 听 到 某 人 数 钱 的 声 音 ");
+		s=s.replaceAll("You hear someone cursing shoplifters", "你 听 到 某 人 诅 咒 窃 贼 的 声 音 ");
+		s=s.replaceAll("You hear the chime of a cash register", "你 听 到 收 款 机 的 鸣 声 ");
+		s=s.replaceAll("You hear the footsteps of a guard on patrol", "你 听 到 巡 逻 队 的 脚 步 声 ");
+		return s;
+	}
+	
+	private String feel(String s)
+	{
+		s=s.replaceAll("You feel your magical energy drain away", "你 感 觉 你 的 魔 法 能 量 流 失 了 ");
+		s=s.replaceAll("You are beginning to feel hungry", "你 觉 得 饿 了 ");
+		s=s.replaceAll("You are beginning to feel weak", "你 觉 得 身 体 很 虚 弱 了 ");
 		return s;
 	}
 	
@@ -504,10 +565,11 @@ public class Chinese {
 	{
 		s=s.replaceAll("The door opens", "门 开 了 ");
 		s=s.replaceAll("The door closes", "门 关 了 ");
-		s=s.replaceAll("The door resists", "有 些 难 ");
+		s=s.replaceAll("The door resists", "门 在 抵 抗 ");
 		s=s.replaceAll("This door is already open", "门 已 经 开 了 ");
 		s=s.replaceAll("This door is already closed", "门 已 经 关 了 ");
-		s=s.replaceAll("As you kick the door, it crashes open", "你 把 门 踢 破 了 ");
+		s=s.replaceAll("As you kick the door, it crashes", "你 把 门 踢 破 ");
+		s=s.replaceAll("open", "了 ");
 		return s;
 	}
 	
@@ -517,12 +579,14 @@ public class Chinese {
 				"你 试 图 移 动 巨 石 ， 但 是 没 用 ");
 		s=s.replaceAll("With great effort you move the boulder", 
 				"你 尽 全 力 移 动 巨 石 ");
+		s=s.replaceAll("The boulder falls into and plugs a hole in the floor", 
+				"巨 石 把 洞 填 住 了 ");
 		return s;
 	}
 	
 	private String pet(String s)
 	{
-		s=s.replaceAll("displaced ", "换 了 个 位 置 和 ");
+		s=s.replaceAll("You displaced ", "你 换 了 个 位 置 和 ");
 		s=s.replaceAll("picks up", "捡 起 了 ");
 		s=s.replaceAll("drops", "放 下 了 ");
 		s=s.replaceAll("You stop", "你 停 了 下 来 ");
@@ -534,49 +598,30 @@ public class Chinese {
 	
 	private String attack(String s)
 	{
-		s=s.replaceAll("You ", "你 ");
+		//s=s.replaceAll("You ", "你 ");
 		s=s.replaceAll("just ", "");
-		s=s.replaceAll(" misses", "没 打 到 ");
-		s=s.replaceAll("miss ", "没 打 到 ");
-		s=s.replaceAll(" bites", "咬 了 一 口 ");
-		s=s.replaceAll("hits", "打 了 一 下 ");
+		s=s.replaceAll("misses", "没 打 到 ");    //怪
+		s=s.replaceAll("bites", "咬 了 一 口 ");   //怪
+		s=s.replaceAll("hits", "打 了 一 下 ");    //怪
 		s=s.replaceAll("are hit ", "被 打 中 ");
 		s=s.replaceAll("hit ", "打 了 一 下 ");
-		s=s.replaceAll("killed", "被 杀 死 了 ");
-		s=s.replaceAll("kill ", "杀 死 了 ");
-		s=s.replaceAll("destroy ", "消 灭 了 ");
-		s=s.replaceAll("die", "死 了 ");
-		return s;
-	}
-	
-	private String monster(String s)
-	{
-		s=s.replaceAll("The ", "");
-		s=s.replaceAll("the ", "");
-		s=s.replaceAll("grid bug", "电 子 虫 ");
-		s=s.replaceAll("newt", "蝾 螈 ");
-		s=s.replaceAll("fox", "狐 狸 ");
-		s=s.replaceAll("kobold zombie", "小 鬼 僵 尸 ");
-		s=s.replaceAll("goblin", "小 妖 精 ");
-		s=s.replaceAll("giant rat", "大 鼠 ");
-		s=s.replaceAll("gecko", "壁 虎 ");
-		s=s.replaceAll("lichen", "地 衣 ");
-		s=s.replaceAll("iguana", "蜥 蜴 ");
+		s=s.replaceAll("killed ", "被 杀 死 了 ");
+		s=s.replaceAll("miss ", "没 打 到 ");     //人
+		s=s.replaceAll(" kill ", " 杀 死 了 ");   //人
+		s=s.replaceAll("destroy ", "消 灭 了 ");  //人
+		s=s.replaceAll("You die", "你 死 了 ");   //人
 		return s;
 	}
 	
 	private String info(String s)
 	{
 		int t=-1;
-		s=s.replaceAll("Really save", "保 存 退 出 ");
-		s=s.replaceAll("Really quit", "确 定 退 出 ");
 		s=s.replaceAll("In what direction", "哪 个 方 向 ");
 		s=s.replaceAll("More", "更 多 ");
 		s=s.replaceAll(" gold pieces", "金 币 ");
-		s=s.replaceAll("see here ", "见 这 里 有 ");
+		s=s.replaceAll("You see here ", "你 见 这 里 有 ");
 		s=s.replaceAll("Things that are here", "这 里 有 ");
-		s=s.replaceAll("Welcome to experience level ", "恭 喜 升 级 到 ");
-		s=s.replaceAll("There's some graffiti on the floor here", "地 板 上 写 有 字 ");
+		s=s.replaceAll("Welcome to experience level", "恭 喜 升 级 到 ");
 		
 		t=s.indexOf("hear");
 		if(t>=0)
@@ -593,9 +638,20 @@ public class Chinese {
 		{
 			s=boulder(s);
 		}
+		t=s.indexOf("feel");
+		if(t>=0)
+		{
+			s=feel(s);
+		}
+		t=s.indexOf("Really");
+		if(t>=0)
+		{
+			s=s.replaceAll("Really save", "保 存 退 出 ");
+			s=s.replaceAll("Really quit", "确 定 退 出 ");
+		}
 		s=pet(s);
-		s=monster(s);
 		s=attack(s);
+		s=state(s);
 		return s;
 	}
 	
