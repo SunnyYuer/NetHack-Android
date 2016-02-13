@@ -1555,7 +1555,7 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
     if (flags.prayconfirm)
-	if (yn("Are you sure you want to pray?") == 'n')
+        if (yn("你 确 定 要 祈 祷 吗 ?") == 'n')  //Are you sure you want to pray
 	    return 0;
 
     u.uconduct.gnostic++;
@@ -1580,13 +1580,13 @@ dopray()
     }
 #endif
     nomul(-3);
-    nomovemsg = "You finish your prayer.";
+    nomovemsg = "你 祈 祷 完 成 了 .";  //You finish your prayer
     afternmv = prayer_done;
 
     if(p_type == 3 && !Inhell) {
 	/* if you've been true to your god you can't die while you pray */
 	if (!Blind)
-	    You("are surrounded by a shimmering light.");
+            You("被 微 弱 的 灯 光 环 绕 着 .");  //are surrounded by a shimmering light
 	u.uinvulnerable = TRUE;
     }
 

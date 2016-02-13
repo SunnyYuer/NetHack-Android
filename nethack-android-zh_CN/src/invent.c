@@ -937,18 +937,18 @@ register const char *let,*word;
 #else
 	if(!foo && !allowall && !allownone) {
 #endif
-		You("don't have anything %sto %s.",
-			foox ? "else " : "", word);
-		return((struct obj *)0);
+                You("没 有 任 何 %s东 西 来 %s.",
+                        foox ? "别 的 " : "", word);  //don't have anything %sto %s.
+                return((struct obj *)0);  //else
 	}
 	for(;;) {
 		cnt = 0;
 		if (allowcnt == 2) allowcnt = 1;  /* abort previous count */
 		if(!buf[0]) {
-			Sprintf(qbuf, "What do you want to %s? [*]", word);
+                        Sprintf(qbuf, "你 想 %s哪 个 ? [*]", word);  //What do you want to %s? [*]
 		} else {
-			Sprintf(qbuf, "What do you want to %s? [%s or ?*]",
-				word, buf);
+                        Sprintf(qbuf, "你 想 %s哪 个 ? [%s or ?*]",
+                                word, buf);  //What do you want to %s? [%s or ?*]
 		}
 #ifdef REDO
 		if (in_doagain)

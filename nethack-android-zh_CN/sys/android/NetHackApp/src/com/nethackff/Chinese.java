@@ -1,10 +1,9 @@
 package com.nethackff;
 
+import java.io.UnsupportedEncodingException;
+
 public class Chinese {
 	/*
-	 * 首先，这不是一个好方法。
-	 * 更改NetHack源文件的输出信息会输出乱码
-	 * 本人不会转换编码，不得已用此方法。
 	 * Yuer
 	 */
 	private int pro=0;  //运行流程
@@ -18,6 +17,7 @@ public class Chinese {
 		s=gameStart(s);
 		if(pro>=10&&pro<20) s=gameIn(s);
 		if(pro>=20) s=gameEnd(s);
+		s=encode(s);
 		return s;
 	}
 	
@@ -84,13 +84,13 @@ public class Chinese {
 			s=s.replaceAll("Shall I pick a character's race, role, gender and alignment for you", 
 				"要 我 为 你 随 机 选 择 角 色 的 职 业 、 种 族 、 性 别 和 阵 营 吗 ");
 			s=s.replaceAll("There are files from a game in progress under your name. Recover", 
-					"这 里 有 你 名 下 的 游 戏 保 存 记 录 ， 要 恢 复 吗 ");
+					"这 里 有 你 名 下 的 游 戏 保 存 记 录 , 要 恢 复 吗 ");
 			s=s.replaceAll("Checkpointing was not in effect for ", 
 					"检 查 发 现 该 文 件 无 效 ");
 			s=s.replaceAll("recovery impossible", 
 					"恢 复 失 败 ");
 			s=s.replaceAll("Couldn't recover old game. Destroy it", 
-					"无 法 恢 复 。 要 删 除 吗 ");
+					"无 法 恢 复 . 要 删 除 吗 ");
 		}
 		if(pro==2)
 		{
@@ -144,33 +144,33 @@ public class Chinese {
 			}
 			s=s.replaceAll("It is written in the Book of ", "这 是 写 在 书 名 为 ");
 			s=s.replaceAll("After the Creation, the cruel god Moloch rebelled", 
-					"天 地 创 造 之 初 ， 破 坏 神 摩 洛 密 谋 策 划 ");
+					"天 地 创 造 之 初 , 破 坏 神 摩 洛 密 谋 策 划 ");
 			s=s.replaceAll("against the authority of Marduk the Creator.", 
-					"叛 变 创 世 神 马 尔 杜 克 。 ");
+					"叛 变 创 世 神 马 尔 杜 克 . ");
 			s=s.replaceAll("Moloch stole from Marduk the most powerful of all", 
 					"摩 洛 从 马 尔 杜 克 的 众 多 神 器 中 偷 走 了 ");
 			s=s.replaceAll("the artifacts of the gods, the Amulet of Yendor,", 
-					"最 为 强 大 的 岩 德 护 身 符 ， ");
+					"最 为 强 大 的 岩 德 护 身 符 , ");
 			s=s.replaceAll("and he hid it in the dark cavities of Gehennom, the", 
-					"并 将 其 藏 在 暗 黑 地 狱 葛 汉 诺 姆 ， ");
+					"并 将 其 藏 在 暗 黑 地 狱 葛 汉 诺 姆 , ");
 			s=s.replaceAll("Under World, where he now lurks, and bides his time.", 
-					"暗 中 积 蓄 力 量 以 待 时 机 的 成 熟 。 ");
+					"暗 中 积 蓄 力 量 以 待 时 机 的 成 熟 . ");
 			s=s.replaceAll("Your god ", "你 的 神 ");
 			s=s.replaceAll("Your goddess ", "你 的 女 神 ");
 			s=s.replaceAll(" seeks to possess the Amulet, and with it", 
-					"想 要 得 到 这 传 说 中 的 护 身 符 ， 有 此 神 器 为 助 ");
+					"想 要 得 到 这 传 说 中 的 护 身 符 , 有 此 神 器 为 助 ");
 			s=s.replaceAll("to gain deserved ascendance over the other gods.", 
-					"便 能 在 众 神 内 稳 占 主 导 地 位 。 ");
+					"便 能 在 众 神 内 稳 占 主 导 地 位 . ");
 			s=s.replaceAll("You, a newly trained ", "你 现 在 还 只 是 个 新 手 ");
-			s=s.replaceAll(", have been heralded", "， 出 生 起 从 小 ");
+			s=s.replaceAll(", have been heralded", ", 出 生 起 从 小 ");
 			s=s.replaceAll("from birth as the instrument of ", "就 被 教 导 成 为 ");
-			s=s.replaceAll(".  You are destined", "的 忠 实 奴 仆 。 ");
+			s=s.replaceAll(".  You are destined", "的 忠 实 奴 仆 . ");
 			s=s.replaceAll("to recover the Amulet for your deity, or die in the", 
-					"除 非 死 亡 ， 你 注 定 要 为 你 的 神 取 回 岩 德 护 身 符 。 ");
+					"除 非 死 亡 , 你 注 定 要 为 你 的 神 取 回 岩 德 护 身 符 . ");
 			s=s.replaceAll("attempt.  Your hour of destiny has come.  For the sake", 
-					"命 运 的 一 刻 终 于 来 临 。 ");
+					"命 运 的 一 刻 终 于 来 临 . ");
 			s=s.replaceAll("of us all:  Go bravely with ", 
-					"为 了 我 们 所 有 人 ： 勇 敢 地 前 进 吧 。 ");
+					"为 了 我 们 所 有 人 : 勇 敢 地 前 进 吧 . ");
 			s=god(s);
 			s=newly(s);
 			s=s.replaceAll("More", "更 多 ");
@@ -183,12 +183,12 @@ public class Chinese {
 			s=s.replaceAll("Konnichi wa ", "您 好 ");
 			s=s.replaceAll("Salutations ", "您 好 ");
 			s=s.replaceAll("welcome to NetHack! You are a ", 
-					"欢 迎 来 到 迷 宫 骇 客 ！ 您 是 一 位 ");
+					"欢 迎 来 到 迷 宫 骇 客 ! 您 是 一 位 ");
 			s=s.replaceAll("welcome back to", "欢 迎 回 到 ");
 			s=s.replaceAll("NetHack", "迷 宫 骇 客 ");
-			s=s.replaceAll("Be careful!", "要 小 心 ！");
-			s=s.replaceAll("Becareful!", "要 小 心 ！");
-			s=s.replaceAll("New moon tonight.", "今 晚 新 月 。 ");
+			s=s.replaceAll("Be careful!", "要 小 心 !");
+			s=s.replaceAll("Becareful!", "要 小 心 !");
+			s=s.replaceAll("New moon tonight.", "今 晚 新 月 . ");
 			s=s.replaceAll("the ", "");
 			s=character(s);
 			s=att(s);
@@ -265,7 +265,7 @@ public class Chinese {
 		if(pro==13)
 		{
 			s=s.replaceAll("Beware! From explore mode there will be no return to", 
-					"注 意 ！ 进 入 探 索 模 式 就 不 能 回 到 ");
+					"注 意 ! 进 入 探 索 模 式 就 不 能 回 到 ");
 			s=s.replaceAll("Resuming normal game", "保 持 一 般 模 式 ");
 			s=s.replaceAll("normal game", "一 般 模 式 ");
 			s=s.replaceAll("You are now in non-scoring explore mode", "现 在 是 无 分 数 探 索 模 式 ");
@@ -330,9 +330,9 @@ public class Chinese {
 			s=s.replaceAll("the ", "");
 			s=character(s);
 			s=s.replaceAll("You quit in The Dungeons of Doom ", 
-					"你 从 末 日 地 牢 中 退 出 了 。 ");
+					"你 从 末 日 地 牢 中 退 出 了 . ");
 			s=s.replaceAll("You died in The Dungeons of Doom ", 
-					"你 死 在 末 日 地 牢 中 。 ");
+					"你 死 在 末 日 地 牢 中 . ");
 			s=s.replaceAll("on dungeon level ", "地 牢 层 数 ");
 			s=s.replaceAll("with ", "有 ");
 			s=s.replaceAll("and ", "和 ");
@@ -359,9 +359,9 @@ public class Chinese {
 			s=s.replaceAll("Name", "名 字 ");
 			s=chalist(s);
 			s=s.replaceAll("quit in The Dungeons of Doom on", 
-					"从 末 日 地 牢 中 退 出 了 。 ");
+					"从 末 日 地 牢 中 退 出 了 . ");
 			s=s.replaceAll("died in The Dungeons of Doom on", 
-					"死 在 末 日 地 牢 中 。 ");
+					"死 在 末 日 地 牢 中 . ");
 			s=s.replaceAll("level ", "层 数 ");
 			s=s.replaceAll("Killed by a ", "被 该 怪 物 所 杀 ");
 		}
@@ -376,7 +376,7 @@ public class Chinese {
 		s=s.replaceAll("Co:", "体 :");
 		s=s.replaceAll("In:", "智 :");
 		s=s.replaceAll("Wi:", "感 :");
-		//s=s.replaceAll("Ch:", "魅 :"); //无法替换掉，为什么？
+		//s=s.replaceAll("Ch:", "魅 :"); //无法替换掉,为什么？
 		//s=s.replaceAll("Lawful", "秩 序");
 		//s=s.replaceAll("Neutral", "中 立");
 		//s=s.replaceAll("Chaotic", "混 沌");
@@ -576,7 +576,7 @@ public class Chinese {
 	private String boulder(String s)
 	{
 		s=s.replaceAll("You try to move the boulder, but in vain", 
-				"你 试 图 移 动 巨 石 ， 但 是 没 用 ");
+				"你 试 图 移 动 巨 石 , 但 是 没 用 ");
 		s=s.replaceAll("With great effort you move the boulder", 
 				"你 尽 全 力 移 动 巨 石 ");
 		s=s.replaceAll("The boulder falls into and plugs a hole in the floor", 
@@ -598,7 +598,9 @@ public class Chinese {
 	
 	private String attack(String s)
 	{
-		//s=s.replaceAll("You ", "你 ");
+		s=s.replaceAll("You ", "你 ");
+		s=s.replaceAll("The ", "");
+		s=s.replaceAll("the ", "");
 		s=s.replaceAll("just ", "");
 		s=s.replaceAll("misses", "没 打 到 ");    //怪
 		s=s.replaceAll("bites", "咬 了 一 口 ");   //怪
@@ -740,111 +742,138 @@ public class Chinese {
 	
 	private String god(String s)
 	{
-		s=s.replaceAll("Quetzalcoatl:", "羽 蛇 神 之 中 ： ");
-		s=s.replaceAll("Quetzalcoatl!", "羽 蛇 神 与 你 同 在 ！ ");
+		s=s.replaceAll("Quetzalcoatl:", "羽 蛇 神 之 中 : ");
+		s=s.replaceAll("Quetzalcoatl!", "羽 蛇 神 与 你 同 在 ! ");
 		s=s.replaceAll("Quetzalcoatl", "羽 蛇 神 ");
-		s=s.replaceAll("Camaxtli:", "卡 玛 瑟 特 利 之 中 ： ");
-		s=s.replaceAll("Camaxtli!", "卡 玛 瑟 特 利 与 你 同 在 ！ ");
+		s=s.replaceAll("Camaxtli:", "卡 玛 瑟 特 利 之 中 : ");
+		s=s.replaceAll("Camaxtli!", "卡 玛 瑟 特 利 与 你 同 在 ! ");
 		s=s.replaceAll("Camaxtli", "卡 玛 瑟 特 利 ");
-		s=s.replaceAll("Crom:", "克 罗 姆 之 中 ： ");
-		s=s.replaceAll("Crom!", "克 罗 姆 与 你 同 在 ！ ");
+		s=s.replaceAll("Crom:", "克 罗 姆 之 中 : ");
+		s=s.replaceAll("Crom!", "克 罗 姆 与 你 同 在 ! ");
 		s=s.replaceAll("Crom", "克 罗 姆 ");
-		s=s.replaceAll("Set:", "赛 特 之 中 ： ");
-		s=s.replaceAll("Set!", "赛 特 与 你 同 在 ！ ");
+		s=s.replaceAll("Set:", "赛 特 之 中 : ");
+		s=s.replaceAll("Set!", "赛 特 与 你 同 在 ! ");
 		s=s.replaceAll("Set", "赛 特 ");
-		s=s.replaceAll("Anu:", "安 努 之 中 ： ");
-		s=s.replaceAll("Anu!", "安 努 与 你 同 在 ！ ");
+		s=s.replaceAll("Anu:", "安 努 之 中 : ");
+		s=s.replaceAll("Anu!", "安 努 与 你 同 在 ! ");
 		s=s.replaceAll("Anu", "安 努 ");
-		s=s.replaceAll("Ishtar:", "伊 师 塔 之 中 ： ");
-		s=s.replaceAll("Ishtar!", "伊 师 塔 与 你 同 在 ！ ");
+		s=s.replaceAll("Ishtar:", "伊 师 塔 之 中 : ");
+		s=s.replaceAll("Ishtar!", "伊 师 塔 与 你 同 在 ! ");
 		s=s.replaceAll("Ishtar", "伊 师 塔 ");
-		s=s.replaceAll("Hermes:", "赫 耳 墨 斯 之 中 ： ");
-		s=s.replaceAll("Hermes!", "赫 耳 墨 斯 与 你 同 在 ！ ");
+		s=s.replaceAll("Hermes:", "赫 耳 墨 斯 之 中 : ");
+		s=s.replaceAll("Hermes!", "赫 耳 墨 斯 与 你 同 在 ! ");
 		s=s.replaceAll("Hermes", "赫 耳 墨 斯 ");
-		s=s.replaceAll("Lugh:", "鲁 格 之 中 ： ");
-		s=s.replaceAll("Lugh!", "鲁 格 与 你 同 在 ！ ");
+		s=s.replaceAll("Lugh:", "鲁 格 之 中 : ");
+		s=s.replaceAll("Lugh!", "鲁 格 与 你 同 在 ! ");
 		s=s.replaceAll("Lugh", "鲁 格 ");
-		s=s.replaceAll("Shan Lai Ching:", "山 雷 精 之 中 ： ");
-		s=s.replaceAll("Shan Lai Ching!", "山 雷 精 与 你 同 在 ！ ");
+		s=s.replaceAll("Shan Lai Ching:", "山 雷 精 之 中 : ");
+		s=s.replaceAll("Shan Lai Ching!", "山 雷 精 与 你 同 在 ! ");
 		s=s.replaceAll("Shan Lai Ching", "山 雷 精 ");
-		s=s.replaceAll("Chih Sung-tzu:", "赤 松 子 之 中 ： ");
-		s=s.replaceAll("Chih Sung-tzu!", "赤 松 子 与 你 同 在 ！ ");
+		s=s.replaceAll("Chih Sung-tzu:", "赤 松 子 之 中 : ");
+		s=s.replaceAll("Chih Sung-tzu!", "赤 松 子 与 你 同 在 ! ");
 		s=s.replaceAll("Chih Sung-tzu", "赤 松 子 ");
-		s=s.replaceAll("Huan Ti:", "黄 帝 之 中 ： ");
-		s=s.replaceAll("Huan Ti!", "黄 帝 与 你 同 在 ！ ");
+		s=s.replaceAll("Huan Ti:", "黄 帝 之 中 : ");
+		s=s.replaceAll("Huan Ti!", "黄 帝 与 你 同 在 ! ");
 		s=s.replaceAll("Huan Ti", "黄 帝 ");
-		s=s.replaceAll("Ptah:", "卜 塔 之 中 ： ");
-		s=s.replaceAll("Ptah!", "卜 塔 与 你 同 在 ！ ");
+		s=s.replaceAll("Ptah:", "卜 塔 之 中 : ");
+		s=s.replaceAll("Ptah!", "卜 塔 与 你 同 在 ! ");
 		s=s.replaceAll("Ptah", "卜 塔 ");
-		s=s.replaceAll("Mercury:", "墨 丘 利 之 中 ： ");
-		s=s.replaceAll("Mercury!", "墨 丘 利 与 你 同 在 ！ ");
+		s=s.replaceAll("Mercury:", "墨 丘 利 之 中 : ");
+		s=s.replaceAll("Mercury!", "墨 丘 利 与 你 同 在 ! ");
 		s=s.replaceAll("Mercury", "墨 丘 利 ");
-		s=s.replaceAll("Venus:", "维 纳 斯 之 中 ： ");
-		s=s.replaceAll("Venus!", "维 纳 斯 与 你 同 在 ！ ");
+		s=s.replaceAll("Venus:", "维 纳 斯 之 中 : ");
+		s=s.replaceAll("Venus!", "维 纳 斯 与 你 同 在 ! ");
 		s=s.replaceAll("Venus", "维 纳 斯 ");
-		s=s.replaceAll("Manannan Mac Lir:", "玛 娜 曼 · 麦 克 · 利 尔 之 中 ： ");
-		s=s.replaceAll("Manannan Mac Lir!", "玛 娜 曼 · 麦 克 · 利 尔 与 你 同 在 ！ ");
+		s=s.replaceAll("Manannan Mac Lir:", "玛 娜 曼 · 麦 克 · 利 尔 之 中 : ");
+		s=s.replaceAll("Manannan Mac Lir!", "玛 娜 曼 · 麦 克 · 利 尔 与 你 同 在 ! ");
 		s=s.replaceAll("Manannan Mac Lir", "玛 娜 曼 · 麦 克 · 利 尔 ");
-		s=s.replaceAll("Susanowo:", "须 佐 之 男 之 中 ： ");
-		s=s.replaceAll("Susanowo!", "须 佐 之 男 与 你 同 在 ！ ");
+		s=s.replaceAll("Susanowo:", "须 佐 之 男 之 中 : ");
+		s=s.replaceAll("Susanowo!", "须 佐 之 男 与 你 同 在 ! ");
 		s=s.replaceAll("Susanowo", "须 佐 之 男 ");
-		s=s.replaceAll("Offler:", "昂 福 尔 之 中 ： ");
-		s=s.replaceAll("Offler!", "昂 福 尔 与 你 同 在 ！ ");
+		s=s.replaceAll("Offler:", "昂 福 尔 之 中 : ");
+		s=s.replaceAll("Offler!", "昂 福 尔 与 你 同 在 ! ");
 		s=s.replaceAll("Offler", "昂 福 尔 ");
-		s=s.replaceAll("Huhetotl:", "修 堤 库 特 里 之 中 ： ");
-		s=s.replaceAll("Huhetotl!", "修 堤 库 特 里 与 你 同 在 ！ ");
+		s=s.replaceAll("Huhetotl:", "修 堤 库 特 里 之 中 : ");
+		s=s.replaceAll("Huhetotl!", "修 堤 库 特 里 与 你 同 在 ! ");
 		s=s.replaceAll("Huhetotl", "修 堤 库 特 里 ");
-		s=s.replaceAll("Mars:", "马 耳 斯 之 中 ： ");
-		s=s.replaceAll("Mars!", "马 耳 斯 与 你 同 在 ！ ");
+		s=s.replaceAll("Mars:", "马 耳 斯 之 中 : ");
+		s=s.replaceAll("Mars!", "马 耳 斯 与 你 同 在 ! ");
 		s=s.replaceAll("Mars", "马 耳 斯 ");
-		s=s.replaceAll("Athena:", "雅 典 娜 之 中 ： ");
-		s=s.replaceAll("Athena!", "雅 典 娜 与 你 同 在 ！ ");
+		s=s.replaceAll("Athena:", "雅 典 娜 之 中 : ");
+		s=s.replaceAll("Athena!", "雅 典 娜 与 你 同 在 ! ");
 		s=s.replaceAll("Athena", "雅 典 娜 ");
-		s=s.replaceAll("Amaterasu Omikami:", "天 照 女 神 之 中 ： ");
-		s=s.replaceAll("Amaterasu Omikami!", "天 照 女 神 与 你 同 在 ！ ");
+		s=s.replaceAll("Amaterasu Omikami:", "天 照 女 神 之 中 : ");
+		s=s.replaceAll("Amaterasu Omikami!", "天 照 女 神 与 你 同 在 ! ");
 		s=s.replaceAll("Amaterasu Omikami", "天 照 女 神 ");
-		s=s.replaceAll("Blind Io:", "盲 木 卫 之 中 ： ");
-		s=s.replaceAll("Blind Io!", "盲 木 卫 与 你 同 在 ！ ");
+		s=s.replaceAll("Blind Io:", "盲 木 卫 之 中 : ");
+		s=s.replaceAll("Blind Io!", "盲 木 卫 与 你 同 在 ! ");
 		s=s.replaceAll("Blind Io", "盲 木 卫 ");
-		s=s.replaceAll("The Lady:", "昂 山 素 姬 之 中 ： ");
-		s=s.replaceAll("The Lady!", "昂 山 素 姬 与 你 同 在 ！ ");
+		s=s.replaceAll("The Lady:", "昂 山 素 姬 之 中 : ");
+		s=s.replaceAll("The Lady!", "昂 山 素 姬 与 你 同 在 ! ");
 		s=s.replaceAll("The Lady", "昂 山 素 姬 ");
-		s=s.replaceAll("Brigit:", "布 里 吉 特 之 中 ： ");
-		s=s.replaceAll("Brigit!", "布 里 吉 特 与 你 同 在 ！ ");
+		s=s.replaceAll("Brigit:", "布 里 吉 特 之 中 : ");
+		s=s.replaceAll("Brigit!", "布 里 吉 特 与 你 同 在 ! ");
 		s=s.replaceAll("Brigit", "布 里 吉 特 ");
-		s=s.replaceAll("Kos:", "科 斯 之 中 ： ");
-		s=s.replaceAll("Kos!", "科 斯 与 你 同 在 ！ ");
+		s=s.replaceAll("Kos:", "科 斯 之 中 : ");
+		s=s.replaceAll("Kos!", "科 斯 与 你 同 在 ! ");
 		s=s.replaceAll("Kos", "科 斯 ");
-		s=s.replaceAll("Mitra:", "米 特 拉 之 中 ： ");
-		s=s.replaceAll("Mitra!", "米 特 拉 与 你 同 在 ！ ");
+		s=s.replaceAll("Mitra:", "米 特 拉 之 中 : ");
+		s=s.replaceAll("Mitra!", "米 特 拉 与 你 同 在 ! ");
 		s=s.replaceAll("Mitra", "米 特 拉 ");
-		s=s.replaceAll("Raijin:", "雷 神 之 中 ： ");
-		s=s.replaceAll("Raijin!", "雷 神 与 你 同 在 ！ ");
+		s=s.replaceAll("Raijin:", "雷 神 之 中 : ");
+		s=s.replaceAll("Raijin!", "雷 神 与 你 同 在 ! ");
 		s=s.replaceAll("Raijin", "雷 神 ");
-		s=s.replaceAll("Mog:", "莫 格 之 中 ： ");
-		s=s.replaceAll("Mog!", "莫 格 与 你 同 在 ！ ");
+		s=s.replaceAll("Mog:", "莫 格 之 中 : ");
+		s=s.replaceAll("Mog!", "莫 格 与 你 同 在 ! ");
 		s=s.replaceAll("Mog", "莫 格 ");
-		s=s.replaceAll("Thoth:", "透 特 之 中 ： ");
-		s=s.replaceAll("Thoth!", "透 特 与 你 同 在 ！ ");
+		s=s.replaceAll("Thoth:", "透 特 之 中 : ");
+		s=s.replaceAll("Thoth!", "透 特 与 你 同 在 ! ");
 		s=s.replaceAll("Thoth", "透 特 ");
-		s=s.replaceAll("Anshar:", "安 沙 尔 之 中 ： ");
-		s=s.replaceAll("Anshar!", "安 沙 尔 与 你 同 在 ！ ");
+		s=s.replaceAll("Anshar:", "安 沙 尔 之 中 : ");
+		s=s.replaceAll("Anshar!", "安 沙 尔 与 你 同 在 ! ");
 		s=s.replaceAll("Anshar", "安 沙 尔 ");
-		s=s.replaceAll("Poseidon:", "波 塞 冬 之 中 ： ");
-		s=s.replaceAll("Poseidon!", "波 塞 冬 与 你 同 在 ！ ");
+		s=s.replaceAll("Poseidon:", "波 塞 冬 之 中 : ");
+		s=s.replaceAll("Poseidon!", "波 塞 冬 与 你 同 在 ! ");
 		s=s.replaceAll("Poseidon", "波 塞 冬 ");
-		s=s.replaceAll("Loki:", "洛 基 之 中 ： ");
-		s=s.replaceAll("Loki!", "洛 基 与 你 同 在 ！ ");
+		s=s.replaceAll("Loki:", "洛 基 之 中 : ");
+		s=s.replaceAll("Loki!", "洛 基 与 你 同 在 ! ");
 		s=s.replaceAll("Loki", "洛 基 ");
-		s=s.replaceAll("Tyr:", "蒂 尔 之 中 ： ");
-		s=s.replaceAll("Tyr!", "蒂 尔 与 你 同 在 ！ ");
+		s=s.replaceAll("Tyr:", "蒂 尔 之 中 : ");
+		s=s.replaceAll("Tyr!", "蒂 尔 与 你 同 在 ! ");
 		s=s.replaceAll("Tyr", "蒂 尔 ");
-		s=s.replaceAll("Odin:", "欧 丁 神 之 中 ： ");
-		s=s.replaceAll("Odin!", "欧 丁 神 与 你 同 在 ！ ");
+		s=s.replaceAll("Odin:", "欧 丁 神 之 中 : ");
+		s=s.replaceAll("Odin!", "欧 丁 神 与 你 同 在 ! ");
 		s=s.replaceAll("Odin", "欧 丁 神 ");
-		s=s.replaceAll("Anhur:", "安 赫 之 中 ： ");
-		s=s.replaceAll("Anhur!", "安 赫 与 你 同 在 ！ ");
+		s=s.replaceAll("Anhur:", "安 赫 之 中 : ");
+		s=s.replaceAll("Anhur!", "安 赫 与 你 同 在 ! ");
 		s=s.replaceAll("Anhur", "安 赫 ");
+		return s;
+	}
+	
+	private String encode(String s)
+	{
+		int i=0;
+		int l=s.length();
+		for(i=0;i<=l-1;i++)
+		{
+			//System.out.println(s.charAt(i)+0);
+			if(s.charAt(i)>=65280||(s.charAt(i)>=19968&&s.charAt(i+1)>=19968&&s.charAt(i+2)>=19968))
+			{
+				byte[] b={(byte)s.charAt(i),(byte)s.charAt(i+1),(byte)s.charAt(i+2)};
+				try {
+					String code=new String(b,"UTF-8");
+					String rep=s.substring(i, i+3);
+					//System.out.println(code);
+					//System.out.println(rep);
+					//i=i+2;
+					s=s.replaceAll(rep, code);
+					l=s.length();
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return s;
 	}
 }

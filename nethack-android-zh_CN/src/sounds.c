@@ -868,7 +868,7 @@ dochat()
 	return(1);
     }
 
-    if (!getdir("Talk to whom? (in what direction)")) {
+    if (!getdir("和 谁 说 话 ? (哪 个 方 向 )")) {  //Talk to whom? (in what direction)
 	/* decided not to chat */
 	return(0);
     }
