@@ -1,0 +1,44 @@
+
+Build instructions
+
+
+These instructions are written for a 64-bit Ubuntu installation.
+Modifying them for other linux distributionos should be little to no
+work. If you're running Windows you're on your own.
+
+
+
+=== Preparations ===
+
+ - Install the Android SDK
+     http://developer.android.com/sdk
+ 
+ - Download and extract the Android NDK
+     http://developer.android.com/sdk/ndk
+      
+ - Install 'bison' and 'flex'
+ 
+ - Download the source
+     https://github.com/SunnyEric/NetHack_android
+
+
+
+=== Building NetHack ===
+
+1. cd <NetHack-Android>/sys/android
+2. sh ./setup.sh
+3. cd ../..
+4. make all
+
+
+
+
+=== Building the app ===
+
+1. Start Eclipse
+2. Create New Android Project -> "Create project from existing source"
+3. Point the location to: <NetHack-Android>/sys/android
+4. Build and Run!
+
+
+Happy hacking!
