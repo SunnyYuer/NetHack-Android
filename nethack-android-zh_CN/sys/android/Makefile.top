@@ -89,6 +89,7 @@ $(GAME):
 
 all:	$(GAME) recover Guidebook $(VARDAT) dungeon spec_levs check-dlb
 	cp -ruv dat sys/android/NetHackApp/assets/nethackdir
+	cp -v sys/android/ndktemp/monst.c src/monst.c
 	@echo "Done."
 
 # Note: many of the dependencies below are here to allow parallel make
