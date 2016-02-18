@@ -322,7 +322,7 @@ int sig_unused UNUSED;
 int
 done2()
 {
-    if (!paranoid_query(ParanoidQuit, "Really quit?")) {
+    if (!paranoid_query(ParanoidQuit, "确定退出?")) {
 #ifndef NO_SIGNAL
         (void) signal(SIGINT, (SIG_RET_TYPE) done1);
 #endif
@@ -636,7 +636,7 @@ boolean taken;
             Sprintf(qbuf, "Do you want to see what you had when you %s?",
                     (how == QUIT) ? "quit" : "died");
         else
-            Strcpy(qbuf, "Do you want your possessions identified?");
+            Strcpy(qbuf, "你想确认下你的物品吗?");
 
         ask = should_query_disclose_option('i', &defquery);
         c = ask ? yn_function(qbuf, ynqchars, defquery) : defquery;
@@ -658,7 +658,7 @@ boolean taken;
 
     if (!done_stopprint) {
         ask = should_query_disclose_option('a', &defquery);
-        c = ask ? yn_function("Do you want to see your attributes?", ynqchars,
+        c = ask ? yn_function("你想查看下你的各项属性吗?", ynqchars,
                               defquery)
                 : defquery;
         if (c == 'y')
@@ -681,7 +681,7 @@ boolean taken;
 
     if (!done_stopprint) {
         ask = should_query_disclose_option('c', &defquery);
-        c = ask ? yn_function("Do you want to see your conduct?", ynqchars,
+        c = ask ? yn_function("你想看下你的成就吗?", ynqchars,
                               defquery)
                 : defquery;
         if (c == 'y')
@@ -692,7 +692,7 @@ boolean taken;
 
     if (!done_stopprint) {
         ask = should_query_disclose_option('o', &defquery);
-        c = ask ? yn_function("Do you want to see the dungeon overview?",
+        c = ask ? yn_function("你想看下地下城概述吗?",
                               ynqchars, defquery)
                 : defquery;
         if (c == 'y')
@@ -1443,7 +1443,7 @@ boolean ask;
      */
     if (ntypes != 0) {
         c = ask ? yn_function(
-                            "Do you want an account of creatures vanquished?",
+                            "你想看下你消灭的怪物吗?",
                               ynqchars, defquery)
                 : defquery;
         if (c == 'q')

@@ -26,7 +26,7 @@
 			android:layout_height="wrap_content">
 			<Button
 				style="@style/ButtonText"
-				android:text="Ok"
+				android:text="确定"
 				android:id="@+id/btn_0"
 				android:layout_width="fill_parent"
 				android:layout_height="wrap_content"/>

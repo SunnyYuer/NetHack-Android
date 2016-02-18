@@ -74,7 +74,7 @@
 		    android:id="@+id/wizard"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:text="Wizard mode" />
+		    android:text="探索模式" />
         
 		<LinearLayout
             style="@android:style/ButtonBar"
@@ -87,7 +87,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ok" />
+                android:text="确定" />
 
             <Button
                 android:id="@+id/btn_1"
@@ -95,7 +95,7 @@
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cancel" />
+                android:text="取消" />
         </LinearLayout>
     </LinearLayout>
 

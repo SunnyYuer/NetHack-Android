@@ -85,7 +85,7 @@ int
 dosave()
 {
     clear_nhwindow(WIN_MESSAGE);
-    if (yn("Really save?") == 'n') {
+    if (yn("保存退出?") == 'n') {
         clear_nhwindow(WIN_MESSAGE);
         if (multi > 0)
             nomul(0);

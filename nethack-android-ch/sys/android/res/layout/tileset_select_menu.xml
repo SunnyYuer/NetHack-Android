@@ -7,7 +7,7 @@
 	<RadioButton
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Custom"
+		android:text="本地"
 		android:checked="true"
 		android:id="@+id/custom_tiles"/>
 	<LinearLayout
@@ -26,7 +26,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="Tileset image"/>
+				android:text="地图图像"/>
 
 			<LinearLayout
 				android:orientation="horizontal"
@@ -58,7 +58,7 @@
 				android:layout_height="fill_parent"
 				android:layout_marginTop="15dip"
 				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:text="Individual tile dimensions"/>
+				android:text="个人地图尺寸"/>
 
 			<LinearLayout
 				android:orientation="horizontal"
@@ -70,7 +70,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="0"
 					android:layout_marginLeft="15dip"
-					android:text="Width:"/>
+					android:text="宽:"/>
 				<EditText
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
 					android:layout_height="wrap_content"
 					android:layout_weight="0"
 					android:layout_marginLeft="15dip"
-					android:text="Height:"/>
+					android:text="高:"/>
 				<EditText
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"

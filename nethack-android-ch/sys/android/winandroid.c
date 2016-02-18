@@ -331,20 +331,20 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randrole()+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "Random", MENU_UNSELECTED);
+                        and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; roles[i].name.m; i++)
 			{
 				if(ok_role(i, flags.initrace, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
-					thisch = lowc(roles[i].name.m[0]);
+                                        thisch = lowc(roles[i].name.m[0]);
 					if(thisch == lastch)
 						thisch = highc(thisch);
 					and_add_menu(win, NO_GLYPH, &any, thisch, 0, ATR_NONE, roles[i].name.m, MENU_UNSELECTED);
 					lastch = thisch;
 				}
 			}
-			and_end_menu(win, "Pick a role");
+                        and_end_menu(win, "选择职业");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -373,14 +373,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randrace(flags.initrole)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+                        and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; races[i].noun; i++)
 				if(ok_race(flags.initrole, i, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
 					and_add_menu(win, NO_GLYPH, &any, races[i].noun[0], 0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick a race");
+                        and_end_menu(win, "选择种族");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -409,14 +409,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randgend(flags.initrole, flags.initrace)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+                        and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; i < ROLE_GENDERS; i++)
 				if(ok_gend(flags.initrole, flags.initrace, i, flags.initalign))
 				{
 					any.a_int = i + 1;
 					and_add_menu(win, NO_GLYPH, &any, genders[i].adj[0], 0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick a gender");
+                        and_end_menu(win, "选择性别");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -443,14 +443,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randalign(flags.initrole, flags.initrace)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+                        and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; i < ROLE_ALIGNS; i++)
 				if(ok_align(flags.initrole, flags.initrace, flags.initgend, i))
 				{
 					any.a_int = i + 1;
 					and_add_menu(win, NO_GLYPH, &any, aligns[i].adj[0], 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick an alignment");
+                        and_end_menu(win, "选择阵营");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 

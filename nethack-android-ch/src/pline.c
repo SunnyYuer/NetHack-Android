@@ -359,11 +359,11 @@ aligntyp alignment;
 {
     switch ((int) alignment) {
     case A_CHAOTIC:
-        return "chaotic";
+        return "混沌";
     case A_NEUTRAL:
-        return "neutral";
+        return "中立";
     case A_LAWFUL:
-        return "lawful";
+        return "秩序";
     case A_NONE:
         return "unaligned";
     }

@@ -55,7 +55,7 @@ public class NH_GetLine
 	public void showWhoAreYou(Activity context, final int nMaxChars, List<String> history)
 	{
 		mContext = context;
-		mTitle = "Who are you?";
+		mTitle = "Äã½ÐÊ²Ã´?";
 		mMaxChars = nMaxChars;
 		mUI = new UI(context, history, false, false, true);
 	}

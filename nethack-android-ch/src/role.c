@@ -24,8 +24,8 @@
  * God names use a leading underscore to flag goddesses.
  */
 const struct Role roles[] = {
-    { { "Archeologist", 0 },
-      { { "Digger", 0 },
+    { { "a考古学家", 0 },
+      { { "挖掘者", 0 },
         { "Field Worker", 0 },
         { "Investigator", 0 },
         { "Exhumer", 0 },
@@ -34,7 +34,7 @@ const struct Role roles[] = {
         { "Speleologist", 0 },
         { "Collector", 0 },
         { "Curator", 0 } },
-      "Quetzalcoatl", "Camaxtli", "Huhetotl", /* Central American */
+      "羽蛇神", "卡玛瑟特利", "修堤库特里", /* Central American */
       "Arc",
       "the College of Archeology",
       "the Tomb of the Toltec Kings",
@@ -66,8 +66,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_MAGIC_MAPPING,
       -4 },
-    { { "Barbarian", 0 },
-      { { "Plunderer", "Plunderess" },
+    { { "b野蛮人", 0 },
+      { { "掠夺者", "掠夺者" },
         { "Pillager", 0 },
         { "Bandit", 0 },
         { "Brigand", 0 },
@@ -76,7 +76,7 @@ const struct Role roles[] = {
         { "Slayer", 0 },
         { "Chieftain", "Chieftainess" },
         { "Conqueror", "Conqueress" } },
-      "Mitra", "Crom", "Set", /* Hyborian */
+      "米特拉", "克罗姆", "赛特", /* Hyborian */
       "Bar",
       "the Camp of the Duali Tribe",
       "the Duali Oasis",
@@ -108,8 +108,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_HASTE_SELF,
       -4 },
-    { { "Caveman", "Cavewoman" },
-      { { "Troglodyte", 0 },
+    { { "c穴居人", "Cavewoman" },
+      { { "穴居者", 0 },
         { "Aborigine", 0 },
         { "Wanderer", 0 },
         { "Vagrant", 0 },
@@ -118,7 +118,7 @@ const struct Role roles[] = {
         { "Nomad", 0 },
         { "Rover", 0 },
         { "Pioneer", 0 } },
-      "Anu", "_Ishtar", "Anshar", /* Babylonian */
+      "安努", "_伊师塔", "安沙尔", /* Babylonian */
       "Cav",
       "the Caves of the Ancestors",
       "the Dragon's Lair",
@@ -150,8 +150,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_DIG,
       -4 },
-    { { "Healer", 0 },
-      { { "Rhizotomist", 0 },
+    { { "h医生", 0 },
+      { { "草药师", 0 },
         { "Empiric", 0 },
         { "Embalmer", 0 },
         { "Dresser", 0 },
@@ -160,7 +160,7 @@ const struct Role roles[] = {
         { "Magister", "Magistra" },
         { "Physician", 0 },
         { "Chirurgeon", 0 } },
-      "_Athena", "Hermes", "Poseidon", /* Greek */
+      "_雅典娜", "赫耳墨斯", "波塞冬", /* Greek */
       "Hea",
       "the Temple of Epidaurus",
       "the Temple of Coeus",
@@ -191,8 +191,8 @@ const struct Role roles[] = {
       A_WIS,
       SPE_CURE_SICKNESS,
       -4 },
-    { { "Knight", 0 },
-      { { "Gallant", 0 },
+    { { "k骑士", 0 },
+      { { "豪侠", 0 },
         { "Esquire", 0 },
         { "Bachelor", 0 },
         { "Sergeant", 0 },
@@ -201,7 +201,7 @@ const struct Role roles[] = {
         { "Chevalier", "Chevaliere" },
         { "Seignieur", "Dame" },
         { "Paladin", 0 } },
-      "Lugh", "_Brigit", "Manannan Mac Lir", /* Celtic */
+      "鲁格", "_布里吉特", "玛娜曼麦克利尔", /* Celtic */
       "Kni",
       "Camelot Castle",
       "the Isle of Glass",
@@ -232,8 +232,8 @@ const struct Role roles[] = {
       A_WIS,
       SPE_TURN_UNDEAD,
       -4 },
-    { { "Monk", 0 },
-      { { "Candidate", 0 },
+    { { "m僧侣", 0 },
+      { { "小和尚", 0 },
         { "Novice", 0 },
         { "Initiate", 0 },
         { "Student of Stones", 0 },
@@ -242,7 +242,7 @@ const struct Role roles[] = {
         { "Student of Winds", 0 },
         { "Student of Fire", 0 },
         { "Master", 0 } },
-      "Shan Lai Ching", "Chih Sung-tzu", "Huan Ti", /* Chinese */
+      "山雷精", "赤松子", "黄帝", /* Chinese */
       "Mon",
       "the Monastery of Chan-Sune",
       "the Monastery of the Earth-Lord",
@@ -274,8 +274,8 @@ const struct Role roles[] = {
       A_WIS,
       SPE_RESTORE_ABILITY,
       -4 },
-    { { "Priest", "Priestess" },
-      { { "Aspirant", 0 },
+    { { "p牧师", "Priestess" },
+      { { "修道者", 0 },
         { "Acolyte", 0 },
         { "Adept", 0 },
         { "Priest", "Priestess" },
@@ -318,8 +318,8 @@ const struct Role roles[] = {
       -4 },
     /* Note:  Rogue precedes Ranger so that use of `-R' on the command line
        retains its traditional meaning. */
-    { { "Rogue", 0 },
-      { { "Footpad", 0 },
+    { { "r盗贼", 0 },
+      { { "拦路贼", 0 },
         { "Cutpurse", 0 },
         { "Rogue", 0 },
         { "Pilferer", 0 },
@@ -328,7 +328,7 @@ const struct Role roles[] = {
         { "Filcher", 0 },
         { "Magsman", "Magswoman" },
         { "Thief", 0 } },
-      "Issek", "Mog", "Kos", /* Nehwon */
+      "伊赛克", "莫格", "科斯", /* Nehwon */
       "Rog",
       "the Thieves' Guild Hall",
       "the Assassins' Guild Hall",
@@ -359,7 +359,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_DETECT_TREASURE,
       -4 },
-    { { "Ranger", 0 },
+    { { "R游侠", 0 },
       {
 #if 0 /* OBSOLETE */
         {"Edhel",   "Elleth"},
@@ -374,7 +374,7 @@ const struct Role roles[] = {
         {"Elentar",     "Elentari"},   /* Star-king, -queen (Q.) */
         "Solonor Thelandira", "Aerdrie Faenya", "Lolth", /* Elven */
 #endif
-        { "Tenderfoot", 0 },
+        { "初学者", 0 },
         { "Lookout", 0 },
         { "Trailblazer", 0 },
         { "Reconnoiterer", "Reconnoiteress" },
@@ -383,7 +383,7 @@ const struct Role roles[] = {
         { "Archer", 0 },
         { "Sharpshooter", 0 },
         { "Marksman", "Markswoman" } },
-      "Mercury", "_Venus", "Mars", /* Roman/planets */
+      "墨丘利", "_维纳斯", "马耳斯", /* Roman/planets */
       "Ran",
       "Orion's camp",
       "the cave of the wumpus",
@@ -415,8 +415,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_INVISIBILITY,
       -4 },
-    { { "Samurai", 0 },
-      { { "Hatamoto", 0 },       /* Banner Knight */
+    { { "s武士", 0 },
+      { { "旗本", 0 },       /* Banner Knight */
         { "Ronin", 0 },          /* no allegiance */
         { "Ninja", "Kunoichi" }, /* secret society */
         { "Joshu", 0 },          /* heads a castle */
@@ -425,7 +425,7 @@ const struct Role roles[] = {
         { "Daimyo", 0 },         /* a samurai lord */
         { "Kuge", 0 },           /* Noble of the Court */
         { "Shogun", 0 } },       /* supreme commander, warlord */
-      "_Amaterasu Omikami", "Raijin", "Susanowo", /* Japanese */
+      "_天照女神", "雷神", "须佐之男", /* Japanese */
       "Sam",
       "the Castle of the Taro Clan",
       "the Shogun's Castle",
@@ -456,8 +456,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_CLAIRVOYANCE,
       -4 },
-    { { "Tourist", 0 },
-      { { "Rambler", 0 },
+    { { "t游客", 0 },
+      { { "漫步者", 0 },
         { "Sightseer", 0 },
         { "Excursionist", 0 },
         { "Peregrinator", "Peregrinatrix" },
@@ -466,7 +466,7 @@ const struct Role roles[] = {
         { "Voyager", 0 },
         { "Explorer", 0 },
         { "Adventurer", 0 } },
-      "Blind Io", "_The Lady", "Offler", /* Discworld */
+      "盲木卫", "_圣夫人", "昂福尔", /* Discworld */
       "Tou",
       "Ankh-Morpork",
       "the Thieves' Guild Hall",
@@ -497,8 +497,8 @@ const struct Role roles[] = {
       A_INT,
       SPE_CHARM_MONSTER,
       -4 },
-    { { "Valkyrie", 0 },
-      { { "Stripling", 0 },
+    { { "v女武神", 0 },
+      { { "年轻人", 0 },
         { "Skirmisher", 0 },
         { "Fighter", 0 },
         { "Man-at-arms", "Woman-at-arms" },
@@ -507,7 +507,7 @@ const struct Role roles[] = {
         { "Hero", "Heroine" },
         { "Champion", 0 },
         { "Lord", "Lady" } },
-      "Tyr", "Odin", "Loki", /* Norse */
+      "蒂尔", "欧丁神", "洛基", /* Norse */
       "Val",
       "the Shrine of Destiny",
       "the cave of Surtur",
@@ -538,8 +538,8 @@ const struct Role roles[] = {
       A_WIS,
       SPE_CONE_OF_COLD,
       -4 },
-    { { "Wizard", 0 },
-      { { "Evoker", 0 },
+    { { "w巫师", 0 },
+      { { "魔导师", 0 },
         { "Conjurer", 0 },
         { "Thaumaturge", 0 },
         { "Magician", 0 },
@@ -548,7 +548,7 @@ const struct Role roles[] = {
         { "Necromancer", 0 },
         { "Wizard", 0 },
         { "Mage", 0 } },
-      "Ptah", "Thoth", "Anhur", /* Egyptian */
+      "卜塔", "透特", "安赫", /* Egyptian */
       "Wiz",
       "the Lonely Tower",
       "the Tower of Darkness",
@@ -615,8 +615,8 @@ struct Role urole = {
 /* Table of all races */
 const struct Race races[] = {
     {
-        "human",
-        "human",
+        "h人类",
+        "人类",
         "humanity",
         "Hum",
         { "man", "woman" },
@@ -637,8 +637,8 @@ const struct Race races[] = {
         { 1, 0, 2, 0, 2, 0 }  /* Energy */
     },
     {
-        "elf",
-        "elven",
+        "e精灵",
+        "精灵族",
         "elvenkind",
         "Elf",
         { 0, 0 },
@@ -658,8 +658,8 @@ const struct Race races[] = {
         { 2, 0, 3, 0, 3, 0 }  /* Energy */
     },
     {
-        "dwarf",
-        "dwarven",
+        "d矮人",
+        "矮人族",
         "dwarvenkind",
         "Dwa",
         { 0, 0 },
@@ -679,8 +679,8 @@ const struct Race races[] = {
         { 0, 0, 0, 0, 0, 0 }  /* Energy */
     },
     {
-        "gnome",
-        "gnomish",
+        "g侏儒",
+        "侏儒",
         "gnomehood",
         "Gno",
         { 0, 0 },
@@ -700,8 +700,8 @@ const struct Race races[] = {
         { 2, 0, 2, 0, 2, 0 }  /* Energy */
     },
     {
-        "orc",
-        "orcish",
+        "o兽人",
+        "兽人族",
         "orcdom",
         "Orc",
         { 0, 0 },
@@ -751,16 +751,16 @@ struct Race urace = {
 
 /* Table of all genders */
 const struct Gender genders[] = {
-    { "male", "he", "him", "his", "Mal", ROLE_MALE },
-    { "female", "she", "her", "her", "Fem", ROLE_FEMALE },
-    { "neuter", "it", "it", "its", "Ntr", ROLE_NEUTER }
+    { "m男性", "he", "他", "his", "Mal", ROLE_MALE },
+    { "f女性", "she", "她", "her", "Fem", ROLE_FEMALE },
+    { "n无性", "it", "it", "its", "Ntr", ROLE_NEUTER }
 };
 
 /* Table of all alignments */
 const struct Align aligns[] = {
-    { "law", "lawful", "Law", ROLE_LAWFUL, A_LAWFUL },
-    { "balance", "neutral", "Neu", ROLE_NEUTRAL, A_NEUTRAL },
-    { "chaos", "chaotic", "Cha", ROLE_CHAOTIC, A_CHAOTIC },
+    { "law", "l秩序", "Law", ROLE_LAWFUL, A_LAWFUL },
+    { "balance", "n中立", "Neu", ROLE_NEUTRAL, A_NEUTRAL },
+    { "chaos", "c混沌", "Cha", ROLE_CHAOTIC, A_CHAOTIC },
     { "evil", "unaligned", "Una", 0, A_NONE }
 };
 
@@ -2094,21 +2094,21 @@ struct monst *mtmp;
 {
     switch (Role_switch) {
     case PM_KNIGHT:
-        return "Salutations"; /* Olde English */
+        return "尊敬的"; /* Olde English */
     case PM_SAMURAI:
         return (mtmp && mtmp->data == &mons[PM_SHOPKEEPER])
-                    ? "Irasshaimase"
-                    : "Konnichi wa"; /* Japanese */
+                    ? "欢迎"
+                    : "可尼奇哇"; /* Japanese */
     case PM_TOURIST:
-        return "Aloha"; /* Hawaiian */
+        return "你好"; /* Hawaiian */
     case PM_VALKYRIE:
         return
 #ifdef MAIL
-               (mtmp && mtmp->data == &mons[PM_MAIL_DAEMON]) ? "Hallo" :
+               (mtmp && mtmp->data == &mons[PM_MAIL_DAEMON]) ? "哈罗" :
 #endif
-               "Velkommen"; /* Norse */
+               "欢迎"; /* Norse */
     default:
-        return "Hello";
+        return "哈喽";
     }
 }
 

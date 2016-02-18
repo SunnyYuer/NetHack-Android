@@ -94,14 +94,14 @@
 			<Button
 			    style="@style/ButtonText"
 				android:id="@+id/btn_0"
-				android:text="Ok"
+				android:text="确定"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 			    style="@style/ButtonText"
 				android:id="@+id/btn_1"
-				android:text="Back"
+				android:text="取消"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>

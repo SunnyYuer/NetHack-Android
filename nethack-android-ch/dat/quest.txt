@@ -3311,24 +3311,24 @@ experienced before, so be prepared!
 #	General
 #
 %Cc - 00001
-It is written in the Book of %d:
+这是写在%d之书中:
 
-    After the Creation, the cruel god Moloch rebelled
-    against the authority of Marduk the Creator.
-    Moloch stole from Marduk the most powerful of all
-    the artifacts of the gods, the Amulet of Yendor,
-    and he hid it in the dark cavities of Gehennom, the
-    Under World, where he now lurks, and bides his time.
+    天地创造之初, 破坏神摩洛密谋策划
+    叛变创世神马尔杜克.
+    摩洛从马尔杜克的众多神器中偷走了
+    最为强大的岩德护身符,
+    并将其藏在暗黑地狱葛汉诺姆,
+    暗中积蓄力量以待时机的成熟.
 
-Your %G %d seeks to possess the Amulet, and with it
-to gain deserved ascendance over the other gods.
+你的%G %d想要得到这传说中的护身符, 有此神器为助
+便能在众神内稳占主导地位.
 
-You, a newly trained %r, have been heralded
-from birth as the instrument of %d.  You are destined
-to recover the Amulet for your deity, or die in the
-attempt.  Your hour of destiny has come.  For the sake
-of us all:  Go bravely with %d!
-%E [%dC has chosen you to recover the Amulet of Yendor for %dI.]
+你现在还只是个新手%r, 出生起从小
+就被教导成为%d的忠实奴仆.
+除非死亡, 你注定要为你的神取回岩德护身符.
+命运的一刻终于来临.
+为了我们所有人: 勇敢地前进吧, %d与你同在!
+%E [ %dC选择了你去为%dI带回岩德护身符.]
 %Cp - 00002
 You receive a faint telepathic message from %l:
 Your help is urgently needed at %H!

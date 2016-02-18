@@ -627,10 +627,10 @@ boolean new_game; /* false => restoring an old game */
         && (new_game
                 ? (urole.allow & ROLE_GENDMASK) == (ROLE_MALE | ROLE_FEMALE)
                 : currentgend != flags.initgend))
-        Sprintf(eos(buf), " %s", genders[currentgend].adj);
+        Sprintf(eos(buf), "%s", genders[currentgend].adj);
 
-    pline(new_game ? "%s %s, welcome to NetHack!  You are a%s %s %s."
-                   : "%s %s, the%s %s %s, welcome back to NetHack!",
+    pline(new_game ? "%s %s,  欢迎来到NetHack!  你是一位%s%s%s."
+                   : "%s %s,  %s %s%s,  欢迎回到NetHack!",
           Hello((struct monst *) 0), plname, buf, urace.adj,
           (currentgend && urole.name.f) ? urole.name.f : urole.name.m);
 }

@@ -165,7 +165,7 @@ public class CmdPanel
 		MenuInflater inflater = mContext.getMenuInflater();
 		inflater.inflate(R.menu.customize_cmd, menu);
 		Cmd cmd = (Cmd)v.getTag();
-		String title = "Command: " + cmd.getCommand();
+		String title = "命令: " + cmd.getCommand();
 		if(cmd.hasLabel())
 			title = title + " (" + cmd.getLabel() + ")";
 		menu.setHeaderTitle(title);
@@ -225,10 +225,10 @@ public class CmdPanel
 			mInput.selectAll();
 
 			mEditDlg = new NH_Dialog(mContext);
-			mEditDlg.setTitle("Type command sequence");
+			mEditDlg.setTitle("输入命令");
 			mEditDlg.setView(mInput);
-			mEditDlg.setNegativeButton("Cancel", null);
-			mEditDlg.setPositiveButton("Ok", onPositiveButton);
+			mEditDlg.setNegativeButton("取消", null);
+			mEditDlg.setPositiveButton("确定", onPositiveButton);
 			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();

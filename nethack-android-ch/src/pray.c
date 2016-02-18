@@ -2096,7 +2096,7 @@ const char *
 align_gtitle(alignment)
 aligntyp alignment;
 {
-    const char *gnam, *result = "god";
+    const char *gnam, *result = "神";
 
     switch (alignment) {
     case A_LAWFUL:
@@ -2113,7 +2113,7 @@ aligntyp alignment;
         break;
     }
     if (gnam && *gnam == '_')
-        result = "goddess";
+        result = "女神";
     return result;
 }
 

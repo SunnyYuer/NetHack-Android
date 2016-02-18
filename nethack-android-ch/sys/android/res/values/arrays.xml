@@ -5,7 +5,7 @@
     	<item>Ascii (no tiles)</item>
         <item>Chozo</item>
         <item>DawnHack</item>
-        <item>Default</item>
+        <item>默认</item>
         <item>Geoduck</item>
         <item>Nevanda</item>
     </string-array>
@@ -20,10 +20,10 @@
     </string-array>
 
     <string-array name="actionNames">
-		<item>System default</item>
-		<item>Zoom in</item>
-		<item>Zoom Out</item>
-		<item>Toggle keyboard</item>
+		<item>系统默认</item>
+		<item>地图放大</item>
+		<item>地图缩小</item>
+		<item>切换键盘</item>
 		<item>Ctrl</item>
 		<item>Meta</item>
 		<item>Escape</item>
@@ -39,12 +39,12 @@
     </string-array>
 
     <string-array name="dirLocationNames">
-        <item>Left</item>
-        <item>Center</item>
-    	<item>Right</item>
-        <item>Bottom left</item>
-    	<item>Bottom center</item>
-        <item>Bottom right</item>
+        <item>左</item>
+        <item>中心</item>
+    	<item>右</item>
+        <item>左下角</item>
+    	<item>底部中心</item>
+        <item>右下角</item>
     </string-array>
     <string-array name="dirLocationValues">
         <item>0</item>
@@ -56,10 +56,10 @@
         </string-array>
 
     <string-array name="locationNames">
-        <item>Left</item>
-    	<item>Right</item>
-        <item>Top</item>
-        <item>Bottom</item>
+        <item>左</item>
+    	<item>右</item>
+        <item>上</item>
+        <item>下</item>
     </string-array>
     <string-array name="locationValues">
         <item>0</item>
@@ -69,9 +69,9 @@
     </string-array>
 
 	<string-array name="travelNames">
-		<item>Never</item>
-		<item>After map is panned</item>
-		<item>Always</item>
+		<item>从不</item>
+		<item>在地图移动后</item>
+		<item>总是</item>
 	</string-array>
 	<string-array name="travelValues">
 		<item>0</item>

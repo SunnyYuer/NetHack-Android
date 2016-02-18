@@ -28,14 +28,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Save" />
+            android:text="保存" />
 
         <Button
             android:id="@+id/discard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Discard" />
+            android:text="取消" />
     </LinearLayout>
 
 </LinearLayout>

@@ -134,7 +134,7 @@ bot1()
     if ('a' <= newbot1[0] && newbot1[0] <= 'z')
         newbot1[0] += 'A' - 'a';
     newbot1[10] = 0;
-    Sprintf(nb = eos(newbot1), " the ");
+    Sprintf(nb = eos(newbot1), "  ");
 
     if (Upolyd) {
         char mbot[BUFSZ];
@@ -158,20 +158,20 @@ bot1()
         Sprintf(nb = eos(nb), "%*s", i - j, " "); /* pad with spaces */
     if (ACURR(A_STR) > 18) {
         if (ACURR(A_STR) > STR18(100))
-            Sprintf(nb = eos(nb), "St:%2d ", ACURR(A_STR) - 100);
+            Sprintf(nb = eos(nb), "力:%2d ", ACURR(A_STR) - 100);
         else if (ACURR(A_STR) < STR18(100))
-            Sprintf(nb = eos(nb), "St:18/%02d ", ACURR(A_STR) - 18);
+            Sprintf(nb = eos(nb), "力:18/%02d ", ACURR(A_STR) - 18);
         else
-            Sprintf(nb = eos(nb), "St:18/** ");
+            Sprintf(nb = eos(nb), "力:18/** ");
     } else
-        Sprintf(nb = eos(nb), "St:%-1d ", ACURR(A_STR));
-    Sprintf(nb = eos(nb), "Dx:%-1d Co:%-1d In:%-1d Wi:%-1d Ch:%-1d",
+        Sprintf(nb = eos(nb), "力:%-1d ", ACURR(A_STR));
+    Sprintf(nb = eos(nb), " 敏:%-1d  体:%-1d  智:%-1d  感:%-1d  魅:%-1d",
             ACURR(A_DEX), ACURR(A_CON), ACURR(A_INT), ACURR(A_WIS),
             ACURR(A_CHA));
     Sprintf(nb = eos(nb),
             (u.ualign.type == A_CHAOTIC)
-                ? "  Chaotic"
-                : (u.ualign.type == A_NEUTRAL) ? "  Neutral" : "  Lawful");
+                ? "   混沌"
+                : (u.ualign.type == A_NEUTRAL) ? "   中立" : "   秩序");
 #ifdef SCORE_ON_BOTL
     if (flags.showscore)
         Sprintf(nb = eos(nb), " S:%ld", botl_score());
@@ -222,9 +222,9 @@ bot2()
     apply_color_option(percentage_color_of(
         u.uen, u.uenmax, pw_colors), newbot2);
 
-    Sprintf(nb = eos(nb), " AC:%-2d", u.uac);
+    Sprintf(nb = eos(nb), "  防:%-2d", u.uac);
 #else
-    Sprintf(nb = eos(newbot2), "%s:%-2ld HP:%d(%d) Pw:%d(%d) AC:%-2d",
+    Sprintf(nb = eos(newbot2), "%s:%-2ld HP:%d(%d) Pw:%d(%d)  防:%-2d",
             encglyph(objnum_to_glyph(GOLD_PIECE)), money_cnt(invent), hp,
             hpmax, u.uen, u.uenmax, u.uac);
 #endif
@@ -237,7 +237,7 @@ bot2()
         Sprintf(nb = eos(nb), " Exp:%u", u.ulevel);
 
     if (flags.time)
-        Sprintf(nb = eos(nb), " T:%ld", moves);
+        Sprintf(nb = eos(nb), "  步:%ld", moves);
     if (strcmp(hu_stat[u.uhs], "        ")) {
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
         add_colored_text(hu_stat[u.uhs], newbot2);
@@ -248,48 +248,48 @@ bot2()
     }
     if (Confusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text("Conf", newbot2);
+        add_colored_text(" 混乱", newbot2);
 #else
-        Sprintf(nb = eos(nb), " Conf");
+        Sprintf(nb = eos(nb), "  混乱");
 #endif
     if (Sick) {
         if (u.usick_type & SICK_VOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-            add_colored_text("FoodPois", newbot2);
+            add_colored_text(" 食物中毒", newbot2);  //FoodPois
 #else
-            Sprintf(nb = eos(nb), " FoodPois");
+            Sprintf(nb = eos(nb), "  食物中毒");
 #endif
 
         if (u.usick_type & SICK_NONVOMITABLE)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-            add_colored_text("Ill", newbot2);
+            add_colored_text(" 生病", newbot2);  //Ill
 #else
-            Sprintf(nb = eos(nb), " Ill");
+            Sprintf(nb = eos(nb), "  生病");
 #endif
      }
     if (Blind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text("Blind", newbot2);
+        add_colored_text(" 瞎", newbot2);
 #else
-        Sprintf(nb = eos(nb), " Blind");
+        Sprintf(nb = eos(nb), "  瞎");
 #endif
     if (Stunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text("Stun", newbot2);
+        add_colored_text(" 眩晕", newbot2);  //Stun
 #else
-        Sprintf(nb = eos(nb), " Stun");
+        Sprintf(nb = eos(nb), "  眩晕");
 #endif
     if (Hallucination)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text("Hallu", newbot2);
+        add_colored_text(" 幻觉", newbot2);
 #else
-        Sprintf(nb = eos(nb), " Hallu");
+        Sprintf(nb = eos(nb), "  幻觉");
 #endif
     if (Slimed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text("Slime", newbot2);
+        add_colored_text(" 变形", newbot2);  //Slime
 #else
-        Sprintf(nb = eos(nb), " Slime");
+        Sprintf(nb = eos(nb), "  变形");
 #endif
     if (cap > UNENCUMBERED)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)

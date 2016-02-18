@@ -48,7 +48,7 @@ public class Tileset
 
 		mFallbackRenderer = prefs.getBoolean("fallbackRenderer", false);
 
-		String tilesetName = prefs.getString("tileset", "TTY");
+		String tilesetName = prefs.getString("tileset", "default_32");
 
 		boolean TTY = tilesetName.equals("TTY");
 		int tileW = prefs.getInt("tileW", 32);

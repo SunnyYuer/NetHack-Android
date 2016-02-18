@@ -408,7 +408,9 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	private void putString(final int wid, final int attr, final byte[] cmsg, final int append, final int color)
 	{
-		final String msg = CP437.decode(cmsg);
+		Chinese ch = new Chinese();
+		final String msg = ch.encode(cmsg);
+		//final String msg = CP437.decode(cmsg);
 		if(wid == mMessageWid)
 			Log.print(msg);
 
@@ -474,7 +476,9 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	private void ynFunction(final byte[] cquestion, final byte[] choices, final int def)
 	{
-		final String question = CP437.decode(cquestion);
+		Chinese ch = new Chinese();
+		final String question = ch.encode(cquestion);
+		//final String question = CP437.decode(cquestion);
 		//Log.print("nhthread: ynFunction");
 		mHandler.post(new Runnable()
 		{
@@ -612,7 +616,9 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	private void addMenu(final int wid, final int tile, final int id, final int acc, final int groupAcc, final int attr, final byte[] text, final int bSelected, final int color)
 	{
-		final String msg = CP437.decode(text);
+		Chinese ch = new Chinese();
+		final String msg = ch.encode(text);
+		//final String msg = CP437.decode(text);
 		mHandler.post(new Runnable()
 		{
 			public void run()
@@ -625,7 +631,9 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	private void endMenu(final int wid, final byte[] prompt)
 	{
-		final String msg = CP437.decode(prompt);
+		Chinese ch = new Chinese();
+		final String msg = ch.encode(prompt);
+		//final String msg = CP437.decode(prompt);
 		//Log.print("nhthread: endMenu");
 		mHandler.post(new Runnable()
 		{

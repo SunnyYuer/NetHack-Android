@@ -161,7 +161,7 @@ public class NetHack extends Activity
 		mMetaDown = false;
 
 		Log.print("onCreateOptionsMenu");
-		menu.add(0, 1, 0, "Settings");
+		menu.add(0, 1, 0, "…Ë÷√");
 
 		return super.onCreateOptionsMenu(menu);
 	}

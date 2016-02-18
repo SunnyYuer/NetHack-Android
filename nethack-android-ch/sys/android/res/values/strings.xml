@@ -310,6 +310,13 @@ Modified by gurr</p>
 <a href="http://nevanda.deviantart.com/art/nethack-tiles-32x32px-416691316">http://nevanda.deviantart.com/art/nethack-tiles-32x32px-416691316</a><br/>
 Modified by Brendan Dwyer</p>
 
+<p><br/><br/><h2>安卓汉化</h2>
+<i>by Yuer</i><br/>
+<a href="https://github.com/SunnyEric/NetHack_android">https://github.com/SunnyEric/NetHack_android</a><br/>
+汉化参考了姑射冰尘的GITHUB，见<br/>
+<a href="https://github.com/guyebingchen/android-nethack-chinese">https://github.com/guyebingchen/android-nethack-chinese</a><br/>
+</p>
+
 <p><br/><small>&copy; 2015 Martin Gustafsson</small></p>
 ]]>
 	</string>
@@ -416,101 +423,100 @@ from sharing it farther.
 	<string
 		name="instructions">
 <![CDATA[
-<h1>The NetHack Android Port Manual</h1>
+<h1>NetHack安卓中文版手册</h1>
 
-<p><small>This manual is displayed automatically once. If you need it later it can be found in the settings.</small></p>
+<p><small>这个手册会在第一次运行的时候，自动显示一次。如果你之后需要它，可以在“设置”菜单中找到。</small></p>
 
 <br/>
-<h3>The basics</h3> 
-<p>&nbsp;&nbsp;Simply tap the screen to move one step in the desired direction.
-Long-press to move until you run into something.
+<h3>基本操作</h3> 
+<p>&nbsp;&nbsp;简单的点击屏幕就可以向指定的方向移动一步。
+长按屏幕会快速移动直到你碰到某样东西。
  
 </p>
 
-<p>&nbsp;&nbsp;Tap the character to interact with what\'s on the floor. Move up/down stairs, pick up objects, loot chests, etc.</p>
+<p>&nbsp;&nbsp;点击主角可以与地上的东西进行互动。例如：上下楼梯，捡起物品，开宝箱，等等。</p>
 
 <p>
-&nbsp;&nbsp;Pan and zoom works in the usual way with the drag and pinch gestures. If your phone is equipped with a d-pad
-or trackball you can pan by pressing a direction key or rotating the trackball, while holding down
-the center button. You can also zoom with the volume buttons.
+&nbsp;&nbsp;拖动和缩放地图的操作是和大多数其他的安卓软件一样的，用手指拖动屏幕以及多制触控。
+如果你的手机带有游戏机手柄或者轨迹球，那么在按下中键的同时按方向键或者转动轨迹球。
+你也可以使用音量键来缩放地图。
 </p>
 	 
 <p>
-&nbsp;&nbsp;Pan the map and tap on a position to Travel to it (see the
-<font color="lime"><em>_</em></font> command in the NetHack
-help). This can be disabled with the <font color="aqua"><em>Travel after pan</em></font> option. <br/>
+&nbsp;&nbsp;拖动地图之后点击一个位置可以长距离移动到该位置(参见
+<font color="lime"><em>_</em></font> 命令介绍).
+这个功能可以在<font color="aqua"><em>拖动后快速移动</em></font>选项中关闭。<br/>
 </p>
 
-<p>&nbsp;&nbsp;Long-press an inventory item to specify an amount, when for instance dropping (<font color="lime"><em>d</em></font>) something.</p>
+<p>&nbsp;&nbsp;你丢弃(<font color="lime"><em>d</em></font>)某个物品的时候，长按该物品可以指定数量。</p>
 
 <br/>
-<h3>The command panel</h3> 
+<h3>命令面板</h3> 
 <p>
-&nbsp;&nbsp;The command panel is the scrollable row of buttons at the bottom of the screen.
-When you click a button the game will do whatever is written on it, as though you typed
-each character one after another: 
+&nbsp;&nbsp;命令面板就是屏幕下方的一排可以拖动的按钮。
+当你点击一个按钮的时候，游戏会依次执行按钮上的全部命令，正如你一个一个点击键盘一样。
+例如：
 </p>
 
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>i</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view inventory<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>20s</em></font>&nbsp;&nbsp;&nbsp;&nbsp;search 20 times
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>i</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;查看物品栏<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>20s</em></font>&nbsp;&nbsp;&nbsp;&nbsp;search 搜索20次
 </p>
 		  
 <p>
-&nbsp;&nbsp;The sequence <font color="lime"><em>...</em></font> is treated as a special command to open the soft
-keyboard.
+&nbsp;&nbsp;这个符号<font color="lime"><em>...</em></font>是一个特殊的功能：打开或者关闭软键盘。
 </p>
 
 <p>
-&nbsp;&nbsp;Long-press on any button to change it, remove it, or add a new one to the left of it.
+&nbsp;&nbsp;长按任何按钮可以进行更改按钮，删除按钮，在左边增加新按钮
 </p>
 	 
-<p>&nbsp;&nbsp;Control commands are entered with <font color="lime"><em>^</em></font> followed by a letter:</p>
+<p>&nbsp;&nbsp;Control命令是带有<font color="lime"><em>^</em></font>接着是一个字母:</p>
 	  
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>^D</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kick a door<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>^T</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teleport
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>^D</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;踢门<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>^T</em></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传送
 </p>
 	    
-<p>&nbsp;&nbsp;Meta commands are entered with <font color="lime"><em>M-</em></font> followed by a letter:</p>
+<p>&nbsp;&nbsp;Meta命令是带有<font color="lime"><em>M-</em></font>接着是一个字母:</p>
 	
 <p>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>M-j</em></font>&nbsp;&nbsp;&nbsp;&nbsp;jump<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>M-2</em></font>&nbsp;&nbsp;&nbsp;&nbsp;two-weapon
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>M-j</em></font>&nbsp;&nbsp;&nbsp;&nbsp;跳<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="lime"><em>M-2</em></font>&nbsp;&nbsp;&nbsp;&nbsp;双武器
 </p>
 	    
-<p>&nbsp;&nbsp;If you don\'t want to see the panel you can hide it in the settings.</p>
+<p>&nbsp;&nbsp;如果你不想看见面板，你可以设置隐藏。</p>
 
 
 <br/>
-<h3>The soft keyboard</h3>
+<h3>虚拟键盘</h3>
 <p>
-&nbsp;&nbsp;Press <font color="lime"><em>...</em></font> to open the soft keyboard. Press back to close it again.
-When the soft keyboard is opened you can play NetHack almost as you would on a regular terminal.
-If you prefer to play with the keyboard you might want to turn the <font color="aqua"><em>Automenu</em></font> option off.
+&nbsp;&nbsp;按下<font color="lime"><em>...</em></font>来打开虚拟键盘。按返回键来关闭虚拟键盘。
+当打开了虚拟键盘，你可以在一个任何终端玩NetHack。
+如果你更喜欢使用虚拟键盘， 你可以把<font color="aqua"><em>Automenu</em></font>关掉。
 </p>
 
 <br/>
-<h3>The volume keys</h3>
+<h3>音量键</h3>
 <p>
-&nbsp;&nbsp;The volume keys can be mapped to a number of different actions. <font color="aqua"><em>Zoom in</em></font>, <font color="aqua"><em>Zoom out</em></font>, <font color="aqua"><em>Toggle keyboard</em></font>,
- <font color="aqua"><em>Ctrl</em></font>, and <font color="aqua"><em>Meta</em></font>.
+&nbsp;&nbsp;音量键有不同的按键。<font color="aqua"><em>Zoom in</em></font>, <font color="aqua"><em>Zoom out</em></font>, <font color="aqua"><em>Toggle keyboard</em></font>,
+ <font color="aqua"><em>Ctrl</em></font>, 和 <font color="aqua"><em>Meta</em></font>.
 </p>
  
 <p>
-&nbsp;&nbsp;Press <font color="aqua"><em>Toggle keyboard</em></font> to open or close the soft keyboard.
-Keep holding the volume key when you open the keyboard to close it again when you release the key.
+&nbsp;&nbsp;按下<font color="aqua"><em>Toggle keyboard</em></font>来打开虚拟键盘。
+要打开键盘就保持按住音量键，要关闭键盘就放开音量键。
 </p>
 
 <p>
-&nbsp;&nbsp;Use <font color="aqua"><em>Ctrl</em></font> and <font color="aqua"><em>Meta</em></font> to send control and meta commands with a physical keyboard.
-The soft keyboard will be opened if your phone doesn\'t have a physical one.   
+&nbsp;&nbsp;在实际键盘上用<font color="aqua"><em>Ctrl</em></font>和<font color="aqua"><em>Meta</em></font>来发送control和meta命令。
+如果你的手机没有连接实际键盘，虚拟键盘会自动打开。
 </p>
 
 <br/>
 <small>
-Please visit www.nethack.org or nethackwiki.com for more information, or press
-<font color="lime"><em>?</em></font> in the game for a help menu.
+有关NetHack更多信息，见 www.nethack.org, 或者在游戏中按下
+<font color="lime"><em>?</em></font> 寻求帮助。
 </small>
 
 <br/>
