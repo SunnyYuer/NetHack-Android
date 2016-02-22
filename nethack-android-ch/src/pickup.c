@@ -548,7 +548,7 @@ int what; /* should be a long */
             for (i = 0; i < n; i++)
                 pick_list[i].count = count;
         } else {
-            n = query_objlist("Pick up what?", objchain,
+            n = query_objlist("捡起什么?", objchain,
                               traverse_how | AUTOSELECT_SINGLE | INVORDER_SORT
                                   | FEEL_COCKATRICE,
                               &pick_list, PICK_ANY, all_but_uchain);
@@ -1596,7 +1596,7 @@ struct obj **cobjp;
         return 1;
     }
 
-    You("%sopen %s...", (!cobj->cknown || !cobj->lknown) ? "carefully " : "",
+    You("%s打开 %s...", (!cobj->cknown || !cobj->lknown) ? "小心地 " : "",
         the(xname(cobj)));
     return use_container(cobjp, 0);
 }
@@ -1610,7 +1610,7 @@ doloot()
     int timepassed = 0;
     coord cc;
     boolean underfoot = TRUE;
-    const char *dont_find_anything = "don't find anything";
+    const char *dont_find_anything = "没有找到任何";
     struct monst *mtmp;
     char qbuf[BUFSZ];
     int prev_inquiry = 0;
@@ -1684,7 +1684,7 @@ lootcont:
                 nobj = cobj->nexthere;
 
                 if (Is_container(cobj)) {
-                    c = ynq(safe_qbuf(qbuf, "There is ", " here, loot it?",
+                    c = ynq(safe_qbuf(qbuf, "这里有 ", ", 要搜刮吗?",
                                       cobj, doname, ansimpleoname,
                                       "a container"));
                     if (c == 'q')
@@ -1710,7 +1710,7 @@ lootcont:
      * 3.3.1 introduced directional looting for some things.
      */
     if (c != 'y' && mon_beside(u.ux, u.uy)) {
-        if (!get_adjacent_loc("Loot in what direction?",
+        if (!get_adjacent_loc("搜刮哪个方向?",
                               "Invalid loot location", u.ux, u.uy, &cc))
             return 0;
         if (cc.x == u.ux && cc.y == u.uy) {
@@ -1720,7 +1720,7 @@ lootcont:
         } else
             underfoot = FALSE;
         if (u.dz < 0) {
-            You("%s to loot on the %s.", dont_find_anything,
+            You("%s东西 to loot on the %s.", dont_find_anything,
                 ceiling(cc.x, cc.y));
             timepassed = 1;
             return timepassed;
@@ -1745,17 +1745,17 @@ lootcont:
                              prev_inquiry ? "else " : "", mon_nam(mtmp));
                     return timepassed;
                 } else {
-                    You("have to be at a container to loot it.");
+                    You("必须在一旁才能搜刮.");
                 }
             } else {
-                You("%s %sthere to loot.", dont_find_anything,
-                    (prev_inquiry || prev_loot) ? "else " : "");
+                You("在那儿%s%s东西来搜刮.", dont_find_anything,
+                    (prev_inquiry || prev_loot) ? "别的 " : "");
                 return timepassed;
             }
         }
     } else if (c != 'y' && c != 'n') {
-        You("%s %s to loot.", dont_find_anything,
-            underfoot ? "here" : "there");
+        You("在%s%s东西来搜刮.", underfoot ? "这儿" : "那儿",
+            dont_find_anything);
     }
     return timepassed;
 }
@@ -1859,7 +1859,7 @@ boolean *prev_loot;
         if (passed_info)
             *passed_info = 1;
         Sprintf(
-            qbuf, "Do you want to remove the saddle from %s?",
+            qbuf, "你想从%s 取下马鞍吗?",
             x_monnam(mtmp, ARTICLE_THE, (char *) 0, SUPPRESS_SADDLE, FALSE));
         if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y') {
             if (nolimbs(youmonst.data)) {
@@ -2353,7 +2353,7 @@ int held;
                              current_container, Yname2, Ysimple_name2,
                              "This");
         else
-            (void) safe_qbuf(qbuf, "Do what with ", "?", current_container,
+            (void) safe_qbuf(qbuf, "要做什么对 ", "?", current_container,
                              yname, ysimple_name, "it");
         /* ask player about what to do with this container */
         if (flags.menu_style == MENU_FULL) {
@@ -2623,40 +2623,40 @@ boolean outokay, inokay, alreadyused;
     start_menu(win);
 
     any.a_int = 1; /* ':' */
-    Sprintf(buf, "Look inside %s", thesimpleoname(obj));
+    Sprintf(buf, "查看 %s 的里面", thesimpleoname(obj));
     add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE, buf,
              MENU_UNSELECTED);
     if (outokay) {
         any.a_int = 2; /* 'o' */
-        Sprintf(buf, "take %s out", something);
+        Sprintf(buf, "取出%s", something);
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
     }
     if (inokay) {
         any.a_int = 3; /* 'i' */
-        Sprintf(buf, "put %s in", something);
+        Sprintf(buf, "放入%s", something);
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
     }
     if (outokay) {
         any.a_int = 4; /* 'b' */
-        Sprintf(buf, "%stake out, then put in", inokay ? "both; " : "");
+        Sprintf(buf, "%s取出, 然后放入", inokay ? "先 " : "");
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
     }
     if (inokay) {
         any.a_int = 5; /* 'r' */
-        Sprintf(buf, "%sput in, then take out",
-                outokay ? "both reversed; " : "");
+        Sprintf(buf, "%s放入, 然后取出",
+                outokay ? "先 " : "");
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
         any.a_int = 6; /* 's' */
-        Sprintf(buf, "stash one item into %s", thesimpleoname(obj));
+        Sprintf(buf, "把一项藏到 %s", thesimpleoname(obj));
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
     }
     any.a_int = 7; /* 'q' */
-    Strcpy(buf, alreadyused ? "done" : "do nothing");
+    Strcpy(buf, alreadyused ? "done" : "什么都不做");
     add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE, buf,
              MENU_SELECTED);
 
@@ -2771,7 +2771,7 @@ dotip()
     }
 
     /* either no floor container(s) or couldn't tip one or didn't tip any */
-    cobj = getobj(tippables, "tip");
+    cobj = getobj(tippables, "倒出");
     if (!cobj)
         return 0;
 

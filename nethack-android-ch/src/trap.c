@@ -4320,7 +4320,7 @@ boolean force;
 
     if (!IS_DOOR(levl[x][y].typ)) {
         if (!trap_skipped)
-            You("know of no traps there.");
+            You("知道那里没有陷阱.");
         return 0;
     }
 

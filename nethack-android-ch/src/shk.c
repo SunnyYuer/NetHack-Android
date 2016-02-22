@@ -1185,7 +1185,7 @@ dopay()
     }
 
     if ((!sk && (!Blind || Blind_telepat)) || (!Blind && !seensk)) {
-        There("appears to be no shopkeeper here to receive your payment.");
+        There("似乎没有店主来收您的付款.");
         return 0;
     }
 

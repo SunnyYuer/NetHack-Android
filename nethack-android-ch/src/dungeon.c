@@ -1997,11 +1997,11 @@ donamelevel()
 
     if (mptr->custom) {
         char tmpbuf[BUFSZ];
-        Sprintf(tmpbuf, "Replace annotation \"%.30s%s\" with?", mptr->custom,
+        Sprintf(tmpbuf, "用什么替换之前的备注\"%.30s%s\"?", mptr->custom,
                 strlen(mptr->custom) > 30 ? "..." : "");
         getlin(tmpbuf, nbuf);
     } else
-        getlin("What do you want to call this dungeon level?", nbuf);
+        getlin("你想给这一层备注什么?", nbuf);
     if (index(nbuf, '\033'))
         return 0;
     (void) mungspaces(nbuf);

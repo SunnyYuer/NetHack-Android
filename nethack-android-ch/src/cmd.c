@@ -527,7 +527,7 @@ domonability(VOID_ARGS)
     else if (Upolyd)
         pline("Any special ability you may have is purely reflexive.");
     else
-        You("don't have a special ability in your normal form!");
+        You("在正常的形式中没有特殊的能力!");
     return 0;
 }
 
@@ -535,9 +535,9 @@ int
 enter_explore_mode(VOID_ARGS)
 {
     if (wizard) {
-        You("are in debug mode.");
+        You("在向导模式中.");
     } else if (discover) {
-        You("are already in explore mode.");
+        You("已经是在探索模式中.");
     } else {
 #ifdef SYSCF
 #if defined(UNIX)
@@ -549,15 +549,15 @@ enter_explore_mode(VOID_ARGS)
 #endif
 #endif
         pline(
-        "Beware!  From explore mode there will be no return to normal game.");
+        "注意!  进入探索模式后就不能回到正常游戏.");
         if (paranoid_query(ParanoidQuit,
-                           "Do you want to enter explore mode?")) {
+                           "你想进入探索模式吗?")) {
             clear_nhwindow(WIN_MESSAGE);
-            You("are now in non-scoring explore mode.");
+            You("现在是无分数探索模式.");
             discover = TRUE;
         } else {
             clear_nhwindow(WIN_MESSAGE);
-            pline("Resuming normal game.");
+            pline("回到正常游戏.");
         }
     }
     return 0;
@@ -693,7 +693,7 @@ wiz_level_change(VOID_ARGS)
     int newlevel;
     int ret;
 
-    getlin("To what experience level do you want to be set?", buf);
+    getlin("你想设置为多少等级?", buf);
     (void) mungspaces(buf);
     if (buf[0] == '\033' || buf[0] == '\0')
         ret = 0;
@@ -1139,20 +1139,20 @@ doterrain(VOID_ARGS)
     any.a_int = 1;
     start_menu(men);
     add_menu(men, NO_GLYPH, &any, 0, 0, ATR_NONE,
-             "known map without monsters, objects, and traps",
+             "没有怪物, 物品, 和陷阱的已知地图",
              MENU_SELECTED);
     any.a_int = 2;
     add_menu(men, NO_GLYPH, &any, 0, 0, ATR_NONE,
-             "known map without monsters and objects",
+             "没有怪物和物品的已知地图",
              MENU_UNSELECTED);
     any.a_int = 3;
     add_menu(men, NO_GLYPH, &any, 0, 0, ATR_NONE,
-             "known map without monsters",
+             "没有怪物的已知地图",
              MENU_UNSELECTED);
     if (discover || wizard) {
         any.a_int = 4;
         add_menu(men, NO_GLYPH, &any, 0, 0, ATR_NONE,
-                 "full map without monsters, objects, and traps",
+                 "没有怪物, 物品, 和陷阱的全地图",
                  MENU_UNSELECTED);
         if (wizard) {
             any.a_int = 5;
@@ -1165,7 +1165,7 @@ doterrain(VOID_ARGS)
                      MENU_UNSELECTED);
         }
     }
-    end_menu(men, "View which?");
+    end_menu(men, "观看哪个?");
 
     n = select_menu(men, PICK_ONE, &sel);
     destroy_nhwindow(men);
@@ -1195,7 +1195,7 @@ doterrain(VOID_ARGS)
 
 /* -enlightenment and conduct- */
 static winid en_win = WIN_ERR;
-static const char You_[] = "You ", are[] = "are ", were[] = "were ",
+static const char You_[] = "你 ", are[] = "是 ", were[] = "were ",
                   have[] = "have ", had[] = "had ", can[] = "can ",
                   could[] = "could ";
 static const char have_been[] = "have been ", have_never[] = "have never ",
@@ -1345,7 +1345,7 @@ int final; /* ENL_GAMEINPROGRESS:0, ENL_GAMEOVERALIVE, ENL_GAMEOVERDEAD */
     *tmpbuf = highc(*tmpbuf); /* same adjustment as bottom line */
     /* as in background_enlightenment, when poly'd we need to use the saved
        gender in u.mfemale rather than the current you-as-monster gender */
-    Sprintf(buf, "%s the %s's attributes:", tmpbuf,
+    Sprintf(buf, "%s  %s的属性:", tmpbuf,
             ((Upolyd ? u.mfemale : flags.female) && urole.name.f)
                 ? urole.name.f
                 : urole.name.m);
@@ -1395,7 +1395,7 @@ int final;
     rank_titl = rank_of(u.ulevel, Role_switch, innategend);
 
     putstr(en_win, 0, ""); /* separator after title */
-    putstr(en_win, 0, "Background:");
+    putstr(en_win, 0, "背景:");
 
     /* if polymorphed, report current shape before underlying role;
        will be repeated as first status: "you are transformed" and also
@@ -1429,13 +1429,13 @@ int final;
         Sprintf(eos(buf), "%s, level %d %s%s", an(rank_titl), u.ulevel,
                 tmpbuf, urace.noun);
     } else {
-        Sprintf(eos(buf), "%s, a level %d %s%s %s", an(rank_titl), u.ulevel,
+        Sprintf(eos(buf), "一位%s, 等级 %d %s%s %s", rank_titl, u.ulevel,
                 tmpbuf, urace.adj, role_titl);
     }
     you_are(buf, "");
 
     /* report alignment (bypass you_are() in order to omit ending period) */
-    Sprintf(buf, " %s%s%s, %son a mission for %s",
+    Sprintf(buf, " %s%s%s, %s肩负着%s的使命",
             You_, !final ? are : were,
             align_str(u.ualign.type),
             /* helm of opposite alignment (might hide conversion) */
@@ -1451,16 +1451,16 @@ int final;
     /* show the rest of this game's pantheon (finishes previous sentence)
        [appending "also Moloch" at the end would allow for straightforward
        trailing "and" on all three aligned entries but looks too verbose] */
-    Sprintf(buf, " who %s opposed by", !final ? "is" : "was");
+    Sprintf(buf, " %s敌对的是", !final ? "现在" : "过去");
     if (u.ualign.type != A_LAWFUL)
-        Sprintf(eos(buf), " %s (%s) and", align_gname(A_LAWFUL),
+        Sprintf(eos(buf), " %s ( %s) 和", align_gname(A_LAWFUL),
                 align_str(A_LAWFUL));
     if (u.ualign.type != A_NEUTRAL)
-        Sprintf(eos(buf), " %s (%s)%s", align_gname(A_NEUTRAL),
+        Sprintf(eos(buf), " %s ( %s)%s", align_gname(A_NEUTRAL),
                 align_str(A_NEUTRAL),
-                (u.ualign.type != A_CHAOTIC) ? " and" : "");
+                (u.ualign.type != A_CHAOTIC) ? " 和" : "");
     if (u.ualign.type != A_CHAOTIC)
-        Sprintf(eos(buf), " %s (%s)", align_gname(A_CHAOTIC),
+        Sprintf(eos(buf), " %s ( %s)", align_gname(A_CHAOTIC),
                 align_str(A_CHAOTIC));
     Strcat(buf, "."); /* terminate sentence */
     putstr(en_win, 0, buf);
@@ -1481,7 +1481,7 @@ int final;
     if (difgend || difalgn) { /* sex change or perm align change or both */
         Sprintf(buf, " You started out %s%s%s.",
                 difgend ? genders[flags.initgend].adj : "",
-                (difgend && difalgn) ? " and " : "",
+                (difgend && difalgn) ? " 和 " : "",
                 difalgn ? align_str(u.ualignbase[A_ORIGINAL]) : "");
         putstr(en_win, 0, buf);
     }
@@ -1495,7 +1495,7 @@ int final;
 {
     putstr(en_win, 0, ""); /* separator after background */
     putstr(en_win, 0,
-           final ? "Final Characteristics:" : "Current Characteristics:");
+           final ? "最终属性:" : "当前属性:");
 
     /* bottom line order */
     one_characteristic(mode, final, A_STR); /* strength */
@@ -1531,28 +1531,28 @@ int mode, final, attrindx;
     }
     switch (attrindx) {
     case A_STR:
-        attrname = "strength";
+        attrname = "力量";
         if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER && uarmg->cursed)
             hide_innate_value = TRUE;
         break;
     case A_DEX:
-        attrname = "dexterity";
+        attrname = "敏捷";
         break;
     case A_CON:
-        attrname = "constitution";
+        attrname = "体质";
         break;
     case A_INT:
-        attrname = "intelligence";
+        attrname = "智力";
         if (uarmh && uarmh->otyp == DUNCE_CAP && uarmh->cursed)
             hide_innate_value = TRUE;
         break;
     case A_WIS:
-        attrname = "wisdom";
+        attrname = "感知";
         if (uarmh && uarmh->otyp == DUNCE_CAP && uarmh->cursed)
             hide_innate_value = TRUE;
         break;
     case A_CHA:
-        attrname = "charisma";
+        attrname = "魅力";
         break;
     default:
         return; /* impossible */
@@ -1563,7 +1563,7 @@ int mode, final, attrindx;
 
     acurrent = ACURR(attrindx);
     (void) attrval(attrindx, acurrent, valubuf); /* Sprintf(valubuf,"%d",) */
-    Sprintf(subjbuf, "Your %s ", attrname);
+    Sprintf(subjbuf, "你的 %s ", attrname);
 
     if (!hide_innate_value) {
         /* show abase, amax, and/or attrmax if acurr doesn't match abase
@@ -1601,7 +1601,7 @@ int mode, final, attrindx;
         if (acurrent != abase || abase != apeak || interesting_alimit)
             Strcat(valubuf, ")");
     }
-    enl_msg(subjbuf, "is ", "was ", valubuf, "");
+    enl_msg(subjbuf, "是 ", "was ", valubuf, "");
 }
 
 /* status: selected obvious capabilities, assorted troubles */
@@ -1630,7 +1630,7 @@ int final;
      *     should be discernible to the hero hence to the player)
     \*/
     putstr(en_win, 0, ""); /* separator after title or characteristics */
-    putstr(en_win, 0, final ? "Final Status:" : "Current Status:");
+    putstr(en_win, 0, final ? "最终状态:" : "当前状态:");
 
     Strcpy(youtoo, You_);
     /* not a traditional status but inherently obvious to player; more
@@ -2512,7 +2512,7 @@ int final;
 
     /* Create the conduct window */
     en_win = create_nhwindow(NHW_MENU);
-    putstr(en_win, 0, "Voluntary challenges:");
+    putstr(en_win, 0, "自愿挑战:");
 
     if (u.uroleplay.blind)
         you_have_been("blind from birth");
@@ -2721,36 +2721,36 @@ static const struct func_tab cmdlist[] = {
 };
 
 struct ext_func_tab extcmdlist[] = {
-    { "adjust", "adjust inventory letters", doorganize, TRUE },
-    { "annotate", "name current level", donamelevel, TRUE },
-    { "chat", "talk to someone", dotalk, TRUE }, /* converse? */
-    { "conduct", "list voluntary challenges you have maintained", doconduct,
+    { "调整", "adjust inventory letters", doorganize, TRUE },
+    { "备注", "name current level", donamelevel, TRUE },
+    { "交谈", "talk to someone", dotalk, TRUE }, /* converse? */
+    { "行为", "list voluntary challenges you have maintained", doconduct,
       TRUE },
-    { "dip", "dip an object into something", dodip, FALSE },
-    { "enhance", "advance or check weapon and spell skills",
+    { "浸", "dip an object into something", dodip, FALSE },
+    { "提升能力", "advance or check weapon and spell skills",
       enhance_weapon_skill, TRUE },
-    { "exploremode", "enter explore mode", enter_explore_mode, TRUE },
-    { "force", "force a lock", doforce, FALSE },
-    { "invoke", "invoke an object's powers", doinvoke, TRUE },
-    { "jump", "jump to a location", dojump, FALSE },
-    { "loot", "loot a box on the floor", doloot, FALSE },
-    { "monster", "use a monster's special ability", domonability, TRUE },
-    { "name", "name a monster or an object", docallcmd, TRUE },
-    { "offer", "offer a sacrifice to the gods", dosacrifice, FALSE },
-    { "overview", "show an overview of the dungeon", dooverview, TRUE },
-    { "pray", "pray to the gods for help", dopray, TRUE },
-    { "quit", "exit without saving current game", done2, TRUE },
-    { "ride", "ride (or stop riding) a monster", doride, FALSE },
-    { "rub", "rub a lamp or a stone", dorub, FALSE },
-    { "sit", "sit down", dosit, FALSE },
-    { "terrain", "show map without obstructions", doterrain, TRUE },
-    { "tip", "empty a container", dotip, FALSE },
-    { "turn", "turn undead", doturn, TRUE },
-    { "twoweapon", "toggle two-weapon combat", dotwoweapon, FALSE },
-    { "untrap", "untrap something", dountrap, FALSE },
-    { "version", "list compile time options for this version of NetHack",
+    { "探索模式", "enter explore mode", enter_explore_mode, TRUE },
+    { "开锁", "force a lock", doforce, FALSE },
+    { "使用物品能力", "invoke an object's powers", doinvoke, TRUE },
+    { "跳", "jump to a location", dojump, FALSE },
+    { "搜刮", "loot a box on the floor", doloot, FALSE },
+    { "使用怪的特殊能力", "use a monster's special ability", domonability, TRUE },
+    { "命名", "name a monster or an object", docallcmd, TRUE },
+    { "献祭", "offer a sacrifice to the gods", dosacrifice, FALSE },
+    { "概述", "show an overview of the dungeon", dooverview, TRUE },
+    { "祈祷", "pray to the gods for help", dopray, TRUE },
+    { "退出游戏", "exit without saving current game", done2, TRUE },
+    { "乘骑", "ride (or stop riding) a monster", doride, FALSE },
+    { "擦拭", "rub a lamp or a stone", dorub, FALSE },
+    { "坐", "sit down", dosit, FALSE },
+    { "地图显示", "show map without obstructions", doterrain, TRUE },
+    { "倒出", "empty a container", dotip, FALSE },
+    { "超度", "turn undead", doturn, TRUE },
+    { "双武器", "toggle two-weapon combat", dotwoweapon, FALSE },
+    { "解除陷阱", "untrap something", dountrap, FALSE },
+    { "版本", "list compile time options for this version of NetHack",
       doextversion, TRUE },
-    { "wipe", "wipe off your face", dowipe, FALSE },
+    { "擦脸", "wipe off your face", dowipe, FALSE },
     { "?", "get this list of extended commands", doextlist, TRUE },
     /*
      * There must be a blank entry here for every entry in the table
@@ -2784,32 +2784,32 @@ struct ext_func_tab extcmdlist[] = {
 
 /* there must be a placeholder in the table above for every entry here */
 static const struct ext_func_tab debug_extcmdlist[] = {
-    { "levelchange", "change experience level", wiz_level_change, TRUE },
-    { "lightsources", "show mobile light sources", wiz_light_sources, TRUE },
+    { "改变等级", "change experience level", wiz_level_change, TRUE },
+    { "光源", "show mobile light sources", wiz_light_sources, TRUE },
 #ifdef DEBUG_MIGRATING_MONS
-    { "migratemons", "migrate n random monsters", wiz_migrate_mons, TRUE },
+    { "迁徙怪", "migrate n random monsters", wiz_migrate_mons, TRUE },
 #endif
-    { "monpolycontrol", "control monster polymorphs", wiz_mon_polycontrol,
+    { "变形控制", "control monster polymorphs", wiz_mon_polycontrol,
       TRUE },
-    { "panic", "test panic routine (fatal to game)", wiz_panic, TRUE },
-    { "polyself", "polymorph self", wiz_polyself, TRUE },
+    { "紧急", "test panic routine (fatal to game)", wiz_panic, TRUE },
+    { "变形", "polymorph self", wiz_polyself, TRUE },
 #ifdef PORT_DEBUG
-    { "portdebug", "wizard port debug command", wiz_port_debug, TRUE },
+    { "端口调试", "wizard port debug command", wiz_port_debug, TRUE },
 #endif
-    { "seenv", "show seen vectors", wiz_show_seenv, TRUE },
-    { "stats", "show memory statistics", wiz_show_stats, TRUE },
-    { "timeout", "look at timeout queue", wiz_timeout_queue, TRUE },
-    { "vanquished", "list vanquished monsters", dovanquished, TRUE },
-    { "vision", "show vision array", wiz_show_vision, TRUE },
-    { "wizsmell", "smell monster", wiz_smell, TRUE },
+    { "显示向量", "show seen vectors", wiz_show_seenv, TRUE },
+    { "内存状态", "show memory statistics", wiz_show_stats, TRUE },
+    { "超时", "look at timeout queue", wiz_timeout_queue, TRUE },
+    { "消灭怪物", "list vanquished monsters", dovanquished, TRUE },
+    { "视觉阵列", "show vision array", wiz_show_vision, TRUE },
+    { "气味", "smell monster", wiz_smell, TRUE },
 #ifdef DEBUG
-    { "wizdebug_traveldisplay", "wizard debug: toggle travel display",
+    { "向导调试移动显示", "wizard debug: toggle travel display",
       wiz_debug_cmd_traveldisplay, TRUE },
-    { "wizdebug_bury", "wizard debug: bury objs under and around you",
+    { "向导调试隐藏", "wizard debug: bury objs under and around you",
       wiz_debug_cmd_bury, TRUE },
 #endif
-    { "wizrumorcheck", "verify rumor boundaries", wiz_rumor_check, TRUE },
-    { "wmode", "show wall modes", wiz_show_wmodes, TRUE },
+    { "谣言检测", "verify rumor boundaries", wiz_rumor_check, TRUE },
+    { "墙壁模式", "show wall modes", wiz_show_wmodes, TRUE },
     { (char *) 0, (char *) 0, donull, TRUE }
 };
 
@@ -3456,7 +3456,7 @@ register char *cmd;
         }
         *cp = '\0';
         if (!prefix_seen || !iflags.cmdassist
-            || !help_dir(0, "Invalid direction key!"))
+            || !help_dir(0, "无效的方向键!"))
             Norep("Unknown command '%s'.", expcmd);
     }
     /* didn't move */
@@ -3573,7 +3573,7 @@ retry:
     if (in_doagain || *readchar_queue)
         dirsym = readchar();
     else
-        dirsym = yn_function((s && *s != '^') ? s : "In what direction?",
+        dirsym = yn_function((s && *s != '^') ? s : "哪个方向?",
                              (char *) 0, '\0');
     /* remove the prompt string so caller won't have to */
     clear_nhwindow(WIN_MESSAGE);
@@ -3626,7 +3626,7 @@ const char *msg;
     if (!win)
         return FALSE;
     if (msg) {
-        Sprintf(buf, "cmdassist: %s", msg);
+        Sprintf(buf, "命令助手: %s", msg);
         putstr(win, 0, buf);
         putstr(win, 0, "");
     }
@@ -3661,7 +3661,7 @@ const char *msg;
         Sprintf(buf, "             %c   ", Cmd.move_S);
         putstr(win, 0, buf);
     } else {
-        putstr(win, 0, "Valid direction keys are:");
+        putstr(win, 0, "有效的方向键是:");
         Sprintf(buf, "          %c  %c  %c", Cmd.move_NW, Cmd.move_N,
                 Cmd.move_NE);
         putstr(win, 0, buf);
@@ -3674,14 +3674,14 @@ const char *msg;
         putstr(win, 0, buf);
     };
     putstr(win, 0, "");
-    putstr(win, 0, "          <  up");
-    putstr(win, 0, "          >  down");
-    putstr(win, 0, "          .  direct at yourself");
+    putstr(win, 0, "          <  上");
+    putstr(win, 0, "          >  下");
+    putstr(win, 0, "          .  你自己的位置");
     if (msg) {
         /* non-null msg means that this wasn't an explicit user request */
         putstr(win, 0, "");
         putstr(win, 0,
-               "(Suppress this message with !cmdassist in config file.)");
+               "( 在配置文件中用!cmdassist来禁止此消息.)");
     }
     display_nhwindow(win, FALSE);
     destroy_nhwindow(win);

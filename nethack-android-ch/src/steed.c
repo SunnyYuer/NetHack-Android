@@ -231,7 +231,7 @@ boolean force;      /* Quietly force this animal */
     if (!mtmp || (!force && ((Blind && !Blind_telepat) || mtmp->mundetected
                              || mtmp->m_ap_type == M_AP_FURNITURE
                              || mtmp->m_ap_type == M_AP_OBJECT))) {
-        pline("I see nobody there.");
+        pline("那儿谁也没有.");
         return (FALSE);
     }
     if (u.uswallow || u.ustuck || u.utrap || Punished

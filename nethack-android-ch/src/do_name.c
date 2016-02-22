@@ -90,7 +90,7 @@ const char *goal;
     if (!goal)
         goal = "desired location";
     if (flags.verbose) {
-        pline("(For instructions type a ?)");
+        pline("( 选取哪个对象?)");
         msg_given = TRUE;
     }
     cx = ccp->x;
@@ -286,7 +286,7 @@ const char *goal;
             }     /* !quitchars */
             if (force)
                 goto nxtc;
-            pline("Done.");
+            pline("完成.");
             msg_given = FALSE; /* suppress clear */
             cx = -1;
             cy = 0;
@@ -449,7 +449,7 @@ do_mname()
                 || mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE
                 || mtmp->m_ap_type == M_AP_OBJECT
                 || (mtmp->minvis && !See_invisible)))) {
-        pline("I see no monster there.");
+        pline("那里没有怪.");
         return;
     }
     /* special case similar to the one in lookat() */
@@ -611,27 +611,27 @@ docallcmd()
     any = zeroany;
     any.a_char = 'm'; /* group accelerator 'C' */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'C', ATR_NONE,
-             "a monster", MENU_UNSELECTED);
+             "一只怪", MENU_UNSELECTED);
     if (invent) {
         /* we use y and n as accelerators so that we can accept user's
            response keyed to old "name an individual object?" prompt */
         any.a_char = 'i'; /* group accelerator 'y' */
         add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'y', ATR_NONE,
-                 "a particular object in inventory", MENU_UNSELECTED);
+                 "背包中的一个特定物品", MENU_UNSELECTED);
         any.a_char = 'o'; /* group accelerator 'n' */
         add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'n', ATR_NONE,
-                 "the type of an object in inventory", MENU_UNSELECTED);
+                 "背包中的一个物品类型", MENU_UNSELECTED);
     }
     any.a_char = 'f'; /* group accelerator ',' (or ':' instead?) */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, ',', ATR_NONE,
-             "the type of an object upon the floor", MENU_UNSELECTED);
+             "地上的一个物品类型", MENU_UNSELECTED);
     any.a_char = 'd'; /* group accelerator '\' */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, '\\', ATR_NONE,
-             "the type of an object on discoveries list", MENU_UNSELECTED);
+             "已知对象列表中的一个对象类型", MENU_UNSELECTED);
     any.a_char = 'a'; /* group accelerator 'l' */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'l', ATR_NONE,
-             "record an annotation for the current level", MENU_UNSELECTED);
-    end_menu(win, "What do you want to name?");
+             "给这一层作个备注", MENU_UNSELECTED);
+    end_menu(win, "你想要给什么命名?");
     if (select_menu(win, PICK_ONE, &pick_list) > 0) {
         ch = pick_list[0].item.a_char;
         free((genericptr_t) pick_list);
@@ -649,12 +649,12 @@ docallcmd()
     case 'i': /* name an individual object in inventory */
         allowall[0] = ALL_CLASSES;
         allowall[1] = '\0';
-        obj = getobj(allowall, "name");
+        obj = getobj(allowall, "命名");
         if (obj)
             do_oname(obj);
         break;
     case 'o': /* name a type of object in inventory */
-        obj = getobj(callable, "call");
+        obj = getobj(callable, "命名");
         if (obj) {
             /* behave as if examining it in inventory;
                this might set dknown if it was picked up
@@ -769,8 +769,8 @@ namefloorobj()
     }
     if (!obj) {
         /* "under you" is safe here since there's no object to hide under */
-        pline("There doesn't seem to be any object %s.",
-              (cc.x == u.ux && cc.y == u.uy) ? "under you" : "there");
+        pline("那儿似乎没有什么东西%s.",
+              (cc.x == u.ux && cc.y == u.uy) ? "在你的脚下" : "");
         return;
     }
     /* note well: 'obj' might be as instance of STRANGE_OBJECT if target

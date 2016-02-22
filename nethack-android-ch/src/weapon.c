@@ -877,26 +877,26 @@ char *buf;
 
     switch (P_SKILL(skill)) {
     case P_UNSKILLED:
-        ptr = "Unskilled";
+        ptr = " 不熟练";
         break;
     case P_BASIC:
-        ptr = "Basic";
+        ptr = " 基础";
         break;
     case P_SKILLED:
-        ptr = "Skilled";
+        ptr = " 熟练";
         break;
     case P_EXPERT:
-        ptr = "Expert";
+        ptr = " 老练";
         break;
     /* these are for unarmed combat/martial arts only */
     case P_MASTER:
-        ptr = "Master";
+        ptr = " 精通";
         break;
     case P_GRAND_MASTER:
-        ptr = "Grand Master";
+        ptr = " 炉火纯青";
         break;
     default:
-        ptr = "Unknown";
+        ptr = " 陌生";
         break;
     }
     Strcpy(buf, ptr);
@@ -993,9 +993,9 @@ static const struct skill_range {
     short first, last;
     const char *name;
 } skill_ranges[] = {
-    { P_FIRST_H_TO_H, P_LAST_H_TO_H, "Fighting Skills" },
-    { P_FIRST_WEAPON, P_LAST_WEAPON, "Weapon Skills" },
-    { P_FIRST_SPELL, P_LAST_SPELL, "Spellcasting Skills" },
+    { P_FIRST_H_TO_H, P_LAST_H_TO_H, "格斗技能" },
+    { P_FIRST_WEAPON, P_LAST_WEAPON, "武器技能" },
+    { P_FIRST_SPELL, P_LAST_SPELL, "魔法技能" },
 };
 
 /*
@@ -1133,7 +1133,7 @@ enhance_weapon_skill()
             }
 
         Strcpy(buf, (to_advance > 0) ? "Pick a skill to advance:"
-                                     : "Current skills:");
+                                     : "当前技能:");
         if (wizard && !speedy)
             Sprintf(eos(buf), "  (%d slot%s available)", u.weapon_slots,
                     plur(u.weapon_slots));

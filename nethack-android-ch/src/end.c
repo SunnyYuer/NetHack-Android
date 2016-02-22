@@ -1500,7 +1500,7 @@ boolean ask;
         }
     } else if (defquery == 'a') {
         /* #dovanquished rather than final disclosure, so pline() is ok */
-        pline("No monsters have been vanquished.");
+        pline("还没有消灭怪物.");
     }
 }
 

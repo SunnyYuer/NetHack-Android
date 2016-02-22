@@ -409,7 +409,7 @@
 					android:title="名称"
 					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 5"
+					android:defaultValue="面板 5"
 					android:singleLine="true"
 					android:key="pName4"/>
 	
@@ -474,7 +474,7 @@
 					android:title="名称"
 					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 6"
+					android:defaultValue="面板 6"
 					android:singleLine="true"
 					android:key="pName5"/>
 	

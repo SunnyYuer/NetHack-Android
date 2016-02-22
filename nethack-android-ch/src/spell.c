@@ -566,8 +566,8 @@ register struct obj *spellbook;
         }
         spellbook->in_use = FALSE;
 
-        You("begin to %s the runes.",
-            spellbook->otyp == SPE_BOOK_OF_THE_DEAD ? "recite" : "memorize");
+        You("开始%s符文.",
+            spellbook->otyp == SPE_BOOK_OF_THE_DEAD ? "背诵" : "熟记");
     }
 
     context.spbook.book = spellbook;
@@ -694,7 +694,7 @@ int *spell_no;
             return TRUE;
         }
     }
-    return dospellmenu("Choose which spell to cast", SPELLMENU_CAST,
+    return dospellmenu("选择要施展的魔法", SPELLMENU_CAST,
                        spell_no);
 }
 
@@ -1471,9 +1471,9 @@ dovspell()
     struct spell spl_tmp;
 
     if (spellid(0) == NO_SPELL) {
-        You("don't know any spells right now.");
+        You("现在不知道任何魔法.");
     } else {
-        while (dospellmenu("Currently known spells",
+        while (dospellmenu("已学魔法",
                            SPELLMENU_VIEW, &splnum)) {
             if (splnum == SPELLMENU_SORT) {
                 if (spellsortmenu())
@@ -1523,8 +1523,8 @@ int *spell_no;
      * given string and are of the form "a - ".
      */
     if (!iflags.menu_tab_sep) {
-        Sprintf(buf, "%-20s     Level %-12s Fail Retention", "    Name",
-                "Category");
+        Sprintf(buf, "%-20s\t\t\t   等级 %-12s  失败几率  熟练度", "\t\t   名称",
+                "   种类");
         fmt = "%-20s  %2d   %-12s %3d%% %9s";
     } else {
         Sprintf(buf, "Name\tLevel\tCategory\tFail\tRetention");

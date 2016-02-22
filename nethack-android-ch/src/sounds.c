@@ -1008,7 +1008,7 @@ dochat()
         return 1;
     }
 
-    if (!getdir("Talk to whom? (in what direction)")) {
+    if (!getdir("和谁交谈? ( 哪个方向)")) {
         /* decided not to chat */
         return 0;
     }

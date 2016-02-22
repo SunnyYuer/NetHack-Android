@@ -2349,11 +2349,11 @@ dopickup()
         else if (IS_GRAVE(lev->typ))
             You("don't need a gravestone.  Yet.");
         else if (IS_FOUNTAIN(lev->typ))
-            You("could drink the water...");
+            You("可以喝这儿的水...");
         else if (IS_DOOR(lev->typ) && (lev->doormask & D_ISOPEN))
             pline("It won't come off the hinges.");
         else
-            There("is nothing here to pick up.");
+            There("没有东西来拾取.");
         return 0;
     }
     if (!can_reach_floor(TRUE)) {

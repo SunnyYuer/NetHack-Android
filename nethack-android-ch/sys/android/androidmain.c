@@ -186,7 +186,7 @@ int NetHackMain(int argc, char** argv)
 
 		if(discover || wizard)
 		{
-			if(yn("Do you want to keep the save file?") == 'n')
+                        if(yn("你想保留保存记录吗?") == 'n')
 			{
 				(void)delete_savefile();
 			}
@@ -337,7 +337,7 @@ port_help()
 static void wd_message()
 {
 	if(discover)
-		You("are in non-scoring discovery mode.");
+                You("现在是无分数探索模式.");
 }
 
 /*

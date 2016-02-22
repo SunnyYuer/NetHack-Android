@@ -1582,7 +1582,7 @@ int do_ext_cmd_menu()
 		else
 			accelerator++;
 	}
-	and_end_menu(wid, "Extended command");
+        and_end_menu(wid, "扩展命令");
 	count = and_select_menu(wid, PICK_ONE, &selected);
 	what = count > 0 ? selected->item.a_int - 1 : -1;
 	if(selected)

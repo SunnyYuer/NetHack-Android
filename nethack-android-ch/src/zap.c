@@ -2072,7 +2072,7 @@ dozap()
 
     if (check_capacity((char *) 0))
         return 0;
-    obj = getobj(zap_syms, "zap");
+    obj = getobj(zap_syms, "挥动");
     if (!obj)
         return 0;
 

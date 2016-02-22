@@ -139,11 +139,11 @@ struct obj *wep;
     if (!wep) {
         /* No weapon */
         if (uwep) {
-            You("are empty %s.", body_part(HANDED));
+            You("空%s了.", body_part(HANDED));
             setuwep((struct obj *) 0);
             res++;
         } else
-            You("are already empty %s.", body_part(HANDED));
+            You("已经空%s了.", body_part(HANDED));
     } else if (wep->otyp == CORPSE && cant_wield_corpse(wep)) {
         /* hero must have been life-saved to get here; use a turn */
         res++; /* corpse won't be wielded */
@@ -253,11 +253,11 @@ dowield()
     }
 
     /* Prompt for a new weapon */
-    if (!(wep = getobj(wield_objs, "wield")))
+    if (!(wep = getobj(wield_objs, "w使用")))
         /* Cancelled */
         return 0;
     else if (wep == uwep) {
-        You("are already wielding that!");
+        You("已经拿着那个了!");
         if (is_weptool(wep) || is_wet_towel(wep))
             unweapon = FALSE; /* [see setuwep()] */
         return 0;
@@ -324,7 +324,7 @@ doswapweapon()
         if (uswapwep)
             prinv((char *) 0, uswapwep, 0L);
         else
-            You("have no secondary weapon readied.");
+            You("没有辅助武器.");
     }
 
     if (u.twoweap && !can_twoweapon())
@@ -348,7 +348,7 @@ dowieldquiver()
     multi = 0;
 
     /* Prompt for a new quiver */
-    if (!(newquiver = getobj(quivee_types, "ready")))
+    if (!(newquiver = getobj(quivee_types, "准备")))
         /* Cancelled */
         return 0;
 
@@ -357,19 +357,19 @@ dowieldquiver()
     if (newquiver == &zeroobj) {
         /* Explicitly nothing */
         if (uquiver) {
-            You("now have no ammunition readied.");
+            You("取消了发射物的准备.");
             setuqwep(newquiver = (struct obj *) 0);
         } else {
-            You("already have no ammunition readied!");
+            You("已经取消了发射物的准备!");
             return 0;
         }
     } else if (newquiver == uquiver) {
-        pline("That ammunition is already readied!");
+        pline("发射物已经准备好了!");
         return 0;
     } else if (newquiver == uwep) {
         /* Prevent accidentally readying the main weapon */
-        pline("%s already being used as a weapon!",
-              !is_plural(uwep) ? "That is" : "They are");
+        pline("%s已经当做武器在用了!",
+              !is_plural(uwep) ? "那个" : "那些");
         return 0;
     } else if (newquiver->owornmask & (W_ARMOR | W_ACCESSORY | W_SADDLE)) {
         You("cannot ready that!");
@@ -528,7 +528,7 @@ dotwoweapon()
 {
     /* You can always toggle it off */
     if (u.twoweap) {
-        You("switch to your primary weapon.");
+        You("只拿你的主武器.");
         u.twoweap = 0;
         update_inventory();
         return 0;
@@ -537,7 +537,7 @@ dotwoweapon()
     /* May we use two weapons? */
     if (can_twoweapon()) {
         /* Success! */
-        You("begin two-weapon combat.");
+        You("拿两个武器.");
         u.twoweap = 1;
         update_inventory();
         return (rnd(20) > ACURR(A_DEX));

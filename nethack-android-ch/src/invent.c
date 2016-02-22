@@ -975,7 +975,7 @@ register const char *let, *word;
         let++, usegold = TRUE;
 
     /* Equivalent of an "ugly check" for gold */
-    if (usegold && !strcmp(word, "eat")
+    if (usegold && !strcmp(word, "吃")
         && (!metallivorous(youmonst.data)
             || youmonst.data == &mons[PM_RUST_MONSTER]))
         usegold = FALSE;
@@ -990,11 +990,11 @@ register const char *let, *word;
      * them is handled a bit differently (and also requires that we set
      * allowall in the caller).
      */
-    if (allowall && !strcmp(word, "read"))
+    if (allowall && !strcmp(word, "阅读"))
         allowall = FALSE;
 
     /* another ugly check: show boulders (not statues) */
-    if (*let == WEAPON_CLASS && !strcmp(word, "throw")
+    if (*let == WEAPON_CLASS && !strcmp(word, "投掷")
         && throws_rocks(youmonst.data))
         useboulder = TRUE;
 
@@ -1030,12 +1030,12 @@ register const char *let, *word;
              || (putting_on(word) /* exclude if already worn */
                  && (otmp->owornmask & (W_ARMOR | W_ACCESSORY)))
 #if 0 /* 3.4.1 -- include currently wielded weapon among 'wield' choices */
-             || (!strcmp(word, "wield")
+             || (!strcmp(word, "w使用")
                  && (otmp->owornmask & W_WEP))
 #endif
-             || (!strcmp(word, "ready") /* exclude if wielded */
+             || (!strcmp(word, "准备") /* exclude if wielded */
                  && (otmp == uwep || (otmp == uswapwep && u.twoweap)))
-             || ((!strcmp(word, "dip") || !strcmp(word, "grease"))
+             || ((!strcmp(word, "浸") || !strcmp(word, "grease"))
                  && inaccessible_equipment(otmp, (const char *) 0, FALSE))
              ) {
                 foo--;
@@ -1049,22 +1049,22 @@ register const char *let, *word;
                  && ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING)
                      || (otmp->oclass == TOOL_CLASS && otyp != BLINDFOLD
                          && otyp != TOWEL && otyp != LENSES)))
-             || (!strcmp(word, "wield")
+             || (!strcmp(word, "w使用")
                  && (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
-             || (!strcmp(word, "eat") && !is_edible(otmp))
+             || (!strcmp(word, "吃") && !is_edible(otmp))
              || (!strcmp(word, "sacrifice")
                  && (otyp != CORPSE && otyp != AMULET_OF_YENDOR
                      && otyp != FAKE_AMULET_OF_YENDOR))
-             || (!strcmp(word, "write with")
+             || (!strcmp(word, "使用的雕刻工具是")
                  && (otmp->oclass == TOOL_CLASS
                      && otyp != MAGIC_MARKER && otyp != TOWEL))
              || (!strcmp(word, "tin")
                  && (otyp != CORPSE || !tinnable(otmp)))
-             || (!strcmp(word, "rub")
+             || (!strcmp(word, "擦拭")
                  && ((otmp->oclass == TOOL_CLASS && otyp != OIL_LAMP
                       && otyp != MAGIC_LAMP && otyp != BRASS_LANTERN)
                      || (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
-             || (!strcmp(word, "use or apply")
+             || (!strcmp(word, "a使用")  //use or apply
                  /* Picks, axes, pole-weapons, bullwhips */
                  && ((otmp->oclass == WEAPON_CLASS
                       && !is_pick(otmp) && !is_axe(otmp)
@@ -1077,7 +1077,7 @@ register const char *let, *word;
                      || (otmp->oclass == FOOD_CLASS
                          && otyp != CREAM_PIE && otyp != EUCALYPTUS_LEAF)
                      || (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
-             || (!strcmp(word, "invoke")
+             || (!strcmp(word, "i使用")  //invoke
                  && !otmp->oartifact
                  && !objects[otyp].oc_unique
                  && (otyp != FAKE_AMULET_OF_YENDOR || otmp->known)
@@ -1095,12 +1095,12 @@ register const char *let, *word;
                             be offered as a choice when already discovered */
                          && (otyp != POT_OIL || !otmp->dknown
                              || !objects[POT_OIL].oc_name_known))))
-             || (!strcmp(word, "tip") && !Is_container(otmp)
+             || (!strcmp(word, "倒出") && !Is_container(otmp)
                  /* include horn of plenty if sufficiently discovered */
                  && (otmp->otyp != HORN_OF_PLENTY || !otmp->dknown
                      || !objects[HORN_OF_PLENTY].oc_name_known))
              || (!strcmp(word, "charge") && !is_chargeable(otmp))
-             || (!strcmp(word, "call") && !objtyp_is_callable(otyp))
+             || (!strcmp(word, "命名") && !objtyp_is_callable(otyp))
              ) {
                 foo--;
             }
@@ -1138,7 +1138,7 @@ register const char *let, *word;
 /* clang-format on */
         } else {
             /* "ugly check" for reading fortune cookies, part 2 */
-            if ((!strcmp(word, "read") && is_readable(otmp)))
+            if ((!strcmp(word, "阅读") && is_readable(otmp)))
                 allowall = usegold = TRUE;
         }
     }
@@ -1152,7 +1152,7 @@ register const char *let, *word;
     *ap = '\0';
 
     if (!foo && !allowall && !allownone) {
-        You("don't have anything %sto %s.", foox ? "else " : "", word);
+        You("没有%s任何东西来%s.", foox ? "别的" : "", word);
         return (struct obj *) 0;
     }
     for (;;) {
@@ -1161,9 +1161,9 @@ register const char *let, *word;
             allowcnt = 1; /* abort previous count */
         prezero = FALSE;
         if (!buf[0]) {
-            Sprintf(qbuf, "What do you want to %s? [*]", word);
+            Sprintf(qbuf, "你想%s哪个? [*]", word);
         } else {
-            Sprintf(qbuf, "What do you want to %s? [%s or ?*]", word, buf);
+            Sprintf(qbuf, "你想%s哪个? [%s or ?*]", word, buf);
         }
         if (in_doagain)
             ilet = readchar();
@@ -1281,7 +1281,7 @@ register const char *let, *word;
                 return (struct obj *) 0;
             }
         }
-        if (allowcnt == 2 && !strcmp(word, "throw")) {
+        if (allowcnt == 2 && !strcmp(word, "投掷")) {
             /* permit counts for throwing gold, but don't accept
              * counts for other things since the throw code will
              * split off a single item anyway */
@@ -2065,7 +2065,7 @@ boolean allownone;
 		&& iflags.automenu && !allownone
 #endif
 	) {
-        pline("Not carrying anything.");
+        pline("没有携带任何东西.");
         return 0;
     }
 
@@ -2154,13 +2154,13 @@ nextclass:
 #ifdef ANDROID
 	if(iflags.automenu && lets) {
 		any.a_void = 0;		/* zero */
-		add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "Special", MENU_UNSELECTED);
+                add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings, "特殊", MENU_UNSELECTED);
 		if(allownone) {
 			any.a_char = '-';
-			add_menu(win, NO_GLYPH, &any, '-', 0, ATR_NONE, "(nothing)", MENU_UNSELECTED);
+                        add_menu(win, NO_GLYPH, &any, '-', 0, ATR_NONE, "( 无)", MENU_UNSELECTED);
 		}
 	    any.a_char = '*';
-	    add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "(more)", MENU_UNSELECTED);
+            add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "( 更多)", MENU_UNSELECTED);
 	}
 #endif
     free(oarray);
@@ -3132,7 +3132,7 @@ int
 dopramulet()
 {
     if (!uamul)
-        You("are not wearing an amulet.");
+        You("没有戴护身符.");
     else
         prinv((char *) 0, uamul, 0L);
     return 0;
@@ -3222,9 +3222,9 @@ long numused;
  * This must match the object class order.
  */
 STATIC_VAR NEARDATA const char *names[] = {
-    0, "Illegal objects", "Weapons", "Armor", "Rings", "Amulets", "Tools",
-    "Comestibles", "Potions", "Scrolls", "Spellbooks", "Wands", "Coins",
-    "Gems/Stones", "Boulders/Statues", "Iron balls", "Chains", "Venoms"
+    0, "Illegal objects", "武器", "防具", "戒指", "护身符", "工具",
+    "食物", "药水", "卷轴", "魔法书", "魔杖", "金币",
+    "宝石/ 石头", "巨石/ 雕像", "Iron balls", "Chains", "Venoms"
 };
 
 static NEARDATA const char oth_symbols[] = { CONTAINED_SYM, '\0' };
@@ -3367,7 +3367,7 @@ doorganize() /* inventory organizer by Del Lamb */
     allowall[0] = ALLOW_COUNT;
     allowall[1] = ALL_CLASSES;
     allowall[2] = '\0';
-    if (!(obj = getobj(allowall, "adjust")))
+    if (!(obj = getobj(allowall, "调整")))
         return 0;
 
     /* figure out whether user gave a split count to getobj() */

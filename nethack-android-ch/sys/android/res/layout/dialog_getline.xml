@@ -74,7 +74,7 @@
 		    android:id="@+id/wizard"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:text="探索模式" />
+		    android:text="向导模式" />
         
 		<LinearLayout
             style="@android:style/ButtonBar"

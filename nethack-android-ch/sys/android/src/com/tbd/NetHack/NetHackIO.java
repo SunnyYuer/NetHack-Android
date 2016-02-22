@@ -495,7 +495,9 @@ public class NetHackIO implements Runnable
 	{
 		if(reentry == 0)
 		{
-			final String msg = CP437.decode(title);
+			Chinese ch = new Chinese();
+			final String msg = ch.encode(title);
+			//final String msg = CP437.decode(title);
 			//Log.print("nhthread: getLine");
 			mHandler.post(new Runnable()
 			{

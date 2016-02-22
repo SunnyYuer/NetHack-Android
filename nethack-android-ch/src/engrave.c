@@ -200,7 +200,7 @@ register int x, y;
         return "fountain";
     else if ((IS_ROOM(lev->typ) && !Is_earthlevel(&u.uz))
              || IS_WALL(lev->typ) || IS_DOOR(lev->typ) || lev->typ == SDOOR)
-        return "floor";
+        return "地板";
     else
         return "ground";
 }
@@ -530,7 +530,7 @@ doengrave()
      * Edited by GAN 10/20/86 so as not to change weapon wielded.
      */
 
-    otmp = getobj(styluses, "write with");
+    otmp = getobj(styluses, "使用的雕刻工具是");
     if (!otmp) /* otmp == zeroobj if fingers */
         return 0;
 
@@ -962,14 +962,14 @@ doengrave()
                              : "write strangely on");
         break;
     case DUST:
-        everb = (oep && !eow ? "add to the writing in" : "write in");
-        eloc = is_ice(u.ux, u.uy) ? "frost" : "dust";
+        everb = (oep && !eow ? "add to the writing in" : "写");
+        eloc = is_ice(u.ux, u.uy) ? "霜" : "灰尘";
         break;
     case HEADSTONE:
         everb = (oep && !eow ? "add to the epitaph on" : "engrave on");
         break;
     case ENGRAVE:
-        everb = (oep && !eow ? "add to the engraving in" : "engrave in");
+        everb = (oep && !eow ? "add to the engraving in" : "刻");
         break;
     case BURN:
         everb = (oep && !eow
@@ -987,13 +987,12 @@ doengrave()
 
     /* Tell adventurer what is going on */
     if (otmp != &zeroobj)
-        You("%s the %s with %s.", everb, eloc, doname(otmp));
+        You("用%s %s到%s上.", doname(otmp), everb, eloc);
     else
-        You("%s the %s with your %s.", everb, eloc,
-            makeplural(body_part(FINGER)));
+        You("用你的%s%s到%s上.", makeplural(body_part(FINGER)), everb, eloc);
 
     /* Prompt for engraving! */
-    Sprintf(qbuf, "What do you want to %s the %s here?", everb, eloc);
+    Sprintf(qbuf, "你想在%s上%s什么?", eloc, everb);
     getlin(qbuf, ebuf);
     /* convert tabs to spaces and condense consecutive spaces to one */
     mungspaces(ebuf);

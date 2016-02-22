@@ -33,7 +33,7 @@ take_gold()
 int
 dosit()
 {
-    static const char sit_message[] = "sit on the %s.";
+    static const char sit_message[] = "坐在 %s上.";
     register struct trap *trap = t_at(u.ux, u.uy);
     register int typ = levl[u.ux][u.uy].typ;
 
@@ -136,12 +136,12 @@ dosit()
     } else if (IS_GRAVE(typ)) {
         You(sit_message, defsyms[S_grave].explanation);
     } else if (typ == STAIRS) {
-        You(sit_message, "stairs");
+        You(sit_message, "楼梯");
     } else if (typ == LADDER) {
-        You(sit_message, "ladder");
+        You(sit_message, "梯子");
     } else if (is_lava(u.ux, u.uy)) {
         /* must be WWalking */
-        You(sit_message, "lava");
+        You(sit_message, "熔岩");
         burn_away_slime();
         if (likes_lava(youmonst.data)) {
             pline_The("lava feels warm.");
@@ -308,7 +308,7 @@ dosit()
         stackobj(uegg);
         morehungry((int) objects[EGG].oc_nutrition);
     } else {
-        pline("Having fun sitting on the %s?", surface(u.ux, u.uy));
+        pline("坐在 %s上没意思.", surface(u.ux, u.uy));
     }
     return 1;
 }

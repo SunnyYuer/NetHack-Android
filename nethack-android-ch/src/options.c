@@ -4984,7 +4984,7 @@ dotogglepickup()
     flags.pickup = !flags.pickup;
     if (flags.pickup) {
         oc_to_str(flags.pickup_types, ocl);
-        Sprintf(buf, "ON, for %s objects%s", ocl[0] ? ocl : "all",
+        Sprintf(buf, " 开, for %s objects%s", ocl[0] ? ocl : "all",
                 (iflags.autopickup_exceptions[AP_LEAVE]
                  || iflags.autopickup_exceptions[AP_GRAB])
                     ? ((count_ape_maps((int *) 0, (int *) 0) == 1)
@@ -4992,9 +4992,9 @@ dotogglepickup()
                            : ", with some exceptions")
                     : "");
     } else {
-        Strcpy(buf, "OFF");
+        Strcpy(buf, " 关");
     }
-    pline("Autopickup: %s.", buf);
+    pline("自动拾取: %s.", buf);
     return 0;
 }
 

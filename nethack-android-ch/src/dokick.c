@@ -766,7 +766,7 @@ autokick()
 	if (u.utrap)
 		return;
 
-	if( yn("Kick it open?") == 'y')
+        if( yn("踢开它?") == 'y')
 		dokick_indir(TRUE);
 }
 
@@ -811,9 +811,9 @@ dokick() {
 
         if (wl == BOTH_SIDES)
             bp = makeplural(bp);
-        Your("%s%s %s in no shape for kicking.",
-             (wl == LEFT_SIDE) ? "left " : (wl == RIGHT_SIDE) ? "right " : "",
-             bp, (wl == BOTH_SIDES) ? "are" : "is");
+        Your("%s%s %s完全不能踢.",
+             (wl == LEFT_SIDE) ? "左 " : (wl == RIGHT_SIDE) ? "右 " : "",
+             bp, (wl == BOTH_SIDES) ? "are" : "");
         no_kick = TRUE;
     } else if (near_capacity() > SLT_ENCUMBER) {
         Your("load is too heavy to balance yourself for a kick.");
@@ -1234,7 +1234,7 @@ dokick() {
             if (!IS_STWALL(maploc->typ) && maploc->ladder == LA_DOWN)
                 goto dumb;
         ouch:
-            pline("Ouch!  That hurts!");
+            pline("嗷!  疼!");
             exercise(A_DEX, FALSE);
             exercise(A_STR, FALSE);
             if (isok(x, y)) {
@@ -1263,11 +1263,11 @@ dokick() {
     dumb:
         exercise(A_DEX, FALSE);
         if (martial() || ACURR(A_DEX) >= 16 || rn2(3)) {
-            You("kick at empty space.");
+            You("踢了空气.");
             if (Blind)
                 feel_location(x, y);
         } else {
-            pline("Dumb move!  You strain a muscle.");
+            pline("笨蛋!  你拉伤了肌肉.");
             exercise(A_STR, FALSE);
             set_wounded_legs(RIGHT_SIDE, 5 + rnd(5));
         }
@@ -1292,11 +1292,11 @@ dokick() {
             maploc->doormask = D_NODOOR;
             b_trapped("door", FOOT);
         } else if (ACURR(A_STR) > 18 && !rn2(5) && !shopdoor) {
-            pline("As you kick the door, it shatters to pieces!");
+            pline("你把门踢成了碎片!");
             exercise(A_STR, TRUE);
             maploc->doormask = D_NODOOR;
         } else {
-            pline("As you kick the door, it crashes open!");
+            pline("你把门踢坏了, 门开了!");
             exercise(A_STR, TRUE);
             maploc->doormask = D_BROKEN;
         }
@@ -1321,7 +1321,7 @@ dokick() {
         if (Blind)
             feel_location(x, y); /* we know we hit it */
         exercise(A_STR, TRUE);
-        pline("WHAMMM!!!");
+        pline("咚!!!");
         if (in_town(x, y))
             for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
                 if (DEADMONSTER(mtmp))

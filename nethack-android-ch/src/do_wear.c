@@ -11,7 +11,7 @@ static NEARDATA const char c_armor[] = "armor", c_suit[] = "suit",
                            c_gloves[] = "gloves", c_boots[] = "boots",
                            c_helmet[] = "helmet", c_shield[] = "shield",
                            c_weapon[] = "weapon", c_sword[] = "sword",
-                           c_axe[] = "axe", c_that_[] = "that";
+                           c_axe[] = "axe", c_that_[] = "那个";
 
 static NEARDATA const long takeoff_order[] = {
     WORN_BLINDF, W_WEP,      WORN_SHIELD, WORN_GLOVES, LEFT_RING,
@@ -1375,7 +1375,7 @@ armor_or_accessory_off(obj)
 struct obj *obj;
 {
     if (!(obj->owornmask & (W_ARMOR | W_ACCESSORY))) {
-        You("are not wearing that.");
+        You("没有穿戴那个.");
         return 0;
     }
 
@@ -1425,11 +1425,11 @@ dotakeoff()
                           ? "dragon scales are"
                           : "dragon scale mail is");
         else
-            pline("Not wearing any armor or accessories.");
+            pline("没有穿戴任何防具或配饰.");
         return 0;
     }
     if (Narmorpieces != 1 || ParanoidRemove)
-        otmp = getobj(clothes, "take off");
+        otmp = getobj(clothes, "脱下");
     if (!otmp)
         return 0;
     if (otmp == uskin
@@ -1463,11 +1463,11 @@ doremring()
 
     count_worn_stuff(&otmp, TRUE);
     if (!Naccessories && !Narmorpieces) {
-        pline("Not wearing any accessories or armor.");
+        pline("没有穿戴任何配饰或防具.");
         return 0;
     }
     if (Naccessories != 1 || ParanoidRemove)
-        otmp = getobj(accessories, "remove");
+        otmp = getobj(accessories, "取下");
     if (!otmp)
         return 0;
 
@@ -1552,7 +1552,7 @@ STATIC_OVL void
 already_wearing(cc)
 const char *cc;
 {
-    You("are already wearing %s%c", cc, (cc == c_that_) ? '!' : '.');
+    You("已经穿戴着%s了%c", cc, (cc == c_that_) ? '!' : '.');
 }
 
 STATIC_OVL void
@@ -1789,8 +1789,8 @@ struct obj *obj;
                 mask = LEFT_RING;
             } else {
                 do {
-                    Sprintf(qbuf, "Which %s%s, Right or Left?",
-                            humanoid(youmonst.data) ? "ring-" : "",
+                    Sprintf(qbuf, "戴在哪个%s%s上,  右边或左边?",
+                            humanoid(youmonst.data) ? "无名" : "",
                             body_part(FINGER));
                     answer = yn_function(qbuf, "rl", '\0');
                     switch (answer) {
@@ -1853,7 +1853,7 @@ struct obj *obj;
             }
         } else {
             /* neither armor nor accessory */
-            You_cant("wear that!");
+            You_cant("穿戴那个!");
             return 0;
         }
     }
@@ -1935,7 +1935,7 @@ dowear()
         You("are already wearing a full complement of armor.");
         return 0;
     }
-    otmp = getobj(clothes, "wear");
+    otmp = getobj(clothes, "穿戴");
     return otmp ? accessory_or_armor_on(otmp) : 0;
 }
 
@@ -1954,7 +1954,7 @@ doputon()
              (ublindf->otyp == LENSES) ? "some lenses" : "a blindfold");
         return 0;
     }
-    otmp = getobj(accessories, "put on");
+    otmp = getobj(accessories, "戴上");
     return otmp ? accessory_or_armor_on(otmp) : 0;
 }
 

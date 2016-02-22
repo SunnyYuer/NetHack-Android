@@ -1115,7 +1115,7 @@ doidtrap()
                   !trap->madeby_u ? "" : " by you");
             return 0;
         }
-    pline("I can't see a trap there.");
+    pline("那里没有陷阱.");
     return 0;
 }
 
@@ -1218,17 +1218,17 @@ docontact()
 
 /* data for help_menu() */
 static const char *help_menu_items[] = {
-    /*  0*/ "About NetHack (version information).",
-    /*  1*/ "Long description of the game and commands.",
-    /*  2*/ "List of game commands.",
-    /*  3*/ "Concise history of NetHack.",
-    /*  4*/ "Info on a character in the game display.",
-    /*  5*/ "Info on what a given key does.",
-    /*  6*/ "List of game options.",
-    /*  7*/ "Longer explanation of game options.",
-    /*  8*/ "List of extended commands.",
-    /*  9*/ "The NetHack license.",
-    /* 10*/ "Support information.",
+    /*  0*/ "关于NetHack ( 版本信息).",
+    /*  1*/ "游戏和命令的长描述.",
+    /*  2*/ "游戏命令列表.",
+    /*  3*/ "NetHack 简史.",
+    /*  4*/ "游戏显示中的字符信息.",
+    /*  5*/ "给定键信息.",
+    /*  6*/ "游戏选项列表.",
+    /*  7*/ "游戏选项的更长解释.",
+    /*  8*/ "扩展命令列表.",
+    /*  9*/ "NetHack 许可协议.",
+    /* 10*/ "支持信息.",
 #ifdef PORT_HELP
     "%s-specific help and commands.",
 #define PORT_HELP_ID 100
@@ -1271,7 +1271,7 @@ int *sel;
             add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
                      help_menu_items[i], MENU_UNSELECTED);
         }
-    end_menu(tmpwin, "Select one item:");
+    end_menu(tmpwin, "选择一项:");
     n = select_menu(tmpwin, PICK_ONE, &selected);
     destroy_nhwindow(tmpwin);
     if (n > 0) {

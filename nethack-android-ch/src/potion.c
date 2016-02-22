@@ -455,7 +455,7 @@ dodrink()
     if (IS_FOUNTAIN(levl[u.ux][u.uy].typ)
         /* not as low as floor level but similar restrictions apply */
         && can_reach_floor(FALSE)) {
-        if (yn("Drink from the fountain?") == 'y') {
+        if (yn("饮用泉水?") == 'y') {
             drinkfountain();
             return 1;
         }
@@ -464,7 +464,7 @@ dodrink()
     if (IS_SINK(levl[u.ux][u.uy].typ)
         /* not as low as floor level but similar restrictions apply */
         && can_reach_floor(FALSE)) {
-        if (yn("Drink from the sink?") == 'y') {
+        if (yn("饮用池水?") == 'y') {
             drinksink();
             return 1;
         }
@@ -477,7 +477,7 @@ dodrink()
         }
     }
 
-    otmp = getobj(beverages, "drink");
+    otmp = getobj(beverages, "喝");
     if (!otmp)
         return 0;
 
@@ -1762,17 +1762,17 @@ dodip()
 
     allowall[0] = ALL_CLASSES;
     allowall[1] = '\0';
-    if (!(obj = getobj(allowall, "dip")))
+    if (!(obj = getobj(allowall, "浸")))
         return 0;
     if (inaccessible_equipment(obj, "dip", FALSE))
         return 0;
 
-    Sprintf(qbuf, "dip %s into", thesimpleoname(obj));
+    Sprintf(qbuf, "把%s 浸入到", thesimpleoname(obj));
     here = levl[u.ux][u.uy].typ;
     /* Is there a fountain to dip into here? */
     if (IS_FOUNTAIN(here)) {
         /* "Dip <the object> into the fountain?" */
-        Sprintf(qtoo, "%s the fountain?", qbuf);
+        Sprintf(qtoo, "%s喷泉?", qbuf);
         if (yn(upstart(qtoo)) == 'y') {
             dipfountain(obj);
             return 1;

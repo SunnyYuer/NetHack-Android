@@ -159,7 +159,7 @@ VA_DECL(const char *, line)
     char *tmp;
     VA_START(line);
     VA_INIT(line, const char *);
-    vpline(YouMessage(tmp, "You ", line), VA_ARGS);
+    vpline(YouMessage(tmp, "你 ", line), VA_ARGS);
     VA_END();
 }
 
@@ -170,7 +170,7 @@ VA_DECL(const char *, line)
     char *tmp;
     VA_START(line);
     VA_INIT(line, const char *);
-    vpline(YouMessage(tmp, "Your ", line), VA_ARGS);
+    vpline(YouMessage(tmp, "你的 ", line), VA_ARGS);
     VA_END();
 }
 
@@ -196,7 +196,7 @@ VA_DECL(const char *, line)
     char *tmp;
     VA_START(line);
     VA_INIT(line, const char *);
-    vpline(YouMessage(tmp, "You can't ", line), VA_ARGS);
+    vpline(YouMessage(tmp, "你不能 ", line), VA_ARGS);
     VA_END();
 }
 
@@ -207,7 +207,7 @@ VA_DECL(const char *, line)
     char *tmp;
     VA_START(line);
     VA_INIT(line, const char *);
-    vpline(YouMessage(tmp, "The ", line), VA_ARGS);
+    vpline(YouMessage(tmp, " ", line), VA_ARGS);
     VA_END();
 }
 
@@ -218,7 +218,7 @@ VA_DECL(const char *, line)
     char *tmp;
     VA_START(line);
     VA_INIT(line, const char *);
-    vpline(YouMessage(tmp, "There ", line), VA_ARGS);
+    vpline(YouMessage(tmp, "这里 ", line), VA_ARGS);
     VA_END();
 }
 

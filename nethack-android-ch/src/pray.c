@@ -1263,7 +1263,7 @@ dosacrifice()
     aligntyp altaralign = a_align(u.ux, u.uy);
 
     if (!on_altar() || u.uswallow) {
-        You("are not standing on an altar.");
+        You("没有站在祭坛上.");
         return 0;
     }
     highaltar = ((Is_astralevel(&u.uz) || Is_sanctum(&u.uz))
@@ -1774,7 +1774,7 @@ int
 dopray()
 {
     /* Confirm accidental slips of Alt-P */
-    if (ParanoidPray && yn("Are you sure you want to pray?") != 'y')
+    if (ParanoidPray && yn("你确定要祈祷吗?") != 'y')
         return 0;
 
     u.uconduct.gnostic++;
@@ -1889,7 +1889,7 @@ doturn()
             else if (spl_book[sp_no].sp_id == SPE_TURN_UNDEAD)
                 return spelleffects(sp_no, FALSE);
         }
-        You("don't know how to turn undead!");
+        You("不知道如何超度!");
         return 0;
     }
     u.uconduct.gnostic++;

@@ -175,7 +175,7 @@ doread()
     known = FALSE;
     if (check_capacity((char *) 0))
         return 0;
-    scroll = getobj(readable, "read");
+    scroll = getobj(readable, "阅读");
     if (!scroll)
         return 0;
 
@@ -349,7 +349,7 @@ doread()
                   is_silent(youmonst.data) ? "cogitate" : "pronounce");
         else
             pline(nodisappear ? "You read the scroll."
-                              : "As you read the scroll, it disappears.");
+                              : "当你念完卷轴, 它就消失了.");
         if (confused) {
             if (Hallucination)
                 pline("Being so trippy, you screw up...");

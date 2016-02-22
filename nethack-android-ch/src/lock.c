@@ -213,7 +213,7 @@ forcelock(VOID_ARGS)
     if (rn2(100) >= xlock.chance)
         return 1; /* still busy */
 
-    You("succeed in forcing the lock.");
+    You("成功地撬开了锁.");
     breakchestlock(xlock.box, (boolean) (!xlock.picktyp && !rn2(3)));
 
     exercise((xlock.picktyp) ? A_DEX : A_STR, TRUE);
@@ -521,12 +521,12 @@ doforce()
     for (otmp = level.objects[u.ux][u.uy]; otmp; otmp = otmp->nexthere)
         if (Is_box(otmp)) {
             if (otmp->obroken || !otmp->olocked) {
-                There("is %s here, but its lock is already %s.", doname(otmp),
-                      otmp->obroken ? "broken" : "unlocked");
+                There("有%s, 但是它的锁已经%s.", doname(otmp),
+                      otmp->obroken ? "坏了" : "开了");
                 otmp->lknown = 1;
                 continue;
             }
-            (void) safe_qbuf(qbuf, "There is ", " here; force its lock?",
+            (void) safe_qbuf(qbuf, "这里有 ", " ; 要撬开锁吗?",
                              otmp, doname, ansimpleoname, "a box");
             otmp->lknown = 1;
 
@@ -537,7 +537,7 @@ doforce()
                 continue;
 
             if (picktyp)
-                You("force %s into a crack and pry.", yname(uwep));
+                You("把%s 伸进裂缝中然后使劲地撬动.", yname(uwep));
             else
                 You("start bashing it with %s.", yname(uwep));
             xlock.box = otmp;
@@ -550,7 +550,7 @@ doforce()
     if (xlock.box)
         set_occupation(forcelock, "forcing the lock", 0);
     else
-        You("decide not to force the issue.");
+        You("决定不硬来.");
     return 1;
 }
 
@@ -631,7 +631,7 @@ int x, y;
         else if (portcullis || door->typ == DRAWBRIDGE_DOWN)
             pline_The("drawbridge is already open.");
         else
-            You("%s no door there.", Blind ? "feel" : "see");
+            You("%s那里没有门.", Blind ? "感觉" : "见");
         return res;
     }
 
@@ -643,22 +643,22 @@ int x, y;
 
         switch (door->doormask) {
         case D_BROKEN:
-            mesg = " is broken";
+            mesg = " 被破坏了";
             break;
         case D_NODOOR:
             mesg = "way has no door";
             break;
         case D_ISOPEN:
-            mesg = " is already open";
+            mesg = " 已经是开的";
             break;
         default:
-            mesg = " is locked";
+            mesg = " 是锁着的";
 #ifdef ANDROID
 		    locked=TRUE;
 #endif
             break;
         }
-        pline("This door%s.", mesg);
+        pline("这个门%s.", mesg);
 #ifdef ANDROID
 	    if (locked && flags.autokick) {
 			autokick();
@@ -674,7 +674,7 @@ int x, y;
 
     /* door is known to be CLOSED */
     if (rnl(20) < (ACURRSTR + ACURR(A_DEX) + ACURR(A_CON)) / 3) {
-        pline_The("door opens.");
+        pline_The("门开了.");
         if (door->doormask & D_TRAPPED) {
             b_trapped("door", FINGER);
             door->doormask = D_NODOOR;
@@ -686,7 +686,7 @@ int x, y;
         unblock_point(cc.x, cc.y); /* vision: new see through there */
     } else {
         exercise(A_STR, TRUE);
-        pline_The("door resists!");
+        pline_The("门在抵抗!");
     }
 
     return 1;
@@ -785,7 +785,7 @@ doclose()
             There("is no obvious way to close the drawbridge.");
         else {
         nodoor:
-            You("%s no door there.", Blind ? "feel" : "see");
+            You("%s那里没有门.", Blind ? "感觉" : "见");
         }
         return res;
     }
@@ -796,10 +796,10 @@ doclose()
     } else if (obstructed(x, y, FALSE)) {
         return res;
     } else if (door->doormask == D_BROKEN) {
-        pline("This door is broken.");
+        pline("这个门被破坏了.");
         return res;
     } else if (door->doormask & (D_CLOSED | D_LOCKED)) {
-        pline("This door is already closed.");
+        pline("这个门已经是关的.");
         return res;
     }
 
@@ -810,13 +810,13 @@ doclose()
         }
         if (u.usteed
             || rn2(25) < (ACURRSTR + ACURR(A_DEX) + ACURR(A_CON)) / 3) {
-            pline_The("door closes.");
+            pline_The("门关了.");
             door->doormask = D_CLOSED;
             feel_newsym(x, y); /* the hero knows she closed it */
             block_point(x, y); /* vision:  no longer see there */
         } else {
             exercise(A_STR, TRUE);
-            pline_The("door resists!");
+            pline_The("门在抵抗!");
         }
     }
 

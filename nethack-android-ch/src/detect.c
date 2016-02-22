@@ -1355,7 +1355,7 @@ register int aflag; /* intrinsic autosearch vs explicit searching */
                     exercise(A_WIS, TRUE);
                     nomul(0);
                     feel_location(x, y); /* make sure it shows up */
-                    You("find a hidden door.");
+                    You("找到了一扇暗门.");
                 } else if (levl[x][y].typ == SCORR) {
                     if (rnl(7 - fund))
                         continue;
@@ -1364,7 +1364,7 @@ register int aflag; /* intrinsic autosearch vs explicit searching */
                     exercise(A_WIS, TRUE);
                     nomul(0);
                     feel_location(x, y); /* make sure it shows up */
-                    You("find a hidden passage.");
+                    You("找到了一条暗道.");
                 } else {
                     /* Be careful not to find anything in an SCORR or SDOOR */
                     if ((mtmp = m_at(x, y)) != 0 && !aflag) {
@@ -1562,21 +1562,21 @@ int which_subset; /* when not full, whether to suppress objs and/or traps */
             u.uswallow = 1;
         flush_screen(1);
         if (full) {
-            Strcpy(buf, "underlying terrain");
+            Strcpy(buf, "全地图");
         } else {
-            Strcpy(buf, "known terrain");
+            Strcpy(buf, "已知地图");
             if (keep_traps)
-                Sprintf(eos(buf), "%s traps",
-                        (keep_objs || keep_mons) ? "," : " and");
+                Sprintf(eos(buf), "%s 陷阱",
+                        (keep_objs || keep_mons) ? "," : " 和");
             if (keep_objs)
-                Sprintf(eos(buf), "%s%s objects",
+                Sprintf(eos(buf), "%s%s 物品",
                         (keep_traps || keep_mons) ? "," : "",
-                        keep_mons ? "" : " and");
+                        keep_mons ? "" : " 和");
             if (keep_mons)
-                Sprintf(eos(buf), "%s and monsters",
+                Sprintf(eos(buf), "%s 和怪物",
                         (keep_traps || keep_objs) ? "," : "");
         }
-        pline("Showing %s only...", buf);
+        pline("仅显示%s...", buf);
         display_nhwindow(WIN_MAP, TRUE); /* give "--More--" prompt */
         docrt(); /* redraw the screen, restoring regular map */
         if (Underwater)

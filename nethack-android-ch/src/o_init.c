@@ -703,7 +703,7 @@ rename_disco()
     } else if (mn == 0) {
         pline("None of your discoveries can be assigned names...");
     } else {
-        end_menu(tmpwin, "Pick an object type to name");
+        end_menu(tmpwin, "选择一个对象来命名");
         dis = STRANGE_OBJECT;
         sl = select_menu(tmpwin, PICK_ONE, &selected);
         if (sl > 0) {

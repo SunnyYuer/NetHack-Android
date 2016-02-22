@@ -1533,9 +1533,9 @@ struct monst *mon;
 int part;
 {
     static NEARDATA const char
-        *humanoid_parts[] = { "arm",       "eye",  "face",         "finger",
-                              "fingertip", "foot", "hand",         "handed",
-                              "head",      "leg",  "light headed", "neck",
+        *humanoid_parts[] = { "arm",       "eye",  "脸",         "手指",
+                              "fingertip", "foot", "hand",         "手",
+                              "head",      "腿",  "light headed", "neck",
                               "spine",     "toe",  "hair",         "blood",
                               "lung",      "nose", "stomach" },
         *jelly_parts[] = { "pseudopod", "dark spot", "front",

@@ -1385,7 +1385,7 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
-    struct obj *obj = getobj(cuddly, "rub");
+    struct obj *obj = getobj(cuddly, "擦拭");
 
     if (obj && obj->oclass == GEM_CLASS) {
         if (is_graystone(obj)) {
@@ -1501,7 +1501,7 @@ int magic; /* 0=Physical, otherwise skill level */
         You_cant("jump; you have no legs!");
         return 0;
     } else if (!magic && !Jumping) {
-        You_cant("jump very far.");
+        You_cant("跳得很远.");
         return 0;
     /* if steed is immobile, can't do physical jump but can do spell one */
     } else if (!magic && u.usteed && stucksteed(FALSE)) {
@@ -3357,7 +3357,7 @@ doapply()
         return 0;
 
     setapplyclasses(class_list); /* tools[] */
-    obj = getobj(class_list, "use or apply");
+    obj = getobj(class_list, "a使用");
     if (!obj)
         return 0;
 
@@ -3539,7 +3539,7 @@ doapply()
             res = use_pick_axe(obj);
             break;
         }
-        pline("Sorry, I don't know how to use that.");
+        pline("我不知道如何使用那个.");
     xit:
         nomul(0);
         return 0;

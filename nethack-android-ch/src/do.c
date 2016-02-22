@@ -31,7 +31,7 @@ dodrop()
 
     if (*u.ushops)
         sellobj_state(SELL_DELIBERATE);
-    result = drop(getobj(&drop_types[i], "drop"));
+    result = drop(getobj(&drop_types[i], "扔掉"));
     if (*u.ushops)
         sellobj_state(SELL_NORMAL);
     reset_occupations();
@@ -916,7 +916,7 @@ dodown()
             if (flags.autodig && !context.nopick && uwep && is_pick(uwep)) {
                 return use_pick_axe2(uwep);
             } else {
-                You_cant("go down here.");
+                You_cant("从这里下去.");
                 return 0;
             }
         }
@@ -974,7 +974,7 @@ doup()
         && (!xupladder || u.ux != xupladder || u.uy != yupladder)
         && (!sstairs.sx || u.ux != sstairs.sx || u.uy != sstairs.sy
             || !sstairs.up)) {
-        You_cant("go up here.");
+        You_cant("从这里上去.");
         return 0;
     }
     if (stucksteed(TRUE)) {
@@ -994,7 +994,7 @@ doup()
         return 1;
     }
     if (ledger_no(&u.uz) == 1) {
-        if (yn("Beware, there will be no return! Still climb?") != 'y')
+        if (yn("注意, 这将退出游戏! 还要上去吗?") != 'y')
             return 0;
     }
     if (!next_to_u()) {
@@ -1290,11 +1290,11 @@ boolean at_stairs, falling, portal;
                 u_on_dnstairs();
             /* you climb up the {stairs|ladder};
                fly up the stairs; fly up along the ladder */
-            pline("%s %s up%s the %s.",
-                  (Punished && !Levitation) ? "With great effort you" : "You",
-                  Flying ? "fly" : "climb",
-                  (Flying && at_ladder) ? " along" : "",
-                  at_ladder ? "ladder" : "stairs");
+            pline("%s顺着%s%s上来%s.",
+                  (Punished && !Levitation) ? "你用了很大力气" : "你",
+                  at_ladder ? "梯子" : "楼梯",
+                  Flying ? "飞" : "爬",
+                  (Flying && at_ladder) ? "" : "");
         } else { /* down */
             if (at_ladder)
                 u_on_newpos(xupladder, yupladder);
@@ -1327,7 +1327,7 @@ boolean at_stairs, falling, portal;
             } else { /* ordinary descent */
                 if (flags.verbose)
                     You("%s.", at_ladder ? "climb down the ladder"
-                                         : "descend the stairs");
+                                         : "顺着楼梯下来");
             }
         }
     } else { /* trap door or level_tele or In_endgame */
@@ -1775,7 +1775,7 @@ dowipe()
          */
         return 1;
     }
-    Your("%s is already clean.", body_part(FACE));
+    Your("%s 已经很干净了.", body_part(FACE));
     return 1;
 }
 
@@ -1817,7 +1817,7 @@ heal_legs()
                 legs = makeplural(legs);
             /* this used to say "somewhat better" but that was
                misleading since legs are being fully healed */
-            Your("%s %s better.", legs, vtense(legs, "feel"));
+            Your("%s %s好了些.", legs, vtense(legs, "觉得"));
         }
 
         HWounded_legs = EWounded_legs = 0;

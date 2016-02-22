@@ -70,8 +70,8 @@ STATIC_OVL NEARDATA const char allobj[] = {
 STATIC_OVL boolean force_save_hs = FALSE;
 
 /* see hunger states in hack.h - texts used on bottom line */
-const char *hu_stat[] = { "Satiated", "        ", "Hungry  ", "Weak    ",
-                          "Fainting", "Fainted ", "Starved " };
+const char *hu_stat[] = { " 饱腹", "        ", " 饥饿", " 虚弱",
+                          " 昏厥", " 晕厥", " 极度饥饿" };
 
 /*
  * Decide whether a particular object can be eaten by the possibly
@@ -2330,7 +2330,7 @@ doeat()
         pline("If you can't breathe air, how can you consume solids?");
         return 0;
     }
-    if (!(otmp = floorfood("eat", 0)))
+    if (!(otmp = floorfood("吃", 0)))
         return 0;
     if (check_capacity((char *) 0))
         return 0;

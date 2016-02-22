@@ -39,9 +39,9 @@ OPTIONS=pile_limit:2,hilite_pile,hilite_pet
 
 # Colorize individual rows on a menu based on what regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
-MENUCOLOR=" blessed "=green
-MENUCOLOR=" holy "=green
-MENUCOLOR=" uncursed "=yellow
+MENUCOLOR=" blessed "=yellow
+MENUCOLOR=" holy "=yellow
+MENUCOLOR=" uncursed "=white
 MENUCOLOR=" cursed "=red
 MENUCOLOR=" unholy "=red
 MENUCOLOR=" cursed .* \(being worn\)"=red&underline

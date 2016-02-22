@@ -7,8 +7,10 @@
 
 extern const char *hu_stat[]; /* defined in eat.c */
 
-const char *const enc_stat[] = { "",         "Burdened",  "Stressed",
-                                 "Strained", "Overtaxed", "Overloaded" };
+const char *const enc_stat[] = { "",         " 负担",  " 压力",
+                                 " 强压", " 过重", " 超重" };
+/*const char *const enc_stat[] = { "",         "Burdened",  "Stressed",
+                                 "Strained", "Overtaxed", "Overloaded" };*/
 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 
