@@ -92,8 +92,8 @@ NHSROOT=..
 # flags for debugging:
 # CFLAGS = -g -I../include
 
-CFLAGS = -I../include
-LFLAGS =
+CFLAGS = -DANDROID -m32 -Wno-format -fsigned-char -I../include
+LFLAGS = -m32
 
 LIBS =
  

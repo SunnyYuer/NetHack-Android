@@ -26,9 +26,10 @@ work. If you're running Windows you're on your own.
 === Building NetHack ===
 
 1. cd <NetHack-Android>/sys/android
-2. sh ./setup.sh
-3. cd ../..
-4. make all
+2. Open Makefile.src and change NDK to the appropriate path
+3. sh ./setup.sh
+4. cd ../..
+5. make all
 
 
 
