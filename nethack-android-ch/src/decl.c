@@ -239,7 +239,7 @@ const char *c_obj_colors[] = {
 
 struct c_common_strings c_common_strings = { "无事发生.",
                                              "That's enough tries!",
-                                             "That is a silly thing to %s.",
+                                             "%s那个是件傻傻的事.",
                                              "shudder for a moment.",
                                              "什么东西",
                                              "Something",

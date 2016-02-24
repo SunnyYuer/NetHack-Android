@@ -59,7 +59,7 @@
 			android:summary="当点击一个位置何时调用移动命令"
 			android:persistent="true"
 			android:key="travelOnClick"
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/travelNames"
 			android:entryValues="@array/travelValues"/>
 

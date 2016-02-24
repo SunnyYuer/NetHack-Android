@@ -253,7 +253,7 @@ dowield()
     }
 
     /* Prompt for a new weapon */
-    if (!(wep = getobj(wield_objs, "w使用")))
+    if (!(wep = getobj(wield_objs, "w使用")))  //wield
         /* Cancelled */
         return 0;
     else if (wep == uwep) {
@@ -348,7 +348,7 @@ dowieldquiver()
     multi = 0;
 
     /* Prompt for a new quiver */
-    if (!(newquiver = getobj(quivee_types, "准备")))
+    if (!(newquiver = getobj(quivee_types, "准备")))  //ready
         /* Cancelled */
         return 0;
 

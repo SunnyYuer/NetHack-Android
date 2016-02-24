@@ -1385,7 +1385,7 @@ static NEARDATA const char cuddly[] = { TOOL_CLASS, GEM_CLASS, 0 };
 int
 dorub()
 {
-    struct obj *obj = getobj(cuddly, "擦拭");
+    struct obj *obj = getobj(cuddly, "擦拭");  //rub
 
     if (obj && obj->oclass == GEM_CLASS) {
         if (is_graystone(obj)) {
@@ -3357,7 +3357,7 @@ doapply()
         return 0;
 
     setapplyclasses(class_list); /* tools[] */
-    obj = getobj(class_list, "a使用");
+    obj = getobj(class_list, "a使用");  //use or apply
     if (!obj)
         return 0;
 

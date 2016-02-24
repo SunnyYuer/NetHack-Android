@@ -175,7 +175,7 @@ doread()
     known = FALSE;
     if (check_capacity((char *) 0))
         return 0;
-    scroll = getobj(readable, "阅读");
+    scroll = getobj(readable, "阅读");  //read
     if (!scroll)
         return 0;
 
@@ -258,7 +258,7 @@ doread()
         if (Blind)
             You("feel the embossed words:");
         else if (flags.verbose)
-            You("read:");
+            You("读道:");
         pline("\"1 Zorkmid. 857 GUE. In Frobs We Trust.\"");
         u.uconduct.literate++;
         return 1;
@@ -291,7 +291,7 @@ doread()
         return 1;
     } else if (scroll->oclass != SCROLL_CLASS
                && scroll->oclass != SPBOOK_CLASS) {
-        pline(silly_thing_to, "read");
+        pline(silly_thing_to, "阅读");
         return 0;
     } else if (Blind && (scroll->otyp != SPE_BOOK_OF_THE_DEAD)) {
         const char *what = 0;

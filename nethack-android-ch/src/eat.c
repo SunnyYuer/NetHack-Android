@@ -2330,7 +2330,7 @@ doeat()
         pline("If you can't breathe air, how can you consume solids?");
         return 0;
     }
-    if (!(otmp = floorfood("吃", 0)))
+    if (!(otmp = floorfood("吃", 0)))  //eat
         return 0;
     if (check_capacity((char *) 0))
         return 0;
@@ -2356,7 +2356,7 @@ doeat()
                         : touch_artifact(otmp, &youmonst))) {
         return 1;
     } else if (!is_edible(otmp)) {
-        You("cannot eat that!");
+        You("不能吃那个!");
         return 0;
     } else if ((otmp->owornmask & (W_ARMOR | W_TOOL | W_AMUL | W_SADDLE))
                != 0) {
@@ -2891,7 +2891,7 @@ int corpsecheck; /* 0, no check, 1, corpses, 2, tinnable corpses */
     register struct obj *otmp;
     char qbuf[QBUFSZ];
     char c;
-    boolean feeding = !strcmp(verb, "eat"),    /* corpsecheck==0 */
+    boolean feeding = !strcmp(verb, "吃"),    /* corpsecheck==0 */  //eat
         offering = !strcmp(verb, "sacrifice"); /* corpsecheck==1 */
 
     /* if we can't touch floor objects then use invent food only */

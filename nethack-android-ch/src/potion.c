@@ -477,7 +477,7 @@ dodrink()
         }
     }
 
-    otmp = getobj(beverages, "喝");
+    otmp = getobj(beverages, "喝");  //drink
     if (!otmp)
         return 0;
 
@@ -1762,7 +1762,7 @@ dodip()
 
     allowall[0] = ALL_CLASSES;
     allowall[1] = '\0';
-    if (!(obj = getobj(allowall, "浸")))
+    if (!(obj = getobj(allowall, "浸")))  //dip
         return 0;
     if (inaccessible_equipment(obj, "dip", FALSE))
         return 0;

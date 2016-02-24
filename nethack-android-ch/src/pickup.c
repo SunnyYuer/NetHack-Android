@@ -2771,7 +2771,7 @@ dotip()
     }
 
     /* either no floor container(s) or couldn't tip one or didn't tip any */
-    cobj = getobj(tippables, "倒出");
+    cobj = getobj(tippables, "倒出");  //tip
     if (!cobj)
         return 0;
 

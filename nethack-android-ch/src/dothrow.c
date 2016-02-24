@@ -276,7 +276,7 @@ dothrow()
     if (!ok_to_throw(&shotlimit))
         return 0;
 
-    obj = getobj(uslinging() ? bullets : toss_objs, "投掷");
+    obj = getobj(uslinging() ? bullets : toss_objs, "投掷");  //throw
     /* it is also possible to throw food */
     /* (or jewels, or iron balls... ) */
 
@@ -378,7 +378,7 @@ dofire()
         /* if autoquiver is disabled or has failed, prompt for missile;
            fill quiver with it if it's not wielded */
         if (!obj) {
-            obj = getobj(uslinging() ? bullets : toss_objs, "投掷");
+            obj = getobj(uslinging() ? bullets : toss_objs, "投掷");  //throw
             /* Q command doesn't allow gold in quiver */
             if (obj && !obj->owornmask && obj->oclass != COIN_CLASS)
                 setuqwep(obj); /* demi-autoquiver */

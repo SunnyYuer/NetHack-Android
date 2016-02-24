@@ -1391,7 +1391,7 @@ doinvoke()
 {
     struct obj *obj;
 
-    obj = getobj(invoke_types, "i使用");
+    obj = getobj(invoke_types, "i使用");  //invoke
     if (!obj)
         return 0;
     if (!retouch_object(&obj, FALSE))

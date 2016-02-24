@@ -1429,7 +1429,7 @@ dotakeoff()
         return 0;
     }
     if (Narmorpieces != 1 || ParanoidRemove)
-        otmp = getobj(clothes, "脱下");
+        otmp = getobj(clothes, "脱下");  //take off
     if (!otmp)
         return 0;
     if (otmp == uskin
@@ -1467,7 +1467,7 @@ doremring()
         return 0;
     }
     if (Naccessories != 1 || ParanoidRemove)
-        otmp = getobj(accessories, "取下");
+        otmp = getobj(accessories, "取下");  //remove
     if (!otmp)
         return 0;
 
@@ -1722,7 +1722,7 @@ boolean noisy;
            happens if you have armor for slots that are covered up or
            extra armor for slots that are filled */
         if (noisy)
-            silly_thing("wear", otmp);
+            silly_thing("穿戴", otmp);  //wear
         err++;
     }
     /* Unnecessary since now only weapons and special items like pick-axes get
@@ -1935,7 +1935,7 @@ dowear()
         You("are already wearing a full complement of armor.");
         return 0;
     }
-    otmp = getobj(clothes, "穿戴");
+    otmp = getobj(clothes, "穿戴");  //wear
     return otmp ? accessory_or_armor_on(otmp) : 0;
 }
 
@@ -1954,7 +1954,7 @@ doputon()
              (ublindf->otyp == LENSES) ? "some lenses" : "a blindfold");
         return 0;
     }
-    otmp = getobj(accessories, "戴上");
+    otmp = getobj(accessories, "戴上");  //put on
     return otmp ? accessory_or_armor_on(otmp) : 0;
 }
 
@@ -2465,7 +2465,7 @@ doddoremarm()
 
     add_valid_menu_class(0); /* reset */
     if (flags.menu_style != MENU_TRADITIONAL
-        || (result = ggetobj("take off", select_off, 0, FALSE,
+        || (result = ggetobj("脱下", select_off, 0, FALSE,   //take off
                              (unsigned *) 0)) < -1)
         result = menu_remarm(result);
 
@@ -2512,7 +2512,7 @@ int retry;
         free((genericptr_t) pick_list);
     } else if (flags.menu_style == MENU_COMBINATION) {
         all_worn_categories = FALSE;
-        if (ggetobj("take off", select_off, 0, TRUE, (unsigned *) 0) == -2)
+        if (ggetobj("脱下", select_off, 0, TRUE, (unsigned *) 0) == -2)  //take off
             all_worn_categories = TRUE;
     }
 

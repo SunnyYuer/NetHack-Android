@@ -530,7 +530,7 @@ doengrave()
      * Edited by GAN 10/20/86 so as not to change weapon wielded.
      */
 
-    otmp = getobj(styluses, "使用的雕刻工具是");
+    otmp = getobj(styluses, "使用的雕刻工具是");  //write with
     if (!otmp) /* otmp == zeroobj if fingers */
         return 0;
 

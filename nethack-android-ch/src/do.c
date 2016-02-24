@@ -31,7 +31,7 @@ dodrop()
 
     if (*u.ushops)
         sellobj_state(SELL_DELIBERATE);
-    result = drop(getobj(&drop_types[i], "扔掉"));
+    result = drop(getobj(&drop_types[i], "扔掉"));  //drop
     if (*u.ushops)
         sellobj_state(SELL_NORMAL);
     reset_occupations();

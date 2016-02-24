@@ -649,12 +649,12 @@ docallcmd()
     case 'i': /* name an individual object in inventory */
         allowall[0] = ALL_CLASSES;
         allowall[1] = '\0';
-        obj = getobj(allowall, "命名");
+        obj = getobj(allowall, "n命名");  //name
         if (obj)
             do_oname(obj);
         break;
     case 'o': /* name a type of object in inventory */
-        obj = getobj(callable, "命名");
+        obj = getobj(callable, "c命名");  //call
         if (obj) {
             /* behave as if examining it in inventory;
                this might set dknown if it was picked up
