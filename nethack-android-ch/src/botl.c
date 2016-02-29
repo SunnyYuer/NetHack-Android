@@ -250,7 +250,7 @@ bot2()
     }
     if (Confusion)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text(" 混乱", newbot2);
+        add_colored_text(" 混乱", newbot2);  //Conf
 #else
         Sprintf(nb = eos(nb), "  混乱");
 #endif
@@ -271,9 +271,9 @@ bot2()
      }
     if (Blind)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text(" 瞎", newbot2);
+        add_colored_text(" 失明", newbot2);  //Blind
 #else
-        Sprintf(nb = eos(nb), "  瞎");
+        Sprintf(nb = eos(nb), "  失明");
 #endif
     if (Stunned)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
@@ -283,15 +283,15 @@ bot2()
 #endif
     if (Hallucination)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text(" 幻觉", newbot2);
+        add_colored_text(" 幻觉", newbot2);  //Hallu
 #else
         Sprintf(nb = eos(nb), "  幻觉");
 #endif
     if (Slimed)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
-        add_colored_text(" 变形", newbot2);  //Slime
+        add_colored_text(" 污秽", newbot2);  //Slime
 #else
-        Sprintf(nb = eos(nb), "  变形");
+        Sprintf(nb = eos(nb), "  污秽");
 #endif
     if (cap > UNENCUMBERED)
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)

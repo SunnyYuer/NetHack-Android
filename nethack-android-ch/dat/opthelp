@@ -1,257 +1,252 @@
-Boolean options not under specific compile flags (with default values in []):
-(You can learn which options exist in your version by checking your current
-option setting, which is reached via the 'O' cmd.)
+不在特定编译标记下的是否选项( 默认值在[] 里):
+( 你可以通过检查你当前版本的设置来了解存在的选项
+, 可以按'O' 来了解.)
 
-autodig        dig if moving and wielding digging tool            [FALSE]
-autoopen       walking into a door attempts to open it            [TRUE]
-autopickup     automatically pick up objects you move over        [TRUE]
-autoquiver     when firing with an empty quiver, select some
-               suitable inventory weapon to fill the quiver       [FALSE]
-BIOS           allow the use of IBM ROM BIOS calls                [FALSE]
-cmdassist      give help for errors on direction & other commands [TRUE]
-confirm        ask before hitting tame or peaceful monsters       [TRUE]
-DECgraphics    use DEC/VT line-drawing characters for the dungeon [FALSE]
-eight_bit_tty  send 8-bit characters straight to terminal         [FALSE]
-extmenu        use a menu for selecting extended commands (#)     [FALSE]
-fixinv         try to retain the same letter for the same object  [TRUE]
-help           print all available info when using the / command  [TRUE]
-IBMgraphics    use IBM extended characters for the dungeon        [FALSE]
-ignintr        ignore interrupt signal, including breaks          [FALSE]
-implicit_uncursed  omit "uncursed" from inventory, if possible    [TRUE]
-legacy         print introductory message                         [TRUE]
-lit_corridor   show a dark corridor as lit if in sight            [FALSE]
-lootabc        use a/b/c rather than o/i/b when looting           [FALSE]
-mail           enable the mail daemon                             [TRUE]
-null           allow nulls to be sent to your terminal            [TRUE]
-               try turning this option off (forcing NetHack to use its own
-               delay code) if moving objects seem to teleport across rooms
-perm_invent    keep inventory in a permanent window               [FALSE]
-pickup_thrown  override pickup_types for thrown objects           [TRUE]
-pushweapon     when wielding a new weapon, put your previously
-               wielded weapon into the secondary weapon slot      [FALSE]
-rawio          allow the use of raw I/O                           [FALSE]
-rest_on_space  count the space bar as a rest character            [FALSE]
-safe_pet       prevent you from (knowingly) attacking your pet(s) [TRUE]
-showexp        display your accumulated experience points         [FALSE]
-showrace       show yourself by your race rather than by role     [FALSE]
-silent         don't use your terminal's bell sound               [TRUE]
-sortpack       group similar kinds of objects in inventory        [TRUE]
-sound          enable messages about what your character hears    [TRUE]
-               (note: this has nothing to do with your computer's audio
-               capabilities, and the game resets it periodically)
-sparkle        display sparkly effect for resisted magical        [TRUE]
-               attacks (e.g. fire attack on fire-resistant monster)
-standout       use standout mode for --More-- on messages         [FALSE]
-time           display elapsed game time, in moves                [FALSE]
-tombstone      print tombstone when you die                       [TRUE]
-toptenwin      print topten in a window rather than stdout        [FALSE]
-travel         enable the command to travel to a map location via [TRUE]
-               a shortest-path algorithm, usually invoked by '_'.
-use_darkgray   use bold black instead of blue for black glyphs.   [TRUE]
-use_inverse    display detected monsters in highlighted manner    [FALSE]
-verbose        print more commentary during the game              [TRUE]
-
-
-
-There are further boolean options controlled by compilation flags.
-
-Boolean option if INSURANCE was set at compile time:
-checkpoint save game state after each level change, for possible  [TRUE]
-           recovery after program crash
-
-Boolean option if NEWS was set at compile time:
-news       print any news from game administrator on startup      [TRUE]
-
-Boolean option if MFLOPPY was set at compile time:
-checkspace check free disk space before writing files to disk     [TRUE]
+autodig        如果你拿着挖掘工具, 当移动到可以挖的地方会自动挖掘       [FALSE]
+autoopen       走向门会自动打开它                                   [TRUE]
+autopickup     自动捡起你移动到的地方上的物品                         [TRUE]
+autoquiver     当你的箭筒空了, 会自动选择
+               合适的发射物来填充                                   [FALSE]
+BIOS           在有IBM PC 兼容的BIOS ROM 的机器上,
+               使用BIOS 调用来快速更新屏幕显示和读取键盘               [FALSE]
+cmdassist      当输入错误时为玩家提供命令帮助                         [TRUE]
+confirm        在攻击驯服的或不主动攻击的怪物是进行确认                [TRUE]
+DECgraphics    使用预先从DEC VT 画线字符集中选出的字符来显示地牢       [FALSE]
+eight_bit_tty  直接发送八位字符值到终端                              [FALSE]
+extmenu        为扩展命令(#) 界面为弹出一个可用命令的菜单              [FALSE]
+fixinv         当一个物品被放下时, 它原来的清单字母仍为它预留           [TRUE]
+help           使用/ 命令时查看全部信息                              [TRUE]
+IBMgraphics    使用预先选好的IBM 扩展ASCII 字符来显示地牢             [FALSE]
+ignintr        忽略中断信号, 包括暂停                                [FALSE]
+implicit_uncursed  如果可能的话, 省略背包里的"uncursed"              [TRUE]
+legacy         开始游戏时显示介绍信息                                [TRUE]
+lit_corridor   将由夜视力看到的或由你的角色所持光源照亮的走道显示为明亮的[FALSE]
+lootabc        搜刮时使用a/b/c 而非o/i/b                            [FALSE]
+mail           启用在游戏中投递邮件                                  [TRUE]
+null           允许向终端发送填充用的null                            [TRUE]
+               建议关掉此项 ( 致使NetHack 使用自己的
+               延迟代码) 如果移动的东西看起来是在房间传送
+perm_invent    会在一个窗口中一直显示你的背包                         [FALSE]
+pickup_thrown  覆盖pickup_types 项来投掷物品                        [TRUE]
+pushweapon     当装备了一把新武器, 把你先前的
+               武器当做备用武器                                     [FALSE]
+rawio          允许你使用原生I/O                                    [FALSE]
+rest_on_space  使空格键当做休息按钮                                  [FALSE]
+safe_pet       防止你(无意中) 进攻你的宠物                           [TRUE]
+showexp        显示你的累积经验值                                   [FALSE]
+showrace       以你的种族符号来显示你自己, 而不使用你职业的符号         [FALSE]
+silent         抑制终端的响铃                                       [TRUE]
+sortpack       当显示背包清单时按类型对背包内容进行分类                [TRUE]
+sound          启用描述你的角色所听到声音的消息                       [TRUE]
+               ( 注意: 这与你的电脑音频能力无关,
+               游戏会周期性地重设)
+sparkle        显示抵抗魔法攻击时的闪烁效果                           [TRUE]
+               ( 例 火攻有火抗的怪物)
+standout       在消息中使用--More--                                 [FALSE]
+time           以回合数显示经过的游戏时间                            [FALSE]
+tombstone      当你死亡时显示一个墓碑图形                            [TRUE]
+toptenwin      在窗口中显示前十而不是用标准输出                       [FALSE]
+travel         允许命令来使用最短路在地图上移动                       [TRUE]
+               通常要用'_'.
+use_darkgray   为黑色符号使用粗黑而不是蓝色                           [TRUE]
+use_inverse    以高亮的方式显示检测到的怪物                           [FALSE]
+verbose        在游戏中显示更多的解释                                [TRUE]
 
 
-Boolean option if SCORE_ON_BOTL was set at compile time:
-showscore  display your approximate accumulated score             [FALSE]
 
-Boolean options if TEXTCOLOR was set at compile time:
-color      use different colors for objects on screen   [TRUE for micros]
-hilite_pet display pets in a highlighted manner                   [FALSE]
+这里是进一步的编译标志控制的是否选项.
 
-Boolean option if TIMED_DELAY was set at compile time (tty interface only):
-timed_delay    on unix and VMS, use a timer instead of sending
-               extra screen output when attempting to pause for
-               display effect.  on MSDOS without the termcap
-               lib, whether or not to pause for visual effect.    [TRUE]
+编译时设置了INSURANCE 的是否选项:
+checkpoint 等级变化后保存游戏状态,                                   [TRUE]
+           如果游戏崩溃的话可以进行恢复
 
-Boolean option for Amiga, or for others if ALTMETA was set at compile time:
-altmeta        For Amiga, treat Alt+key as Meta+key.              [TRUE]
-altmeta        For unix and VMS, treat two character sequence
-               "ESC c" as M-c (Meta+c, 8th bit set) when nethack
-               obtains a command from player's keyboard.          [FALSE]
+编译时设置了NEWS 的是否选项:
+news       在开始时从游戏管理员显示任何消息                           [TRUE]
 
-Boolean option if USE_TILES was set at compile time (MSDOS protected mode only):
-preload_tiles  control whether tiles get pre-loaded into RAM at the
-               start of the game.  Doing so enhances performance
-               of the tile graphics, but uses more memory.        [TRUE]
-
-Any Boolean option can be negated by prefixing it with a '!' or 'no'.
+编译时设置了MFLOPPY 的是否选项:
+checkspace 在将文件写入磁盘之前检查磁盘空间                           [TRUE]
 
 
-Compound options are written as option_name:option_value.
+编译时设置了SCORE_ON_BOTL 的是否选项:
+showscore  显示您的近似累计得分                                      [FALSE]
 
-Compound options which can be set during the game are:
+编译时设置了TEXTCOLOR 的是否选项:
+color      在屏幕上使用不同的颜色                          [TRUE for micros]
+hilite_pet 高亮显示宠物                                             [FALSE]
 
-boulder       override the default boulder symbol with another default: [`]
-disclose      the types of information you want offered at the end of the
-              game  [ni na nv ng nc no]
-fruit         the name of a fruit you enjoy eating  [slime mold]
-              (basically a whimsy which NetHack uses from time to time).
-menustyle     user interface for selection of multiple objects:
-              Traditional -- prompt for classes of interest, then
-                             prompt item-by-item for those classes;
-              Combination -- prompt for classes of interest, then
-                             use a menu for choosing items;
-              Full        -- menu for classes of interest, then item menu;
-              Partial     -- skip class filtering, use menu of all items;
-              only the first letter ('T','C','P','F') matters; 'N' (None)
-              is a synonym for 'T', as is boolean style negation  [Full]
-number_pad    alphabetic versus numeric control over movement:
-               0 -- traditional hjkl + yubn movement (default);
-               1 -- digits control movement, for use with numeric keypad;
-               2 -- same as 1, but '5' works as 'g' prefix rather than 'G';
-               3 -- numeric for phone keypad (1,2,3 above, 7,8,9 below);
-               4 -- phone keypad (3) combined with MSDOS compatibility (2);
-              -1 -- alphabetic movement but 'z' swapped with 'y'.  [0]
-packorder     a list of default symbols for kinds of objects that gives the
-              order in which your pack will be displayed  [")[%?+!=/(*`0_]
-              (If you specify only some kinds of items, the others from the
-              default order will be appended to the end.)
-paranoid_confirmation  space separated list of situations where alternate
-              prompting is desired  [paranoid_confirmation:pray]
-              Confirm -- when requiring yes, also require no to reject
-              quit    -- yes vs y to confirm quitting or to enter explore mode
-              die     -- yes vs y to confirm dying (for explore or debug mode)
-              bones   -- yes vs y to confirm saving bones data in debug mode
-              attack  -- yes vs y to confirm attacking a peaceful monster
-              pray    -- y to confirm an attempt to pray; on by default
-              Remove  -- always pick from inventory for 'R' and 'T' even when
-              wearing just one applicable item to remove or take off
-pickup_burden when you pick up an item that exceeds this encumberance
-              level (Unencumbered, Burdened, streSsed, straiNed, overTaxed,
-              or overLoaded), you will be asked if you want to continue. [S]
-pickup_types  a list of default symbols for kinds of objects to autopickup
-              when that option is on  [all]
-pile_limit    for feedback when walking across floor objects, threshold at
-              which "there are many objects here" is displayed instead of
-              listing the objects.  (0 means "always list objects.")  [5]
-runmode       controls how often the map window is updated when performing
-              multi-step movement (various running modes or travel command):
-              teleport -- don't update map until movement stops;
-              run      -- periodically update map (interval is seven steps);
-              walk     -- update map after every step;
-              crawl    -- like walk, but delay after making each step.
-              (This only affects screen display, not actual movement.)  [run]
-scores        the parts of the score list you wish to see when the game ends
-              You choose a combination of top scores, scores around the top
-              scores, and all of your own scores.  [!own/3 top/2 around]
-suppress_alert disable various version-specific warnings about changes
-              in game play or the user interface, such as notification given
-              for the 'Q' command that quitting is now done via #quit
-              (e.g., use suppress_alert:3.3.1 to stop that and any other
-              notifications added in that version or earlier) default: [(none)]
+编译时设置了TIMED_DELAY 的是否选项( 仅tty界面):
+timed_delay    在unix 和VMS, 当试图暂停显示效果时
+               使用计时器而不是发送额外的屏幕输出.
+               无论是否暂停视觉效果, 在MSDOS
+               没有termcap 库.                                     [TRUE]
 
-Compound options which may be set only on startup are:
+编译时设置了ALTMETA 的Amiga 或其他是否选项:
+altmeta        Amiga, 把Alt+key 当做Meta+key.                      [TRUE]
+altmeta        unix 和VMS, 把两个字符序列
+               "ESC c" 当做M-c (Meta+c, 8位设置) 当nethack
+               获得玩家的键盘命令.                                  [FALSE]
 
-align      Your starting alignment (align:lawful, align:neutral,
-           or align:chaotic).  You may specify just the first letter.  [RANDOM]
-catname    the name of your first cat  [NONE]
-dogname    the name of your first dog  [NONE]
-dungeon    a list of symbols to be used in place of the default ones for
-           drawing the dungeon.
-           The symbols are subjected to a fair amount of processing, so
-           that you can use C-style escapes such as \n or \081 as well as
-           indicate control characters by ^x or meta characters by \Mx.
-           As usual, \ can force the next character to be taken literally.
-           Since many of the default symbols are overloaded, they are
-           given here by name instead of symbol, with some added notes:
-           stone                               (solid rock, normally ' ')
-           vwall hwall tlcorn trcorn blcorn brcorn      (room boundaries)
-           crwall tuwall tdwall tlwall trwall (wallified maze characters)
-           nodoor vodoor hodoor      (no, vertical, horizontal open door)
-           vcdoor hcdoor               (vertical, horizontal closed door)
+编译时设置了USE_TILES 的是否选项( 仅MSDOS保护模式):
+preload_tiles  控制tiles 是否能游戏开始时预加载到内存中.
+               这样做会提高
+               tile 的图形性能, 但是会使用更多的内存.                 [TRUE]
+
+任何是否选项都可以用前缀'!' 或'no'来取消使用.
+
+
+复合选项写作option_name:option_value.
+
+可以在游戏中设置的复合选项:
+
+boulder       用另外的符号覆盖巨石的符号: [`]
+disclose      在游戏结束时你想要知道的信息类型 [ni na nv ng nc no]
+fruit         你喜欢吃的水果的名字  [slime mold]
+              ( NetHack 时不时地使用一些奇思妙想).
+menustyle     选择多个物品的用户界面:
+              Traditional --  对感兴趣的类提示, 然后一项一项地提示这些类;
+              Combination --  对感兴趣的类提示, 然后使用菜单选择项目;
+              Full        --  菜单类的兴趣, 然后项目菜单;
+              Partial     --  跳过类过滤, 使用所有项目的菜单;
+              仅第一个字符('T','C','P','F') 重要; 'N' ( 无)
+              'T' 的同义词, 当做是否式的否定  [Full]
+number_pad    字母或数字控制运动:
+               0 --  传统的hjkl + yubn 移动( 默认);
+               1 --  用数字键盘来控制运动;
+               2 --  和1 一样, 但是'5' 如同'g' 而非'G';
+               3 --  手机键盘上的数字(1,2,3 在上, 7,8,9 在下);
+               4 --  手机键盘(3) 与MSDOS 兼容(2);
+              -1 --  字母'z' 与'y' 互换.  [0]
+packorder     物品种类的默认符号列表会显 [")[%?+!=/(*`0_]
+              (如果您仅指定了某些类型的项目, 
+               则从默认的命令中的其他部分将被附加到最后.)
+paranoid_confirmation  空间分离的情况下会被期望替代的提示
+                           [paranoid_confirmation:pray]
+              Confirm --  在需要是的时候, 也不需要拒绝
+              quit    -- yes vs y 来确认退出或进入探索模式
+              die     -- yes vs y 来确认死亡( 探索或调试模式)
+              bones   -- yes vs y 来确认在调试模式中保存bones数据
+              attack  -- yes vs y 来确认攻击不主动攻击的怪
+              pray    -- y 来确认起到; 默认开启
+              Remove  -- 即使仅穿戴一项, 也总是在背包中选择'R' and 'T'
+              来取下或脱下
+pickup_burden 当你捡起一项超过你的负重程度时
+              ( 无负担, 负担, 压力, 强压, 过重,
+              或超重), 你会被询问时候继续. [S]
+pickup_types  物品类型的默认符号列表, autopickup
+              选项必须已开启了  [all]
+pile_limit    当在地板上行走时得到的反馈会是
+              " 这里有很多东西" 会被显示而不是列出物品.
+              (0 表示" 总是列出物品.")  [5]
+runmode       在执行多步动作时控制地图窗口更新的频率
+              ( 各种跑步模式和移动命令):
+              teleport --  不更新地图直到停止移动;
+              run      --  定期更新地图 ( 间隔七步);
+              walk     --  每一步更新地图;
+              crawl    --  就像走路, 但是每一步会延后.
+              ( 这只会影响屏幕显示, 而不是实际的运动.)  [run]
+scores        游戏结束时你希望看到的列表部分
+              你选择一个最高分数的组合, 最高分数的附近
+              , 和你的所有分数.  [!own/3 top/2 around]
+suppress_alert  禁用各种特定版本的关于
+              在游戏中的变化或用户界面的警告, 例如使用
+              'Q' 命令时会通知退出要使用#quit
+              (e.g., 使用 suppress_alert:3.3.1 来停止通知和
+              任何其他通知到该版本或更早) 默认: [(none)]
+
+下面是仅在启动时能设置的复合选项:
+
+align      你的起始阵营( 秩序, 中立,
+           或混沌).  你可以指定第一个字母.  [RANDOM]
+catname    你的第一只猫的名字  [NONE]
+dogname    你的第一只狗的名字  [NONE]
+dungeon    用来绘制地下城的默认符号列表.
+           这些符号都受到了一定的处理, 所以
+           你可以使用C风格的转义比如\n 或\081 以及
+           通过^x 或meta 字符\Mx 来表示控制字符.
+           通常, \ 会强制后一个字符到字面意思.
+           由于许多默认符号是重载的, 它们
+           在这里给出的是名称, 而不是符号, 与一些附加说明:
+           stone                               ( 坚岩, 通常' ')
+           vwall hwall tlcorn trcorn blcorn brcorn      ( 房间边界)
+           crwall tuwall tdwall tlwall trwall ( 迷宫墙特征)
+           nodoor vodoor hodoor      ( 无, 垂直的, 水平打开的门)
+           vcdoor hcdoor               ( 垂直的, 水平关闭的门)
            ironbars tree room darkcorr litcorr
            upstair dnstair upladder dnladder
            altar grave throne sink fountain pool ice lava
-           vodbridge hodbridge     (vertical, horizontal open drawbridge)
-           vcdbridge hcdbridge   (vertical, horizontal closed drawbridge)
+           vodbridge hodbridge     ( 垂直的, 水平打开的吊桥)
+           vcdbridge hcdbridge   ( 垂直的, 水平关闭的吊桥)
            air cloud water
-           default:  \ |--------||.-|++##.##<><>_\\#{}.}..##\ #}
-effects    like dungeon, but for special effects symbols
-           vbeam hbeam lslant rslant                  (generic zap beams)
-           digbeam flashbeam      (special beams for digging and cameras)
-           boomleft boomright                                (boomerangs)
-           ss1 ss2 ss3 ss4                           (shielding sequence)
+           默认:  \ |--------||.-|++##.##<><>_\\#{}.}..##\ #}
+effects    像地牢, 但是是特殊效果的符号
+           vbeam hbeam lslant rslant                  ( 一般魔法光线)
+           digbeam flashbeam            ( 挖掘和照相的特殊光线)
+           boomleft boomright                             (回力镖)
+           ss1 ss2 ss3 ss4                      ( 防御序列)
            sw_topl, sw_topm, sw_topr,                  (swallow, top row)
            sw_midl, sw_midr,            (swallow, middle row [no center])
            sw_botl, sw_botm, sw_botr                (swallow, bottom row)
-           extl extm extr                      (explosion matrix top row)
-           exml exmm exmr                   (explosion matrix middle row)
-           exbl exbm exbr                   (explosion matrix bottom row)
-           default:  |-\\/*!)(0#@*/-\\||\\-//-\\|\ |\\-/
-gender     Your starting gender (gender:male or gender:female).
-           You may specify just the first letter.  Although you can
-           still denote your gender using the "male" and "female"
-           options, the "gender" option will take precedence.  [RANDOM]
-horsename  the name of your first horse  [NONE]
-menu_*     create single character accelerators for menu commands.  Below
-           is a list of all commands.  Each is followed by a list of window-
-           ports that implement them:  'x' is X11, 't' is tty, 'g' is Gem,
+           extl extm extr                      ( 爆炸矩阵顶行)
+           exml exmm exmr                   ( 爆炸矩阵中间行)
+           exbl exbm exbr                   ( 爆炸矩阵底行)
+           默认:  |-\\/*!)(0#@*/-\\||\\-//-\\|\ |\\-/
+gender     你的起始性别 ( 男性或女性).
+           你可以指定第一个字母.  虽然你仍然可以
+           使用"male" 和"female" 选项来表示性别
+           , 但"gender" 选项将优先考虑.  [RANDOM]
+horsename  你的第一匹马的名字  [NONE]
+menu_*     创建菜单命令的单字符加速器.  下面
+           是一个列表的所有命令.  每一个窗口的列表端口:
+           'x' is X11, 't' is tty, 'g' is Gem,
            'a' is Amiga.
-           menu_deselect_all  deselect all items in a menu [-](gxta)
-           menu_deselect_page deselect all items on this menu page [\](gta)
-           menu_first_page    jump to the first page in a menu [^](gta)
-           menu_invert_all    invert all items in a menu [@](gxta)
-           menu_invert_page   invert all items on this menu page [~](gta)
-           menu_last_page     jump to the last page in a menu [|](gta)
-           menu_next_page     goto the next menu page [>](gta)
-           menu_previous_page goto the previous menu page [<](gta)
-           menu_search        search for a menu item [:](gxta)
-           menu_select_all    select all items in a menu [.](gxta)
-           menu_select_page   select all items on this menu page [,](gta)
-monsters   like dungeon, but for monster symbols
-           default:  abcdefghijklmnopqrstuvwxyz
+           menu_deselect_all  选择菜单中的所有项目 [-](gxta)
+           menu_deselect_page 取消选择这个菜单页面的所有项目 [\](gta)
+           menu_first_page    跳转到菜单的第一页 [^](gta)
+           menu_invert_all    颠倒菜单的所有项目 [@](gxta)
+           menu_invert_page   颠倒此菜单页上的所有项目 [~](gta)
+           menu_last_page     跳转到菜单的最后一页 [|](gta)
+           menu_next_page     转到下一菜单页面 [>](gta)
+           menu_previous_page 转到前面的菜单页面 [<](gta)
+           menu_search        搜寻菜单项 [:](gxta)
+           menu_select_all    选择菜单中的所有项目 [.](gxta)
+           menu_select_page   选择此菜单页上的所有项目 [,](gta)
+monsters   就像地牢, 但是是针对怪物符号
+           默认:  abcdefghijklmnopqrstuvwxyz
                      ABCDEFGHIJKLMNOPQRSTUVWXYZ@\ \\&;:~]
-msghistory number of top line messages to save [20]
-name       the name of your character  [obtained by asking the system or
-           the player]
-objects    like dungeon, but for object symbols
-           default:  ])[="(%!?+/$*`0_.
-pettype    your preferred type of pet (cat or dog), if your character
-           class uses both types; or none for no pet  [RANDOM]
-playmode   normal play or non-scoring explore mode or debug mode  [normal]
-race       Your starting race (e.g., race:Human, race:Elf).  [RANDOM]
-role       Your starting role (e.g., role:Barbarian, role:Valk).
-           Although you can specify just the first letter(s), it will
-           choose only the first role it finds that matches; thus, it
-           is recommended that you spell out as much of the role name
-           as possible.  You can also still denote your role by
-           appending it to the "name" option (e.g., name:Vic-V), but the
-           "role" option will take precedence.  [RANDOM]
-traps      like dungeon, but for trap symbols
+顶行消息保存数 [20]
+name       你的角色的名字  [ 通过询问系统或玩家获得]
+objects    就像地牢, 只针对物品符号
+           默认:  ])[="(%!?+/$*`0_.
+pettype    宠物的首选类型( 猫或狗), 如果您的字符
+           类使用这两种类型; 或没有任何宠物  [RANDOM]
+playmode   一般模式或无分数探索模式或调试模式  [normal]
+race       你的起始种族(e.g., 人类, 精灵).  [RANDOM]
+role       你的起始职业 (e.g., 野蛮人, 女武神).
+           虽然你可以指定刚刚的第一个字母, 当它
+           匹配到了它会只选择第一个角色; 因此
+           建议你尽可能地把角色名拼写出来.
+           你也可以添加到
+           "name" 选项(e.g., name:Vic-V), 但是
+           "role" 选项将优先考虑.  [RANDOM]
+traps      只针对陷阱符号
            arrow_trap dart_trap falling_rock_trap squeaky_board
            bear_trap land_mine rolling_boulder_trap sleeping_gas_trap
            rust_trap fire_trap pit spiked_pit hole trap_door
            teleportation_trap level_teleporter magic_portal web statue_trap
            magic_trap anti_magic_trap polymorph_trap
-           default:  ^^^^^^^^^^^^^^^^^"^^^^
+           默认:  ^^^^^^^^^^^^^^^^^"^^^^
 
-windowtype windowing system to be used  [depends on operating system]
+使用的窗口系统类型 [ 取决于操作系统]
 
-Compound option if TTY_GRAPHICS was set at compile time:
-msg_window the type of message window to use:
-           single      -- One message at a time
-           full        -- Full window with all saved top line messages
-           reverse     -- Same as full, but messages printed most-recent-first
-           combination -- Two single messages, then as full
-           default:  single
+如果编译时设置了TTY_GRAPHICS 的复合选项:
+msg_window 消息窗口的类型使用:
+           single      --  一次一条信息
+           full        --  全窗口保存顶行消息
+           reverse     --  同样全部, 但是只显示多数最近的消息
+           combination --  两条信息, 当做全部
+           默认:  single
 
-Some sample options lists are:
+一些示例选项列表:
 !autopickup,!tombstone,name:Gandalf,scores:own/3 top/2 around
 female,nonews,dogname:Rover,dungeon: |--------||.-|++.##<><>_\\#{}.}..## #}
 rest_on_space,!verbose,menustyle:traditional

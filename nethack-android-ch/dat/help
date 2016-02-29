@@ -1,205 +1,200 @@
-        Welcome to NetHack!                ( description of version 3.6 )
+        欢迎来到NetHack!                ( 版本3.6 的描述 )
 
-        NetHack is a Dungeons and Dragons like game where you (the adventurer)
-descend into the depths of the dungeon in search of the Amulet of Yendor,
-reputed to be hidden somewhere below the twentieth level.  You begin your
-adventure with a pet that can help you in many ways, and can be trained
-to do all sorts of things.  On the way you will find useful (or useless)
-items, quite possibly with magic properties, and assorted monsters.  You can
-attack a monster by trying to move onto the space a monster is on (but often
-it is much wiser to leave it alone).
+        NetHack 是一个类似于龙与地下城的游戏,  在此你( 一位
+冒险家) 要深入地牢,  寻找传说中的岩德护身符,
+而它被藏在了第二十层以下的某个地方.  你和一个
+可以在各个方面帮助你的宠物开始了冒险, 而它可以被训练
+来做几乎任何事.  你会在旅途中发现有用( 或没有用)
+的很有可能包含着魔法的各种物品, 以及怪物们.  你可以
+通过移动到怪物所在的格子来攻击怪物 ( 但是通常
+无视它是更明智的).
 
-        Unlike most adventure games, which give you a verbal description of
-your location, NetHack gives you a visual image of the dungeon level you are
-on.
+        与大多数冒险游戏不同, NetHack不通过文字告知你所在的
+环境, 而是给你一个你所在位置的图像.
 
-        NetHack uses the following symbols:
+        NetHack 使用这些符号:
 
-        - and |  The walls of a room, possibly also open doors or a grave.
-        .        The floor of a room or a doorway.
-        #        A corridor, or iron bars, or a tree, or possibly a kitchen
-                 sink (if your dungeon has sinks), or a drawbridge.
-        >        Stairs down: a way to the next level.
-        <        Stairs up: a way to the previous level.
-        @        You (usually), or another human.
-        )        A weapon of some sort.
-        [        A suit or piece of armor.
-        %        Something edible (not necessarily healthy).
-        /        A wand.
-        =        A ring.
-        ?        A scroll.
-        !        A potion.
-        (        Some other useful object (pick-axe, key, lamp...)
-        $        A pile of gold.
-        *        A gem or rock (possibly valuable, possibly worthless).
-        +        A closed door, or a spellbook containing a spell
-                 you can learn.
-        ^        A trap (once you detect it).
-        "        An amulet, or a spider web.
-        0        An iron ball.
-        _        An altar, or an iron chain.
-        {        A fountain.
-        }        A pool of water or moat or a pool of lava.
-        \        An opulent throne.
-        `        A boulder or statue.
-        A to Z, a to z, and several others:  Monsters.
-        I        Invisible or unseen monster's last known location
+        -  和 |  房间的墙或打开的门或者坟墓.
+        .        房间的地面或是门道.
+        #        走廊或者铁栏杆或一棵树或可能是一具洗手池(如果你
+                  的地牢有这东西的话), 或者一座吊桥.
+        >        向下的楼梯: 通往下一层的路.
+        <        向上的楼梯: 通往前一层的路.
+        @        你( 通常是这样) 或者另外某个人类.
+        )        某种武器.
+        [        一套或一件护甲.
+        %        可以吃的东西( 只是能吃, 而不代表吃下去对你好).
+        /        一把魔杖.
+        =       一枚戒指.
+        ?        一张卷轴.
+        !        一瓶药水.
+        (        其它类型的有用的东西( 镐子, 钥匙, 油灯...).
+        $       一堆金币.
+        *        宝石或石头( 有可能很值钱, 也可能不值钱).
+        +        关上的门, 或一本你可以学习的咒语书.
+        ^        一个陷阱( 当然你得先发现它).
+        "        一个护身符或是蜘蛛网.
+        0        一个铁球.
+        _        一座祭坛,或是铁链.
+        {        一座喷泉.
+        }        一池水或岩浆, 也可能是护城河.
+        \        一个豪华的王座.
+        `        一块巨石或一尊雕像.
+        A  到 Z, a  到 z, 以及一些其他的符号:  怪物.
+        I        一个隐形或者没被看见的怪物的最后已知位置
 
-                 You can find out what a symbol represents by typing
-                 '/' and following the directions to move the cursor
-                 to the symbol in question.  For instance, a 'd' may
-                 turn out to be a dog.
+                 你可以通过输入'/' 然后移动光标到符
+                 号上来得知你光标所在地方的符号
+                 代表什么.  比如, 'd' 可能代表一只狗.
 
 
-y k u   7 8 9   Move commands:
- \|/     \|/            yuhjklbn: go one step in specified direction
-h-.-l   4-.-6           YUHJKLBN: go in specified direction until you
- /|\     /|\                        hit a wall or run into something
-b j n   1 2 3           g<dir>:   run in direction <dir> until something
-      numberpad                     interesting is seen
-                        G<dir>,   same, except a branching corridor isn't
- <  up                  ^<dir>:     considered interesting (the ^ in this
-                                    case means the Control key, not a caret)
- >  down                m<dir>:   move without picking up objects
-                        F<dir>:   fight even if you don't sense a monster
-                If the number_pad option is set, the number keys move instead.
-                Depending on the platform, Shift number (on the numberpad),
-                Meta number, or Alt number will invoke the YUHJKLBN commands.
-                Control <dir> may or may not work when number_pad is enabled,
-                depending on the platform's capabilities.
-                Digit '5' acts as 'G' prefix, unless number_pad is set to 2
-                in which case it acts as 'g' instead.
-                If number_pad is set to 3, the roles of 1,2,3 and 7,8,9 are
-                reversed; when set to 4, behaves same as 3 combined with 2.
-                If number_pad is set to -1, alphabetic movement commands are
-                used but 'y' and 'z' are swapped.
+y k u   7 8 9   移动命令:
+ \|/     \|/            yuhjklbn: 向你所指的方向移动一步
+h-.-l   4-.-6           YUHJKLBN: 向一个方向移动直到
+ /|\     /|\                        撞到墙或跑进了什么东西
+b j n   1 2 3           g<dir>:   向<dir>方向跑步前进, 直到发现有趣的东西
+      数字键盘
+                        G<dir>,   同上, 除了发现分支走廊
+ <  上                  ^<dir>:   有趣 ( ^ 在这里是
+                                    Ctrl键, 不是一个符号)
+ >  下                m<dir>:   单纯的向那个方向走路而不捡起物品
+                        F<dir>:   向那个方向攻击,即使那里啥都没有
+                如果设置了number_pad 选项, 数字键会代替移动.
+                取决于平台, Shift number ( 数字键上),
+                Meta number, 或 Alt number 会唤醒YUHJKLBN 命令.
+                当number_pad 被允许, Control <dir> 可能
+                会或可能不会起作用根据平台的能力.
+                数字'5' 作为'G' 前缀, 如果number_pad 设置为2
+                此时换作为'g'.
+                如果number_pad 设置为3, 1,2,3  和 7,8,9 的作用
+                会反转;当设置为4, 会和3 与2 结合一样.
+                如果number_pad 设置为-1, 移动命令会使用字母
+                但是'y'  和 'z' 会互换.
 
-Commands:
-        NetHack knows the following commands:
-        ?       Help menu.
-        /       Tell what a symbol represents.  You may choose to specify
-                a location or give a symbol argument.
-        &       Tell what a command does.
-        <       Go up a staircase (if you are standing on it).
-        >       Go down a staircase (if you are standing on it).
-        .       Rest, do nothing for one turn.
-        _       Travel via a shortest-path algorithm to a point on the map.
-        a       Apply (use) a tool (pick-axe, key, lamp...).
-        A       Remove all armor.
-        ^A      Redo the previous command.
-        c       Close a door.
-        C       Call (name) monster, individual object, or type of object.
-        d       Drop something.  d7a:  drop seven items of object a.
-        D       Drop multiple items.  This command is implemented in two
-                different ways.  One way is:
-                "D" displays a list of all of your items, from which you can
-                pick and choose what to drop.  A "+" next to an item means
-                that it will be dropped, a "-" means that it will not be
-                dropped.  Toggle an item to be selected/deselected by typing
-                the letter adjacent to its description.  Select all items
-                with "+", deselect all items with "=".  The <SPACEBAR> moves
-                you from one page of the listing to the next.
-                The other way is:
-                "D" will ask the question "What kinds of things do you want
-                to drop? [!%= au]".  You should type zero or more object
-                symbols possibly followed by 'a' and/or 'u'.
-                Da - drop all objects, without asking for confirmation.
-                Du - drop only unpaid objects (when in a shop).
-                D%u - drop only unpaid food.
-        ^D      Kick (for doors, usually).
-        e       Eat food.
-        E       Engrave a message on the floor.
-                E- - write in the dust with your fingers.
-        f       Fire ammunition from quiver.
-        F       Followed by direction, fight a monster (even if you don't
-                sense it).
-        i       Display your inventory.
-        I       Display selected parts of your inventory, as in
-                I* - list all gems in inventory.
-                Iu - list all unpaid items.
-                Ix - list all used up items that are on your shopping bill.
-                I$ - count your money.
-        o       Open a door.
-        O       Review current options and possibly change them.
-                A menu displaying the option settings will be displayed
-                and most can be changed by simply selecting their entry.
-                Options are usually set before the game with a NETHACKOPTIONS
-                environment variable, or via a config file (defaults.nh,
-                NetHack Defaults, nethack.cnf, .nethackrc, etc.), not with 
-                the 'O' command.
-        p       Pay your shopping bill.
-        P       Put on an accessory (ring, amulet, etc).
-        ^P      Repeat last message (subsequent ^P's repeat earlier messages).
-                The behavior can be varied via the msg_window option.
-        q       Drink (quaff) something (potion, water, etc).
-        Q       Select ammunition for quiver.
-        r       Read a scroll or spellbook.
-        R       Remove an accessory (ring, amulet, etc).
-        ^R      Redraw the screen.
-        s       Search for secret doors and traps around you.
-        S       Save the game.
-        t       Throw an object or shoot a projectile.
-        T       Take off armor.
-        ^T      Teleport, if you are able.
-        v       Displays the version number.
-        V       Display a longer identification of the version, including the
-                history of the game.
-        w       Wield weapon.  w- means wield nothing, use bare hands.
-        W       Wear armor.
-        x       Swap wielded and secondary weapons.
-        X       Toggle two-weapon combat.
-        ^X      Show your attributes.
-        z       Zap a wand.  (Use y instead of z if number_pad is -1.)
-        Z       Cast a spell.  (Use Y instead of Z if number_pad is -1.)
-        ^Z      Suspend the game.  (^Y instead of ^Z if number_pad is -1.)
-        :       Look at what is here.
-        ;       Look at what is somewhere else.
-        ,       Pick up some things.
-        @       Toggle the pickup option.
-        ^       Ask for the type of a trap you found earlier.
-        )       Tell what weapon you are wielding.
-        [       Tell what armor you are wearing.
-        =       Tell what rings you are wearing.
-        "       Tell what amulet you are wearing.
-        (       Tell what tools you are using.
-        *       Tell what equipment you are using; combines the preceding five.
-        $       Count your gold pieces.
-        +       List the spells you know; also rearrange them if desired.
-        \       Show what types of objects have been discovered.
-        `       Show discovered types for one class of objects.
-        !       Escape to a shell, if supported in your version and OS.
-        #       Introduces one of the "extended" commands.  To get a list of
-                the commands you can use with "#" type "#?".  The extended
-                commands you can use depends upon what options the game was
-                compiled with, along with your class and what type of monster
-                you most closely resemble at a given moment.  If your keyboard
-                has a meta key (which, when pressed in combination with another
-                key, modifies it by setting the 'meta' (8th, or 'high') bit),
-                these extended commands can be invoked by meta-ing the first
-                letter of the command.  An alt key may have a similar effect.
+命令:
+        NetHack 已知如下命令:
+        ?       帮助菜单.
+        /       告诉你地图上的字符是什么.  你可以选择特定的
+                位置或给定符号参数.
+        &       告诉你一个命令所做的事.
+        <       上楼梯( 如果你站在那儿).
+        >       下楼梯( 如果你站在那儿).
+        .       休息, 该回合什么都不做.
+        _       向着地图上的一点以最短路径移动.
+        a       使用工具( 十字镐, 钥匙, 灯...).
+        A       取下所有防具.
+        ^A      重复前一次动作.
+        c       关门.
+        C       命名怪物, 个别物品, 或物品类型.
+        d       扔掉什么东西.  d7a:  扔掉7 个物品a.
+        D       扔掉多个项目.  这个命令通过两个不同的
+                方法实现.  一种方法:
+                "D" 显示你的所有项目的列表, 你可以选择
+                哪个来扔掉.  紧跟着一项的"+" 表示
+                它将会被扔掉, "-" 表示不会被
+                扔掉.  通过输入其字母临近的描述来
+                切换项为被选择/ 不被选择.  用"+" 来选择所有
+                项, 用"=" 取消选择所有项.  空格键让
+                你移动到列表的下一页.
+                另一中方法:
+                "D" 会问"你想要扔掉哪种物品
+                ?[!%= au]".  你应该输入0 或更多的物品
+                字符, 比如 'a' 和/ 或 'u'.
+                Da - 扔掉所有物品, 不请求确认.
+                Du - 扔掉未付款物品( 在商店的时候).
+                D%u - 仅扔掉未付款的食物.
+        ^D      踢 ( 例如门).
+        e       吃食物.
+        E       在地板上刻上一个信息.
+                E- - 用你的手指在尘土里写.
+        f       从囊中发射物品, 比如飞镖.
+        F       攻击指定方向的怪物( 即使你没有看到它).
+        i       显示你的背包.
+        I       展示你背包的一部分
+                I* - 列出背包的宝石.
+                Iu - 列出未付款项.
+                Ix - 没付钱还用过的东西.
+                I$ - 查看钱包.
+        o       开门.
+        O       查看目前的游戏选项, 并改变他们.
+                菜单显示选项设置
+                可以简单地改变他们.
+                选项通常在游戏使用NETHACKOPTIONS
+                环境变量之前设置, 或通过配置文件(defaults.nh,
+                NetHack Defaults, nethack.cnf,
+                nethackrc, 等等.), 不是使用'O' 命令.
+        p       为你的购物付款.
+        P       戴上饰品( 戒指, 附身符, 等等).
+        ^P      显示上一条消息( 随后^P 重复更早的消息).
+                该行为可以通过msg_window 选项来改变.
+        q       喝( 喝干) 什么东西 ( 药水, 水, 等等).
+        Q       准备发射物.
+        r       阅读卷轴或魔法书.
+        R       取下饰品( 戒指, 附身符, 等等).
+        ^R      重绘屏幕.
+        s       搜寻你身边的暗门和陷阱.
+        S       保存退出.
+        t       投掷物品.
+        T       脱下防具.
+        ^T      传送, 如果你有这个能力的话.
+        v       显示版本号.
+        V       显示长的版本识别, 包括游戏的历史.
+        w       装备武器.  w- 表示不装备, 使用空手.
+        W       穿戴防具.
+        x       交换主武器和备用武器.
+        X       切换双武器战斗.
+        ^X      显示你的属性.
+        z       挥动魔杖.  ( 如果number_pad 为-1使用y 代替z.)
+        Z       施展魔法.  ( 如果number_pad 为-1使用 Y 代替Z.)
+        ^Z      暂停游戏.  ( 如果number_pad 为-1使用^Y 代替^Z.)
+        :       查看这里有什么.
+        ;       看看其他地方.
+        ,       拾取东西.
+        @       自动拾取开关.
+        ^       查看你找到的陷阱种类.
+        )       查看你拿的武器.
+        [       查看你穿的防具.
+        =       查看你戴的戒指.
+        "       查看你戴的护身符.
+        (       查看你使用的工具.
+        *       查看你使用的装备; 结合前面5 个.
+        $       查看你的金币.
+        +       已学魔法; 可以排序.
+        \       查看已发现物品的种类.
+        `       显示一类物品的发现种类.
+        !       进入shell, 如果你的版本和系统支持的话.
+        #       介绍扩展命令.  你可以通过使用"#"
+                输入"#?"得到一列命令.  你使用的扩展
+                命令取决于游戏的编译选项
+                , 随着你的类和怪物的类型
+                你会接近一个特定时刻.  如果你的键盘
+                有meta 键( 当按下一个另外的组合键,
+                通过设置'meta'(8th, 或'high') 来修改它),
+                这些扩展命令可以被meta-ing命令的第一个字
+                母来调用.  alt 键也会有同样的效果.
 
-        If the "number_pad" option is on, some additional letter commands
-        are available:
+        如果"number_pad" 选项开启了, 一些额外的字符命令
+        会可用:
 
-        h       displays the help menu, like '?'
-        j       Jump to another location.
-        k       Kick (for doors, usually).
-        l       Loot a box on the floor.
-        n       followed by number of times to repeat the next command.
-        N       Name a monster, an individual object, or a type of object.
-        u       Untrap a trapped object or door.
+        h       显示帮助菜单, 像'?'
+        j       跳到另外一个位置.
+        k       踢( 通常是门).
+        l       搜刮地上的箱子.
+        n       随后是重复命令的次数.
+        N       命名一只怪, 个人物品, 或物品的类型.
+        u       解除陷阱物或门.
 
-        You can put a number before a command to repeat it that many times,
-        as in "40." or "20s.".  If you have the number_pad option set, you
-        must type 'n' to prefix the count, as in "n40." or "n20s".
+        你可以在一个命令前放入一个数字来重复该命令很多次,
+        比如"40." 或者"20s.".  如果你设置了number_pad选项, 你
+        输入数字前缀'n', 比如"n40." 或"n20s".
 
 
-        Some information is displayed on the bottom line or perhaps in a
-        box, depending on the platform you are using.  You see your
-        attributes, your alignment, what dungeon level you are on, how many
-        hit points you have now (and will have when fully recovered), what
-        your armor class is (the lower the better), your experience level,
-        and the state of your stomach.  Optionally, you may or may not see
-        other information such as spell points, how much gold you have, etc.
+        一些信息会显示在你的屏幕下方或是一个方框内,
+        取决与你游戏所在的平台.  你会看到你的
+        属性, 阵营, 你在哪层, 你有多少
+        生命值( 以及你在长时间休息后最多有多少), 你的
+        防护等级( 越低越好), 你的等级和经验,
+        以及你的饥饿程度.  可设置的, 你可能或可能不能
+        看到一些其他信息, 比如你的魔力值, 你有多少钱, 等等.
 
         Have Fun, and Happy Hacking!

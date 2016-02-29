@@ -576,7 +576,7 @@ register struct obj *obj;
             return 1;
         }
         if (!IS_ALTAR(levl[u.ux][u.uy].typ) && flags.verbose)
-            You("drop %s.", doname(obj));
+            You("扔掉%s.", doname(obj));
     }
     dropx(obj);
     return 1;
@@ -746,7 +746,7 @@ int retry;
         all_categories = (retry == -2);
     } else if (flags.menu_style == MENU_FULL) {
         all_categories = FALSE;
-        n = query_category("Drop what type of items?", invent,
+        n = query_category("扔掉什么类型的?", invent,
                            UNPAID_TYPES | ALL_TYPES | CHOOSE_ALL | BUC_BLESSED
                                | BUC_CURSED | BUC_UNCURSED | BUC_UNKNOWN,
                            &pick_list, PICK_ANY);

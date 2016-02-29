@@ -344,9 +344,9 @@ doextlist(VOID_ARGS)
 
     datawin = create_nhwindow(NHW_TEXT);
     putstr(datawin, 0, "");
-    putstr(datawin, 0, "            Extended Commands List");
+    putstr(datawin, 0, "                        扩展命令列表");
     putstr(datawin, 0, "");
-    putstr(datawin, 0, "    Press '#', then type:");
+    putstr(datawin, 0, "    按'#', 然后输入:");
     putstr(datawin, 0, "");
 
     for (efp = extcmdlist; efp->ef_txt; efp++) {
@@ -1195,10 +1195,10 @@ doterrain(VOID_ARGS)
 
 /* -enlightenment and conduct- */
 static winid en_win = WIN_ERR;
-static const char You_[] = "你 ", are[] = "是 ", were[] = "were ",
-                  have[] = "have ", had[] = "had ", can[] = "can ",
-                  could[] = "could ";
-static const char have_been[] = "have been ", have_never[] = "have never ",
+static const char You_[] = "你 ", are[] = "", were[] = "",
+                  have[] = "have ", had[] = "had ", can[] = "能 ",
+                  could[] = "能 ";
+static const char have_been[] = "已经 ", have_never[] = "have never ",
                   never[] = "never ";
 
 #define enl_msg(prefix, present, past, suffix, ps) \
@@ -1429,15 +1429,14 @@ int final;
         Sprintf(eos(buf), "%s, level %d %s%s", an(rank_titl), u.ulevel,
                 tmpbuf, urace.noun);
     } else {
-        Sprintf(eos(buf), "一位%s, 等级 %d %s%s %s", rank_titl, u.ulevel,
+        Sprintf(eos(buf), "是一位%s, 等级 %d %s%s %s", rank_titl, u.ulevel,
                 tmpbuf, urace.adj, role_titl);
     }
     you_are(buf, "");
 
     /* report alignment (bypass you_are() in order to omit ending period) */
-    Sprintf(buf, " %s%s%s, %s肩负着%s的使命",
+    Sprintf(buf, " %s%s%s肩负着%s( %s) 的使命",
             You_, !final ? are : were,
-            align_str(u.ualign.type),
             /* helm of opposite alignment (might hide conversion) */
             (u.ualign.type != u.ualignbase[A_CURRENT]) ? "temporarily "
                /* permanent conversion */
@@ -1446,12 +1445,12 @@ int final;
                   : (!u.uconduct.gnostic && moves > 1000L) ? "nominally "
                      /* lastly, normal case */
                      : "",
-            u_gname());
+            u_gname(), align_str(u.ualign.type));
     putstr(en_win, 0, buf);
     /* show the rest of this game's pantheon (finishes previous sentence)
        [appending "also Moloch" at the end would allow for straightforward
        trailing "and" on all three aligned entries but looks too verbose] */
-    Sprintf(buf, " %s敌对的是", !final ? "现在" : "过去");
+    Sprintf(buf, " %s敌对的是", !final ? "" : "");
     if (u.ualign.type != A_LAWFUL)
         Sprintf(eos(buf), " %s ( %s) 和", align_gname(A_LAWFUL),
                 align_str(A_LAWFUL));
@@ -1580,19 +1579,19 @@ int mode, final, attrindx;
         interesting_alimit =
             final ? TRUE /* was originally `(abase != alimit)' */
                   : (alimit != (attrindx != A_STR ? 18 : STR18(100)));
-        paren_pfx = final ? " (" : " (current; ";
+        paren_pfx = final ? " (" : " ( 当前; ";
         if (acurrent != abase) {
             Sprintf(eos(valubuf), "%sbase:%s", paren_pfx,
                     attrval(attrindx, abase, valstring));
             paren_pfx = ", ";
         }
         if (abase != apeak) {
-            Sprintf(eos(valubuf), "%speak:%s", paren_pfx,
+            Sprintf(eos(valubuf), "%s 最高:%s", paren_pfx,
                     attrval(attrindx, apeak, valstring));
             paren_pfx = ", ";
         }
         if (interesting_alimit) {
-            Sprintf(eos(valubuf), "%s%slimit:%s", paren_pfx,
+            Sprintf(eos(valubuf), "%s%s 极限:%s", paren_pfx,
                     /* more verbose if exceeding 'limit' due to magic bonus */
                     (acurrent > alimit) ? "innate " : "",
                     attrval(attrindx, alimit, valstring));
@@ -1601,7 +1600,7 @@ int mode, final, attrindx;
         if (acurrent != abase || abase != apeak || interesting_alimit)
             Strcat(valubuf, ")");
     }
-    enl_msg(subjbuf, "是 ", "was ", valubuf, "");
+    enl_msg(subjbuf, "为 ", "为 ", valubuf, "");
 }
 
 /* status: selected obvious capabilities, assorted troubles */
@@ -1897,7 +1896,7 @@ int final;
      *  Attributes
     \*/
     putstr(en_win, 0, "");
-    putstr(en_win, 0, final ? "Final Attributes:" : "Current Attributes:");
+    putstr(en_win, 0, final ? "最终属性:" : "当前属性:");
 
     if (u.uevent.uhand_of_elbereth) {
         static const char *const hofe_titles[3] = { "the Hand of Elbereth",
@@ -2721,37 +2720,37 @@ static const struct func_tab cmdlist[] = {
 };
 
 struct ext_func_tab extcmdlist[] = {
-    { "调整", "adjust inventory letters", doorganize, TRUE },
-    { "备注", "name current level", donamelevel, TRUE },
-    { "交谈", "talk to someone", dotalk, TRUE }, /* converse? */
-    { "行为", "list voluntary challenges you have maintained", doconduct,
+    { "调整", "调整背包排列字母", doorganize, TRUE },
+    { "备注", "给这一层备注", donamelevel, TRUE },
+    { "交谈", "和某人交谈", dotalk, TRUE }, /* converse? */
+    { "行为", "列出你的自愿挑战", doconduct,
       TRUE },
-    { "浸", "dip an object into something", dodip, FALSE },
-    { "提升能力", "advance or check weapon and spell skills",
+    { "浸", "把物品浸到某物", dodip, FALSE },
+    { "提升能力", "提高或检查武器和魔法技能",
       enhance_weapon_skill, TRUE },
-    { "探索模式", "enter explore mode", enter_explore_mode, TRUE },
-    { "开锁", "force a lock", doforce, FALSE },
-    { "使用物品能力", "invoke an object's powers", doinvoke, TRUE },
-    { "跳", "jump to a location", dojump, FALSE },
-    { "搜刮", "loot a box on the floor", doloot, FALSE },
-    { "使用怪的特殊能力", "use a monster's special ability", domonability, TRUE },
-    { "命名", "name a monster or an object", docallcmd, TRUE },
-    { "献祭", "offer a sacrifice to the gods", dosacrifice, FALSE },
-    { "概述", "show an overview of the dungeon", dooverview, TRUE },
-    { "祈祷", "pray to the gods for help", dopray, TRUE },
-    { "退出游戏", "exit without saving current game", done2, TRUE },
-    { "乘骑", "ride (or stop riding) a monster", doride, FALSE },
-    { "擦拭", "rub a lamp or a stone", dorub, FALSE },
-    { "坐", "sit down", dosit, FALSE },
-    { "地图显示", "show map without obstructions", doterrain, TRUE },
-    { "倒出", "empty a container", dotip, FALSE },
-    { "超度", "turn undead", doturn, TRUE },
-    { "双武器", "toggle two-weapon combat", dotwoweapon, FALSE },
-    { "解除陷阱", "untrap something", dountrap, FALSE },
-    { "版本", "list compile time options for this version of NetHack",
+    { "探索模式", "进入探索模式", enter_explore_mode, TRUE },
+    { "开锁", "强行开锁", doforce, FALSE },
+    { "激活", "激活物品的能力", doinvoke, TRUE },
+    { "跳", "跳到一个位置", dojump, FALSE },
+    { "搜刮", "搜刮地上的箱子", doloot, FALSE },
+    { "怪物能力", "使用怪物的特殊能力", domonability, TRUE },
+    { "命名", "给怪物或物品命名", docallcmd, TRUE },
+    { "献祭", "给神献祭", dosacrifice, FALSE },
+    { "概述", "显示地下城概述", dooverview, TRUE },
+    { "祈祷", "向神祈祷帮助", dopray, TRUE },
+    { "退出游戏", "不保存退出游戏", done2, TRUE },
+    { "乘骑", "乘骑或取消乘骑怪物", doride, FALSE },
+    { "擦拭", "擦拭灯或石头", dorub, FALSE },
+    { "坐", "坐下", dosit, FALSE },
+    { "地图显示", "无障碍显示地图", doterrain, TRUE },
+    { "倒出", "倒空容器", dotip, FALSE },
+    { "超度", "超度", doturn, TRUE },
+    { "双武器", "切换或取消双武器战斗", dotwoweapon, FALSE },
+    { "解除陷阱", "解除陷阱", dountrap, FALSE },
+    { "版本信息", "列出这个NetHack版本的编译时间选项",
       doextversion, TRUE },
-    { "擦脸", "wipe off your face", dowipe, FALSE },
-    { "?", "get this list of extended commands", doextlist, TRUE },
+    { "擦脸", "擦你的脸", dowipe, FALSE },
+    { "?", "查看扩展命令列表", doextlist, TRUE },
     /*
      * There must be a blank entry here for every entry in the table
      * below.

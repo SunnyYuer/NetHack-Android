@@ -419,9 +419,9 @@ const struct Role roles[] = {
       { { "旗本", 0 },       /* Banner Knight */  //Hatamoto
         { "浪人", 0 },          /* no allegiance */  //Ronin
         { "忍者", "女忍者" }, /* secret society */  //Ninja  Kunoichi
-        { "Joshu", 0 },          /* heads a castle */  //Joshu
-        { "Ryoshu", 0 },         /* has a territory */  //Ryoshu
-        { "Kokushu", 0 },        /* heads a province */  //Kokushu
+        { "城主", 0 },          /* heads a castle */  //Joshu
+        { "领主", 0 },         /* has a territory */  //Ryoshu
+        { "国主", 0 },        /* heads a province */  //Kokushu
         { "大名", 0 },         /* a samurai lord */  //Daimyo
         { "公家", 0 },           /* Noble of the Court */  //Kuge
         { "将", 0 } },       /* supreme commander, warlord */  //Shogun

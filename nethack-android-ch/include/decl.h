@@ -252,6 +252,7 @@ E NEARDATA time_t ubirthday;
 E NEARDATA struct u_realtime urealtime;
 
 #include "onames.h"
+#include "onamest.h"
 #ifndef PM_H /* (pm.h has already been included via youprop.h) */
 #include "pm.h"
 #endif

@@ -39,15 +39,15 @@ OPTIONS=pile_limit:2,hilite_pile,hilite_pet
 
 # Colorize individual rows on a menu based on what regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
-MENUCOLOR=" blessed "=yellow
+MENUCOLOR=" 受祝福的"=yellow
 MENUCOLOR=" holy "=yellow
-MENUCOLOR=" uncursed "=white
-MENUCOLOR=" cursed "=red
+MENUCOLOR=" 未被诅咒的"=white
+MENUCOLOR=" 被诅咒的"=red
 MENUCOLOR=" unholy "=red
-MENUCOLOR=" cursed .* \(being worn\)"=red&underline
+MENUCOLOR=" 被诅咒的 .* 穿戴中"=red&underline
 MENUCOLOR="loadstone|wand (of|called) cancellation"=white&underline
 MENUCOLOR="Amulet of Yendor named"=magenta                           # color only the real Amulet
-MENUCOLOR="gold piece"=yellow
+MENUCOLOR="金币"=yellow
 
 
 # Colorize the status line values
@@ -57,15 +57,15 @@ STATUSCOLOR=hp%33=red&bold,hp%15:red&inverse,hp%0:red&inverse&blink
 ## Pw
 STATUSCOLOR=pw%100=green,pw%66=yellow,pw%50:orange,pw%33=red&bold
 ## Carry
-STATUSCOLOR=burdened:yellow,stressed:orange,strained:red&bold
-STATUSCOLOR=overtaxed:red&inverse,overloaded:red&inverse&blink
+STATUSCOLOR=负担:yellow,压力:orange,强压:red&bold
+STATUSCOLOR=过重:red&inverse,超重:red&inverse&blink
 ## Hunger
-STATUSCOLOR=satiated:yellow,hungry:orange,weak:red&bold
-STATUSCOLOR=fainting:red&inverse,fainted:red&inverse&blink
+STATUSCOLOR=饱腹:yellow,饥饿:orange,虚弱:red&bold
+STATUSCOLOR=昏厥:red&inverse,晕厥:red&inverse&blink
 ## Mental
-STATUSCOLOR=hallu:yellow,conf:orange,stun:red&bold
+STATUSCOLOR=幻觉:yellow,混乱:orange,眩晕:red&bold
 ## Health
-STATUSCOLOR=ill:red&inverse,foodpois:red&inverse,slime:red&inverse
+STATUSCOLOR=生病:red&inverse,食物中毒:red&inverse,污秽:red&inverse
 ## Other
-STATUSCOLOR=held:red&inverse,blind:red&inverse
+STATUSCOLOR=held:red&inverse,失明:red&inverse
 

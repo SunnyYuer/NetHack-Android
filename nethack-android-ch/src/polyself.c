@@ -1534,10 +1534,17 @@ int part;
 {
     static NEARDATA const char
         *humanoid_parts[] = { "arm",       "eye",  "脸",         "手指",
-                              "fingertip", "foot", "hand",         "手",
+                              "fingertip", "foot", "手",         "手",
                               "head",      "腿",  "light headed", "neck",
                               "spine",     "toe",  "hair",         "blood",
                               "lung",      "nose", "stomach" },
+    /*
+     *                                 { "arm",       "eye",  "face",         "finger",
+                              "fingertip", "foot", "hand",         "handed",
+                              "head",      "leg",  "light headed", "neck",
+                              "spine",     "toe",  "hair",         "blood",
+                              "lung",      "nose", "stomach" },
+     * */
         *jelly_parts[] = { "pseudopod", "dark spot", "front",
                            "pseudopod extension", "pseudopod extremity",
                            "pseudopod root", "grasp", "grasped",

@@ -602,7 +602,7 @@ struct obj *obj;
         bareobj.spe = obj->spe;
 
     bufp = distant_name(&bareobj, xname); /* xname(&bareobj) */
-    if (!strncmp(bufp, "uncursed ", 9))
+    if (!strncmp(bufp, " 未被诅咒的 ", 9))
         bufp += 9; /* Role_if(PM_PRIEST) */
 
     objects[otyp].oc_uname = saveobcls.oc_uname;
@@ -762,7 +762,10 @@ boolean with_price;
             bp += 4;
         Strcpy(prefix, "the ");
     } else {
-        Strcpy(prefix, "a ");
+        if(obj->oclass==COIN_CLASS)
+            Strcpy(prefix, "1 ");
+        else
+            Strcpy(prefix, " ");
     }
 
     /* "empty" goes at the beginning, but item count goes at the end */
@@ -787,9 +790,9 @@ boolean with_price;
          * always allow "uncursed potion of water"
          */
         if (obj->cursed)
-            Strcat(prefix, "cursed ");
+            Strcat(prefix, " 被诅咒的 ");
         else if (obj->blessed)
-            Strcat(prefix, "blessed ");
+            Strcat(prefix, " 受祝福的 ");
         else if (!iflags.implicit_uncursed
             /* For most items with charges or +/-, if you know how many
              * charges are left or what the +/- is, then you must have
@@ -810,7 +813,7 @@ boolean with_price;
                      && obj->otyp != FAKE_AMULET_OF_YENDOR
                      && obj->otyp != AMULET_OF_YENDOR
                      && !Role_if(PM_PRIEST)))
-            Strcat(prefix, "uncursed ");
+            Strcat(prefix, " 未被诅咒的 ");
     }
 
     if (lknown && Is_box(obj)) {
@@ -840,7 +843,7 @@ boolean with_price;
     switch (obj->oclass) {
     case AMULET_CLASS:
         if (obj->owornmask & W_AMUL)
-            Strcat(bp, " (being worn)");
+            Strcat(bp, " ( 穿戴中)");
         break;
     case WEAPON_CLASS:
         if (ispoisoned)
@@ -855,14 +858,14 @@ boolean with_price;
     case ARMOR_CLASS:
         if (obj->owornmask & W_ARMOR)
             Strcat(bp, (obj == uskin) ? " (embedded in your skin)"
-                                      : " (being worn)");
+                                      : " ( 穿戴中)");
         goto plus;
     case TOOL_CLASS:
         /* weptools already get this done when we go to the +n code */
         if (!is_weptool(obj))
             add_erosion_words(obj, prefix);
         if (obj->owornmask & (W_TOOL /* blindfold */ | W_SADDLE)) {
-            Strcat(bp, " (being worn)");
+            Strcat(bp, " ( 穿戴中)");
             break;
         }
         if (obj->otyp == LEASH && obj->leashmon != 0) {
@@ -905,12 +908,12 @@ boolean with_price;
         add_erosion_words(obj, prefix);
     ring:
         if (obj->owornmask & W_RINGR)
-            Strcat(bp, " (on right ");
+            Strcat(bp, " ( 右 ");
         if (obj->owornmask & W_RINGL)
-            Strcat(bp, " (on left ");
+            Strcat(bp, " ( 左 ");
         if (obj->owornmask & W_RING) {
             Strcat(bp, body_part(HAND));
-            Strcat(bp, ")");
+            Strcat(bp, " 上)");
         }
         if (known && objects[obj->otyp].oc_charged) {
             Strcat(prefix, sitoa(obj->spe));
@@ -955,7 +958,7 @@ boolean with_price;
 
             if (bimanual(obj))
                 hand_s = makeplural(hand_s);
-            Sprintf(eos(bp), " (weapon in %s)", hand_s);
+            Sprintf(eos(bp), " ( 拿在%s 上)", hand_s);
 
             if (warn_obj_cnt && obj == uwep && (EWarn_of_mon & W_WEP) != 0L) {
                 /* presumably can be felt when blind */
@@ -970,7 +973,7 @@ boolean with_price;
         if (u.twoweap)
             Sprintf(eos(bp), " (wielded in other %s)", body_part(HAND));
         else
-            Strcat(bp, " (alternate weapon; not wielded)");
+            Strcat(bp, " ( 备用武器;  未使用)");
     }
     if (obj->owornmask & W_QUIVER) {
         switch (obj->oclass) {
@@ -978,16 +981,16 @@ boolean with_price;
             if (is_ammo(obj)) {
                 if (objects[obj->otyp].oc_skill == -P_BOW) {
                     /* Ammo for a bow */
-                    Strcat(bp, " (in quiver)");
+                    Strcat(bp, " ( 箭囊中)");
                     break;
                 } else {
                     /* Ammo not for a bow */
-                    Strcat(bp, " (in quiver pouch)");
+                    Strcat(bp, " ( 囊中)");
                     break;
                 }
             } else {
                 /* Weapons not considered ammo */
-                Strcat(bp, " (at the ready)");
+                Strcat(bp, " ( 准备就绪)");
                 break;
             }
         /* Small things and ammo not for a bow */
@@ -996,7 +999,7 @@ boolean with_price;
         case WAND_CLASS:
         case COIN_CLASS:
         case GEM_CLASS:
-            Strcat(bp, " (in quiver pouch)");
+            Strcat(bp, " ( 囊中)");
             break;
         default: /* odd things */
             Strcat(bp, " (at the ready)");
@@ -1978,7 +1981,7 @@ const char *oldstr;
 
     /* Single letters */
     if (len == 1 || !letter(*spot)) {
-        Strcpy(spot + 1, "'s");
+        Strcpy(spot + 1, "");
         goto bottom;
     }
 
@@ -2489,7 +2492,7 @@ struct obj *no_wish;
             while (*bp == ' ')
                 bp++;
             l = 0;
-        } else if (!strncmpi(bp, "blessed ", l = 8)
+        } else if (!strncmpi(bp, " 受祝福的 ", l = 8)
                    || !strncmpi(bp, "holy ", l = 5)) {
             blessed = 1;
         } else if (!strncmpi(bp, "moist ", l = 6)
@@ -2498,10 +2501,10 @@ struct obj *no_wish;
                 wetness = rn2(3) + 3;
             else
                 wetness = rnd(2);
-        } else if (!strncmpi(bp, "cursed ", l = 7)
+        } else if (!strncmpi(bp, " 被诅咒的 ", l = 7)
                    || !strncmpi(bp, "unholy ", l = 7)) {
             iscursed = 1;
-        } else if (!strncmpi(bp, "uncursed ", l = 9)) {
+        } else if (!strncmpi(bp, " 未被诅咒的 ", l = 9)) {
             uncursed = 1;
         } else if (!strncmpi(bp, "rustproof ", l = 10)
                    || !strncmpi(bp, "erodeproof ", l = 11)
@@ -3031,11 +3034,11 @@ srch:
                 while (*fp == ' ')
                     fp++;
                 l = 0;
-            } else if (!strncmpi(fp, "blessed ", l = 8)) {
+            } else if (!strncmpi(fp, " 受祝福的 ", l = 8)) {
                 blessedf = 1;
-            } else if (!strncmpi(fp, "cursed ", l = 7)) {
+            } else if (!strncmpi(fp, " 被诅咒的 ", l = 7)) {
                 iscursedf = 1;
-            } else if (!strncmpi(fp, "uncursed ", l = 9)) {
+            } else if (!strncmpi(fp, " 未被诅咒的 ", l = 9)) {
                 uncursedf = 1;
             } else if (!strncmpi(fp, "partly eaten ", l = 13)
                        || !strncmpi(fp, "partially eaten ", l = 16)) {

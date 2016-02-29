@@ -1090,7 +1090,7 @@ register struct obj *otmp;
     if (Blind && !already_blind) {
         changed = TRUE;
         if (flags.verbose)
-            You_cant("see any more.");
+            You_cant("看见任何东西.");
         /* set ball&chain variables before the hero goes blind */
         if (Punished)
             set_bc(0);
@@ -1148,7 +1148,7 @@ register struct obj *otmp;
     } else if (was_blind) {
         if (!gulp_blnd_check()) {
             changed = TRUE; /* !Blind */
-            You("can see again.");
+            You("又可以看见了.");
         }
     }
     if (changed) {
@@ -2498,7 +2498,7 @@ int retry;
         all_worn_categories = (retry == -2);
     } else if (flags.menu_style == MENU_FULL) {
         all_worn_categories = FALSE;
-        n = query_category("What type of things do you want to take off?",
+        n = query_category("你想脱掉什么种类的物品?",
                            invent, WORN_TYPES | ALL_TYPES, &pick_list,
                            PICK_ANY);
         if (!n)

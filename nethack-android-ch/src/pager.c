@@ -816,15 +816,15 @@ coord *click_cc;
                versions: "Specify unknown object by cursor?" */
             add_menu(win, NO_GLYPH, &any,
                      flags.lootabc ? 0 : any.a_char, 'y', ATR_NONE,
-                     "something on the map", MENU_UNSELECTED);
+                     "地图上的东西", MENU_UNSELECTED);
             any.a_char = 'i';
             add_menu(win, NO_GLYPH, &any,
                      flags.lootabc ? 0 : any.a_char, 0, ATR_NONE,
-                     "something you're carrying", MENU_UNSELECTED);
+                     "你携带的东西", MENU_UNSELECTED);
             any.a_char = '?';
             add_menu(win, NO_GLYPH, &any,
                      flags.lootabc ? 0 : any.a_char, 'n', ATR_NONE,
-                     "something else (by symbol or name)", MENU_UNSELECTED);
+                     "其他的东西 ( 符号或名称)", MENU_UNSELECTED);
             if (!u.uswallow && !Hallucination) {
                 any = zeroany;
                 add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
@@ -837,21 +837,21 @@ coord *click_cc;
                 any.a_char = 'm';
                 add_menu(win, NO_GLYPH, &any,
                          flags.lootabc ? 0 : any.a_char, 0, ATR_NONE,
-                         "nearby monsters", MENU_UNSELECTED);
+                         "附近的怪物", MENU_UNSELECTED);
                 any.a_char = 'M';
                 add_menu(win, NO_GLYPH, &any,
                          flags.lootabc ? 0 : any.a_char, 0, ATR_NONE,
-                         "all monsters shown on map", MENU_UNSELECTED);
+                         "地图上显示的所有怪物", MENU_UNSELECTED);
                 any.a_char = 'o';
                 add_menu(win, NO_GLYPH, &any,
                          flags.lootabc ? 0 : any.a_char, 0, ATR_NONE,
-                         "nearby objects", MENU_UNSELECTED);
+                         "附近的物品", MENU_UNSELECTED);
                 any.a_char = 'O';
                 add_menu(win, NO_GLYPH, &any,
                          flags.lootabc ? 0 : any.a_char, 0, ATR_NONE,
-                         "all objects shown on map", MENU_UNSELECTED);
+                         "地图上显示的所有物品", MENU_UNSELECTED);
             }
-            end_menu(win, "What do you want to look at:");
+            end_menu(win, "你想查看什么:");
             if (select_menu(win, PICK_ONE, &pick_list) > 0) {
                 i = pick_list->item.a_char;
                 free((genericptr_t) pick_list);

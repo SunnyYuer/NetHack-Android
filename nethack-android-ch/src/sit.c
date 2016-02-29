@@ -308,7 +308,7 @@ dosit()
         stackobj(uegg);
         morehungry((int) objects[EGG].oc_nutrition);
     } else {
-        pline("坐在 %s上没意思.", surface(u.ux, u.uy));
+        pline("坐在 %s上可没意思.", surface(u.ux, u.uy));
     }
     return 1;
 }

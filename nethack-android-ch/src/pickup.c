@@ -1001,7 +1001,7 @@ int how;               /* type of query */
         any = zeroany;
         any.a_int = ALL_TYPES_SELECTED;
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 (qflags & WORN_TYPES) ? "All worn types" : "All types",
+                 (qflags & WORN_TYPES) ? "所有穿戴类型" : "所有类型",
                  MENU_UNSELECTED);
         invlet = 'b';
     } else
@@ -1054,8 +1054,8 @@ int how;               /* type of query */
         any = zeroany;
         any.a_int = 'A';
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 (qflags & WORN_TYPES) ? "Auto-select every item being worn"
-                                       : "Auto-select every item",
+                 (qflags & WORN_TYPES) ? "自动选择穿戴的每一项"
+                                       : "自动选择每一项",
                  MENU_UNSELECTED);
     }
     /* items with b/u/c/unknown if there are any */
@@ -1064,28 +1064,28 @@ int how;               /* type of query */
         any = zeroany;
         any.a_int = 'B';
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 "Items known to be Blessed", MENU_UNSELECTED);
+                 "物品已知为受祝福的", MENU_UNSELECTED);
     }
     if (do_cursed) {
         invlet = 'C';
         any = zeroany;
         any.a_int = 'C';
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 "Items known to be Cursed", MENU_UNSELECTED);
+                 "物品已知为被诅咒的", MENU_UNSELECTED);
     }
     if (do_uncursed) {
         invlet = 'U';
         any = zeroany;
         any.a_int = 'U';
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 "Items known to be Uncursed", MENU_UNSELECTED);
+                 "物品已知为未被诅咒的", MENU_UNSELECTED);
     }
     if (do_buc_unknown) {
         invlet = 'X';
         any = zeroany;
         any.a_int = 'X';
         add_menu(win, NO_GLYPH, &any, invlet, 0, ATR_NONE,
-                 "Items of unknown B/C/U status", MENU_UNSELECTED);
+                 "物品未知B/C/U 状态", MENU_UNSELECTED);
     }
     end_menu(win, qstr);
     n = select_menu(win, how, pick_list);
@@ -2656,7 +2656,7 @@ boolean outokay, inokay, alreadyused;
                  buf, MENU_UNSELECTED);
     }
     any.a_int = 7; /* 'q' */
-    Strcpy(buf, alreadyused ? "done" : "什么都不做");
+    Strcpy(buf, alreadyused ? "完成" : "什么都不做");
     add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE, buf,
              MENU_SELECTED);
 

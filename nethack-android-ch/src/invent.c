@@ -1077,7 +1077,7 @@ register const char *let, *word;
                      || (otmp->oclass == FOOD_CLASS
                          && otyp != CREAM_PIE && otyp != EUCALYPTUS_LEAF)
                      || (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
-             || (!strcmp(word, "i使用")  //invoke
+             || (!strcmp(word, "激活")  //invoke
                  && !otmp->oartifact
                  && !objects[otyp].oc_unique
                  && (otyp != FAKE_AMULET_OF_YENDOR || otmp->known)
@@ -2489,10 +2489,10 @@ dotypeinv()
     boolean billx = *u.ushops && doinvbill(0);
     menu_item *pick_list;
     boolean traditional = TRUE;
-    const char *prompt = "What type of object do you want an inventory of?";
+    const char *prompt = "你想要在背包里查看什么类型的物品?";
 
     if (!invent && !billx) {
-        You("aren't carrying anything.");
+        You("没有携带任何东西.");
         return 0;
     }
     unpaid_count = count_unpaid(invent);
@@ -3223,7 +3223,7 @@ long numused;
  */
 STATIC_VAR NEARDATA const char *names[] = {
     0, "Illegal objects", "武器", "防具", "戒指", "护身符", "工具",
-    "食物", "药水", "卷轴", "魔法书", "魔杖", "金币",
+    "食物", "药水", "卷轴", "魔法书", "魔杖", "金钱",
     "宝石/ 石头", "巨石/ 雕像", "Iron balls", "Chains", "Venoms"
 };
 
