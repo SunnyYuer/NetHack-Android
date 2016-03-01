@@ -958,7 +958,7 @@ struct obj *obj;
             res = 1;
     }
     ispick = is_pick(obj);
-    verb = ispick ? "dig" : "chop";
+    verb = ispick ? "挖掘" : "砍";
 
     if (u.utrap && u.utraptype == TT_WEB) {
         pline("%s you can't %s while entangled in a web.",
@@ -997,7 +997,7 @@ struct obj *obj;
         *dsp++ = *sdp;
     }
     *dsp = 0;
-    Sprintf(qbuf, "In what direction do you want to %s? [%s]", verb, dirsyms);
+    Sprintf(qbuf, "你想%s哪个方向? [%s]", verb, dirsyms);
     if (!getdir(qbuf))
         return res;
 

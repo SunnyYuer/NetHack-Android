@@ -1247,7 +1247,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 		strcat(message, " ");
 	}
 
-	if(strstr(question, "what direction"))
+        if(strstr(question, "哪个方向"))
 	{
 		// directional choice
 		and_clear_nhwindow(WIN_MESSAGE);
