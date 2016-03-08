@@ -1429,11 +1429,11 @@ void and_n_getline_r(const char* question, char* buf, int nMax, int showLog, int
 	n = (*jEnv)->GetStringLength(jEnv, jstr);
 	if(n >= nMax)
 		n = nMax - 1;
-    i = 0;
+	i = 0;
 	if(n > 0)
 	{
 		pChars = (*jEnv)->GetStringChars(jEnv, jstr, 0);
-	//debuglog("    returned %c %s", *pChars, pChars);
+		//debuglog("    returned %c %s", *pChars, pChars);
 		if(*pChars == 0x80)
 		{
 			// special case: ABORT
@@ -1459,10 +1459,12 @@ void and_n_getline_r(const char* question, char* buf, int nMax, int showLog, int
 		{
 			for(; i < n; i++)
 			{
+				buf[i] = pChars[i];
+				/*
 				if(isprint(pChars[i]))
 					buf[i] = pChars[i];
 				else
-					buf[i] = '?';
+					buf[i] = '?';*/
 			}
 		}
 		(*jEnv)->ReleaseStringChars(jEnv, jstr, pChars);
@@ -1525,7 +1527,7 @@ void and_askname()
 	w = n;
 	if(n >= PL_NSIZ)
 		n = PL_NSIZ - 1;
-    i = 0;
+	i = 0;
 	if(n > 0)
 	{
 		pChars = (*jEnv)->GetStringChars(jEnv, jstr, 0);
@@ -1541,10 +1543,12 @@ void and_askname()
 
 		for(; i < n; i++)
 		{
+			plname[i] = pChars[i];
+			/*
 			if(isprint(pChars[i]))
 				plname[i] = pChars[i];
 			else
-				plname[i] = '?';
+				plname[i] = '?';*/
 		}
 		(*jEnv)->ReleaseStringChars(jEnv, jstr, pChars);
 	}

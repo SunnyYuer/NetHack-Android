@@ -54,7 +54,7 @@ ALTAR:(36,02),coaligned,shrine
 # Shaman Karnov
 MONSTER:('@',"Shaman Karnov"),(35,02)
 # The treasure of Shaman Karnov
-OBJECT:('(',"chest"),(34,02)
+OBJECT:('(',"箱子"),(34,02)
 # neanderthal guards for the audience chamber
 MONSTER:('@',"neanderthal"),(20,03)
 MONSTER:('@',"neanderthal"),(20,02)
@@ -222,7 +222,7 @@ STAIR:random,up
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Objects
-OBJECT:(')',"mace"),(23,10),blessed,0,name:"The Sceptre of Might"
+OBJECT:(')',"权杖"),(23,10),blessed,0,name:"The Sceptre of Might"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

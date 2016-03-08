@@ -1907,7 +1907,7 @@ doturn()
         aggravate();
         return 0;
     }
-    pline("Calling upon %s, you chant an arcane formula.", u_gname());
+    pline("你咏唱一首奥术式来呼唤 %s.", u_gname());
     exercise(A_WIS, TRUE);
 
     /* note: does not perform unturn_dead() on victims' inventories */

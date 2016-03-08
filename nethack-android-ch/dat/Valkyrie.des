@@ -60,7 +60,7 @@ DOOR:locked,(43,10)
 # Norn
 MONSTER:('@',"Norn"),(35,10)
 # The treasure of the Norn
-OBJECT:('(',"chest"),(36,10)
+OBJECT:('(',"箱子"),(36,10)
 # valkyrie guards for the audience chamber
 MONSTER:('@',"warrior"),(27,08)
 MONSTER:('@',"warrior"),(27,09)
@@ -220,7 +220,7 @@ NON_DIGGABLE:(00,00,34,16)
 DRAWBRIDGE:(17,02),south,random
 DRAWBRIDGE:(17,14),north,open
 # Objects
-OBJECT:('(',"crystal ball"),(17,08),blessed,5,name:"The Orb of Fate"
+OBJECT:('(',"水晶球"),(17,08),blessed,5,name:"The Orb of Fate"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

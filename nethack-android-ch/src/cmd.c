@@ -585,7 +585,7 @@ wiz_wish(VOID_ARGS) /* Unlimited wishes for debug mode by Paul Polderman */
         flags.verbose = save_verbose;
         (void) encumber_msg();
     } else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_wish)));
     return 0;
 }
@@ -600,7 +600,7 @@ wiz_identify(VOID_ARGS)
             identify_pack(0, FALSE);
         iflags.override_ID = 0;
     } else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_identify)));
     return 0;
 }
@@ -622,7 +622,7 @@ wiz_map(VOID_ARGS)
         HConfusion = save_Hconf;
         HHallucination = save_Hhallu;
     } else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_map)));
     return 0;
 }
@@ -634,7 +634,7 @@ wiz_genesis(VOID_ARGS)
     if (wizard)
         (void) create_particular();
     else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_genesis)));
     return 0;
 }
@@ -646,7 +646,7 @@ wiz_where(VOID_ARGS)
     if (wizard)
         (void) print_dungeon(FALSE, (schar *) 0, (xchar *) 0);
     else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_where)));
     return 0;
 }
@@ -658,7 +658,7 @@ wiz_detect(VOID_ARGS)
     if (wizard)
         (void) findit();
     else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_detect)));
     return 0;
 }
@@ -670,7 +670,7 @@ wiz_level_tele(VOID_ARGS)
     if (wizard)
         level_tele();
     else
-        pline("Unavailable command '%s'.",
+        pline("不可用的命令 '%s'.",
               visctrl((int) cmd_from_func(wiz_level_tele)));
     return 0;
 }
@@ -1429,13 +1429,13 @@ int final;
         Sprintf(eos(buf), "%s, level %d %s%s", an(rank_titl), u.ulevel,
                 tmpbuf, urace.noun);
     } else {
-        Sprintf(eos(buf), "是一位%s, 等级 %d %s%s %s", rank_titl, u.ulevel,
+        Sprintf(eos(buf), "是一位%s, 等级%d  %s%s %s", rank_titl, u.ulevel,
                 tmpbuf, urace.adj, role_titl);
     }
     you_are(buf, "");
 
     /* report alignment (bypass you_are() in order to omit ending period) */
-    Sprintf(buf, " %s%s%s肩负着%s( %s) 的使命",
+    Sprintf(buf, " %s%s%s肩负着%s( %s) 的使命.",
             You_, !final ? are : were,
             /* helm of opposite alignment (might hide conversion) */
             (u.ualign.type != u.ualignbase[A_CURRENT]) ? "temporarily "
@@ -1452,14 +1452,14 @@ int final;
        trailing "and" on all three aligned entries but looks too verbose] */
     Sprintf(buf, " %s敌对的是", !final ? "" : "");
     if (u.ualign.type != A_LAWFUL)
-        Sprintf(eos(buf), " %s ( %s) 和", align_gname(A_LAWFUL),
+        Sprintf(eos(buf), " %s( %s) 和", align_gname(A_LAWFUL),
                 align_str(A_LAWFUL));
     if (u.ualign.type != A_NEUTRAL)
-        Sprintf(eos(buf), " %s ( %s)%s", align_gname(A_NEUTRAL),
+        Sprintf(eos(buf), " %s( %s)%s", align_gname(A_NEUTRAL),
                 align_str(A_NEUTRAL),
                 (u.ualign.type != A_CHAOTIC) ? " 和" : "");
     if (u.ualign.type != A_CHAOTIC)
-        Sprintf(eos(buf), " %s ( %s)", align_gname(A_CHAOTIC),
+        Sprintf(eos(buf), " %s( %s)", align_gname(A_CHAOTIC),
                 align_str(A_CHAOTIC));
     Strcat(buf, "."); /* terminate sentence */
     putstr(en_win, 0, buf);
@@ -1581,7 +1581,7 @@ int mode, final, attrindx;
                   : (alimit != (attrindx != A_STR ? 18 : STR18(100)));
         paren_pfx = final ? " (" : " ( 当前; ";
         if (acurrent != abase) {
-            Sprintf(eos(valubuf), "%sbase:%s", paren_pfx,
+            Sprintf(eos(valubuf), "%s 基础:%s", paren_pfx,
                     attrval(attrindx, abase, valstring));
             paren_pfx = ", ";
         }
@@ -3456,7 +3456,7 @@ register char *cmd;
         *cp = '\0';
         if (!prefix_seen || !iflags.cmdassist
             || !help_dir(0, "无效的方向键!"))
-            Norep("Unknown command '%s'.", expcmd);
+            Norep("未知命令 '%s'.", expcmd);
     }
     /* didn't move */
     context.move = FALSE;
@@ -4087,8 +4087,8 @@ dotravel(VOID_ARGS)
         cc.x = u.ux;
         cc.y = u.uy;
     }
-    pline("Where do you want to travel to?");
-    if (getpos(&cc, TRUE, "the desired destination") < 0) {
+    pline("你想走到哪里?");
+    if (getpos(&cc, TRUE, "所需的目的地") < 0) {
         /* user pressed ESC */
         return 0;
     }

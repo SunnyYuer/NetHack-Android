@@ -681,7 +681,7 @@ boolean taken;
 
     if (!done_stopprint) {
         ask = should_query_disclose_option('c', &defquery);
-        c = ask ? yn_function("你想看下你的成就吗?", ynqchars,
+        c = ask ? yn_function("你想看下你的行为吗?", ynqchars,
                               defquery)
                 : defquery;
         if (c == 'y')
@@ -1340,7 +1340,7 @@ boolean identified, all_containers, reportempty;
                         goto nextclass;
                 }
 
-                Sprintf(buf, "Contents of %s:", the(xname(box)));
+                Sprintf(buf, "%s 里面有:", the(xname(box)));
                 putstr(tmpwin, 0, buf);
                 putstr(tmpwin, 0, "");
                 for (i = 0; i < n; i++) {
@@ -1369,7 +1369,7 @@ boolean identified, all_containers, reportempty;
                       deadcat ? "dead " : "");
                 display_nhwindow(WIN_MESSAGE, FALSE);
             } else if (reportempty) {
-                pline("%s is empty.", upstart(thesimpleoname(box)));
+                pline("%s 是空的.", upstart(thesimpleoname(box)));
                 display_nhwindow(WIN_MESSAGE, FALSE);
             }
         }

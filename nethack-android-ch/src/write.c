@@ -115,16 +115,16 @@ register struct obj *pen;
     }
 
     /* get paper to write on */
-    paper = getobj(write_on, "write on");
+    paper = getobj(write_on, "写到");  //write on
     if (!paper)
         return 0;
     /* can't write on a novel (unless/until it's been converted into a blank
        spellbook), but we want messages saying so to avoid "spellbook" */
     typeword = (paper->otyp == SPE_NOVEL)
-                  ? "book"
+                  ? "书"
                   : (paper->oclass == SPBOOK_CLASS)
-                     ? "spellbook"
-                     : "scroll";
+                     ? "魔法书"
+                     : "卷轴";
     if (Blind) {
         if (!paper->dknown) {
             You("don't know if that %s is blank or not.", typeword);
@@ -138,23 +138,23 @@ register struct obj *pen;
     }
     paper->dknown = 1;
     if (paper->otyp != SCR_BLANK_PAPER && paper->otyp != SPE_BLANK_PAPER) {
-        pline("That %s is not blank!", typeword);
+        pline("那个 %s 不是空白的!", typeword);
         exercise(A_WIS, FALSE);
         return 1;
     }
 
     /* what to write */
-    Sprintf(qbuf, "What type of %s do you want to write?", typeword);
+    Sprintf(qbuf, "你想要写哪种%s?", typeword);
     getlin(qbuf, namebuf);
     (void) mungspaces(namebuf); /* remove any excess whitespace */
     if (namebuf[0] == '\033' || !namebuf[0])
         return 1;
     nm = namebuf;
-    if (!strncmpi(nm, "scroll ", 7))
-        nm += 7;
-    else if (!strncmpi(nm, "spellbook ", 10))
-        nm += 10;
-    if (!strncmpi(nm, "of ", 3))
+    if (!strncmpi(nm, "卷轴", 6))
+        nm += 6;
+    else if (!strncmpi(nm, "魔法书", 9))
+        nm += 9;
+    if (!strncmpi(nm, "之", 3))
         nm += 3;
 
     if ((bp = strstri(nm, " armour")) != 0) {
@@ -204,7 +204,7 @@ register struct obj *pen;
         goto found;
     }
 
-    There("is no such %s!", typeword);
+    There("没有这种%s!", typeword);
     return 1;
 found:
 
@@ -290,7 +290,7 @@ found:
         && !(by_descr && label_known(new_obj->otyp, invent))
         /* and Luck might override after both checks have failed */
         && rnl(Role_if(PM_WIZARD) ? 5 : 15)) {
-        You("%s to write that.", by_descr ? "fail" : "don't know how");
+        You("%s去写那个.", by_descr ? "失败了" : "不知道如何");
         /* scrolls disappear, spellbooks don't */
         if (paper->oclass == SPBOOK_CLASS) {
             You(
@@ -301,8 +301,8 @@ found:
                 Strcpy(namebuf, OBJ_DESCR(objects[new_obj->otyp]));
                 wipeout_text(namebuf, (6 + MAXULEV - u.ulevel) / 6, 0);
             } else
-                Sprintf(namebuf, "%s was here!", plname);
-            You("write \"%s\" and the scroll disappears.", namebuf);
+                Sprintf(namebuf, "%s 到此一游!", plname);
+            You("写上 \"%s\"  然后卷轴消失了.", namebuf);
             useup(paper);
         }
         obfree(new_obj, (struct obj *) 0);

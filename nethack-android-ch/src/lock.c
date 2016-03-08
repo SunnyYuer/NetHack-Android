@@ -497,11 +497,11 @@ doforce()
                   || objects[uwep->otyp].oc_skill == P_FLAIL
                   || objects[uwep->otyp].oc_skill > P_LANCE)
                : uwep->oclass != ROCK_CLASS)) {
-        You_cant("force anything %s weapon.",
-                 !uwep ? "when not wielding a"
+        You_cant("强行做任何事情 %s 武器.",
+                 !uwep ? "当你没有装备一个"
                        : (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep))
-                             ? "without a proper"
-                             : "with that");
+                             ? "不用一个合适的"
+                             : "用那个");
         return 0;
     }
     if (!can_reach_floor(TRUE)) {
@@ -539,7 +539,7 @@ doforce()
             if (picktyp)
                 You("把%s 伸进裂缝中然后使劲地撬动.", yname(uwep));
             else
-                You("start bashing it with %s.", yname(uwep));
+                You("用%s 使劲地砸.", yname(uwep));
             xlock.box = otmp;
             xlock.chance = objects[uwep->otyp].oc_wldam * 2;
             xlock.picktyp = picktyp;

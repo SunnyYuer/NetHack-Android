@@ -1485,7 +1485,7 @@ struct obj *obj;
             break;
         }
         case CHARGE_OBJ: {
-            struct obj *otmp = getobj(recharge_type, "charge");
+            struct obj *otmp = getobj(recharge_type, "充能");  //charge
             boolean b_effect;
 
             if (!otmp) {

@@ -2952,8 +2952,8 @@ int corpsecheck; /* 0, no check, 1, corpses, 2, tinnable corpses */
 
             /* "There is <an object> here; <verb> it?" or
                "There are <N objects> here; <verb> one?" */
-            Sprintf(qbuf, "There %s ", otense(otmp, "are"));
-            Sprintf(qsfx, " here; %s %s?", verb, one ? "it" : "one");
+            Sprintf(qbuf, "这里有");
+            Sprintf(qsfx, ";  %s %s?", verb, one ? "了它" : "一个");
             (void) safe_qbuf(qbuf, qbuf, qsfx, otmp, doname, ansimpleoname,
                              one ? something : (const char *) "things");
             if ((c = yn_function(qbuf, ynqchars, 'n')) == 'y')

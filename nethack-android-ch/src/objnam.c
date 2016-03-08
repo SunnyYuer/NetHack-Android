@@ -290,26 +290,26 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     switch (obj->oclass) {
     case AMULET_CLASS:
         if (!dknown)
-            Strcpy(buf, "amulet");
+            Strcpy(buf, "护身符");  //amulet
         else if (typ == AMULET_OF_YENDOR || typ == FAKE_AMULET_OF_YENDOR)
             /* each must be identified individually */
             Strcpy(buf, known ? actualn : dn);
         else if (nn)
             Strcpy(buf, actualn);
         else if (un)
-            Sprintf(buf, "amulet called %s", un);
+            Sprintf(buf, "护身符被称为 %s", un);
         else
-            Sprintf(buf, "%s amulet", dn);
+            Sprintf(buf, "%s 护身符", dn);
         break;
     case WEAPON_CLASS:
         if (is_poisonable(obj) && obj->opoisoned)
-            Strcpy(buf, "poisoned ");
+            Strcpy(buf, "有毒的 ");
     case VENOM_CLASS:
     case TOOL_CLASS:
         if (typ == LENSES)
-            Strcpy(buf, "pair of ");
+            Strcpy(buf, "一副 ");
         else if (is_wet_towel(obj))
-            Strcpy(buf, (obj->spe < 3) ? "moist " : "wet ");
+            Strcpy(buf, (obj->spe < 3) ? "潮湿的 " : "湿的 ");
 
         if (!dknown)
             Strcat(buf, dn ? dn : actualn);
@@ -317,15 +317,14 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
             Strcat(buf, actualn);
         else if (un) {
             Strcat(buf, dn ? dn : actualn);
-            Strcat(buf, " called ");
+            Strcat(buf, " 被称为 ");
             Strcat(buf, un);
         } else
             Strcat(buf, dn ? dn : actualn);
         /* If we use an() here we'd have to remember never to use */
         /* it whenever calling doname() or xname(). */
         if (typ == FIGURINE && omndx != NON_PM) {
-            Sprintf(eos(buf), " of a%s %s",
-                    index(vowels, *mons[omndx].mname) ? "n" : "",
+            Sprintf(eos(buf), " 之 %s",
                     mons[omndx].mname);
         } else if (is_wet_towel(obj)) {
             if (wizard)
@@ -335,19 +334,19 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     case ARMOR_CLASS:
         /* depends on order of the dragon scales objects */
         if (typ >= GRAY_DRAGON_SCALES && typ <= YELLOW_DRAGON_SCALES) {
-            Sprintf(buf, "set of %s", actualn);
+            Sprintf(buf, "一套 %s", actualn);
             break;
         }
         if (is_boots(obj) || is_gloves(obj))
-            Strcpy(buf, "pair of ");
+            Strcpy(buf, "一双 ");
 
         if (obj->otyp >= ELVEN_SHIELD && obj->otyp <= ORCISH_SHIELD
             && !dknown) {
-            Strcpy(buf, "shield");
+            Strcpy(buf, "盾牌");
             break;
         }
         if (obj->otyp == SHIELD_OF_REFLECTION && !dknown) {
-            Strcpy(buf, "smooth shield");
+            Strcpy(buf, "平滑的盾");
             break;
         }
 
@@ -355,18 +354,18 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
             Strcat(buf, actualn);
         else if (un) {
             if (is_boots(obj))
-                Strcat(buf, "boots");
+                Strcat(buf, "靴子");
             else if (is_gloves(obj))
-                Strcat(buf, "gloves");
+                Strcat(buf, "手套");
             else if (is_cloak(obj))
-                Strcpy(buf, "cloak");
+                Strcpy(buf, "斗蓬");
             else if (is_helmet(obj))
-                Strcpy(buf, "helmet");
+                Strcpy(buf, "头盔");
             else if (is_shield(obj))
-                Strcpy(buf, "shield");
+                Strcpy(buf, "盾牌");
             else
-                Strcpy(buf, "armor");
-            Strcat(buf, " called ");
+                Strcpy(buf, "盔甲");
+            Strcat(buf, " 被称为 ");
             Strcat(buf, un);
         } else
             Strcat(buf, dn);
@@ -396,11 +395,11 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         if (Is_pudding(obj)) {
             Sprintf(buf, "%s%s",
                     (obj->owt < 100)
-                       ? "small "
+                       ? "小的 "
                        : (obj->owt > 500)
-                          ? "very large "
+                          ? "很大的 "
                           : (obj->owt > 300)
-                             ? "large "
+                             ? "大的 "
                              : "",
                     actualn);
             break;
@@ -438,102 +437,102 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         break;
     case POTION_CLASS:
         if (dknown && obj->odiluted)
-            Strcpy(buf, "diluted ");
+            Strcpy(buf, "稀释的 ");
         if (nn || un || !dknown) {
-            Strcat(buf, "potion");
+            Strcat(buf, "药水");  //potion
             if (!dknown)
                 break;
             if (nn) {
-                Strcat(buf, " of ");
+                Strcat(buf, " 之  ");
                 if (typ == POT_WATER && bknown
                     && (obj->blessed || obj->cursed)) {
-                    Strcat(buf, obj->blessed ? "holy " : "unholy ");
+                    Strcat(buf, obj->blessed ? "圣 " : "邪 ");
                 }
                 Strcat(buf, actualn);
             } else {
-                Strcat(buf, " called ");
+                Strcat(buf, " 被称为 ");
                 Strcat(buf, un);
             }
         } else {
             Strcat(buf, dn);
-            Strcat(buf, " potion");
+            Strcat(buf, " 药水");
         }
         break;
     case SCROLL_CLASS:
-        Strcpy(buf, "scroll");
+        Strcpy(buf, "卷轴");  //scroll
         if (!dknown)
             break;
         if (nn) {
-            Strcat(buf, " of ");
+            Strcat(buf, " 之  ");
             Strcat(buf, actualn);
         } else if (un) {
-            Strcat(buf, " called ");
+            Strcat(buf, " 被称为 ");
             Strcat(buf, un);
         } else if (ocl->oc_magic) {
-            Strcat(buf, " labeled ");
+            Strcat(buf, " 标签为 ");
             Strcat(buf, dn);
         } else {
             Strcpy(buf, dn);
-            Strcat(buf, " scroll");
+            Strcat(buf, " 卷轴");
         }
         break;
     case WAND_CLASS:
         if (!dknown)
-            Strcpy(buf, "wand");
+            Strcpy(buf, "魔杖");  //wand
         else if (nn)
-            Sprintf(buf, "wand of %s", actualn);
+            Sprintf(buf, "%s  魔杖", actualn);
         else if (un)
-            Sprintf(buf, "wand called %s", un);
+            Sprintf(buf, "魔杖被称为 %s", un);
         else
-            Sprintf(buf, "%s wand", dn);
+            Sprintf(buf, "%s魔杖", dn);
         break;
     case SPBOOK_CLASS:
         if (typ == SPE_NOVEL) { /* 3.6 tribute */
             if (!dknown)
-                Strcpy(buf, "book");
+                Strcpy(buf, "书");
             else if (nn)
                 Strcpy(buf, actualn);
             else if (un)
-                Sprintf(buf, "novel called %s", un);
+                Sprintf(buf, "被称为%s的小说", un);
             else
-                Sprintf(buf, "%s book", dn);
+                Sprintf(buf, "%s 书", dn);
             break;
             /* end of tribute */
         } else if (!dknown) {
-            Strcpy(buf, "spellbook");
+            Strcpy(buf, "魔法书");  //spellbook
         } else if (nn) {
             if (typ != SPE_BOOK_OF_THE_DEAD)
-                Strcpy(buf, "spellbook of ");
+                Strcpy(buf, "魔法书之  ");
             Strcat(buf, actualn);
         } else if (un) {
-            Sprintf(buf, "spellbook called %s", un);
+            Sprintf(buf, "魔法书被称为 %s", un);
         } else
-            Sprintf(buf, "%s spellbook", dn);
+            Sprintf(buf, "%s 魔法书", dn);
         break;
     case RING_CLASS:
         if (!dknown)
-            Strcpy(buf, "ring");
+            Strcpy(buf, "戒指");  //ring
         else if (nn)
-            Sprintf(buf, "ring of %s", actualn);
+            Sprintf(buf, " %s  戒指", actualn);
         else if (un)
-            Sprintf(buf, "ring called %s", un);
+            Sprintf(buf, "戒指被称为 %s", un);
         else
-            Sprintf(buf, "%s ring", dn);
+            Sprintf(buf, "%s戒指", dn);
         break;
     case GEM_CLASS: {
-        const char *rock = (ocl->oc_material == MINERAL) ? "stone" : "gem";
+        const char *rock = (ocl->oc_material == MINERAL) ? "石头" : "宝石";  //gem
 
         if (!dknown) {
             Strcpy(buf, rock);
         } else if (!nn) {
             if (un)
-                Sprintf(buf, "%s called %s", rock, un);
+                Sprintf(buf, "%s 被称为 %s", rock, un);
             else
                 Sprintf(buf, "%s %s", dn, rock);
         } else {
             Strcpy(buf, actualn);
             if (GemStone(typ))
-                Strcat(buf, " stone");
+                Strcat(buf, " 石头");
         }
         break;
     }
@@ -550,7 +549,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     }
 
     if (has_oname(obj) && dknown) {
-        Strcat(buf, " named ");
+        Strcat(buf, "  名为 ");
     nameit:
         Strcat(buf, ONAME(obj));
     }
@@ -602,8 +601,8 @@ struct obj *obj;
         bareobj.spe = obj->spe;
 
     bufp = distant_name(&bareobj, xname); /* xname(&bareobj) */
-    if (!strncmp(bufp, " 未被诅咒的 ", 9))
-        bufp += 9; /* Role_if(PM_PRIEST) */
+    if (!strncmp(bufp, " 未被诅咒的 ", 17))
+        bufp += 17; /* Role_if(PM_PRIEST) */
 
     objects[otyp].oc_uname = saveobcls.oc_uname;
     objects[otyp].oc_name_known = saveobcls.oc_name_known;
@@ -686,34 +685,34 @@ char *prefix;
     if (obj->oeroded && !iscrys) {
         switch (obj->oeroded) {
         case 2:
-            Strcat(prefix, "very ");
+            Strcat(prefix, "非常 ");
             break;
         case 3:
-            Strcat(prefix, "thoroughly ");
+            Strcat(prefix, "完全 ");
             break;
         }
-        Strcat(prefix, is_rustprone(obj) ? "rusty " : "burnt ");
+        Strcat(prefix, is_rustprone(obj) ? "生锈的 " : "烧焦的 ");
     }
     if (obj->oeroded2 && !iscrys) {
         switch (obj->oeroded2) {
         case 2:
-            Strcat(prefix, "very ");
+            Strcat(prefix, "非常 ");
             break;
         case 3:
-            Strcat(prefix, "thoroughly ");
+            Strcat(prefix, "完全 ");
             break;
         }
-        Strcat(prefix, is_corrodeable(obj) ? "corroded " : "rotted ");
+        Strcat(prefix, is_corrodeable(obj) ? "腐蚀的 " : "腐烂的 ");
     }
     if (rknown && obj->oerodeproof)
         Strcat(prefix, iscrys
-                          ? "fixed "
+                          ? "定形的 "
                           : is_rustprone(obj)
-                             ? "rustproof "
+                             ? "防锈的 "
                              : is_corrodeable(obj)
-                                ? "corrodeproof " /* "stainless"? */
+                                ? "防腐蚀的 " /* "stainless"? */
                                 : is_flammable(obj)
-                                   ? "fireproof "
+                                   ? "防火的 "
                                    : "");
 }
 
@@ -746,8 +745,8 @@ boolean with_price;
      * combining both into one function taking a parameter.
      */
     /* must check opoisoned--someone can have a weirdly-named fruit */
-    if (!strncmp(bp, "poisoned ", 9) && obj->opoisoned) {
-        bp += 9;
+    if (!strncmp(bp, "有毒的 ", 10) && obj->opoisoned) {
+        bp += 10;
         ispoisoned = TRUE;
     }
 
@@ -781,7 +780,7 @@ boolean with_price;
              /* not bag of tricks: empty if container which has no contents */
              : (Is_container(obj) || obj->otyp == STATUE)
             && !Has_contents(obj)))
-        Strcat(prefix, "empty ");
+        Strcat(prefix, "空的 ");
 
     if (bknown && obj->oclass != COIN_CLASS
         && (obj->otyp != POT_WATER || !objects[POT_WATER].oc_name_known
@@ -818,15 +817,15 @@ boolean with_price;
 
     if (lknown && Is_box(obj)) {
         if (obj->obroken)
-            Strcat(prefix, "unlockable ");
+            Strcat(prefix, "坏锁的 ");
         else if (obj->olocked)
-            Strcat(prefix, "locked ");
+            Strcat(prefix, "上锁的 ");
         else
-            Strcat(prefix, "unlocked ");
+            Strcat(prefix, "未锁的 ");
     }
 
     if (obj->greased)
-        Strcat(prefix, "greased ");
+        Strcat(prefix, "上油的 ");
 
     if (cknown && Has_contents(obj)) {
         /* we count all objects (obj->quantity); perhaps we should
@@ -836,8 +835,7 @@ boolean with_price;
            when there are 2 scrolls plus 1000 gold pieces */
         long itemcount = count_contents(obj, FALSE, FALSE, TRUE);
 
-        Sprintf(eos(bp), " containing %ld item%s", itemcount,
-                plur(itemcount));
+        Sprintf(eos(bp), " 包含%ld 件物品", itemcount);
     }
 
     switch (obj->oclass) {
@@ -847,7 +845,7 @@ boolean with_price;
         break;
     case WEAPON_CLASS:
         if (ispoisoned)
-            Strcat(prefix, "poisoned ");
+            Strcat(prefix, "有毒的 ");
     plus:
         add_erosion_words(obj, prefix);
         if (known) {
@@ -869,26 +867,26 @@ boolean with_price;
             break;
         }
         if (obj->otyp == LEASH && obj->leashmon != 0) {
-            Strcat(bp, " (in use)");
+            Strcat(bp, " ( 使用中)");
             break;
         }
         if (is_weptool(obj))
             goto plus;
         if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
             if (!obj->spe)
-                Strcpy(tmpbuf, "no");
+                Strcpy(tmpbuf, "无");
             else
                 Sprintf(tmpbuf, "%d", obj->spe);
-            Sprintf(eos(bp), " (%s candle%s%s)", tmpbuf, plur(obj->spe),
-                    !obj->lamplit ? " attached" : ", lit");
+            Sprintf(eos(bp), " (%s 蜡烛%s)", tmpbuf,
+                    !obj->lamplit ? " 在上面" : ",  点着");
             break;
         } else if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP
                    || obj->otyp == BRASS_LANTERN || Is_candle(obj)) {
             if (Is_candle(obj)
                 && obj->age < 20L * (long) objects[obj->otyp].oc_cost)
-                Strcat(prefix, "partly used ");
+                Strcat(prefix, "部分使用的 ");
             if (obj->lamplit)
-                Strcat(bp, " (lit)");
+                Strcat(bp, " ( 点着)");
             break;
         }
         if (objects[obj->otyp].oc_charged)
@@ -902,7 +900,7 @@ boolean with_price;
         break;
     case POTION_CLASS:
         if (obj->otyp == POT_OIL && obj->lamplit)
-            Strcat(bp, " (lit)");
+            Strcat(bp, " ( 点着)");
         break;
     case RING_CLASS:
         add_erosion_words(obj, prefix);
@@ -922,14 +920,14 @@ boolean with_price;
         break;
     case FOOD_CLASS:
         if (obj->oeaten)
-            Strcat(prefix, "partly eaten ");
+            Strcat(prefix, "部分食用的 ");
         if (obj->otyp == CORPSE) {
             Sprintf(prefix, "%s ",
                     corpse_xname(obj, prefix, CXN_ARTICLE | CXN_NOCORPSE));
         } else if (obj->otyp == EGG) {
 #if 0 /* corpses don't tell if they're stale either */
             if (known && stale_egg(obj))
-                Strcat(prefix, "stale ");
+                Strcat(prefix, "不新鲜的 ");
 #endif
             if (omndx >= LOW_PM
                 && (known || (mvitals[omndx].mvflags & MV_KNOWS_EGG))) {
@@ -952,7 +950,7 @@ boolean with_price;
 
     if ((obj->owornmask & W_WEP) && !mrg_to_wielded) {
         if (obj->quan != 1L) {
-            Strcat(bp, " (wielded)");
+            Strcat(bp, " ( 使用中)");
         } else {
             const char *hand_s = body_part(HAND);
 
@@ -1660,10 +1658,10 @@ struct obj *obj;
 }
 
 static const char *wrp[] = {
-    "wand",   "ring",      "potion",     "scroll", "gem",
-    "amulet", "spellbook", "spell book",
+    "魔杖",   "戒指",      "药水",     "卷轴", "宝石",
+    "护身符", "魔法书", "spellbook",
     /* for non-specific wishes */
-    "weapon", "armor",     "tool",       "food",   "comestible",
+    "武器", "防具",     "工具",       "食物",   "粮食",
 };
 static const char wrpsym[] = { WAND_CLASS,   RING_CLASS,   POTION_CLASS,
                                SCROLL_CLASS, GEM_CLASS,    AMULET_CLASS,
@@ -1731,9 +1729,9 @@ register const char *verb;
             goto sing;
         spot = (const char *) 0;
         for (sp = subj; (sp = index(sp, ' ')) != 0; ++sp) {
-            if (!strncmpi(sp, " of ", 4) || !strncmpi(sp, " from ", 6)
-                || !strncmpi(sp, " called ", 8) || !strncmpi(sp, " named ", 7)
-                || !strncmpi(sp, " labeled ", 9)) {
+            if (!strncmpi(sp, " 之  ", 6) || !strncmpi(sp, " from ", 6)
+                || !strncmpi(sp, " 被称为 ", 11) || !strncmpi(sp, "  名为 ", 9)
+                || !strncmpi(sp, " 标签为 ", 11)) {
                 if (sp != subj)
                     spot = sp - 1;
                 break;
@@ -1961,7 +1959,7 @@ const char *oldstr;
      * and pair for objects and non-humans, e.g. 3 pair of boots.  We don't
      * refer to pairs of humans in this game so just skip to the bottom.
      */
-    if (!strncmpi(str, "pair of ", 8))
+    if (!strncmpi(str, "一双 ", 7))
         goto bottom;
 
     /* look for "foo of bar" so that we can focus on "foo" */
@@ -1998,8 +1996,8 @@ const char *oldstr;
             goto bottom;
 
         /* more of same, but not suitable for blanket loop checking */
-        if ((len == 2 && !strcmpi(str, "ya"))
-            || (len >= 3 && !strcmpi(spot - 2, " ya")))
+        if ((len == 3 && !strcmpi(str, "矢"))
+            || (len >= 4 && !strcmpi(spot - 3, " 矢")))
             goto bottom;
     }
 
@@ -2216,8 +2214,8 @@ const char *u_str;      /* from user, so might be variant spelling */
 const char *o_str;      /* from objects[], so is in canonical form */
 boolean retry_inverted; /* optional extra "of" handling */
 {
-    static NEARDATA const char detect_SP[] = "detect ",
-                               SP_detection[] = " detection";
+    static NEARDATA const char detect_SP[] = "探测",
+                               SP_detection[] = "探测";
     char *p, buf[BUFSZ];
 
     /* ignore spaces & hyphens and upper/lower case when comparing */
@@ -2229,10 +2227,10 @@ boolean retry_inverted; /* optional extra "of" handling */
 
         /* when just one of the strings is in the form "foo of bar",
            convert it into "bar foo" and perform another comparison */
-        u_of = strstri(u_str, " of ");
-        o_of = strstri(o_str, " of ");
+        u_of = strstri(u_str, "之");
+        o_of = strstri(o_str, "之");
         if (u_of && !o_of) {
-            Strcpy(buf, u_of + 4);
+            Strcpy(buf, u_of + 3);
             p = eos(strcat(buf, " "));
             while (u_str < u_of)
                 *p++ = *u_str++;
@@ -2251,10 +2249,10 @@ boolean retry_inverted; /* optional extra "of" handling */
     /* [note: if something like "elven speed boots" ever gets added, these
        special cases should be changed to call wishymatch() recursively in
        order to get the "of" inversion handling] */
-    if (!strncmp(o_str, "dwarvish ", 9)) {
+    if (!strncmp(o_str, "矮人", 6)) {
         if (!strncmpi(u_str, "dwarven ", 8))
-            return fuzzymatch(u_str + 8, o_str + 9, " -", TRUE);
-    } else if (!strncmp(o_str, "elven ", 6)) {
+            return fuzzymatch(u_str + 8, o_str + 6, " -", TRUE);
+    } else if (!strncmp(o_str, "精灵", 6)) {
         if (!strncmpi(u_str, "elvish ", 7))
             return fuzzymatch(u_str + 7, o_str + 6, " -", TRUE);
         else if (!strncmpi(u_str, "elfin ", 6))
@@ -2267,7 +2265,7 @@ boolean retry_inverted; /* optional extra "of" handling */
             *p = '\0';
             Strcat(strcpy(buf, detect_SP), u_str);
             /* "detect monster" -> "detect monsters" */
-            if (!strcmpi(u_str, "monster"))
+            if (!strcmpi(u_str, "怪物"))
                 Strcat(buf, "s");
             *p = ' ';
             return fuzzymatch(buf, o_str, " -", TRUE);
@@ -2283,21 +2281,21 @@ boolean retry_inverted; /* optional extra "of" handling */
             releaseobuf(p);
             return fuzzymatch(buf, o_str, " -", TRUE);
         }
-    } else if (strstri(o_str, "ability")) {
+    } else if (strstri(o_str, "能力")) {
         /* when presented with "foo of bar", makesingular() used to
            singularize both foo & bar, but now only does so for foo */
         /* catch "{potion(s),ring} of {gain,restore,sustain} abilities" */
-        if ((p = strstri(u_str, "abilities")) != 0
-            && !*(p + sizeof "abilities" - 1)) {
+        if ((p = strstri(u_str, "能力")) != 0
+            && !*(p + sizeof "能力" - 1)) {
             (void) strncpy(buf, u_str, (unsigned) (p - u_str));
-            Strcpy(buf + (p - u_str), "ability");
+            Strcpy(buf + (p - u_str), "能力");
             return fuzzymatch(buf, o_str, " -", TRUE);
         }
-    } else if (!strcmp(o_str, "aluminum")) {
+    } else if (!strcmp(o_str, "铝制")) {
         /* this special case doesn't really fit anywhere else... */
         /* (note that " wand" will have been stripped off by now) */
-        if (!strcmpi(u_str, "aluminium"))
-            return fuzzymatch(u_str + 9, o_str + 8, " -", TRUE);
+        if (!strcmpi(u_str, "铝制"))
+            return fuzzymatch(u_str + 6, o_str + 6, " -", TRUE);
     }
 
     return FALSE;
@@ -2492,39 +2490,39 @@ struct obj *no_wish;
             while (*bp == ' ')
                 bp++;
             l = 0;
-        } else if (!strncmpi(bp, " 受祝福的 ", l = 8)
-                   || !strncmpi(bp, "holy ", l = 5)) {
+        } else if (!strncmpi(bp, "受祝福的", l = 12)
+                   || !strncmpi(bp, "圣", l = 3)) {
             blessed = 1;
-        } else if (!strncmpi(bp, "moist ", l = 6)
-                   || !strncmpi(bp, "wet ", l = 4)) {
-            if (!strncmpi(bp, "wet ", 4))
+        } else if (!strncmpi(bp, "潮湿的", l = 9)
+                   || !strncmpi(bp, "湿的", l = 6)) {
+            if (!strncmpi(bp, "湿的", 6))
                 wetness = rn2(3) + 3;
             else
                 wetness = rnd(2);
-        } else if (!strncmpi(bp, " 被诅咒的 ", l = 7)
-                   || !strncmpi(bp, "unholy ", l = 7)) {
+        } else if (!strncmpi(bp, "被诅咒的", l = 12)
+                   || !strncmpi(bp, "邪", l = 3)) {
             iscursed = 1;
-        } else if (!strncmpi(bp, " 未被诅咒的 ", l = 9)) {
+        } else if (!strncmpi(bp, "未被诅咒的", l = 15)) {
             uncursed = 1;
-        } else if (!strncmpi(bp, "rustproof ", l = 10)
+        } else if (!strncmpi(bp, "防锈的", l = 9)
                    || !strncmpi(bp, "erodeproof ", l = 11)
-                   || !strncmpi(bp, "corrodeproof ", l = 13)
-                   || !strncmpi(bp, "fixed ", l = 6)
-                   || !strncmpi(bp, "fireproof ", l = 10)
-                   || !strncmpi(bp, "rotproof ", l = 9)) {
+                   || !strncmpi(bp, "防腐蚀的", l = 12)
+                   || !strncmpi(bp, "定形的", l = 9)
+                   || !strncmpi(bp, "防火的", l = 9)
+                   || !strncmpi(bp, "防腐烂的", l = 12)) {
             erodeproof = 1;
-        } else if (!strncmpi(bp, "lit ", l = 4)
+        } else if (!strncmpi(bp, "点着", l = 6)
                    || !strncmpi(bp, "burning ", l = 8)) {
             islit = 1;
-        } else if (!strncmpi(bp, "unlit ", l = 6)
+        } else if (!strncmpi(bp, "未点着", l = 9)
                    || !strncmpi(bp, "extinguished ", l = 13)) {
             islit = 0;
             /* "unlabeled" and "blank" are synonymous */
-        } else if (!strncmpi(bp, "unlabeled ", l = 10)
-                   || !strncmpi(bp, "unlabelled ", l = 11)
-                   || !strncmpi(bp, "blank ", l = 6)) {
+        } else if (!strncmpi(bp, "无标签的", l = 12)
+                   || !strncmpi(bp, "unlabeled ", l = 11)
+                   || !strncmpi(bp, "空白", l = 6)) {
             unlabeled = 1;
-        } else if (!strncmpi(bp, "poisoned ", l = 9)) {
+        } else if (!strncmpi(bp, "有毒的", l = 9)) {
             ispoisoned = 1;
             /* "trapped" recognized but not honored outside wizard mode */
         } else if (!strncmpi(bp, "trapped ", l = 8)) {
@@ -2533,31 +2531,31 @@ struct obj *no_wish;
                 trapped = 1;
         } else if (!strncmpi(bp, "untrapped ", l = 10)) {
             trapped = 2; /* not trapped */
-        } else if (!strncmpi(bp, "greased ", l = 8)) {
+        } else if (!strncmpi(bp, "上油的", l = 9)) {
             isgreased = 1;
-        } else if (!strncmpi(bp, "very ", l = 5)) {
+        } else if (!strncmpi(bp, "非常", l = 6)) {
             /* very rusted very heavy iron ball */
             very = 1;
-        } else if (!strncmpi(bp, "thoroughly ", l = 11)) {
+        } else if (!strncmpi(bp, "完全", l = 6)) {
             very = 2;
-        } else if (!strncmpi(bp, "rusty ", l = 6)
+        } else if (!strncmpi(bp, "生锈的", l = 9)
                    || !strncmpi(bp, "rusted ", l = 7)
-                   || !strncmpi(bp, "burnt ", l = 6)
+                   || !strncmpi(bp, "烧焦的", l = 9)
                    || !strncmpi(bp, "burned ", l = 7)) {
             eroded = 1 + very;
             very = 0;
-        } else if (!strncmpi(bp, "corroded ", l = 9)
-                   || !strncmpi(bp, "rotted ", l = 7)) {
+        } else if (!strncmpi(bp, "腐蚀的", l = 9)
+                   || !strncmpi(bp, "腐烂的", l = 9)) {
             eroded2 = 1 + very;
             very = 0;
-        } else if (!strncmpi(bp, "partly eaten ", l = 13)
+        } else if (!strncmpi(bp, "部分食用的", l = 15)
                    || !strncmpi(bp, "partially eaten ", l = 16)) {
             halfeaten = 1;
         } else if (!strncmpi(bp, "historic ", l = 9)) {
             ishistoric = 1;
         } else if (!strncmpi(bp, "diluted ", l = 8)) {
             isdiluted = 1;
-        } else if (!strncmpi(bp, "empty ", l = 6)) {
+        } else if (!strncmpi(bp, "空的", l = 6)) {
             contents = EMPTY;
         } else
             break;
@@ -2570,9 +2568,9 @@ struct obj *no_wish;
 
         p[(p > bp && p[-1] == ' ') ? -1 : 0] = '\0'; /*terminate bp */
         ++p; /* advance past '(' */
-        if (!strncmpi(p, "lit)", 4)) {
+        if (!strncmpi(p, "点着)", 6)) {
             islit = 1;
-            p += 4 - 1; /* point at ')' */
+            p += 6 - 1; /* point at ')' */
         } else {
             spe = atoi(p);
             while (digit(*p))
@@ -2628,13 +2626,13 @@ struct obj *no_wish;
      *  wand of wishing
      *  elven cloak
      */
-    if ((p = strstri(bp, " named ")) != 0) {
+    if ((p = strstri(bp, "名为")) != 0) {
         *p = 0;
-        name = p + 7;
+        name = p + 6;
     }
-    if ((p = strstri(bp, " called ")) != 0) {
+    if ((p = strstri(bp, "被称为")) != 0) {
         *p = 0;
-        un = p + 8;
+        un = p + 9;
         /* "helmet called telepathy" is not "helmet" (a specific type)
          * "shield called reflection" is not "shield" (a general type)
          */
@@ -2644,7 +2642,7 @@ struct obj *no_wish;
                 goto srch;
             }
     }
-    if ((p = strstri(bp, " labeled ")) != 0) {
+    if ((p = strstri(bp, "标签为")) != 0) {
         *p = 0;
         dn = p + 9;
     } else if ((p = strstri(bp, " labelled ")) != 0) {
@@ -2669,14 +2667,14 @@ struct obj *no_wish;
     -- boots, gloves, and lenses -- are also not mergable, so cnt is
     ignored anyway.
     */
-    if (!strncmpi(bp, "pair of ", 8)) {
-        bp += 8;
+    if (!strncmpi(bp, "一双", 6)) {
+        bp += 6;
         cnt *= 2;
     } else if (cnt > 1 && !strncmpi(bp, "pairs of ", 9)) {
         bp += 9;
         cnt *= 2;
-    } else if (!strncmpi(bp, "set of ", 7)) {
-        bp += 7;
+    } else if (!strncmpi(bp, "一套", 6)) {
+        bp += 6;
     } else if (!strncmpi(bp, "sets of ", 8)) {
         bp += 8;
     }
@@ -2700,25 +2698,25 @@ struct obj *no_wish;
          * Don't check if it's a wand or spellbook.
          * (avoid "wand/finger of death" confusion).
          */
-        if (!strstri(bp, "wand ") && !strstri(bp, "spellbook ")
+        if (!strstri(bp, "魔杖") && !strstri(bp, "魔法书")
             && !strstri(bp, "finger ")) {
             if (((p = strstri(bp, "tin of ")) != 0)
                 && (tmp = tin_variety_txt(p + 7, &tinv))
                 && (mntmp = name_to_mon(p + 7 + tmp)) >= LOW_PM) {
                 *(p + 3) = 0;
                 tvariety = tinv;
-            } else if ((p = strstri(bp, " of ")) != 0
-                       && (mntmp = name_to_mon(p + 4)) >= LOW_PM)
+            } else if ((p = strstri(bp, "之")) != 0
+                       && (mntmp = name_to_mon(p + 3)) >= LOW_PM)
                 *p = 0;
         }
     }
     /* Find corpse type w/o "of" (red dragon scale mail, yeti corpse) */
-    if (strncmpi(bp, "samurai sword", 13))   /* not the "samurai" monster! */
-        if (strncmpi(bp, "wizard lock", 11)) /* not the "wizard" monster! */
+    if (strncmpi(bp, "武士刀", 9))   /* not the "samurai" monster! */
+        if (strncmpi(bp, "巫师锁", 9)) /* not the "wizard" monster! */
             if (strncmpi(bp, "ninja-to", 8)) /* not the "ninja" rank */
-                if (strncmpi(bp, "master key",
-                             10)) /* not the "master" rank */
-                    if (strncmpi(bp, "magenta", 7)) /* not the "mage" rank */
+                if (strncmpi(bp, "万能钥匙",
+                             12)) /* not the "master" rank */
+                    if (strncmpi(bp, "洋红色", 9)) /* not the "mage" rank */
                         if (mntmp < LOW_PM && strlen(bp) > 2
                             && (mntmp = name_to_mon(bp)) >= LOW_PM) {
                             int mntmptoo,
@@ -2785,7 +2783,7 @@ struct obj *no_wish;
     }
 
     p = eos(bp);
-    if (!BSTRCMPI(bp, p - 10, "holy water")) {
+    if (!BSTRCMPI(bp, p - 6, "圣水")) {
         typ = POT_WATER;
         if ((p - bp) >= 12 && *(p - 12) == 'u')
             iscursed = 1; /* unholy water */
@@ -2793,11 +2791,11 @@ struct obj *no_wish;
             blessed = 1;
         goto typfnd;
     }
-    if (unlabeled && !BSTRCMPI(bp, p - 6, "scroll")) {
+    if (unlabeled && !BSTRCMPI(bp, p - 6, "卷轴")) {
         typ = SCR_BLANK_PAPER;
         goto typfnd;
     }
-    if (unlabeled && !BSTRCMPI(bp, p - 9, "spellbook")) {
+    if (unlabeled && !BSTRCMPI(bp, p - 9, "魔法书")) {
         typ = SPE_BLANK_PAPER;
         goto typfnd;
     }
@@ -2807,7 +2805,7 @@ struct obj *no_wish;
      * gold/money concept.  Maybe we want to add other monetary units as
      * well in the future. (TH)
      */
-    if (!BSTRCMPI(bp, p - 10, "gold piece") || !BSTRCMPI(bp, p - 7, "zorkmid")
+    if (!BSTRCMPI(bp, p - 6, "金币") || !BSTRCMPI(bp, p - 7, "zorkmid")
         || !strcmpi(bp, "gold") || !strcmpi(bp, "money")
         || !strcmpi(bp, "coin") || *bp == GOLD_SYM) {
         if (cnt > 5000 && !wizard)
@@ -2830,21 +2828,22 @@ struct obj *no_wish;
 
     /* Search for class names: XXXXX potion, scroll of XXXXX.  Avoid */
     /* false hits on, e.g., rings for "ring mail". */
-    if (strncmpi(bp, "enchant ", 8) && strncmpi(bp, "destroy ", 8)
-        && strncmpi(bp, "detect food", 11)
-        && strncmpi(bp, "food detection", 14) && strncmpi(bp, "ring mail", 9)
-        && strncmpi(bp, "studded leather armor", 21)
-        && strncmpi(bp, "leather armor", 13)
-        && strncmpi(bp, "tooled horn", 11) && strncmpi(bp, "food ration", 11)
-        && strncmpi(bp, "meat ring", 9))
+    if (strncmpi(bp, "防具附魔", 12) && strncmpi(bp, "防具毁坏", 12)
+        && strncmpi(bp, "武器附魔", 12)
+        && strncmpi(bp, "探测食物", 12)
+        && strncmpi(bp, "食物探测", 12) && strncmpi(bp, "锁环甲", 9)
+        && strncmpi(bp, "嵌皮甲", 9)
+        && strncmpi(bp, "皮甲", 6)
+        && strncmpi(bp, "加工号角", 12) && strncmpi(bp, "口粮", 6)
+        && strncmpi(bp, "肉环", 6))
         for (i = 0; i < (int) (sizeof wrpsym); i++) {
             register int j = strlen(wrp[i]);
             if (!strncmpi(bp, wrp[i], j)) {
                 oclass = wrpsym[i];
                 if (oclass != AMULET_CLASS) {
                     bp += j;
-                    if (!strncmpi(bp, " of ", 4))
-                        actualn = bp + 4;
+                    if (!strncmpi(bp, "之", 3))
+                        actualn = bp + 3;
                     /* else if(*bp) ?? */
                 } else
                     actualn = bp;
@@ -2852,7 +2851,7 @@ struct obj *no_wish;
             }
             if (!BSTRCMPI(bp, p - j, wrp[i])) {
                 oclass = wrpsym[i];
-                p -= j;
+                if (oclass != AMULET_CLASS) p -= j;
                 *p = 0;
                 if (p > bp && p[-1] == ' ')
                     p[-1] = 0;
@@ -2910,26 +2909,26 @@ retry:
             goto typfnd;
         }
 
-    if (!BSTRCMPI(bp, p - 6, " stone") || !BSTRCMPI(bp, p - 4, " gem")) {
-        p[!strcmpi(p - 4, " gem") ? -4 : -6] = '\0';
+    if (!BSTRCMPI(bp, p - 6, "石头") || !BSTRCMPI(bp, p - 6, "宝石")) {
+        p[!strcmpi(p - 6, "宝石") ? -6 : -6] = '\0';
         oclass = GEM_CLASS;
         dn = actualn = bp;
         goto srch;
-    } else if (!strcmpi(bp, "looking glass")) {
+    } else if (!strcmpi(bp, "镜子")) {
         ; /* avoid false hit on "* glass" */
-    } else if (!BSTRCMPI(bp, p - 6, " glass") || !strcmpi(bp, "glass")) {
+    } else if (!BSTRCMPI(bp, p - 6, "玻璃") || !strcmpi(bp, "玻璃")) {
         register char *g = bp;
         if (strstri(g, "broken"))
             return (struct obj *) 0;
-        if (!strncmpi(g, "worthless ", 10))
-            g += 10;
-        if (!strncmpi(g, "piece of ", 9))
-            g += 9;
+        if (!strncmpi(g, "毫无价值的", 15))
+            g += 15;
+        if (!strncmpi(g, "一块", 6))
+            g += 6;
         if (!strncmpi(g, "colored ", 8))
             g += 8;
         else if (!strncmpi(g, "coloured ", 9))
             g += 9;
-        if (!strcmpi(g, "glass")) { /* choose random color */
+        if (!strcmpi(g, "玻璃")) { /* choose random color */
             /* 9 different kinds */
             typ = LAST_GEM + rnd(9);
             if (objects[typ].oc_class == GEM_CLASS)
@@ -2939,7 +2938,7 @@ retry:
         } else { /* try to construct canonical form */
             char tbuf[BUFSZ];
 
-            Strcpy(tbuf, "worthless piece of ");
+            Strcpy(tbuf, "毫无价值的一块");
             Strcat(tbuf, g); /* assume it starts with the color */
             Strcpy(bp, tbuf);
         }
@@ -3034,14 +3033,14 @@ srch:
                 while (*fp == ' ')
                     fp++;
                 l = 0;
-            } else if (!strncmpi(fp, " 受祝福的 ", l = 8)) {
+            } else if (!strncmpi(fp, "受祝福的", l = 12)) {
                 blessedf = 1;
-            } else if (!strncmpi(fp, " 被诅咒的 ", l = 7)) {
+            } else if (!strncmpi(fp, "被诅咒的", l = 12)) {
                 iscursedf = 1;
-            } else if (!strncmpi(fp, " 未被诅咒的 ", l = 9)) {
+            } else if (!strncmpi(fp, "未被诅咒的", l = 15)) {
                 uncursedf = 1;
             } else if (!strncmpi(fp, "partly eaten ", l = 13)
-                       || !strncmpi(fp, "partially eaten ", l = 16)) {
+                       || !strncmpi(fp, "部分食用的", l = 15)) {
                 halfeatenf = 1;
             } else
                 break;

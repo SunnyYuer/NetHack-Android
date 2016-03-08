@@ -49,23 +49,23 @@ const char *goal;
     boolean doing_what_is;
     winid tmpwin = create_nhwindow(NHW_MENU);
 
-    Sprintf(sbuf, "Use [%c%c%c%c] to move the cursor to %s.", /* hjkl */
+    Sprintf(sbuf, "使用 [%c%c%c%c]  来移动光标到 %s.", /* hjkl */
             Cmd.move_W, Cmd.move_S, Cmd.move_N, Cmd.move_E, goal);
     putstr(tmpwin, 0, sbuf);
-    putstr(tmpwin, 0, "Use [HJKL] to move the cursor 8 units at a time.");
-    putstr(tmpwin, 0, "Or enter a background symbol (ex. <).");
-    putstr(tmpwin, 0, "Use @ to move the cursor on yourself.");
+    putstr(tmpwin, 0, "使用 [HJKL]  一次移动光标8 格.");
+    putstr(tmpwin, 0, "或输入地图上事物的符号( 例 <).");
+    putstr(tmpwin, 0, "使用 @  使光标回到自己位置.");
     if (getpos_hilitefunc != NULL)
-        putstr(tmpwin, 0, "Use $ to display valid locations.");
-    putstr(tmpwin, 0, "Use # to toggle automatic description.");
+        putstr(tmpwin, 0, "使用 $  来显示有效位置.");
+    putstr(tmpwin, 0, "使用 #  来切换自动描述开关.");
     /* disgusting hack; the alternate selection characters work for any
        getpos call, but they only matter for dowhatis (and doquickwhatis) */
     doing_what_is = (goal == what_is_an_unknown_object);
-    Sprintf(sbuf, "Type a .%s when you are at the right place.",
-            doing_what_is ? " or , or ; or :" : "");
+    Sprintf(sbuf, "输入  .%s  当你已在正确的位置.",
+            doing_what_is ? "  或 ,  或 ;  或 :" : "");
     putstr(tmpwin, 0, sbuf);
     if (!force)
-        putstr(tmpwin, 0, "Type Space or Escape when you're done.");
+        putstr(tmpwin, 0, "当你完成时输入空格或Esc.");
     putstr(tmpwin, 0, "");
     display_nhwindow(tmpwin, TRUE);
     destroy_nhwindow(tmpwin);
@@ -105,7 +105,7 @@ const char *goal;
 #endif
     for (;;) {
         if (show_goal_msg) {
-            pline("Move cursor to %s:", goal);
+            pline("移动光标到 %s:", goal);
             curs(WIN_MAP, cx, cy);
             flush_screen(0);
             show_goal_msg = FALSE;
@@ -207,9 +207,9 @@ const char *goal;
             goto nxtc;
         } else if (c == '#') {
             auto_msg = !auto_msg;
-            pline("Automatic description %sis %s.",
-                  flags.verbose ? "of features under cursor " : "",
-                  auto_msg ? "on" : "off");
+            pline("自动描述%s: %s.",
+                  flags.verbose ? "光标下的事物" : "",
+                  auto_msg ? "开" : "关");
             if (!auto_msg)
                 show_goal_msg = TRUE;
             msg_given = TRUE;
@@ -267,7 +267,7 @@ const char *goal;
                             } /* column */
                         }     /* row */
                     }         /* pass */
-                    pline("Can't find dungeon feature '%c'.", c);
+                    pline("不能找到该对象 '%c'.", c);
                     msg_given = TRUE;
                     goto nxtc;
                 } else {
@@ -276,10 +276,10 @@ const char *goal;
                     if (!force)
                         Strcpy(note, "aborted");
                     else
-                        Sprintf(note, "use %c%c%c%c or .", /* hjkl */
+                        Sprintf(note, " 用 %c%c%c%c  或 .", /* hjkl */
                                 Cmd.move_W, Cmd.move_S, Cmd.move_N,
                                 Cmd.move_E);
-                    pline("Unknown direction: '%s' (%s).", visctrl((char) c),
+                    pline("未知方向: '%s' (%s).", visctrl((char) c),
                           note);
                     msg_given = TRUE;
                 } /* k => matching */
@@ -496,8 +496,8 @@ register struct obj *obj;
         return;
     }
 
-    Sprintf(qbuf, "What do you want to name %s ",
-            is_plural(obj) ? "these" : "this");
+    Sprintf(qbuf, "你想命名为什么给%s ",
+            is_plural(obj) ? "这些" : "这个");
     (void) safe_qbuf(qbuf, qbuf, "?", obj, xname, simpleonames, "item");
     getlin(qbuf, buf);
     if (!*buf || *buf == '\033')
@@ -1020,7 +1020,7 @@ boolean called;
 
         switch (article) {
         case ARTICLE_YOUR:
-            Strcpy(buf2, "your ");
+            Strcpy(buf2, "你的 ");
             Strcat(buf2, buf);
             Strcpy(buf, buf2);
             return buf;

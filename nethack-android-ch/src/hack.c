@@ -1600,8 +1600,9 @@ domove()
             newsym(x, y);
             newsym(u.ux0, u.uy0);
 
-            You("%s %s.", mtmp->mtame ? "swap places with" : "frighten",
-                pnambuf);
+            You("%s%s %s.", mtmp->mtame ? "和" : "把",
+                pnambuf,
+                mtmp->mtame ? "换了个位置" : "赶走了");
 
             /* check for displacing it into pools and traps */
             switch (minliquid(mtmp) ? 2 : mintrap(mtmp)) {

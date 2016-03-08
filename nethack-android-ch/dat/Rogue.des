@@ -104,7 +104,7 @@ DOOR: closed, (68,18)
 # Master of Thieves
 MONSTER:('@',"Master of Thieves"),(36,11)
 # The treasure of Master of Thieves
-OBJECT:('(',"chest"),(36,11)
+OBJECT:('(',"箱子"),(36,11)
 # thug guards, room #1
 MONSTER:('@',"thug"),(28,10)
 MONSTER:('@',"thug"),(29,11)
@@ -204,7 +204,7 @@ STAIR:random,down
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,20)
 # Objects
-OBJECT:('?',"teleportation"),(11,18),cursed,0
+OBJECT:('?',"传送"),(11,18),cursed,0
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -307,8 +307,8 @@ NON_DIGGABLE:(00,00,75,20)
 # One trap to keep the gnomes at bay.
 TRAP:"spiked pit",(37,07)
 # Objects
-OBJECT:('(',"skeleton key"),(38,10),blessed,0,name:"The Master Key of Thievery"
-OBJECT:('%',"tin"),(26,12),montype:"chameleon"
+OBJECT:('(',"万能钥匙"),(38,10),blessed,0,name:"The Master Key of Thievery"
+OBJECT:('%',"罐头"),(26,12),montype:"chameleon"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

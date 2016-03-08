@@ -1099,7 +1099,7 @@ register const char *let, *word;
                  /* include horn of plenty if sufficiently discovered */
                  && (otmp->otyp != HORN_OF_PLENTY || !otmp->dknown
                      || !objects[HORN_OF_PLENTY].oc_name_known))
-             || (!strcmp(word, "charge") && !is_chargeable(otmp))
+             || (!strcmp(word, "充能") && !is_chargeable(otmp))  //charge
              || (!strcmp(word, "c命名") && !objtyp_is_callable(otyp))  //call
              ) {
                 foo--;
@@ -1786,8 +1786,8 @@ int id_limit;
     /* assumptions:  id_limit > 0 and at least one unID'd item is present */
 
     while (id_limit) {
-        Sprintf(buf, "What would you like to identify %s?",
-                first ? "first" : "next");
+        Sprintf(buf, "你想%s鉴定哪个?",
+                first ? "先" : "再");
         n = query_objlist(buf, invent, SIGNAL_NOMENU | SIGNAL_ESCAPE
                                            | USE_INVLET | INVORDER_SORT,
                           &pick_list, PICK_ANY, not_fully_identified);
@@ -1830,8 +1830,8 @@ boolean learning_id; /* true if we just read unknown identify scroll */
             ++unid_cnt, the_obj = obj;
 
     if (!unid_cnt) {
-        You("have already identified all %sof your possessions.",
-            learning_id ? "the rest " : "");
+        You("已经鉴定了你的%s所有物品.",
+            learning_id ? "其余 " : "");
     } else if (!id_limit || id_limit >= unid_cnt) {
         /* identify everything */
         if (unid_cnt == 1) {
@@ -2728,7 +2728,7 @@ boolean picked_some;
 {
     struct obj *otmp;
     struct trap *trap;
-    const char *verb = Blind ? "feel" : "see";
+    const char *verb = Blind ? "感觉" : "看见";
     const char *dfeature = (char *) 0;
     char fbuf[BUFSZ], fbuf2[BUFSZ];
     winid tmpwin;
@@ -2796,7 +2796,7 @@ boolean picked_some;
     }
 
     if (dfeature)
-        Sprintf(fbuf, "There is %s here.", an(dfeature));
+        Sprintf(fbuf, "这里是%s.", an(dfeature));
 
     if (!otmp || is_lava(u.ux, u.uy)
         || (is_pool(u.ux, u.uy) && !Underwater)) {
@@ -2804,7 +2804,7 @@ boolean picked_some;
             pline1(fbuf);
         read_engr_at(u.ux, u.uy); /* Eric Backus */
         if (!skip_objects && (Blind || !dfeature))
-            You("%s no objects here.", verb);
+            You("%s这里没有东西.", verb);
         return !!Blind;
     }
     /* we know there is something here */
@@ -2816,15 +2816,15 @@ boolean picked_some;
         if (obj_cnt == 1 && otmp->quan == 1L)
             There("is %s object here.", picked_some ? "another" : "an");
         else
-            There("are %s%s objects here.",
+            There("有 %s%s 物品.",
 #ifdef ANDROID
-                (obj_cnt == 2) ? "two" : (
+                (obj_cnt == 2) ? "两个" : (
 #endif
                 (obj_cnt < 5)
-                      ? "a few"
+                      ? "几个"
                       : (obj_cnt < 10)
-                          ? "several"
-                          : "many"
+                          ? "多个"
+                          : "很多"
 #ifdef ANDROID
                 )
 #endif
@@ -2849,7 +2849,7 @@ boolean picked_some;
         if (dfeature)
             pline1(fbuf);
         read_engr_at(u.ux, u.uy); /* Eric Backus */
-        You("%s here %s.", verb, doname_with_price(otmp));
+        You("%s这里有%s.", verb, doname_with_price(otmp));
         iflags.last_msg = PLNMSG_ONE_ITEM_HERE;
         if (otmp->otyp == CORPSE)
             feel_cockatrice(otmp, FALSE);
@@ -3027,9 +3027,9 @@ doprgold()
        take containers into account */
     long umoney = money_cnt(invent);
     if (!umoney)
-        Your("wallet is empty.");
+        Your("钱包是空的.");
     else
-        Your("wallet contains %ld %s.", umoney, currency(umoney));
+        Your("钱包里有 %ld %s.", umoney, currency(umoney));
     shopper_financial_report();
     return 0;
 }
@@ -3112,7 +3112,7 @@ int
 doprring()
 {
     if (!uleft && !uright)
-        You("are not wearing any rings.");
+        You("没有戴任何戒指.");
     else {
         char lets[3];
         register int ct = 0;
@@ -3163,7 +3163,7 @@ doprtool()
             lets[ct++] = obj_to_let(otmp);
     lets[ct] = '\0';
     if (!ct)
-        You("are not using any tools.");
+        You("没有使用任何工具.");
     else
         (void) display_inventory(lets, FALSE);
     return 0;

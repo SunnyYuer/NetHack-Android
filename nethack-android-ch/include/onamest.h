@@ -1,3 +1,7 @@
+#ifndef ONAMES_H
+#define ONAMES_H
+#endif /* ONAMES_H */
+
 #define	STRANGE_OBJECT	0
 #define	ARROW	1
 #define	ELVEN_ARROW	2

@@ -778,7 +778,7 @@ const char **firstmatch;
 #define LOOK_VERBOSE 3     /* ':' -- show more info w/o asking */
 
 /* also used by getpos hack in do_name.c */
-const char what_is_an_unknown_object[] = "an unknown object";
+const char what_is_an_unknown_object[] = "未知对象";
 
 int
 do_look(mode, click_cc)
@@ -935,10 +935,10 @@ coord *click_cc;
         if (from_screen || clicklook) {
             if (from_screen) {
                 if (flags.verbose)
-                    pline("Please move the cursor to %s.",
+                    pline("请移动光标到%s.",
                           what_is_an_unknown_object);
                 else
-                    pline("Pick an object.");
+                    pline("选择一个对象.");
 
                 ans = getpos(&cc, quick, what_is_an_unknown_object);
                 if (ans < 0 || cc.x < 0) {
@@ -1174,7 +1174,7 @@ dowhatdoes()
 #if defined(UNIX) || defined(VMS)
     introff();
 #endif
-    q = yn_function("What command?", (char *) 0, '\0');
+    q = yn_function("要查看哪个命令的说明?", (char *) 0, '\0');
 #if defined(UNIX) || defined(VMS)
     intron();
 #endif
@@ -1182,7 +1182,7 @@ dowhatdoes()
     if (reslt)
         pline1(reslt);
     else
-        pline("I've never heard of such commands.");
+        pline("从来没听说有这样的命令.");
     return 0;
 }
 

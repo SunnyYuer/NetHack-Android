@@ -60,7 +60,7 @@ DOOR:locked,(50,10)
 # Hippocrates
 MONSTER:('@',"Hippocrates"),(37,10)
 # The treasure of Hippocrates
-OBJECT:('(',"chest"),(37,10)
+OBJECT:('(',"箱子"),(37,10)
 # intern guards for the audience chamber
 MONSTER:('@',"attendant"),(29,08)
 MONSTER:('@',"attendant"),(29,09)
@@ -235,8 +235,8 @@ STAIR:(39,10),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,40,11)
 # Objects
-OBJECT:(')',"quarterstaff"),(20,06),blessed,0,name:"The Staff of Aesculapius"
-OBJECT:('/',"lightning"),(20,06)
+OBJECT:(')',"铁头木棒"),(20,06),blessed,0,name:"The Staff of Aesculapius"
+OBJECT:('/',"光明"),(20,06)
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

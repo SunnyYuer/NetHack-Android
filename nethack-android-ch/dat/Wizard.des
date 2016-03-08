@@ -61,7 +61,7 @@ DOOR:locked,(20,10)
 # Neferet the Green, the quest leader
 MONSTER:('@',"Neferet the Green"),(23,05)
 # The treasure of the quest leader
-OBJECT:('(',"chest"),(24,05)
+OBJECT:('(',"箱子"),(24,05)
 # apprentice guards for the audience chamber
 MONSTER:('@',"apprentice"),(30,07)
 MONSTER:('@',"apprentice"),(24,06)
@@ -312,7 +312,7 @@ NON_DIGGABLE:(00,00,75,19)
 # The altar.  This is not a shrine.
 ALTAR:(16,11),noncoaligned,altar
 # Objects
-OBJECT:('"',"amulet of ESP"),(16,11),blessed,0,name:"The Eye of the Aethiopica"
+OBJECT:('"',"感知护身符"),(16,11),blessed,0,name:"The Eye of the Aethiopica"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

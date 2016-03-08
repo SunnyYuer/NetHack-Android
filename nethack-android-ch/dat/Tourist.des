@@ -96,7 +96,7 @@ MONSTER: 'C',random
 # Twoflower
 MONSTER:('@',"Twoflower"),(64,03)
 # The treasure of Twoflower
-OBJECT:('(',"chest"),(64,03)
+OBJECT:('(',"箱子"),(64,03)
 # guides for the audience chamber
 MONSTER:('@',"guide"),(29,03)
 MONSTER:('@',"guide"),(32,04)
@@ -257,8 +257,8 @@ OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
 # Toilet paper
-OBJECT:('?',"blank paper"),(71,12)
-OBJECT:('?',"blank paper"),(71,12)
+OBJECT:('?',"空白"),(71,12)
+OBJECT:('?',"空白"),(71,12)
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -384,7 +384,7 @@ DOOR:random,(51,15)
 DOOR:open,(59,14)
 DOOR:open,(59,17)
 # Objects
-OBJECT:('(',"credit card"),(04,01),blessed,0,name:"The Platinum Yendorian Express Card"
+OBJECT:('(',"信用卡"),(04,01),blessed,0,name:"The Platinum Yendorian Express Card"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

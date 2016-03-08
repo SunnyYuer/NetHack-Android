@@ -46,7 +46,7 @@ BRANCH:levregion(51,2,77,18),(0,0,40,20)
 # Orion
 MONSTER:('@',"Orion"),(20,10)
 # The treasure of Orion
-OBJECT:('(',"chest"),(20,10)
+OBJECT:('(',"箱子"),(20,10)
 # Guards for the audience chamber
 MONSTER:('@',"hunter"),(19,09)
 MONSTER:('@',"hunter"),(20,09)
@@ -216,8 +216,8 @@ STAIR:(19,10),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Objects
-OBJECT:(')',"bow"),(37,10),blessed,0,name:"The Longbow of Diana"
-OBJECT:('(',"chest"),(37,10)
+OBJECT:(')',"弓"),(37,10),blessed,0,name:"The Longbow of Diana"
+OBJECT:('(',"箱子"),(37,10)
 OBJECT:random,(36,09)
 OBJECT:random,(36,10)
 OBJECT:random,(36,11)

@@ -1684,7 +1684,7 @@ lootcont:
                 nobj = cobj->nexthere;
 
                 if (Is_container(cobj)) {
-                    c = ynq(safe_qbuf(qbuf, "这里有 ", ", 要搜刮吗?",
+                    c = ynq(safe_qbuf(qbuf, "这里有", ",  要搜刮吗?",
                                       cobj, doname, ansimpleoname,
                                       "a container"));
                     if (c == 'q')
@@ -2049,7 +2049,7 @@ register struct obj *obj;
 
     if (current_container) {
         Strcpy(buf, the(xname(current_container)));
-        You("put %s into %s.", doname(obj), buf);
+        You("把%s 放入%s.", doname(obj), buf);
 
         /* gold in container always needs to be added to credit */
         if (floor_container && obj->oclass == COIN_CLASS)
@@ -2349,7 +2349,7 @@ int held;
     for (;;) { /* repeats if '?' or ":' gets chosen */
         outmaybe = (outokay || !current_container->cknown);
         if (!outmaybe)
-            (void) safe_qbuf(qbuf, (char *) 0, " is empty.  Do what with it?",
+            (void) safe_qbuf(qbuf, (char *) 0, " 是空的.  要做什么?",
                              current_container, Yname2, Ysimple_name2,
                              "This");
         else
@@ -2528,7 +2528,7 @@ boolean put_in;
     int n, i, n_looted = 0;
     boolean all_categories = TRUE, loot_everything = FALSE;
     char buf[BUFSZ];
-    const char *action = put_in ? "Put in" : "Take out";
+    const char *action = put_in ? "放入" : "拿出";
     struct obj *otmp, *otmp2;
     menu_item *pick_list;
     int mflags, res;
@@ -2538,7 +2538,7 @@ boolean put_in;
         all_categories = (retry == -2);
     } else if (flags.menu_style == MENU_FULL) {
         all_categories = FALSE;
-        Sprintf(buf, "%s what type of objects?", action);
+        Sprintf(buf, "%s 什么类型的物品?", action);
         mflags = put_in
                      ? ALL_TYPES | BUC_ALLBKNOWN | BUC_UNKNOWN
                      : ALL_TYPES | CHOOSE_ALL | BUC_ALLBKNOWN | BUC_UNKNOWN;
@@ -2571,7 +2571,7 @@ boolean put_in;
             mflags |= USE_INVLET;
         if (!put_in)
             current_container->cknown = 1;
-        Sprintf(buf, "%s what?", action);
+        Sprintf(buf, "%s 什么?", action);
         n = query_objlist(buf, put_in ? invent : current_container->cobj,
                           mflags, &pick_list, PICK_ANY,
                           all_categories ? allow_all : allow_category);

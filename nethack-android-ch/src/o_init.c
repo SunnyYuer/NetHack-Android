@@ -418,7 +418,7 @@ dodiscovered() /* free after Robert Viduya */
     winid tmpwin;
 
     tmpwin = create_nhwindow(NHW_MENU);
-    putstr(tmpwin, 0, "Discoveries");
+    putstr(tmpwin, 0, "发现物");
     putstr(tmpwin, 0, "");
 
     /* gather "unique objects" into a pseudo-class; note that they'll
@@ -489,10 +489,10 @@ int
 doclassdisco()
 {
     static NEARDATA const char
-        prompt[] = "View discoveries for which sort of objects?",
-        havent_discovered_any[] = "haven't discovered any %s yet.",
-        unique_items[] = "unique items",
-        artifact_items[] = "artifacts";
+        prompt[] = "查看已发现的哪类物品?",
+        havent_discovered_any[] = "还没有发现任何 %s.",
+        unique_items[] = "独特物品",
+        artifact_items[] = "神器";
     char *s, c, oclass, menulet, allclasses[MAXOCLASSES],
         discosyms[2 + MAXOCLASSES + 1], buf[BUFSZ];
     int i, ct, dis, xtras;
@@ -628,7 +628,7 @@ doclassdisco()
         break;
     default:
         oclass = def_char_to_objclass(c);
-        Sprintf(buf, "Discovered %s", let_to_name(oclass, FALSE, FALSE));
+        Sprintf(buf, "已发现的 %s", let_to_name(oclass, FALSE, FALSE));
         putstr(tmpwin, iflags.menu_headings, buf);
         for (i = bases[(int) oclass];
              i < NUM_OBJECTS && objects[i].oc_class == oclass; ++i) {

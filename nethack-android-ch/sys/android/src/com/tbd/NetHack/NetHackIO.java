@@ -208,6 +208,15 @@ public class NetHackIO implements Runnable
 	public void sendLineCmd(String str)
 	{
 		mCmdQue.add(LineCmd);
+		Chinese ch = new Chinese();
+		byte[] by = ch.encode(str);
+		for(int i = 0; i < by.length; i++)
+		{
+			if(by[i] == '\n')
+				break;
+			mCmdQue.add((int)by[i]);
+		}
+		/*
 		for(int i = 0; i < str.length(); i++)
 		{
 			char c = str.charAt(i);
@@ -215,7 +224,7 @@ public class NetHackIO implements Runnable
 				break;
 			if(c < 0xff)
 				mCmdQue.add((int)c);
-		}
+		}*/
 		mCmdQue.add((int)'\n');
 	}
 

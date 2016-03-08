@@ -39,4 +39,9 @@ public class Chinese {
 		}
 		return st;
 	}
+	
+	public byte[] encode(String s)
+	{
+		return s.getBytes();
+	}
 }

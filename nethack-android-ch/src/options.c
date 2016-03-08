@@ -2474,7 +2474,7 @@ boolean tinitial, tfrom_file;
         sanitize_name(pl_fruit);
         /* OBJ_NAME(objects[SLIME_MOLD]) won't work after initialization */
         if (!*pl_fruit)
-            nmcpy(pl_fruit, "slime mold", PL_FSIZ);
+            nmcpy(pl_fruit, "黏液", PL_FSIZ);
         if (!initial) {
             (void) fruitadd(pl_fruit, forig);
             pline("Fruit is now \"%s\".", pl_fruit);
@@ -4984,12 +4984,12 @@ dotogglepickup()
     flags.pickup = !flags.pickup;
     if (flags.pickup) {
         oc_to_str(flags.pickup_types, ocl);
-        Sprintf(buf, " 开, for %s objects%s", ocl[0] ? ocl : "all",
+        Sprintf(buf, " 开, 拾取 %s 物品%s", ocl[0] ? ocl : "所有",
                 (iflags.autopickup_exceptions[AP_LEAVE]
                  || iflags.autopickup_exceptions[AP_GRAB])
                     ? ((count_ape_maps((int *) 0, (int *) 0) == 1)
-                           ? ", with one exception"
-                           : ", with some exceptions")
+                           ? ", 一个除外"
+                           : ", 一些除外")
                     : "");
     } else {
         Strcpy(buf, " 关");

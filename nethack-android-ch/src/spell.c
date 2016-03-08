@@ -358,7 +358,7 @@ learn(VOID_ARGS)
     }
 
     Sprintf(splname,
-            objects[booktype].oc_name_known ? "\"%s\"" : "the \"%s\" spell",
+            objects[booktype].oc_name_known ? "\" %s\"" : "\" %s\" 魔法",
             OBJ_NAME(objects[booktype]));
     for (i = 0; i < MAXSPELL; i++)
         if (spellid(i) == booktype || spellid(i) == NO_SPELL)
@@ -374,7 +374,7 @@ learn(VOID_ARGS)
             /* reset spestudied as if polymorph had taken place */
             book->spestudied = rn2(book->spestudied);
         } else if (spellknow(i) > KEEN / 10) {
-            You("know %s quite well already.", splname);
+            You("已经了解%s非常好了.", splname);
             costly = FALSE;
         } else { /* spellknow(i) <= KEEN/10 */
             Your("knowledge of %s is %s.", splname,
@@ -401,7 +401,7 @@ learn(VOID_ARGS)
             spl_book[i].sp_lev = objects[booktype].oc_level;
             incrnknow(i, 1);
             book->spestudied++;
-            You(i > 0 ? "add %s to your repertoire." : "learn %s.", splname);
+            You(i > 0 ? "添加%s 到你的技能中." : "学习%s.", splname);
         }
         makeknown((int) booktype);
     }
@@ -431,7 +431,7 @@ register struct obj *spellbook;
 
     /* attempting to read dull book may make hero fall asleep */
     if (!confused && booktype != SPE_BLANK_PAPER
-        && !strcmp(OBJ_DESCR(objects[booktype]), "dull")) {
+        && !strcmp(OBJ_DESCR(objects[booktype]), "枯燥的")) {
         const char *eyes;
         int dullbook = rnd(25) - ACURR(A_WIS);
 
@@ -567,7 +567,7 @@ register struct obj *spellbook;
         spellbook->in_use = FALSE;
 
         You("开始%s符文.",
-            spellbook->otyp == SPE_BOOK_OF_THE_DEAD ? "背诵" : "熟记");
+            spellbook->otyp == SPE_BOOK_OF_THE_DEAD ? "朗读" : "背诵");
     }
 
     context.spbook.book = spellbook;
@@ -715,19 +715,19 @@ int skill;
 {
     switch (skill) {
     case P_ATTACK_SPELL:
-        return "attack";
+        return "攻击";
     case P_HEALING_SPELL:
-        return "healing";
+        return "治愈";
     case P_DIVINATION_SPELL:
-        return "divination";
+        return "预测";
     case P_ENCHANTMENT_SPELL:
-        return "enchantment";
+        return "附魔";
     case P_CLERIC_SPELL:
-        return "clerical";
+        return "神圣";
     case P_ESCAPE_SPELL:
-        return "escape";
+        return "逃脱";
     case P_MATTER_SPELL:
-        return "matter";
+        return "事情";
     default:
         impossible("Unknown spell skill, %d;", skill);
         return "";
@@ -978,7 +978,7 @@ boolean atme;
 
     chance = percent_success(spell);
     if (confused || (rnd(100) > chance)) {
-        You("fail to cast the spell correctly.");
+        You("施展魔法失败了.");
         u.uen -= energy / 2;
         context.botl = 1;
         return 1;
@@ -1288,24 +1288,24 @@ losespells()
  *      appended to the end of the list?
  */
 static const char *spl_sortchoices[] = {
-    "by casting letter",
+    "按列表字母",
 #define SORTBY_LETTER 0
-    "alphabetically",
+    "字母顺序",
 #define SORTBY_ALPHA 1
-    "by level, low to high",
+    "按等级,  低到高",
 #define SORTBY_LVL_LO 2
-    "by level, high to low",
+    "按等级,  高到低",
 #define SORTBY_LVL_HI 3
-    "by skill group, alphabetized within each group",
+    "按技能组,  每一组中按字母顺序",
 #define SORTBY_SKL_AL 4
-    "by skill group, low to high level within group",
+    "按技能组,  每一组中按等级由低到高",
 #define SORTBY_SKL_LO 5
-    "by skill group, high to low level within group",
+    "按技能组,  每一组中按等级由高到低",
 #define SORTBY_SKL_HI 6
-    "maintain current ordering",
+    "维持当前排序",
 #define SORTBY_CURRENT 7
     /* a menu choice rather than a sort choice */
-    "reassign casting letters to retain current order",
+    "给当前列表重新分配字母",
 #define SORTRETAINORDER 8
 };
 static int spl_sortmode = 0;   /* index into spl_sortchoices[] */
@@ -1446,7 +1446,7 @@ spellsortmenu()
         add_menu(tmpwin, NO_GLYPH, &any, let, 0, ATR_NONE, spl_sortchoices[i],
                  (i == spl_sortmode) ? MENU_SELECTED : MENU_UNSELECTED);
     }
-    end_menu(tmpwin, "View known spells list sorted");
+    end_menu(tmpwin, "查看已知的魔法列表排序");
 
     n = select_menu(tmpwin, PICK_ONE, &selected);
     destroy_nhwindow(tmpwin);
@@ -1552,7 +1552,7 @@ int *spell_no;
             /* more than 1 spell, add an extra menu entry */
             any.a_int = SPELLMENU_SORT + 1;
             add_menu(tmpwin, NO_GLYPH, &any, '+', 0, ATR_NONE,
-                     "[sort spells]", MENU_UNSELECTED);
+                     "[ 排序]", MENU_UNSELECTED);
         }
     }
     end_menu(tmpwin, prompt);

@@ -54,10 +54,10 @@ BRANCH:levregion(01,00,79,20),(30,06,46,13)
 NON_DIGGABLE:(30,06,46,13)
 # Objects
 CONTAINER:('`',"statue"),(36,10),uncursed,montype:"knight",3,name:"Perseus" {
-  [75%]: OBJECT:('[',"shield of reflection"),cursed,+0
-  [25%]: OBJECT:('[',"levitation boots"),+0
-  [50%]: OBJECT:(')',"scimitar"),blessed,+2
-  [50%]: OBJECT:('(',"sack")
+  [75%]: OBJECT:('[',"反射之盾"),cursed,+0
+  [25%]: OBJECT:('[',"悬浮靴"),+0
+  [50%]: OBJECT:(')',"短弯刀"),blessed,+2
+  [50%]: OBJECT:('(',"布袋")
 }
 # These aren't really containers, but specifying CONTAINER forces them to be
 # empty, since CONTAINERs contain only what is explicitly specified.
@@ -153,10 +153,10 @@ NON_DIGGABLE:(01,02,06,17)
 NON_DIGGABLE:(60,02,73,17)
 # Objects
 CONTAINER:('`',"statue"),(68,10),uncursed,montype:"knight",3,name:"Perseus" {
-  [25%]: OBJECT:('[',"shield of reflection"),cursed,+0
-  [75%]: OBJECT:('[',"levitation boots"),+0
-  [50%]: OBJECT:(')',"scimitar"),blessed,+2
-  [50%]: OBJECT:('(',"sack")
+  [25%]: OBJECT:('[',"反射之盾"),cursed,+0
+  [75%]: OBJECT:('[',"悬浮靴"),+0
+  [50%]: OBJECT:(')',"短弯刀"),blessed,+2
+  [50%]: OBJECT:('(',"布袋")
 }
 CONTAINER:('`',"statue"),(64,08) { }
 CONTAINER:('`',"statue"),(65,08) { }
@@ -271,10 +271,10 @@ DOOR:locked,(48,15)
 FOUNTAIN:$place[1]
 #
 CONTAINER:('`',"statue"),$place[2],uncursed,montype:"knight",3,name:"Perseus" {
-  [75%]: OBJECT: ('[',"shield of reflection"),cursed,+0
-  [25%]: OBJECT: ('[',"levitation boots"),+0
-  [50%]: OBJECT: (')',"scimitar"),blessed,+2
-  [50%]: OBJECT: ('(',"sack")
+  [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
+  [25%]: OBJECT: ('[',"悬浮靴"),+0
+  [50%]: OBJECT: (')',"短弯刀"),blessed,+2
+  [50%]: OBJECT: ('(',"布袋")
 }
 #
 CONTAINER:('`',"statue"),random { }
@@ -288,8 +288,8 @@ CONTAINER:('`',"statue"),random { }
 LOOP [8] {
   OBJECT:random,random
 }
-OBJECT:('?',"blank paper"),(48,18)
-OBJECT:('?',"blank paper"),(48,18)
+OBJECT:('?',"空白"),(48,18)
+OBJECT:('?',"空白"),(48,18)
 #
 TRAP:"rust",random
 TRAP:"rust",random
@@ -368,13 +368,13 @@ BRANCH:levregion(27,00,79,20),(0,0,0,0)
 #
 NON_DIGGABLE:(01,01,22,14)
 #
-OBJECT:('(',"crystal ball"),(07,08)
+OBJECT:('(',"水晶球"),(07,08)
 #
 CONTAINER:('`',"statue"),$place[1],uncursed,montype:"knight",3,name:"Perseus" {
-  [75%]: OBJECT: ('[',"shield of reflection"),cursed,+0
-  [25%]: OBJECT: ('[',"levitation boots"),+0
-  [50%]: OBJECT: (')',"scimitar"),blessed,+2
-  [50%]: OBJECT: ('(',"sack")
+  [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
+  [25%]: OBJECT: ('[',"悬浮靴"),+0
+  [50%]: OBJECT: (')',"短弯刀"),blessed,+2
+  [50%]: OBJECT: ('(',"布袋")
 }
 #
 CONTAINER:('`',"statue"),random { }
@@ -399,9 +399,9 @@ MONSTER:(';',"kraken"),(07,07)
 MONSTER:('D',"yellow dragon"), (05,04), asleep
 [50%]: MONSTER: ('D',"baby yellow dragon"), (04,04), asleep
 [25%]: MONSTER: ('D',"baby yellow dragon"), (04,05), asleep
-OBJECT:('%',"egg"), (05,04), montype:"yellow dragon"
-[50%]: OBJECT: ('%',"egg"), (05,04), montype:"yellow dragon"
-[25%]: OBJECT: ('%',"egg"), (05,04), montype:"yellow dragon"
+OBJECT:('%',"蛋"), (05,04), montype:"yellow dragon"
+[50%]: OBJECT: ('%',"蛋"), (05,04), montype:"yellow dragon"
+[25%]: OBJECT: ('%',"蛋"), (05,04), montype:"yellow dragon"
 #
 MONSTER:(';',"giant eel"),random
 MONSTER:(';',"giant eel"),random

@@ -54,7 +54,7 @@ DOOR:closed,(50,06)
 # Lord Sato
 MONSTER:('@',"Lord Sato"),(20,04)
 # The treasure of Lord Sato
-OBJECT:('(',"chest"),(20,04)
+OBJECT:('(',"箱子"),(20,04)
 # roshi guards for the audience chamber
 MONSTER:('@',"roshi"),(18,04)
 MONSTER:('@',"roshi"),(18,05)
@@ -291,7 +291,7 @@ TERRAIN:$place[0],'.'
 # Non diggable walls
 NON_DIGGABLE:(00,00,44,19)
 # Objects
-OBJECT:(')',"tsurugi"),(22,10),blessed,0,name:"The Tsurugi of Muramasa"
+OBJECT:(')',"草薙剑"),(22,10),blessed,0,name:"The Tsurugi of Muramasa"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

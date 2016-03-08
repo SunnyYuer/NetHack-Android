@@ -527,7 +527,7 @@ dotele()
             if (!wizard) {
                 if (!castit) {
                     if (!Teleportation)
-                        You("don't know that spell.");
+                        You("不知道那种魔法.");
                     else
                         You("are not able to teleport at will.");
                     return 0;

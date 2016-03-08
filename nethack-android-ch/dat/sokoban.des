@@ -83,8 +83,8 @@ TRAP:"pit",(06,10)
 TRAP:"pit",(07,10)
 
 # A little help
-OBJECT:('?',"earth"),(02,11)
-OBJECT:('?',"earth"),(03,11)
+OBJECT:('?',"巨石"),(02,11)
+OBJECT:('?',"巨石"),(03,11)
 
 # Random objects
 OBJECT:'%',random
@@ -147,8 +147,8 @@ TRAP:"pit",(05,08)
 TRAP:"pit",(06,08)
 
 # A little help
-OBJECT:('?',"earth"),(01,09)
-OBJECT:('?',"earth"),(02,09)
+OBJECT:('?',"巨石"),(01,09)
+OBJECT:('?',"巨石"),(02,09)
 
 # Random objects
 OBJECT:'%',random
@@ -528,12 +528,12 @@ DOOR:closed,(17,13)
 DOOR:closed,(17,15)
 REGION:(18,10,22,16),lit,"zoo",filled,irregular
 IF [50%] {
-  OBJECT:('(',"bag of holding"),$place[0]
+  OBJECT:('(',"次元袋"),$place[0]
 } ELSE {
-  OBJECT:('"',"amulet of reflection"),$place[0]
+  OBJECT:('"',"反射护身符"),$place[0]
 }
 ENGRAVING:$place[0],burn,"Elbereth"
-OBJECT:('?', "scare monster"),$place[0],cursed
+OBJECT:('?', "恐吓怪物"),$place[0],cursed
 
 
 MAZE:"soko1-2",' '
@@ -629,9 +629,9 @@ DOOR:closed,(17,12)
 DOOR:closed,(17,14)
 REGION:(18,09,22,15),lit,"zoo",filled,irregular
 IF [50%] {
-  OBJECT:('(',"bag of holding"),$place[0]
+  OBJECT:('(',"次元袋"),$place[0]
 } ELSE {
-  OBJECT:('"',"amulet of reflection"),$place[0]
+  OBJECT:('"',"反射护身符"),$place[0]
 }
 ENGRAVING:$place[0],burn,"Elbereth"
-OBJECT:('?', "scare monster"),$place[0],cursed
+OBJECT:('?', "恐吓怪物"),$place[0],cursed

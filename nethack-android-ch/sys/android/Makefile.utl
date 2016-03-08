@@ -191,7 +191,8 @@ mdgreph: mdgrep.pl
 	perl mdgrep.pl
 
 ../include/onames.h: makedefs
-	./makedefs -o
+	@touch ../include/onames.h
+#	./makedefs -o
 ../include/pm.h: makedefs
 	./makedefs -p
 ../src/monstr.c: makedefs

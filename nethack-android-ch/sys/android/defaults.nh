@@ -40,13 +40,13 @@ OPTIONS=pile_limit:2,hilite_pile,hilite_pet
 # Colorize individual rows on a menu based on what regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
 MENUCOLOR=" 受祝福的"=yellow
-MENUCOLOR=" holy "=yellow
+MENUCOLOR=" 圣"=yellow
 MENUCOLOR=" 未被诅咒的"=white
 MENUCOLOR=" 被诅咒的"=red
-MENUCOLOR=" unholy "=red
+MENUCOLOR=" 邪"=red
 MENUCOLOR=" 被诅咒的 .* 穿戴中"=red&underline
 MENUCOLOR="loadstone|wand (of|called) cancellation"=white&underline
-MENUCOLOR="Amulet of Yendor named"=magenta                           # color only the real Amulet
+MENUCOLOR="岩德护身符 名为"=magenta                           # color only the real Amulet
 MENUCOLOR="金币"=yellow
 
 

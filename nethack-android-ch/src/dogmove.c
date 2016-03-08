@@ -440,7 +440,7 @@ int udist;
                         if (carryamt != obj->quan)
                             otmp = splitobj(obj, carryamt);
                         if (cansee(omx, omy) && flags.verbose)
-                            pline("%s picks up %s.", Monnam(mtmp),
+                            pline("%s 捡起%s.", Monnam(mtmp),
                                   distant_name(otmp, doname));
                         obj_extract_self(otmp);
                         newsym(omx, omy);

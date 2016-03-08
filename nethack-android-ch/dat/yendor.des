@@ -50,7 +50,7 @@ MONSTER:('@',"Wizard of Yendor"),(16,05),asleep
 MONSTER:('d',"hell hound"),(15,05)
 MONSTER:('V',"vampire lord"),(17,05)
 # The local treasure
-OBJECT:('+',"Book of the Dead"),(16,05)
+OBJECT:('+',"死亡之书"),(16,05)
 # Surrounding terror
 MONSTER:(';',"kraken"),(14,02)
 MONSTER:(';',"giant eel"),(17,02)
@@ -80,7 +80,7 @@ TRAP:"sleep gas",random
 TRAP:"anti magic",random
 TRAP:"magic",random
 # Some random loot.
-OBJECT:('*',"ruby"),random
+OBJECT:('*',"红宝石"),random
 OBJECT:'!',random
 OBJECT:'!',random
 OBJECT:'?',random

@@ -4932,9 +4932,9 @@ makewish()
     if (flags.verbose)
         You("may wish for an object.");
 retry:
-    Strcpy(promptbuf, "For what do you wish");
+    Strcpy(promptbuf, "你想许愿要什么");
     if (iflags.cmdassist && tries > 0)
-        Strcat(promptbuf, " (enter 'help' for assistance)");
+        Strcat(promptbuf, " ( 输入 'help'  寻求帮助)");
     Strcat(promptbuf, "?");
     getlin(promptbuf, buf);
     (void) mungspaces(buf);
@@ -4952,7 +4952,7 @@ retry:
      */
     otmp = readobjnam(buf, &nothing);
     if (!otmp) {
-        pline("Nothing fitting that description exists in the game.");
+        pline("游戏中不存在你描述的东西.");
         if (++tries < MAXWISHTRY)
             goto retry;
         pline1(thats_enough_tries);

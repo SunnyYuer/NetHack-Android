@@ -69,7 +69,7 @@ ALTAR:(28,09),noalign,altar
 # High Priest
 MONSTER:('@',"Arch Priest"),(28,10)
 # The treasure of High Priest
-OBJECT:('(',"chest"),(27,10)
+OBJECT:('(',"箱子"),(27,10)
 # knight guards for the audience chamber
 MONSTER:('@',"acolyte"),(32,07)
 MONSTER:('@',"acolyte"),(32,08)
@@ -209,7 +209,7 @@ REGION:(00,00,25,10),unlit,"ordinary"
 # Stairs
 STAIR:(20,05),up
 # Objects
-OBJECT:('[',"helm of brilliance"),$place[0],blessed,0,name:"The Mitre of Holiness"
+OBJECT:('[',"光华之盔"),$place[0],blessed,0,name:"The Mitre of Holiness"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

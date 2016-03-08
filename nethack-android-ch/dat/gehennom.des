@@ -76,28 +76,28 @@ NON_DIGGABLE:(00,00,75,19)
 # note: no priest(esse)s or monks - maybe Moloch has a *special*
 #       fate reserved for members of *those* classes.
 #
-OBJECT:('%',"corpse"),random,montype:"archeologist"
-OBJECT:('%',"corpse"),random,montype:"archeologist"
-OBJECT:('%',"corpse"),random,montype:"barbarian"
-OBJECT:('%',"corpse"),random,montype:"barbarian"
-OBJECT:('%',"corpse"),random,montype:"caveman"
-OBJECT:('%',"corpse"),random,montype:"cavewoman"
-OBJECT:('%',"corpse"),random,montype:"healer"
-OBJECT:('%',"corpse"),random,montype:"healer"
-OBJECT:('%',"corpse"),random,montype:"knight"
-OBJECT:('%',"corpse"),random,montype:"knight"
-OBJECT:('%',"corpse"),random,montype:"ranger"
-OBJECT:('%',"corpse"),random,montype:"ranger"
-OBJECT:('%',"corpse"),random,montype:"rogue"
-OBJECT:('%',"corpse"),random,montype:"rogue"
-OBJECT:('%',"corpse"),random,montype:"samurai"
-OBJECT:('%',"corpse"),random,montype:"samurai"
-OBJECT:('%',"corpse"),random,montype:"tourist"
-OBJECT:('%',"corpse"),random,montype:"tourist"
-OBJECT:('%',"corpse"),random,montype:"valkyrie"
-OBJECT:('%',"corpse"),random,montype:"valkyrie"
-OBJECT:('%',"corpse"),random,montype:"wizard"
-OBJECT:('%',"corpse"),random,montype:"wizard"
+OBJECT:('%',"尸体"),random,montype:"archeologist"
+OBJECT:('%',"尸体"),random,montype:"archeologist"
+OBJECT:('%',"尸体"),random,montype:"barbarian"
+OBJECT:('%',"尸体"),random,montype:"barbarian"
+OBJECT:('%',"尸体"),random,montype:"caveman"
+OBJECT:('%',"尸体"),random,montype:"cavewoman"
+OBJECT:('%',"尸体"),random,montype:"healer"
+OBJECT:('%',"尸体"),random,montype:"healer"
+OBJECT:('%',"尸体"),random,montype:"knight"
+OBJECT:('%',"尸体"),random,montype:"knight"
+OBJECT:('%',"尸体"),random,montype:"ranger"
+OBJECT:('%',"尸体"),random,montype:"ranger"
+OBJECT:('%',"尸体"),random,montype:"rogue"
+OBJECT:('%',"尸体"),random,montype:"rogue"
+OBJECT:('%',"尸体"),random,montype:"samurai"
+OBJECT:('%',"尸体"),random,montype:"samurai"
+OBJECT:('%',"尸体"),random,montype:"tourist"
+OBJECT:('%',"尸体"),random,montype:"tourist"
+OBJECT:('%',"尸体"),random,montype:"valkyrie"
+OBJECT:('%',"尸体"),random,montype:"valkyrie"
+OBJECT:('%',"尸体"),random,montype:"wizard"
+OBJECT:('%',"尸体"),random,montype:"wizard"
 #
 # Some random weapons and armor.
 #
@@ -112,7 +112,7 @@ OBJECT:')',random
 #
 # Some random loot.
 #
-OBJECT:('*',"ruby"),random
+OBJECT:('*',"红宝石"),random
 OBJECT:'*',random
 OBJECT:'*',random
 OBJECT:'!',random

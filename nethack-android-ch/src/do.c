@@ -487,7 +487,7 @@ const char *word;
 {
     if (obj->owornmask & (W_ARMOR | W_ACCESSORY)) {
         if (*word)
-            Norep("You cannot %s %s you are wearing.", word, something);
+            Norep("你不能%s 你正在穿的.", word);
         return FALSE;
     }
     if (obj->otyp == LOADSTONE && obj->cursed) {
@@ -496,7 +496,7 @@ const char *word;
         if (*word) {
             /* getobj() ignores a count for throwing since that is
                implicitly forced to be 1; replicate its kludge... */
-            if (!strcmp(word, "throw") && obj->quan > 1L)
+            if (!strcmp(word, "投掷") && obj->quan > 1L)  //throw
                 obj->corpsenm = 1;
             pline("For some reason, you cannot %s%s the stone%s!", word,
                   obj->corpsenm ? " any of" : "", plur(obj->quan));
@@ -524,7 +524,7 @@ register struct obj *obj;
 {
     if (!obj)
         return 0;
-    if (!canletgo(obj, "drop"))
+    if (!canletgo(obj, "扔掉"))  //drop
         return 0;
     if (obj == uwep) {
         if (welded(uwep)) {
