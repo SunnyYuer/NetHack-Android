@@ -43,7 +43,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
     A("", STRANGE_OBJECT, 0, 0, 0, NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE,
       NON_PM, NON_PM, 0L, NO_COLOR),
 
-    A("Excalibur", LONG_SWORD, (SPFX_NOGEN | SPFX_RESTR | SPFX_SEEK
+    A("王者之剑", LONG_SWORD, (SPFX_NOGEN | SPFX_RESTR | SPFX_SEEK  //Excalibur
                                 | SPFX_DEFN | SPFX_INTEL | SPFX_SEARCH),
       0, 0, PHYS(5, 10), DRLI(0, 0), NO_CARY, 0, A_LAWFUL, PM_KNIGHT, NON_PM,
       4000L, NO_COLOR),
@@ -51,7 +51,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      Stormbringer only has a 2 because it can drain a level,
      *      providing 8 more.
      */
-    A("Stormbringer", RUNESWORD,
+    A("兴风者", RUNESWORD,  //Stormbringer
       (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN | SPFX_INTEL | SPFX_DRLI), 0, 0,
       DRLI(5, 2), DRLI(0, 0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L,
       NO_COLOR),
@@ -59,11 +59,11 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      Mjollnir will return to the hand of the wielder when thrown
      *      if the wielder is a Valkyrie wearing Gauntlets of Power.
      */
-    A("Mjollnir", WAR_HAMMER, /* Mjo:llnir */
+    A("雷神之锤", WAR_HAMMER, /* Mjo:llnir */  //Mjollnir
       (SPFX_RESTR | SPFX_ATTK), 0, 0, ELEC(5, 24), NO_DFNS, NO_CARY, 0,
       A_NEUTRAL, PM_VALKYRIE, NON_PM, 4000L, NO_COLOR),
 
-    A("Cleaver", BATTLE_AXE, SPFX_RESTR, 0, 0, PHYS(3, 6), NO_DFNS, NO_CARY,
+    A("切肉刀", BATTLE_AXE, SPFX_RESTR, 0, 0, PHYS(3, 6), NO_DFNS, NO_CARY,  //Cleaver
       0, A_NEUTRAL, PM_BARBARIAN, NON_PM, 1500L, NO_COLOR),
 
     /*
@@ -71,7 +71,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      damage bonus applies to all targets rather than just elves
      *      (handled as special case in spec_dbon()).
      */
-    A("Grimtooth", ORCISH_DAGGER, (SPFX_RESTR | SPFX_WARN | SPFX_DFLAG2),
+    A("无影之牙", ORCISH_DAGGER, (SPFX_RESTR | SPFX_WARN | SPFX_DFLAG2),  //Grimtooth
       0, M2_ELF, PHYS(2, 6), NO_DFNS,
       NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ORC, 300L, CLR_RED),
     /*
@@ -81,53 +81,53 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      EWarn_of_mon for all monsters that have the M2_value flag.
      *      Sting and Orcrist will warn of M2_ORC monsters.
      */
-    A("Orcrist", ELVEN_BROADSWORD, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC,
+    A("兽咬剑", ELVEN_BROADSWORD, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC,  //Orcrist
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ELF, 2000L,
       CLR_BRIGHT_BLUE), /* bright blue is actually light blue */
 
-    A("Sting", ELVEN_DAGGER, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC, PHYS(5, 0),
+    A("刺兽针", ELVEN_DAGGER, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC, PHYS(5, 0),  //Sting
       NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ELF, 800L, CLR_BRIGHT_BLUE),
     /*
      *      Magicbane is a bit different!  Its magic fanfare
      *      unbalances victims in addition to doing some damage.
      */
-    A("Magicbane", ATHAME, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,
+    A("神魔克星", ATHAME, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Magicbane
       STUN(3, 4), DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, PM_WIZARD, NON_PM,
       3500L, NO_COLOR),
 
-    A("Frost Brand", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,
+    A("寒霜之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Frost Brand
       COLD(5, 0), COLD(0, 0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L,
       NO_COLOR),
 
-    A("Fire Brand", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,
+    A("火焰之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Fire Brand
       FIRE(5, 0), FIRE(0, 0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L,
       NO_COLOR),
 
-    A("Dragonbane", BROADSWORD, (SPFX_RESTR | SPFX_DCLAS), 0, S_DRAGON,
+    A("屠龙剑", BROADSWORD, (SPFX_RESTR | SPFX_DCLAS), 0, S_DRAGON,  //Dragonbane
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L,
       NO_COLOR),
 
-    A("Demonbane", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_DEMON,
+    A("斩魔之剑", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_DEMON,  //Demonbane
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L,
       NO_COLOR),
 
-    A("Werebane", SILVER_SABER, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_WERE,
+    A("斩妖匕首", SILVER_SABER, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_WERE,  //Werebane
       PHYS(5, 0), DFNS(AD_WERE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L,
       NO_COLOR),
 
-    A("Grayswandir", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,
+    A("夜刃", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,  //Grayswandir
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L,
       NO_COLOR),
 
-    A("Giantslayer", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_GIANT,
+    A("巨人杀手", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_GIANT,  //Giantslayer
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 200L,
       NO_COLOR),
 
-    A("Ogresmasher", WAR_HAMMER, (SPFX_RESTR | SPFX_DCLAS), 0, S_OGRE,
+    A("食人魔粉碎者", WAR_HAMMER, (SPFX_RESTR | SPFX_DCLAS), 0, S_OGRE,  //Ogresmasher
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L,
       NO_COLOR),
 
-    A("Trollsbane", MORNING_STAR, (SPFX_RESTR | SPFX_DCLAS), 0, S_TROLL,
+    A("巨魔杀手", MORNING_STAR, (SPFX_RESTR | SPFX_DCLAS), 0, S_TROLL,  //Trollsbane
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L,
       NO_COLOR),
     /*
@@ -135,7 +135,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      2) doesn't give unusual message for 2-headed monsters (but
      *      allowing those at all causes more problems than worth the effort).
      */
-    A("Vorpal Blade", LONG_SWORD, (SPFX_RESTR | SPFX_BEHEAD), 0, 0,
+    A("斩首剑", LONG_SWORD, (SPFX_RESTR | SPFX_BEHEAD), 0, 0,  //Vorpal Blade
       PHYS(5, 1), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L,
       NO_COLOR),
     /*
@@ -146,10 +146,10 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *                      --Koko, Lord high executioner of Titipu
      *                        (From Sir W.S. Gilbert's "The Mikado")
      */
-    A("Snickersnee", KATANA, SPFX_RESTR, 0, 0, PHYS(0, 8), NO_DFNS, NO_CARY,
+    A("草薙剑", KATANA, SPFX_RESTR, 0, 0, PHYS(0, 8), NO_DFNS, NO_CARY,  //Snickersnee
       0, A_LAWFUL, PM_SAMURAI, NON_PM, 1200L, NO_COLOR),
 
-    A("Sunsword", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_UNDEAD,
+    A("圣剑", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_UNDEAD,  //Sunsword
       PHYS(5, 0), DFNS(AD_BLND), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1500L,
       NO_COLOR),
 
@@ -157,78 +157,78 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      The artifacts for the quest dungeon, all self-willed.
      */
 
-    A("The Orb of Detection", CRYSTAL_BALL,
+    A("探测之球", CRYSTAL_BALL,  //The Orb of Detection
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL), (SPFX_ESP | SPFX_HSPDAM), 0,
       NO_ATTK, NO_DFNS, CARY(AD_MAGM), INVIS, A_LAWFUL, PM_ARCHEOLOGIST,
       NON_PM, 2500L, NO_COLOR),
 
-    A("The Heart of Ahriman", LUCKSTONE,
+    A("恶灵之心", LUCKSTONE,  //The Heart of Ahriman
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL), SPFX_STLTH, 0,
       /* this stone does double damage if used as a projectile weapon */
       PHYS(5, 0), NO_DFNS, NO_CARY, LEVITATION, A_NEUTRAL, PM_BARBARIAN,
       NON_PM, 2500L, NO_COLOR),
 
-    A("The Sceptre of Might", MACE,
+    A("迈特的权杖", MACE,  //The Sceptre of Might
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_DALIGN), 0, 0, PHYS(5, 0),
       DFNS(AD_MAGM), NO_CARY, CONFLICT, A_LAWFUL, PM_CAVEMAN, NON_PM, 2500L,
       NO_COLOR),
 
 #if 0 /* OBSOLETE */
-A("The Palantir of Westernesse",        CRYSTAL_BALL,
+A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of Westernesse
         (SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL),
                 (SPFX_ESP|SPFX_REGEN|SPFX_HSPDAM), 0,
         NO_ATTK,        NO_DFNS,        NO_CARY,
         TAMING,         A_CHAOTIC, NON_PM , PM_ELF, 8000L, NO_COLOR ),
 #endif
 
-    A("The Staff of Aesculapius", QUARTERSTAFF,
+    A("阿斯克勒皮俄斯蛇杖", QUARTERSTAFF,  //The Staff of Aesculapius
       (SPFX_NOGEN | SPFX_RESTR | SPFX_ATTK | SPFX_INTEL | SPFX_DRLI
        | SPFX_REGEN),
       0, 0, DRLI(0, 0), DRLI(0, 0), NO_CARY, HEALING, A_NEUTRAL, PM_HEALER,
       NON_PM, 5000L, NO_COLOR),
 
-    A("The Magic Mirror of Merlin", MIRROR,
+    A("梅林的魔镜", MIRROR,  //The Magic Mirror of Merlin
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_SPEAK), SPFX_ESP, 0,
       NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_LAWFUL, PM_KNIGHT, NON_PM, 1500L,
       NO_COLOR),
 
-    A("The Eyes of the Overworld", LENSES,
+    A("世界之眼", LENSES,  //The Eyes of the Overworld
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_XRAY), 0, 0, NO_ATTK,
       DFNS(AD_MAGM), NO_CARY, ENLIGHTENING, A_NEUTRAL, PM_MONK, NON_PM,
       2500L, NO_COLOR),
 
-    A("The Mitre of Holiness", HELM_OF_BRILLIANCE,
+    A("圣洁的冠冕", HELM_OF_BRILLIANCE,  //The Mitre of Holiness
       (SPFX_NOGEN | SPFX_RESTR | SPFX_DFLAG2 | SPFX_INTEL | SPFX_PROTECT), 0,
       M2_UNDEAD, NO_ATTK, NO_DFNS, CARY(AD_FIRE), ENERGY_BOOST, A_LAWFUL,
       PM_PRIEST, NON_PM, 2000L, NO_COLOR),
 
-    A("The Longbow of Diana", BOW,
+    A("戴安娜的长弓", BOW,  //The Longbow of Diana
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_REFLECT), SPFX_ESP, 0,
       PHYS(5, 0), NO_DFNS, NO_CARY, CREATE_AMMO, A_CHAOTIC, PM_RANGER, NON_PM,
       4000L, NO_COLOR),
 
-    A("The Master Key of Thievery", SKELETON_KEY,
+    A("窃贼的万能钥匙", SKELETON_KEY,  //The Master Key of Thievery
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_SPEAK),
       (SPFX_WARN | SPFX_TCTRL | SPFX_HPHDAM), 0, NO_ATTK, NO_DFNS, NO_CARY,
       UNTRAP, A_CHAOTIC, PM_ROGUE, NON_PM, 3500L, NO_COLOR),
 
-    A("The Tsurugi of Muramasa", TSURUGI,
+    A("妖刀村正", TSURUGI,  //The Tsurugi of Muramasa
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_BEHEAD | SPFX_LUCK
        | SPFX_PROTECT),
       0, 0, PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SAMURAI, NON_PM,
       4500L, NO_COLOR),
 
-    A("The Platinum Yendorian Express Card", CREDIT_CARD,
+    A("岩德白金卡", CREDIT_CARD,  //The Platinum Yendorian Express Card
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_DEFN),
       (SPFX_ESP | SPFX_HSPDAM), 0, NO_ATTK, NO_DFNS, CARY(AD_MAGM),
       CHARGE_OBJ, A_NEUTRAL, PM_TOURIST, NON_PM, 7000L, NO_COLOR),
 
-    A("The Orb of Fate", CRYSTAL_BALL,
+    A("命运之球", CRYSTAL_BALL,  //The Orb of Fate
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_LUCK),
       (SPFX_WARN | SPFX_HSPDAM | SPFX_HPHDAM), 0, NO_ATTK, NO_DFNS, NO_CARY,
       LEV_TELE, A_NEUTRAL, PM_VALKYRIE, NON_PM, 3500L, NO_COLOR),
 
-    A("The Eye of the Aethiopica", AMULET_OF_ESP,
+    A("莲之眼", AMULET_OF_ESP,  //The Eye of the Aethiopica
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL), (SPFX_EREGEN | SPFX_HSPDAM), 0,
       NO_ATTK, DFNS(AD_MAGM), NO_CARY, CREATE_PORTAL, A_NEUTRAL, PM_WIZARD,
       NON_PM, 4000L, NO_COLOR),

@@ -246,7 +246,7 @@ struct c_common_strings c_common_strings = { "无事发生.",
                                              "You can move again.",
                                              "不用了.",
                                              "vision quickly clears.",
-                                             { "the", "your" } };
+                                             { "", "你的" } };
 
 /* NOTE: the order of these words exactly corresponds to the
    order of oc_material values #define'd in objclass.h. */

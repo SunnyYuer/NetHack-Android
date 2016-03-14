@@ -129,7 +129,7 @@ OBJECT:('%',"尸体"),random,montype:"watch captain"
 
 # Rubble!
 LOOP [9 + 2d5] {
-  [90%]: OBJECT:('`',"boulder"),random
+  [90%]: OBJECT:('`',"巨石"),random
   OBJECT:('*',"岩石"),random
 }
 
@@ -629,7 +629,7 @@ DOOR:locked,(73,18)
 OBJECT: ('(', "箱子"), (73,19)
 DOOR:locked,(50,06)
 OBJECT: '(', (50,03)
-OBJECT: ('`', "statue"), (38,15), montype:"gnome king", 1
+OBJECT: ('`', "雕像"), (38,15), montype:"gnome king", 1
 # Temple
 REGION:(29,02,33,04),lit,"temple"
 DOOR:closed,(31,05)

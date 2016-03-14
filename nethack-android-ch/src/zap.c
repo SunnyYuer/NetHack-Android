@@ -4930,7 +4930,7 @@ makewish()
     promptbuf[0] = '\0';
     nothing = zeroobj; /* lint suppression; only its address matters */
     if (flags.verbose)
-        You("may wish for an object.");
+        You("可以许一件物品.");
 retry:
     Strcpy(promptbuf, "你想许愿要什么");
     if (iflags.cmdassist && tries > 0)

@@ -1124,7 +1124,7 @@ register const char *let, *word;
                  /* (!astral && amulet) || (astral && !amulet) */
                  && (!Is_astralevel(&u.uz) ^ (otmp->oclass != AMULET_CLASS)))
              /* suppress container being stashed into */
-             || (!strcmp(word, "stash") && !ck_bag(otmp))
+             || (!strcmp(word, "存放") && !ck_bag(otmp))  //stash
              /* worn armor or accessory covered by cursed worn armor */
              || (taking_off(word)
                  && inaccessible_equipment(otmp, (const char *) 0, TRUE))
@@ -3224,7 +3224,7 @@ long numused;
 STATIC_VAR NEARDATA const char *names[] = {
     0, "Illegal objects", "武器", "防具", "戒指", "护身符", "工具",
     "食物", "药水", "卷轴", "魔法书", "魔杖", "金钱",
-    "宝石/ 石头", "巨石/ 雕像", "Iron balls", "Chains", "Venoms"
+    "宝石/ 石头", "巨石/ 雕像", "铁球", "链", "毒液"
 };
 
 static NEARDATA const char oth_symbols[] = { CONTAINED_SYM, '\0' };

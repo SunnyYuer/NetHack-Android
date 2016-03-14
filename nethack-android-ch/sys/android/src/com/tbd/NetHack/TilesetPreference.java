@@ -164,7 +164,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		Intent intent = new Intent();
 		intent.setType("image/*");
 		intent.setAction(Intent.ACTION_GET_CONTENT);
-		mSettings.startActivityForResult(Intent.createChooser(intent, "Select Tileset Image"), GET_IMAGE_REQUEST);
+		mSettings.startActivityForResult(Intent.createChooser(intent, "Ñ¡ÔñtileÍ¼Ïñ"), GET_IMAGE_REQUEST);
 	}
 
 	@Override

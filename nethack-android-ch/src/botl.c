@@ -135,7 +135,7 @@ bot1()
     Strcpy(newbot1, plname);
     if ('a' <= newbot1[0] && newbot1[0] <= 'z')
         newbot1[0] += 'A' - 'a';
-    newbot1[10] = 0;
+    newbot1[15] = 0;
     Sprintf(nb = eos(newbot1), "  ");
 
     if (Upolyd) {

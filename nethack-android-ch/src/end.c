@@ -1340,7 +1340,7 @@ boolean identified, all_containers, reportempty;
                         goto nextclass;
                 }
 
-                Sprintf(buf, "%s 里面有:", the(xname(box)));
+                Sprintf(buf, "%s 里面有:", xname(box));
                 putstr(tmpwin, 0, buf);
                 putstr(tmpwin, 0, "");
                 for (i = 0; i < n; i++) {

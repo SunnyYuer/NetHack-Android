@@ -906,10 +906,10 @@ winid tmpwin; /* supplied by dodiscover() */
             continue; /* for WIN_ERR, we just count */
 
         if (i == 0)
-            putstr(tmpwin, iflags.menu_headings, "Artifacts");
+            putstr(tmpwin, iflags.menu_headings, "神器");
         m = artidisco[i];
         otyp = artilist[m].otyp;
-        Sprintf(buf, "  %s [%s %s]", artiname(m),
+        Sprintf(buf, "  %s [ %s %s]", artiname(m),
                 align_str(artilist[m].alignment), simple_typename(otyp));
         putstr(tmpwin, 0, buf);
     }

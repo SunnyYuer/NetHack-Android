@@ -365,7 +365,7 @@ aligntyp alignment;
     case A_LAWFUL:
         return "秩序";
     case A_NONE:
-        return "unaligned";
+        return "无阵营";
     }
     return "unknown";
 }

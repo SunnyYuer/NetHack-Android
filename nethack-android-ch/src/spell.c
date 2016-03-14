@@ -721,7 +721,7 @@ int skill;
     case P_DIVINATION_SPELL:
         return "预测";
     case P_ENCHANTMENT_SPELL:
-        return "附魔";
+        return "迷惑";
     case P_CLERIC_SPELL:
         return "神圣";
     case P_ESCAPE_SPELL:
@@ -1523,7 +1523,7 @@ int *spell_no;
      * given string and are of the form "a - ".
      */
     if (!iflags.menu_tab_sep) {
-        Sprintf(buf, "%-20s\t\t\t   等级 %-12s  失败几率  熟练度", "\t\t   名称",
+        Sprintf(buf, "%-20s\t\t\t等级 %-12s  失败几率  熟练度", "\t\t   名称",
                 "   种类");
         fmt = "%-20s  %2d   %-12s %3d%% %9s";
     } else {
@@ -1710,7 +1710,7 @@ char *outbuf;
 
     if (turnsleft < 1L) {
         /* spell has expired; hero can't successfully cast it anymore */
-        Strcpy(outbuf, "(gone)");
+        Strcpy(outbuf, "( 遗忘)");
     } else if (turnsleft >= (long) KEEN) {
         /* full retention, first turn or immediately after reading book */
         Strcpy(outbuf, "100%");

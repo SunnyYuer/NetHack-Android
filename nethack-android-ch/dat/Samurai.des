@@ -291,7 +291,7 @@ TERRAIN:$place[0],'.'
 # Non diggable walls
 NON_DIGGABLE:(00,00,44,19)
 # Objects
-OBJECT:(')',"草薙剑"),(22,10),blessed,0,name:"The Tsurugi of Muramasa"
+OBJECT:(')',"武士剑"),(22,10),blessed,0,name:"The Tsurugi of Muramasa"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

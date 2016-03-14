@@ -53,21 +53,21 @@ BRANCH:levregion(01,00,79,20),(30,06,46,13)
 # Non diggable walls
 NON_DIGGABLE:(30,06,46,13)
 # Objects
-CONTAINER:('`',"statue"),(36,10),uncursed,montype:"knight",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),(36,10),uncursed,montype:"knight",3,name:"Perseus" {
   [75%]: OBJECT:('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT:('[',"悬浮靴"),+0
+  [25%]: OBJECT:('[',"飘浮靴"),+0
   [50%]: OBJECT:(')',"短弯刀"),blessed,+2
   [50%]: OBJECT:('(',"布袋")
 }
 # These aren't really containers, but specifying CONTAINER forces them to be
 # empty, since CONTAINERs contain only what is explicitly specified.
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -152,23 +152,23 @@ BRANCH:levregion(01,00,79,20),(59,01,73,17)
 NON_DIGGABLE:(01,02,06,17)
 NON_DIGGABLE:(60,02,73,17)
 # Objects
-CONTAINER:('`',"statue"),(68,10),uncursed,montype:"knight",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),(68,10),uncursed,montype:"knight",3,name:"Perseus" {
   [25%]: OBJECT:('[',"反射之盾"),cursed,+0
-  [75%]: OBJECT:('[',"悬浮靴"),+0
+  [75%]: OBJECT:('[',"飘浮靴"),+0
   [50%]: OBJECT:(')',"短弯刀"),blessed,+2
   [50%]: OBJECT:('(',"布袋")
 }
-CONTAINER:('`',"statue"),(64,08) { }
-CONTAINER:('`',"statue"),(65,08) { }
-CONTAINER:('`',"statue"),(64,09) { }
-CONTAINER:('`',"statue"),(65,09) { }
-CONTAINER:('`',"statue"),(64,10) { }
-CONTAINER:('`',"statue"),(65,10) { }
-CONTAINER:('`',"statue"),(64,11) { }
-CONTAINER:('`',"statue"),(65,11) { }
-OBJECT:('`',"boulder"),(04,04)
+CONTAINER:('`',"雕像"),(64,08) { }
+CONTAINER:('`',"雕像"),(65,08) { }
+CONTAINER:('`',"雕像"),(64,09) { }
+CONTAINER:('`',"雕像"),(65,09) { }
+CONTAINER:('`',"雕像"),(64,10) { }
+CONTAINER:('`',"雕像"),(65,10) { }
+CONTAINER:('`',"雕像"),(64,11) { }
+CONTAINER:('`',"雕像"),(65,11) { }
+OBJECT:('`',"巨石"),(04,04)
 OBJECT:'/',(52,09)
-OBJECT:('`',"boulder"),(52,09)
+OBJECT:('`',"巨石"),(52,09)
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -270,20 +270,20 @@ DOOR:locked,(48,15)
 # 
 FOUNTAIN:$place[1]
 #
-CONTAINER:('`',"statue"),$place[2],uncursed,montype:"knight",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),$place[2],uncursed,montype:"knight",3,name:"Perseus" {
   [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT: ('[',"悬浮靴"),+0
+  [25%]: OBJECT: ('[',"飘浮靴"),+0
   [50%]: OBJECT: (')',"短弯刀"),blessed,+2
   [50%]: OBJECT: ('(',"布袋")
 }
 #
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
 
 LOOP [8] {
   OBJECT:random,random
@@ -370,20 +370,20 @@ NON_DIGGABLE:(01,01,22,14)
 #
 OBJECT:('(',"水晶球"),(07,08)
 #
-CONTAINER:('`',"statue"),$place[1],uncursed,montype:"knight",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),$place[1],uncursed,montype:"knight",3,name:"Perseus" {
   [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT: ('[',"悬浮靴"),+0
+  [25%]: OBJECT: ('[',"飘浮靴"),+0
   [50%]: OBJECT: (')',"短弯刀"),blessed,+2
   [50%]: OBJECT: ('(',"布袋")
 }
 #
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
-CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"雕像"),random { }
 LOOP [8] {
   OBJECT:random,random
 }

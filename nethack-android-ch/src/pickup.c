@@ -1597,7 +1597,7 @@ struct obj **cobjp;
     }
 
     You("%s打开 %s...", (!cobj->cknown || !cobj->lknown) ? "小心地 " : "",
-        the(xname(cobj)));
+        xname(cobj));
     return use_container(cobjp, 0);
 }
 
@@ -1944,8 +1944,8 @@ register struct obj *obj;
         pline("That would be an interesting topological exercise.");
         return 0;
     } else if (obj->owornmask & (W_ARMOR | W_ACCESSORY)) {
-        Norep("You cannot %s %s you are wearing.",
-              Icebox ? "refrigerate" : "stash", something);
+        Norep("你不能%s你正在穿的.",
+              Icebox ? "冷藏" : "存放");
         return 0;
     } else if ((obj->otyp == LOADSTONE) && obj->cursed) {
         obj->bknown = 1;
@@ -2048,7 +2048,7 @@ register struct obj *obj;
     }
 
     if (current_container) {
-        Strcpy(buf, the(xname(current_container)));
+        Strcpy(buf, xname(current_container));
         You("把%s 放入%s.", doname(obj), buf);
 
         /* gold in container always needs to be added to credit */
@@ -2276,7 +2276,7 @@ int held;
         return 0;
     } else if (obj->otrapped) {
         if (held)
-            You("open %s...", the(xname(obj)));
+            You("open %s...", xname(obj));
         obj->lknown = 1;
         (void) chest_trap(obj, HAND, FALSE);
         /* even if the trap fails, you've used up this turn */
@@ -2417,8 +2417,8 @@ int held;
 
     if ((loot_in || stash_one)
         && (!invent || (invent == current_container && !invent->nobj))) {
-        You("don't have anything%s to %s.", invent ? " else" : "",
-            stash_one ? "stash" : "put in");
+        You("没有任何%s东西来%s.", invent ? " 别的" : "",
+            stash_one ? "存放" : "放入");
         loot_in = stash_one = FALSE;
     }
 
@@ -2434,7 +2434,7 @@ int held;
             used |= (menu_loot(0, TRUE) > 0);
     } else if (stash_one) {
         /* put one item into container */
-        if ((otmp = getobj(stashable, "stash")) != 0) {
+        if ((otmp = getobj(stashable, "存放")) != 0) {  //stash
             if (in_container(otmp)) {
                 used = 1;
             } else {
@@ -2623,7 +2623,7 @@ boolean outokay, inokay, alreadyused;
     start_menu(win);
 
     any.a_int = 1; /* ':' */
-    Sprintf(buf, "查看 %s 的里面", thesimpleoname(obj));
+    Sprintf(buf, "查看 %s 的里面", simpleonames(obj));
     add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE, buf,
              MENU_UNSELECTED);
     if (outokay) {
@@ -2651,7 +2651,7 @@ boolean outokay, inokay, alreadyused;
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
         any.a_int = 6; /* 's' */
-        Sprintf(buf, "把一项藏到 %s", thesimpleoname(obj));
+        Sprintf(buf, "把一项存放到 %s", simpleonames(obj));
         add_menu(win, NO_GLYPH, &any, menuselector[any.a_int], 0, ATR_NONE,
                  buf, MENU_UNSELECTED);
     }

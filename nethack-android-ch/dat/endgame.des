@@ -124,7 +124,7 @@ MONSTER:('T',"rock troll"),(02,17)
 MONSTER:('E',"earth elemental"),(04,17),hostile
 MONSTER:('E',"earth elemental"),(04,18),hostile
 
-OBJECT:('`',"boulder"),random
+OBJECT:('`',"巨石"),random
 
 
 MAZE:"air",' '
@@ -372,11 +372,11 @@ MONSTER:('v',"steam vortex"),random
 MONSTER:(':',"salamander"),random,hostile
 MONSTER:(':',"salamander"),random,hostile
 
-OBJECT:('`',"boulder"),random
-OBJECT:('`',"boulder"),random
-OBJECT:('`',"boulder"),random
-OBJECT:('`',"boulder"),random
-OBJECT:('`',"boulder"),random
+OBJECT:('`',"巨石"),random
+OBJECT:('`',"巨石"),random
+OBJECT:('`',"巨石"),random
+OBJECT:('`',"巨石"),random
+OBJECT:('`',"巨石"),random
 
 
 MAZE:"water",' '

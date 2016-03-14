@@ -39,18 +39,18 @@ struct Jitem {
              && typ != SAPPHIRE && typ != BLACK_OPAL && typ != EMERALD \
              && typ != OPAL)))
 
-STATIC_OVL struct Jitem Japanese_items[] = { { SHORT_SWORD, "wakizashi" },
-                                             { BROADSWORD, "ninja-to" },
-                                             { FLAIL, "nunchaku" },
-                                             { GLAIVE, "naginata" },
-                                             { LOCK_PICK, "osaku" },
-                                             { WOODEN_HARP, "koto" },
-                                             { KNIFE, "shito" },
-                                             { PLATE_MAIL, "tanko" },
-                                             { HELMET, "kabuto" },
-                                             { LEATHER_GLOVES, "yugake" },
-                                             { FOOD_RATION, "gunyoki" },
-                                             { POT_BOOZE, "sake" },
+STATIC_OVL struct Jitem Japanese_items[] = { { SHORT_SWORD, "胁差" },  //wakizashi
+                                             { BROADSWORD, "忍者大刀" },  //ninja-to
+                                             { FLAIL, "双节棍" },  //nunchaku
+                                             { GLAIVE, "太刀" },  //naginata
+                                             { LOCK_PICK, "破锁忍具" },  //osaku
+                                             { WOODEN_HARP, "日本筝" },  //koto
+                                             { KNIFE, "锥" },  //shito
+                                             { PLATE_MAIL, "挂甲" },  //tanko
+                                             { HELMET, "兜" },  //kabuto
+                                             { LEATHER_GLOVES, "和弓手套" },  //yugake
+                                             { FOOD_RATION, "饭团" },  //gunyoki
+                                             { POT_BOOZE, "清酒" },  //sake
                                              { 0, "" } };
 
 STATIC_DCL const char *FDECL(Japanese_item_name, (int i));
@@ -111,46 +111,46 @@ register int otyp;
         Strcpy(buf, "coin");
         break;
     case POTION_CLASS:
-        Strcpy(buf, "potion");
+        Strcpy(buf, "药水");
         break;
     case SCROLL_CLASS:
-        Strcpy(buf, "scroll");
+        Strcpy(buf, "卷轴");
         break;
     case WAND_CLASS:
-        Strcpy(buf, "wand");
+        Strcpy(buf, "魔杖");
         break;
     case SPBOOK_CLASS:
-        Strcpy(buf, "spellbook");
+        Strcpy(buf, "魔法书");
         break;
     case RING_CLASS:
-        Strcpy(buf, "ring");
+        Strcpy(buf, "戒指");
         break;
     case AMULET_CLASS:
         if (nn)
             Strcpy(buf, actualn);
         else
-            Strcpy(buf, "amulet");
+            Strcpy(buf, "护身符");
         if (un)
-            Sprintf(eos(buf), " called %s", un);
+            Sprintf(eos(buf), " 被称为 %s", un);
         if (dn)
-            Sprintf(eos(buf), " (%s)", dn);
+            Sprintf(eos(buf), " ( %s)", dn);
         return buf;
     default:
         if (nn) {
             Strcpy(buf, actualn);
             if (GemStone(otyp))
-                Strcat(buf, " stone");
+                Strcat(buf, " 石头");
             if (un)
-                Sprintf(eos(buf), " called %s", un);
+                Sprintf(eos(buf), " 被称为 %s", un);
             if (dn)
-                Sprintf(eos(buf), " (%s)", dn);
+                Sprintf(eos(buf), " ( %s)", dn);
         } else {
             Strcpy(buf, dn ? dn : actualn);
             if (ocl->oc_class == GEM_CLASS)
                 Strcat(buf,
-                       (ocl->oc_material == MINERAL) ? " stone" : " gem");
+                       (ocl->oc_material == MINERAL) ? " 石头" : " 宝石");
             if (un)
-                Sprintf(eos(buf), " called %s", un);
+                Sprintf(eos(buf), " 被称为 %s", un);
         }
         return buf;
     }
@@ -159,12 +159,12 @@ register int otyp;
         if (ocl->oc_unique)
             Strcpy(buf, actualn); /* avoid spellbook of Book of the Dead */
         else
-            Sprintf(eos(buf), " of %s", actualn);
+            Sprintf(eos(buf), " 之 %s", actualn);
     }
     if (un)
-        Sprintf(eos(buf), " called %s", un);
+        Sprintf(eos(buf), " 被称为 %s", un);
     if (dn)
-        Sprintf(eos(buf), " (%s)", dn);
+        Sprintf(eos(buf), " ( %s)", dn);
     return buf;
 }
 
@@ -415,9 +415,9 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         break;
     case ROCK_CLASS:
         if (typ == STATUE && omndx != NON_PM)
-            Sprintf(buf, "%s%s of %s%s",
+            Sprintf(buf, "%s%s 之 %s%s",
                     (Role_if(PM_ARCHEOLOGIST) && (obj->spe & STATUE_HISTORIC))
-                       ? "historic "
+                       ? "有历史性的 "
                        : "",
                     actualn,
                     type_is_pname(&mons[omndx])
@@ -425,15 +425,15 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
                        : the_unique_pm(&mons[omndx])
                           ? "the "
                           : index(vowels, *mons[omndx].mname)
-                             ? "an "
-                             : "a ",
+                             ? ""
+                             : "",
                     mons[omndx].mname);
         else
             Strcpy(buf, actualn);
         break;
     case BALL_CLASS:
-        Sprintf(buf, "%sheavy iron ball",
-                (obj->owt > ocl->oc_weight) ? "very " : "");
+        Sprintf(buf, "%s沉重的铁球",
+                (obj->owt > ocl->oc_weight) ? "非常 " : "");
         break;
     case POTION_CLASS:
         if (dknown && obj->odiluted)
@@ -934,7 +934,7 @@ boolean with_price;
                 Strcat(prefix, mons[omndx].mname);
                 Strcat(prefix, " ");
                 if (obj->spe)
-                    Strcat(bp, " (laid by you)");
+                    Strcat(bp, " ( 你下的)");
             }
         }
         if (obj->otyp == MEAT_RING)
@@ -944,7 +944,7 @@ boolean with_price;
     case CHAIN_CLASS:
         add_erosion_words(obj, prefix);
         if (obj->owornmask & W_BALL)
-            Strcat(bp, " (chained to you)");
+            Strcat(bp, " ( 拴在你身上)");
         break;
     }
 
@@ -954,13 +954,15 @@ boolean with_price;
         } else {
             const char *hand_s = body_part(HAND);
 
-            if (bimanual(obj))
-                hand_s = makeplural(hand_s);
-            Sprintf(eos(bp), " ( 拿在%s 上)", hand_s);
+            if (bimanual(obj)){
+                //hand_s = makeplural(hand_s);
+                Sprintf(eos(bp), " ( 拿在双%s 上)", hand_s);
+            }
+            else Sprintf(eos(bp), " ( 拿在%s 上)", hand_s);
 
             if (warn_obj_cnt && obj == uwep && (EWarn_of_mon & W_WEP) != 0L) {
                 /* presumably can be felt when blind */
-                Strcat(bp, " (glowing");
+                Strcat(bp, " ( 发光的");
                 if (!Blind)
                     Sprintf(eos(bp), " %s", glow_color(obj->oartifact));
                 Strcat(bp, ")");
@@ -969,7 +971,7 @@ boolean with_price;
     }
     if (obj->owornmask & W_SWAPWEP) {
         if (u.twoweap)
-            Sprintf(eos(bp), " (wielded in other %s)", body_part(HAND));
+            Sprintf(eos(bp), " ( 拿在另一只%s 上)", body_part(HAND));
         else
             Strcat(bp, " ( 备用武器;  未使用)");
     }
@@ -1000,14 +1002,14 @@ boolean with_price;
             Strcat(bp, " ( 囊中)");
             break;
         default: /* odd things */
-            Strcat(bp, " (at the ready)");
+            Strcat(bp, " ( 准备就绪)");
         }
     }
     if (!iflags.suppress_price && is_unpaid(obj)) {
         long quotedprice = unpaid_cost(obj, TRUE);
 
-        Sprintf(eos(bp), " (%s, %ld %s)",
-                obj->unpaid ? "unpaid" : "contents",
+        Sprintf(eos(bp), " ( %s, %ld %s)",
+                obj->unpaid ? "未付款" : "里面未付款",
                 quotedprice, currency(quotedprice));
     } else if (with_price) {
         long price = get_cost_of_shop_item(obj);
@@ -1959,7 +1961,7 @@ const char *oldstr;
      * and pair for objects and non-humans, e.g. 3 pair of boots.  We don't
      * refer to pairs of humans in this game so just skip to the bottom.
      */
-    if (!strncmpi(str, "一双 ", 7))
+    if (!strncmpi(str, "pair of ", 8))
         goto bottom;
 
     /* look for "foo of bar" so that we can focus on "foo" */
@@ -1996,8 +1998,8 @@ const char *oldstr;
             goto bottom;
 
         /* more of same, but not suitable for blanket loop checking */
-        if ((len == 3 && !strcmpi(str, "矢"))
-            || (len >= 4 && !strcmpi(spot - 3, " 矢")))
+        if ((len == 2 && !strcmpi(str, "ya"))
+                    || (len >= 3 && !strcmpi(spot - 2, " ya")))
             goto bottom;
     }
 
@@ -2312,22 +2314,22 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
     { "lamp", TOOL_CLASS, OIL_LAMP, MAGIC_LAMP },
     { "candle", TOOL_CLASS, TALLOW_CANDLE, WAX_CANDLE },
     { "horn", TOOL_CLASS, TOOLED_HORN, HORN_OF_PLENTY },
-    { "shield", ARMOR_CLASS, SMALL_SHIELD, SHIELD_OF_REFLECTION },
-    { "hat", ARMOR_CLASS, FEDORA, DUNCE_CAP },
-    { "helm", ARMOR_CLASS, ELVEN_LEATHER_HELM, HELM_OF_TELEPATHY },
-    { "gloves", ARMOR_CLASS, LEATHER_GLOVES, GAUNTLETS_OF_DEXTERITY },
+    { "盾牌", ARMOR_CLASS, SMALL_SHIELD, SHIELD_OF_REFLECTION },
+    { "帽子", ARMOR_CLASS, FEDORA, DUNCE_CAP },
+    { "头盔", ARMOR_CLASS, ELVEN_LEATHER_HELM, HELM_OF_TELEPATHY },
+    { "手套", ARMOR_CLASS, LEATHER_GLOVES, GAUNTLETS_OF_DEXTERITY },
     { "gauntlets", ARMOR_CLASS, LEATHER_GLOVES, GAUNTLETS_OF_DEXTERITY },
-    { "boots", ARMOR_CLASS, LOW_BOOTS, LEVITATION_BOOTS },
-    { "shoes", ARMOR_CLASS, LOW_BOOTS, IRON_SHOES },
-    { "cloak", ARMOR_CLASS, MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT },
-    { "shirt", ARMOR_CLASS, HAWAIIAN_SHIRT, T_SHIRT },
-    { "dragon scales", ARMOR_CLASS, GRAY_DRAGON_SCALES,
+    { "靴", ARMOR_CLASS, LOW_BOOTS, LEVITATION_BOOTS },
+    { "鞋", ARMOR_CLASS, LOW_BOOTS, IRON_SHOES },
+    { "斗篷", ARMOR_CLASS, MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT },
+    { "衬衫", ARMOR_CLASS, HAWAIIAN_SHIRT, T_SHIRT },
+    { "龙鳞", ARMOR_CLASS, GRAY_DRAGON_SCALES,
       YELLOW_DRAGON_SCALES },
-    { "dragon scale mail", ARMOR_CLASS, GRAY_DRAGON_SCALE_MAIL,
+    { "龙鳞甲", ARMOR_CLASS, GRAY_DRAGON_SCALE_MAIL,
       YELLOW_DRAGON_SCALE_MAIL },
-    { "sword", WEAPON_CLASS, SHORT_SWORD, KATANA },
-    { "venom", VENOM_CLASS, BLINDING_VENOM, ACID_VENOM },
-    { "gray stone", GEM_CLASS, LUCKSTONE, FLINT },
+    { "剑", WEAPON_CLASS, SHORT_SWORD, KATANA },
+    { "毒液", VENOM_CLASS, BLINDING_VENOM, ACID_VENOM },
+    { "灰石", GEM_CLASS, LUCKSTONE, FLINT },
     { "grey stone", GEM_CLASS, LUCKSTONE, FLINT },
 };
 
@@ -2551,9 +2553,9 @@ struct obj *no_wish;
         } else if (!strncmpi(bp, "部分食用的", l = 15)
                    || !strncmpi(bp, "partially eaten ", l = 16)) {
             halfeaten = 1;
-        } else if (!strncmpi(bp, "historic ", l = 9)) {
+        } else if (!strncmpi(bp, "有历史性的", l = 15)) {
             ishistoric = 1;
-        } else if (!strncmpi(bp, "diluted ", l = 8)) {
+        } else if (!strncmpi(bp, "稀释的", l = 9)) {
             isdiluted = 1;
         } else if (!strncmpi(bp, "空的", l = 6)) {
             contents = EMPTY;

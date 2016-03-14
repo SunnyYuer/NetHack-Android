@@ -185,7 +185,7 @@ xxx...xx
 xxxx.xxx
 xxxxxxxx
 ENDMAP
-OBJECT:('`',"boulder"),random
+OBJECT:('`',"巨石"),random
 GEOMETRY:right,top
 MAP
 xxxxxxxx
@@ -194,7 +194,7 @@ xxx...xx
 xx...xxx
 xxxxxxxx
 ENDMAP
-OBJECT:('`',"boulder"),random
+OBJECT:('`',"巨石"),random
 # lair
 GEOMETRY:center,center
 MAP
@@ -283,7 +283,7 @@ OBJECT:'!',random
 OBJECT:'%',random
 OBJECT:'%',random
 OBJECT:'%',random
-OBJECT:('`',"boulder"),random
+OBJECT:('`',"巨石"),random
 # Some traps
 TRAP:"sleep gas",random
 TRAP:"sleep gas",random
@@ -325,30 +325,30 @@ STAIR:levregion(01,00,12,20),levregion(20,01,70,20),up
 BRANCH:levregion(01,00,12,20),levregion(20,01,70,20)
 TELEPORT_REGION:levregion(01,00,12,20),levregion(20,01,70,20)
 # Wall "ruins"
-OBJECT:('`',"boulder"),(19,02)
-OBJECT:('`',"boulder"),(20,02)
-OBJECT:('`',"boulder"),(21,02)
-OBJECT:('`',"boulder"),(36,02)
-OBJECT:('`',"boulder"),(36,03)
-OBJECT:('`',"boulder"),(06,04)
-OBJECT:('`',"boulder"),(05,05)
-OBJECT:('`',"boulder"),(06,05)
-OBJECT:('`',"boulder"),(07,05)
-OBJECT:('`',"boulder"),(39,05)
-OBJECT:('`',"boulder"),(08,08)
-OBJECT:('`',"boulder"),(09,08)
-OBJECT:('`',"boulder"),(10,08)
-OBJECT:('`',"boulder"),(11,08)
-OBJECT:('`',"boulder"),(06,10)
-OBJECT:('`',"boulder"),(05,11)
-OBJECT:('`',"boulder"),(06,11)
-OBJECT:('`',"boulder"),(07,11)
-OBJECT:('`',"boulder"),(21,11)
-OBJECT:('`',"boulder"),(21,12)
-OBJECT:('`',"boulder"),(13,13)
-OBJECT:('`',"boulder"),(14,13)
-OBJECT:('`',"boulder"),(15,13)
-OBJECT:('`',"boulder"),(14,14)
+OBJECT:('`',"巨石"),(19,02)
+OBJECT:('`',"巨石"),(20,02)
+OBJECT:('`',"巨石"),(21,02)
+OBJECT:('`',"巨石"),(36,02)
+OBJECT:('`',"巨石"),(36,03)
+OBJECT:('`',"巨石"),(06,04)
+OBJECT:('`',"巨石"),(05,05)
+OBJECT:('`',"巨石"),(06,05)
+OBJECT:('`',"巨石"),(07,05)
+OBJECT:('`',"巨石"),(39,05)
+OBJECT:('`',"巨石"),(08,08)
+OBJECT:('`',"巨石"),(09,08)
+OBJECT:('`',"巨石"),(10,08)
+OBJECT:('`',"巨石"),(11,08)
+OBJECT:('`',"巨石"),(06,10)
+OBJECT:('`',"巨石"),(05,11)
+OBJECT:('`',"巨石"),(06,11)
+OBJECT:('`',"巨石"),(07,11)
+OBJECT:('`',"巨石"),(21,11)
+OBJECT:('`',"巨石"),(21,12)
+OBJECT:('`',"巨石"),(13,13)
+OBJECT:('`',"巨石"),(14,13)
+OBJECT:('`',"巨石"),(15,13)
+OBJECT:('`',"巨石"),(14,14)
 # Doors
 DOOR:closed,(23,02)
 DOOR:open,(31,03)
