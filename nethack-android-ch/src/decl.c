@@ -212,8 +212,8 @@ NEARDATA struct monst *migrating_mons = (struct monst *) 0;
 NEARDATA struct mvitals mvitals[NUMMONS];
 
 NEARDATA struct c_color_names c_color_names = {
-    "black",  "amber", "golden", "light blue", "red",   "green",
-    "silver", "blue",  "purple", "white",      "orange"
+    "黑色",  "琥珀色", "金色", "淡蓝色", "红色",   "绿色",
+    "银色", "蓝色",  "紫色", "白色",      "橙色"
 };
 
 struct menucoloring *menu_colorings = NULL;

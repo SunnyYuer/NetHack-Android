@@ -407,7 +407,7 @@ int psflags;
         tryct = 5;
         do {
             mntmp = NON_PM;
-            getlin("Become what kind of monster? [type the name]", buf);
+            getlin("变成哪种怪? [ 输入怪的名字]", buf);
             (void) mungspaces(buf);
             if (*buf == '\033') {
                 /* user is cancelling controlled poly */
@@ -417,7 +417,7 @@ int psflags;
                 }
                 Strcpy(buf, "*"); /* resort to random */
             }
-            if (!strcmp(buf, "*") || !strcmp(buf, "random")) {
+            if (!strcmp(buf, "*") || !strcmp(buf, "随机")) {
                 /* explicitly requesting random result */
                 tryct = 0; /* will skip thats_enough_tries */
                 continue;  /* end do-while(--tryct > 0) loop */
@@ -432,7 +432,7 @@ int psflags;
             }
             if (mntmp < LOW_PM) {
                 if (!class)
-                    pline("I've never heard of such monsters.");
+                    pline("游戏中没有这种怪.");
                 else
                     You_cant("polymorph into any of those.");
             } else if (iswere && (were_beastie(mntmp) == u.ulycn
@@ -1535,7 +1535,7 @@ int part;
     static NEARDATA const char
         *humanoid_parts[] = { "arm",       "eye",  "脸",         "手指",
                               "fingertip", "foot", "手",         "手",
-                              "head",      "腿",  "light headed", "neck",
+                              "头",      "腿",  "light headed", "neck",
                               "spine",     "toe",  "hair",         "blood",
                               "lung",      "nose", "stomach" },
     /*

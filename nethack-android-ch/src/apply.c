@@ -3377,11 +3377,11 @@ doapply()
         } else if (!ublindf) {
             Blindf_on(obj);
         } else {
-            You("are already %s.", ublindf->otyp == TOWEL
-                                       ? "covered by a towel"
+            You("已经 %s.", ublindf->otyp == TOWEL
+                                       ? "盖着毛巾了"
                                        : ublindf->otyp == BLINDFOLD
-                                             ? "wearing a blindfold"
-                                             : "wearing lenses");
+                                             ? "戴着眼罩了"
+                                             : "戴着眼镜了");
         }
         break;
     case CREAM_PIE:

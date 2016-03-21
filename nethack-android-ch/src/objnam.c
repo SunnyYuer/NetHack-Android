@@ -1443,7 +1443,7 @@ const char *str;
         }
     }
     if (insert_the)
-        Strcpy(buf, "the ");
+        Strcpy(buf, "");
     else
         buf[0] = '\0';
     Strcat(buf, str);
@@ -1519,7 +1519,7 @@ Tobjnam(otmp, verb)
 struct obj *otmp;
 const char *verb;
 {
-    char *bp = The(xname(otmp));
+    char *bp = xname(otmp);
 
     if (verb) {
         Strcat(bp, " ");
@@ -2493,8 +2493,9 @@ struct obj *no_wish;
                 bp++;
             l = 0;
         } else if (!strncmpi(bp, "受祝福的", l = 12)
-                   || !strncmpi(bp, "圣", l = 3)) {
+                   || !strncmpi(bp, "圣水", l = 6)) {
             blessed = 1;
+            if(!strncmpi(bp, "圣水", 6)) l=3;
         } else if (!strncmpi(bp, "潮湿的", l = 9)
                    || !strncmpi(bp, "湿的", l = 6)) {
             if (!strncmpi(bp, "湿的", 6))
@@ -2502,8 +2503,9 @@ struct obj *no_wish;
             else
                 wetness = rnd(2);
         } else if (!strncmpi(bp, "被诅咒的", l = 12)
-                   || !strncmpi(bp, "邪", l = 3)) {
+                   || !strncmpi(bp, "邪水", l = 6)) {
             iscursed = 1;
+            if(!strncmpi(bp, "邪水", 6)) l=3;
         } else if (!strncmpi(bp, "未被诅咒的", l = 15)) {
             uncursed = 1;
         } else if (!strncmpi(bp, "防锈的", l = 9)
@@ -2715,6 +2717,7 @@ struct obj *no_wish;
     /* Find corpse type w/o "of" (red dragon scale mail, yeti corpse) */
     if (strncmpi(bp, "武士刀", 9))   /* not the "samurai" monster! */
         if (strncmpi(bp, "巫师锁", 9)) /* not the "wizard" monster! */
+        if (strncmpi(bp, "巫师帽", 9)) /* not the "wizard" monster! */
             if (strncmpi(bp, "ninja-to", 8)) /* not the "ninja" rank */
                 if (strncmpi(bp, "万能钥匙",
                              12)) /* not the "master" rank */
@@ -3566,18 +3569,18 @@ struct obj *cloak;
     if (cloak) {
         switch (cloak->otyp) {
         case ROBE:
-            return "robe";
+            return "长袍";
         case MUMMY_WRAPPING:
-            return "wrapping";
+            return "绷带";
         case ALCHEMY_SMOCK:
             return (objects[cloak->otyp].oc_name_known && cloak->dknown)
-                       ? "smock"
-                       : "apron";
+                       ? "罩衫"
+                       : "围裙";
         default:
             break;
         }
     }
-    return "cloak";
+    return "斗蓬";
 }
 
 /* helm vs hat for messages */
@@ -3597,7 +3600,7 @@ struct obj *helmet;
      *      fedora, cornuthaum, dunce cap       -> hat
      *      all other types of helmets          -> helm
      */
-    return (helmet && !is_metallic(helmet)) ? "hat" : "helm";
+    return (helmet && !is_metallic(helmet)) ? "帽子" : "头盔";
 }
 
 const char *

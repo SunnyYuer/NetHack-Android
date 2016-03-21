@@ -38,6 +38,7 @@ public class CmdPanelLayout extends FrameLayout
 	private boolean mShowPanels = true;
 	private Rect mViewRect = new Rect();
 	private View mViewArea;
+	private int btnSize=10;
 
 	// ____________________________________________________________________________________
 	public CmdPanelLayout(Context context)
@@ -363,8 +364,8 @@ public class CmdPanelLayout extends FrameLayout
 				panelCmds.add(panel);
 			}
 		}
-
-		if(panelsChanged(mPanelCmds, panelCmds))
+		int btnSiz = Integer.parseInt(prefs.getString("ovlButSize", "10"));
+		if(panelsChanged(mPanelCmds, panelCmds)||btnSize!=btnSiz)
 		{
 			Log.print("panels were changed");
 			for(Panel p : mPanelCmds)
@@ -373,7 +374,7 @@ public class CmdPanelLayout extends FrameLayout
 				if(p.portScrollView != p.landScrollView)
 					((ViewGroup)p.landScrollView.getParent()).removeView(p.landScrollView);
 			}
-			
+			btnSize=btnSiz;
 			for(int i = panelCmds.size() - 1; i >= 0; i--)
 			{
 				Panel panel = panelCmds.get(i);
@@ -383,7 +384,7 @@ public class CmdPanelLayout extends FrameLayout
 				else
 					panel.landScrollView = createScrollView(panel.lLoc);
 				
-				panel.panel = new CmdPanel(mContext, mState, this, panel.cmds, panel.opacity);
+				panel.panel = new CmdPanel(mContext, mState, this, panel.cmds, panel.opacity, btnSize);
 				if(mPortraitMode)
 				{
 					if(mShowPanels && panel.portActive)

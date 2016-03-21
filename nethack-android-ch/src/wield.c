@@ -121,9 +121,9 @@ struct obj *obj;
         return FALSE;
 
     /* Prevent wielding cockatrice when not wearing gloves --KAA */
-    You("wield %s in your bare %s.",
-        corpse_xname(obj, (const char *) 0, CXN_PFX_THE),
-        makeplural(body_part(HAND)));
+    You("用你的光着的%s 拿着%s.",
+        makeplural(body_part(HAND)),
+        corpse_xname(obj, (const char *) 0, CXN_PFX_THE));
     Sprintf(kbuf, "wielding %s bare-handed", killer_xname(obj));
     instapetrify(kbuf);
     return TRUE;
@@ -148,9 +148,9 @@ struct obj *wep;
         /* hero must have been life-saved to get here; use a turn */
         res++; /* corpse won't be wielded */
     } else if (uarms && bimanual(wep)) {
-        You("cannot wield a two-handed %s while wearing a shield.",
-            is_sword(wep) ? "sword" : wep->otyp == BATTLE_AXE ? "axe"
-                                                              : "weapon");
+        You("不能在拿着盾牌的时候再拿一把双手%s.",
+            is_sword(wep) ? "剑" : wep->otyp == BATTLE_AXE ? "斧"
+                                                              : "武器");
     } else if (!retouch_object(&wep, FALSE)) {
         res++; /* takes a turn even though it doesn't get wielded */
     } else {
@@ -163,8 +163,8 @@ struct obj *wep;
                 tmp = thestr;
             else
                 tmp = "";
-            pline("%s%s %s to your %s!", tmp, aobjnam(wep, "weld"),
-                  (wep->quan == 1L) ? "itself" : "themselves", /* a3 */
+            pline("%s %s到了你的%s上!", tmp,
+                  aobjnam(wep, "自动粘"),
                   bimanual(wep) ? (const char *) makeplural(body_part(HAND))
                                 : body_part(HAND));
             wep->bknown = TRUE;

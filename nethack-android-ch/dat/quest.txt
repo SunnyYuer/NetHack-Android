@@ -247,10 +247,10 @@ falter!"
 "Die %c!  I shall exhibit your carcass as a trophy."
 %E
 %Cc Arc 00070
-The power of %o flows through your body!  You feel
-as if you could now take on the Wizard of Yendor himself and win, but
-you know you must return %o to %l.
-%E [The power of %o flows through your body!  You must return it to %l.]
+%o的力量流经你的身体!  你感觉
+就好像你可以打败岩德巫师,  但是
+你知道你必须把%o 归还给%l.
+%E [ %o的力量流经你的身体!  你必须把它归还给%l.]
 %Cp Arc 00080
 The body of %n dissipates in a cloud of noxious fumes.
 %E
@@ -495,10 +495,10 @@ And your life as well."
 "You have failed, %c.  Now, my victory is complete."
 %E
 %Cc Bar 00070
-As you pick up %o, you feel the power of it
-flowing through your hands.  It seems to be in two or more places
-at once, even though you are holding it.
-%E [You feel the power of %o flowing through your hands.]
+当你获得%o的时候,  你感受到了力量
+在流经你的手.  似乎同时是在两个或两个以上
+的地方, 即使你正拿着它.
+%E [ 你感受到了%o的力量在流经你的手.]
 %Cc Bar 00080
 %nC falls to the ground, and utters a last curse at you.  Then %nj
 body fades slowly, seemingly dispersing into the air around you.  You
@@ -766,12 +766,12 @@ Now I shall kill you."
 "%d has deserted you, %c.  This is my domain."
 %E
 %Cc Cav 00070
-As you pick up %o it seems heavy at first, but as you
-hold it strength flows into your arms.
+当你获得%o的时候,  它起初似乎很沉重,  但当你
+握住它的时候,  力量流入了你的手臂.
 
-You suddenly feel full of power, as if nothing could possibly stand
-in your path.
-%E [%oC fills you with a feeling of power.]
+你突然感到充满了力量,  就好像没人敢挡在
+你的前面.
+%E [ %oC 让你充满了力量.]
 %Cp Cav 00080
 %nC sinks to the ground, her heads flailing about.
 As she dies, a cloud of noxious fumes billows about her.
@@ -1030,11 +1030,10 @@ can do to you here by yourself."
 "You should have stopped studying at vetenary."
 %E
 %Cc Hea 00070
-As you pick up %o, you feel its healing begin to
-warm your soul.  You curse Zeus for taking it from its rightful owner,
-but at least you hope that %l can put it to good use once
-again.
-%E [You feel the healing power of %o and should return it to %l.]
+当你获得%o的时候,  你感受到它的治愈力量开始
+温暖你的灵魂.  你埋怨宙斯把它从其主人那儿拿走了,
+但是至少你希望%l 能再次好好利用它.
+%E [ 你感受到了%o的治愈力量也应当把它还给%l.]
 %Cc Hea 00080
 The battered body of %n slumps to the ground and gasps
 out one last curse:
@@ -1275,11 +1274,11 @@ that is the way I like my %c for dinner."
 "Call upon thy precious %d, %p.  It shall not avail thee."
 %E
 %Cc Kni 00070
-As you pick up %o, you feel its protective fields
-form around your body.  You also feel a faint stirring in your mind, as
-if you are in two places at once, and in the second, you are waking from
-a long sleep.
-%E [You feel the magic of %o.]
+当你获得%o的时候,  你感受到了它的保护领域
+围绕在你的身边.  你心里也有些轻微的激动,
+就好像你同时出现在了两个地方,  那另一个你正从
+长睡中醒来.
+%E [ 你感受到了%o的魔力.]
 %Cc Kni 00080
 As %n sinks to the ground, blood gushing from %nj open mouth, %nh
 defiantly curses you and %l:
@@ -1517,15 +1516,14 @@ after all.  Prepare to die, %r!  You shall never regain
 "With %o, nothing can stand in my way."
 %E
 %Cc Mon 00070
-As you pick up %o, you feel the essence of
-%d fill your soul.  You know now why %n stole %oi from
-%H, for with %oi, %ca of %d could
-easily defeat his plans.
+当你获得%o的时候,  你感受到%d的精神
+填满了你的灵魂.  你现在明白为什么%n 从%H偷走了它
+,  有了它,  %d的%ca就能够
+很容易地破坏他的计划.
 
-You sense a message from %d.  Though not verbal, you
-get the impression that you must return to %l as soon
-as possible.
-%E [You feel the essence of %d and realize that you should take %o to %l.]
+你从%d感觉到一条信息.  虽然非口头上的话语,  但你
+得到印象你必须尽快把它还给%l.
+%E [ 你感受到%d的精神并意识到你要把%o带给%l.]
 %Cc Mon 00080
 %nC gasps:
 
@@ -1760,15 +1758,14 @@ after all.  Prepare to die, %r!  You shall never regain
 "With %o, nothing can stand in my way."
 %E
 %Cc Pri 00070
-As you pick up %o, you feel the essence of
-%d fill your soul.  You know now why %n stole it from
-%H, for with it, %ca of %d could
-easily defeat his plans.
+当你获得%o的时候,  你感受到%d的精神
+填满了你的灵魂.  你现在明白为什么%n 从%H偷走了它
+,  有了它,  %d的%ca就能够
+很容易地破坏他的计划.
 
-You sense a message from %d.  Though not verbal, you
-get the impression that you must return to %l as soon
-as possible.
-%E [You feel %d as you pick up %o; return %oh to %l.]
+你从%d感觉到一条信息.  虽然非口头上的话语,  但你
+得到印象你必须尽快把它还给%l.
+%E [ 当你获得%o时你感受到了%d;  把它还给%l.]
 %Cc Pri 00080
 You feel a wrenching shift in the ether as %ns body dissolves
 into a cloud of noxious gas.
@@ -2021,13 +2018,13 @@ kill you."
 "You weaken, %c.  I shall kill you now."
 %E
 %Cc Ran 00070
-As you pick up %o, it seems to glow, and a warmth
-fills you completely.  You realize that its power is what has protected
-your %sp against their enemies for so long.
+当你获得%o的时候,  它似乎在发光,  并使你
+充满了温暖.  你了解到它的力量是来自
+长期从敌人那里保护了你的%sp 的力量.
 
-You must now return it to %l without delay -- their lives depend
-on your speed.
-%E [You pick up %o and feel power.  It's time to return %oh to %l.]
+你现在必须马上把它还给%l --  他们的生命
+取决于你的速度.
+%E [ 你获得了%o并感受到了力量.  是时候把它还给%l 了.]
 %Cc Ran 00080
 %nC collapses to the ground, cursing you and %l, then says:
 
@@ -2261,11 +2258,11 @@ believe that %d would want %l to have
 "I can reunite you with the Twain.  Oh, the stories you can swap."
 %E
 %Cc Rog 00070
-As you pick up %o, the hairs on the back of your
-neck fall out.  At once you realize why %n was
-willing to die to keep it out of %ls hands.  Somehow
-you know that you must do likewise.
-%E [You pick up %o and know that %l should not have it.]
+当你获得%o的时候,  你脖子后面的头发
+脱落了.  同时你开始明白为什么%n
+宁愿死也不愿让它落入%ls之手.  不知怎的
+你知道你也必须这样做.
+%E [ 你获得了%o并知道%l 不应拥有它.]
 %Cc Rog 00080
 "I know what you are thinking, %p.  It is not too late for you
 to use %o wisely.  For the sake of your guild
@@ -2512,11 +2509,10 @@ of your honorable death."
 your teaching."
 %E
 %Cc Sam 00070
-As you pick up %o, you feel the strength of its karma.
-You realize at once why so many good samurai had to die to defend it.
-You are humbled knowing that you hold one of the artifacts of the
-sun goddess.
-%E [You feel the power of %o and are humbled.]
+当你获得%o的时候,  你感受到了其气息的力量.
+你立刻明白为什么这么多好武士不得不以死来保卫它.
+你羞愧地知道你拿着的是天照女神的神器之一.
+%E [ 你感受到了%o的力量并觉得很自卑.]
 %Cc Sam 00080
 Your healing skills tell you that %ns wounds are mortal.
 
@@ -2773,10 +2769,10 @@ hope to defeat me."
 correct as a warning to your %sp."
 %E
 %Cc Tou 00070
-As you pick up %o, you feel a great
-weight has been lifted from your shoulders.  Your only thoughts are
-to quickly return to %H and find %l.
-%E [You pick up %o and feel relief.  Return it to %l.]
+当你获得%o的时候,  你感觉到很多
+重量都从你的肩膀解除了.  你唯一的想法是
+尽快返回%H 并找到%l.
+%E [ 你获得了%o并感觉减轻了.  把它还给%l.]
 %Cc Tou 00080
 You turn in the direction of %n.  As his earthly body begins
 to vanish before your eyes, you hear him curse:
@@ -3013,11 +3009,11 @@ Do you really think that one %c can stand against me?"
 "Your body I destroy now, your soul when my hordes overrun Valhalla!"
 %E
 %Cc Val 00070
-As you pick up %o, your mind is suddenly filled with images,
-and you perceive all of the possibilities of each potential choice you
-could make.  As you begin to control and channel your thoughts, you
-realize that you must return %o to %l immediately.
-%E [You must return %o to %l.]
+当你获得%o的时候,  你的脑海里突然充满了影像,
+你察觉到了你可能做出的所有可能的潜在选择.
+当你开始控制和引导你的思想,  你
+意识到你必须立即把%o还给%l.
+%E [ 你必须把%o还给%l.]
 %Cc Val 00080
 A look of surprise and horror appears on %ns face.
 
@@ -3260,12 +3256,12 @@ your living flesh to my minions."
 "Feel my power, %c!  My victory is imminent!"
 %E
 %Cc Wiz 00070
-As you touch %o, its comforting power infuses you
-with new energy.  You feel as if you can detect others' thoughts flowing
-through it.  Although you yearn to wear %o and
-attack the Wizard of Yendor, you know you must return it to its rightful
-owner, %l.
-%E [You feel %os power and know you should return %oh to %l.]
+当你碰到%o,  其舒适的力量为你注入了
+新的能量.  你觉得你能通过它察觉到别人
+的想法.  虽然你想戴上%o去
+进攻岩德巫师,  但你知道你必须把它归还给
+其主人, %l.
+%E [ 你感受到%os力量并知道你应该把它归还给%l.]
 %Cc Wiz 00080
 %nC, whose body begins to shrivel up, croaks out:
 

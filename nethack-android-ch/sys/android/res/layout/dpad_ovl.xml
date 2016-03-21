@@ -1,81 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
   	android:layout_gravity="center"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 
-	<LinearLayout
+	<RelativeLayout
+	    android:id="@+id/lay1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad0"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="y"/>
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad1"
+			android:layout_toRightOf="@id/dpad0"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="k"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad2"
+			android:layout_toRightOf="@id/dpad1"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="u"/>
-	</LinearLayout>
-	<LinearLayout
+	</RelativeLayout>
+	<RelativeLayout
+	    android:id="@+id/lay2"
+	    android:layout_below="@id/lay1"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad3"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="h"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad4"
+			android:layout_toRightOf="@id/dpad3"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="."/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad5"
+			android:layout_toRightOf="@id/dpad4"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="l"/>
-	</LinearLayout>
-	<LinearLayout
+	</RelativeLayout>
+	<RelativeLayout
+	    android:id="@+id/lay3"
+	    android:layout_below="@id/lay2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad6"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="b"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad7"
+			android:layout_toRightOf="@id/dpad6"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="j"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad8"
+			android:layout_toRightOf="@id/dpad7"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="n"/>
 
-	</LinearLayout>
-	<LinearLayout
+	</RelativeLayout>
+	<RelativeLayout
+	    android:id="@+id/lay4"
+	    android:layout_below="@id/lay3"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad9"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="&lt;"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad_esc"
+			android:layout_toRightOf="@id/dpad9"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="Esc"/>
 
 		<Button
 			style="@style/dPadBtn"
 			android:id="@+id/dpad10"
+			android:layout_toRightOf="@id/dpad_esc"
+			android:layout_width="75px"
+        	android:layout_height="75px"
 			android:text="&gt;"/>
-	</LinearLayout>
-</LinearLayout>
+	</RelativeLayout>
+</RelativeLayout>

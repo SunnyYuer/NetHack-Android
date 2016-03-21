@@ -41,7 +41,7 @@ STATIC_VAR NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 /* note: entry [0] isn't used */
 STATIC_VAR NEARDATA const char *const odd_skill_names[] = {
     "no skill", "bare hands", /* use barehands_or_martial[] instead */
-    "two weapon combat", "riding", "polearms", "saber", "hammer", "whip",
+    "two weapon combat", "riding", "长柄武器", "佩剑", "铁锤", "鞭子",
     "attack spells", "healing spells", "divination spells",
     "enchantment spells", "clerical spells", "escape spells", "matter spells",
 };
@@ -104,29 +104,29 @@ struct obj *obj;
     case P_SLING:
         if (is_ammo(obj))
             descr = (obj->otyp == ROCK || is_graystone(obj))
-                        ? "stone"
+                        ? "石头"
                         /* avoid "rock"; what about known glass? */
                         : (obj->oclass == GEM_CLASS)
-                            ? "gem"
+                            ? "宝石"
                             /* in case somebody adds odd sling ammo */
                             : def_oc_syms[(int) obj->oclass].name;
         break;
     case P_BOW:
         if (is_ammo(obj))
-            descr = "arrow";
+            descr = "箭";
         break;
     case P_CROSSBOW:
         if (is_ammo(obj))
-            descr = "bolt";
+            descr = "弩箭";
         break;
     case P_FLAIL:
         if (obj->otyp == GRAPPLING_HOOK)
-            descr = "hook";
+            descr = "挂钩";
         break;
     case P_PICK_AXE:
         /* even if "dwarvish mattock" hasn't been discovered yet */
         if (obj->otyp == DWARVISH_MATTOCK)
-            descr = "mattock";
+            descr = "鹤嘴锄";
         break;
     default:
         break;

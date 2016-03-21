@@ -182,9 +182,9 @@ VA_DECL(const char *, line)
     VA_START(line);
     VA_INIT(line, const char *);
     if (Unaware)
-        YouPrefix(tmp, "You dream that you feel ", line);
+        YouPrefix(tmp, "你梦见你感觉 ", line);
     else
-        YouPrefix(tmp, "You feel ", line);
+        YouPrefix(tmp, "你感觉 ", line);
     vpline(strcat(tmp, line), VA_ARGS);
     VA_END();
 }
@@ -550,9 +550,9 @@ void
 self_invis_message()
 {
     pline("%s %s.",
-          Hallucination ? "Far out, man!  You" : "Gee!  All of a sudden, you",
-          See_invisible ? "can see right through yourself"
-                        : "can't see yourself");
+          Hallucination ? "真离谱!  你" : "哇!  突然之间,  你",
+          See_invisible ? "能直接看到透明的自己"
+                        : "看不到你自己了");
 }
 
 void

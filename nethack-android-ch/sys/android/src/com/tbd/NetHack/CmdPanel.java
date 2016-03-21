@@ -38,9 +38,10 @@ public class CmdPanel
 	private int mItemId;
 	private CmdPanelLayout mLayout;
 	private int mOpacity;
+	private int btnSize;
 
 	// ____________________________________________________________________________________
-	public CmdPanel(NetHack context, NH_State state, CmdPanelLayout layout, String cmds, int opacity)
+	public CmdPanel(NetHack context, NH_State state, CmdPanelLayout layout, String cmds, int opacity, int btnSiz)
 	{
 		mContext = context;
 		mState = state;
@@ -48,6 +49,7 @@ public class CmdPanel
 		mBtnPanel = new LinearLayout(context);
 		mBtnPanel.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		mOpacity = opacity;
+		btnSize = btnSiz;
 		loadCmds(cmds);
 	}
 
@@ -55,8 +57,9 @@ public class CmdPanel
 	private void loadCmds(String cmds)
 	{
 		final float density = mContext.getResources().getDisplayMetrics().density;
-		mMinBtnW = (int)(50 * density + 0.5f);
-		mMinBtnH = (int)(50 * density + 0.5f);
+		
+		mMinBtnW = (int)(50 * density + 0.5f)*btnSize/10;
+		mMinBtnH = (int)(50 * density + 0.5f)*btnSize/10;
 		mParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
 		mBtnPanel.removeAllViews();
@@ -66,7 +69,7 @@ public class CmdPanel
 		Matcher m = p.matcher(cmds);
 		ArrayList<String> cmdList = new ArrayList<String>();
 		while(m.find())
-			cmdList.add(m.group(1));		
+			cmdList.add(m.group(1));
 		for(String c : cmdList)
 		{
 			m = p1.matcher(c);
@@ -111,7 +114,7 @@ public class CmdPanel
 			return createCmdButtonFromCmd(new Cmd.ToggleKeyboard(mState, label));
 		}
 		// special case for menu.
-		if(chars.equalsIgnoreCase("menu"))
+		if(chars.equalsIgnoreCase("menu")||chars.equals("设置"))
 		{
 			return createCmdButtonFromCmd(new Cmd.OpenMenu(mContext, label));
 		}
@@ -208,10 +211,10 @@ public class CmdPanel
 			mInput.selectAll();
 
 			mEditDlg = new NH_Dialog(mContext);
-			mEditDlg.setTitle("Type custom label");
+			mEditDlg.setTitle("输入本地标签");
 			mEditDlg.setView(mInput);
-			mEditDlg.setNegativeButton("Cancel", null);
-			mEditDlg.setPositiveButton("Ok", onPositiveButton);
+			mEditDlg.setNegativeButton("取消", null);
+			mEditDlg.setPositiveButton("确定", onPositiveButton);
 			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();

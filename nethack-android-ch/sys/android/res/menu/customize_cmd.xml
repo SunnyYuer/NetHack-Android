@@ -20,7 +20,7 @@
 	<item
 		android:id="@+id/add_settings"
 		android:titleCondensed="Add menu..."
-		android:title="增加菜单命令"/>
+		android:title="增加设置命令"/>
 	<item
 		android:id="@+id/remove"
 		android:titleCondensed="Remove command"

@@ -43,7 +43,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
     A("", STRANGE_OBJECT, 0, 0, 0, NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE,
       NON_PM, NON_PM, 0L, NO_COLOR),
 
-    A("王者之剑", LONG_SWORD, (SPFX_NOGEN | SPFX_RESTR | SPFX_SEEK  //Excalibur
+    A("誓约胜利之剑", LONG_SWORD, (SPFX_NOGEN | SPFX_RESTR | SPFX_SEEK  //Excalibur
                                 | SPFX_DEFN | SPFX_INTEL | SPFX_SEARCH),
       0, 0, PHYS(5, 10), DRLI(0, 0), NO_CARY, 0, A_LAWFUL, PM_KNIGHT, NON_PM,
       4000L, NO_COLOR),
@@ -63,7 +63,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
       (SPFX_RESTR | SPFX_ATTK), 0, 0, ELEC(5, 24), NO_DFNS, NO_CARY, 0,
       A_NEUTRAL, PM_VALKYRIE, NON_PM, 4000L, NO_COLOR),
 
-    A("切肉刀", BATTLE_AXE, SPFX_RESTR, 0, 0, PHYS(3, 6), NO_DFNS, NO_CARY,  //Cleaver
+    A("撕裂者", BATTLE_AXE, SPFX_RESTR, 0, 0, PHYS(3, 6), NO_DFNS, NO_CARY,  //Cleaver
       0, A_NEUTRAL, PM_BARBARIAN, NON_PM, 1500L, NO_COLOR),
 
     /*
@@ -71,7 +71,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      damage bonus applies to all targets rather than just elves
      *      (handled as special case in spec_dbon()).
      */
-    A("无影之牙", ORCISH_DAGGER, (SPFX_RESTR | SPFX_WARN | SPFX_DFLAG2),  //Grimtooth
+    A("邪兽之牙", ORCISH_DAGGER, (SPFX_RESTR | SPFX_WARN | SPFX_DFLAG2),  //Grimtooth
       0, M2_ELF, PHYS(2, 6), NO_DFNS,
       NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ORC, 300L, CLR_RED),
     /*
@@ -81,11 +81,11 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
      *      EWarn_of_mon for all monsters that have the M2_value flag.
      *      Sting and Orcrist will warn of M2_ORC monsters.
      */
-    A("兽咬剑", ELVEN_BROADSWORD, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC,  //Orcrist
+    A("杀兽剑", ELVEN_BROADSWORD, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC,  //Orcrist
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ELF, 2000L,
       CLR_BRIGHT_BLUE), /* bright blue is actually light blue */
 
-    A("刺兽针", ELVEN_DAGGER, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC, PHYS(5, 0),  //Sting
+    A("杀兽针", ELVEN_DAGGER, (SPFX_WARN | SPFX_DFLAG2), 0, M2_ORC, PHYS(5, 0),  //Sting
       NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, PM_ELF, 800L, CLR_BRIGHT_BLUE),
     /*
      *      Magicbane is a bit different!  Its magic fanfare
@@ -95,11 +95,11 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
       STUN(3, 4), DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, PM_WIZARD, NON_PM,
       3500L, NO_COLOR),
 
-    A("寒霜之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Frost Brand
+    A("冰霜之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Frost Brand
       COLD(5, 0), COLD(0, 0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L,
       NO_COLOR),
 
-    A("火焰之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Fire Brand
+    A("烈焰之剑", LONG_SWORD, (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN), 0, 0,  //Fire Brand
       FIRE(5, 0), FIRE(0, 0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L,
       NO_COLOR),
 
@@ -111,11 +111,11 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L,
       NO_COLOR),
 
-    A("斩妖匕首", SILVER_SABER, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_WERE,  //Werebane
+    A("兽化人之灾", SILVER_SABER, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_WERE,  //Werebane
       PHYS(5, 0), DFNS(AD_WERE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L,
       NO_COLOR),
 
-    A("夜刃", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,  //Grayswandir
+    A("闪银密刀", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,  //Grayswandir
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L,
       NO_COLOR),
 
@@ -149,7 +149,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
     A("草薙剑", KATANA, SPFX_RESTR, 0, 0, PHYS(0, 8), NO_DFNS, NO_CARY,  //Snickersnee
       0, A_LAWFUL, PM_SAMURAI, NON_PM, 1200L, NO_COLOR),
 
-    A("圣剑", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_UNDEAD,  //Sunsword
+    A("旭日剑", LONG_SWORD, (SPFX_RESTR | SPFX_DFLAG2), 0, M2_UNDEAD,  //Sunsword
       PHYS(5, 0), DFNS(AD_BLND), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1500L,
       NO_COLOR),
 
@@ -162,13 +162,13 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
       NO_ATTK, NO_DFNS, CARY(AD_MAGM), INVIS, A_LAWFUL, PM_ARCHEOLOGIST,
       NON_PM, 2500L, NO_COLOR),
 
-    A("恶灵之心", LUCKSTONE,  //The Heart of Ahriman
+    A("阿里曼之心", LUCKSTONE,  //The Heart of Ahriman
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL), SPFX_STLTH, 0,
       /* this stone does double damage if used as a projectile weapon */
       PHYS(5, 0), NO_DFNS, NO_CARY, LEVITATION, A_NEUTRAL, PM_BARBARIAN,
       NON_PM, 2500L, NO_COLOR),
 
-    A("迈特的权杖", MACE,  //The Sceptre of Might
+    A("力量权杖", MACE,  //The Sceptre of Might
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_DALIGN), 0, 0, PHYS(5, 0),
       DFNS(AD_MAGM), NO_CARY, CONFLICT, A_LAWFUL, PM_CAVEMAN, NON_PM, 2500L,
       NO_COLOR),
@@ -181,7 +181,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
         TAMING,         A_CHAOTIC, NON_PM , PM_ELF, 8000L, NO_COLOR ),
 #endif
 
-    A("阿斯克勒皮俄斯蛇杖", QUARTERSTAFF,  //The Staff of Aesculapius
+    A("阿斯克勒庇俄斯之杖", QUARTERSTAFF,  //The Staff of Aesculapius
       (SPFX_NOGEN | SPFX_RESTR | SPFX_ATTK | SPFX_INTEL | SPFX_DRLI
        | SPFX_REGEN),
       0, 0, DRLI(0, 0), DRLI(0, 0), NO_CARY, HEALING, A_NEUTRAL, PM_HEALER,
@@ -192,7 +192,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
       NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_LAWFUL, PM_KNIGHT, NON_PM, 1500L,
       NO_COLOR),
 
-    A("世界之眼", LENSES,  //The Eyes of the Overworld
+    A("超世界之眼", LENSES,  //The Eyes of the Overworld
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_XRAY), 0, 0, NO_ATTK,
       DFNS(AD_MAGM), NO_CARY, ENLIGHTENING, A_NEUTRAL, PM_MONK, NON_PM,
       2500L, NO_COLOR),
@@ -207,7 +207,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
       PHYS(5, 0), NO_DFNS, NO_CARY, CREATE_AMMO, A_CHAOTIC, PM_RANGER, NON_PM,
       4000L, NO_COLOR),
 
-    A("窃贼的万能钥匙", SKELETON_KEY,  //The Master Key of Thievery
+    A("贼王的万能钥匙", SKELETON_KEY,  //The Master Key of Thievery
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_SPEAK),
       (SPFX_WARN | SPFX_TCTRL | SPFX_HPHDAM), 0, NO_ATTK, NO_DFNS, NO_CARY,
       UNTRAP, A_CHAOTIC, PM_ROGUE, NON_PM, 3500L, NO_COLOR),
@@ -218,7 +218,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
       0, 0, PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SAMURAI, NON_PM,
       4500L, NO_COLOR),
 
-    A("岩德白金卡", CREDIT_CARD,  //The Platinum Yendorian Express Card
+    A("岩德至尊白金卡", CREDIT_CARD,  //The Platinum Yendorian Express Card
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_DEFN),
       (SPFX_ESP | SPFX_HSPDAM), 0, NO_ATTK, NO_DFNS, CARY(AD_MAGM),
       CHARGE_OBJ, A_NEUTRAL, PM_TOURIST, NON_PM, 7000L, NO_COLOR),
@@ -228,7 +228,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
       (SPFX_WARN | SPFX_HSPDAM | SPFX_HPHDAM), 0, NO_ATTK, NO_DFNS, NO_CARY,
       LEV_TELE, A_NEUTRAL, PM_VALKYRIE, NON_PM, 3500L, NO_COLOR),
 
-    A("莲之眼", AMULET_OF_ESP,  //The Eye of the Aethiopica
+    A("艾奇奥匹亚之眼", AMULET_OF_ESP,  //The Eye of the Aethiopica
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL), (SPFX_EREGEN | SPFX_HSPDAM), 0,
       NO_ATTK, DFNS(AD_MAGM), NO_CARY, CREATE_PORTAL, A_NEUTRAL, PM_WIZARD,
       NON_PM, 4000L, NO_COLOR),

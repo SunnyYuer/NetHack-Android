@@ -4868,7 +4868,19 @@ int triesleft;
 {
     static NEARDATA const char *
         wishinfo[] = {
-  "Wish details:",
+  "许愿提示:",
+  "",
+  "物品的状态有如下( 部分)",
+  "受祝福的  被诅咒的  未被诅咒的",
+  "防锈的  上油的  +0",
+  "",
+  "一些物品的文字位置可换( 部分)如",
+  "卷轴之鉴定  鉴定卷轴",
+  "",
+  "许金币如下",
+  "5000 金币",
+  "",
+  "输入nothing 则不许愿, 按取消则随机许愿",
   "",
   "Enter the name of an object, such as \"potion of monster detection\",",
   "\"scroll labeled README\", \"elven mithril-coat\", or \"Grimtooth\"",

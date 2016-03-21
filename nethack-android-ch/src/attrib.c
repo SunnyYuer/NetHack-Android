@@ -745,7 +745,7 @@ int propidx; /* special cases can have negative values */
      * Restrict the source of the attributes just to debug mode for now
      */
     if (wizard) {
-        static NEARDATA const char because_of[] = " because of %s";
+        static NEARDATA const char because_of[] = "是因为%s";
 
         if (propidx >= 0) {
             char *p;
@@ -753,16 +753,16 @@ int propidx; /* special cases can have negative values */
             int innate = is_innate(propidx);
 
             if (innate == 2)
-                Strcpy(buf, " because of your experience");
+                Strcpy(buf, "是因为你的经验");
             else if (innate == 1)
-                Strcpy(buf, " innately");
+                Strcpy(buf, "  天生的");
             else if (wizard
                      && (obj = what_gives(&u.uprops[propidx].extrinsic)))
                 Sprintf(buf, because_of, obj->oartifact
                                              ? bare_artifactname(obj)
                                              : ysimple_name(obj));
             else if (propidx == BLINDED && u.uroleplay.blind)
-                Sprintf(buf, " from birth");
+                Sprintf(buf, "  自出生");
             else if (propidx == BLINDED && Blindfolded_only)
                 Sprintf(buf, because_of, ysimple_name(ublindf));
 
@@ -1086,11 +1086,11 @@ int reason; /* 0==conversion, 1==helm-of-OA on, 2==helm-of-OA off */
         /* putting on or taking off a helm of opposite alignment */
         u.ualign.type = (aligntyp) newalign;
         if (reason == 1)
-            Your("mind oscillates %s.", Hallucination ? "wildly" : "briefly");
+            Your("精神%s动摇.", Hallucination ? "疯狂地" : "暂时地");
         else if (reason == 2)
-            Your("mind is %s.", Hallucination
-                                    ? "much of a muchness"
-                                    : "back in sync with your body");
+            Your("精神%s.", Hallucination
+                                    ? "大同小异"
+                                    : "同时回到了你的身体里");
     }
 
     if (u.ualign.type != oldalign) {

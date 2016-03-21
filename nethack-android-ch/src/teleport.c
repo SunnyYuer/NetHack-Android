@@ -449,10 +449,10 @@ struct obj *scroll;
         } else {
             char whobuf[BUFSZ];
 
-            Strcpy(whobuf, "you");
+            Strcpy(whobuf, "你");
             if (u.usteed)
-                Sprintf(eos(whobuf), " and %s", mon_nam(u.usteed));
-            pline("To what position do %s want to be teleported?", whobuf);
+                Sprintf(eos(whobuf), " 和 %s", mon_nam(u.usteed));
+            pline("%s 想被传送到什么位置?", whobuf);
             cc.x = u.ux;
             cc.y = u.uy;
             if (getpos(&cc, TRUE, "the desired position") < 0)
@@ -466,7 +466,7 @@ struct obj *scroll;
                 teleds(cc.x, cc.y, FALSE);
                 return TRUE;
             }
-            pline("Sorry...");
+            pline("抱歉...");
             result = TRUE;
         }
     } else if (scroll && scroll->blessed) {
@@ -603,13 +603,13 @@ level_tele()
         char qbuf[BUFSZ];
         int trycnt = 0;
 
-        Strcpy(qbuf, "To what level do you want to teleport?");
+        Strcpy(qbuf, "你想传送到哪一层?");
         do {
             if (++trycnt == 2) {
                 if (wizard)
-                    Strcat(qbuf, " [type a number or ? for a menu]");
+                    Strcat(qbuf, " [ 输入数字或 ?  寻求帮助]");
                 else
-                    Strcat(qbuf, " [type a number]");
+                    Strcat(qbuf, " [ 输入数字]");
             }
             getlin(qbuf, buf);
             if (!strcmp(buf, "\033")) { /* cancelled */
@@ -657,21 +657,21 @@ level_tele()
         if (newlev == 0) {
             if (trycnt >= 10)
                 goto random_levtport;
-            if (ynq("Go to Nowhere.  Are you sure?") != 'y')
+            if (ynq("无处可走.  你确定?") != 'y')
                 return;
-            You("%s in agony as your body begins to warp...",
-                is_silent(youmonst.data) ? "writhe" : "scream");
+            You("在痛苦中%s 你的身体开始扭曲...",
+                is_silent(youmonst.data) ? "翻滚" : "尖叫");
             display_nhwindow(WIN_MESSAGE, FALSE);
-            You("cease to exist.");
+            You("终止了存在.");
             if (invent)
-                Your("possessions land on the %s with a thud.",
+                Your("物品砰的一声掉在%s上.",
                      surface(u.ux, u.uy));
             killer.format = NO_KILLER_PREFIX;
             Strcpy(killer.name, "committed suicide");
             done(DIED);
-            pline("An energized cloud of dust begins to coalesce.");
-            Your("body rematerializes%s.",
-                 invent ? ", and you gather up all your possessions" : "");
+            pline("一股能量气体开始合并.");
+            Your("身体重生了%s.",
+                 invent ? ",  然后你拾起了你的物品" : "");
             return;
         }
 
@@ -733,16 +733,16 @@ level_tele()
             in_mklev = FALSE;
         }
         if (newlev <= -10) {
-            You("arrive in heaven.");
-            verbalize("Thou art early, but we'll admit thee.");
+            You("到达了天堂.");
+            verbalize(" 虽然你来得尚早,  但我们还是允许你进入.");
             killer.format = NO_KILLER_PREFIX;
             Strcpy(killer.name, "went to heaven prematurely");
         } else if (newlev == -9) {
-            You_feel("deliriously happy. ");
-            pline("(In fact, you're on Cloud 9!) ");
+            You_feel("非常高兴. ");
+            pline("( 事实上,  你在9 号云上了!) ");
             display_nhwindow(WIN_MESSAGE, FALSE);
         } else
-            You("are now high above the clouds...");
+            You("现在在云上...");
 
         if (killer.name[0]) {
             ; /* arrival in heaven is pending */
@@ -751,8 +751,8 @@ level_tele()
         } else if (Flying) {
             escape_by_flying = "fly down to the ground";
         } else {
-            pline("Unfortunately, you don't know how to fly.");
-            You("plummet a few thousand feet to your death.");
+            pline("不幸的是,  你不会飞.");
+            You("跌下几千英尺摔死了.");
             Sprintf(killer.name,
                     "teleported out of the dungeon and fell to %s death",
                     uhis());

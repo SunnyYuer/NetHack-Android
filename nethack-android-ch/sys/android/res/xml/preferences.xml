@@ -74,6 +74,15 @@
 
     <PreferenceCategory
 		android:title="高级设置">
+        
+        <ListPreference
+				android:title="按钮大小"
+				android:summary="设置命令按钮相对于默认按钮大小而改变的倍数"
+				android:persistent="true"
+				android:key="ovlButSize"
+				android:defaultValue="10"
+				android:entries="@array/btnSizeNames"
+				android:entryValues="@array/btnSizeValues"/>
 
 		<PreferenceScreen
 			android:title="屏幕显示方向"
@@ -120,6 +129,7 @@
 				android:defaultValue="255"
 				android:text=""
 				android:max="255"/>
+			
 			
 		</PreferenceScreen>
 		

@@ -2675,7 +2675,7 @@ boolean k_format;
         killer.format = k_format;
         if (killer.name != knam) /* the thing that killed you */
             Strcpy(killer.name, knam ? knam : "");
-        You("die...");
+        You("死了...");
         done(DIED);
     } else if (n > 0 && u.uhp * 10 < u.uhpmax) {
         maybe_wail();

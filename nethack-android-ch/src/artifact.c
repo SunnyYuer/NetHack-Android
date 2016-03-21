@@ -684,7 +684,7 @@ struct monst *mon;
 
         if (!yours)
             return 0;
-        You("are blasted by %s power!", s_suffix(the(xname(obj))));
+        You("被%s 力量伤到了!", s_suffix(xname(obj)));
         touch_blasted = TRUE;
         dmg = d((Antimagic ? 2 : 4), (self_willed ? 10 : 4));
         /* add half (maybe quarter) of the usual silver damage bonus */
@@ -699,9 +699,9 @@ struct monst *mon;
     if (badclass && badalign && self_willed) {
         if (yours) {
             if (!carried(obj))
-                pline("%s your grasp!", Tobjnam(obj, "evade"));
+                pline("%s你的控制!", Tobjnam(obj, "挣脱了"));
             else
-                pline("%s beyond your control!", Tobjnam(obj, "are"));
+                pline("%s超出你的控制!", Tobjnam(obj, ""));
         }
         return 0;
     }

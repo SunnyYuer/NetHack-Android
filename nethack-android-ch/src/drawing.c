@@ -36,22 +36,22 @@ const char invisexplain[] = "remembered, unseen, creature";
 const struct class_sym def_oc_syms[MAXOCLASSES] = {
     { '\0', "", "" }, /* placeholder for the "random class" */
     { ILLOBJ_SYM, "illegal objects", "strange object" },
-    { WEAPON_SYM, "weapons", "weapon" },
-    { ARMOR_SYM, "armor", "suit or piece of armor" },
-    { RING_SYM, "rings", "ring" },
-    { AMULET_SYM, "amulets", "amulet" },
-    { TOOL_SYM, "tools", "useful item (pick-axe, key, lamp...)" },
-    { FOOD_SYM, "food", "piece of food" },
-    { POTION_SYM, "potions", "potion" },
-    { SCROLL_SYM, "scrolls", "scroll" },
-    { SPBOOK_SYM, "spellbooks", "spellbook" },
-    { WAND_SYM, "wands", "wand" },
-    { GOLD_SYM, "coins", "pile of coins" },
-    { GEM_SYM, "rocks", "gem or rock" },
-    { ROCK_SYM, "large stones", "boulder or statue" },
-    { BALL_SYM, "iron balls", "iron ball" },
-    { CHAIN_SYM, "chains", "iron chain" },
-    { VENOM_SYM, "venoms", "splash of venom" }
+    { WEAPON_SYM, "武器", "weapon" },
+    { ARMOR_SYM, "防具", "suit or piece of armor" },
+    { RING_SYM, "戒指", "ring" },
+    { AMULET_SYM, "护身符", "amulet" },
+    { TOOL_SYM, "工具", "useful item (pick-axe, key, lamp...)" },
+    { FOOD_SYM, "食物", "piece of food" },
+    { POTION_SYM, "药水", "potion" },
+    { SCROLL_SYM, "卷轴", "scroll" },
+    { SPBOOK_SYM, "魔法书", "spellbook" },
+    { WAND_SYM, "魔杖", "wand" },
+    { GOLD_SYM, "金币", "pile of coins" },
+    { GEM_SYM, "石头", "gem or rock" },
+    { ROCK_SYM, "大石头", "boulder or statue" },
+    { BALL_SYM, "铁球", "iron ball" },
+    { CHAIN_SYM, "铁链", "iron chain" },
+    { VENOM_SYM, "毒液", "splash of venom" }
 };
 
 /* Default monster class symbols.  See monsym.h. */

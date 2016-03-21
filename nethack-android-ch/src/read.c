@@ -2363,7 +2363,7 @@ create_particular()
         monclass = MAXMCLASSES;
         which = urole.malenum; /* an arbitrary index into mons[] */
         maketame = makepeaceful = makehostile = FALSE;
-        getlin("Create what kind of monster? [type the name or symbol]", buf);
+        getlin("生成什么样的怪物? [ 输入名字或符号]", buf);
         bufp = mungspaces(buf);
         if (*bufp == '\033')
             return FALSE;
@@ -2395,7 +2395,7 @@ create_particular()
             break;
         }
         /* no good; try again... */
-        pline("I've never heard of such monsters.");
+        pline("游戏中没有这样的怪物.");
     } while (--tryct > 0);
 
     if (!tryct) {

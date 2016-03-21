@@ -1464,35 +1464,35 @@ encumber_msg()
     if (oldcap < newcap) {
         switch (newcap) {
         case 1:
-            Your("movements are slowed slightly because of your load.");
+            Your("移动速度因你的负担而轻微地变慢.");
             break;
         case 2:
-            You("rebalance your load.  Movement is difficult.");
+            You("调整了下你的负重.  移动比较困难.");
             break;
         case 3:
-            You("%s under your heavy load.  Movement is very hard.",
-                stagger(youmonst.data, "stagger"));
+            You("在重载下%s.  移动非常艰难.",
+                stagger(youmonst.data, "摇摇晃晃"));
             break;
         default:
-            You("%s move a handspan with this load!",
-                newcap == 4 ? "can barely" : "can't even");
+            You("在此负重下%s移动一拃远!",
+                newcap == 4 ? "勉强能" : "甚至不能");
             break;
         }
         context.botl = 1;
     } else if (oldcap > newcap) {
         switch (newcap) {
         case 0:
-            Your("movements are now unencumbered.");
+            Your("移动起来没有负担了.");
             break;
         case 1:
-            Your("movements are only slowed slightly by your load.");
+            Your("移动速度因你的负担而仅轻微地变慢.");
             break;
         case 2:
-            You("rebalance your load.  Movement is still difficult.");
+            You("调整了下你的负重.  移动仍然比较困难.");
             break;
         case 3:
-            You("%s under your load.  Movement is still very hard.",
-                stagger(youmonst.data, "stagger"));
+            You("在重载下%s.  移动仍然非常艰难.",
+                stagger(youmonst.data, "摇摇晃晃"));
             break;
         }
         context.botl = 1;

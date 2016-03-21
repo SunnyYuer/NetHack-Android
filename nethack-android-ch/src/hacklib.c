@@ -272,7 +272,7 @@ const char *s;
     else if (*(eos(buf) - 1) == 's') /* Xs -> Xs' */
         Strcat(buf, "'");
     else /* X -> X's */
-        Strcat(buf, "'s");
+        Strcat(buf, "的");
     return buf;
 }
 

@@ -834,7 +834,7 @@ SCROLL("武器附魔",         "DAIYEN FOOELS",  1,  80,  60),  //"enchant weapo
 SCROLL("制造怪物",       "LEP GEX VEN ZEA",  1,  45, 200),  //"create monster"
 SCROLL("驯化",                   "PRIRUTSENIE",  1,  15, 200),  //"taming"
 SCROLL("灭绝",                  "ELBIB YLOH",  1,  15, 300),  //"genocide"
-SCROLL("光明",                 "VERR YED HORRE",  1,  90,  50),  //"light"
+SCROLL("光亮",                 "VERR YED HORRE",  1,  90,  50),  //"light"
 SCROLL("传送",        "VENZAR BORGAVVE",  1,  55, 100),  //"teleportation"
 SCROLL("金钱探测",                 "THARR",  1,  33, 100),  //"gold detection"
 SCROLL("食物探测",               "YUM YUM",  1,  25, 100),  //"food detection"
@@ -901,9 +901,9 @@ SPELL("冰锥",    "卷边",  //"cone of cold",    "dog eared"
       P_ATTACK_SPELL,      10,  7, 4, 1, RAY, HI_PAPER),
 SPELL("沉睡",           "斑驳的",  //"sleep",           "mottled"
       P_ENCHANTMENT_SPELL, 50,  1, 1, 1, RAY, HI_PAPER),
-SPELL("死亡之指", "褪色的",  //"finger of death", "stained"
+SPELL("死亡一指", "褪色的",  //"finger of death", "stained"
       P_ATTACK_SPELL,       5, 10, 7, 1, RAY, HI_PAPER),
-SPELL("光明",           "布",  //"light",           "cloth"
+SPELL("光亮",           "布",  //"light",           "cloth"
       P_DIVINATION_SPELL,  45,  1, 1, 1, NODIR, HI_CLOTH),
 SPELL("探测怪物", "坚韧的",  //"detect monsters", "leathery"
       P_DIVINATION_SPELL,  43,  1, 1, 1, NODIR, HI_LEATHER),
@@ -935,7 +935,7 @@ SPELL("治疗疾病",   "靛蓝色",  //"cure sickness",   "indigo"
       P_HEALING_SPELL,     32,  3, 3, 1, NODIR, CLR_BLUE),
 SPELL("魅惑怪物",   "洋红色",  //"charm monster",   "magenta"
       P_ENCHANTMENT_SPELL, 20,  3, 3, 1, IMMEDIATE, CLR_MAGENTA),
-SPELL("自我疾走",      "紫色的",  //"haste self",      "purple"
+SPELL("自我加速",      "紫色的",  //"haste self",      "purple"
       P_ESCAPE_SPELL,      33,  4, 3, 1, NODIR, CLR_MAGENTA),
 SPELL("探测隐形",   "紫罗兰",  //"detect unseen",   "violet"
       P_DIVINATION_SPELL,  20,  4, 3, 1, NODIR, CLR_MAGENTA),
@@ -961,7 +961,7 @@ SPELL("变形",       "银色的",  //"polymorph",       "silver"
       P_MATTER_SPELL,      10,  8, 6, 1, IMMEDIATE, HI_SILVER),
 SPELL("传送",   "金色的",  //"teleport away",   "gold"
       P_ESCAPE_SPELL,      15,  6, 6, 1, IMMEDIATE, HI_GOLD),
-SPELL("复制宠物", "辉煌的",  //"create familiar", "glittering"
+SPELL("生成宠物", "辉煌的",  //"create familiar", "glittering"
       P_CLERIC_SPELL,      10,  7, 6, 1, NODIR, CLR_WHITE),
 SPELL("消除",    "闪烁的",  //"cancellation",    "shining"
       P_MATTER_SPELL,      15,  8, 7, 1, IMMEDIATE, CLR_WHITE),
@@ -997,7 +997,7 @@ OBJECT(OBJ("死亡之书", "纸莎草"),  //"Book of the Dead", "papyrus"
     OBJECT(OBJ(name, typ),                                              \
            BITS(0, 0, 1, 0, mgc, 1, 0, 0, 0, 0, dir, P_NONE, metal),    \
            0, WAND_CLASS, prob, 0, 7, cost, 0, 0, 0, 0, 30, color)
-WAND("光明",           "玻璃", 95, 100, 1, NODIR, GLASS, HI_GLASS),  //"light",           "glass"
+WAND("光亮",           "玻璃", 95, 100, 1, NODIR, GLASS, HI_GLASS),  //"light",           "glass"
 WAND("暗门探测",  //"secret door detection"
                         "巴沙木", 50, 150, 1, NODIR, WOOD, HI_WOOD),  //"balsa"
 WAND("启蒙", "水晶", 15, 150, 1, NODIR, GLASS, HI_GLASS),  //"enlightenment", "crystal"

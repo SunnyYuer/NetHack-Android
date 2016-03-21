@@ -348,7 +348,7 @@ done2()
 #ifdef LATTICE
         c = ynq("Create SnapShot?");
 #else
-        c = ynq("Dump core?");
+        c = ynq("切断进程?( 用作调试)");
 #endif
 #endif
         if (c == 'y') {
@@ -724,7 +724,7 @@ int how;
     }
     if (how == CHOKING)
         init_uhunger();
-    nomovemsg = "You survived that attempt on your life.";
+    nomovemsg = "你活了下来.";
     context.move = 0;
     if (multi > 0)
         multi = 0;
@@ -887,13 +887,13 @@ int how;
     if (how < PANICKED)
         u.umortality++;
     if (Lifesaved && (how <= GENOCIDED)) {
-        pline("But wait...");
+        pline("但是等等...");
         makeknown(AMULET_OF_LIFE_SAVING);
-        Your("medallion %s!", !Blind ? "begins to glow" : "feels warm");
+        Your("挂饰 %s!", !Blind ? "开始发光" : "感觉很温暖");
         if (how == CHOKING)
-            You("vomit ...");
-        You_feel("much better!");
-        pline_The("medallion crumbles to dust!");
+            You("吐了 ...");
+        You_feel("好多了!");
+        pline_The("挂饰破碎了!");
         if (uamul)
             useup(uamul);
 
@@ -908,8 +908,8 @@ int how;
         }
     }
     if ((wizard || discover) && (how <= GENOCIDED) &&
-        !paranoid_query(ParanoidDie, "Die?")) {
-        pline("OK, so you don't %s.", (how == CHOKING) ? "choke" : "die");
+        !paranoid_query(ParanoidDie, "死亡?")) {
+        pline("好,  你不会%s了.", (how == CHOKING) ? "窒息" : "死");
         savelife(how);
         killer.name[0] = 0;
         killer.format = 0;
@@ -1086,7 +1086,7 @@ int how;
     }
 
     if (bones_ok) {
-        if (!wizard || paranoid_query(ParanoidBones, "Save bones?"))
+        if (!wizard || paranoid_query(ParanoidBones, "保存bones 文件?"))
             savebones(how, endtime, corpse);
         /* corpse may be invalid pointer now so
             ensure that it isn't used again */

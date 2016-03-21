@@ -1479,7 +1479,7 @@ dovspell()
                 if (spellsortmenu())
                     sortspells();
             } else {
-                Sprintf(qbuf, "Reordering spells; swap '%c' with",
+                Sprintf(qbuf, "重新排序; 哪个和'%c' 互换位置",
                         spellet(splnum));
                 if (!dospellmenu(qbuf, splnum, &othnum))
                     break;
@@ -1523,7 +1523,7 @@ int *spell_no;
      * given string and are of the form "a - ".
      */
     if (!iflags.menu_tab_sep) {
-        Sprintf(buf, "%-20s\t\t\t等级 %-12s  失败几率  熟练度", "\t\t   名称",
+        Sprintf(buf, "%-20s\t\t\t等级 %-12s  失败几率  记忆度", "\t\t   名称",
                 "   种类");
         fmt = "%-20s  %2d   %-12s %3d%% %9s";
     } else {

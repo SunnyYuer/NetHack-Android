@@ -2643,7 +2643,7 @@ const char *str;
         return;
     if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
         return;
-    You("turn to stone...");
+    You("变成了石头...");
     killer.format = KILLED_BY;
     if (str != killer.name)
         Strcpy(killer.name, str ? str : "");

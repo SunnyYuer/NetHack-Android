@@ -4,14 +4,14 @@
 
 #include "hack.h"
 
-static NEARDATA const char see_yourself[] = "see yourself";
+static NEARDATA const char see_yourself[] = "看见自己";
 static NEARDATA const char unknown_type[] = "Unknown type of %s (%d)";
-static NEARDATA const char c_armor[] = "armor", c_suit[] = "suit",
+static NEARDATA const char c_armor[] = "盔甲", c_suit[] = "套装",
                            c_shirt[] = "shirt", c_cloak[] = "cloak",
                            c_gloves[] = "gloves", c_boots[] = "boots",
                            c_helmet[] = "helmet", c_shield[] = "shield",
-                           c_weapon[] = "weapon", c_sword[] = "sword",
-                           c_axe[] = "axe", c_that_[] = "那个";
+                           c_weapon[] = "武器", c_sword[] = "剑",
+                           c_axe[] = "斧", c_that_[] = "那个";
 
 static NEARDATA const long takeoff_order[] = {
     WORN_BLINDF, W_WEP,      WORN_SHIELD, WORN_GLOVES, LEFT_RING,
@@ -48,7 +48,7 @@ off_msg(otmp)
 struct obj *otmp;
 {
     if (flags.verbose)
-        You("were wearing %s.", doname(otmp));
+        You("取下了%s.", doname(otmp));
 }
 
 /* for items that involve no delay */
@@ -64,9 +64,9 @@ struct obj *otmp;
 
         how[0] = '\0';
         if (otmp->otyp == TOWEL)
-            Sprintf(how, " around your %s", body_part(HEAD));
-        You("are now wearing %s%s.",
-            obj_is_pname(otmp) ? the(otmp_name) : an(otmp_name), how);
+            Sprintf(how, " 围着你的 %s", body_part(HEAD));
+        You("现在穿戴着 %s%s.",
+            obj_is_pname(otmp) ? otmp_name : otmp_name, how);
     }
 }
 
@@ -96,13 +96,13 @@ boolean on;
 
         if (on) {
             if (!is_boots(obj))
-                You("move very quietly.");
+                You("移动得非常安静.");
             else if (Levitation || Flying)
-                You("float imperceptibly.");
+                You("让人难以察觉的飘浮着.");
             else
-                You("walk very quietly.");
+                You("走得非常安静.");
         } else {
-            You("sure are noisy.");
+            You("当然有噪音.");
         }
     }
 }
@@ -137,8 +137,8 @@ boolean on;
                 || Detect_monsters))) {
         makeknown(obj->otyp);
 
-        You_feel("that monsters%s have difficulty pinpointing your location.",
-                 on ? "" : " no longer");
+        You_feel("怪物们%s 很难确定你的位置.",
+                 on ? "" : " 不再");
     }
 }
 
@@ -173,8 +173,8 @@ Boots_on(VOID_ARGS)
         /* though not better than potion speed */
         if (!oldprop && !(HFast & TIMEOUT)) {
             makeknown(uarmf->otyp);
-            You_feel("yourself speed up%s.",
-                     (oldprop || HFast) ? " a bit more" : "");
+            You_feel("你的速度加快%s了.",
+                     (oldprop || HFast) ? "得多一点" : "");
         }
         break;
     case ELVEN_BOOTS:
@@ -215,7 +215,7 @@ Boots_off(VOID_ARGS)
     case SPEED_BOOTS:
         if (!Very_fast && !context.takeoff.cancelled_don) {
             makeknown(otyp);
-            You_feel("yourself slow down%s.", Fast ? " a bit" : "");
+            You_feel("你的速度%s变慢了.", Fast ? "有一点儿" : "");
         }
         break;
     case WATER_WALKING_BOOTS:
@@ -285,7 +285,7 @@ Cloak_on(VOID_ARGS)
         /* Note: it's already being worn, so we have to cheat here. */
         if ((HInvis || EInvis) && !Blind) {
             newsym(u.ux, u.uy);
-            You("can %s!", See_invisible ? "no longer see through yourself"
+            You("%s!", See_invisible ? "看到的不再是透明的自己"
                                          : see_yourself);
         }
         break;
@@ -295,12 +295,12 @@ Cloak_on(VOID_ARGS)
         if (!oldprop && !HInvis && !Blind) {
             makeknown(uarmc->otyp);
             newsym(u.ux, u.uy);
-            pline("Suddenly you can%s yourself.",
-                  See_invisible ? " see through" : "not see");
+            pline("突然你%s自己了.",
+                  See_invisible ? "能看见透明的" : "看不到");
         }
         break;
     case OILSKIN_CLOAK:
-        pline("%s very tightly.", Tobjnam(uarmc, "fit"));
+        pline("%s非常紧.", Tobjnam(uarmc, "穿得"));
         break;
     /* Alchemy smock gives poison _and_ acid resistance */
     case ALCHEMY_SMOCK:
@@ -340,16 +340,16 @@ Cloak_off(VOID_ARGS)
     case MUMMY_WRAPPING:
         if (Invis && !Blind) {
             newsym(u.ux, u.uy);
-            You("can %s.", See_invisible ? "see through yourself"
-                                         : "no longer see yourself");
+            You("%s.", See_invisible ? "能看见透明的自己"
+                                         : "不再看得到自己");
         }
         break;
     case CLOAK_OF_INVISIBILITY:
         if (!oldprop && !HInvis && !Blind) {
             makeknown(CLOAK_OF_INVISIBILITY);
             newsym(u.ux, u.uy);
-            pline("Suddenly you can %s.",
-                  See_invisible ? "no longer see through yourself"
+            pline("突然你%s了.",
+                  See_invisible ? "看到的不再是透明的自己"
                                 : see_yourself);
         }
         break;
@@ -401,9 +401,9 @@ Helmet_on(VOID_ARGS)
     case DUNCE_CAP:
         if (uarmh && !uarmh->cursed) {
             if (Blind)
-                pline("%s for a moment.", Tobjnam(uarmh, "vibrate"));
+                pline("%s了片刻.", Tobjnam(uarmh, "振动"));
             else
-                pline("%s %s for a moment.", Tobjnam(uarmh, "glow"),
+                pline("%s了片刻%s 光芒.", Tobjnam(uarmh, "发出"),
                       hcolor(NH_BLACK));
             curse(uarmh);
         }
@@ -414,8 +414,8 @@ Helmet_on(VOID_ARGS)
             You_feel("%s.", /* track INT change; ignore WIS */
                      ACURR(A_INT)
                              <= (ABASE(A_INT) + ABON(A_INT) + ATEMP(A_INT))
-                         ? "like sitting in a corner"
-                         : "giddy");
+                         ? "像坐在角落里"
+                         : "头晕");
         } else {
             /* [message moved to uchangealign()] */
             makeknown(HELM_OF_OPPOSITE_ALIGNMENT);
@@ -512,9 +512,9 @@ boolean voluntary; /* taking gloves off on purpose? */
         return;
 
     if (touch_petrifies(&mons[obj->corpsenm]) && !Stone_resistance) {
-        You("now wield %s in your bare %s.",
-            corpse_xname(obj, (const char *) 0, CXN_ARTICLE),
-            makeplural(body_part(HAND)));
+        You("现在用你的光着的%s 拿着%s.",
+            makeplural(body_part(HAND)),
+            corpse_xname(obj, (const char *) 0, CXN_ARTICLE));
         Sprintf(kbuf, "%s gloves while wielding %s",
                 voluntary ? "removing" : "losing", killer_xname(obj));
         instapetrify(kbuf);
@@ -712,14 +712,14 @@ Amulet_on()
         /* Don't use same message as polymorph */
         if (orig_sex != poly_gender()) {
             makeknown(AMULET_OF_CHANGE);
-            You("are suddenly very %s!",
-                flags.female ? "feminine" : "masculine");
+            You("突然开始%s!",
+                flags.female ? "女性化" : "男性化");
             context.botl = 1;
         } else
             /* already polymorphed into single-gender monster; only
                changed the character's base sex */
-            You("don't feel like yourself.");
-        pline_The("amulet disintegrates!");
+            You("觉得不像你自己了.");
+        pline_The("护身符碎裂了!");
         if (orig_sex == poly_gender() && uamul->dknown
             && !objects[AMULET_OF_CHANGE].oc_name_known
             && !objects[AMULET_OF_CHANGE].oc_uname)
@@ -730,7 +730,7 @@ Amulet_on()
     case AMULET_OF_STRANGULATION:
         if (can_be_strangled(&youmonst)) {
             makeknown(AMULET_OF_STRANGULATION);
-            pline("It constricts your throat!");
+            pline("它紧紧地束缚了你的喉咙!");
             Strangled = 6L;
         }
         break;
@@ -772,7 +772,7 @@ Amulet_off()
             setworn((struct obj *) 0, W_AMUL);
             if (!breathless(youmonst.data) && !amphibious(youmonst.data)
                 && !Swimming) {
-                You("suddenly inhale an unhealthy amount of water!");
+                You("突然吸入了一些不健康的水!");
                 (void) drown();
             }
             return;
@@ -781,9 +781,9 @@ Amulet_off()
     case AMULET_OF_STRANGULATION:
         if (Strangled) {
             if (Breathless)
-                Your("%s is no longer constricted!", body_part(NECK));
+                Your("%s 不再被压紧了!", body_part(NECK));
             else
-                You("can breathe more easily!");
+                You("能轻易地呼吸了!");
             Strangled = 0L;
         }
         break;
@@ -1000,15 +1000,15 @@ boolean gone;
 
         if (Invisible && !Blind) {
             newsym(u.ux, u.uy);
-            pline("Suddenly you cannot see yourself.");
+            pline("突然你看不到自己了.");
             learnring(obj, TRUE);
         }
         break;
     case RIN_INVISIBILITY:
         if (!Invis && !BInvis && !Blind) {
             newsym(u.ux, u.uy);
-            Your("body seems to unfade%s.",
-                 See_invisible ? " completely" : "..");
+            Your("身体%s显现出来了.",
+                 See_invisible ? " 完全" : "..");
             learnring(obj, TRUE);
         }
         break;
@@ -1104,7 +1104,7 @@ register struct obj *otmp;
             pline("For the first time in your life, you can see!");
             u.uroleplay.blind = FALSE;
         } else
-            You("can see!");
+            You("能看见了!");
     }
     if (changed) {
         /* blindness has just been toggled */
@@ -1136,7 +1136,7 @@ register struct obj *otmp;
             /* "still cannot see" makes no sense when removing lenses
                since they can't have been the cause of your blindness */
             if (otmp->otyp != LENSES)
-                You("still cannot see.");
+                You("仍然不能看见.");
         } else {
             changed = TRUE; /* !was_blind */
             /* "You were wearing the Eyes of the Overworld." */
@@ -1446,9 +1446,9 @@ dotakeoff()
                     Strcat(what, " and ");
                 Strcat(what, suit_simple_name(uarm));
             }
-            Sprintf(why, " without taking off your %s first", what);
+            Sprintf(why, "没有先脱下你的%s", what);
         }
-        You_cant("take that off%s.", why);
+        You_cant("%s就脱下那个.", why);
         return 0;
     }
 
@@ -1484,7 +1484,7 @@ register struct obj *otmp;
         boolean use_plural = (is_boots(otmp) || is_gloves(otmp)
                               || otmp->otyp == LENSES || otmp->quan > 1L);
 
-        You("can't.  %s cursed.", use_plural ? "They are" : "It is");
+        You("没办法.  %s 被诅咒的.", use_plural ? "它们是" : "它是");
         otmp->bknown = TRUE;
         return 1;
     }
@@ -1504,18 +1504,18 @@ register struct obj *otmp;
         multi_reason = "disrobing";
         if (is_helmet(otmp)) {
             /* ick... */
-            nomovemsg = !strcmp(helm_simple_name(otmp), "hat")
-                            ? "You finish taking off your hat."
-                            : "You finish taking off your helmet.";
+            nomovemsg = !strcmp(helm_simple_name(otmp), "帽子")
+                            ? "你摘下了你的帽子."
+                            : "你摘下了你的头盔.";
             afternmv = Helmet_off;
         } else if (is_gloves(otmp)) {
-            nomovemsg = "You finish taking off your gloves.";
+            nomovemsg = "你脱下了你的手套.";
             afternmv = Gloves_off;
         } else if (is_boots(otmp)) {
-            nomovemsg = "You finish taking off your boots.";
+            nomovemsg = "你脱下了你的鞋子.";
             afternmv = Boots_off;
         } else {
-            nomovemsg = "You finish taking off your suit.";
+            nomovemsg = "你脱下了你的衣服.";
             afternmv = Armor_off;
         }
     } else {
@@ -1600,7 +1600,7 @@ boolean noisy;
 
     if (welded(uwep) && bimanual(uwep) && (is_suit(otmp) || is_shirt(otmp))) {
         if (noisy)
-            You("cannot do that while holding your %s.",
+            You("不能在拿着你的%s的时候做那个.",
                 is_sword(uwep) ? c_sword : c_weapon);
         return 0;
     }
@@ -1608,7 +1608,7 @@ boolean noisy;
     if (is_helmet(otmp)) {
         if (uarmh) {
             if (noisy)
-                already_wearing(an(helm_simple_name(uarmh)));
+                already_wearing(helm_simple_name(uarmh));
             err++;
         } else if (Upolyd && has_horns(youmonst.data) && !is_flimsy(otmp)) {
             /* (flimsy exception matches polyself handling) */
@@ -1622,18 +1622,18 @@ boolean noisy;
     } else if (is_shield(otmp)) {
         if (uarms) {
             if (noisy)
-                already_wearing(an(c_shield));
+                already_wearing(c_shield);
             err++;
         } else if (uwep && bimanual(uwep)) {
             if (noisy)
-                You("cannot wear a shield while wielding a two-handed %s.",
+                You("不能在拿双手%s的时候再拿一个盾牌.",
                     is_sword(uwep) ? c_sword : (uwep->otyp == BATTLE_AXE)
                                                    ? c_axe
                                                    : c_weapon);
             err++;
         } else if (u.twoweap) {
             if (noisy)
-                You("cannot wear a shield while wielding two weapons.");
+                You("不能在拿两把武器的时候再拿一个盾牌.");
             err++;
         } else
             *mask = W_ARMS;
@@ -1644,7 +1644,7 @@ boolean noisy;
             err++;
         } else if (Upolyd && slithy(youmonst.data)) {
             if (noisy)
-                You("have no feet..."); /* not body_part(FOOT) */
+                You("没有脚..."); /* not body_part(FOOT) */
             err++;
         } else if (Upolyd && youmonst.data->mlet == S_CENTAUR) {
             /* break_armor() pushes boots off for centaurs,
@@ -1680,7 +1680,7 @@ boolean noisy;
             err++;
         } else if (welded(uwep)) {
             if (noisy)
-                You("cannot wear gloves over your %s.",
+                You("不能在你的%s外面穿戴手套.",
                     is_sword(uwep) ? c_sword : c_weapon);
             err++;
         } else
@@ -1689,10 +1689,10 @@ boolean noisy;
         if (uarm || uarmc || uarmu) {
             if (uarmu) {
                 if (noisy)
-                    already_wearing(an(c_shirt));
+                    already_wearing(c_shirt);
             } else {
                 if (noisy)
-                    You_cant("wear that over your %s.",
+                    You_cant("在你的%s外穿那个.",
                              (uarm && !uarmc) ? c_armor
                                               : cloak_simple_name(uarmc));
             }
@@ -1702,18 +1702,18 @@ boolean noisy;
     } else if (is_cloak(otmp)) {
         if (uarmc) {
             if (noisy)
-                already_wearing(an(cloak_simple_name(uarmc)));
+                already_wearing(cloak_simple_name(uarmc));
             err++;
         } else
             *mask = W_ARMC;
     } else if (is_suit(otmp)) {
         if (uarmc) {
             if (noisy)
-                You("cannot wear armor over a %s.", cloak_simple_name(uarmc));
+                You("不能在%s外面穿盔甲.", cloak_simple_name(uarmc));
             err++;
         } else if (uarm) {
             if (noisy)
-                already_wearing("some armor");
+                already_wearing("某些盔甲");
             err++;
         } else
             *mask = W_ARM;
@@ -1810,7 +1810,7 @@ struct obj *obj;
             if (uarmg && uarmg->cursed) {
                 res = !uarmg->bknown;
                 uarmg->bknown = 1;
-                You("cannot remove your gloves to put on the ring.");
+                You("不能取下你的手套来戴上戒指.");
                 return res; /* uses move iff we learned gloves are cursed */
             }
             if (uwep) {
@@ -1821,14 +1821,14 @@ struct obj *obj;
                     /* welded will set bknown */
                     if (bimanual(uwep))
                         hand = makeplural(hand);
-                    You("cannot free your weapon %s to put on the ring.",
+                    You("不能腾出你拿武器的%s 来戴上戒指.",
                         hand);
                     return res; /* uses move iff we learned weapon is cursed */
                 }
             }
         } else if (obj->oclass == AMULET_CLASS) {
             if (uamul) {
-                already_wearing("an amulet");
+                already_wearing("一个护身符");
                 return 0;
             }
         } else if (eyewear) {
@@ -1881,7 +1881,7 @@ struct obj *obj;
                 afternmv = Gloves_on;
             if (obj == uarm)
                 afternmv = Armor_on;
-            nomovemsg = "You finish your dressing maneuver.";
+            nomovemsg = "你结束了你的穿戴动作.";
         } else {
             if (is_cloak(obj))
                 (void) Cloak_on();
@@ -2516,7 +2516,7 @@ int retry;
             all_worn_categories = TRUE;
     }
 
-    n = query_objlist("What do you want to take off?", invent,
+    n = query_objlist("你想脱下哪个?", invent,
                       SIGNAL_NOMENU | USE_INVLET | INVORDER_SORT, &pick_list,
                       PICK_ANY,
                       all_worn_categories ? is_worn : is_worn_by_type);
@@ -2545,44 +2545,44 @@ register struct obj *atmp;
     if (DESTROY_ARM(uarmc)) {
         if (donning(otmp))
             cancel_don();
-        Your("%s crumbles and turns to dust!", cloak_simple_name(uarmc));
+        Your("%s 破碎了并化为灰烬!", cloak_simple_name(uarmc));
         (void) Cloak_off();
         useup(otmp);
     } else if (DESTROY_ARM(uarm)) {
         if (donning(otmp))
             cancel_don();
-        Your("armor turns to dust and falls to the %s!", surface(u.ux, u.uy));
+        Your("盔甲化为了灰烬并落到了%s上!", surface(u.ux, u.uy));
         (void) Armor_gone();
         useup(otmp);
     } else if (DESTROY_ARM(uarmu)) {
         if (donning(otmp))
             cancel_don();
-        Your("shirt crumbles into tiny threads and falls apart!");
+        Your("衬衫破碎成了细小的线!");
         (void) Shirt_off();
         useup(otmp);
     } else if (DESTROY_ARM(uarmh)) {
         if (donning(otmp))
             cancel_don();
-        Your("%s turns to dust and is blown away!", helm_simple_name(uarmh));
+        Your("%s 化为了灰烬并被风吹走了!", helm_simple_name(uarmh));
         (void) Helmet_off();
         useup(otmp);
     } else if (DESTROY_ARM(uarmg)) {
         if (donning(otmp))
             cancel_don();
-        Your("gloves vanish!");
+        Your("手套消失了!");
         (void) Gloves_off();
         useup(otmp);
         selftouch("You");
     } else if (DESTROY_ARM(uarmf)) {
         if (donning(otmp))
             cancel_don();
-        Your("boots disintegrate!");
+        Your("鞋子粉碎了!");
         (void) Boots_off();
         useup(otmp);
     } else if (DESTROY_ARM(uarms)) {
         if (donning(otmp))
             cancel_don();
-        Your("shield crumbles away!");
+        Your("盾牌破碎了!");
         (void) Shield_off();
         useup(otmp);
     } else {
