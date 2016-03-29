@@ -201,7 +201,7 @@ struct obj *wep; /* uwep for attack(), null for kick_monster() */
             return FALSE;
         }
         if (canspotmon(mtmp)) {
-            Sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
+            Sprintf(qbuf, "真的要攻击 %s?", mon_nam(mtmp));
             if (!paranoid_query(ParanoidHit, qbuf)) {
                 context.move = 0;
                 return TRUE;
@@ -389,7 +389,7 @@ register struct monst *mtmp;
         unweapon = FALSE;
         if (flags.verbose) {
             if (uwep)
-                You("begin bashing monsters with %s.",
+                You("开始用%s攻击怪物.",
                     yobjnam(uwep, (char *) 0));
             else if (!cantwield(youmonst.data))
                 You("begin %sing monsters with your %s %s.",

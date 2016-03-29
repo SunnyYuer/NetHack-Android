@@ -245,13 +245,13 @@ register struct obj *obj;
     }
 
     if (obj->blessed || obj->cursed) {
-        There("is %s flash as %s %s the altar.",
-              an(hcolor(obj->blessed ? NH_AMBER : NH_BLACK)), doname(obj),
-              otense(obj, "hit"));
+        There("发出%s 闪光当%s %s祭坛.",
+              hcolor(obj->blessed ? NH_AMBER : NH_BLACK), doname(obj),
+              otense(obj, "撞到"));
         if (!Hallucination)
             obj->bknown = 1;
     } else {
-        pline("%s %s on the altar.", Doname2(obj), otense(obj, "land"));
+        pline("%s %s祭坛上.", Doname2(obj), otense(obj, "落到"));
         if (obj->oclass != COIN_CLASS)
             obj->bknown = 1;
     }

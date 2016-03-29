@@ -1140,7 +1140,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
        that's usually the behavior wanted, but here we need to force "the"
        to precede capitalized unique monsters (pnames are handled above) */
     if (the_prefix)
-        Strcat(nambuf, "the ");
+        Strcat(nambuf, "");
 
     if (!adjective || !*adjective) {
         /* normal case:  newt corpse */
@@ -1160,10 +1160,10 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     }
 
     if (!omit_corpse) {
-        Strcat(nambuf, " corpse");
+        Strcat(nambuf, " 尸体");
         /* makeplural(nambuf) => append "s" to "corpse" */
         if (otmp->quan > 1L && !ignore_quan) {
-            Strcat(nambuf, "s");
+            Strcat(nambuf, "");
             any_prefix = FALSE; /* avoid "a newt corpses" */
         }
     }
@@ -1795,7 +1795,7 @@ sing:
         /* like "y" case in makeplural */
         Strcasecpy(bspot, "ies");
     } else {
-        Strcasecpy(bspot + 1, "s");
+        Strcasecpy(bspot + 1, "");
     }
 
     return buf;

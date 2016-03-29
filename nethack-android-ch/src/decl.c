@@ -219,22 +219,22 @@ NEARDATA struct c_color_names c_color_names = {
 struct menucoloring *menu_colorings = NULL;
 
 const char *c_obj_colors[] = {
-    "black",          /* CLR_BLACK */
-    "red",            /* CLR_RED */
-    "green",          /* CLR_GREEN */
-    "brown",          /* CLR_BROWN */
-    "blue",           /* CLR_BLUE */
-    "magenta",        /* CLR_MAGENTA */
-    "cyan",           /* CLR_CYAN */
-    "gray",           /* CLR_GRAY */
-    "transparent",    /* no_color */
-    "orange",         /* CLR_ORANGE */
-    "bright green",   /* CLR_BRIGHT_GREEN */
-    "yellow",         /* CLR_YELLOW */
-    "bright blue",    /* CLR_BRIGHT_BLUE */
-    "bright magenta", /* CLR_BRIGHT_MAGENTA */
-    "bright cyan",    /* CLR_BRIGHT_CYAN */
-    "white",          /* CLR_WHITE */
+    "黑色的",          /* CLR_BLACK */
+    "红色的",            /* CLR_RED */
+    "绿色的",          /* CLR_GREEN */
+    "褐色的",          /* CLR_BROWN */
+    "蓝色的",           /* CLR_BLUE */
+    "洋红色",        /* CLR_MAGENTA */
+    "蓝绿色",           /* CLR_CYAN */
+    "灰色的",           /* CLR_GRAY */
+    "透明的",    /* no_color */
+    "橙色的",         /* CLR_ORANGE */
+    "亮绿色",   /* CLR_BRIGHT_GREEN */
+    "黄色的",         /* CLR_YELLOW */
+    "亮蓝色",    /* CLR_BRIGHT_BLUE */
+    "亮洋红色", /* CLR_BRIGHT_MAGENTA */
+    "亮蓝绿色",    /* CLR_BRIGHT_CYAN */
+    "白色的",          /* CLR_WHITE */
 };
 
 struct c_common_strings c_common_strings = { "无事发生.",
@@ -242,7 +242,7 @@ struct c_common_strings c_common_strings = { "无事发生.",
                                              "%s那个是件傻傻的事.",
                                              "shudder for a moment.",
                                              "什么东西",
-                                             "Something",
+                                             "什么东西",
                                              "You can move again.",
                                              "不用了.",
                                              "vision quickly clears.",

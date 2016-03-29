@@ -554,14 +554,14 @@ register struct obj *otmp;
     case SPE_RESTORE_ABILITY:
         unkn++;
         if (otmp->cursed) {
-            pline("Ulch!  This makes you feel mediocre!");
+            pline("额!  这让你感觉平庸!");
             break;
         } else {
             /* unlike unicorn horn, overrides Fixed_abil */
-            pline("Wow!  This makes you feel %s!",
+            pline("哇!  这让你感觉%s!",
                   (otmp->blessed)
-                      ? (unfixable_trouble_count(FALSE) ? "better" : "great")
-                      : "good");
+                      ? (unfixable_trouble_count(FALSE) ? "好些" : "极好")
+                      : "很好");
             i = rn2(A_MAX); /* start at a random point */
             for (ii = 0; ii < A_MAX; ii++) {
                 lim = AMAX(i);
@@ -588,7 +588,7 @@ register struct obj *otmp;
         break;
     case POT_WATER:
         if (!otmp->blessed && !otmp->cursed) {
-            pline("This tastes like water.");
+            pline("这尝起来像水.");
             u.uhunger += rnd(10);
             newuhs(FALSE);
             break;
@@ -597,10 +597,10 @@ register struct obj *otmp;
         if (is_undead(youmonst.data) || is_demon(youmonst.data)
             || u.ualign.type == A_CHAOTIC) {
             if (otmp->blessed) {
-                pline("This burns like acid!");
+                pline("这烧得像酸!");
                 exercise(A_CON, FALSE);
                 if (u.ulycn >= LOW_PM) {
-                    Your("affinity to %s disappears!",
+                    Your("对%s 的倾向消失了!",
                          makeplural(mons[u.ulycn].mname));
                     if (youmonst.data == &mons[u.ulycn])
                         you_unwere(FALSE);
@@ -609,7 +609,7 @@ register struct obj *otmp;
                 losehp(Maybe_Half_Phys(d(2, 6)), "potion of holy water",
                        KILLED_BY_AN);
             } else if (otmp->cursed) {
-                You_feel("quite proud of yourself.");
+                You_feel("对你自己非常骄傲.");
                 healup(d(2, 6), 0, 0, 0);
                 if (u.ulycn >= LOW_PM && !Upolyd)
                     you_were();
@@ -617,7 +617,7 @@ register struct obj *otmp;
             }
         } else {
             if (otmp->blessed) {
-                You_feel("full of awe.");
+                You_feel("充满敬畏.");
                 make_sick(0L, (char *) 0, TRUE, SICK_ALL);
                 exercise(A_WIS, TRUE);
                 exercise(A_CON, TRUE);
@@ -626,11 +626,11 @@ register struct obj *otmp;
                 /* make_confused(0L, TRUE); */
             } else {
                 if (u.ualign.type == A_LAWFUL) {
-                    pline("This burns like acid!");
+                    pline("这烧得像酸!");
                     losehp(Maybe_Half_Phys(d(2, 6)), "potion of unholy water",
                            KILLED_BY_AN);
                 } else
-                    You_feel("full of dread.");
+                    You_feel("充满恐惧.");
                 if (u.ulycn >= LOW_PM && !Upolyd)
                     you_were();
                 exercise(A_CON, FALSE);
@@ -639,9 +639,9 @@ register struct obj *otmp;
         break;
     case POT_BOOZE:
         unkn++;
-        pline("Ooph!  This tastes like %s%s!",
-              otmp->odiluted ? "watered down " : "",
-              Hallucination ? "dandelion wine" : "liquid fire");
+        pline("啊!  这尝起来像%s%s!",
+              otmp->odiluted ? "掺水的 " : "",
+              Hallucination ? "蒲公英酒" : "液态火");
         if (!otmp->blessed)
             make_confused(itimeout_incr(HConfusion, d(3, 8)), FALSE);
         /* the whiskey makes us feel better */
@@ -651,7 +651,7 @@ register struct obj *otmp;
         newuhs(FALSE);
         exercise(A_WIS, FALSE);
         if (otmp->cursed) {
-            You("pass out.");
+            You("失去知觉.");
             multi = -rnd(15);
             nomovemsg = "You awake with a headache.";
         }
@@ -659,24 +659,24 @@ register struct obj *otmp;
     case POT_ENLIGHTENMENT:
         if (otmp->cursed) {
             unkn++;
-            You("have an uneasy feeling...");
+            You("有一种不安的感觉...");
             exercise(A_WIS, FALSE);
         } else {
             if (otmp->blessed) {
                 (void) adjattrib(A_INT, 1, FALSE);
                 (void) adjattrib(A_WIS, 1, FALSE);
             }
-            You_feel("self-knowledgeable...");
+            You_feel("自知的...");
             display_nhwindow(WIN_MESSAGE, FALSE);
             enlightenment(MAGICENLIGHTENMENT, ENL_GAMEINPROGRESS);
-            pline_The("feeling subsides.");
+            pline_The("感觉减弱了.");
             exercise(A_WIS, TRUE);
         }
         break;
     case SPE_INVISIBILITY:
         /* spell cannot penetrate mummy wrapping */
         if (BInvis && uarmc->otyp == MUMMY_WRAPPING) {
-            You_feel("rather itchy under %s.", yname(uarmc));
+            You_feel("想当痒在%s 之下.", yname(uarmc));
             break;
         }
         /* FALLTHRU */
@@ -692,7 +692,7 @@ register struct obj *otmp;
             incr_itimeout(&HInvis, rn1(15, 31));
         newsym(u.ux, u.uy); /* update position */
         if (otmp->cursed) {
-            pline("For some reason, you feel your presence is known.");
+            pline("由于某种原因, 你感觉你的存在为人所知了.");
             aggravate();
         }
         break;
@@ -702,14 +702,14 @@ register struct obj *otmp;
 
         unkn++;
         if (otmp->cursed)
-            pline("Yecch!  This tastes %s.",
-                  Hallucination ? "overripe" : "rotten");
+            pline("哟!  这尝起来%s.",
+                  Hallucination ? "过熟的" : "恶臭的");
         else
             pline(
                 Hallucination
-                    ? "This tastes like 10%% real %s%s all-natural beverage."
-                    : "This tastes like %s%s.",
-                otmp->odiluted ? "reconstituted " : "", fruitname(TRUE));
+                    ? "这尝起来像10%% %s%s 含量的纯天然饮料."
+                    : "这尝起来像%s%s.",
+                otmp->odiluted ? "再造的 " : "", fruitname(TRUE));
         if (otmp->otyp == POT_FRUIT_JUICE) {
             u.uhunger += (otmp->odiluted ? 5 : 10) * (2 + bcsign(otmp));
             newuhs(FALSE);
@@ -736,14 +736,14 @@ register struct obj *otmp;
     }
     case POT_PARALYSIS:
         if (Free_action) {
-            You("stiffen momentarily.");
+            You("瞬间僵硬了下.");
         } else {
             if (Levitation || Is_airlevel(&u.uz) || Is_waterlevel(&u.uz))
-                You("are motionlessly suspended.");
+                You("不能动地飘浮着.");
             else if (u.usteed)
-                You("are frozen in place!");
+                You("就地被冰冻了!");
             else
-                Your("%s are frozen to the %s!", makeplural(body_part(FOOT)),
+                Your("%s 被冻结到%s!", makeplural(body_part(FOOT)),
                      surface(u.ux, u.uy));
             nomul(-(rn1(10, 25 - 12 * bcsign(otmp))));
             multi_reason = "frozen by a potion";
@@ -753,9 +753,9 @@ register struct obj *otmp;
         break;
     case POT_SLEEPING:
         if (Sleep_resistance || Free_action) {
-            You("yawn.");
+            You("打呵欠.");
         } else {
-            You("suddenly fall asleep!");
+            You("突然睡着了!");
             fall_asleep(-rn1(10, 25 - 12 * bcsign(otmp)), TRUE);
         }
         break;
@@ -785,7 +785,7 @@ register struct obj *otmp;
             }
             see_monsters();
             if (unkn)
-                You_feel("lonely.");
+                You_feel("孤单的.");
             break;
         }
         if (monster_detect(otmp, 0))
@@ -799,19 +799,19 @@ register struct obj *otmp;
         exercise(A_WIS, TRUE);
         break;
     case POT_SICKNESS:
-        pline("Yecch!  This stuff tastes like poison.");
+        pline("啊!  这个东西尝起来像毒药.");
         if (otmp->blessed) {
-            pline("(But in fact it was mildly stale %s.)", fruitname(TRUE));
+            pline("( 但实际上它是有点不新鲜的%s.)", fruitname(TRUE));
             if (!Role_if(PM_HEALER)) {
                 /* NB: blessed otmp->fromsink is not possible */
                 losehp(1, "mildly contaminated potion", KILLED_BY_AN);
             }
         } else {
             if (Poison_resistance)
-                pline("(But in fact it was biologically contaminated %s.)",
+                pline("( 但实际上它是生物污染的%s.)",
                       fruitname(TRUE));
             if (Role_if(PM_HEALER)) {
-                pline("Fortunately, you have been immunized.");
+                pline("幸运的是, 你有免疫.");
             } else {
                 char contaminant[BUFSZ];
                 int typ = rn2(A_MAX);
@@ -841,17 +841,17 @@ register struct obj *otmp;
             }
         }
         if (Hallucination) {
-            You("are shocked back to your senses!");
+            You("被电回你的感官!");
             (void) make_hallucinated(0L, FALSE, 0L);
         }
         break;
     case POT_CONFUSION:
         if (!Confusion) {
             if (Hallucination) {
-                pline("What a trippy feeling!");
+                pline("好一个古怪的幻觉!");
                 unkn++;
             } else
-                pline("Huh, What?  Where am I?");
+                pline("哈, 什么?  我在哪儿?");
         } else
             nothing++;
         make_confused(itimeout_incr(HConfusion,
@@ -860,7 +860,7 @@ register struct obj *otmp;
         break;
     case POT_GAIN_ABILITY:
         if (otmp->cursed) {
-            pline("Ulch!  That potion tasted foul!");
+            pline("啊!  那个药水尝起来令人作呕!");
             unkn++;
         } else if (Fixed_abil) {
             nothing++;
@@ -888,9 +888,9 @@ register struct obj *otmp;
         /* FALLTHRU */
     case SPE_HASTE_SELF:
         if (!Very_fast) { /* wwf@doe.carleton.ca */
-            You("are suddenly moving %sfaster.", Fast ? "" : "much ");
+            You("突然移动得%s快些了.", Fast ? "" : "非常 ");
         } else {
-            Your("%s get new energy.", makeplural(body_part(LEG)));
+            Your("%s 获得了新活力.", makeplural(body_part(LEG)));
             unkn++;
         }
         exercise(A_DEX, TRUE);
@@ -909,7 +909,7 @@ register struct obj *otmp;
             /* they went up a level */
             if ((ledger_no(&u.uz) == 1 && u.uhave.amulet)
                 || Can_rise_up(u.ux, u.uy, &u.uz)) {
-                const char *riseup = "rise up, through the %s!";
+                const char *riseup = "升了起来, 穿过了%s!";
 
                 if (ledger_no(&u.uz) == 1) {
                     You(riseup, ceiling(u.ux, u.uy));
@@ -920,14 +920,14 @@ register struct obj *otmp;
 
                     get_level(&newlevel, newlev);
                     if (on_level(&newlevel, &u.uz)) {
-                        pline("It tasted bad.");
+                        pline("它尝起来很糟糕.");
                         break;
                     } else
                         You(riseup, ceiling(u.ux, u.uy));
                     goto_level(&newlevel, FALSE, FALSE, FALSE);
                 }
             } else
-                You("have an uneasy feeling.");
+                You("有一种不安的感觉.");
             break;
         }
         pluslvl(FALSE);
@@ -937,13 +937,13 @@ register struct obj *otmp;
             u.uexp = rndexp(TRUE);
         break;
     case POT_HEALING:
-        You_feel("better.");
+        You_feel("好些了.");
         healup(d(6 + 2 * bcsign(otmp), 4), !otmp->cursed ? 1 : 0,
                !!otmp->blessed, !otmp->cursed);
         exercise(A_CON, TRUE);
         break;
     case POT_EXTRA_HEALING:
-        You_feel("much better.");
+        You_feel("好多了.");
         healup(d(6 + 2 * bcsign(otmp), 8),
                otmp->blessed ? 5 : !otmp->cursed ? 2 : 0, !otmp->cursed,
                TRUE);
@@ -952,7 +952,7 @@ register struct obj *otmp;
         exercise(A_STR, TRUE);
         break;
     case POT_FULL_HEALING:
-        You_feel("completely healed.");
+        You_feel("完全愈合了.");
         healup(400, 4 + 4 * bcsign(otmp), !otmp->cursed, TRUE);
         /* Restore one lost level if blessed */
         if (otmp->blessed && u.ulevel < u.ulevelmax) {
@@ -985,7 +985,7 @@ register struct obj *otmp;
                 } else if (has_ceiling(&u.uz)) {
                     int dmg = uarmh ? 1 : rnd(10);
 
-                    You("hit your %s on the %s.", body_part(HEAD),
+                    You("你的%s 撞到了%s.", body_part(HEAD),
                         ceiling(u.ux, u.uy));
                     losehp(Maybe_Half_Phys(dmg), "colliding with the ceiling",
                            KILLED_BY);
@@ -1006,9 +1006,9 @@ register struct obj *otmp;
         int num;
 
         if (otmp->cursed)
-            You_feel("lackluster.");
+            You_feel("无生气.");
         else
-            pline("Magical energies course through your body.");
+            pline("魔法能量流过你的身体.");
 
         /* old: num = rnd(5) + 5 * otmp->blessed + 1;
          *      blessed:  +7..11 max & current (+9 avg)
@@ -1039,31 +1039,31 @@ register struct obj *otmp;
 
         if (otmp->lamplit) {
             if (likes_fire(youmonst.data)) {
-                pline("Ahh, a refreshing drink.");
+                pline("啊, 提神的饮料.");
                 good_for_you = TRUE;
             } else {
-                You("burn your %s.", body_part(FACE));
+                You("的%s 被烧伤.", body_part(FACE));
                 /* fire damage */
                 losehp(d(Fire_resistance ? 1 : 3, 4), "burning potion of oil",
                        KILLED_BY_AN);
             }
         } else if (otmp->cursed)
-            pline("This tastes like castor oil.");
+            pline("这尝起来像蓖麻油.");
         else
-            pline("That was smooth!");
+            pline("那是光滑的!");
         exercise(A_WIS, good_for_you);
         break;
     }
     case POT_ACID:
         if (Acid_resistance) {
             /* Not necessarily a creature who _likes_ acid */
-            pline("This tastes %s.", Hallucination ? "tangy" : "sour");
+            pline("这尝起来是%s.", Hallucination ? "刺鼻的" : "酸的");
         } else {
             int dmg;
 
-            pline("This burns%s!",
-                  otmp->blessed ? " a little" : otmp->cursed ? " a lot"
-                                                             : " like acid");
+            pline("这烧得%s!",
+                  otmp->blessed ? " 有一点" : otmp->cursed ? " 许多"
+                                                             : " 像酸");
             dmg = d(otmp->cursed ? 2 : 1, otmp->blessed ? 4 : 8);
             losehp(Maybe_Half_Phys(dmg), "potion of acid", KILLED_BY_AN);
             exercise(A_CON, FALSE);
@@ -1073,7 +1073,7 @@ register struct obj *otmp;
         unkn++; /* holy/unholy water can burn like acid too */
         break;
     case POT_POLYMORPH:
-        You_feel("a little %s.", Hallucination ? "normal" : "strange");
+        You_feel("有些%s.", Hallucination ? "正常" : "奇怪");
         if (!Unchanging)
             polyself(0);
         break;
@@ -2155,16 +2155,16 @@ struct obj *obj;
     int chance;
 
     if (!(mtmp = makemon(&mons[PM_DJINNI], u.ux, u.uy, NO_MM_FLAGS))) {
-        pline("It turns out to be empty.");
+        pline("原来是空的.");
         return;
     }
 
     if (!Blind) {
-        pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
-        pline("%s speaks.", Monnam(mtmp));
+        pline("在一团烟雾中, %s 浮现出来!", a_monnam(mtmp));
+        pline("%s 说.", Monnam(mtmp));
     } else {
-        You("smell acrid fumes.");
-        pline("%s speaks.", Something);
+        You("闻到刺鼻的气味.");
+        pline("%s 说.", Something);
     }
 
     chance = rn2(5);
@@ -2176,27 +2176,27 @@ struct obj *obj;
 
     switch (chance) {
     case 0:
-        verbalize("I am in your debt.  I will grant one wish!");
+        verbalize("我欠你一个人情.  我满足你一个愿望!");
         /* give a wish and discard the monster (mtmp set to null) */
         mongrantswish(&mtmp);
         break;
     case 1:
-        verbalize("Thank you for freeing me!");
+        verbalize("谢谢你放我出来!");
         (void) tamedog(mtmp, (struct obj *) 0);
         break;
     case 2:
-        verbalize("You freed me!");
+        verbalize("你释放了我!");
         mtmp->mpeaceful = TRUE;
         set_malign(mtmp);
         break;
     case 3:
-        verbalize("It is about time!");
+        verbalize("时间差不多了!");
         if (canspotmon(mtmp))
             pline("%s vanishes.", Monnam(mtmp));
         mongone(mtmp);
         break;
     default:
-        verbalize("You disturbed me, fool!");
+        verbalize("你打扰了我, 笨蛋!");
         mtmp->mpeaceful = FALSE;
         set_malign(mtmp);
         break;

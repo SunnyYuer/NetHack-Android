@@ -1,23 +1,16 @@
-Debug-Mode Quick Reference:
+向导模式命令快速参考:
 
-^E  ==  detect secret doors and traps.
-^F  ==  do magic mapping.
-^G  ==  create monster.
-^I  ==  identify items in pack.
-^O  ==  tell locations of special levels.
-^T  ==  do intra-level teleport.
-^V  ==  do trans-level teleport.
-^W  ==  make wish.
-^X  ==  show attributes including intrinsic attributes.
+^E  ==   探测暗门和陷阱.
+^F  ==   魔法地图.
+^G  ==   制造怪物.
+^I  ==   鉴定背包里的物品.
+^O  ==   显示特殊层数的位置.
+^T  ==   在这层传送.
+^V  ==   传送到别的层数.
+^W  ==   许愿.
+^X  ==   显示人物属性包括内在属性.
 
-#levelchange == change experience level
-#lightsources == show mobile light sources
-#monpolycontrol == control monster polymorphs
-#panic == panic test
-#polyself == polymorph self
-#seenv == show seen vectors
-#stats == show memory statistics
-#timeout == look at timeout queue
-#vision == show vision array
-#wmode == show wall modes
-
+# 改变等级 ==  改变等级
+# 变形 ==  自我变形
+# 变形控制 ==  控制怪物变形
+# 消灭怪物 ==  列出杀死过的怪物

@@ -617,17 +617,17 @@ docallcmd()
            response keyed to old "name an individual object?" prompt */
         any.a_char = 'i'; /* group accelerator 'y' */
         add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'y', ATR_NONE,
-                 "背包中的一个特定物品", MENU_UNSELECTED);
+                 "背包中的一个单独物品", MENU_UNSELECTED);
         any.a_char = 'o'; /* group accelerator 'n' */
         add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'n', ATR_NONE,
-                 "背包中的一个物品类型", MENU_UNSELECTED);
+                 "背包中的一类物品", MENU_UNSELECTED);
     }
     any.a_char = 'f'; /* group accelerator ',' (or ':' instead?) */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, ',', ATR_NONE,
-             "地上的一个物品类型", MENU_UNSELECTED);
+             "地上的一类物品", MENU_UNSELECTED);
     any.a_char = 'd'; /* group accelerator '\' */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, '\\', ATR_NONE,
-             "已知对象列表中的一个对象类型", MENU_UNSELECTED);
+             "发现物列表中的一类物品", MENU_UNSELECTED);
     any.a_char = 'a'; /* group accelerator 'l' */
     add_menu(win, NO_GLYPH, &any, abc ? 0 : any.a_char, 'l', ATR_NONE,
              "给这一层作个备注", MENU_UNSELECTED);
@@ -662,7 +662,7 @@ docallcmd()
             (void) xname(obj);
 
             if (!obj->dknown) {
-                You("would never recognize another one.");
+                You("将不会识别出另一个.");
 #if 0
             } else if (!objtyp_is_callable(obj->otyp)) {
                 You("know those as well as you ever will.");
@@ -709,10 +709,10 @@ boolean showlog;
 
     if (objects[otemp.otyp].oc_class == POTION_CLASS && otemp.fromsink)
         /* kludge, meaning it's sink water */
-        Sprintf(qbuf, "Call a stream of %s fluid:",
+        Sprintf(qbuf, "称一股%s液体为:",
                 OBJ_DESCR(objects[otemp.otyp]));
     else
-        Sprintf(qbuf, "Call %s:", an(xname(&otemp)));
+        Sprintf(qbuf, "称 %s为:", xname(&otemp));
 #ifdef ANDROID
 	if( showlog )
 		and_getlin_log(qbuf, buf);
@@ -1025,7 +1025,7 @@ boolean called;
             Strcpy(buf, buf2);
             return buf;
         case ARTICLE_THE:
-            Strcpy(buf2, "the ");
+            Strcpy(buf2, "");
             Strcat(buf2, buf);
             Strcpy(buf, buf2);
             return buf;

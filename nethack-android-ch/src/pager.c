@@ -1236,7 +1236,7 @@ static const char *help_menu_items[] = {
 #else
 #define WIZHLP_SLOT 11
 #endif
-    "List of wizard-mode commands.", "", (char *) 0
+    "向导模式命令列表.", "", (char *) 0
 };
 
 STATIC_OVL boolean

@@ -409,14 +409,14 @@ const char *verb; /* "rub",&c */
         return TRUE; /* nothing to do if already wielding it */
 
     if (!verb)
-        verb = "wield";
+        verb = "拿着";
     what = xname(obj);
-    more_than_1 = (obj->quan > 1L || strstri(what, "pair of ") != 0
+    more_than_1 = (obj->quan > 1L || strstri(what, "一双") != 0
                    || strstri(what, "s of ") != 0);
 
     if (obj->owornmask & (W_ARMOR | W_ACCESSORY)) {
-        You_cant("%s %s while wearing %s.", verb, yname(obj),
-                 more_than_1 ? "them" : "it");
+        You_cant("%s %s在穿着%s 的时候.", verb, yname(obj),
+                 more_than_1 ? "它们" : "它");
         return FALSE;
     }
     if (welded(uwep)) {
@@ -425,24 +425,24 @@ const char *verb; /* "rub",&c */
 
             if (bimanual(uwep))
                 hand = makeplural(hand);
-            if (strstri(what, "pair of ") != 0)
+            if (strstri(what, "一双") != 0)
                 more_than_1 = FALSE;
             pline(
-               "Since your weapon is welded to your %s, you cannot %s %s %s.",
-                  hand, verb, more_than_1 ? "those" : "that", xname(obj));
+               "因为你的武器粘在你的%s 上, 所以你不能%s %s %s.",
+                  hand, verb, more_than_1 ? "那些" : "那个", xname(obj));
         } else {
-            You_cant("do that.");
+            You_cant("做那个.");
         }
         return FALSE;
     }
     if (cantwield(youmonst.data)) {
-        You_cant("hold %s strongly enough.", more_than_1 ? "them" : "it");
+        You_cant("有力地握住%s.", more_than_1 ? "它们" : "它");
         return FALSE;
     }
     /* check shield */
     if (uarms && bimanual(obj)) {
-        You("cannot %s a two-handed %s while wearing a shield.", verb,
-            (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
+        You("不能在穿戴盾牌的时候%s 双手%s.", verb,
+            (obj->oclass == WEAPON_CLASS) ? "武器" : "工具");
         return FALSE;
     }
 
@@ -456,7 +456,7 @@ const char *verb; /* "rub",&c */
     } else {
         struct obj *oldwep = uwep;
 
-        You("now wield %s.", doname(obj));
+        You("现在拿着%s.", doname(obj));
         setuwep(obj);
         if (flags.pushweapon && oldwep && uwep != oldwep)
             setuswapwep(oldwep);
@@ -479,26 +479,26 @@ can_twoweapon()
 #define NOT_WEAPON(obj) (!is_weptool(obj) && obj->oclass != WEAPON_CLASS)
     if (!could_twoweap(youmonst.data)) {
         if (Upolyd)
-            You_cant("use two weapons in your current form.");
+            You_cant("在你当前的形式使用两把武器.");
         else
-            pline("%s aren't able to use two weapons at once.",
+            pline("%s 没法同时使用两把武器.",
                   makeplural((flags.female && urole.name.f) ? urole.name.f
                                                             : urole.name.m));
     } else if (!uwep || !uswapwep)
-        Your("%s%s%s empty.", uwep ? "left " : uswapwep ? "right " : "",
-             body_part(HAND), (!uwep && !uswapwep) ? "s are" : " is");
+        Your("%s%s%s 空着的.", uwep ? "左 " : uswapwep ? "右 " : "",
+             body_part(HAND), (!uwep && !uswapwep) ? "都是" : " 是");
     else if (NOT_WEAPON(uwep) || NOT_WEAPON(uswapwep)) {
         otmp = NOT_WEAPON(uwep) ? uwep : uswapwep;
         pline("%s %s.", Yname2(otmp),
-              is_plural(otmp) ? "aren't weapons" : "isn't a weapon");
+              is_plural(otmp) ? "不是武器" : "不是武器");
     } else if (bimanual(uwep) || bimanual(uswapwep)) {
         otmp = bimanual(uwep) ? uwep : uswapwep;
-        pline("%s isn't one-handed.", Yname2(otmp));
+        pline("%s 不是单手的.", Yname2(otmp));
     } else if (uarms)
-        You_cant("use two weapons while wearing a shield.");
+        You_cant("在拿着盾牌的时候使用两把武器.");
     else if (uswapwep->oartifact)
-        pline("%s being held second to another weapon!",
-              Yobjnam2(uswapwep, "resist"));
+        pline("%s成为第二位武器!",
+              Yobjnam2(uswapwep, "抵抗"));
     else if (uswapwep->otyp == CORPSE && cant_wield_corpse(uswapwep)) {
         /* [Note: NOT_WEAPON() check prevents ever getting here...] */
         ; /* must be life-saved to reach here; return FALSE */
@@ -519,7 +519,7 @@ drop_uswapwep()
 
     /* Avoid trashing makeplural's static buffer */
     Strcpy(str, makeplural(body_part(HAND)));
-    pline("%s from your %s!", Yobjnam2(obj, "slip"), str);
+    pline("%s 出你的%s!", Yobjnam2(obj, "滑落"), str);
     dropx(obj);
 }
 
@@ -735,7 +735,7 @@ register struct obj *obj;
     long savewornmask;
 
     savewornmask = obj->owornmask;
-    pline("%s welded to your %s!", Yobjnam2(obj, "are"),
+    pline("%s粘在你的%s 上!", Yobjnam2(obj, "是"),
           bimanual(obj) ? (const char *) makeplural(body_part(HAND))
                         : body_part(HAND));
     obj->owornmask = savewornmask;

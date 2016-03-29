@@ -251,11 +251,11 @@ VA_DECL(const char *, line)
     VA_START(line);
     VA_INIT(line, const char *);
     if (Unaware)
-        YouPrefix(tmp, "You dream that you see ", line);
+        YouPrefix(tmp, "你梦到你看见 ", line);
     else if (Blind) /* caller should have caught this... */
-        YouPrefix(tmp, "You sense ", line);
+        YouPrefix(tmp, "你感到 ", line);
     else
-        YouPrefix(tmp, "You see ", line);
+        YouPrefix(tmp, "你看见 ", line);
     vpline(strcat(tmp, line), VA_ARGS);
     VA_END();
 }
@@ -272,8 +272,8 @@ VA_DECL(const char *, line)
 
     VA_START(line);
     VA_INIT(line, const char *);
-    tmp = You_buf((int) strlen(line) + sizeof "\"\"");
-    Strcpy(tmp, "\"");
+    tmp = You_buf((int) strlen(line) + sizeof "\" \"");
+    Strcpy(tmp, "\" ");
     Strcat(tmp, line);
     Strcat(tmp, "\"");
     vpline(tmp, VA_ARGS);
@@ -379,87 +379,87 @@ register struct monst *mtmp;
 
     info[0] = 0;
     if (mtmp->mtame) {
-        Strcat(info, ", tame");
+        Strcat(info, ",  驯服");
         if (wizard) {
             Sprintf(eos(info), " (%d", mtmp->mtame);
             if (!mtmp->isminion)
-                Sprintf(eos(info), "; hungry %ld; apport %d",
+                Sprintf(eos(info), ";  饥饿度 %ld;  叼取值 %d",
                         EDOG(mtmp)->hungrytime, EDOG(mtmp)->apport);
             Strcat(info, ")");
         }
     } else if (mtmp->mpeaceful)
-        Strcat(info, ", peaceful");
+        Strcat(info, ",  和平的");
     if (mtmp->cham >= LOW_PM && mtmp->data != &mons[mtmp->cham])
         /* don't reveal the innate form (chameleon, vampire, &c),
            just expose the fact that this current form isn't it */
-        Strcat(info, ", shapechanger");
+        Strcat(info, ",  变形生物");
     /* pets eating mimic corpses mimic while eating, so this comes first */
     if (mtmp->meating)
-        Strcat(info, ", eating");
+        Strcat(info, ",  在吃");
     /* a stethoscope exposes mimic before getting here so this
        won't be relevant for it, but wand of probing doesn't */
     if (mtmp->m_ap_type)
-        Sprintf(eos(info), ", mimicking %s",
+        Sprintf(eos(info), ",  模仿 %s",
                 (mtmp->m_ap_type == M_AP_FURNITURE)
-                    ? an(defsyms[mtmp->mappearance].explanation)
+                    ? defsyms[mtmp->mappearance].explanation
                     : (mtmp->m_ap_type == M_AP_OBJECT)
                           ? ((mtmp->mappearance == GOLD_PIECE)
-                                 ? "gold"
-                                 : an(simple_typename(mtmp->mappearance)))
+                                 ? "金币"
+                                 : simple_typename(mtmp->mappearance))
                           : (mtmp->m_ap_type == M_AP_MONSTER)
-                                ? an(mons[mtmp->mappearance].mname)
+                                ? mons[mtmp->mappearance].mname
                                 : something); /* impossible... */
     if (mtmp->mcan)
-        Strcat(info, ", cancelled");
+        Strcat(info, ",  被取消");
     if (mtmp->mconf)
-        Strcat(info, ", confused");
+        Strcat(info, ",  混乱");
     if (mtmp->mblinded || !mtmp->mcansee)
-        Strcat(info, ", blind");
+        Strcat(info, ",  失明");
     if (mtmp->mstun)
-        Strcat(info, ", stunned");
+        Strcat(info, ",  眩晕");
     if (mtmp->msleeping)
-        Strcat(info, ", asleep");
+        Strcat(info, ",  睡着");
 #if 0 /* unfortunately mfrozen covers temporary sleep and being busy \
          (donning armor, for instance) as well as paralysis */
 	else if (mtmp->mfrozen)	  Strcat(info, ", paralyzed");
 #else
     else if (mtmp->mfrozen || !mtmp->mcanmove)
-        Strcat(info, ", can't move");
+        Strcat(info, ",  不能移动");
 #endif
     /* [arbitrary reason why it isn't moving] */
     else if (mtmp->mstrategy & STRAT_WAITMASK)
-        Strcat(info, ", meditating");
+        Strcat(info, ",  沉思");
     if (mtmp->mflee)
-        Strcat(info, ", scared");
+        Strcat(info, ",  害怕");
     if (mtmp->mtrapped)
-        Strcat(info, ", trapped");
+        Strcat(info, ",  受困");
     if (mtmp->mspeed)
-        Strcat(info, mtmp->mspeed == MFAST ? ", fast" : mtmp->mspeed == MSLOW
-                                                            ? ", slow"
+        Strcat(info, mtmp->mspeed == MFAST ? ",  快" : mtmp->mspeed == MSLOW
+                                                            ? ",  慢"
                                                             : ", ???? speed");
     if (mtmp->mundetected)
-        Strcat(info, ", concealed");
+        Strcat(info, ",  隐蔽");
     if (mtmp->minvis)
-        Strcat(info, ", invisible");
+        Strcat(info, ",  隐身");
     if (mtmp == u.ustuck)
         Strcat(info, sticks(youmonst.data)
-                         ? ", held by you"
-                         : !u.uswallow ? ", holding you"
+                         ? ",  被你抱着"
+                         : !u.uswallow ? ",  抱着你"
                                        : attacktype_fordmg(u.ustuck->data,
                                                            AT_ENGL, AD_DGST)
-                                             ? ", digesting you"
+                                             ? ",  消化你"
                                              : is_animal(u.ustuck->data)
-                                                   ? ", swallowing you"
-                                                   : ", engulfing you");
+                                                   ? ",  吞咽你"
+                                                   : ",  吞噬你");
     if (mtmp == u.usteed)
-        Strcat(info, ", carrying you");
+        Strcat(info, ",  带着你");
 
     /* avoid "Status of the invisible newt ..., invisible" */
     /* and unlike a normal mon_nam, use "saddled" even if it has a name */
     Strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *) 0,
                                (SUPPRESS_IT | SUPPRESS_INVISIBLE), FALSE));
 
-    pline("Status of %s (%s):  Level %d  HP %d(%d)  AC %d%s.", monnambuf,
+    pline("%s ( %s) 状态:   等级 %d  HP %d(%d)   防 %d%s.", monnambuf,
           align_str(alignment), mtmp->m_lev, mtmp->mhp, mtmp->mhpmax,
           find_mac(mtmp), info);
 }

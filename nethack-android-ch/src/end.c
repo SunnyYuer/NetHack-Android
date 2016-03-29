@@ -692,7 +692,7 @@ boolean taken;
 
     if (!done_stopprint) {
         ask = should_query_disclose_option('o', &defquery);
-        c = ask ? yn_function("你想看下地下城概述吗?",
+        c = ask ? yn_function("你想看下地牢概述吗?",
                               ynqchars, defquery)
                 : defquery;
         if (c == 'y')

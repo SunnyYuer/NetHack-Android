@@ -244,7 +244,7 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		if(verDat == 0 || srcVer != curVer)
 		{
 			Log.print("Update required. old version");
-			mWipeUserdata = true;
+			mWipeUserdata = false;
 			return false;
 		}
 

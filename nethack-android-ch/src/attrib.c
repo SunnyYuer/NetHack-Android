@@ -9,11 +9,11 @@
 
 /* part of the output on gain or loss of attribute */
 static const char
-    *const plusattr[] = { "strong", "smart", "wise",
-                          "agile",  "tough", "charismatic" },
-    *const minusattr[] = { "weak",    "stupid",
-                           "foolish", "clumsy",
-                           "fragile", "repulsive" };
+    *const plusattr[] = { "强壮", "聪明", "博学",  //力量 智力 感知
+                          "灵活",  "结实", "迷人" },  //敏捷 体质 魅力
+    *const minusattr[] = { "无力",    "愚蠢",  //力量 智力
+                           "无知", "笨拙",  //感知 敏捷
+                           "体弱", "丑恶" };  //体质 魅力
 
 static const struct innate {
     schar ulevel;
@@ -138,13 +138,13 @@ int msgflg; /* positive => no message, zero => message, and */
     }
     if (ACURR(ndx) == old_acurr) {
         if (msgflg == 0 && flags.verbose)
-            pline("You're %s as %s as you can get.",
-                  abonflg ? "currently" : "already", attrstr);
+            pline("你%s 不能再%s.",
+                  abonflg ? "当前" : "已经", attrstr);
         return FALSE;
     }
 
     if (msgflg <= 0)
-        You_feel("%s%s!", (incr > 1 || incr < -1) ? "very " : "", attrstr);
+        You_feel("变得%s%s了!", (incr > 1 || incr < -1) ? "非常 " : "", attrstr);
     context.botl = 1;
     if (moves > 1 && (ndx == A_STR || ndx == A_CON))
         (void) encumber_msg();
@@ -454,11 +454,11 @@ exerper()
 /* exercise/abuse text (must be in attribute order, not botl order);
    phrased as "You must have been [][0]." or "You haven't been [][1]." */
 static NEARDATA const char *const exertext[A_MAX][2] = {
-    { "exercising diligently", "exercising properly" },           /* Str */
+    { "在努力地锻炼", "适当的锻炼" },           /* Str */
     { 0, 0 },                                                     /* Int */
-    { "very observant", "paying attention" },                     /* Wis */
-    { "working on your reflexes", "working on reflexes lately" }, /* Dex */
-    { "leading a healthy life-style", "watching your health" },   /* Con */
+    { "非常细心", "用心" },                     /* Wis */
+    { "在练习你的反应能力", "在最近练习反应能力" }, /* Dex */
+    { "在以一个健康的生活方式过着", "注意你的健康" },   /* Con */
     { 0, 0 },                                                     /* Cha */
 };
 
@@ -536,7 +536,7 @@ exerchk()
                 AEXE(i) = ax = 0;
                 /* then print an explanation */
                 You("%s %s.",
-                    (mod_val > 0) ? "must have been" : "haven't been",
+                    (mod_val > 0) ? "一定" : "没有",
                     exertext[i][(mod_val > 0) ? 0 : 1]);
             }
         nextattrib:

@@ -2117,15 +2117,15 @@ Goodbye()
 {
     switch (Role_switch) {
     case PM_KNIGHT:
-        return "Fare thee well"; /* Olde English */
+        return "珍重"; /* Olde English */
     case PM_SAMURAI:
-        return "Sayonara"; /* Japanese */
+        return "撒哟啦啦"; /* Japanese */
     case PM_TOURIST:
-        return "Aloha"; /* Hawaiian */
+        return "再见"; /* Hawaiian */
     case PM_VALKYRIE:
-        return "Farvel"; /* Norse */
+        return "再见"; /* Norse */
     default:
-        return "Goodbye";
+        return "告别";
     }
 }
 

@@ -899,37 +899,37 @@ struct obj **optr;
     struct obj *obj = *optr;
 
     if (Blind) {
-        pline("Too bad you can't see %s.", the(xname(obj)));
+        pline("很糟糕你不能看见%s.", the(xname(obj)));
         return;
     }
     oops = (rnd(20) > ACURR(A_INT) || obj->cursed);
     if (oops && (obj->spe > 0)) {
         switch (rnd(obj->oartifact ? 4 : 5)) {
         case 1:
-            pline("%s too much to comprehend!", Tobjnam(obj, "are"));
+            pline("%s有太多要理解!", Tobjnam(obj, "有"));
             break;
         case 2:
-            pline("%s you!", Tobjnam(obj, "confuse"));
+            pline("%s你混乱了!", Tobjnam(obj, "使"));
             make_confused((HConfusion & TIMEOUT) + (long) rnd(100), FALSE);
             break;
         case 3:
             if (!resists_blnd(&youmonst)) {
-                pline("%s your vision!", Tobjnam(obj, "damage"));
+                pline("%s你的视力!", Tobjnam(obj, "损害"));
                 make_blinded((Blinded & TIMEOUT) + (long) rnd(100), FALSE);
                 if (!Blind)
                     Your1(vision_clears);
             } else {
-                pline("%s your vision.", Tobjnam(obj, "assault"));
-                You("are unaffected!");
+                pline("%s 你的视力.", Tobjnam(obj, "冲击"));
+                You("不受影响!");
             }
             break;
         case 4:
-            pline("%s your mind!", Tobjnam(obj, "zap"));
+            pline("%s 你的思想!", Tobjnam(obj, "灌入"));
             (void) make_hallucinated(
                 (HHallucination & TIMEOUT) + (long) rnd(100), FALSE, 0L);
             break;
         case 5:
-            pline("%s!", Tobjnam(obj, "explode"));
+            pline("%s!", Tobjnam(obj, "爆炸"));
             useup(obj);
             *optr = obj = 0; /* it's gone */
             /* physical damage cause by the shards and force */
@@ -944,29 +944,29 @@ struct obj **optr;
 
     if (Hallucination) {
         if (!obj->spe) {
-            pline("All you see is funky %s haze.", hcolor((char *) 0));
+            pline("所有你看到的是恐惧的%s 烟雾.", hcolor((char *) 0));
         } else {
             switch (rnd(6)) {
             case 1:
-                You("grok some groovy globs of incandescent lava.");
+                You("观赏一些炽热熔岩里的绝妙液滴.");
                 break;
             case 2:
-                pline("Whoa!  Psychedelic colors, %s!",
-                      poly_gender() == 1 ? "babe" : "dude");
+                pline("哇!  迷幻的色彩, %s!",
+                      poly_gender() == 1 ? "性感女郎" : "花花公子");
                 break;
             case 3:
-                pline_The("crystal pulses with sinister %s light!",
+                pline_The("水晶脉冲带着不祥的%s光!",
                           hcolor((char *) 0));
                 break;
             case 4:
-                You_see("goldfish swimming above fluorescent rocks.");
+                You_see("金鱼在荧光岩石上游着.");
                 break;
             case 5:
                 You_see(
-                    "tiny snowflakes spinning around a miniature farmhouse.");
+                    "小雪花在小农舍周围旋转.");
                 break;
             default:
-                pline("Oh wow... like a kaleidoscope!");
+                pline("哇...  像一个万花筒!");
                 break;
             }
             consume_obj_charge(obj, TRUE);
@@ -976,20 +976,20 @@ struct obj **optr;
 
     /* read a single character */
     if (flags.verbose)
-        You("may look for an object or monster symbol.");
-    ch = yn_function("What do you look for?", (char *) 0, '\0');
+        You("可以寻找一件物品或怪物符号.");
+    ch = yn_function("你想寻找什么?", (char *) 0, '\0');
     /* Don't filter out ' ' here; it has a use */
     if ((ch != def_monsyms[S_GHOST].sym) && index(quitchars, ch)) {
         if (flags.verbose)
             pline1(Never_mind);
         return;
     }
-    You("peer into %s...", the(xname(obj)));
+    You("窥视%s里面...", the(xname(obj)));
     nomul(-rnd(10));
     multi_reason = "gazing into a crystal ball";
     nomovemsg = "";
     if (obj->spe <= 0)
-        pline_The("vision is unclear.");
+        pline_The("视界不清晰.");
     else {
         int class;
         int ret = 0;
@@ -1025,9 +1025,9 @@ struct obj **optr;
 
         if (ret) {
             if (!rn2(100)) /* make them nervous */
-                You_see("the Wizard of Yendor gazing out at you.");
+                You_see("岩德巫师在凝视着你.");
             else
-                pline_The("vision is unclear.");
+                pline_The("视界不清晰.");
         }
     }
     return;

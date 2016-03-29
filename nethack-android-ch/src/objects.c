@@ -233,7 +233,7 @@ WEAPON("大战戟", "长柄叉",  //"spetum", "forked polearm"
         /* +1 small, +d6 large */
 WEAPON("剑刃戟", "单刃长柄武器",  //"glaive", "single-edged polearm"
        0, 0, 1,  8,  75,   6,  6, 10, 0, S,   P_POLEARMS, IRON, HI_METAL),
-WEAPON("长戟", None,
+WEAPON("长戟", None,  //"lance"
        1, 0, 0,  4, 180,  10,  6,  8, 0, P,   P_LANCE, IRON, HI_METAL),
         /* +2d10 when jousting with lance as primary weapon */
 /* axe-type */
@@ -555,7 +555,7 @@ RING("保护", "黑玛瑙",  //"protection", "black onyx"
            regardless of ring's enchantment; wearing a second ring of
            protection (or even one ring of protection combined with
            cloak of protection) doesn't give a second MC boost */
-RING("重生", "月石",  //"regeneration", "moonstone"
+RING("再生", "月石",  //"regeneration", "moonstone"
      REGENERATION,             200, 1, 0,  6, MINERAL, HI_MINERAL),
 RING("搜索", "虎眼石",  //"searching", "tiger eye"
      SEARCHING,                200, 1, 0,  6, GEMSTONE, CLR_BROWN),
@@ -573,7 +573,7 @@ RING("冲突", "红宝石",  //"conflict", "ruby"
      CONFLICT,                 300, 1, 0,  9, GEMSTONE, CLR_RED),
 RING("警报", "钻石",  //"warning", "diamond"
      WARNING,                  100, 1, 0, 10, GEMSTONE, CLR_WHITE),
-RING("毒抗", "珍珠",  //"poison resistance", "pearl"
+RING("抗毒", "珍珠",  //"poison resistance", "pearl"
      POISON_RES,               150, 1, 0,  4, BONE, CLR_WHITE),
 RING("抗火", "铁",  //"fire resistance", "iron"
      FIRE_RES,                 200, 1, 0,  5, IRON, HI_METAL),

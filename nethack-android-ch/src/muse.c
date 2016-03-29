@@ -2130,28 +2130,28 @@ const char *fmt, *str;
     /* Check from outermost to innermost objects */
     if (EReflecting & W_ARMS) {
         if (fmt && str) {
-            pline(fmt, str, "shield");
+            pline(fmt, str, "盾牌");
             makeknown(SHIELD_OF_REFLECTION);
         }
         return TRUE;
     } else if (EReflecting & W_WEP) {
         /* Due to wielded artifact weapon */
         if (fmt && str)
-            pline(fmt, str, "weapon");
+            pline(fmt, str, "武器");
         return TRUE;
     } else if (EReflecting & W_AMUL) {
         if (fmt && str) {
-            pline(fmt, str, "medallion");
+            pline(fmt, str, "挂坠");
             makeknown(AMULET_OF_REFLECTION);
         }
         return TRUE;
     } else if (EReflecting & W_ARM) {
         if (fmt && str)
-            pline(fmt, str, uskin ? "luster" : "armor");
+            pline(fmt, str, uskin ? "光泽" : "盔甲");
         return TRUE;
     } else if (youmonst.data == &mons[PM_SILVER_DRAGON]) {
         if (fmt && str)
-            pline(fmt, str, "scales");
+            pline(fmt, str, "龙鳞");
         return TRUE;
     }
     return FALSE;

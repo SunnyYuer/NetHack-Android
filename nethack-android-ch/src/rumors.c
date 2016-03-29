@@ -324,7 +324,7 @@ int truth; /* 1=true, -1=false, 0=either */
 int mechanism;
 {
     static const char fortune_msg[] =
-        "This cookie has a scrap of paper inside.";
+        "这个饼干里面有一张废纸.";
     const char *line;
     char buf[BUFSZ];
     boolean reading = (mechanism == BY_COOKIE || mechanism == BY_PAPER);
@@ -336,7 +336,7 @@ int mechanism;
         else if (Blind) {
             if (mechanism == BY_COOKIE)
                 pline(fortune_msg);
-            pline("What a pity that you cannot read it!");
+            pline("真遗憾你无法阅读它!");
             return;
         }
     }
@@ -346,10 +346,10 @@ int mechanism;
     switch (mechanism) {
     case BY_ORACLE:
         /* Oracle delivers the rumor */
-        pline("True to her word, the Oracle %ssays: ",
-              (!rn2(4) ? "offhandedly "
-                       : (!rn2(3) ? "casually "
-                                  : (rn2(2) ? "nonchalantly " : ""))));
+        pline("不背其言, 神谕 %s说: ",
+              (!rn2(4) ? "随口 "
+                       : (!rn2(3) ? "胡乱 "
+                                  : (rn2(2) ? "平静的 " : ""))));
         verbalize1(line);
         /* [WIS exercized by getrumor()] */
         return;
@@ -357,7 +357,7 @@ int mechanism;
         pline(fortune_msg);
     /* FALLTHRU */
     case BY_PAPER:
-        pline("It reads:");
+        pline("上面写着:");
         break;
     }
     pline1(line);

@@ -486,7 +486,7 @@ stop_occupation()
 {
     if (occupation) {
         if (!maybe_finished_meal(TRUE))
-            You("stop %s.", occtxt);
+            You("停止了%s.", occtxt);
         occupation = 0;
         context.botl = 1; /* in case u.uhs changed */
         nomul(0);

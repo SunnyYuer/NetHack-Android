@@ -46,10 +46,10 @@ lock_action()
 {
     /* "unlocking"+2 == "locking" */
     static const char *actions[] = {
-        "unlocking the door",   /* [0] */
-        "unlocking the chest",  /* [1] */
-        "unlocking the box",    /* [2] */
-        "picking the lock"      /* [3] */
+        "解锁门",   /* [0] */
+        "解锁箱子",  /* [1] */
+        "解锁盒子",    /* [2] */
+        "撬锁"      /* [3] */
     };
 
     /* if the target is currently unlocked, we're trying to lock it now */
@@ -84,19 +84,19 @@ picklock(VOID_ARGS)
         }
         switch (xlock.door->doormask) {
         case D_NODOOR:
-            pline("This doorway has no door.");
+            pline("这个门口没有门.");
             return ((xlock.usedtime = 0));
         case D_ISOPEN:
-            You("cannot lock an open door.");
+            You("不能锁打开的门.");
             return ((xlock.usedtime = 0));
         case D_BROKEN:
-            pline("This door is broken.");
+            pline("这个门被破坏了.");
             return ((xlock.usedtime = 0));
         }
     }
 
     if (xlock.usedtime++ >= 50 || nohands(youmonst.data)) {
-        You("give up your attempt at %s.", lock_action());
+        You("放弃了尝试%s.", lock_action());
         exercise(A_DEX, TRUE); /* even if you don't succeed */
         return ((xlock.usedtime = 0));
     }
@@ -104,7 +104,7 @@ picklock(VOID_ARGS)
     if (rn2(100) >= xlock.chance)
         return 1; /* still busy */
 
-    You("succeed in %s.", lock_action());
+    You("成功地 %s.", lock_action());
     if (xlock.door) {
         if (xlock.door->doormask & D_TRAPPED) {
             b_trapped("door", FINGER);
@@ -251,33 +251,33 @@ struct obj *pick;
 
     /* check whether we're resuming an interrupted previous attempt */
     if (xlock.usedtime && picktyp == xlock.picktyp) {
-        static char no_longer[] = "Unfortunately, you can no longer %s %s.";
+        static char no_longer[] = "不幸的是, 你不再能%s %s.";
 
         if (nohands(youmonst.data)) {
-            const char *what = (picktyp == LOCK_PICK) ? "pick" : "key";
+            const char *what = (picktyp == LOCK_PICK) ? "开锁器" : "钥匙";
             if (picktyp == CREDIT_CARD)
-                what = "card";
-            pline(no_longer, "hold the", what);
+                what = "卡";
+            pline(no_longer, "拿着", what);
             reset_pick();
             return PICKLOCK_LEARNED_SOMETHING;
         } else if (u.uswallow || (xlock.box && !can_reach_floor(TRUE))) {
-            pline(no_longer, "reach the", "lock");
+            pline(no_longer, "够到", "锁");
             reset_pick();
             return PICKLOCK_LEARNED_SOMETHING;
         } else {
             const char *action = lock_action();
 
-            You("resume your attempt at %s.", action);
+            You("继续尝试%s.", action);
             set_occupation(picklock, action, 0);
             return PICKLOCK_DID_SOMETHING;
         }
     }
 
     if (nohands(youmonst.data)) {
-        You_cant("hold %s -- you have no hands!", doname(pick));
+        You_cant("拿着%s --  你没有手!", doname(pick));
         return PICKLOCK_DID_NOTHING;
     } else if (u.uswallow) {
-        You_cant("%sunlock %s.", (picktyp == CREDIT_CARD) ? "" : "lock or ",
+        You_cant("%s开锁 %s.", (picktyp == CREDIT_CARD) ? "" : "上锁或",
                  mon_nam(u.ustuck));
         return PICKLOCK_DID_NOTHING;
     }
@@ -404,30 +404,30 @@ struct obj *pick;
         }
         if (!IS_DOOR(door->typ)) {
             if (is_drawbridge_wall(cc.x, cc.y) >= 0)
-                You("%s no lock on the drawbridge.", Blind ? "feel" : "see");
+                You("%s吊桥上没有锁.", Blind ? "感觉" : "看见");
             else
-                You("%s no door there.", Blind ? "feel" : "see");
+                You("%s那里没有门.", Blind ? "感觉" : "看见");
             return PICKLOCK_LEARNED_SOMETHING;
         }
         switch (door->doormask) {
         case D_NODOOR:
-            pline("This doorway has no door.");
+            pline("这个门口没有门.");
             return PICKLOCK_LEARNED_SOMETHING;
         case D_ISOPEN:
-            You("cannot lock an open door.");
+            You("不能锁住打开的门.");
             return PICKLOCK_LEARNED_SOMETHING;
         case D_BROKEN:
-            pline("This door is broken.");
+            pline("这个门被破坏了.");
             return PICKLOCK_LEARNED_SOMETHING;
         default:
             /* credit cards are only good for unlocking */
             if (picktyp == CREDIT_CARD && !(door->doormask & D_LOCKED)) {
-                You_cant("lock a door with a credit card.");
+                You_cant("用信用卡锁门.");
                 return PICKLOCK_LEARNED_SOMETHING;
             }
 
-            Sprintf(qbuf, "%s it?",
-                    (door->doormask & D_LOCKED) ? "Unlock" : "Lock");
+            Sprintf(qbuf, "%s?",
+                    (door->doormask & D_LOCKED) ? "解锁" : "上锁");
 
             c = yn(qbuf);
             if (c == 'n')
@@ -631,7 +631,7 @@ int x, y;
         else if (portcullis || door->typ == DRAWBRIDGE_DOWN)
             pline_The("drawbridge is already open.");
         else
-            You("%s那里没有门.", Blind ? "感觉" : "见");
+            You("%s那里没有门.", Blind ? "感觉" : "看见");
         return res;
     }
 
@@ -785,7 +785,7 @@ doclose()
             There("is no obvious way to close the drawbridge.");
         else {
         nodoor:
-            You("%s那里没有门.", Blind ? "感觉" : "见");
+            You("%s那里没有门.", Blind ? "感觉" : "看见");
         }
         return res;
     }

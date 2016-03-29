@@ -196,7 +196,7 @@ const char *drainer; /* cause of death, if drain should be fatal */
         return;
 
     if (u.ulevel > 1) {
-        pline("%s level %d.", Goodbye(), u.ulevel--);
+        pline("%s 等级%d.", Goodbye(), u.ulevel--);
         /* remove intrinsic abilities */
         adjabil(u.ulevel + 1, u.ulevel);
         reset_rndmonst(NON_PM); /* new monster selection */
@@ -264,7 +264,7 @@ boolean incr; /* true iff via incremental experience growth */
     int hpinc, eninc;
 
     if (!incr)
-        You_feel("more experienced.");
+        You_feel("更有经验了.");
 
     /* increase hit points (when polymorphed, do monster form first
        in order to retain normal human/whatever increase for later) */

@@ -2026,17 +2026,17 @@ register struct obj *obj;
     case WAN_WISHING:
         known = TRUE;
         if (Luck + rn2(5) < 0) {
-            pline("Unfortunately, nothing happens.");
+            pline("不幸的是, 无事发生.");
             break;
         }
         makewish();
         break;
     case WAN_ENLIGHTENMENT:
         known = TRUE;
-        You_feel("self-knowledgeable...");
+        You_feel("自知...");
         display_nhwindow(WIN_MESSAGE, FALSE);
         enlightenment(MAGICENLIGHTENMENT, ENL_GAMEINPROGRESS);
-        pline_The("feeling subsides.");
+        pline_The("感觉消退了.");
         exercise(A_WIS, TRUE);
         break;
     }
@@ -2087,7 +2087,7 @@ dozap()
         return 1;
     } else if (!(objects[obj->otyp].oc_dir == NODIR) && !getdir((char *) 0)) {
         if (!Blind)
-            pline("%s glows and fades.", The(xname(obj)));
+            pline("%s 发光并消退.", The(xname(obj)));
         /* make him pay for knowing !NODIR */
     } else if (!u.dx && !u.dy && !u.dz
                && !(objects[obj->otyp].oc_dir == NODIR)) {
@@ -2109,7 +2109,7 @@ dozap()
         current_wand = 0;
     }
     if (obj && obj->spe < 0) {
-        pline("%s to dust.", Tobjnam(obj, "turn"));
+        pline("%s了灰尘.", Tobjnam(obj, "变成"));
         useup(obj);
     }
     update_inventory(); /* maybe used a charge */
@@ -4874,7 +4874,7 @@ int triesleft;
   "受祝福的  被诅咒的  未被诅咒的",
   "防锈的  上油的  +0",
   "",
-  "一些物品的文字位置可换( 部分)如",
+  "一些物品的文字位置可换( 部分)",
   "卷轴之鉴定  鉴定卷轴",
   "",
   "许金币如下",

@@ -479,7 +479,7 @@ public class CmdPanelLayout extends FrameLayout
 	// ____________________________________________________________________________________
 	private void resetPanels(Editor editor)
 	{
-		String s = "menu ... # 20s . : ; , e d r z Z q t f w x i E Q P R W T o ^d ^p a A ^t D F p ^x ^o ?";
+		String s = "#|扩展 ... .|休息 ,|拾取 i|物品 s|搜索 ^P|消息 ^X|属性 10. 10s";
 		editor.putBoolean("pPortActive0", true);
 		editor.putBoolean("pLandActive0", true);
 		editor.putString("pCmdString0", s);

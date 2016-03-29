@@ -1035,7 +1035,7 @@ register const char *let, *word;
 #endif
              || (!strcmp(word, "准备") /* exclude if wielded */  //ready
                  && (otmp == uwep || (otmp == uswapwep && u.twoweap)))
-             || ((!strcmp(word, "浸") || !strcmp(word, "grease"))    //dip
+             || ((!strcmp(word, "浸") || !strcmp(word, "涂脂于"))    //dip  //grease
                  && inaccessible_equipment(otmp, (const char *) 0, FALSE))
              ) {
                 foo--;
@@ -1052,13 +1052,13 @@ register const char *let, *word;
              || (!strcmp(word, "w使用")   //wield
                  && (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
              || (!strcmp(word, "吃") && !is_edible(otmp))  //eat
-             || (!strcmp(word, "sacrifice")
+             || (!strcmp(word, "献祭")  //sacrifice
                  && (otyp != CORPSE && otyp != AMULET_OF_YENDOR
                      && otyp != FAKE_AMULET_OF_YENDOR))
-             || (!strcmp(word, "使用的雕刻工具是")  //write with
+             || (!strcmp(word, "刻写使用")  //write with
                  && (otmp->oclass == TOOL_CLASS
                      && otyp != MAGIC_MARKER && otyp != TOWEL))
-             || (!strcmp(word, "tin")
+             || (!strcmp(word, "装罐")  //tin
                  && (otyp != CORPSE || !tinnable(otmp)))
              || (!strcmp(word, "擦拭")  //rub
                  && ((otmp->oclass == TOOL_CLASS && otyp != OIL_LAMP
@@ -1088,7 +1088,7 @@ register const char *let, *word;
                  && otyp != MAGIC_LAMP
                  && (otyp != OIL_LAMP /* don't list known oil lamp */
                      || (otmp->dknown && objects[OIL_LAMP].oc_name_known)))
-             || (!strcmp(word, "untrap with")
+             || (!strcmp(word, "解除使用")  //untrap with
                  && ((otmp->oclass == TOOL_CLASS && otyp != CAN_OF_GREASE)
                      || (otmp->oclass == POTION_CLASS
                          /* only applicable potion is oil, and it will only
@@ -1116,11 +1116,11 @@ register const char *let, *word;
              || ((putting_on(word) || taking_off(word))
                  && ((*let == ARMOR_CLASS) ^ (otmp->oclass == ARMOR_CLASS)))
              /* or unsuitable items rubbed on known touchstone */
-             || (!strncmp(word, "rub on the stone", 16)
+             || (!strncmp(word, "在石头上擦拭", 16)  //rub on the stone
                  && *let == GEM_CLASS && otmp->dknown
                  && objects[otyp].oc_name_known)
              /* suppress corpses on astral, amulets elsewhere */
-             || (!strcmp(word, "sacrifice")
+             || (!strcmp(word, "献祭")  //sacrifice
                  /* (!astral && amulet) || (astral && !amulet) */
                  && (!Is_astralevel(&u.uz) ^ (otmp->oclass != AMULET_CLASS)))
              /* suppress container being stashed into */
@@ -1265,7 +1265,7 @@ register const char *let, *word;
                than one invent slot of gold and picking the non-'$' one */
             || (otmp && otmp->oclass == COIN_CLASS)) {
             if (!usegold) {
-                You("cannot %s gold.", word);
+                You("不能%s 金币.", word);
                 return (struct obj *) 0;
             }
             /* Historic note: early Nethack had a bug which was
@@ -1291,7 +1291,7 @@ register const char *let, *word;
             if (cnt == 0 && prezero)
                 return (struct obj *) 0;
             if (cnt > 1) {
-                You("can only throw one item at a time.");
+                You("每次只能投掷一项.");
                 continue;
             }
         }
@@ -1301,12 +1301,12 @@ register const char *let, *word;
            that's been moved above so that otmp can be checked earlier] */
         /* verify the chosen object */
         if (!otmp) {
-            You("don't have that object.");
+            You("没有那个东西.");
             if (in_doagain)
                 return (struct obj *) 0;
             continue;
         } else if (cnt < 0 || otmp->quan < cnt) {
-            You("don't have that many!  You have only %ld.", otmp->quan);
+            You("没有那么多!  你只有%ld.", otmp->quan);
             if (in_doagain)
                 return (struct obj *) 0;
             continue;
@@ -2118,7 +2118,7 @@ boolean allownone;
         any.a_char = -1;
         /* wiz_identify stuffed the wiz_identify cmd character
            into iflags.override_ID */
-        Sprintf(prompt, "Debug Identify (%s to permanently identify)",
+        Sprintf(prompt, "调试鉴定 (%s 永久鉴定)",
                 visctrl(iflags.override_ID));
         add_menu(win, NO_GLYPH, &any, '_', iflags.override_ID, ATR_NONE,
                  prompt, MENU_UNSELECTED);
@@ -2237,7 +2237,7 @@ char avoidlet;
                 continue;
             invdone = 1;
         }
-        end_menu(win, "Inventory letters used:");
+        end_menu(win, "背包里已用字母:");
 
         n = select_menu(win, PICK_NONE, &selected);
         if (n > 0) {
@@ -2862,9 +2862,9 @@ boolean picked_some;
             putstr(tmpwin, 0, fbuf);
             putstr(tmpwin, 0, "");
         }
-        Sprintf(buf, "%s that %s here:",
-                picked_some ? "Other things" : "Things",
-                Blind ? "you feel" : "are");
+        Sprintf(buf, "%s这里有%s:",
+                Blind ? "你感觉" : "",
+                picked_some ? "其他东西" : "东西");
         putstr(tmpwin, 0, buf);
         for (; otmp; otmp = otmp->nexthere) {
             if (otmp->otyp == CORPSE && will_feel_cockatrice(otmp, FALSE)) {
@@ -3039,7 +3039,7 @@ int
 doprwep()
 {
     if (!uwep) {
-        You("are empty %s.", body_part(HANDED));
+        You("空着%s.", body_part(HANDED));
     } else {
         prinv((char *) 0, uwep, 0L);
         if (u.twoweap)
@@ -3183,7 +3183,7 @@ doprinuse()
             lets[ct++] = obj_to_let(otmp);
     lets[ct] = '\0';
     if (!ct)
-        You("are not wearing or wielding anything.");
+        You("没有穿着或拿着任何东西.");
     else
         (void) display_inventory(lets, FALSE);
     return 0;
@@ -3412,8 +3412,8 @@ doorganize() /* inventory organizer by Del Lamb */
         compactify(buf);
 
     /* get 'to' slot to use as destination */
-    Sprintf(qbuf, "Adjust letter to what [%s]%s?", buf,
-            invent ? " (? see used letters)" : "");
+    Sprintf(qbuf, "调整字母为什么 [%s]%s?", buf,
+            invent ? " (?  见已用的字母)" : "");
     for (trycnt = 1; ; ++trycnt) {
         let = yn_function(qbuf, (char *) 0, '\0');
         if (let == '?' || let == '*') {

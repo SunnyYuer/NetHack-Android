@@ -97,7 +97,7 @@ STATIC_DCL const char *FDECL(spelltypemnemonic, (int));
 #define uarmfbon 2 /* All metal interferes to some degree */
 
 /* since the spellbook itself doesn't blow up, don't say just "explodes" */
-static const char explodes[] = "radiates explosive energy";
+static const char explodes[] = "发出爆炸能量";
 
 /* convert a letter into a number in the range 0..51, or -1 if not a letter */
 STATIC_OVL int
@@ -125,11 +125,11 @@ struct obj *bp;
 
     switch (rn2(lev)) {
     case 0:
-        You_feel("a wrenching sensation.");
+        You_feel("到一种痛苦的感觉.");
         tele(); /* teleport him */
         break;
     case 1:
-        You_feel("threatened.");
+        You_feel("受到威胁.");
         aggravate();
         break;
     case 2:
@@ -139,11 +139,11 @@ struct obj *bp;
         take_gold();
         break;
     case 4:
-        pline("These runes were just too much to comprehend.");
+        pline("这些符文只是太难理解了.");
         make_confused(HConfusion + rn1(7, 16), FALSE);
         break;
     case 5:
-        pline_The("book was coated with contact poison!");
+        pline_The("书中被涂了毒!");
         if (uarmg) {
             erode_obj(uarmg, "gloves", ERODE_CORRODE, EF_GREASE | EF_VERBOSE);
             break;
@@ -158,9 +158,9 @@ struct obj *bp;
     case 6:
         if (Antimagic) {
             shieldeff(u.ux, u.uy);
-            pline_The("book %s, but you are unharmed!", explodes);
+            pline_The("书%s, 但你安然无恙!", explodes);
         } else {
-            pline("As you read the book, it %s in your %s!", explodes,
+            pline("在你读这本书的时候, 它%s 在你的%s 上!", explodes,
                   body_part(FACE));
             dmg = 2 * rnd(10) + 5;
             losehp(Maybe_Half_Phys(dmg), "exploding rune", KILLED_BY_AN);
@@ -185,15 +185,15 @@ struct obj *spellbook;
         pline(
          "Being confused you have difficulties in controlling your actions.");
         display_nhwindow(WIN_MESSAGE, FALSE);
-        You("accidentally tear the spellbook to pieces.");
+        You("不小心把书撕碎了.");
         if (!objects[spellbook->otyp].oc_name_known
             && !objects[spellbook->otyp].oc_uname)
             docall(spellbook);
         useup(spellbook);
         gone = TRUE;
     } else {
-        You("find yourself reading the %s line over and over again.",
-            spellbook == context.spbook.book ? "next" : "first");
+        You("发现你自己不断的在读%s行.",
+            spellbook == context.spbook.book ? "第二" : "第一");
     }
     return gone;
 }
@@ -206,7 +206,7 @@ struct obj *book2;
     struct monst *mtmp, *mtmp2;
     coord mm;
 
-    You("turn the pages of the Book of the Dead...");
+    You("给死亡之书翻过一页...");
     makeknown(SPE_BOOK_OF_THE_DEAD);
     /* KMH -- Need ->known to avoid "_a_ Book of the Dead" */
     book2->known = 1;
@@ -216,14 +216,14 @@ struct obj *book2;
                          arti_cursed = FALSE;
 
         if (book2->cursed) {
-            pline_The("runes appear scrambled.  You can't read them!");
+            pline_The("符文出现混乱.  你不能阅读它们!");
             return;
         }
 
         if (!u.uhave.bell || !u.uhave.menorah) {
-            pline("A chill runs down your %s.", body_part(SPINE));
+            pline("寒意落进了你的%s.", body_part(SPINE));
             if (!u.uhave.bell)
-                You_hear("a faint chime...");
+                You_hear("一个微弱的钟声...");
             if (!u.uhave.menorah)
                 pline("Vlad's doppelganger is amused.");
             return;
@@ -247,8 +247,8 @@ struct obj *book2;
         }
 
         if (arti_cursed) {
-            pline_The("invocation fails!");
-            pline("At least one of your artifacts is cursed...");
+            pline_The("符咒失败!");
+            pline("至少你的神器有一个是被诅咒的...");
         } else if (arti1_primed && arti2_primed) {
             unsigned soon =
                 (unsigned) d(2, 6); /* time til next intervene() */
@@ -262,7 +262,7 @@ struct obj *book2;
             if (!u.udg_cnt || u.udg_cnt > soon)
                 u.udg_cnt = soon;
         } else { /* at least one artifact not prepared properly */
-            You("have a feeling that %s is amiss...", something);
+            You("有一种感觉%s有差错...", something);
             goto raise_dead;
         }
         return;
@@ -272,7 +272,7 @@ struct obj *book2;
     if (book2->cursed) {
     raise_dead:
 
-        You("raised the dead!");
+        You("让人起死回生!");
         /* first maybe place a dangerous adversary */
         if (!rn2(3) && ((mtmp = makemon(&mons[PM_MASTER_LICH], u.ux, u.uy,
                                         NO_MINVENT)) != 0
@@ -310,13 +310,13 @@ struct obj *book2;
     } else {
         switch (rn2(3)) {
         case 0:
-            Your("ancestors are annoyed with you!");
+            Your("祖先对你很气恼!");
             break;
         case 1:
-            pline_The("headstones in the cemetery begin to move!");
+            pline_The("墓地里的墓碑开始移动!");
             break;
         default:
-            pline("Oh my!  Your name appears in the book!");
+            pline("天哪!  你的名字出现在书里!");
         }
     }
     return;
@@ -369,7 +369,7 @@ learn(VOID_ARGS)
     } else if (spellid(i) == booktype) {
         /* normal book can be read and re-read a total of 4 times */
         if (book->spestudied > MAX_SPELL_STUDY) {
-            pline("This spellbook is too faint to be read any more.");
+            pline("这本魔法书太模糊不能再读了.");
             book->otyp = booktype = SPE_BLANK_PAPER;
             /* reset spestudied as if polymorph had taken place */
             book->spestudied = rn2(book->spestudied);
@@ -377,8 +377,8 @@ learn(VOID_ARGS)
             You("已经了解%s非常好了.", splname);
             costly = FALSE;
         } else { /* spellknow(i) <= KEEN/10 */
-            Your("knowledge of %s is %s.", splname,
-                 spellknow(i) ? "keener" : "restored");
+            Your("对%s的熟悉%s.", splname,
+                 spellknow(i) ? "更深了" : "恢复了");
             incrnknow(i, 1);
             book->spestudied++;
             exercise(A_WIS, TRUE); /* extra study */
@@ -392,7 +392,7 @@ learn(VOID_ARGS)
            one less reading is available than when re-learning */
         if (book->spestudied >= MAX_SPELL_STUDY) {
             /* pre-used due to being the product of polymorph */
-            pline("This spellbook is too faint to read even once.");
+            pline("这本魔法书太模糊以至于不能再读一次.");
             book->otyp = booktype = SPE_BLANK_PAPER;
             /* reset spestudied as if polymorph had taken place */
             book->spestudied = rn2(book->spestudied);
@@ -443,7 +443,7 @@ register struct obj *spellbook;
             eyes = body_part(EYE);
             if (eyecount(youmonst.data) > 1)
                 eyes = makeplural(eyes);
-            pline("This book is so dull that you can't keep your %s open.",
+            pline("这本书太枯燥以至于你不能睁开你的%s.",
                   eyes);
             dullbook += rnd(2 * objects[booktype].oc_level);
             fall_asleep(-dullbook, TRUE);
@@ -455,12 +455,12 @@ register struct obj *spellbook;
         /* handle the sequence: start reading, get interrupted, have
            context.spbook.book become erased somehow, resume reading it */
         && booktype != SPE_BLANK_PAPER) {
-        You("continue your efforts to %s.",
-            (booktype == SPE_NOVEL) ? "read the novel" : "memorize the spell");
+        You("继续努力%s.",
+            (booktype == SPE_NOVEL) ? "阅读小说" : "记忆咒语");
     } else {
         /* KMH -- Simplified this code */
         if (booktype == SPE_BLANK_PAPER) {
-            pline("This spellbook is all blank.");
+            pline("这本魔法书全是空白.");
             makeknown(booktype);
             return 1;
         }
@@ -523,8 +523,8 @@ register struct obj *spellbook;
                 if (Role_if(PM_WIZARD) && read_ability < 20 && !confused) {
                     char qbuf[QBUFSZ];
                     Sprintf(qbuf,
-                     "This spellbook is %sdifficult to comprehend. Continue?",
-                            (read_ability < 12 ? "very " : ""));
+                     "这本魔法书%s难理解.  继续?",
+                            (read_ability < 12 ? "非常" : ""));
                     if (yn(qbuf) != 'y') {
                         spellbook->in_use = FALSE;
                         return 1;
@@ -546,7 +546,7 @@ register struct obj *spellbook;
             context.spbook.delay = 0;
             if (gone || !rn2(3)) {
                 if (!gone)
-                    pline_The("spellbook crumbles to dust!");
+                    pline_The("魔法书化为了灰尘!");
                 if (!objects[spellbook->otyp].oc_name_known
                     && !objects[spellbook->otyp].oc_uname)
                     docall(spellbook);
@@ -655,7 +655,7 @@ int *spell_no;
     char ilet, lets[BUFSZ], qbuf[QBUFSZ];
 
     if (spellid(0) == NO_SPELL) {
-        You("don't know any spells right now.");
+        You("现在不知道任何魔法.");
         return FALSE;
     }
     if (rejectcasting())

@@ -41,13 +41,13 @@ STATIC_VAR NEARDATA const short skill_names_indices[P_NUM_SKILLS] = {
 /* note: entry [0] isn't used */
 STATIC_VAR NEARDATA const char *const odd_skill_names[] = {
     "no skill", "bare hands", /* use barehands_or_martial[] instead */
-    "two weapon combat", "riding", "长柄武器", "佩剑", "铁锤", "鞭子",
-    "attack spells", "healing spells", "divination spells",
-    "enchantment spells", "clerical spells", "escape spells", "matter spells",
+    "双武器战斗", "乘骑", "长柄武器", "佩剑", "铁锤", "鞭子",
+    "攻击魔法", "治愈魔法", "预测魔法",
+    "迷惑魔法", "神圣魔法", "逃脱魔法", "事情魔法",
 };
 /* indexed vis `is_martial() */
 STATIC_VAR NEARDATA const char *const barehands_or_martial[] = {
-    "bare handed combat", "martial arts"
+    "徒手格斗", "武术"
 };
 
 STATIC_OVL void
@@ -984,9 +984,9 @@ int skill;
     P_SKILL(skill)++;
     u.skill_record[u.skills_advanced++] = skill;
     /* subtly change the advance message to indicate no more advancement */
-    You("are now %s skilled in %s.",
-        P_SKILL(skill) >= P_MAX_SKILL(skill) ? "most" : "more",
-        P_NAME(skill));
+    You("现在在%s领域%s熟练了.",
+        P_NAME(skill),
+        P_SKILL(skill) >= P_MAX_SKILL(skill) ? "极其" : "更");
 }
 
 static const struct skill_range {
@@ -1017,7 +1017,7 @@ enhance_weapon_skill()
     winid win;
     boolean speedy = FALSE;
 
-    if (wizard && yn("Advance skills without practice?") == 'y')
+    if (wizard && yn("直接提升技能?") == 'y')
         speedy = TRUE;
 
     do {
@@ -1044,18 +1044,16 @@ enhance_weapon_skill()
         if (eventually_advance > 0 || maxxed_cnt > 0) {
             any = zeroany;
             if (eventually_advance > 0) {
-                Sprintf(buf, "(Skill%s flagged by \"*\" may be enhanced %s.)",
-                        plur(eventually_advance),
+                Sprintf(buf, "( 有标记\"*\" 的技能%s就可以提升.)",
                         (u.ulevel < MAXULEV)
-                            ? "when you're more experienced"
-                            : "if skill slots become available");
+                            ? "等你有更多经验的时候"
+                            : "如果技能点可用的话");
                 add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf,
                          MENU_UNSELECTED);
             }
             if (maxxed_cnt > 0) {
                 Sprintf(buf,
-                 "(Skill%s flagged by \"#\" cannot be enhanced any further.)",
-                        plur(maxxed_cnt));
+                 "( 有标记\"#\" 的技能不能再提升了.)");
                 add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf,
                          MENU_UNSELECTED);
             }
@@ -1132,11 +1130,10 @@ enhance_weapon_skill()
                          MENU_UNSELECTED);
             }
 
-        Strcpy(buf, (to_advance > 0) ? "Pick a skill to advance:"
+        Strcpy(buf, (to_advance > 0) ? "选择技能来提升:"
                                      : "当前技能:");
         if (wizard && !speedy)
-            Sprintf(eos(buf), "  (%d slot%s available)", u.weapon_slots,
-                    plur(u.weapon_slots));
+            Sprintf(eos(buf), "  (%d 点可用)", u.weapon_slots);
         end_menu(win, buf);
         n = select_menu(win, to_advance ? PICK_ONE : PICK_NONE, &selected);
         destroy_nhwindow(win);
@@ -1148,7 +1145,7 @@ enhance_weapon_skill()
             for (n = i = 0; i < P_NUM_SKILLS; i++) {
                 if (can_advance(i, speedy)) {
                     if (!speedy)
-                        You_feel("you could be more dangerous!");
+                        You_feel("你可以更厉害!");
                     n++;
                     break;
                 }

@@ -67,9 +67,9 @@ STATIC_DCL void FDECL(tipcontainer, (struct obj *));
 static NEARDATA struct obj *current_container;
 #define Icebox (current_container->otyp == ICE_BOX)
 
-static const char moderateloadmsg[] = "You have a little trouble lifting";
-static const char nearloadmsg[] = "You have much trouble lifting";
-static const char overloadmsg[] = "You have extreme difficulty lifting";
+static const char moderateloadmsg[] = "你有些困难地拾起";
+static const char nearloadmsg[] = "你很困难地拾起";
+static const char overloadmsg[] = "你非常艰难地拾起";
 
 /* BUG: this lets you look at cockatrice corpses while blind without
    touching them */
@@ -1325,9 +1325,9 @@ boolean telekinesis;
                                        ? nearloadmsg
                                        : moderateloadmsg);
                 if (container)
-                    (void) strsubst(qbuf, "lifting", "removing");
+                    (void) strsubst(qbuf, "拾起", "搬动");
                 Strcat(qbuf, " ");
-                (void) safe_qbuf(qbuf, qbuf, ".  Continue?", obj, doname,
+                (void) safe_qbuf(qbuf, qbuf, ".  继续?", obj, doname,
                                  ansimpleoname, something);
                 obj->quan = savequan;
                 switch (ynq(qbuf)) {
@@ -1387,9 +1387,9 @@ boolean telekinesis; /* not picking it up directly by hand */
         else if (!obj->spe && !obj->cursed)
             obj->spe = 1;
         else {
-            pline_The("scroll%s %s to dust as you %s %s up.", plur(obj->quan),
-                      otense(obj, "turn"), telekinesis ? "raise" : "pick",
-                      (obj->quan == 1L) ? "it" : "them");
+            pline_The("卷轴%s了灰尘在你%s%s时.",
+                      otense(obj, "变成"), telekinesis ? "举起" : "捡起",
+                      (obj->quan == 1L) ? "它" : "它们");
             if (!(objects[SCR_SCARE_MONSTER].oc_name_known)
                 && !(objects[SCR_SCARE_MONSTER].oc_uname))
                 docall(obj);
@@ -1482,7 +1482,7 @@ encumber_msg()
     } else if (oldcap > newcap) {
         switch (newcap) {
         case 0:
-            Your("移动起来没有负担了.");
+            You("移动起来没有负担了.");
             break;
         case 1:
             Your("移动速度因你的负担而仅轻微地变慢.");
@@ -2269,9 +2269,9 @@ int held;
         return 0;
 
     if (obj->olocked) {
-        pline("%s locked.", Tobjnam(obj, "are"));
+        pline("%s上锁的.", Tobjnam(obj, "是"));
         if (held)
-            You("must put it down to unlock.");
+            You("必需把它放下来开锁.");
         obj->lknown = 1;
         return 0;
     } else if (obj->otrapped) {

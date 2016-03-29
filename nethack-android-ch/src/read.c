@@ -1001,19 +1001,19 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             otmp->oerodeproof = 0; /* for messages */
             if (Blind) {
                 otmp->rknown = FALSE;
-                pline("%s warm for a moment.", Yobjnam2(otmp, "feel"));
+                pline("%s温暖了片刻.", Yobjnam2(otmp, "感觉"));
             } else {
                 otmp->rknown = TRUE;
-                pline("%s covered by a %s %s %s!", Yobjnam2(otmp, "are"),
-                      scursed ? "mottled" : "shimmering",
+                pline("%s被%s %s %s覆盖!", Yobjnam2(otmp, "是"),
+                      scursed ? "斑驳的" : "闪烁的",
                       hcolor(scursed ? NH_BLACK : NH_GOLDEN),
-                      scursed ? "glow"
-                              : (is_shield(otmp) ? "layer" : "shield"));
+                      scursed ? "光芒"
+                              : (is_shield(otmp) ? "膜" : "防护物"));
             }
             if (new_erodeproof && (otmp->oeroded || otmp->oeroded2)) {
                 otmp->oeroded = otmp->oeroded2 = 0;
-                pline("%s as good as new!",
-                      Yobjnam2(otmp, Blind ? "feel" : "look"));
+                pline("%s像新的一样好!",
+                      Yobjnam2(otmp, Blind ? "感觉" : "看起来"));
             }
             if (old_erodeproof && !new_erodeproof) {
                 /* restore old_erodeproof before shop charges */
@@ -1040,12 +1040,12 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         s = scursed ? -otmp->spe : otmp->spe;
         if (s > (special_armor ? 5 : 3) && rn2(s)) {
             otmp->in_use = TRUE;
-            pline("%s violently %s%s%s for a while, then %s.", Yname2(otmp),
-                  otense(otmp, Blind ? "vibrate" : "glow"),
+            pline("%s猛烈地%s%s%s了一会儿, 然后%s了.", Yname2(otmp),
+                  otense(otmp, Blind ? "振动" : "发出"),
                   (!Blind && !same_color) ? " " : "",
                   (Blind || same_color) ? "" : hcolor(scursed ? NH_BLACK
                                                               : NH_SILVER),
-                  otense(otmp, "evaporate"));
+                  otense(otmp, "消失"));
             remove_worn_item(otmp, FALSE);
             useup(otmp);
             break;
@@ -1055,7 +1055,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
                                : sblessed ? rnd(3 - otmp->spe / 3) : 1;
         if (s >= 0 && Is_dragon_scales(otmp)) {
             /* dragon scales get turned into dragon scale mail */
-            pline("%s merges and hardens!", Yname2(otmp));
+            pline("%s合并并硬化!", Yname2(otmp));
             setworn((struct obj *) 0, W_ARM);
             /* assumes same order */
             otmp->otyp += GRAY_DRAGON_SCALE_MAIL - GRAY_DRAGON_SCALES;
@@ -1071,13 +1071,13 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
                 alter_cost(otmp, 0L); /* shop bill */
             break;
         }
-        pline("%s %s%s%s%s for a %s.", Yname2(otmp),
-              s == 0 ? "violently " : "",
-              otense(otmp, Blind ? "vibrate" : "glow"),
+        pline("%s %s%s%s%s 了%s.", Yname2(otmp),
+              s == 0 ? "猛烈地 " : "",
+              otense(otmp, Blind ? "振动" : "发出"),
               (!Blind && !same_color) ? " " : "",
               (Blind || same_color) ? ""
                                     : hcolor(scursed ? NH_BLACK : NH_SILVER),
-              (s * s > 1) ? "while" : "moment");
+              (s * s > 1) ? "一会儿" : "片刻");
         /* [this cost handling will need updating if shop pricing is
            ever changed to care about curse/bless status of armor] */
         if (s < 0)
@@ -1097,8 +1097,8 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
 
         if ((otmp->spe > (special_armor ? 5 : 3))
             && (special_armor || !rn2(7)))
-            pline("%s %s.", Yobjnam2(otmp, "suddenly vibrate"),
-                  Blind ? "again" : "unexpectedly");
+            pline("%s%s振动.", Yobjnam2(otmp, "突然"),
+                  Blind ? "再次" : "意外的");
         break;
     }
     case SCR_DESTROY_ARMOR: {
@@ -1133,7 +1133,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             } else
                 known = TRUE;
         } else { /* armor and scroll both cursed */
-            pline("%s.", Yobjnam2(otmp, "vibrate"));
+            pline("%s.", Yobjnam2(otmp, "振动"));
             if (otmp->spe >= -6) {
                 otmp->spe += -1;
                 adj_abon(otmp, -1);
@@ -1145,35 +1145,35 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
     case SPE_CONFUSE_MONSTER:
         if (youmonst.data->mlet != S_HUMAN || scursed) {
             if (!HConfusion)
-                You_feel("confused.");
+                You_feel("混乱的.");
             make_confused(HConfusion + rnd(100), FALSE);
         } else if (confused) {
             if (!sblessed) {
-                Your("%s begin to %s%s.", makeplural(body_part(HAND)),
-                     Blind ? "tingle" : "glow ",
+                Your("%s 开始%s%s.", makeplural(body_part(HAND)),
+                     Blind ? "感到刺痛" : "发出",
                      Blind ? "" : hcolor(NH_PURPLE));
                 make_confused(HConfusion + rnd(100), FALSE);
             } else {
-                pline("A %s%s surrounds your %s.",
+                pline("%s%s 围绕在你的%s上.",
                       Blind ? "" : hcolor(NH_RED),
-                      Blind ? "faint buzz" : " glow", body_part(HEAD));
+                      Blind ? "微弱的嗡嗡声" : "光芒", body_part(HEAD));
                 make_confused(0L, TRUE);
             }
         } else {
             if (!sblessed) {
                 Your("%s%s %s%s.", makeplural(body_part(HAND)),
-                     Blind ? "" : " begin to glow",
-                     Blind ? (const char *) "tingle" : hcolor(NH_RED),
-                     u.umconf ? " even more" : "");
+                     Blind ? "" : "开始发出",
+                     Blind ? (const char *) "刺痛得" : hcolor(NH_RED),
+                     u.umconf ? " 更厉害了" : "光芒");
                 u.umconf++;
             } else {
                 if (Blind)
-                    Your("%s tingle %s sharply.", makeplural(body_part(HAND)),
-                         u.umconf ? "even more" : "very");
+                    Your("%s 急剧刺痛得%s.", makeplural(body_part(HAND)),
+                         u.umconf ? "更厉害了" : "非常厉害");
                 else
-                    Your("%s glow a%s brilliant %s.",
+                    Your("%s 发出%s灿烂的%s光芒.",
                          makeplural(body_part(HAND)),
-                         u.umconf ? "n even more" : "", hcolor(NH_RED));
+                         u.umconf ? "更加" : "", hcolor(NH_RED));
                 /* after a while, repeated uses become less effective */
                 if (u.umconf >= 40)
                     u.umconf++;
@@ -1201,16 +1201,16 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             }
         }
         if (otyp == SCR_SCARE_MONSTER || !ct)
-            You_hear("%s %s.", (confused || scursed) ? "sad wailing"
-                                                     : "maniacal laughter",
-                     !ct ? "in the distance" : "close by");
+            You_hear("%s %s.", (confused || scursed) ? "伤心的哭声"
+                                                     : "疯狂的笑声",
+                     !ct ? "在远处" : "在附近");
         break;
     }
     case SCR_BLANK_PAPER:
         if (Blind)
-            You("don't remember there being any magic words on this scroll.");
+            You("不记得这张卷轴有任何咒语.");
         else
-            pline("This scroll seems to be blank.");
+            pline("这张卷轴似乎是空白的.");
         known = TRUE;
         break;
     case SCR_REMOVE_CURSE:
@@ -1218,13 +1218,13 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         register struct obj *obj;
 
         You_feel(!Hallucination
-                     ? (!confused ? "like someone is helping you."
-                                  : "like you need some help.")
-                     : (!confused ? "in touch with the Universal Oneness."
-                                  : "the power of the Force against you!"));
+                     ? (!confused ? "像是有人在帮助你."
+                                  : "像是你需要帮助.")
+                     : (!confused ? "与宇宙合一了."
+                                  : "原力在和你作对!"));
 
         if (scursed) {
-            pline_The("scroll disintegrates.");
+            pline_The("卷轴破裂了.");
         } else {
             for (obj = invent; obj; obj = obj->nobj) {
                 long wornmask;
@@ -1285,7 +1285,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             unpunish();
         if (u.utrap && u.utraptype == TT_BURIEDBALL) {
             buried_ball_to_freedom();
-            pline_The("clasp on your %s vanishes.", body_part(LEG));
+            pline_The("你%s上的夹子消失了.", body_part(LEG));
         }
         update_inventory();
         break;
@@ -1310,18 +1310,18 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             uwep->oerodeproof = 0; /* for messages */
             if (Blind) {
                 uwep->rknown = FALSE;
-                Your("weapon feels warm for a moment.");
+                Your("武器感到了片刻温暖.");
             } else {
                 uwep->rknown = TRUE;
-                pline("%s covered by a %s %s %s!", Yobjnam2(uwep, "are"),
-                      scursed ? "mottled" : "shimmering",
+                pline("%s 被%s %s %s覆盖了!", Yobjnam2(uwep, "是"),
+                      scursed ? "斑驳的" : "闪烁的",
                       hcolor(scursed ? NH_PURPLE : NH_GOLDEN),
-                      scursed ? "glow" : "shield");
+                      scursed ? "光芒" : "防护物");
             }
             if (new_erodeproof && (uwep->oeroded || uwep->oeroded2)) {
                 uwep->oeroded = uwep->oeroded2 = 0;
-                pline("%s as good as new!",
-                      Yobjnam2(uwep, Blind ? "feel" : "look"));
+                pline("%s 像新的一样好!",
+                      Yobjnam2(uwep, Blind ? "感觉" : "看起来"));
             }
             if (old_erodeproof && !new_erodeproof) {
                 /* restore old_erodeproof before shop charges */
@@ -1369,19 +1369,19 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
                 }
         }
         if (!results) {
-            pline("Nothing interesting %s.",
-                  !candidates ? "happens" : "seems to happen");
+            pline("没有有趣的事情%s.",
+                  !candidates ? "发生" : "似乎要发生");
         } else {
-            pline_The("neighborhood %s %sfriendlier.",
-                      vis_results ? "is" : "seems",
-                      (results < 0) ? "un" : "");
+            pline_The("附近的%s %s友好的.",
+                      vis_results ? "是" : "似乎",
+                      (results < 0) ? "不" : "");
             if (vis_results > 0)
                 known = TRUE;
         }
     } break;
     case SCR_GENOCIDE:
         if (!already_known)
-            You("have found a scroll of genocide!");
+            You("发现了灭绝卷轴!");
         known = TRUE;
         if (sblessed)
             do_class_genocide();
@@ -1429,11 +1429,11 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         useup(sobj);
         sobj = 0; /* it's gone */
         if (confused)
-            You("identify this as an identify scroll.");
+            You("确定这是一张鉴定卷轴.");
         else if (!already_known || !invent)
             /* force feedback now if invent became
                empty after using up this scroll */
-            pline("This is an identify scroll.");
+            pline("这是一张鉴定卷轴.");
         if (!already_known)
             (void) learnscrolltyp(SCR_IDENTIFY);
         /*FALLTHRU*/
@@ -1451,16 +1451,16 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             /* when casting a spell we know we're not confused,
                so inventory must be empty (another message has
                already been given above if reading a scroll) */
-            pline("You're not carrying anything to be identified.");
+            pline("你没有携带任何待鉴定的东西.");
         }
         break;
     case SCR_CHARGING:
         if (confused) {
             if (scursed) {
-                You_feel("discharged.");
+                You_feel("泄气了.");
                 u.uen = 0;
             } else {
-                You_feel("charged up!");
+                You_feel("充满了能量!");
                 u.uen += d(sblessed ? 6 : 4, 4);
                 if (u.uen > u.uenmax) /* if current energy is already at   */
                     u.uenmax = u.uen; /* or near maximum, increase maximum */
@@ -1472,7 +1472,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         }
         /* known = TRUE; -- handled inline here */
         if (!already_known) {
-            pline("This is a charging scroll.");
+            pline("这是一张充能卷轴.");
             learnscroll(sobj);
         }
         /* use it up now to prevent it from showing in the
@@ -1486,11 +1486,11 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         break;
     case SCR_MAGIC_MAPPING:
         if (level.flags.nommap) {
-            Your("mind is filled with crazy lines!");
+            Your("脑中充满了不可思议的路线!");
             if (Hallucination)
-                pline("Wow!  Modern art.");
+                pline("哇!  现代艺术.");
             else
-                Your("%s spins in bewilderment.", body_part(HEAD));
+                Your("%s 混乱地旋转.", body_part(HEAD));
             make_confused(HConfusion + rnd(30), FALSE);
             break;
         }
@@ -1506,19 +1506,19 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         known = TRUE;
     case SPE_MAGIC_MAPPING:
         if (level.flags.nommap) {
-            Your("%s spins as %s blocks the spell!", body_part(HEAD),
+            Your("%s 旋转得就像%s使咒语成了块!", body_part(HEAD),
                  something);
             make_confused(HConfusion + rnd(30), FALSE);
             break;
         }
-        pline("A map coalesces in your mind!");
+        pline("地图在你的脑中合并!");
         cval = (scursed && !confused);
         if (cval)
             HConfusion = 1; /* to screw up map */
         do_mapping();
         if (cval) {
             HConfusion = 0; /* restore */
-            pline("Unfortunately, you can't grasp the details.");
+            pline("不幸的是, 你无法掌握细节.");
         }
         break;
     case SCR_AMNESIA:
@@ -1526,7 +1526,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         forget((!sblessed ? ALL_SPELLS : 0)
                | (!confused || scursed ? ALL_MAP : 0));
         if (Hallucination) /* Ommmmmm! */
-            Your("mind releases itself from mundane concerns.");
+            Your("思想从世俗的关注中释放出来.");
         else if (!strncmpi(plname, "Maud", 4))
             pline(
           "As your mind turns inward on itself, you forget everything else.");
@@ -1546,22 +1546,22 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             if (Fire_resistance) {
                 shieldeff(u.ux, u.uy);
                 if (!Blind)
-                    pline("Oh, look, what a pretty fire in your %s.",
+                    pline("哦, 看, 多么漂亮的火在你的%s上.",
                           makeplural(body_part(HAND)));
                 else
-                    You_feel("a pleasant warmth in your %s.",
+                    You_feel("一种舒适的温暖在你的%s上.",
                              makeplural(body_part(HAND)));
             } else {
-                pline_The("scroll catches fire and you burn your %s.",
+                pline_The("卷轴着火了并烧到了你的%s.",
                           makeplural(body_part(HAND)));
                 losehp(1, "scroll of fire", KILLED_BY_AN);
             }
             break;
         }
         if (Underwater) {
-            pline_The("water around you vaporizes violently!");
+            pline_The("你周围的水猛烈地蒸发!");
         } else {
-            pline_The("scroll erupts in a tower of flame!");
+            pline_The("卷轴喷出火焰塔!");
             iflags.last_msg = PLNMSG_TOWER_OF_FLAME; /* for explode() */
             burn_away_slime();
         }
@@ -1577,10 +1577,10 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
 
             /* Identify the scroll */
             if (u.uswallow)
-                You_hear("rumbling.");
+                You_hear("隆隆声.");
             else
-                pline_The("%s rumbles %s you!", ceiling(u.ux, u.uy),
-                          sblessed ? "around" : "above");
+                pline_The("%s在你的%s隆隆作响!", ceiling(u.ux, u.uy),
+                          sblessed ? "附近" : "上面");
             known = 1;
             sokoban_guilt();
 
@@ -1602,13 +1602,13 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             if (!sblessed) {
                 drop_boulder_on_player(confused, !scursed, TRUE, FALSE);
             } else if (!nboulders)
-                pline("But nothing else happens.");
+                pline("但没有其他事情发生.");
         }
         break;
     case SCR_PUNISHMENT:
         known = TRUE;
         if (confused || sblessed) {
-            You_feel("guilty.");
+            You_feel("有罪的.");
             break;
         }
         punish(sobj);
@@ -1617,10 +1617,10 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
         coord cc;
 
         if (!already_known)
-            You("have found a scroll of stinking cloud!");
+            You("发现了一张臭云卷轴!");
         known = TRUE;
-        pline("Where do you want to center the %scloud?",
-              already_known ? "stinking " : "");
+        pline("你想在哪儿放出%s云?",
+              already_known ? "臭 " : "");
         cc.x = u.ux;
         cc.y = u.uy;
         getpos_sethilite(display_stinking_cloud_positions);

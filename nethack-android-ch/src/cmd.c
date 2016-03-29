@@ -1198,8 +1198,8 @@ static winid en_win = WIN_ERR;
 static const char You_[] = "你 ", are[] = "是 ", were[] = "是 ",
                   have[] = "有 ", had[] = "有 ", can[] = "能 ",
                   could[] = "能 ";
-static const char have_been[] = "已经 ", have_never[] = "have never ",
-                  never[] = "never ";
+static const char have_been[] = "一直 ", have_never[] = "从来没有 ",
+                  never[] = "没有 ";
 
 #define enl_msg(prefix, present, past, suffix, ps) \
     enlght_line(prefix, final ? past : present, suffix, ps)
@@ -2500,74 +2500,68 @@ int final;
     putstr(en_win, 0, "自愿挑战:");
 
     if (u.uroleplay.blind)
-        you_have_been("blind from birth");
+        you_have("自生来就失明", "");
     if (u.uroleplay.nudist)
-        you_have_been("faithfully nudist");
+        you_have_been("忠实的裸体主义者");
 
     if (!u.uconduct.food)
-        enl_msg(You_, "have gone", "went", " without food", "");
+        enl_msg(You_, "前行", "前行", " 没有食物", "");
     /* But beverages are okay */
     else if (!u.uconduct.unvegan)
-        you_have_X("followed a strict vegan diet");
+        you_have_X("遵循严格的纯素饮食");
     else if (!u.uconduct.unvegetarian)
-        you_have_been("vegetarian");
+        you_have_been("素食者");
 
     if (!u.uconduct.gnostic)
-        you_have_been("an atheist");
+        you_have_been("一个无神论者");
 
     if (!u.uconduct.weaphit) {
-        you_have_never("hit with a wielded weapon");
+        you_have_never("用武器攻击");
     } else if (wizard) {
-        Sprintf(buf, "used a wielded weapon %ld time%s", u.uconduct.weaphit,
-                plur(u.uconduct.weaphit));
+        Sprintf(buf, "用武器%ld 次", u.uconduct.weaphit);
         you_have_X(buf);
     }
     if (!u.uconduct.killer)
-        you_have_been("a pacifist");
+        you_have_been("和平主义者");
 
     if (!u.uconduct.literate) {
-        you_have_been("illiterate");
+        you_have_been("文盲");
     } else if (wizard) {
-        Sprintf(buf, "read items or engraved %ld time%s", u.uconduct.literate,
-                plur(u.uconduct.literate));
+        Sprintf(buf, "阅读物品或雕刻%ld 次", u.uconduct.literate);
         you_have_X(buf);
     }
 
     ngenocided = num_genocides();
     if (ngenocided == 0) {
-        you_have_never("genocided any monsters");
+        you_have_never("灭绝任何怪物");
     } else {
-        Sprintf(buf, "genocided %d type%s of monster%s", ngenocided,
-                plur(ngenocided), plur(ngenocided));
+        Sprintf(buf, "灭绝%d 种怪", ngenocided);
         you_have_X(buf);
     }
 
     if (!u.uconduct.polypiles) {
-        you_have_never("polymorphed an object");
+        you_have_never("给一个对象变形");
     } else if (wizard) {
-        Sprintf(buf, "polymorphed %ld item%s", u.uconduct.polypiles,
-                plur(u.uconduct.polypiles));
+        Sprintf(buf, "给别人变形%ld 项", u.uconduct.polypiles);
         you_have_X(buf);
     }
 
     if (!u.uconduct.polyselfs) {
-        you_have_never("changed form");
+        you_have_never("改变过外貌");
     } else if (wizard) {
-        Sprintf(buf, "changed form %ld time%s", u.uconduct.polyselfs,
-                plur(u.uconduct.polyselfs));
+        Sprintf(buf, "改变外貌%ld 次", u.uconduct.polyselfs);
         you_have_X(buf);
     }
 
     if (!u.uconduct.wishes) {
-        you_have_X("used no wishes");
+        you_have_X("未许愿过");
     } else {
-        Sprintf(buf, "used %ld wish%s", u.uconduct.wishes,
-                (u.uconduct.wishes > 1L) ? "es" : "");
+        Sprintf(buf, "用过%ld 次许愿", u.uconduct.wishes);
         you_have_X(buf);
 
         if (!u.uconduct.wisharti)
-            enl_msg(You_, "have not wished", "did not wish",
-                    " for any artifacts", "");
+            enl_msg(You_, "未许愿", "未许愿",
+                    " 任何神器", "");
     }
 
     /* Pop up the window and wait for a key */
@@ -2722,7 +2716,7 @@ struct ext_func_tab extcmdlist[] = {
     { "怪物能力", "使用怪物的特殊能力", domonability, TRUE },
     { "命名", "给怪物或物品命名", docallcmd, TRUE },
     { "献祭", "给神献祭", dosacrifice, FALSE },
-    { "概述", "显示地下城概述", dooverview, TRUE },
+    { "概述", "显示地牢概述", dooverview, TRUE },
     { "祈祷", "向神祈祷帮助", dopray, TRUE },
     { "退出游戏", "不保存退出游戏", done2, TRUE },
     { "乘骑", "乘骑或取消乘骑怪物", doride, FALSE },
@@ -2731,9 +2725,9 @@ struct ext_func_tab extcmdlist[] = {
     { "地图显示", "无障碍显示地图", doterrain, TRUE },
     { "倒出", "倒空容器", dotip, FALSE },
     { "超度", "超度", doturn, TRUE },
-    { "双武器", "切换或取消双武器战斗", dotwoweapon, FALSE },
+    { "双武器", "拿两把武器战斗", dotwoweapon, FALSE },
     { "解除陷阱", "解除陷阱", dountrap, FALSE },
-    { "版本信息", "列出这个NetHack版本的编译时间选项",
+    { "版本信息", "列出这个NetHack 版本的编译时间选项",
       doextversion, TRUE },
     { "擦脸", "擦你的脸", dowipe, FALSE },
     { "?", "查看扩展命令列表", doextlist, TRUE },
@@ -2769,32 +2763,32 @@ struct ext_func_tab extcmdlist[] = {
 
 /* there must be a placeholder in the table above for every entry here */
 static const struct ext_func_tab debug_extcmdlist[] = {
-    { "改变等级", "change experience level", wiz_level_change, TRUE },
-    { "光源", "show mobile light sources", wiz_light_sources, TRUE },
+    { "改变等级", "改变等级", wiz_level_change, TRUE },
+    { "光源", "显示移动光源", wiz_light_sources, TRUE },
 #ifdef DEBUG_MIGRATING_MONS
     { "迁徙怪", "migrate n random monsters", wiz_migrate_mons, TRUE },
 #endif
-    { "变形控制", "control monster polymorphs", wiz_mon_polycontrol,
+    { "变形控制", "控制怪物变形", wiz_mon_polycontrol,
       TRUE },
-    { "紧急", "test panic routine (fatal to game)", wiz_panic, TRUE },
-    { "变形", "polymorph self", wiz_polyself, TRUE },
+    { "致命测试", "测试panic 程序( 制造致命错误)", wiz_panic, TRUE },
+    { "变形", "自我变形", wiz_polyself, TRUE },
 #ifdef PORT_DEBUG
     { "端口调试", "wizard port debug command", wiz_port_debug, TRUE },
 #endif
-    { "显示向量", "show seen vectors", wiz_show_seenv, TRUE },
-    { "内存状态", "show memory statistics", wiz_show_stats, TRUE },
-    { "超时", "look at timeout queue", wiz_timeout_queue, TRUE },
-    { "消灭怪物", "list vanquished monsters", dovanquished, TRUE },
-    { "视觉阵列", "show vision array", wiz_show_vision, TRUE },
-    { "气味", "smell monster", wiz_smell, TRUE },
+    { "显示向量", "显示已见向量", wiz_show_seenv, TRUE },
+    { "内存状态", "显示内存统计", wiz_show_stats, TRUE },
+    { "超时", "查看超时队列", wiz_timeout_queue, TRUE },
+    { "消灭怪物", "列出杀死过的怪物", dovanquished, TRUE },
+    { "视觉阵列", "显示视觉阵列", wiz_show_vision, TRUE },
+    { "嗅探怪物", "嗅探怪物", wiz_smell, TRUE },
 #ifdef DEBUG
-    { "向导调试移动显示", "wizard debug: toggle travel display",
+    { "移动显示", "向导调试: 切换移动显示",
       wiz_debug_cmd_traveldisplay, TRUE },
-    { "向导调试隐藏", "wizard debug: bury objs under and around you",
+    { "隐藏物品", "向导调试: 隐藏你周围的物品",
       wiz_debug_cmd_bury, TRUE },
 #endif
-    { "谣言检测", "verify rumor boundaries", wiz_rumor_check, TRUE },
-    { "墙壁模式", "show wall modes", wiz_show_wmodes, TRUE },
+    { "谣言检测", "验证谣言边界", wiz_rumor_check, TRUE },
+    { "墙壁模式", "显示墙壁模式", wiz_show_wmodes, TRUE },
     { (char *) 0, (char *) 0, donull, TRUE }
 };
 

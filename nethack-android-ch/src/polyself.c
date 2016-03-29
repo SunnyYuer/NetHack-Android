@@ -1533,10 +1533,10 @@ struct monst *mon;
 int part;
 {
     static NEARDATA const char
-        *humanoid_parts[] = { "arm",       "eye",  "脸",         "手指",
+        *humanoid_parts[] = { "arm",       "眼睛",  "脸",         "手指",
                               "fingertip", "foot", "手",         "手",
                               "头",      "腿",  "light headed", "neck",
-                              "spine",     "toe",  "hair",         "blood",
+                              "脊椎",     "toe",  "hair",         "blood",
                               "lung",      "nose", "stomach" },
     /*
      *                                 { "arm",       "eye",  "face",         "finger",
