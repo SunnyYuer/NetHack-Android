@@ -5,7 +5,7 @@
 	android:title="Instructions"
 	android:summary="How to play">
 	
-	<com.tbd.NetHack.TextViewPreference
+	<com.yuer.NetHack.TextViewPreference
 		android:name="instructions"
 		android:title="Instructions"
 		android:summary="How to play"/>

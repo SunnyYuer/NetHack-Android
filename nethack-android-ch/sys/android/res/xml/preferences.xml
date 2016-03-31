@@ -7,7 +7,7 @@
 			android:title="地图风格"
 			android:summary="游戏的图形视觉效果">
 
-			<com.tbd.NetHack.TilesetPreference
+			<com.yuer.NetHack.TilesetPreference
 				android:title="地图风格"
 				android:key="tilesetPreference"
 				android:summary="游戏的图形视觉效果"
@@ -120,7 +120,7 @@
 				android:entries="@array/dirLocationNames"
 				android:entryValues="@array/dirLocationValues"/>
 
-			<com.tbd.NetHack.SliderPreference
+			<com.yuer.NetHack.SliderPreference
 				android:title="透明度"
 				android:summary="相应覆盖物的透明度"
 				android:persistent="true"
@@ -190,7 +190,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -254,7 +254,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -318,7 +318,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -383,7 +383,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -448,7 +448,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -513,7 +513,7 @@
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.NetHack.SliderPreference
+				<com.yuer.NetHack.SliderPreference
 					android:title="透明度"
 					android:summary="该面板的透明度"
 					android:persistent="true"
@@ -581,7 +581,7 @@
 
 		</PreferenceScreen>
 
-		<com.tbd.NetHack.EditFilePreference
+		<com.yuer.NetHack.EditFilePreference
 			android:title="编辑配置文件"
 			android:summary="在'defaults.nh'中手动设置特别的选项"/>
 	
@@ -594,7 +594,7 @@
 			android:title="介绍"
 			android:summary="如何操作">
 
-			<com.tbd.NetHack.TextViewPreference
+			<com.yuer.NetHack.TextViewPreference
 				android:title="Instructions"
 				android:summary="如何操作"/>
 
@@ -604,7 +604,7 @@
 			android:title="License"
 			android:summary="NETHACK GENERAL PUBLIC LICENSE">
 
-			<com.tbd.NetHack.TextViewPreference
+			<com.yuer.NetHack.TextViewPreference
 				android:title="License"
 				android:summary="NETHACK GENERAL PUBLIC LICENSE"/>
 		</PreferenceScreen>
@@ -613,7 +613,7 @@
 			android:title="历史"
 			android:summary="NetHack的历史">
 
-			<com.tbd.NetHack.TextViewPreference
+			<com.yuer.NetHack.TextViewPreference
 				android:title="History"
 				android:summary="NetHack的历史"/>
 
@@ -623,7 +623,7 @@
 			android:title="贡献者"
 			android:summary="为此安卓版NetHack作出贡献的人">
 
-			<com.tbd.NetHack.TextViewPreference
+			<com.yuer.NetHack.TextViewPreference
 				android:title="Credits"
 				android:summary="为此安卓版NetHack作出贡献的人"/>
 

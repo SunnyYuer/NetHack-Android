@@ -18,7 +18,7 @@
             android:layout_height="fill_parent"
             android:descendantFocusability="blocksDescendants" >
 
-            <com.tbd.NetHack.CmdPanelLayout
+            <com.yuer.NetHack.CmdPanelLayout
                 android:id="@+id/cmdPanelLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
@@ -29,13 +29,13 @@
                     android:layout_gravity="top|fill_horizontal"
                     android:orientation="vertical" >
 
-                    <com.tbd.NetHack.AutoFitTextView
+                    <com.yuer.NetHack.AutoFitTextView
                         android:id="@+id/nh_stat0"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <com.tbd.NetHack.AutoFitTextView
+                    <com.yuer.NetHack.AutoFitTextView
                         android:id="@+id/nh_stat1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                      android:layout_width="fill_parent"
                      android:layout_height="fill_parent" />
                 
-            </com.tbd.NetHack.CmdPanelLayout>
+            </com.yuer.NetHack.CmdPanelLayout>
         </FrameLayout>
     </FrameLayout>
 

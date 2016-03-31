@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.tbd.NetHack"
+	package="com.yuer.NetHack"
 	android:versionCode="2039"
 	android:versionName="3.6.0-39"
 	android:installLocation="auto">
@@ -12,14 +12,14 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
 	<application
-		android:label="NetHack"
+		android:label="迷宫骇客"
 		android:icon="@drawable/icon"
 		android:largeHeap="true"
 		android:theme="@android:style/Theme"
 		android:allowBackup="true">
 		<activity
 			android:name=".NetHack"
-			android:label="NetHack"
+			android:label="迷宫骇客"
 			android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
 			android:launchMode="singleTask"
 			android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|fontScale">
