@@ -2054,9 +2054,9 @@ int how;
 
     if ((mdef->wormno ? worm_known(mdef) : cansee(mdef->mx, mdef->my))
         && fltxt)
-        pline("%s is %s%s%s!", Monnam(mdef),
-              nonliving(mdef->data) ? "destroyed" : "killed",
-              *fltxt ? " by the " : "", fltxt);
+        pline("%s 被 %s%s%s!", Monnam(mdef),
+              *fltxt ? "" : "", fltxt,
+              nonliving(mdef->data) ? "消灭了" : "杀死了");
     else
         be_sad = (mdef->mtame != 0);
 
@@ -2114,10 +2114,10 @@ int dest; /* dest==1, normal; dest==0, don't print message; dest==2, don't
     u.uconduct.killer++;
 
     if (dest & 1) {
-        const char *verb = nonliving(mtmp->data) ? "destroy" : "kill";
+        const char *verb = nonliving(mtmp->data) ? "消灭了" : "杀死了";
 
         if (!wasinside && !canspotmon(mtmp))
-            You("%s it!", verb);
+            You("%s 它!", verb);
         else {
             You("%s %s!", verb,
                 !mtmp->mtame
@@ -2239,7 +2239,7 @@ cleanup:
         && u.ualign.type != A_CHAOTIC) {
         HTelepat &= ~INTRINSIC;
         change_luck(-2);
-        You("murderer!");
+        You("杀人了!");
         if (Blind && !Blind_telepat)
             see_monsters(); /* Can't sense monsters any more. */
     }
@@ -2247,7 +2247,7 @@ cleanup:
         change_luck(-1);
     if (is_unicorn(mdat) && sgn(u.ualign.type) == sgn(mdat->maligntyp)) {
         change_luck(-5);
-        You_feel("guilty...");
+        You_feel("有罪的...");
     }
 
     /* give experience points */

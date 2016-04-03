@@ -60,21 +60,21 @@ DOOR:closed,(45,03)
 DOOR:closed,(04,12)
 DOOR:closed,(45,12)
 # King Arthur
-MONSTER:('@',"King Arthur"),(09,07)
+MONSTER:('@',"亚瑟王"),(09,07)
 # The treasure of King Arthur
 OBJECT:('(',"箱子"),(09,07)
 # knight guards for the watchrooms
-MONSTER:('@',"knight"),(04,02),peaceful
-MONSTER:('@',"knight"),(04,13),peaceful
-MONSTER:('@',"knight"),(45,02),peaceful
-MONSTER:('@',"knight"),(45,13),peaceful
+MONSTER:('@',"骑士"),(04,02),peaceful
+MONSTER:('@',"骑士"),(04,13),peaceful
+MONSTER:('@',"骑士"),(45,02),peaceful
+MONSTER:('@',"骑士"),(45,13),peaceful
 # page guards for the audience chamber
-MONSTER:('@',"page"),(16,06)
-MONSTER:('@',"page"),(18,06)
-MONSTER:('@',"page"),(20,06)
-MONSTER:('@',"page"),(16,09)
-MONSTER:('@',"page"),(18,09)
-MONSTER:('@',"page"),(20,09)
+MONSTER:('@',"实习骑士"),(16,06)
+MONSTER:('@',"实习骑士"),(18,06)
+MONSTER:('@',"实习骑士"),(20,06)
+MONSTER:('@',"实习骑士"),(16,09)
+MONSTER:('@',"实习骑士"),(18,09)
+MONSTER:('@',"实习骑士"),(20,09)
 # Non diggable walls
 NON_DIGGABLE:(00,00,49,15)
 # Random traps
@@ -85,18 +85,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: ('i',"quasit"),(14,00),hostile
-MONSTER: ('i',"quasit"),(16,00),hostile
-MONSTER: ('i',"quasit"),(18,00),hostile
-MONSTER: ('i',"quasit"),(20,00),hostile
-MONSTER: ('i',"quasit"),(22,00),hostile
-MONSTER: ('i',"quasit"),(24,00),hostile
-MONSTER: ('i',"quasit"),(26,00),hostile
-MONSTER: ('i',"quasit"),(28,00),hostile
-MONSTER: ('i',"quasit"),(30,00),hostile
-MONSTER: ('i',"quasit"),(32,00),hostile
-MONSTER: ('i',"quasit"),(34,00),hostile
-MONSTER: ('i',"quasit"),(36,00),hostile
+MONSTER: ('i',"夸塞魔"),(14,00),hostile
+MONSTER: ('i',"夸塞魔"),(16,00),hostile
+MONSTER: ('i',"夸塞魔"),(18,00),hostile
+MONSTER: ('i',"夸塞魔"),(20,00),hostile
+MONSTER: ('i',"夸塞魔"),(22,00),hostile
+MONSTER: ('i',"夸塞魔"),(24,00),hostile
+MONSTER: ('i',"夸塞魔"),(26,00),hostile
+MONSTER: ('i',"夸塞魔"),(28,00),hostile
+MONSTER: ('i',"夸塞魔"),(30,00),hostile
+MONSTER: ('i',"夸塞魔"),(32,00),hostile
+MONSTER: ('i',"夸塞魔"),(34,00),hostile
+MONSTER: ('i',"夸塞魔"),(36,00),hostile
 
 #
 #	The "locate" level for the quest.
@@ -208,32 +208,32 @@ TRAP:"anti magic",random
 TRAP:"anti magic",random
 TRAP:"anti magic",random
 # Random monsters.
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
 MONSTER:'i',random,hostile
 MONSTER:'j',random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
 MONSTER:'j',random,hostile
 
 #
@@ -308,33 +308,33 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('D',"Ixoth"),(50,06),hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
-MONSTER:('i',"quasit"),random,hostile
+MONSTER:('D',"恶龙"),(50,06),hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
+MONSTER:('i',"夸塞魔"),random,hostile
 MONSTER:'i',random,hostile
 MONSTER:'i',random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
-MONSTER:('j',"ochre jelly"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
+MONSTER:('j',"赭冻怪"),random,hostile
 MONSTER:'j',random,hostile
 
 #
@@ -362,12 +362,12 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
 MONSTER: 'i', random, hostile
-MONSTER: ('j', "ochre jelly"), random, hostile
+MONSTER: ('j', "赭冻怪"), random, hostile
 #
 TRAP: random, random
 TRAP: random, random
@@ -393,14 +393,14 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
-MONSTER: ('i', "quasit"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
+MONSTER: ('i', "夸塞魔"), random, hostile
 MONSTER: 'i', random, hostile
-MONSTER: ('j', "ochre jelly"), random, hostile
-MONSTER: ('j', "ochre jelly"), random, hostile
-MONSTER: ('j', "ochre jelly"), random, hostile
+MONSTER: ('j', "赭冻怪"), random, hostile
+MONSTER: ('j', "赭冻怪"), random, hostile
+MONSTER: ('j', "赭冻怪"), random, hostile
 #
 TRAP: random, random
 TRAP: random, random

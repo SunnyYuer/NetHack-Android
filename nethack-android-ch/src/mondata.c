@@ -752,9 +752,10 @@ const char *in_str;
                            || !strcmpi(&str[m_i_len], "'")
                            || !strncmpi(&str[m_i_len], "' ", 2)
                            || !strcmpi(&str[m_i_len], "'s")
-                           || !strncmpi(&str[m_i_len], "'s ", 3)
-                           || !strcmpi(&str[m_i_len], "es")
-                           || !strncmpi(&str[m_i_len], "es ", 3))) {
+                           || !strncmpi(&str[m_i_len], "小", 3)  //小雕像
+                           || !strncmpi(&str[m_i_len], "雕", 3)  //雕像
+                           || !strncmpi(&str[m_i_len], "尸", 3)  //尸体
+                           || !strncmpi(&str[m_i_len], "罐", 3))) {  //罐头
                 mntmp = i;
                 len = m_i_len;
             }

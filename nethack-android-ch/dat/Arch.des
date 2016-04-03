@@ -68,25 +68,25 @@ DOOR:locked,(24,14)
 DOOR:closed,(31,14)
 DOOR:locked,(49,14)
 # Lord Carnarvon
-MONSTER:('@',"Lord Carnarvon"),(25,10)
+MONSTER:('@',"卡那封勋爵"),(25,10)
 # The treasure of Lord Carnarvon
 OBJECT:('(',"箱子"),(25,10)
 # student guards for the audience chamber
-MONSTER:('@',"student"),(26,09)
-MONSTER:('@',"student"),(27,09)
-MONSTER:('@',"student"),(28,09)
-MONSTER:('@',"student"),(26,10)
-MONSTER:('@',"student"),(28,10)
-MONSTER:('@',"student"),(26,11)
-MONSTER:('@',"student"),(27,11)
-MONSTER:('@',"student"),(28,11)
+MONSTER:('@',"学者"),(26,09)
+MONSTER:('@',"学者"),(27,09)
+MONSTER:('@',"学者"),(28,09)
+MONSTER:('@',"学者"),(26,10)
+MONSTER:('@',"学者"),(28,10)
+MONSTER:('@',"学者"),(26,11)
+MONSTER:('@',"学者"),(27,11)
+MONSTER:('@',"学者"),(28,11)
 # city watch guards in the antechambers
-MONSTER:('@',"watchman"),(50,06)
-MONSTER:('@',"watchman"),(50,14)
+MONSTER:('@',"警卫员"),(50,06)
+MONSTER:('@',"警卫员"),(50,14)
 # Eels in the moat
-MONSTER:(';',"giant eel"),(20,10)
-MONSTER:(';',"giant eel"),(45,04)
-MONSTER:(';',"giant eel"),(33,16)
+MONSTER:(';',"巨型鳗鱼"),(20,10)
+MONSTER:(';',"巨型鳗鱼"),(45,04)
+MONSTER:(';',"巨型鳗鱼"),(33,16)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -248,13 +248,13 @@ MONSTER:'S',random
 MONSTER:'S',random
 MONSTER:'S',random
 MONSTER:'M',random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
 MONSTER:'M',random
 
 #
@@ -345,7 +345,7 @@ TRAP:random,random
 TRAP:random,random
 TRAP:"rolling boulder",(46,14)
 # Random monsters.
-MONSTER:('&',"Minion of Huhetotl"),(50,14)
+MONSTER:('&',"修堤库特里的奴才"),(50,14)
 MONSTER:'S',random
 MONSTER:'S',random
 MONSTER:'S',random
@@ -364,14 +364,14 @@ MONSTER:'S',random
 MONSTER:'S',random
 MONSTER:'S',random
 MONSTER:'S',random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
-MONSTER:('M',"human mummy"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
+MONSTER:('M',"人类木乃伊"),random
 MONSTER:'M',random
 
 #
@@ -409,7 +409,7 @@ ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   MONSTER: 'S', random
-  MONSTER: ('M', "human mummy"), random
+  MONSTER: ('M', "人类木乃伊"), random
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -453,7 +453,7 @@ ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   MONSTER: 'S', random
-  MONSTER: ('M', "human mummy"), random
+  MONSTER: ('M', "人类木乃伊"), random
 }
 
 ROOM: "ordinary" , random, random, random, random {

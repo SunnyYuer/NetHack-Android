@@ -97,8 +97,8 @@ struct attack *mattk;
         if (magr->m_ap_type)
             seemimic(magr);
         fmt = (could_seduce(magr, mdef, mattk) && !magr->mcan)
-                  ? "%s pretends to be friendly to"
-                  : "%s misses";
+                  ? "%s 假装友好地对"
+                  : "%s 没打中";
         Sprintf(buf, fmt, Monnam(magr));
         pline("%s %s.", buf, mon_nam_too(mdef_name, mdef, magr));
     } else
@@ -507,27 +507,27 @@ struct attack *mattk;
             Strcpy(magr_name, Monnam(magr));
             switch (mattk->aatyp) {
             case AT_BITE:
-                Sprintf(buf, "%s bites", magr_name);
+                Sprintf(buf, "%s 咬了一口", magr_name);
                 break;
             case AT_STNG:
-                Sprintf(buf, "%s stings", magr_name);
+                Sprintf(buf, "%s 叮了一口", magr_name);
                 break;
             case AT_BUTT:
-                Sprintf(buf, "%s butts", magr_name);
+                Sprintf(buf, "%s 撞了一下", magr_name);
                 break;
             case AT_TUCH:
-                Sprintf(buf, "%s touches", magr_name);
+                Sprintf(buf, "%s 碰了一下", magr_name);
                 break;
             case AT_TENT:
-                Sprintf(buf, "%s tentacles suck", s_suffix(magr_name));
+                Sprintf(buf, "%s 触手吸食", s_suffix(magr_name));
                 break;
             case AT_HUGS:
                 if (magr != u.ustuck) {
-                    Sprintf(buf, "%s squeezes", magr_name);
+                    Sprintf(buf, "%s 挤压", magr_name);
                     break;
                 }
             default:
-                Sprintf(buf, "%s hits", magr_name);
+                Sprintf(buf, "%s 打了一下", magr_name);
             }
             pline("%s %s.", buf, mon_nam_too(mdef_name, mdef, magr));
         }

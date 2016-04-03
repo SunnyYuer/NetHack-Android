@@ -52,18 +52,18 @@ DOOR:locked,(39,08)
 DOOR:closed,(50,04)
 DOOR:closed,(50,06)
 # Lord Sato
-MONSTER:('@',"Lord Sato"),(20,04)
+MONSTER:('@',"萨托领主"),(20,04)
 # The treasure of Lord Sato
 OBJECT:('(',"箱子"),(20,04)
 # roshi guards for the audience chamber
-MONSTER:('@',"roshi"),(18,04)
-MONSTER:('@',"roshi"),(18,05)
-MONSTER:('@',"roshi"),(18,06)
-MONSTER:('@',"roshi"),(18,07)
-MONSTER:('@',"roshi"),(26,04)
-MONSTER:('@',"roshi"),(26,05)
-MONSTER:('@',"roshi"),(26,06)
-MONSTER:('@',"roshi"),(26,07)
+MONSTER:('@',"龟仙人"),(18,04)
+MONSTER:('@',"龟仙人"),(18,05)
+MONSTER:('@',"龟仙人"),(18,06)
+MONSTER:('@',"龟仙人"),(18,07)
+MONSTER:('@',"龟仙人"),(26,04)
+MONSTER:('@',"龟仙人"),(26,05)
+MONSTER:('@',"龟仙人"),(26,06)
+MONSTER:('@',"龟仙人"),(26,07)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -74,19 +74,19 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: ('@',"ninja"),(64,00),hostile
-MONSTER: ('d',"wolf"),(65,01)
-MONSTER: ('@',"ninja"),(67,02),hostile
-MONSTER: ('@',"ninja"),(69,05),hostile
-MONSTER: ('@',"ninja"),(69,06),hostile
-MONSTER: ('d',"wolf"),(69,07)
-MONSTER: ('@',"ninja"),(70,06),hostile
-MONSTER: ('@',"ninja"),(70,07),hostile
-MONSTER: ('@',"ninja"),(72,01),hostile
-MONSTER: ('d',"wolf"),(75,09)
-MONSTER: ('@',"ninja"),(73,05),hostile
-MONSTER: ('@',"ninja"),(68,02),hostile
-MONSTER:('E',"stalker"),random
+MONSTER: ('@',"忍者"),(64,00),hostile
+MONSTER: ('d',"狼"),(65,01)
+MONSTER: ('@',"忍者"),(67,02),hostile
+MONSTER: ('@',"忍者"),(69,05),hostile
+MONSTER: ('@',"忍者"),(69,06),hostile
+MONSTER: ('d',"狼"),(69,07)
+MONSTER: ('@',"忍者"),(70,06),hostile
+MONSTER: ('@',"忍者"),(70,07),hostile
+MONSTER: ('@',"忍者"),(72,01),hostile
+MONSTER: ('d',"狼"),(75,09)
+MONSTER: ('@',"忍者"),(73,05),hostile
+MONSTER: ('@',"忍者"),(68,02),hostile
+MONSTER:('E',"潜行者"),random
 
 #
 #	The "locate" level for the quest.
@@ -196,40 +196,40 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('@',"ninja"),(15,05),hostile
-MONSTER:('@',"ninja"),(16,05),hostile
-MONSTER:('d',"wolf"),(17,05)
-MONSTER:('d',"wolf"),(18,05)
-MONSTER:('@',"ninja"),(19,05),hostile
-MONSTER:('d',"wolf"),(15,14)
-MONSTER:('d',"wolf"),(16,14)
-MONSTER:('@',"ninja"),(17,14),hostile
-MONSTER:('@',"ninja"),(18,14),hostile
-MONSTER:('d',"wolf"),(56,05)
-MONSTER:('@',"ninja"),(57,05),hostile
-MONSTER:('d',"wolf"),(58,05)
-MONSTER:('d',"wolf"),(59,05)
-MONSTER:('@',"ninja"),(56,14),hostile
-MONSTER:('d',"wolf"),(57,14)
-MONSTER:('@',"ninja"),(58,14),hostile
+MONSTER:('@',"忍者"),(15,05),hostile
+MONSTER:('@',"忍者"),(16,05),hostile
+MONSTER:('d',"狼"),(17,05)
+MONSTER:('d',"狼"),(18,05)
+MONSTER:('@',"忍者"),(19,05),hostile
+MONSTER:('d',"狼"),(15,14)
+MONSTER:('d',"狼"),(16,14)
+MONSTER:('@',"忍者"),(17,14),hostile
+MONSTER:('@',"忍者"),(18,14),hostile
+MONSTER:('d',"狼"),(56,05)
+MONSTER:('@',"忍者"),(57,05),hostile
+MONSTER:('d',"狼"),(58,05)
+MONSTER:('d',"狼"),(59,05)
+MONSTER:('@',"忍者"),(56,14),hostile
+MONSTER:('d',"狼"),(57,14)
+MONSTER:('@',"忍者"),(58,14),hostile
 MONSTER:'d',(59,14)
-MONSTER:('d',"wolf"),(60,14)
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
+MONSTER:('d',"狼"),(60,14)
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
 #	"guards" for the central courtyard.
-MONSTER:('@',"samurai"),(30,05),hostile
-MONSTER:('@',"samurai"),(31,05),hostile
-MONSTER:('@',"samurai"),(32,05),hostile
-MONSTER:('@',"samurai"),(32,14),hostile
-MONSTER:('@',"samurai"),(33,14),hostile
-MONSTER:('@',"samurai"),(34,14),hostile
+MONSTER:('@',"武士"),(30,05),hostile
+MONSTER:('@',"武士"),(31,05),hostile
+MONSTER:('@',"武士"),(32,05),hostile
+MONSTER:('@',"武士"),(32,14),hostile
+MONSTER:('@',"武士"),(33,14),hostile
+MONSTER:('@',"武士"),(34,14),hostile
 
 #
 #	The "goal" level for the quest.
@@ -318,32 +318,32 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('@',"Ashikaga Takauji"),(22,10)
-MONSTER:('@',"samurai"),random,hostile
-MONSTER:('@',"samurai"),random,hostile
-MONSTER:('@',"samurai"),random,hostile
-MONSTER:('@',"samurai"),random,hostile
-MONSTER:('@',"samurai"),random,hostile
-MONSTER:('@',"ninja"),random,hostile
-MONSTER:('@',"ninja"),random,hostile
-MONSTER:('@',"ninja"),random,hostile
-MONSTER:('@',"ninja"),random,hostile
-MONSTER:('@',"ninja"),random,hostile
-MONSTER:('d',"wolf"),random
-MONSTER:('d',"wolf"),random
-MONSTER:('d',"wolf"),random
-MONSTER:('d',"wolf"),random
+MONSTER:('@',"足利尊氏"),(22,10)
+MONSTER:('@',"武士"),random,hostile
+MONSTER:('@',"武士"),random,hostile
+MONSTER:('@',"武士"),random,hostile
+MONSTER:('@',"武士"),random,hostile
+MONSTER:('@',"武士"),random,hostile
+MONSTER:('@',"忍者"),random,hostile
+MONSTER:('@',"忍者"),random,hostile
+MONSTER:('@',"忍者"),random,hostile
+MONSTER:('@',"忍者"),random,hostile
+MONSTER:('@',"忍者"),random,hostile
+MONSTER:('d',"狼"),random
+MONSTER:('d',"狼"),random
+MONSTER:('d',"狼"),random
+MONSTER:('d',"狼"),random
 MONSTER:'d',random
 MONSTER:'d',random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
-MONSTER:('E',"stalker"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
+MONSTER:('E',"潜行者"),random
 
 
 #
@@ -373,12 +373,12 @@ OBJECT: random, random
 OBJECT: random, random
 #
 MONSTER: 'd', random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('E', "stalker"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('E', "潜行者"), random
 #
 TRAP: random, random
 TRAP: random, random
@@ -426,13 +426,13 @@ OBJECT: random, random
 OBJECT: random, random
 #
 MONSTER: 'd', random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('d', "wolf"), random
-MONSTER: ('E', "stalker"), random
-MONSTER: ('E', "stalker"), random
-MONSTER: ('E', "stalker"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('d', "狼"), random
+MONSTER: ('E', "潜行者"), random
+MONSTER: ('E', "潜行者"), random
+MONSTER: ('E', "潜行者"), random
 #
 TRAP: random, random
 TRAP: random, random

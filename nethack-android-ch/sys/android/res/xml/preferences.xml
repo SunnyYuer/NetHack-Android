@@ -232,7 +232,7 @@
 					android:title="命令按钮"
 					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="Z|咒语 d|扔掉 Q|装弹  f|射击 t|投掷 ^A|重复 z|挥杖 x|切换 o|开门 c|关门 +|魔法"
+					android:defaultValue="Z|施法 d|扔掉 Q|准备  f|发射 t|投掷 ^A|重复 z|挥杖 x|切换 o|开门 c|关门 +|魔法"
 					android:singleLine="false"
 					android:key="pCmdString1"/>
 	

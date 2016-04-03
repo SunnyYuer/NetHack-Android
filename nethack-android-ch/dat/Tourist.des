@@ -70,54 +70,54 @@ DOOR:open,(16,17)
 DOOR:locked,(35,07)
 DOOR:locked,(36,07)
 # Monsters on siege duty.
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
-MONSTER: ('s',"giant spider"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
+MONSTER: ('s',"巨型蜘蛛"),random
 MONSTER: 's',random
 MONSTER: 's',random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
-MONSTER: ('C',"forest centaur"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
+MONSTER: ('C',"森林半人马"),random
 MONSTER: 'C',random
 # Twoflower
-MONSTER:('@',"Twoflower"),(64,03)
+MONSTER:('@',"双花"),(64,03)
 # The treasure of Twoflower
 OBJECT:('(',"箱子"),(64,03)
 # guides for the audience chamber
-MONSTER:('@',"guide"),(29,03)
-MONSTER:('@',"guide"),(32,04)
-MONSTER:('@',"guide"),(35,02)
-MONSTER:('@',"guide"),(38,03)
-MONSTER:('@',"guide"),(45,03)
-MONSTER:('@',"guide"),(48,02)
-MONSTER:('@',"guide"),(49,04)
-MONSTER:('@',"guide"),(51,03)
-MONSTER:('@',"guide"),(57,03)
-MONSTER:('@',"guide"),(62,04)
-MONSTER:('@',"guide"),(66,04)
+MONSTER:('@',"导游"),(29,03)
+MONSTER:('@',"导游"),(32,04)
+MONSTER:('@',"导游"),(35,02)
+MONSTER:('@',"导游"),(38,03)
+MONSTER:('@',"导游"),(45,03)
+MONSTER:('@',"导游"),(48,02)
+MONSTER:('@',"导游"),(49,04)
+MONSTER:('@',"导游"),(51,03)
+MONSTER:('@',"导游"),(57,03)
+MONSTER:('@',"导游"),(62,04)
+MONSTER:('@',"导游"),(66,04)
 # path guards
-MONSTER:('@',"watchman"),(35,08)
-MONSTER:('@',"watchman"),(36,08)
+MONSTER:('@',"警卫员"),(35,08)
+MONSTER:('@',"警卫员"),(36,08)
 # river monsters
-MONSTER:(';',"giant eel"),(62,12)
-MONSTER:(';',"piranha"),(47,10)
-MONSTER:(';',"piranha"),(29,11)
-MONSTER:(';',"kraken"),(34,09)
-MONSTER:(';',"kraken"),(37,09)
+MONSTER:(';',"巨型鳗鱼"),(62,12)
+MONSTER:(';',"水虎鱼"),(47,10)
+MONSTER:(';',"水虎鱼"),(29,11)
+MONSTER:(';',"海妖"),(34,09)
+MONSTER:(';',"海妖"),(37,09)
 # Random traps
 TRAP:random,random
 TRAP:random,random
@@ -270,22 +270,22 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
 MONSTER:'s',random
 MONSTER:'s',random
 
@@ -407,47 +407,47 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('@',"Master of Thieves"),(04,01),hostile
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
-MONSTER:('s',"giant spider"),random
+MONSTER:('@',"盗贼大师"),(04,01),hostile
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
+MONSTER:('s',"巨型蜘蛛"),random
 MONSTER:'s',random
 MONSTER:'s',random
 # ladies of the evening
-MONSTER:('&',"succubus"),(02,08)
-MONSTER:('&',"succubus"),(08,08)
-MONSTER:('&',"incubus"),(02,14)
-MONSTER:('&',"incubus"),(08,14)
-MONSTER:('&',"incubus"),(02,17)
-MONSTER:('&',"incubus"),(08,17)
+MONSTER:('&',"魅魔"),(02,08)
+MONSTER:('&',"魅魔"),(08,08)
+MONSTER:('&',"梦魇"),(02,14)
+MONSTER:('&',"梦魇"),(08,14)
+MONSTER:('&',"梦魇"),(02,17)
+MONSTER:('&',"梦魇"),(08,17)
 # Police station (with drunken prisoners)
-MONSTER:('K',"Kop Kaptain"),(24,09),hostile
-MONSTER:('K',"Kop Lieutenant"),(20,09),hostile
-MONSTER:('K',"Kop Lieutenant"),(22,11),hostile
-MONSTER:('K',"Kop Lieutenant"),(22,07),hostile
-MONSTER:('K',"Keystone Kop"),(19,07),hostile
-MONSTER:('K',"Keystone Kop"),(19,08),hostile
-MONSTER:('K',"Keystone Kop"),(22,09),hostile
-MONSTER:('K',"Keystone Kop"),(24,11),hostile
-MONSTER:('K',"Keystone Kop"),(19,11),hostile
-MONSTER:('@',"prisoner"),(19,13)
-MONSTER:('@',"prisoner"),(21,13)
-MONSTER:('@',"prisoner"),(24,13)
+MONSTER:('K',"警察上尉"),(24,09),hostile
+MONSTER:('K',"警察中尉"),(20,09),hostile
+MONSTER:('K',"警察中尉"),(22,11),hostile
+MONSTER:('K',"警察中尉"),(22,07),hostile
+MONSTER:('K',"吉斯通警察"),(19,07),hostile
+MONSTER:('K',"吉斯通警察"),(19,08),hostile
+MONSTER:('K',"吉斯通警察"),(22,09),hostile
+MONSTER:('K',"吉斯通警察"),(24,11),hostile
+MONSTER:('K',"吉斯通警察"),(19,11),hostile
+MONSTER:('@',"囚犯"),(19,13)
+MONSTER:('@',"囚犯"),(21,13)
+MONSTER:('@',"囚犯"),(24,13)
 #
-MONSTER:('@',"watchman"),(33,10),hostile
+MONSTER:('@',"警卫员"),(33,10),hostile
 
 WALLIFY
 
@@ -478,11 +478,11 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 #
-MONSTER: ('@', "soldier"), random, hostile
-MONSTER: ('@', "soldier"), random, hostile
-MONSTER: ('@', "soldier"), random, hostile
-MONSTER: ('@', "soldier"), random, hostile
-MONSTER: ('@', "soldier"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
 MONSTER: 'H', random, hostile
 MONSTER: 'C', random, hostile
 
@@ -510,9 +510,9 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 #
-MONSTER: ('@', "soldier"), random, hostile
-MONSTER: ('@', "captain"), random, hostile
-MONSTER: ('@', "captain"), random, hostile
+MONSTER: ('@', "士兵"), random, hostile
+MONSTER: ('@', "上尉"), random, hostile
+MONSTER: ('@', "上尉"), random, hostile
 MONSTER: 'H', random, hostile
 MONSTER: 'H', random, hostile
 MONSTER: 'C', random, hostile

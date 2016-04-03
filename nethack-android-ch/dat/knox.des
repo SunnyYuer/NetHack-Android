@@ -37,7 +37,7 @@ TELEPORT_REGION:(06,16,09,17),(0,0,0,0),up
 TELEPORT_REGION:(06,16,09,17),(0,0,0,0),down
 #   Throne room, with Croesus on the throne
 REGION:(37,08,46,11),lit,"throne"
-MONSTER:('@',"Croesus"),(43,10),hostile
+MONSTER:('@',"克罗伊斯"),(43,10),hostile
 #   The Vault
 #   Using unfilled morgue for
 #   identification in mkmaze.c
@@ -65,33 +65,33 @@ DOOR:open,(68,11)
 DOOR:closed,(63,14)
 DOOR:closed,(66,14)
 # Soldiers guarding the fort
-MONSTER:('@',"soldier"),(12,14)
-MONSTER:('@',"soldier"),(12,13)
-MONSTER:('@',"soldier"),(11,10)
-MONSTER:('@',"soldier"),(13,02)
-MONSTER:('@',"soldier"),(14,03)
-MONSTER:('@',"soldier"),(20,02)
-MONSTER:('@',"soldier"),(30,02)
-MONSTER:('@',"soldier"),(40,02)
-MONSTER:('@',"soldier"),(30,16)
-MONSTER:('@',"soldier"),(32,16)
-MONSTER:('@',"soldier"),(40,16)
-MONSTER:('@',"soldier"),(54,16)
-MONSTER:('@',"soldier"),(54,14)
-MONSTER:('@',"soldier"),(54,13)
-MONSTER:('@',"soldier"),(57,10)
-MONSTER:('@',"soldier"),(57,09)
-MONSTER:('@',"lieutenant"),(15,08)
+MONSTER:('@',"士兵"),(12,14)
+MONSTER:('@',"士兵"),(12,13)
+MONSTER:('@',"士兵"),(11,10)
+MONSTER:('@',"士兵"),(13,02)
+MONSTER:('@',"士兵"),(14,03)
+MONSTER:('@',"士兵"),(20,02)
+MONSTER:('@',"士兵"),(30,02)
+MONSTER:('@',"士兵"),(40,02)
+MONSTER:('@',"士兵"),(30,16)
+MONSTER:('@',"士兵"),(32,16)
+MONSTER:('@',"士兵"),(40,16)
+MONSTER:('@',"士兵"),(54,16)
+MONSTER:('@',"士兵"),(54,14)
+MONSTER:('@',"士兵"),(54,13)
+MONSTER:('@',"士兵"),(57,10)
+MONSTER:('@',"士兵"),(57,09)
+MONSTER:('@',"中尉"),(15,08)
 # Four dragons guarding each side
 MONSTER:'D',(18,09)
 MONSTER:'D',(49,10)
 MONSTER:'D',(33,05)
 MONSTER:'D',(33,14)
 # Eels in the moat
-MONSTER:(';',"giant eel"),(17,08)
-MONSTER:(';',"giant eel"),(17,11)
-MONSTER:(';',"giant eel"),(48,08)
-MONSTER:(';',"giant eel"),(48,11)
+MONSTER:(';',"巨型鳗鱼"),(17,08)
+MONSTER:(';',"巨型鳗鱼"),(17,11)
+MONSTER:(';',"巨型鳗鱼"),(48,08)
+MONSTER:(';',"巨型鳗鱼"),(48,11)
 # The corner rooms treasures
 OBJECT:('*',"钻石"),(19,06)
 OBJECT:('*',"钻石"),(20,06)

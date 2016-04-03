@@ -58,18 +58,18 @@ FOUNTAIN:(53,02)
 DOOR:locked,(26,10)
 DOOR:locked,(43,10)
 # Norn
-MONSTER:('@',"Norn"),(35,10)
+MONSTER:('@',"诺恩"),(35,10)
 # The treasure of the Norn
 OBJECT:('(',"箱子"),(36,10)
 # valkyrie guards for the audience chamber
-MONSTER:('@',"warrior"),(27,08)
-MONSTER:('@',"warrior"),(27,09)
-MONSTER:('@',"warrior"),(27,11)
-MONSTER:('@',"warrior"),(27,12)
-MONSTER:('@',"warrior"),(42,08)
-MONSTER:('@',"warrior"),(42,09)
-MONSTER:('@',"warrior"),(42,11)
-MONSTER:('@',"warrior"),(42,12)
+MONSTER:('@',"战士"),(27,08)
+MONSTER:('@',"战士"),(27,09)
+MONSTER:('@',"战士"),(27,11)
+MONSTER:('@',"战士"),(27,12)
+MONSTER:('@',"战士"),(42,08)
+MONSTER:('@',"战士"),(42,09)
+MONSTER:('@',"战士"),(42,11)
+MONSTER:('@',"战士"),(42,12)
 # Non diggable walls
 NON_DIGGABLE:(26,07,43,13)
 # Random traps
@@ -80,18 +80,18 @@ TRAP:"fire",random
 TRAP:"fire",random
 TRAP:"fire",random
 # Monsters on siege duty.
-MONSTER: ('a',"fire ant"),(04,12)
-MONSTER: ('a',"fire ant"),(08,08)
-MONSTER: ('a',"fire ant"),(14,04)
-MONSTER: ('a',"fire ant"),(17,11)
-MONSTER: ('a',"fire ant"),(24,10)
-MONSTER: ('a',"fire ant"),(45,10)
-MONSTER: ('a',"fire ant"),(54,02)
-MONSTER: ('a',"fire ant"),(55,07)
-MONSTER: ('a',"fire ant"),(58,14)
-MONSTER: ('a',"fire ant"),(63,17)
-MONSTER: ('H',"fire giant"),(18,01),hostile
-MONSTER: ('H',"fire giant"),(10,16),hostile
+MONSTER: ('a',"火蚁"),(04,12)
+MONSTER: ('a',"火蚁"),(08,08)
+MONSTER: ('a',"火蚁"),(14,04)
+MONSTER: ('a',"火蚁"),(17,11)
+MONSTER: ('a',"火蚁"),(24,10)
+MONSTER: ('a',"火蚁"),(45,10)
+MONSTER: ('a',"火蚁"),(54,02)
+MONSTER: ('a',"火蚁"),(55,07)
+MONSTER: ('a',"火蚁"),(58,14)
+MONSTER: ('a',"火蚁"),(63,17)
+MONSTER: ('H',"火巨人"),(18,01),hostile
+MONSTER: ('H',"火巨人"),(10,16),hostile
 
 #
 #	The "locate" level for the quest.
@@ -150,32 +150,32 @@ TRAP:"fire",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
 MONSTER:'a',random
 MONSTER:'H',random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
 MONSTER:'H',random,hostile
 
 #
@@ -247,25 +247,25 @@ TRAP:"board",random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('H',"Lord Surtur"),(17,08)
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
-MONSTER:('a',"fire ant"),random
+MONSTER:('H',"叙尔特领主"),(17,08)
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
+MONSTER:('a',"火蚁"),random
 MONSTER:'a',random
 MONSTER:'a',random
-MONSTER:('H',"fire giant"),(10,06),hostile
-MONSTER:('H',"fire giant"),(10,07),hostile
-MONSTER:('H',"fire giant"),(10,08),hostile
-MONSTER:('H',"fire giant"),(10,09),hostile
-MONSTER:('H',"fire giant"),(10,10),hostile
-MONSTER:('H',"fire giant"),(24,06),hostile
-MONSTER:('H',"fire giant"),(24,07),hostile
-MONSTER:('H',"fire giant"),(24,08),hostile
-MONSTER:('H',"fire giant"),(24,09),hostile
-MONSTER:('H',"fire giant"),(24,10),hostile
-MONSTER:('H',"fire giant"),random,hostile
-MONSTER:('H',"fire giant"),random,hostile
+MONSTER:('H',"火巨人"),(10,06),hostile
+MONSTER:('H',"火巨人"),(10,07),hostile
+MONSTER:('H',"火巨人"),(10,08),hostile
+MONSTER:('H',"火巨人"),(10,09),hostile
+MONSTER:('H',"火巨人"),(10,10),hostile
+MONSTER:('H',"火巨人"),(24,06),hostile
+MONSTER:('H',"火巨人"),(24,07),hostile
+MONSTER:('H',"火巨人"),(24,08),hostile
+MONSTER:('H',"火巨人"),(24,09),hostile
+MONSTER:('H',"火巨人"),(24,10),hostile
+MONSTER:('H',"火巨人"),random,hostile
+MONSTER:('H',"火巨人"),random,hostile
 MONSTER:'H',random,hostile
 
 #
@@ -295,13 +295,13 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
 MONSTER: 'a', random
-MONSTER: ('H', "fire giant"), random, hostile
+MONSTER: ('H', "火巨人"), random, hostile
 #
 TRAP: random, random
 TRAP: random, random
@@ -331,13 +331,13 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
-MONSTER: ('a', "fire ant"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
+MONSTER: ('a', "火蚁"), random
 MONSTER: 'a', random
-MONSTER: ('H', "fire giant"), random, hostile
-MONSTER: ('H', "fire giant"), random, hostile
-MONSTER: ('H', "fire giant"), random, hostile
+MONSTER: ('H', "火巨人"), random, hostile
+MONSTER: ('H', "火巨人"), random, hostile
+MONSTER: ('H', "火巨人"), random, hostile
 #
 TRAP: "fire", random
 TRAP: "fire", random

@@ -1174,25 +1174,25 @@ char *buf;
 
     if (obj && buf) {
         if (r == SPINACH_TIN)
-            Strcat(buf, " of spinach");
+            Strcat(buf, " 之菠菜");
         else if (mnum == NON_PM)
-            Strcpy(buf, "empty tin");
+            Strcpy(buf, "空的罐头");
         else {
             if ((obj->cknown || iflags.override_ID) && obj->spe < 0) {
                 if (r == ROTTEN_TIN || r == HOMEMADE_TIN) {
                     /* put these before the word tin */
-                    Sprintf(buf2, "%s %s of ", tintxts[r].txt, buf);
+                    Sprintf(buf2, "%s %s 之 ", tintxts[r].txt, buf);
                     Strcpy(buf, buf2);
                 } else {
-                    Sprintf(eos(buf), " of %s ", tintxts[r].txt);
+                    Sprintf(eos(buf), " 之 %s ", tintxts[r].txt);
                 }
             } else {
-                Strcpy(eos(buf), " of ");
+                Strcpy(eos(buf), " 之 ");
             }
             if (vegetarian(&mons[mnum]))
                 Sprintf(eos(buf), "%s", mons[mnum].mname);
             else
-                Sprintf(eos(buf), "%s meat", mons[mnum].mname);
+                Sprintf(eos(buf), "%s 肉", mons[mnum].mname);
         }
     }
 }

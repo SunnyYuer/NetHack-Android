@@ -21,7 +21,7 @@ ROOM: "ordinary" , lit, (3,3), (center,center), (11,9) {
     FOUNTAIN: (1, 0)
     FOUNTAIN: (1, 2)
     FOUNTAIN: (2, 1)
-    MONSTER: ('@', "Oracle"), (1,1)
+    MONSTER: ('@', "神谕"), (1,1)
     ROOMDOOR: false , nodoor , random, random
   }
 

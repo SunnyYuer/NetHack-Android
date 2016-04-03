@@ -1241,18 +1241,18 @@ char *outbuf;
         absamt = (absamt * 2) / 3;
 
     if (absamt <= 3)
-        modif = "小的";
+        modif = "很少的";
     else if (absamt <= 6)
-        modif = "不大的";
+        modif = "较少的";
     else if (absamt <= 12)
-        modif = "大的";
+        modif = "较多的";
     else
-        modif = "很大的";
+        modif = "很多的";
 
     modif = !incamt ? "no" : modif; /* ("no" case shouldn't happen) */
     bonus = (incamt >= 0) ? "加成" : "处罚";
     /* "bonus <foo>" (to hit) vs "<bar> bonus" (damage, defense) */
-    invrt = strcmp(inctyp, "来攻击") ? TRUE : FALSE;
+    invrt = TRUE;
 
     Sprintf(outbuf, "有%s %s %s", modif, invrt ? inctyp : bonus,
             invrt ? bonus : inctyp);
@@ -1744,8 +1744,8 @@ int final;
         if (u.usteed) { /* not `Riding' here */
             Sprintf(buf, "%s%s ", anchored ? "你和 " : "", steedname);
             *buf = highc(*buf);
-            enl_msg(buf, (anchored ? "are " : "is "),
-                    (anchored ? "were " : "was "), predicament, "");
+            enl_msg(buf, (anchored ? "是 " : "是 "),
+                    (anchored ? "是 " : "是 "), predicament, "");
         } else
             you_are(predicament, "");
     } /* (u.utrap) */
@@ -1756,7 +1756,7 @@ int final;
         you_are(buf, "");
     } else if (u.ustuck) {
         Sprintf(buf, "%s %s",
-                (Upolyd && sticks(youmonst.data)) ? "关押着" : "被关押",
+                (Upolyd && sticks(youmonst.data)) ? "牵制着" : "受牵制于",
                 a_monnam(u.ustuck));
         you_are(buf, "");
     }
@@ -1963,10 +1963,10 @@ int final;
         you_can("看见", from_what(-BLINDED)); /* Eyes of the Overworld */
     if (See_invisible) {
         if (!Blind)
-            enl_msg(You_, "能看见", "能看见", " 隐形", from_what(SEE_INVIS));
+            enl_msg(You_, "能看见", "能看见", " 隐形的怪物", from_what(SEE_INVIS));
         else
             enl_msg(You_, "将看见", "将看见",
-                    " 隐形当没有失明的时候", from_what(SEE_INVIS));
+                    " 隐形的怪物当没有失明的时候", from_what(SEE_INVIS));
     }
     if (Blind_telepat)
         you_are("能感知怪物", from_what(TELEPAT));
@@ -2031,7 +2031,7 @@ int final;
         /* the sum might be 0 (+0 ring or two which negate each other);
            that yields "you are charismatic" (which isn't pointless
            because it potentially impacts seduction attacks) */
-        Sprintf(buf, "%s魅力",
+        Sprintf(buf, "你具有%s魅力",
                 (adorn > 0) ? "更多的 " : (adorn < 0) ? "更少的 " : "");
         you_are(buf, from_what(ADORNED));
     }
@@ -2101,7 +2101,7 @@ int final;
 
     /*** Physical attributes ***/
     if (Regeneration)
-        enl_msg("你有重生的能力", "", "", "", from_what(REGENERATION));
+        enl_msg("你有再生的能力", "", "", "", from_what(REGENERATION));
     if (Slow_digestion)
         you_have("慢消化", from_what(SLOW_DIGESTION));
     if (u.uhitinc)
@@ -2186,7 +2186,7 @@ int final;
         you_are("受到银制品的伤害", "");
     /* movement and non-armor-based protection */
     if (Fast)
-        you_are(Very_fast ? "非常快" : "快", from_what(FAST));
+        you_are(Very_fast ? "速度非常快" : "速度快", from_what(FAST));
     if (Reflecting)
         you_have("有反射的能力", from_what(REFLECTING));
     if (Free_action)
@@ -2288,7 +2288,7 @@ int final;
             }
         }
         if (p)
-            enl_msg(You_, "被杀死了 ", p, buf, "");
+            enl_msg(You_, "被杀死了", p, buf, "");
     }
 }
 

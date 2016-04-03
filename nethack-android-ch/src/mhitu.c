@@ -43,30 +43,30 @@ register struct attack *mattk;
     } else
         switch (mattk->aatyp) {
         case AT_BITE:
-            pline("%s bites!", Monnam(mtmp));
+            pline("%s 咬了一口!", Monnam(mtmp));
             break;
         case AT_KICK:
-            pline("%s kicks%c", Monnam(mtmp),
+            pline("%s 踢了一下%c", Monnam(mtmp),
                   thick_skinned(youmonst.data) ? '.' : '!');
             break;
         case AT_STNG:
-            pline("%s stings!", Monnam(mtmp));
+            pline("%s 叮了一口!", Monnam(mtmp));
             break;
         case AT_BUTT:
-            pline("%s butts!", Monnam(mtmp));
+            pline("%s 撞了一下!", Monnam(mtmp));
             break;
         case AT_TUCH:
-            pline("%s touches you!", Monnam(mtmp));
+            pline("%s 碰了你一下!", Monnam(mtmp));
             break;
         case AT_TENT:
-            pline("%s tentacles suck you!", s_suffix(Monnam(mtmp)));
+            pline("%s 触手吸食你!", s_suffix(Monnam(mtmp)));
             break;
         case AT_EXPL:
         case AT_BOOM:
-            pline("%s explodes!", Monnam(mtmp));
+            pline("%s 爆炸了!", Monnam(mtmp));
             break;
         default:
-            pline("%s hits!", Monnam(mtmp));
+            pline("%s 打了一下!", Monnam(mtmp));
         }
 }
 
@@ -81,10 +81,10 @@ struct attack *mattk;
         map_invisible(mtmp->mx, mtmp->my);
 
     if (could_seduce(mtmp, &youmonst, mattk) && !mtmp->mcan)
-        pline("%s pretends to be friendly.", Monnam(mtmp));
+        pline("%s 假装友好.", Monnam(mtmp));
     else
-        pline("%s %smisses!", Monnam(mtmp),
-              (nearmiss && flags.verbose) ? "just " : "");
+        pline("%s %s没打中!", Monnam(mtmp),
+              (nearmiss && flags.verbose) ? "恰好 " : "");
 
     stop_occupation();
 }

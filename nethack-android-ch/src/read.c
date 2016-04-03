@@ -1954,7 +1954,7 @@ do_class_genocide()
             return;
         }
         do {
-            getlin("What class of monsters do you wish to genocide?", buf);
+            getlin("你想灭绝哪类怪物?", buf);
             (void) mungspaces(buf);
         } while (!*buf);
         /* choosing "none" preserves genocideless conduct */
@@ -1996,8 +1996,8 @@ do_class_genocide()
                 pline("Eliminated %d monster%s.", gonecnt, plur(gonecnt));
                 return;
             } else
-                pline("That %s does not represent any monster.",
-                      strlen(buf) == 1 ? "symbol" : "response");
+                pline("那个%s不代表任何怪物.",
+                      strlen(buf) == 1 ? "字符" : "回答");
             continue;
         }
 
@@ -2019,7 +2019,7 @@ do_class_genocide()
                     reset_rndmonst(i);
                     kill_genocided_monsters();
                     update_inventory(); /* eggs & tins */
-                    pline("Wiped out all %s.", nam);
+                    pline("清除了所有的%s.", nam);
                     if (Upolyd && i == u.umonnum) {
                         u.mh = -1;
                         if (Unchanging) {
@@ -2069,8 +2069,8 @@ do_class_genocide()
                         if (i == PM_HIGH_PRIEST)
                             uniq = FALSE;
 
-                        You("aren't permitted to genocide %s%s.",
-                            (uniq && !named) ? "the " : "",
+                        You("不可以灭绝%s%s.",
+                            (uniq && !named) ? "这个 " : "",
                             (uniq || named) ? mons[i].mname : nam);
                     }
                 }
@@ -2114,7 +2114,7 @@ int how;
                 pline1(thats_enough_tries);
                 return;
             }
-            getlin("What monster do you want to genocide? [type the name]",
+            getlin("你想灭绝什么怪物? [ 输入名字]",
                    buf);
             (void) mungspaces(buf);
             /* choosing "none" preserves genocideless conduct */
@@ -2132,8 +2132,8 @@ int how;
 
             mndx = name_to_mon(buf);
             if (mndx == NON_PM || (mvitals[mndx].mvflags & G_GENOD)) {
-                pline("Such creatures %s exist in this world.",
-                      (mndx == NON_PM) ? "do not" : "no longer");
+                pline("这种生物在这个世界%s存在.",
+                      (mndx == NON_PM) ? "不" : "不再");
                 continue;
             }
             ptr = &mons[mndx];
@@ -2167,7 +2167,7 @@ int how;
         }
     }
 
-    which = "all ";
+    which = "所有的 ";
     if (Hallucination) {
         if (Upolyd)
             Strcpy(buf, youmonst.data->mname);
@@ -2184,7 +2184,7 @@ int how;
     if (how & REALLY) {
         /* setting no-corpse affects wishing and random tin generation */
         mvitals[mndx].mvflags |= (G_GENOD | G_NOCORPSE);
-        pline("Wiped out %s%s.", which,
+        pline("清除了%s%s.", which,
               (*which != 'a') ? buf : makeplural(buf));
 
         if (killplayer) {

@@ -1171,7 +1171,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     /* it's safe to overwrite our nambuf after an() has copied
        its old value into another buffer */
     if (any_prefix)
-        Strcpy(nambuf, an(nambuf));
+        Strcpy(nambuf, nambuf);
 
     return nambuf;
 }
@@ -2216,8 +2216,8 @@ const char *u_str;      /* from user, so might be variant spelling */
 const char *o_str;      /* from objects[], so is in canonical form */
 boolean retry_inverted; /* optional extra "of" handling */
 {
-    static NEARDATA const char detect_SP[] = "探测",
-                               SP_detection[] = "探测";
+    static NEARDATA const char detect_SP[] = "detect ",
+                               SP_detection[] = " detection";
     char *p, buf[BUFSZ];
 
     /* ignore spaces & hyphens and upper/lower case when comparing */
@@ -2229,10 +2229,10 @@ boolean retry_inverted; /* optional extra "of" handling */
 
         /* when just one of the strings is in the form "foo of bar",
            convert it into "bar foo" and perform another comparison */
-        u_of = strstri(u_str, "之");
-        o_of = strstri(o_str, "之");
+        u_of = strstri(u_str, " of ");
+        o_of = strstri(o_str, " of ");
         if (u_of && !o_of) {
-            Strcpy(buf, u_of + 3);
+            Strcpy(buf, u_of + 4);
             p = eos(strcat(buf, " "));
             while (u_str < u_of)
                 *p++ = *u_str++;
@@ -2251,10 +2251,10 @@ boolean retry_inverted; /* optional extra "of" handling */
     /* [note: if something like "elven speed boots" ever gets added, these
        special cases should be changed to call wishymatch() recursively in
        order to get the "of" inversion handling] */
-    if (!strncmp(o_str, "矮人", 6)) {
+    if (!strncmp(o_str, "dwarvish ", 9)) {
         if (!strncmpi(u_str, "dwarven ", 8))
-            return fuzzymatch(u_str + 8, o_str + 6, " -", TRUE);
-    } else if (!strncmp(o_str, "精灵", 6)) {
+            return fuzzymatch(u_str + 8, o_str + 9, " -", TRUE);
+    } else if (!strncmp(o_str, "elven ", 6)) {
         if (!strncmpi(u_str, "elvish ", 7))
             return fuzzymatch(u_str + 7, o_str + 6, " -", TRUE);
         else if (!strncmpi(u_str, "elfin ", 6))
@@ -2267,7 +2267,7 @@ boolean retry_inverted; /* optional extra "of" handling */
             *p = '\0';
             Strcat(strcpy(buf, detect_SP), u_str);
             /* "detect monster" -> "detect monsters" */
-            if (!strcmpi(u_str, "怪物"))
+            if (!strcmpi(u_str, "monster"))
                 Strcat(buf, "s");
             *p = ' ';
             return fuzzymatch(buf, o_str, " -", TRUE);
@@ -2283,21 +2283,21 @@ boolean retry_inverted; /* optional extra "of" handling */
             releaseobuf(p);
             return fuzzymatch(buf, o_str, " -", TRUE);
         }
-    } else if (strstri(o_str, "能力")) {
+    } else if (strstri(o_str, "ability")) {
         /* when presented with "foo of bar", makesingular() used to
            singularize both foo & bar, but now only does so for foo */
         /* catch "{potion(s),ring} of {gain,restore,sustain} abilities" */
-        if ((p = strstri(u_str, "能力")) != 0
-            && !*(p + sizeof "能力" - 1)) {
+        if ((p = strstri(u_str, "abilities")) != 0
+            && !*(p + sizeof "abilities" - 1)) {
             (void) strncpy(buf, u_str, (unsigned) (p - u_str));
-            Strcpy(buf + (p - u_str), "能力");
+            Strcpy(buf + (p - u_str), "ability");
             return fuzzymatch(buf, o_str, " -", TRUE);
         }
-    } else if (!strcmp(o_str, "铝制")) {
+    } else if (!strcmp(o_str, "aluminum")) {
         /* this special case doesn't really fit anywhere else... */
         /* (note that " wand" will have been stripped off by now) */
-        if (!strcmpi(u_str, "铝制"))
-            return fuzzymatch(u_str + 6, o_str + 6, " -", TRUE);
+        if (!strcmpi(u_str, "aluminium"))
+            return fuzzymatch(u_str + 9, o_str + 8, " -", TRUE);
     }
 
     return FALSE;

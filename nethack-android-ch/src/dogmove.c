@@ -271,9 +271,9 @@ boolean devour;
                 pline("%s digs in.", noit_Monnam(mtmp));
             else
                 pline("%s %s %s.", noit_Monnam(mtmp),
-                      devour ? "devours" : "eats", distant_name(obj, doname));
+                      devour ? "吞食" : "吃食", distant_name(obj, doname));
         } else if (seeobj)
-            pline("It %s %s.", devour ? "devours" : "eats",
+            pline("它 %s %s.", devour ? "吞食" : "吃食",
                   distant_name(obj, doname));
     }
     if (obj->unpaid) {

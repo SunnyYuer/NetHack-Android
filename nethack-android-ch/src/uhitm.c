@@ -1095,9 +1095,9 @@ int thrown; /* HMON_xxx (0 => hand-to-hand, other => ranged) */
         if (thrown)
             hit(mshot_xname(obj), mon, exclam(tmp));
         else if (!flags.verbose)
-            You("hit it.");
+            You("打了一下它.");
         else
-            You("%s %s%s", Role_if(PM_BARBARIAN) ? "smite" : "hit",
+            You("%s %s%s", Role_if(PM_BARBARIAN) ? "猛击了一下" : "打了一下",
                 mon_nam(mon), canseemon(mon) ? exclam(tmp) : ".");
     }
 
@@ -2059,9 +2059,9 @@ boolean wouldhavehit;
     if (could_seduce(&youmonst, mdef, mattk))
         You("pretend to be friendly to %s.", mon_nam(mdef));
     else if (canspotmon(mdef) && flags.verbose)
-        You("miss %s.", mon_nam(mdef));
+        You("没打中 %s.", mon_nam(mdef));
     else
-        You("miss it.");
+        You("没打中它.");
     if (!mdef->msleeping && mdef->mcanmove)
         wakeup(mdef);
 }
@@ -2154,19 +2154,19 @@ register struct monst *mon;
                     break;
                 }
                 if (mattk->aatyp == AT_KICK)
-                    You("kick %s.", mon_nam(mon));
+                    You("踢了一下 %s.", mon_nam(mon));
                 else if (mattk->aatyp == AT_BITE)
-                    You("bite %s.", mon_nam(mon));
+                    You("咬了一口 %s.", mon_nam(mon));
                 else if (mattk->aatyp == AT_STNG)
-                    You("sting %s.", mon_nam(mon));
+                    You("叮了一口 %s.", mon_nam(mon));
                 else if (mattk->aatyp == AT_BUTT)
-                    You("butt %s.", mon_nam(mon));
+                    You("撞了一下 %s.", mon_nam(mon));
                 else if (mattk->aatyp == AT_TUCH)
-                    You("touch %s.", mon_nam(mon));
+                    You("碰了一下 %s.", mon_nam(mon));
                 else if (mattk->aatyp == AT_TENT)
-                    Your("tentacles suck %s.", mon_nam(mon));
+                    Your("触手吸食 %s.", mon_nam(mon));
                 else
-                    You("hit %s.", mon_nam(mon));
+                    You("打了一下 %s.", mon_nam(mon));
                 sum[i] = damageum(mon, mattk);
             } else {
                 missum(mon, mattk, (tmp + armorpenalty > dieroll));

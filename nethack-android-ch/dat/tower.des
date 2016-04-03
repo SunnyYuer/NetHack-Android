@@ -23,7 +23,7 @@ $niches = { (03,01), (03,09), (07,01), (07,09), (11,01), (11,09) }
 SHUFFLE: $niches
 LADDER:(11,05),down
 # The lord and his court
-MONSTER:('V',"Vlad the Impaler"),(06,05)
+MONSTER:('V',"穿刺者弗拉德"),(06,05)
 MONSTER:'V',$niches[0]
 MONSTER:'V',$niches[1]
 MONSTER:'V',$niches[2]
@@ -82,9 +82,9 @@ DOOR:locked,(10,04)
 DOOR:locked,(09,07)
 MONSTER:'&',$place[0]
 MONSTER:'&',$place[1]
-MONSTER:('d',"hell hound pup"),$place[2]
-MONSTER:('d',"hell hound pup"),$place[3]
-MONSTER:('d',"winter wolf"),$place[4]
+MONSTER:('d',"地狱小猎犬"),$place[2]
+MONSTER:('d',"地狱小猎犬"),$place[3]
+MONSTER:('d',"冬狼"),$place[4]
 CONTAINER:('(',"箱子"),$place[5] {
   OBJECT:('"',"复活护身符")
 }
