@@ -13,15 +13,15 @@
 
 === 准备 ===
 
- - 在linux中安装ndk
-     http://developer.android.com/sdk/ndk
+1. 在linux中安装ndk
+http://developer.android.com/sdk/ndk
  
- - 下载源代码并解压
-     https://github.com/SunnyEric/NetHack_android
+2. 下载源代码并解压
+https://github.com/SunnyEric/NetHack_android
 
 === 编译NetHack ===
 
-1. 进入<NetHack-Android>/sys/android
+1. 进入NetHack_android/sys/android目录
 2. 打开Makefile.src文件并更改NDK目录为你的NDK目录
 3. 终端操作./setup.sh
 4. 终端操作cd ../..
@@ -34,9 +34,9 @@
 3. 运行
 
 ##问题反馈或建议
-百度贴吧http://tieba.baidu.com/p/4359900236
-或[Github Issues](https://github.com/SunnyEric/NetHack_android/issues)
-或邮箱956768385@qq.com
+* 百度贴吧http://tieba.baidu.com/p/4359900236
+* [Github Issues](https://github.com/SunnyEric/NetHack_android/issues)
+* 邮箱956768385@qq.com
 
 ##软件许可证
 [license](https://github.com/SunnyEric/NetHack_android/blob/master/nethack-android-ch/dat/license)
