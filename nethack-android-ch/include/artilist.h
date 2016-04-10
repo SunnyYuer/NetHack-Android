@@ -115,7 +115,7 @@ STATIC_OVL NEARDATA struct artifact artilist[] = {
       PHYS(5, 0), DFNS(AD_WERE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L,
       NO_COLOR),
 
-    A("闪银密刀", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,  //Grayswandir
+    A("夜刃", SILVER_SABER, (SPFX_RESTR | SPFX_HALRES), 0, 0,  //Grayswandir
       PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L,
       NO_COLOR),
 
@@ -207,7 +207,7 @@ A("韦斯特内西的真知晶球",        CRYSTAL_BALL,  //The Palantir of West
       PHYS(5, 0), NO_DFNS, NO_CARY, CREATE_AMMO, A_CHAOTIC, PM_RANGER, NON_PM,
       4000L, NO_COLOR),
 
-    A("贼王的万能钥匙", SKELETON_KEY,  //The Master Key of Thievery
+    A("盗窃专用万能钥匙", SKELETON_KEY,  //The Master Key of Thievery
       (SPFX_NOGEN | SPFX_RESTR | SPFX_INTEL | SPFX_SPEAK),
       (SPFX_WARN | SPFX_TCTRL | SPFX_HPHDAM), 0, NO_ATTK, NO_DFNS, NO_CARY,
       UNTRAP, A_CHAOTIC, PM_ROGUE, NON_PM, 3500L, NO_COLOR),

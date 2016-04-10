@@ -85,26 +85,26 @@
 				android:entryValues="@array/btnSizeValues"/>
 
 		<PreferenceScreen
-			android:title="屏幕显示方向"
-			android:summary="设置屏幕显示方向">
+			android:title="方向键"
+			android:summary="设置方向键">
 
 			<CheckBoxPreference
-				android:title="总是使用竖屏"
-				android:summary="总是将屏幕显示的方向设为竖屏模式"
+				android:title="竖屏时显示"
+				android:summary="总是在竖屏时显示"
 				android:persistent="true"
 				android:key="ovlPortAlways"
 				android:defaultValue="false"/>
 
 			<CheckBoxPreference
-				android:title="总是使用横屏"
-				android:summary="总是将屏幕显示的方向设为横屏模式"
+				android:title="横屏时显示"
+				android:summary="总是在横屏时显示"
 				android:persistent="true"
 				android:key="ovlLandAlways"
 				android:defaultValue="false"/>
 
 			<ListPreference
-				android:title="竖屏按键位置"
-				android:summary="使用竖屏模式时的相应覆盖物的位置"
+				android:title="竖屏时位置"
+				android:summary="使用竖屏模式时方向键的位置"
 				android:persistent="true"
 				android:key="ovlPortLoc"
 				android:defaultValue="1"
@@ -112,8 +112,8 @@
 				android:entryValues="@array/dirLocationValues"/>
 
 			<ListPreference
-				android:title="横屏按键位置"
-				android:summary="使用横屏模式时的相应覆盖物的位置"
+				android:title="横屏时位置"
+				android:summary="使用横屏模式时方向键的位置"
 				android:persistent="true"
 				android:key="ovlLandLoc"
 				android:defaultValue="1"
@@ -122,7 +122,7 @@
 
 			<com.yuer.NetHack.SliderPreference
 				android:title="透明度"
-				android:summary="相应覆盖物的透明度"
+				android:summary="方向键的透明度"
 				android:persistent="true"
 				android:key="ovlOpacity"
 				android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"

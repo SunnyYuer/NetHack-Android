@@ -307,7 +307,7 @@ NON_DIGGABLE:(00,00,75,20)
 # One trap to keep the gnomes at bay.
 TRAP:"spiked pit",(37,07)
 # Objects
-OBJECT:('(',"万能钥匙"),(38,10),blessed,0,name:"The Master Key of Thievery"
+OBJECT:('(',"万能钥匙"),(38,10),blessed,0,name:"盗窃专用万能钥匙"
 OBJECT:('%',"罐头"),(26,12),montype:"变色龙"
 OBJECT:random,random
 OBJECT:random,random

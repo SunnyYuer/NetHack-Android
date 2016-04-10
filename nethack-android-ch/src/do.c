@@ -1479,7 +1479,7 @@ boolean at_stairs, falling, portal;
         }
     } else {
         if (new && Is_rogue_level(&u.uz))
-            You("enter what seems to be an older, more primitive world.");
+            You("进入了看起来更古老更原始的世界.");
         /* main dungeon message from your quest leader */
         if (!In_quest(&u.uz0) && at_dgn_entrance("The Quest")
             && !(u.uevent.qcompleted || u.uevent.qexpelled

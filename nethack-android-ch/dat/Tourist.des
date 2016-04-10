@@ -384,7 +384,7 @@ DOOR:random,(51,15)
 DOOR:open,(59,14)
 DOOR:open,(59,17)
 # Objects
-OBJECT:('(',"信用卡"),(04,01),blessed,0,name:"The Platinum Yendorian Express Card"
+OBJECT:('(',"信用卡"),(04,01),blessed,0,name:"岩德至尊白金卡"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

@@ -52,7 +52,7 @@ boolean resuming;
     }
     flags.friday13 = friday_13th();
     if (flags.friday13) {
-        pline("Watch out!  Bad things can happen on Friday the 13th.");
+        pline("注意!  坏的事情会发生在13 号星期五.");
         change_luck(-1);
     }
 

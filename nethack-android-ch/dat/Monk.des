@@ -226,7 +226,7 @@ REGION:(00,00,25,10),unlit,"ordinary"
 # Stairs
 STAIR:(20,05),up
 # Objects
-OBJECT:('(',"眼镜"),$place[0],blessed,0,name:"The Eyes of the Overworld"
+OBJECT:('(',"眼镜"),$place[0],blessed,0,name:"超世界之眼"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

@@ -21,17 +21,17 @@ register struct monst *mon;
 
                 switch (monsndx(mon->data)) {
                 case PM_WEREWOLF:
-                    howler = "wolf";
+                    howler = "狼";
                     break;
                 case PM_WEREJACKAL:
-                    howler = "jackal";
+                    howler = "豺狼";
                     break;
                 default:
                     howler = (char *) 0;
                     break;
                 }
                 if (howler)
-                    You_hear("a %s howling at the moon.", howler);
+                    You_hear("一只%s对着月夜嚎叫.", howler);
             }
         }
     } else if (!rn2(30) || Protection_from_shape_changers) {
@@ -100,9 +100,13 @@ register struct monst *mon;
         return;
     }
 
+    char mchname[30];
+    strcpy(mchname,mons[pm].mname);
+    mchname[strlen(mons[pm].mname)-3] = '\0';
+
     if (canseemon(mon) && !Hallucination)
-        pline("%s changes into a %s.", Monnam(mon),
-              is_human(&mons[pm]) ? "human" : mons[pm].mname + 4);
+        pline("%s变成了%s.", Monnam(mon),
+              is_human(&mons[pm]) ? "人" : mchname);
 
     set_mon_data(mon, &mons[pm], 0);
     if (mon->msleeping || !mon->mcanmove) {
@@ -177,9 +181,13 @@ you_were()
     if (Unchanging || (u.umonnum == u.ulycn))
         return;
     if (controllable_poly) {
+        char mchname[30];
+        strcpy(mchname,mons[u.ulycn].mname);
+        mchname[strlen(mons[u.ulycn].mname)-3] = '\0';
+
         /* `+4' => skip "were" prefix to get name of beast */
-        Sprintf(qbuf, "Do you want to change into %s?",
-                an(mons[u.ulycn].mname + 4));
+        Sprintf(qbuf, "你想变成%s吗?",
+                mchname);
         if (yn(qbuf) == 'n')
             return;
     }
@@ -193,11 +201,11 @@ boolean purify;
     boolean controllable_poly = Polymorph_control && !(Stunned || Unaware);
 
     if (purify) {
-        You_feel("purified.");
+        You_feel("被净化.");
         u.ulycn = NON_PM; /* cure lycanthropy */
     }
     if (!Unchanging && is_were(youmonst.data)
-        && (!controllable_poly || yn("Remain in beast form?") == 'n'))
+        && (!controllable_poly || yn("保持野兽形态?") == 'n'))
         rehumanize();
 }
 

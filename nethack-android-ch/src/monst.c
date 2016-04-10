@@ -167,7 +167,7 @@ NEARDATA struct permonst mons[] = {
     /*
      * cockatrice
      */
-    MON("鸡身蛇尾怪", S_COCKATRICE, LVL(4, 4, 8, 30, 0),  //chickatrice
+    MON("小鸡蛇", S_COCKATRICE, LVL(4, 4, 8, 30, 0),  //chickatrice
         (G_GENO | G_SGROUP | 1),
         A(ATTK(AT_BITE, AD_PHYS, 1, 2), ATTK(AT_TUCH, AD_STON, 0, 0),
           ATTK(AT_NONE, AD_STON, 0, 0), NO_ATTK, NO_ATTK, NO_ATTK),
@@ -295,7 +295,7 @@ NEARDATA struct permonst mons[] = {
     /*
      * eyes
      */
-    MON("毒气孢子", S_EYE, LVL(1, 3, 10, 0, 0), (G_NOCORPSE | G_GENO | 1),  //gas spore
+    MON("气体孢子", S_EYE, LVL(1, 3, 10, 0, 0), (G_NOCORPSE | G_GENO | 1),  //gas spore
         A(ATTK(AT_BOOM, AD_PHYS, 4, 6), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(10, 10, MS_SILENT, MZ_SMALL), 0, 0,
@@ -479,7 +479,7 @@ NEARDATA struct permonst mons[] = {
           NO_ATTK),
         SIZ(20, 10, MS_CUSS, MZ_TINY), 0, 0, M1_REGEN, M2_WANDER | M2_STALK,
         M3_INFRAVISIBLE | M3_INFRAVISION, CLR_RED),
-    MON("狐猴", S_IMP, LVL(3, 3, 7, 0, -7),  //lemure
+    MON("劣魔", S_IMP, LVL(3, 3, 7, 0, -7),  //lemure
         (G_HELL | G_GENO | G_LGROUP | G_NOCORPSE | 1),
         A(ATTK(AT_CLAW, AD_PHYS, 1, 3), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
@@ -606,7 +606,7 @@ NEARDATA struct permonst mons[] = {
     /*
      * orcs
      */
-    MON("小妖精", S_ORC, LVL(0, 6, 10, 0, -3), (G_GENO | 2),  //goblin
+    MON("地精", S_ORC, LVL(0, 6, 10, 0, -3), (G_GENO | 2),  //goblin
         A(ATTK(AT_WEAP, AD_PHYS, 1, 4), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(400, 100, MS_ORC, MZ_SMALL), 0, 0, M1_HUMANOID | M1_OMNIVORE,
@@ -688,7 +688,7 @@ NEARDATA struct permonst mons[] = {
         SIZ(400, 100, MS_SILENT, MZ_LARGE), 0, 0,
         M1_ANIMAL | M1_NOHANDS | M1_OMNIVORE, M2_HOSTILE, M3_INFRAVISIBLE,
         CLR_BROWN),
-    MON("猛獁", S_QUADRUPED, LVL(5, 9, 0, 0, -2), (G_GENO | 1),  //mumak
+    MON("猛犸", S_QUADRUPED, LVL(5, 9, 0, 0, -2), (G_GENO | 1),  //mumak
         A(ATTK(AT_BUTT, AD_PHYS, 4, 12), ATTK(AT_BITE, AD_PHYS, 2, 6),
           NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(2500, 500, MS_ROAR, MZ_LARGE), 0, 0,
@@ -940,7 +940,7 @@ NEARDATA struct permonst mons[] = {
           NO_ATTK),
         SIZ(15, 10, MS_BUZZ, MZ_TINY), MR_ELEC | MR_POISON, 0, M1_ANIMAL,
         M2_HOSTILE, M3_INFRAVISIBLE, CLR_MAGENTA),
-    MON("xan", S_XAN, LVL(7, 18, -4, 0, 0), (G_GENO | 3),  //xan
+    MON("玄蚊", S_XAN, LVL(7, 18, -4, 0, 0), (G_GENO | 3),  //xan
         A(ATTK(AT_STNG, AD_LEGS, 1, 4), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(300, 300, MS_BUZZ, MZ_TINY), MR_POISON, MR_POISON,
@@ -1587,7 +1587,7 @@ struct permonst _mons2[] = {
         SIZ(1700, 250, MS_SILENT, MZ_HUGE), MR_COLD | MR_SLEEP | MR_POISON, 0,
         M1_BREATHLESS | M1_MINDLESS | M1_HUMANOID | M1_POIS,
         M2_UNDEAD | M2_HOSTILE | M2_STRONG, M3_INFRAVISION, CLR_BLUE),
-    MON("木乃伊巨人", S_MUMMY, LVL(8, 14, 3, 30, -7),  //giant mummy
+    MON("巨型木乃伊", S_MUMMY, LVL(8, 14, 3, 30, -7),  //giant mummy
         (G_GENO | G_NOCORPSE | 1),
         A(ATTK(AT_CLAW, AD_PHYS, 3, 4), ATTK(AT_CLAW, AD_PHYS, 3, 4), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
@@ -1734,7 +1734,7 @@ struct permonst _mons2[] = {
         SIZ(1000, 250, MS_SILENT, MZ_MEDIUM), 0, 0,
         M1_SWIM | M1_ANIMAL | M1_NOHANDS | M1_METALLIVORE, M2_HOSTILE,
         M3_INFRAVISIBLE, CLR_BROWN),
-    MON("神圣解咒师", S_RUSTMONST, LVL(12, 12, -10, 0, -3),  //disenchanter
+    MON("解魔怪", S_RUSTMONST, LVL(12, 12, -10, 0, -3),  //disenchanter
         (G_HELL | G_GENO | 2),
         A(ATTK(AT_CLAW, AD_ENCH, 4, 4), ATTK(AT_NONE, AD_ENCH, 0, 0), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
@@ -1757,7 +1757,7 @@ struct permonst _mons2[] = {
         M1_SWIM | M1_CONCEAL | M1_NOLIMBS | M1_ANIMAL | M1_SLITHY | M1_POIS
             | M1_OVIPAROUS | M1_CARNIVORE | M1_NOTAKE,
         M2_HOSTILE, 0, CLR_BROWN),
-    MON("美国水蛇", S_SNAKE, LVL(4, 15, 3, 0, 0),  //water moccasin
+    MON("水蝮蛇", S_SNAKE, LVL(4, 15, 3, 0, 0),  //water moccasin
         (G_GENO | G_NOGEN | G_LGROUP),
         A(ATTK(AT_BITE, AD_DRST, 1, 6), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
@@ -2011,7 +2011,7 @@ struct permonst _mons2[] = {
         SIZ(400, 50, MS_SILENT, MZ_SMALL), MR_COLD | MR_SLEEP | MR_POISON, 0,
         M1_BREATHLESS | M1_MINDLESS | M1_HUMANOID | M1_POIS | M1_OMNIVORE,
         M2_UNDEAD | M2_WANDER | M2_HOSTILE, M3_INFRAVISION, CLR_BLACK),
-    MON("僵尸巨人", S_ZOMBIE, LVL(8, 8, 6, 0, -4),  //giant zombie
+    MON("巨型僵尸", S_ZOMBIE, LVL(8, 8, 6, 0, -4),  //giant zombie
         (G_GENO | G_NOCORPSE | 1),
         A(ATTK(AT_CLAW, AD_PHYS, 2, 8), ATTK(AT_CLAW, AD_PHYS, 2, 8), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
@@ -2555,7 +2555,7 @@ struct permonst _mons2[] = {
         M3_WANTSAMUL | M3_INFRAVISIBLE | M3_INFRAVISION, HI_LORD),
     /* Riders -- the Four Horsemen of the Apocalypse ("War" == player)
      */
-    MON("死神", S_DEMON, LVL(30, 12, -5, 100, 0), (G_UNIQ | G_NOGEN),  //Death
+    MON("死亡", S_DEMON, LVL(30, 12, -5, 100, 0), (G_UNIQ | G_NOGEN),  //Death
         A(ATTK(AT_TUCH, AD_DETH, 8, 8), ATTK(AT_TUCH, AD_DETH, 8, 8), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(WT_HUMAN, 1, MS_RIDER, MZ_HUMAN),

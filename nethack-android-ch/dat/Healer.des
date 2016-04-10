@@ -235,7 +235,7 @@ STAIR:(39,10),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,40,11)
 # Objects
-OBJECT:(')',"铁头木棒"),(20,06),blessed,0,name:"The Staff of Aesculapius"
+OBJECT:(')',"铁头木棒"),(20,06),blessed,0,name:"阿斯克勒庇俄斯之杖"
 OBJECT:('/',"光亮"),(20,06)
 OBJECT:random,random
 OBJECT:random,random

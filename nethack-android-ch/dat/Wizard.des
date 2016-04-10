@@ -312,7 +312,7 @@ NON_DIGGABLE:(00,00,75,19)
 # The altar.  This is not a shrine.
 ALTAR:(16,11),noncoaligned,altar
 # Objects
-OBJECT:('"',"感知护身符"),(16,11),blessed,0,name:"The Eye of the Aethiopica"
+OBJECT:('"',"感知护身符"),(16,11),blessed,0,name:"艾奇奥匹亚之眼"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random

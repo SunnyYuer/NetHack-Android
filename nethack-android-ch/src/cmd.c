@@ -512,22 +512,22 @@ domonability(VOID_ARGS)
             if (split_mon(&youmonst, (struct monst *) 0))
                 dryup(u.ux, u.uy, TRUE);
         } else
-            There("is no fountain here.");
+            There("没有喷泉.");
     } else if (is_unicorn(youmonst.data)) {
         use_unicorn_horn((struct obj *) 0);
         return 1;
     } else if (youmonst.data->msound == MS_SHRIEK) {
-        You("shriek.");
+        You("尖叫.");
         if (u.uburied)
-            pline("Unfortunately sound does not carry well through rock.");
+            pline("不幸的是声音没有很好地通过岩石.");
         else
             aggravate();
     } else if (youmonst.data->mlet == S_VAMPIRE)
         return dopoly();
     else if (Upolyd)
-        pline("Any special ability you may have is purely reflexive.");
+        pline("你可能有的特殊能力顶多是纯粹的倒挂.");
     else
-        You("在正常的形式中没有特殊的能力!");
+        You("在正常的外貌中没有特殊的能力!");
     return 0;
 }
 
@@ -705,10 +705,10 @@ wiz_level_change(VOID_ARGS)
         return 0;
     }
     if (newlevel == u.ulevel) {
-        You("are already that experienced.");
+        You("已经是那个等级了.");
     } else if (newlevel < u.ulevel) {
         if (u.ulevel == 1) {
-            You("are already as inexperienced as you can get.");
+            You("已经达到最低等级.");
             return 0;
         }
         if (newlevel < 1)
@@ -717,7 +717,7 @@ wiz_level_change(VOID_ARGS)
             losexp("#levelchange");
     } else {
         if (u.ulevel >= MAXULEV) {
-            You("are already as experienced as you can get.");
+            You("你已经达到最高等级.");
             return 0;
         }
         if (newlevel > MAXULEV)
@@ -1198,7 +1198,7 @@ static winid en_win = WIN_ERR;
 static const char You_[] = "你 ", are[] = "是 ", were[] = "是 ",
                   have[] = "有 ", had[] = "有 ", can[] = "能 ",
                   could[] = "能 ";
-static const char have_been[] = "一直 ", have_never[] = "从来没有 ",
+static const char have_been[] = "一直是 ", have_never[] = "从来没有 ",
                   never[] = "没有 ";
 
 #define enl_msg(prefix, present, past, suffix, ps) \
@@ -1273,18 +1273,18 @@ int final;
 
     switch (category) {
     case HALF_PHDAM:
-        category_name = "physical";
+        category_name = "物理";
         break;
     case HALF_SPDAM:
-        category_name = "spell";
+        category_name = "魔法";
         break;
     default:
-        category_name = "unknown";
+        category_name = "未知";
         break;
     }
-    Sprintf(buf, " %s %s damage", (final || wizard) ? "half" : "reduced",
+    Sprintf(buf, " %s %s 伤害", (final || wizard) ? "一半的" : "减少的",
             category_name);
-    enl_msg(You_, "take", "took", buf, from_what(category));
+    enl_msg(You_, "受到", "受到", buf, from_what(category));
 }
 
 /* is hero actively using water walking capability on water (or lava)? */
@@ -2172,7 +2172,7 @@ int final;
         you_can("下蛋", "");
     if (u.ulycn >= LOW_PM) {
         /* "you are a werecreature [in beast form]" */
-        Strcpy(buf, an(mons[u.ulycn].mname));
+        Strcpy(buf, mons[u.ulycn].mname);
         if (u.umonnum == u.ulycn) {
             Strcat(buf, " 野兽形态");
             if (wizard)
@@ -2252,7 +2252,7 @@ int final;
         char buf2[BUFSZ];
 
         for (f = ffruit; f; f = f->nextf) {
-            Sprintf(buf, "水果 %d ", ++fcount);
+            Sprintf(buf, "水果%d ", ++fcount);
             Sprintf(buf2, "%s ( 编号 %d)", f->fname, f->fid);
             enl_msg(buf, "是 ", "是 ", buf2, "");
         }
@@ -2505,7 +2505,7 @@ int final;
         you_have_been("忠实的裸体主义者");
 
     if (!u.uconduct.food)
-        enl_msg(You_, "前行", "前行", " 没有食物", "");
+        enl_msg(You_, "没有", "没有", " 吃过食物", "");
     /* But beverages are okay */
     else if (!u.uconduct.unvegan)
         you_have_X("遵循严格的纯素饮食");
@@ -2554,7 +2554,7 @@ int final;
     }
 
     if (!u.uconduct.wishes) {
-        you_have_X("未许愿过");
+        you_have("未许愿过", "");
     } else {
         Sprintf(buf, "用过%ld 次许愿", u.uconduct.wishes);
         you_have_X(buf);
@@ -3352,7 +3352,7 @@ register char *cmd;
            a movement attempt, but that didn't provide for any
            feedback and led to strangeness if the key pressed
            ('u' in particular) was overloaded for num_pad use */
-        You_cant("get there from here...");
+        You_cant("从这里到那里...");
         context.run = 0;
         context.nopick = context.forcefight = FALSE;
         context.move = context.mv = FALSE;
@@ -3396,7 +3396,7 @@ register char *cmd;
         if ((tlist = Cmd.commands[*cmd & 0xff]) != 0) {
 #endif
             if (u.uburied && !tlist->can_if_buried) {
-                You_cant("do that while you are buried!");
+                You_cant("在你被埋葬的时候做那个!");
                 res = 0;
             } else {
                 /* we discard 'const' because some compilers seem to have
@@ -3574,16 +3574,16 @@ retry:
                 did_help =
                     help_dir((s && *s == '^') ? dirsym : 0,
                              help_requested ? (const char *) 0
-                                            : "Invalid direction key!");
+                                            : "无效的方向键!");
                 if (help_requested)
                     goto retry;
             }
             if (!did_help)
-                pline("What a strange direction!");
+                pline("好奇怪的方向!");
         }
         return 0;
     } else if (is_mov && !dxdy_moveok()) {
-        You_cant("orient yourself that direction.");
+        You_cant("使自己朝向那个方向.");
         return 0;
     }
     if (!u.dz && (Stunned || (Confusion && !rn2(5))))
@@ -3630,7 +3630,7 @@ const char *msg;
         }
     }
     if (NODIAG(u.umonnum)) {
-        putstr(win, 0, "Valid direction keys in your current form are:");
+        putstr(win, 0, "你当前的外貌下有效的方向键是:");
         Sprintf(buf, "             %c   ", Cmd.move_N);
         putstr(win, 0, buf);
         putstr(win, 0, "             |   ");

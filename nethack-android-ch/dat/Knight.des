@@ -276,7 +276,7 @@ STAIR:(03,08),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Objects
-OBJECT:('(',"反光镜"),(50,06),blessed,0,name:"The Magic Mirror of Merlin"
+OBJECT:('(',"反光镜"),(50,06),blessed,0,name:"梅林的魔镜"
 OBJECT:random,(33,01)
 OBJECT:random,(33,02)
 OBJECT:random,(33,03)

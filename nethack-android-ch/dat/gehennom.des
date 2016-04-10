@@ -240,9 +240,9 @@ MONSTER:('m',"巨型拟型怪"),$place[3],m_feature "fountain"
 # The demon of the swamp
 MONSTER:('&',"朱比烈斯"),(25,08)
 # And a couple demons
-MONSTER:('i',"狐猴"),(43,08)
-MONSTER:('i',"狐猴"),(44,08)
-MONSTER:('i',"狐猴"),(45,08)
+MONSTER:('i',"劣魔"),(43,08)
+MONSTER:('i',"劣魔"),(44,08)
+MONSTER:('i',"劣魔"),(45,08)
 # Some liquids and gems
 OBJECT:'*',(43,06)
 OBJECT:'*',(45,06)
@@ -411,9 +411,9 @@ MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
-MONSTER:('Z',"僵尸巨人"),random
-MONSTER:('Z',"僵尸巨人"),random
-MONSTER:('Z',"僵尸巨人"),random
+MONSTER:('Z',"巨型僵尸"),random
+MONSTER:('Z',"巨型僵尸"),random
+MONSTER:('Z',"巨型僵尸"),random
 MONSTER:('Z',"双头僵尸"),random
 MONSTER:('Z',"双头僵尸"),random
 MONSTER:('Z',"双头僵尸"),random

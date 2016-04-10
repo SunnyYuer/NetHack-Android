@@ -36,8 +36,8 @@ const struct Role roles[] = {
         { "馆长", 0 } },  //Curator
       "羽蛇神", "卡玛瑟特利", "修堤库特里", /* Central American */
       "Arc",
-      "the College of Archeology",
-      "the Tomb of the Toltec Kings",
+      "考古学院",
+      "托尔特克国王墓室",
       PM_ARCHEOLOGIST,
       NON_PM,
       NON_PM,
@@ -78,8 +78,8 @@ const struct Role roles[] = {
         { "征服者", "女征服者" } },  //Conqueror Conqueress
       "米特拉", "克罗姆", "赛特", /* Hyborian */
       "Bar",
-      "the Camp of the Duali Tribe",
-      "the Duali Oasis",
+      "原始部落营地",
+      "原始绿洲",
       PM_BARBARIAN,
       NON_PM,
       NON_PM,
@@ -120,8 +120,8 @@ const struct Role roles[] = {
         { "开拓者", 0 } },  //Pioneer
       "安努", "_伊师塔", "安沙尔", /* Babylonian */
       "Cav",
-      "the Caves of the Ancestors",
-      "the Dragon's Lair",
+      "祖先洞穴",
+      "龙巢穴",
       PM_CAVEMAN,
       PM_CAVEWOMAN,
       PM_LITTLE_DOG,
@@ -162,8 +162,8 @@ const struct Role roles[] = {
         { "外科医师", 0 } },  //Chirurgeon
       "_雅典娜", "赫耳墨斯", "波塞冬", /* Greek */
       "Hea",
-      "the Temple of Epidaurus",
-      "the Temple of Coeus",
+      "埃皮达鲁斯神庙",
+      "科俄斯神庙",
       PM_HEALER,
       NON_PM,
       NON_PM,
@@ -203,8 +203,8 @@ const struct Role roles[] = {
         { "圣骑士", 0 } },  //Paladin
       "鲁格", "_布里吉特", "玛娜曼麦克利尔", /* Celtic */
       "Kni",
-      "Camelot Castle",
-      "the Isle of Glass",
+      "卡米洛特城堡",
+      "玻璃岛",
       PM_KNIGHT,
       NON_PM,
       PM_PONY,
@@ -244,8 +244,8 @@ const struct Role roles[] = {
         { "禅师", 0 } },  //Master
       "山雷精", "赤松子", "黄帝", /* Chinese */
       "Mon",
-      "the Monastery of Chan-Sune",
-      "the Monastery of the Earth-Lord",
+      "禅本寺",
+      "大地之主寺庙",
       PM_MONK,
       NON_PM,
       NON_PM,
@@ -286,8 +286,8 @@ const struct Role roles[] = {
         { "教皇", "女教皇" } },  //High Priest
       0, 0, 0, /* deities from a randomly chosen other role will be used */
       "Pri",
-      "the Great Temple",
-      "the Temple of Nalzok",
+      "圣堂",
+      "纳宗殿",
       PM_PRIEST,
       PM_PRIESTESS,
       NON_PM,
@@ -330,8 +330,8 @@ const struct Role roles[] = {
         { "盗圣", 0 } },  //Thief
       "伊赛克", "莫格", "科斯", /* Nehwon */
       "Rog",
-      "the Thieves' Guild Hall",
-      "the Assassins' Guild Hall",
+      "盗贼会馆",
+      "刺客会馆",
       PM_ROGUE,
       NON_PM,
       NON_PM,
@@ -385,8 +385,8 @@ const struct Role roles[] = {
         { "神射手", "女神射手" } },  //Marksman Markswoman
       "墨丘利", "_维纳斯", "马耳斯", /* Roman/planets */
       "Ran",
-      "Orion's camp",
-      "the cave of the wumpus",
+      "猎户座营地",
+      "狮头象洞穴",
       PM_RANGER,
       NON_PM,
       PM_LITTLE_DOG /* Orion & canis major */,
@@ -427,8 +427,8 @@ const struct Role roles[] = {
         { "将", 0 } },       /* supreme commander, warlord */  //Shogun
       "_天照女神", "雷神", "须佐之男", /* Japanese */
       "Sam",
-      "the Castle of the Taro Clan",
-      "the Shogun's Castle",
+      "塔罗家族城堡",
+      "将军城堡",
       PM_SAMURAI,
       NON_PM,
       PM_LITTLE_DOG,
@@ -468,8 +468,8 @@ const struct Role roles[] = {
         { "冒险家", 0 } },  //Adventurer
       "盲木卫", "_圣夫人", "昂福尔", /* Discworld */
       "Tou",
-      "Ankh-Morpork",
-      "the Thieves' Guild Hall",
+      "安科莫波克",
+      "盗贼会馆",
       PM_TOURIST,
       NON_PM,
       NON_PM,
@@ -509,8 +509,8 @@ const struct Role roles[] = {
         { "君主", "女神" } },  //Lady
       "蒂尔", "欧丁神", "洛基", /* Norse */
       "Val",
-      "the Shrine of Destiny",
-      "the cave of Surtur",
+      "命运之神殿",
+      "叙尔特洞穴",
       PM_VALKYRIE,
       NON_PM,
       NON_PM /*PM_WINTER_WOLF_CUB*/,
@@ -550,8 +550,8 @@ const struct Role roles[] = {
         { "大魔导师", 0 } },  //Mage
       "卜塔", "透特", "安赫", /* Egyptian */
       "Wiz",
-      "the Lonely Tower",
-      "the Tower of Darkness",
+      "孤独塔",
+      "黑暗之塔",
       PM_WIZARD,
       NON_PM,
       PM_KITTEN,

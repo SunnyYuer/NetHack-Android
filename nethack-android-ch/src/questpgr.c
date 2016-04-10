@@ -177,7 +177,7 @@ ldrname()
 {
     int i = urole.ldrnum;
 
-    Sprintf(nambuf, "%s%s", type_is_pname(&mons[i]) ? "" : "the ",
+    Sprintf(nambuf, "%s%s", type_is_pname(&mons[i]) ? "" : " ",
             mons[i].mname);
     return nambuf;
 }
@@ -202,7 +202,7 @@ neminame()
 {
     int i = urole.neminum;
 
-    Sprintf(nambuf, "%s%s", type_is_pname(&mons[i]) ? "" : "the ",
+    Sprintf(nambuf, "%s%s", type_is_pname(&mons[i]) ? "" : " ",
             mons[i].mname);
     return nambuf;
 }
@@ -392,7 +392,7 @@ char *in_line, *out_line;
                     cc += strlen(cc);
                     continue; /* for */
                 case 'a':
-                    Strcat(cc, an(cvt_buf));
+                    Strcat(cc, cvt_buf);
                     cc += strlen(cc);
                     continue; /* for */
 

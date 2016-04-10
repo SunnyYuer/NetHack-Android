@@ -565,7 +565,7 @@ MONSTER:('@',"虔诚的牧师"),(38,12),noalign,hostile
 MONSTER:('@',"虔诚的牧师"),(36,13),noalign,hostile
 MONSTER:('A',"天使"),(38,13),noalign,hostile
 MONSTER:('A',"天使"),(37,13),noalign,hostile
-MONSTER:('&',"死神"),$place[1],hostile
+MONSTER:('&',"死亡"),$place[1],hostile
 # East round room
 MONSTER:('@',"虔诚的牧师"),(56,09),noalign,hostile
 MONSTER:('@',"虔诚的牧师"),(55,08),noalign,hostile
