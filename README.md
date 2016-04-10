@@ -1,4 +1,4 @@
-# NetHack安卓版汉化版
+# NetHack安卓汉化版
 
 更改于英文NetHack安卓版，地址为https://github.com/gurrhack/NetHack-Android
 
@@ -32,6 +32,9 @@ https://github.com/SunnyEric/NetHack_android
 1. 打开Eclipse
 2. 导入安卓工程
 3. 运行
+
+##NetHack中文维基
+[NetHack中文维基](http://nhcnwiki.wealthlibre.info/%E9%A6%96%E9%A1%B5)
 
 ##问题反馈或建议
 * 百度贴吧http://tieba.baidu.com/p/4359900236
