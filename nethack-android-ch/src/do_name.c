@@ -894,7 +894,7 @@ boolean called;
 
     /* unseen monsters, etc.  Use "it" */
     if (do_it) {
-        Strcpy(buf, "it");
+        Strcpy(buf, "它");
         return buf;
     }
 
@@ -920,9 +920,9 @@ boolean called;
     /* an "aligned priest" not flagged as a priest or minion should be
        "priest" or "priestess" (normally handled by priestname()) */
     if (mdat == &mons[PM_ALIGNED_PRIEST])
-        pm_name = mtmp->female ? "priestess" : "priest";
+        pm_name = mtmp->female ? "女牧师" : "牧师";
     else if (mdat == &mons[PM_HIGH_PRIEST] && mtmp->female)
-        pm_name = "high priestess";
+        pm_name = "高级女祭司";
 
     /* Shopkeepers: use shopkeeper name.  For normal shopkeepers, just
      * "Asidonhopo"; for unusual ones, "Asidonhopo the invisible
@@ -933,7 +933,7 @@ boolean called;
         if (adjective && article == ARTICLE_THE) {
             /* pathological case: "the angry Asidonhopo the blue dragon"
                sounds silly */
-            Strcpy(buf, "the ");
+            Strcpy(buf, "");
             Strcat(strcat(buf, adjective), " ");
             Strcat(buf, shkname(mtmp));
             return buf;
@@ -941,9 +941,9 @@ boolean called;
         Strcat(buf, shkname(mtmp));
         if (mdat == &mons[PM_SHOPKEEPER] && !do_invis)
             return buf;
-        Strcat(buf, " the ");
+        Strcat(buf, " ");
         if (do_invis)
-            Strcat(buf, "invisible ");
+            Strcat(buf, "隐形的 ");
         Strcat(buf, pm_name);
         return buf;
     }
@@ -952,10 +952,10 @@ boolean called;
     if (adjective)
         Strcat(strcat(buf, adjective), " ");
     if (do_invis)
-        Strcat(buf, "invisible ");
+        Strcat(buf, "隐形的 ");
     if (do_saddle && (mtmp->misc_worn_check & W_SADDLE) && !Blind
         && !Hallucination)
-        Strcat(buf, "saddled ");
+        Strcat(buf, "装有鞍的 ");
     if (buf[0] != 0)
         has_adjectives = TRUE;
     else
@@ -973,10 +973,10 @@ boolean called;
         char *name = MNAME(mtmp);
 
         if (mdat == &mons[PM_GHOST]) {
-            Sprintf(eos(buf), "%s ghost", s_suffix(name));
+            Sprintf(eos(buf), "%s 鬼魂", s_suffix(name));
             name_at_start = TRUE;
         } else if (called) {
-            Sprintf(eos(buf), "%s called %s", pm_name, name);
+            Sprintf(eos(buf), "%s 叫做 %s", pm_name, name);
             name_at_start = (boolean) type_is_pname(mdat);
         } else if (is_mplayer(mdat) && (bp = strstri(name, " the ")) != 0) {
             /* <name> the <adjective> <invisible> <saddled> <rank> */
@@ -1030,7 +1030,7 @@ boolean called;
             Strcpy(buf, buf2);
             return buf;
         case ARTICLE_A:
-            return an(buf);
+            return buf;
         case ARTICLE_NONE:
         default:
             return buf;
@@ -1156,8 +1156,8 @@ char *outbuf;
        its own obfuscation) */
     if (mon->data == &mons[PM_HIGH_PRIEST] && !Hallucination
         && Is_astralevel(&u.uz) && distu(mon->mx, mon->my) > 2) {
-        Strcpy(outbuf, article == ARTICLE_THE ? "the " : "");
-        Strcat(outbuf, mon->female ? "high priestess" : "high priest");
+        Strcpy(outbuf, article == ARTICLE_THE ? "" : "");
+        Strcat(outbuf, mon->female ? "高级女祭司" : "高级祭司");
     } else {
         Strcpy(outbuf, x_monnam(mon, article, (char *) 0, 0, TRUE));
     }

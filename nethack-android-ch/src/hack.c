@@ -114,14 +114,14 @@ moverock()
         if (Levitation || Is_airlevel(&u.uz)) {
             if (Blind)
                 feel_location(sx, sy);
-            You("don't have enough leverage to push %s.", the(xname(otmp)));
+            You("没有足够的后力来推动 %s.", xname(otmp));
             /* Give them a chance to climb over it? */
             return -1;
         }
         if (verysmall(youmonst.data) && !u.usteed) {
             if (Blind)
                 feel_location(sx, sy);
-            pline("You're too small to push that %s.", xname(otmp));
+            pline("你太小了来推动那个 %s.", xname(otmp));
             goto cannot_push;
         }
         if (isok(rx, ry) && !IS_ROCK(levl[rx][ry].typ)
@@ -135,12 +135,12 @@ moverock()
             if (Sokoban && u.dx && u.dy) {
                 if (Blind)
                     feel_location(sx, sy);
-                pline("%s won't roll diagonally on this %s.",
-                      The(xname(otmp)), surface(sx, sy));
+                pline("%s 不能对角滚动在 %s上.",
+                      xname(otmp), surface(sx, sy));
                 goto cannot_push;
             }
 
-            if (revive_nasty(rx, ry, "You sense movement on the other side."))
+            if (revive_nasty(rx, ry, "你感觉到另一边的移动."))
                 return -1;
 
             if (mtmp && !noncorporeal(mtmp->data)
@@ -150,14 +150,14 @@ moverock()
                 if (Blind)
                     feel_location(sx, sy);
                 if (canspotmon(mtmp))
-                    pline("There's %s on the other side.", a_monnam(mtmp));
+                    pline("另一边有 %s.", a_monnam(mtmp));
                 else {
-                    You_hear("a monster behind %s.", the(xname(otmp)));
+                    You_hear("一只怪物在 %s后面.", xname(otmp));
                     map_invisible(rx, ry);
                 }
                 if (flags.verbose)
-                    pline("Perhaps that's why %s cannot move it.",
-                          u.usteed ? y_monnam(u.usteed) : "you");
+                    pline("也许那就是为什么 %s 不能移动它.",
+                          u.usteed ? y_monnam(u.usteed) : "你");
                 goto cannot_push;
             }
 
@@ -172,9 +172,9 @@ moverock()
                         obj_extract_self(otmp);
                         place_object(otmp, rx, ry);
                         newsym(sx, sy);
-                        pline("KAABLAMM!!!  %s %s land mine.",
-                              Tobjnam(otmp, "trigger"),
-                              ttmp->madeby_u ? "your" : "a");
+                        pline("嘣!!!  %s了%s地雷.",
+                              Tobjnam(otmp, "触发"),
+                              ttmp->madeby_u ? "你的" : "一个");
                         blow_up_landmine(ttmp);
                         /* if the boulder remains, it should fill the pit */
                         fill_pit(u.ux, u.uy);
@@ -191,7 +191,7 @@ moverock()
                        if this is one among multiple boulders */
                     if (!Blind)
                         viz_array[ry][rx] |= IN_SIGHT;
-                    if (!flooreffects(otmp, rx, ry, "fall")) {
+                    if (!flooreffects(otmp, rx, ry, "掉落")) {
                         place_object(otmp, rx, ry);
                     }
                     if (mtmp && !Blind)
@@ -200,16 +200,16 @@ moverock()
                 case HOLE:
                 case TRAPDOOR:
                     if (Blind)
-                        pline("Kerplunk!  You no longer feel %s.",
-                              the(xname(otmp)));
+                        pline("扑通!  你不再能感受到 %s.",
+                              xname(otmp));
                     else
-                        pline("%s%s and %s a %s in the %s!",
+                        pline("%s%s并%s%s 在%s上!",
                               Tobjnam(otmp, (ttmp->ttyp == TRAPDOOR)
-                                                ? "trigger"
-                                                : "fall"),
-                              (ttmp->ttyp == TRAPDOOR) ? "" : " into",
-                              otense(otmp, "plug"),
-                              (ttmp->ttyp == TRAPDOOR) ? "trap door" : "hole",
+                                                ? "触发"
+                                                : "掉落"),
+                              (ttmp->ttyp == TRAPDOOR) ? "" : "进",
+                              otense(otmp, "堵上"),
+                              (ttmp->ttyp == TRAPDOOR) ? "陷阱门" : "洞",
                               surface(rx, ry));
                     deltrap(ttmp);
                     delobj(otmp);
@@ -231,11 +231,11 @@ moverock()
                             goto dopush;
                     }
                     if (u.usteed)
-                        pline("%s pushes %s and suddenly it disappears!",
-                              upstart(y_monnam(u.usteed)), the(xname(otmp)));
+                        pline("%s 推动%s 突然它不见了!",
+                              upstart(y_monnam(u.usteed)), xname(otmp));
                     else
-                        You("push %s and suddenly it disappears!",
-                            the(xname(otmp)));
+                        You("推动 %s 突然它不见了!",
+                            xname(otmp));
                     if (ttmp->ttyp == TELEP_TRAP) {
                         (void) rloco(otmp);
                     } else {
@@ -278,13 +278,13 @@ moverock()
             dopush:
                 if (!u.usteed) {
                     if (moves > lastmovetime + 2 || moves < lastmovetime)
-                        pline("With %s effort you move %s.",
-                              throws_rocks(youmonst.data) ? "little"
-                                                          : "great",
-                              the(xname(otmp)));
+                        pline("你用%s 力气来移动 %s.",
+                              throws_rocks(youmonst.data) ? "很少的"
+                                                          : "很大的",
+                              xname(otmp));
                     exercise(A_STR, TRUE);
                 } else
-                    pline("%s moves %s.", upstart(y_monnam(u.usteed)),
+                    pline("%s 移动%s.", upstart(y_monnam(u.usteed)),
                           the(xname(otmp)));
                 lastmovetime = moves;
             }
@@ -302,22 +302,23 @@ moverock()
         } else {
         nopushmsg:
             if (u.usteed)
-                pline("%s tries to move %s, but cannot.",
+                pline("%s 试图移动%s, 但没办法.",
                       upstart(y_monnam(u.usteed)), the(xname(otmp)));
             else
-                You("try to move %s, but in vain.", the(xname(otmp)));
+                You("试图移动 %s, 但没用.", the(xname(otmp)));
             if (Blind)
                 feel_location(sx, sy);
         cannot_push:
             if (throws_rocks(youmonst.data)) {
                 if (u.usteed && P_SKILL(P_RIDING) < P_BASIC) {
-                    You("aren't skilled enough to %s %s from %s.",
-                        (flags.pickup && !Sokoban) ? "pick up" : "push aside",
-                        the(xname(otmp)), y_monnam(u.usteed));
+                    You("还不够熟练来从%s %s%s.",
+                        y_monnam(u.usteed),
+                        (flags.pickup && !Sokoban) ? "捡起" : "推开",
+                        the(xname(otmp)));
                 } else {
-                    pline("However, you can easily %s.",
-                          (flags.pickup && !Sokoban) ? "pick it up"
-                                                     : "push it aside");
+                    pline("然而, 你能很容易地%s.",
+                          (flags.pickup && !Sokoban) ? "捡起它"
+                                                     : "推开它");
                     sokoban_guilt();
                     break;
                 }
@@ -330,7 +331,7 @@ moverock()
                                             && IS_ROCK(levl[sx][u.uy].typ))))
                     || verysmall(youmonst.data))) {
                 pline(
-                   "However, you can squeeze yourself into a small opening.");
+                   "然而, 你可以把自己挤进一个小开口.");
                 sokoban_guilt();
                 break;
             } else
@@ -1726,7 +1727,7 @@ overexertion()
         if (*hp > 1) {
             *hp -= 1;
         } else {
-            You("pass out from exertion!");
+            You("在使劲的时候昏倒了!");
             exercise(A_CON, FALSE);
             fall_asleep(-10, FALSE);
         }
@@ -2779,7 +2780,7 @@ const char *str;
         if (str)
             pline1(str);
         else
-            You_cant("do that while carrying so much stuff.");
+            You_cant("在携带如此多的东西时做那个.");
         return 1;
     }
     return 0;

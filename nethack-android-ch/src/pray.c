@@ -537,7 +537,7 @@ aligntyp resp_god;
           "突然一道闪电从天上落到你身上!");
         pline("它击中了 %s!", mon_nam(u.ustuck));
         if (!resists_elec(u.ustuck)) {
-            pline("%s 被炸成灰烬!", Monnam(u.ustuck));
+            pline("%s 被电成灰烬!", Monnam(u.ustuck));
             /* Yup, you get experience.  It takes guts to successfully
              * pull off this trick on your god, anyway.
              */
@@ -607,7 +607,7 @@ fry_by_god(resp_god, via_disintegration)
 aligntyp resp_god;
 boolean via_disintegration;
 {
-    You("%s!", !via_disintegration ? "被炸成灰烬"
+    You("%s!", !via_disintegration ? "被电成灰烬"
                                    : "被分解为一堆灰尘");
     killer.format = KILLED_BY;
     Sprintf(killer.name, "the wrath of %s", align_gname(resp_god));

@@ -2091,19 +2091,19 @@ const char *str;
 
     if (orefl && orefl->otyp == SHIELD_OF_REFLECTION) {
         if (str) {
-            pline(str, s_suffix(mon_nam(mon)), "shield");
+            pline(str, s_suffix(mon_nam(mon)), "盾牌");
             makeknown(SHIELD_OF_REFLECTION);
         }
         return TRUE;
     } else if (arti_reflects(MON_WEP(mon))) {
         /* due to wielded artifact weapon */
         if (str)
-            pline(str, s_suffix(mon_nam(mon)), "weapon");
+            pline(str, s_suffix(mon_nam(mon)), "武器");
         return TRUE;
     } else if ((orefl = which_armor(mon, W_AMUL))
                && orefl->otyp == AMULET_OF_REFLECTION) {
         if (str) {
-            pline(str, s_suffix(mon_nam(mon)), "amulet");
+            pline(str, s_suffix(mon_nam(mon)), "护身符");
             makeknown(AMULET_OF_REFLECTION);
         }
         return TRUE;
@@ -2111,13 +2111,13 @@ const char *str;
                && (orefl->otyp == SILVER_DRAGON_SCALES
                    || orefl->otyp == SILVER_DRAGON_SCALE_MAIL)) {
         if (str)
-            pline(str, s_suffix(mon_nam(mon)), "armor");
+            pline(str, s_suffix(mon_nam(mon)), "盔甲");
         return TRUE;
     } else if (mon->data == &mons[PM_SILVER_DRAGON]
                || mon->data == &mons[PM_CHROMATIC_DRAGON]) {
         /* Silver dragons only reflect when mature; babies do not */
         if (str)
-            pline(str, s_suffix(mon_nam(mon)), "scales");
+            pline(str, s_suffix(mon_nam(mon)), "鳞片");
         return TRUE;
     }
     return FALSE;

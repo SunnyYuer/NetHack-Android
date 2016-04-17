@@ -545,7 +545,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
     if (obj->otyp == T_SHIRT && program_state.gameover) {
         char tmpbuf[BUFSZ];
 
-        Sprintf(eos(buf), " with text \"%s\"", tshirt_text(obj, tmpbuf));
+        Sprintf(eos(buf), " 带有文字 \"%s\"", tshirt_text(obj, tmpbuf));
     }
 
     if (has_oname(obj) && dknown) {
@@ -1114,7 +1114,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
             attached in order to use priestname() for priests and minions.] */
     } else if (omndx == PM_ALIGNED_PRIEST) {
         /* avoid "aligned priest"; it just exposes internal details */
-        mname = "priest";
+        mname = "牧师";
     } else {
         mname = mons[omndx].mname;
         if (the_unique_pm(&mons[omndx]) || type_is_pname(&mons[omndx])) {

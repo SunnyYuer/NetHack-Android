@@ -233,11 +233,11 @@ VA_DECL(const char *, line)
     VA_START(line);
     VA_INIT(line, const char *);
     if (Underwater)
-        YouPrefix(tmp, "You barely hear ", line);
+        YouPrefix(tmp, "你勉强听见 ", line);
     else if (Unaware)
-        YouPrefix(tmp, "You dream that you hear ", line);
+        YouPrefix(tmp, "你梦到你听见 ", line);
     else
-        YouPrefix(tmp, "You hear ", line);
+        YouPrefix(tmp, "你听见 ", line);
     vpline(strcat(tmp, line), VA_ARGS);
     VA_END();
 }

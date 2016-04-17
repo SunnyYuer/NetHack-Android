@@ -151,9 +151,9 @@ const char *verb;
         if (((mtmp = m_at(x, y)) && mtmp->mtrapped)
             || (u.utrap && u.ux == x && u.uy == y)) {
             if (*verb)
-                pline_The("boulder %s into the pit%s.",
-                          vtense((const char *) 0, verb),
-                          (mtmp) ? "" : " with you");
+                pline_The("巨石%s%s进了坑.",
+                          (mtmp) ? "" : " 和你一起",
+                          vtense((const char *) 0, verb));
             if (mtmp) {
                 if (!passes_walls(mtmp->data) && !throws_rocks(mtmp->data)) {
                     if (hmon(mtmp, obj, TRUE) && !is_whirly(mtmp->data))
@@ -171,15 +171,15 @@ const char *verb;
         }
         if (*verb) {
             if (Blind && (x == u.ux) && (y == u.uy)) {
-                You_hear("a CRASH! beneath you.");
+                You_hear("摔碎声! 在你下面.");
             } else if (!Blind && cansee(x, y)) {
-                pline_The("boulder %s%s.", t->tseen ? "" : "triggers and ",
+                pline_The("巨石 %s%s.", t->tseen ? "" : "触发了并",
                           t->ttyp == TRAPDOOR
-                              ? "plugs a trap door"
-                              : t->ttyp == HOLE ? "plugs a hole"
-                                                : "fills a pit");
+                              ? "堵上了陷阱门"
+                              : t->ttyp == HOLE ? "堵上了洞"
+                                                : "填满了坑");
             } else {
-                You_hear("a boulder %s.", verb);
+                You_hear("一个巨石 %s.", verb);
             }
         }
         deltrap(t);
@@ -197,9 +197,9 @@ const char *verb;
             && ((x == u.ux) && (y == u.uy))) {
             if (!Underwater) {
                 if (weight(obj) > 9) {
-                    pline("Splash!");
+                    pline("飞溅声!");
                 } else if (Levitation || Flying) {
-                    pline("Plop!");
+                    pline("扑通!");
                 }
             }
             map_background(x, y, 0);
@@ -209,10 +209,10 @@ const char *verb;
     } else if (u.ux == x && u.uy == y && (t = t_at(x, y)) != 0
                && uteetering_at_seen_pit(t)) {
         if (Blind && !Deaf)
-            You_hear("%s tumble downwards.", the(xname(obj)));
+            You_hear("%s 向下塌陷的声音.", xname(obj));
         else
-            pline("%s %s into %s pit.", The(xname(obj)),
-                  otense(obj, "tumble"), the_your[t->madeby_u]);
+            pline("%s %s进%s坑.", xname(obj),
+                  otense(obj, "倒塌"), the_your[t->madeby_u]);
     } else if (obj->globby) {
         /* Globby things like puddings might stick together */
         while (obj
@@ -498,8 +498,8 @@ const char *word;
                implicitly forced to be 1; replicate its kludge... */
             if (!strcmp(word, "投掷") && obj->quan > 1L)  //throw
                 obj->corpsenm = 1;
-            pline("For some reason, you cannot %s%s the stone%s!", word,
-                  obj->corpsenm ? " any of" : "", plur(obj->quan));
+            pline("由于某些原因, 你不能%s%s 石头!", word,
+                  obj->corpsenm ? " 任何" : "");
         }
         obj->corpsenm = 0; /* reset */
         obj->bknown = 1;
@@ -507,12 +507,12 @@ const char *word;
     }
     if (obj->otyp == LEASH && obj->leashmon != 0) {
         if (*word)
-            pline_The("leash is tied around your %s.", body_part(HAND));
+            pline_The("狗链系在你的 %s上.", body_part(HAND));
         return FALSE;
     }
     if (obj->owornmask & W_SADDLE) {
         if (*word)
-            You("cannot %s %s you are sitting on.", word, something);
+            You("不能%s 你坐着的%s.", word, something);
         return FALSE;
     }
     return TRUE;
@@ -547,7 +547,7 @@ register struct obj *obj;
 
             /* doname can call s_suffix, reusing its buffer */
             Strcpy(buf, s_suffix(mon_nam(u.ustuck)));
-            You("drop %s into %s %s.", doname(obj), buf,
+            You("把 %s 扔进 %s %s.", doname(obj), buf,
                 mbodypart(u.ustuck, STOMACH));
         }
     } else {
@@ -565,7 +565,7 @@ register struct obj *obj;
             if (levhack)
                 ELevitation = W_ART; /* other than W_ARTI */
             if (flags.verbose)
-                You("drop %s.", doname(obj));
+                You("扔掉%s.", doname(obj));
             /* Ensure update when we drop gold objects */
             if (obj->oclass == COIN_CLASS)
                 context.botl = 1;

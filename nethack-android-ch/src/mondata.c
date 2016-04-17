@@ -1016,13 +1016,13 @@ struct monst *mtmp;
         return mtmp->data;
 }
 
-static const char *levitate[4] = { "float", "Float", "wobble", "Wobble" };
-static const char *flys[4] = { "fly", "Fly", "flutter", "Flutter" };
-static const char *flyl[4] = { "fly", "Fly", "stagger", "Stagger" };
-static const char *slither[4] = { "slither", "Slither", "falter", "Falter" };
-static const char *ooze[4] = { "ooze", "Ooze", "tremble", "Tremble" };
-static const char *immobile[4] = { "wiggle", "Wiggle", "pulsate", "Pulsate" };
-static const char *crawl[4] = { "crawl", "Crawl", "falter", "Falter" };
+static const char *levitate[4] = { "飘", "飘", "摇晃", "摇晃" };
+static const char *flys[4] = { "飞", "飞", "飘动", "飘动" };
+static const char *flyl[4] = { "飞", "飞", "蹒跚", "蹒跚" };
+static const char *slither[4] = { "滑", "滑", "踉跄", "踉跄" };
+static const char *ooze[4] = { "渗", "渗", "颤抖", "颤抖" };
+static const char *immobile[4] = { "摆动", "摆动", "震动", "震动" };
+static const char *crawl[4] = { "爬", "爬", "踉跄", "踉跄" };
 
 const char *
 locomotion(ptr, def)
@@ -1071,16 +1071,16 @@ struct attack *mattk;
     case PM_FIRE_VORTEX:
     case PM_FIRE_ELEMENTAL:
     case PM_SALAMANDER:
-        what = "already on fire";
+        what = "已经着火了";
         break;
     case PM_WATER_ELEMENTAL:
     case PM_FOG_CLOUD:
     case PM_STEAM_VORTEX:
-        what = "boiling";
+        what = "在沸腾";
         break;
     case PM_ICE_VORTEX:
     case PM_GLASS_GOLEM:
-        what = "melting";
+        what = "在融化";
         break;
     case PM_STONE_GOLEM:
     case PM_CLAY_GOLEM:
@@ -1089,10 +1089,10 @@ struct attack *mattk;
     case PM_EARTH_ELEMENTAL:
     case PM_DUST_VORTEX:
     case PM_ENERGY_VORTEX:
-        what = "heating up";
+        what = "在加热";
         break;
     default:
-        what = (mattk->aatyp == AT_HUGS) ? "being roasted" : "on fire";
+        what = (mattk->aatyp == AT_HUGS) ? "被烤" : "着火了";
         break;
     }
     return what;

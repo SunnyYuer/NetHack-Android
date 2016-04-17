@@ -233,13 +233,13 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
         boolean plural = (reason[strlen(reason) - 1] == 's') ? 1 : 0;
 
         /* avoid "The" Orcus's sting was poisoned... */
-        pline("%s%s %s poisoned!", isupper(*reason) ? "" : "The ", reason,
-              plural ? "were" : "was");
+        pline("%s%s %s 有毒的!", isupper(*reason) ? "" : "", reason,
+              plural ? "是" : "是");
     }
     if (Poison_resistance) {
         if (!strcmp(reason, "blast"))
             shieldeff(u.ux, u.uy);
-        pline_The("poison doesn't seem to affect you.");
+        pline_The("毒似乎没有影响你.");
         return;
     }
 
@@ -259,7 +259,7 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
     if (i == 0 && typ != A_CHA) {
         /* instant kill */
         u.uhp = -1;
-        pline_The("poison was deadly...");
+        pline_The("毒是致命的...");
     } else if (i > 5) {
         /* HP damage; more likely--but less severe--with missiles */
         loss = thrown_weapon ? rnd(6) : rn1(10, 6);

@@ -315,35 +315,35 @@ register struct monst *mtmp;
     switch (mtmp->data->msound) {
     case MS_MEW:
     case MS_HISS:
-        ret = "hiss";
+        ret = "发出嘶嘶声";
         break;
     case MS_BARK:
     case MS_GROWL:
-        ret = "growl";
+        ret = "咆哮";
         break;
     case MS_ROAR:
-        ret = "roar";
+        ret = "吼叫";
         break;
     case MS_BUZZ:
-        ret = "buzz";
+        ret = "嗡嗡叫";
         break;
     case MS_SQEEK:
-        ret = "squeal";
+        ret = "啸叫";
         break;
     case MS_SQAWK:
-        ret = "screech";
+        ret = "尖叫";
         break;
     case MS_NEIGH:
-        ret = "neigh";
+        ret = "嘶叫";
         break;
     case MS_WAIL:
-        ret = "wail";
+        ret = "呼啸";
         break;
     case MS_SILENT:
-        ret = "commotion";
+        ret = "喧闹";
         break;
     default:
-        ret = "scream";
+        ret = "惊叫";
     }
     return ret;
 }

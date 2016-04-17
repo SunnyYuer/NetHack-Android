@@ -13,13 +13,13 @@ equipname(otmp)
 register struct obj *otmp;
 {
     return ((otmp == uarmu)
-                ? "shirt"
+                ? "衬衫"
                 : (otmp == uarmf)
-                      ? "boots"
+                      ? "靴子"
                       : (otmp == uarms)
-                            ? "shield"
+                            ? "盾牌"
                             : (otmp == uarmg)
-                                  ? "gloves"
+                                  ? "手套"
                                   : (otmp == uarmc)
                                         ? cloak_simple_name(otmp)
                                         : (otmp == uarmh)
@@ -345,12 +345,12 @@ gotobj:
                       || (otmp == uleft && welded(uwep) && bimanual(uwep)));
 
         if (ostuck || can_carry(mtmp, otmp) == 0) {
-            static const char *const how[] = { "steal", "snatch", "grab",
-                                               "take" };
+            static const char *const how[] = { "偷取", "抢夺", "夺取",
+                                               "拿走" };
         cant_take:
-            pline("%s tries to %s %s%s but gives up.", Monnam(mtmp),
+            pline("%s 试图 %s %s%s 但放弃了.", Monnam(mtmp),
                   how[rn2(SIZE(how))],
-                  (otmp->owornmask & W_ARMOR) ? "your " : "",
+                  (otmp->owornmask & W_ARMOR) ? "你的 " : "",
                   (otmp->owornmask & W_ARMOR) ? equipname(otmp)
                                               : yname(otmp));
             /* the fewer items you have, the less likely the thief
@@ -403,21 +403,21 @@ gotobj:
                     unmul((char *) 0);
                 slowly = (armordelay >= 1 || multi < 0);
                 if (flags.female)
-                    pline("%s charms you.  You gladly %s your %s.",
-                          !seen ? "She" : Monnam(mtmp),
-                          curssv ? "let her take"
-                                 : !slowly ? "hand over"
-                                           : was_doffing ? "continue removing"
-                                                         : "start removing",
+                    pline("%s 诱惑了你.  你高兴地 %s 你的 %s.",
+                          !seen ? "她" : Monnam(mtmp),
+                          curssv ? "让她拿走"
+                                 : !slowly ? "交出"
+                                           : was_doffing ? "继续取下"
+                                                         : "开始取下",
                           equipname(otmp));
                 else
-                    pline("%s seduces you and %s off your %s.",
-                          !seen ? "She" : Adjmonnam(mtmp, "beautiful"),
+                    pline("%s 引诱了你 %s 你的 %s.",
+                          !seen ? "她" : Adjmonnam(mtmp, "美丽"),
                           curssv
-                              ? "helps you to take"
-                              : !slowly ? "you take"
-                                        : was_doffing ? "you continue taking"
-                                                      : "you start taking",
+                              ? "并帮你脱下"
+                              : !slowly ? ", 你脱下"
+                                        : was_doffing ? ", 你继续脱下"
+                                                      : ", 你开始脱下",
                           equipname(otmp));
                 named++;
                 /* the following is to set multi for later on */
@@ -456,7 +456,7 @@ gotobj:
     if (otmp->unpaid)
         subfrombill(otmp, shop_keeper(*u.ushops));
     freeinv(otmp);
-    pline("%s stole %s.", named ? "She" : Monnam(mtmp), doname(otmp));
+    pline("%s 偷走 %s.", named ? "她" : Monnam(mtmp), doname(otmp));
     could_petrify =
         (otmp->otyp == CORPSE && touch_petrifies(&mons[otmp->corpsenm]));
     (void) mpickobj(mtmp, otmp); /* may free otmp */

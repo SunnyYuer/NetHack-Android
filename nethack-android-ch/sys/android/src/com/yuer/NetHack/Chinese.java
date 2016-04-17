@@ -14,8 +14,8 @@ public class Chinese {
 		int l=s.length;
 		for(i=0;i<=l-1;i++)
 		{
-			//System.out.println((char)s[i]);
-			if(s[i]<0)
+			//System.out.println(s[i]);
+			if(s[i]<-20&&s[i]>-30)
 			{
 				byte[] b={s[i],s[i+1],s[i+2]};
 				try {
@@ -32,9 +32,9 @@ public class Chinese {
 			{
 				if(i!=l-1)
 				{
-					if(s[i]>=0&&s[i+1]<0) continue;
+					if(s[i]>=0&&(s[i+1]<-20&&s[i+1]>-30)) continue;
 				}
-				st=st+(char)s[i];
+				st=st+CP437.UNICODE[s[i] & 0xff];
 			}
 		}
 		return st;

@@ -143,19 +143,19 @@ char *genbuf;
             typ =
                 rn2(3) ? PM_SEWER_RAT : rn2(3) ? PM_GIANT_RAT : PM_RABID_RAT;
             if (genbuf)
-                Strcpy(genbuf, "rat");
+                Strcpy(genbuf, "鼠");
             break;
         case PM_WEREJACKAL:
         case PM_HUMAN_WEREJACKAL:
             typ = PM_JACKAL;
             if (genbuf)
-                Strcpy(genbuf, "jackal");
+                Strcpy(genbuf, "豺狼");
             break;
         case PM_WEREWOLF:
         case PM_HUMAN_WEREWOLF:
             typ = rn2(5) ? PM_WOLF : PM_WINTER_WOLF;
             if (genbuf)
-                Strcpy(genbuf, "wolf");
+                Strcpy(genbuf, "狼");
             break;
         default:
             continue;

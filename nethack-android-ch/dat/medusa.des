@@ -53,7 +53,7 @@ BRANCH:levregion(01,00,79,20),(30,06,46,13)
 # Non diggable walls
 NON_DIGGABLE:(30,06,46,13)
 # Objects
-CONTAINER:('`',"雕像"),(36,10),uncursed,montype:"骑士",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),(36,10),uncursed,montype:"骑士",3,name:"珀尔修斯" {
   [75%]: OBJECT:('[',"反射之盾"),cursed,+0
   [25%]: OBJECT:('[',"飘浮靴"),+0
   [50%]: OBJECT:(')',"短弯刀"),blessed,+2
@@ -152,7 +152,7 @@ BRANCH:levregion(01,00,79,20),(59,01,73,17)
 NON_DIGGABLE:(01,02,06,17)
 NON_DIGGABLE:(60,02,73,17)
 # Objects
-CONTAINER:('`',"雕像"),(68,10),uncursed,montype:"骑士",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),(68,10),uncursed,montype:"骑士",3,name:"珀尔修斯" {
   [25%]: OBJECT:('[',"反射之盾"),cursed,+0
   [75%]: OBJECT:('[',"飘浮靴"),+0
   [50%]: OBJECT:(')',"短弯刀"),blessed,+2
@@ -270,7 +270,7 @@ DOOR:locked,(48,15)
 # 
 FOUNTAIN:$place[1]
 #
-CONTAINER:('`',"雕像"),$place[2],uncursed,montype:"骑士",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),$place[2],uncursed,montype:"骑士",3,name:"珀尔修斯" {
   [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
   [25%]: OBJECT: ('[',"飘浮靴"),+0
   [50%]: OBJECT: (')',"短弯刀"),blessed,+2
@@ -370,7 +370,7 @@ NON_DIGGABLE:(01,01,22,14)
 #
 OBJECT:('(',"水晶球"),(07,08)
 #
-CONTAINER:('`',"雕像"),$place[1],uncursed,montype:"骑士",3,name:"Perseus" {
+CONTAINER:('`',"雕像"),$place[1],uncursed,montype:"骑士",3,name:"珀尔修斯" {
   [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
   [25%]: OBJECT: ('[',"飘浮靴"),+0
   [50%]: OBJECT: (')',"短弯刀"),blessed,+2

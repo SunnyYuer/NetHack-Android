@@ -2661,7 +2661,7 @@ char *buf;
             cmap = S_vodoor;
             break; /* "open door" */
         case D_BROKEN:
-            dfeature = "broken door";
+            dfeature = "坏掉的门";
             break;
         default:
             cmap = S_vcdoor;
@@ -2669,7 +2669,7 @@ char *buf;
         }
         /* override door description for open drawbridge */
         if (is_drawbridge_wall(x, y) >= 0)
-            dfeature = "open drawbridge portcullis", cmap = -1;
+            dfeature = "打开的吊桥闸门", cmap = -1;
     } else if (IS_FOUNTAIN(ltyp))
         cmap = S_fountain; /* "fountain" */
     else if (IS_THRONE(ltyp))
@@ -2679,14 +2679,14 @@ char *buf;
     else if (is_ice(x, y))
         cmap = S_ice; /* "ice" */
     else if (is_pool(x, y))
-        dfeature = "pool of water";
+        dfeature = "水池的水";
     else if (IS_SINK(ltyp))
         cmap = S_sink; /* "sink" */
     else if (IS_ALTAR(ltyp)) {
-        Sprintf(altbuf, "%saltar to %s (%s)",
+        Sprintf(altbuf, "%s祭坛之%s ( %s)",
                 ((lev->altarmask & AM_SHRINE)
                  && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)))
-                    ? "high "
+                    ? "主 "
                     : "",
                 a_gname(),
                 align_str(Amask2align(lev->altarmask & ~AM_SHRINE)));
@@ -2710,7 +2710,7 @@ char *buf;
     else if (ltyp == TREE)
         cmap = S_tree; /* "tree" */
     else if (ltyp == IRONBARS)
-        dfeature = "set of iron bars";
+        dfeature = "一组铁栏杆";
 
     if (cmap >= 0)
         dfeature = defsyms[cmap].explanation;
@@ -2739,11 +2739,11 @@ boolean picked_some;
     skip_objects = (flags.pile_limit > 0 && obj_cnt >= flags.pile_limit);
     if (u.uswallow && u.ustuck) {
         struct monst *mtmp = u.ustuck;
-        Sprintf(fbuf, "Contents of %s %s", s_suffix(mon_nam(mtmp)),
+        Sprintf(fbuf, "%s %s里面", s_suffix(mon_nam(mtmp)),
                 mbodypart(mtmp, STOMACH));
         /* Skip "Contents of " by using fbuf index 12 */
-        You("%s to %s what is lying in %s.", Blind ? "try" : "look around",
-            verb, &fbuf[12]);
+        You("%s %s 什么躺在%s.", Blind ? "试图" : "环顾四周",
+            Blind ? "感受" : "来看", fbuf);
         otmp = mtmp->minvent;
         if (otmp) {
             for (; otmp; otmp = otmp->nobj) {
@@ -2753,50 +2753,50 @@ boolean picked_some;
                     feel_cockatrice(otmp, FALSE);
             }
             if (Blind)
-                Strcpy(fbuf, "You feel");
+                Strcpy(fbuf, "你感觉");
             Strcat(fbuf, ":");
             (void) display_minventory(mtmp, MINV_ALL, fbuf);
         } else {
-            You("%s no objects here.", verb);
+            You("%s 这里没有东西.", verb);
         }
         return !!Blind;
     }
     if (!skip_objects && (trap = t_at(u.ux, u.uy)) && trap->tseen)
-        There("is %s here.",
-              an(defsyms[trap_to_defsym(trap->ttyp)].explanation));
+        There("有%s.",
+              defsyms[trap_to_defsym(trap->ttyp)].explanation);
 
     otmp = level.objects[u.ux][u.uy];
     dfeature = dfeature_at(u.ux, u.uy, fbuf2);
-    if (dfeature && !strcmp(dfeature, "pool of water") && Underwater)
+    if (dfeature && !strcmp(dfeature, "水池的水") && Underwater)
         dfeature = 0;
 
     if (Blind) {
         boolean drift = Is_airlevel(&u.uz) || Is_waterlevel(&u.uz);
 
-        if (dfeature && !strncmp(dfeature, "altar ", 6)) {
+        if (dfeature && !strncmp(dfeature, "祭坛", 6)) {
             /* don't say "altar" twice, dfeature has more info */
-            You("try to feel what is here.");
+            You("试图感受这里有什么.");
         } else {
             const char *where = (Blind && !can_reach_floor(TRUE))
-                                    ? "lying beneath you"
-                                    : "lying here on the ",
+                                    ? "躺在你脚下"
+                                    : "躺在",
                        *onwhat = (Blind && !can_reach_floor(TRUE))
                                      ? ""
                                      : surface(u.ux, u.uy);
 
-            You("try to feel what is %s%s.", drift ? "floating here" : where,
+            You("试图感受什么%s%s.", drift ? "飘浮在这里" : where,
                 drift ? "" : onwhat);
         }
         if (dfeature && !drift && !strcmp(dfeature, surface(u.ux, u.uy)))
             dfeature = 0; /* ice already identified */
         if (!can_reach_floor(TRUE)) {
-            pline("But you can't reach it!");
+            pline("但是你够不到它!");
             return 0;
         }
     }
 
     if (dfeature)
-        Sprintf(fbuf, "这里是%s.", an(dfeature));
+        Sprintf(fbuf, "这里是%s.", dfeature);
 
     if (!otmp || is_lava(u.ux, u.uy)
         || (is_pool(u.ux, u.uy) && !Underwater)) {
@@ -2814,7 +2814,7 @@ boolean picked_some;
             pline1(fbuf);
         read_engr_at(u.ux, u.uy); /* Eric Backus */
         if (obj_cnt == 1 && otmp->quan == 1L)
-            There("is %s object here.", picked_some ? "another" : "an");
+            There("有 %s 物品.", picked_some ? "另一个" : "一个");
         else
             There("有 %s%s 物品.",
 #ifdef ANDROID
@@ -2828,19 +2828,19 @@ boolean picked_some;
 #ifdef ANDROID
                 )
 #endif
-                , picked_some ? " more" : "");
+                , picked_some ? "" : "");
         for (; otmp; otmp = otmp->nexthere)
             if (otmp->otyp == CORPSE && will_feel_cockatrice(otmp, FALSE)) {
                 pline("%s %s%s.",
                       (obj_cnt > 1)
-                          ? "Including"
+                          ? "包括"
                           : (otmp->quan > 1L)
-                              ? "They're"
-                              : "It's",
+                              ? "它们是"
+                              : "它是",
                       corpse_xname(otmp, (const char *) 0, CXN_ARTICLE),
                       poly_when_stoned(youmonst.data)
                           ? ""
-                          : ", unfortunately");
+                          : ", 倒霉");
                 feel_cockatrice(otmp, FALSE);
                 break;
             }
@@ -2914,10 +2914,11 @@ boolean force_touch;
         Strcpy(kbuf, corpse_xname(otmp, (const char *) 0, CXN_PFX_THE));
 
         if (poly_when_stoned(youmonst.data))
-            You("touched %s with your bare %s.", kbuf,
-                makeplural(body_part(HAND)));
+            You("用你的光着的%s碰到了%s.",
+                makeplural(body_part(HAND)),
+                kbuf);
         else
-            pline("Touching %s is a fatal mistake...", kbuf);
+            pline("接触%s是一个致命的错误...", kbuf);
         /* normalize body shape here; hand, not body_part(HAND) */
         Sprintf(kbuf, "touching %s bare-handed", killer_xname(otmp));
         /* will call polymon() for the poly_when_stoned() case */

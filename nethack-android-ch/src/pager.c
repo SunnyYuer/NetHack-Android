@@ -52,8 +52,8 @@ const char *new_str;
         return 0;
 
     space_left = BUFSZ - strlen(buf) - 1;
-    (void) strncat(buf, " or ", space_left);
-    (void) strncat(buf, new_str, space_left - 4);
+    (void) strncat(buf, "或", space_left);
+    (void) strncat(buf, new_str, space_left - 3);
     return 1;
 }
 
@@ -68,12 +68,12 @@ char *outbuf;
     race[0] = '\0';
     if (!Upolyd)
         Sprintf(race, "%s ", urace.adj);
-    Sprintf(outbuf, "%s%s%s called %s",
+    Sprintf(outbuf, "%s%s%s 叫做 %s",
             /* being blinded may hide invisibility from self */
-            (Invis && (senseself() || !Blind)) ? "invisible " : "", race,
+            (Invis && (senseself() || !Blind)) ? "隐身的 " : "", race,
             mons[u.umonnum].mname, plname);
     if (u.usteed)
-        Sprintf(eos(outbuf), ", mounted on %s", y_monnam(u.usteed));
+        Sprintf(eos(outbuf), ", 骑着%s", y_monnam(u.usteed));
     return outbuf;
 }
 
@@ -135,15 +135,15 @@ int x, y, glyph;
         Strcpy(buf, something); /* sanity precaution */
 
     if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR)
-        Strcat(buf, " embedded in stone");
+        Strcat(buf, " 嵌在石头里");
     else if (IS_WALL(levl[x][y].typ) || levl[x][y].typ == SDOOR)
-        Strcat(buf, " embedded in a wall");
+        Strcat(buf, " 嵌在墙壁里");
     else if (closed_door(x, y))
-        Strcat(buf, " embedded in a door");
+        Strcat(buf, " 嵌在门里");
     else if (is_pool(x, y))
-        Strcat(buf, " in water");
+        Strcat(buf, " 在水里");
     else if (is_lava(x, y))
-        Strcat(buf, " in molten lava"); /* [can this ever happen?] */
+        Strcat(buf, " 在熔岩里"); /* [can this ever happen?] */
     return;
 }
 
@@ -162,20 +162,21 @@ int x, y;
         name = distant_monnam(mtmp, ARTICLE_NONE, monnambuf);
 
     Sprintf(buf, "%s%s%s",
-            (mtmp->mx != x || mtmp->my != y)
-                ? ((mtmp->isshk && accurate) ? "tail of " : "tail of a ")
-                : "",
             (mtmp->mtame && accurate)
-                ? "tame "
+                ? "驯服的 "
                 : (mtmp->mpeaceful && accurate)
-                    ? "peaceful "
+                    ? "和平的 "
                     : "",
-            name);
+            name,
+            (mtmp->mx != x || mtmp->my != y)
+                ? ((mtmp->isshk && accurate) ? "尾巴" : "尾巴")
+                : ""
+            );
     if (u.ustuck == mtmp)
         Strcat(buf, (Upolyd && sticks(youmonst.data))
-                     ? ", being held" : ", holding you");
+                     ? ", 受牵制" : ", 牵制着你");
     if (mtmp->mleashed)
-        Strcat(buf, ", leashed to you");
+        Strcat(buf, ", 被你栓着");
 
     if (mtmp->mtrapped && cansee(mtmp->mx, mtmp->my)) {
         struct trap *t = t_at(mtmp->mx, mtmp->my);
@@ -183,8 +184,8 @@ int x, y;
 
         /* newsym lets you know of the trap, so mention it here */
         if (tt == BEAR_TRAP || tt == PIT || tt == SPIKED_PIT || tt == WEB)
-            Sprintf(eos(buf), ", trapped in %s",
-                    an(defsyms[trap_to_defsym(tt)].explanation));
+            Sprintf(eos(buf), ", 受困于%s",
+                    defsyms[trap_to_defsym(tt)].explanation);
     }
 
     if (monbuf) {
@@ -193,48 +194,48 @@ int x, y;
         monbuf[0] = '\0';
         if (how_seen != 0 && how_seen != MONSEEN_NORMAL) {
             if (how_seen & MONSEEN_NORMAL) {
-                Strcat(monbuf, "normal vision");
+                Strcat(monbuf, "正常视力");
                 how_seen &= ~MONSEEN_NORMAL;
                 /* how_seen can't be 0 yet... */
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_SEEINVIS) {
-                Strcat(monbuf, "see invisible");
+                Strcat(monbuf, "看见隐形");
                 how_seen &= ~MONSEEN_SEEINVIS;
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_INFRAVIS) {
-                Strcat(monbuf, "infravision");
+                Strcat(monbuf, "夜视");
                 how_seen &= ~MONSEEN_INFRAVIS;
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_TELEPAT) {
-                Strcat(monbuf, "telepathy");
+                Strcat(monbuf, "感知");
                 how_seen &= ~MONSEEN_TELEPAT;
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_XRAYVIS) {
                 /* Eyes of the Overworld */
-                Strcat(monbuf, "astral vision");
+                Strcat(monbuf, "阴阳眼");
                 how_seen &= ~MONSEEN_XRAYVIS;
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_DETECT) {
-                Strcat(monbuf, "monster detection");
+                Strcat(monbuf, "怪物探测");
                 how_seen &= ~MONSEEN_DETECT;
                 if (how_seen)
                     Strcat(monbuf, ", ");
             }
             if (how_seen & MONSEEN_WARNMON) {
                 if (Hallucination)
-                    Strcat(monbuf, "paranoid delusion");
+                    Strcat(monbuf, "偏执性妄想");
                 else
-                    Sprintf(eos(monbuf), "warned of %s",
+                    Sprintf(eos(monbuf), "受%s 的警报",
                             makeplural(mtmp->data->mname));
                 how_seen &= ~MONSEEN_WARNMON;
                 if (how_seen)
@@ -290,18 +291,18 @@ char *buf, *monbuf;
 
             if (how)
                 Sprintf(
-                    eos(buf), " [seen: %s%s%s%s%s]",
-                    (how & 1) ? "infravision" : "",
+                    eos(buf), " [ 看见: %s%s%s%s%s]",
+                    (how & 1) ? "夜视" : "",
                     /* add comma if telep and infrav */
-                    ((how & 3) > 2) ? ", " : "", (how & 2) ? "telepathy" : "",
+                    ((how & 3) > 2) ? ", " : "", (how & 2) ? "感知" : "",
                     /* add comma if detect and (infrav or telep or both) */
                     ((how & 7) > 4) ? ", " : "",
-                    (how & 4) ? "monster detection" : "");
+                    (how & 4) ? "怪物探测" : "");
         }
     } else if (u.uswallow) {
         /* all locations when swallowed other than the hero are the monster */
-        Sprintf(buf, "interior of %s",
-                Blind ? "a monster" : a_monnam(u.ustuck));
+        Sprintf(buf, "%s的内部",
+                Blind ? "一只怪物" : a_monnam(u.ustuck));
         pm = u.ustuck->data;
     } else if (glyph_is_monster(glyph)) {
         bhitpos.x = x;
@@ -317,40 +318,40 @@ char *buf, *monbuf;
 
         Strcpy(buf, defsyms[trap_to_defsym(tnum)].explanation);
     } else if (!glyph_is_cmap(glyph)) {
-        Strcpy(buf, "unexplored area");
+        Strcpy(buf, "未探索区域");
     } else
         switch (glyph_to_cmap(glyph)) {
         case S_altar:
-            Sprintf(buf, "%s %saltar",
+            Sprintf(buf, "%s %s祭坛",
                     /* like endgame high priests, endgame high altars
                        are only recognizable when immediately adjacent */
                     (Is_astralevel(&u.uz) && distu(x, y) > 2)
-                        ? "aligned"
+                        ? "结盟的"
                         : align_str(
                               Amask2align(levl[x][y].altarmask & ~AM_SHRINE)),
                     ((levl[x][y].altarmask & AM_SHRINE)
                      && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)))
-                        ? "high "
+                        ? "主 "
                         : "");
             break;
         case S_ndoor:
             if (is_drawbridge_wall(x, y) >= 0)
-                Strcpy(buf, "open drawbridge portcullis");
+                Strcpy(buf, "打开的吊桥闸门");
             else if ((levl[x][y].doormask & ~D_TRAPPED) == D_BROKEN)
-                Strcpy(buf, "broken door");
+                Strcpy(buf, "坏掉的门");
             else
-                Strcpy(buf, "doorway");
+                Strcpy(buf, "门口");
             break;
         case S_cloud:
             Strcpy(buf,
-                   Is_airlevel(&u.uz) ? "cloudy area" : "fog/vapor cloud");
+                   Is_airlevel(&u.uz) ? "云区域" : "雾/ 蒸气 云");
             break;
         case S_stone:
             if (!levl[x][y].seenv) {
-                Strcpy(buf, "unexplored");
+                Strcpy(buf, "未探索的");
                 break;
             } else if (levl[x][y].typ == STONE || levl[x][y].typ == SCORR) {
-                Strcpy(buf, "stone");
+                Strcpy(buf, "石头");
                 break;
             }
             /*else FALLTHRU*/
@@ -513,7 +514,7 @@ boolean user_typed_name, without_asking;
             return;
         }
 
-        if (user_typed_name || without_asking || yn("More info?") == 'y') {
+        if (user_typed_name || without_asking || yn("更多信息?") == 'y') {
             if (dlb_fseek(fp, (long) txt_offset + entry_offset, SEEK_SET)
                 < 0) {
                 pline("? Seek error on 'data' file!");
@@ -534,7 +535,7 @@ boolean user_typed_name, without_asking;
             destroy_nhwindow(datawin);
         }
     } else if (user_typed_name)
-        pline("I don't have any information on those things.");
+        pline("没有关于这个东西的任何信息.");
 
     (void) dlb_fclose(fp);
 }
@@ -556,7 +557,7 @@ const char **firstmatch;
     int skipped_venom = 0;
     boolean hit_trap;
     const char *x_str;
-    static const char *mon_interior = "the interior of a monster";
+    static const char *mon_interior = "怪物的内部";
 
     if (looked) {
         int oc;
@@ -598,11 +599,11 @@ const char **firstmatch;
             && def_monsyms[i].explain) {
             need_to_look = TRUE;
             if (!found) {
-                Sprintf(out_str, "%s%s", prefix, an(def_monsyms[i].explain));
+                Sprintf(out_str, "%s%s", prefix, def_monsyms[i].explain);
                 *firstmatch = def_monsyms[i].explain;
                 found++;
             } else {
-                found += append_str(out_str, an(def_monsyms[i].explain));
+                found += append_str(out_str, def_monsyms[i].explain);
             }
         }
     }
@@ -613,7 +614,7 @@ const char **firstmatch;
                    && cc.x == u.ux && cc.y == u.uy)
                 : (sym == def_monsyms[S_HUMAN].sym && !flags.showrace))
         && !(Race_if(PM_HUMAN) || Race_if(PM_ELF)) && !Upolyd)
-        found += append_str(out_str, "you"); /* tack on "or you" */
+        found += append_str(out_str, "你"); /* tack on "or you" */
 
     /* Now check for objects */
     for (i = 1; i < MAXOCLASSES; i++) {
@@ -624,22 +625,22 @@ const char **firstmatch;
                 continue;
             }
             if (!found) {
-                Sprintf(out_str, "%s%s", prefix, an(def_oc_syms[i].explain));
+                Sprintf(out_str, "%s%s", prefix, def_oc_syms[i].explain);
                 *firstmatch = def_oc_syms[i].explain;
                 found++;
             } else {
-                found += append_str(out_str, an(def_oc_syms[i].explain));
+                found += append_str(out_str, def_oc_syms[i].explain);
             }
         }
     }
 
     if (sym == DEF_INVISIBLE) {
         if (!found) {
-            Sprintf(out_str, "%s%s", prefix, an(invisexplain));
+            Sprintf(out_str, "%s%s", prefix, invisexplain);
             *firstmatch = invisexplain;
             found++;
         } else {
-            found += append_str(out_str, an(invisexplain));
+            found += append_str(out_str, invisexplain);
         }
     }
 
@@ -652,7 +653,7 @@ const char **firstmatch;
         /* when sym is the default background character, we process
            i == 0 three times: unexplored, stone, dark part of a room */
         if (alt_i < 2) {
-            x_str = !alt_i++ ? "unexplored" : "stone";
+            x_str = !alt_i++ ? "未探索的" : "石头";
             i = 0; /* for second iteration, undo loop increment */
             /* alt_i is now 1 or 2 */
         } else {
@@ -665,19 +666,19 @@ const char **firstmatch;
             /* avoid "an unexplored", "an stone", "an air", "a water",
                "a floor of a room", "a dark part of a room";
                article==2 => "the", 1 => "an", 0 => (none) */
-            int article = strstri(x_str, " of a room") ? 2
+            int article = strstri(x_str, "房间的") ? 2
                           : !(alt_i <= 2
-                              || strcmp(x_str, "air") == 0
-                              || strcmp(x_str, "water") == 0);
+                              || strcmp(x_str, "天空") == 0
+                              || strcmp(x_str, "水") == 0);
 
             if (!found) {
                 if (is_cmap_trap(i)) {
-                    Sprintf(out_str, "%sa trap", prefix);
+                    Sprintf(out_str, "%s陷阱", prefix);
                     hit_trap = TRUE;
                 } else {
                     Sprintf(out_str, "%s%s", prefix,
-                            article == 2 ? the(x_str)
-                            : article == 1 ? an(x_str) : x_str);
+                            article == 2 ? x_str
+                            : article == 1 ? x_str : x_str);
                 }
                 *firstmatch = x_str;
                 found++;
@@ -688,8 +689,8 @@ const char **firstmatch;
                        && (i != S_vibrating_square || Inhell
                            || (looked && glyph_is_trap(glyph)
                                && glyph_to_trap(glyph) == VIBRATING_SQUARE))) {
-                found += append_str(out_str, (article == 2) ? the(x_str)
-                                             : (article == 1) ? an(x_str)
+                found += append_str(out_str, (article == 2) ? x_str
+                                             : (article == 1) ? x_str
                                                : x_str);
                 if (is_cmap_trap(i))
                     hit_trap = TRUE;
@@ -714,7 +715,7 @@ const char **firstmatch;
             /* Kludge: warning trumps boulders on the display.
                Reveal the boulder too or player can get confused */
             if (looked && sobj_at(BOULDER, cc.x, cc.y))
-                Strcat(out_str, " co-located with a boulder");
+                Strcat(out_str, " 和巨石在同一个位置");
             break; /* out of for loop*/
         }
     }
@@ -723,22 +724,22 @@ const char **firstmatch;
     if (skipped_venom && found < 2) {
         x_str = def_oc_syms[VENOM_CLASS].explain;
         if (!found) {
-            Sprintf(out_str, "%s%s", prefix, an(x_str));
+            Sprintf(out_str, "%s%s", prefix, x_str);
             *firstmatch = x_str;
             found++;
         } else {
-            found += append_str(out_str, an(x_str));
+            found += append_str(out_str, x_str);
         }
     }
 
     /* handle optional boulder symbol as a special case */
     if (iflags.bouldersym && sym == iflags.bouldersym) {
         if (!found) {
-            *firstmatch = "boulder";
-            Sprintf(out_str, "%s%s", prefix, an(*firstmatch));
+            *firstmatch = "巨石";
+            Sprintf(out_str, "%s%s", prefix, *firstmatch);
             found++;
         } else {
-            found += append_str(out_str, "boulder");
+            found += append_str(out_str, "巨石");
         }
     }
 
@@ -755,13 +756,13 @@ const char **firstmatch;
             (void) lookat(cc.x, cc.y, look_buf, monbuf);
             *firstmatch = look_buf;
             if (*(*firstmatch)) {
-                Sprintf(temp_buf, " (%s)", *firstmatch);
+                Sprintf(temp_buf, " ( %s)", *firstmatch);
                 (void) strncat(out_str, temp_buf,
                                BUFSZ - strlen(out_str) - 1);
                 found = 1; /* we have something to look up */
             }
             if (monbuf[0]) {
-                Sprintf(temp_buf, " [seen: %s]", monbuf);
+                Sprintf(temp_buf, " [ 看见: %s]", monbuf);
                 (void) strncat(out_str, temp_buf,
                                BUFSZ - strlen(out_str) - 1);
             }
@@ -890,7 +891,7 @@ coord *click_cc;
           }
         case '?':
             from_screen = FALSE;
-            getlin("Specify what? (type the word)", out_str);
+            getlin("指定什么? ( 输入符号或文字)", out_str);
             if (out_str[0] == '\0' || out_str[0] == '\033')
                 return 0;
 
@@ -969,7 +970,7 @@ coord *click_cc;
                           (boolean) (ans == LOOK_VERBOSE));
             }
         } else {
-            pline("I've never heard of such things.");
+            pline("我从未听说过这样的东西.");
         }
 
     } while (from_screen && !quick && ans != LOOK_ONCE && !clicklook);

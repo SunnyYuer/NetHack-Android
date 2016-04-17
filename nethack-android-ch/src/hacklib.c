@@ -270,9 +270,9 @@ const char *s;
     else if (!strcmpi(buf, "you")) /* you -> your */
         Strcat(buf, "r");
     else if (*(eos(buf) - 1) == 's') /* Xs -> Xs' */
-        Strcat(buf, "'");
+        Strcat(buf, " 的");
     else /* X -> X's */
-        Strcat(buf, "的");
+        Strcat(buf, " 的");
     return buf;
 }
 

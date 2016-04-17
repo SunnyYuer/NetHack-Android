@@ -54,12 +54,12 @@ STATIC_OVL void
 give_may_advance_msg(skill)
 int skill;
 {
-    You_feel("more confident in your %sskills.",
+    You_feel("对你的 %s技能更有自信了.",
              skill == P_NONE ? "" : skill <= P_LAST_WEAPON
-                                        ? "weapon "
+                                        ? "武器 "
                                         : skill <= P_LAST_SPELL
-                                              ? "spell casting "
-                                              : "fighting ");
+                                              ? "施展魔法 "
+                                              : "战斗 ");
 }
 
 STATIC_DCL boolean FDECL(can_advance, (int, BOOLEAN_P));
