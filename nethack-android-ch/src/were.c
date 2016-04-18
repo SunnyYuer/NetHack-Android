@@ -1,4 +1,4 @@
-/* NetHack 3.6	were.c	$NHDT-Date: 1432512763 2015/05/25 00:12:43 $  $NHDT-Branch: master $:$NHDT-Revision: 1.18 $ */
+﻿/* NetHack 3.6	were.c	$NHDT-Date: 1432512763 2015/05/25 00:12:43 $  $NHDT-Branch: master $:$NHDT-Revision: 1.18 $ */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -93,6 +93,7 @@ new_were(mon)
 register struct monst *mon;
 {
     register int pm;
+    char mchname[30];
 
     pm = counter_were(monsndx(mon->data));
     if (pm < LOW_PM) {
@@ -100,7 +101,6 @@ register struct monst *mon;
         return;
     }
 
-    char mchname[30];
     strcpy(mchname,mons[pm].mname);
     mchname[strlen(mons[pm].mname)-3] = '\0';
 

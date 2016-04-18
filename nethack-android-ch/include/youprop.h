@@ -8,7 +8,6 @@
 #include "prop.h"
 #include "permonst.h"
 #include "mondata.h"
-#include "pm.h"
 #include "pmt.h"
 
 /* KMH, intrinsics patch.
