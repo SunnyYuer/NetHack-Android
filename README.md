@@ -17,11 +17,11 @@
 http://developer.android.com/sdk/ndk
  
 2. 下载源代码并解压
-https://github.com/SunnyEric/NetHack_android
+[下载](https://github.com/SunnyEric/NetHack_android/archive/master.zip)
 
 === 编译NetHack ===
 
-1. 进入NetHack_android/sys/android目录
+1. 进入nethack-android-ch/sys/android目录
 2. 打开Makefile.src文件并更改NDK目录为你的NDK目录
 3. 终端操作./setup.sh
 4. 终端操作cd ../..
