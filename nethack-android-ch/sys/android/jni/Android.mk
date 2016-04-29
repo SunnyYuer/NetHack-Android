@@ -1,3 +1,6 @@
+#此android.mk文件仅方便于我在windows上测试，他者请勿使用此文件编译，因为此文件会导致游戏中
+#'更多'选项的bug，除非你能解决此问题。
+
 LOCAL_PATH := $(call my-dir)/../../../src
 
 include $(CLEAR_VARS)
