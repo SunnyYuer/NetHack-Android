@@ -667,7 +667,7 @@ level_tele()
                 Your("物品砰的一声掉在%s上.",
                      surface(u.ux, u.uy));
             killer.format = NO_KILLER_PREFIX;
-            Strcpy(killer.name, "committed suicide");
+            Strcpy(killer.name, "自杀");
             done(DIED);
             pline("一股能量气体开始合并.");
             Your("身体重生了%s.",
@@ -736,7 +736,7 @@ level_tele()
             You("到达了天堂.");
             verbalize(" 虽然你来得尚早,  但我们还是允许你进入.");
             killer.format = NO_KILLER_PREFIX;
-            Strcpy(killer.name, "went to heaven prematurely");
+            Strcpy(killer.name, "永久进入了天堂");
         } else if (newlev == -9) {
             You_feel("非常高兴. ");
             pline("( 事实上,  你在9 号云上了!) ");
@@ -753,9 +753,8 @@ level_tele()
         } else {
             pline("不幸的是,  你不会飞.");
             You("跌下几千英尺摔死了.");
-            Sprintf(killer.name,
-                    "teleported out of the dungeon and fell to %s death",
-                    uhis());
+            Strcpy(killer.name,
+                    "被传送出了地牢然后掉落致死");
             killer.format = NO_KILLER_PREFIX;
         }
     }

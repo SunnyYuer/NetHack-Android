@@ -91,39 +91,39 @@ int expltype;
 
     if (olet == MON_EXPLODE) {
         str = killer.name;
-        do_hallu = Hallucination && strstri(str, "'s explosion");
+        do_hallu = Hallucination && strstri(str, "的爆炸");
         adtyp = AD_PHYS;
     } else
         switch (abs(type) % 10) {
         case 0:
-            str = "magical blast";
+            str = "魔法爆炸";
             adtyp = AD_MAGM;
             break;
         case 1:
-            str = (olet == BURNING_OIL) ? "burning oil"
-                     : (olet == SCROLL_CLASS) ? "tower of flame" : "fireball";
+            str = (olet == BURNING_OIL) ? "燃烧的油"
+                     : (olet == SCROLL_CLASS) ? "火之塔" : "火球";
             /* fire damage, not physical damage */
             adtyp = AD_FIRE;
             break;
         case 2:
-            str = "ball of cold";
+            str = "冷球";
             adtyp = AD_COLD;
             break;
         case 4:
-            str = (olet == WAND_CLASS) ? "death field"
-                                       : "disintegration field";
+            str = (olet == WAND_CLASS) ? "死亡领域"
+                                       : "分解领域";
             adtyp = AD_DISN;
             break;
         case 5:
-            str = "ball of lightning";
+            str = "光球";
             adtyp = AD_ELEC;
             break;
         case 6:
-            str = "poison gas cloud";
+            str = "毒气云";
             adtyp = AD_DRST;
             break;
         case 7:
-            str = "splash of acid";
+            str = "飞溅的酸";
             adtyp = AD_ACID;
             break;
         default:
@@ -276,11 +276,11 @@ int expltype;
         tmp_at(DISP_END, 0); /* clear the explosion */
     } else {
         if (olet == MON_EXPLODE) {
-            str = "explosion";
+            str = "爆炸";
             generic = TRUE;
         }
         if (!Deaf && olet != SCROLL_CLASS)
-            You_hear("a blast.");
+            You_hear("爆炸声.");
     }
 
     if (dam)
@@ -310,7 +310,7 @@ int expltype;
                        like "Barney" here in order to suppress "the" below,
                        so avoid any which begins with a capital letter) */
                     do {
-                        Sprintf(hallu_buf, "%s explosion",
+                        Sprintf(hallu_buf, "%s爆炸",
                                 s_suffix(rndmonnam(NULL)));
                     } while (*hallu_buf != lowc(*hallu_buf));
                     str = hallu_buf;
@@ -320,64 +320,64 @@ int expltype;
                     if (is_animal(u.ustuck->data)) {
                         switch (adtyp) {
                         case AD_FIRE:
-                            adj = "heartburn";
+                            adj = "烧心";
                             break;
                         case AD_COLD:
-                            adj = "chilly";
+                            adj = "寒冷";
                             break;
                         case AD_DISN:
                             if (olet == WAND_CLASS)
-                                adj = "irradiated by pure energy";
+                                adj = "被纯能量辐射";
                             else
-                                adj = "perforated";
+                                adj = "被打穿";
                             break;
                         case AD_ELEC:
-                            adj = "shocked";
+                            adj = "被电冲击";
                             break;
                         case AD_DRST:
-                            adj = "poisoned";
+                            adj = "被毒";
                             break;
                         case AD_ACID:
-                            adj = "an upset stomach";
+                            adj = "肚子不舒服";
                             break;
                         default:
-                            adj = "fried";
+                            adj = "被电";
                             break;
                         }
-                        pline("%s gets %s!", Monnam(u.ustuck), adj);
+                        pline("%s %s!", Monnam(u.ustuck), adj);
                     } else {
                         switch (adtyp) {
                         case AD_FIRE:
-                            adj = "toasted";
+                            adj = "烘热";
                             break;
                         case AD_COLD:
-                            adj = "chilly";
+                            adj = "寒冷";
                             break;
                         case AD_DISN:
                             if (olet == WAND_CLASS)
-                                adj = "overwhelmed by pure energy";
+                                adj = "承受着纯能量";
                             else
-                                adj = "perforated";
+                                adj = "被打穿";
                             break;
                         case AD_ELEC:
-                            adj = "shocked";
+                            adj = "被电冲击";
                             break;
                         case AD_DRST:
-                            adj = "intoxicated";
+                            adj = "醉";
                             break;
                         case AD_ACID:
-                            adj = "burned";
+                            adj = "灼烧";
                             break;
                         default:
-                            adj = "fried";
+                            adj = "被电";
                             break;
                         }
-                        pline("%s gets slightly %s!", Monnam(u.ustuck), adj);
+                        pline("%s 有些轻微的%s!", Monnam(u.ustuck), adj);
                     }
                 } else if (cansee(i + x - 1, j + y - 1)) {
                     if (mtmp->m_ap_type)
                         seemimic(mtmp);
-                    pline("%s is caught in the %s!", Monnam(mtmp), str);
+                    pline("%s 卷入了%s!", Monnam(mtmp), str);
                 }
 
                 idamres += destroy_mitem(mtmp, SCROLL_CLASS, (int) adtyp);
@@ -400,7 +400,7 @@ int expltype;
                     if (resist(mtmp, olet, 0, FALSE)) {
                         /* inside_engulfer: <i+x-1,j+y-1> == <u.ux,u.uy> */
                         if (cansee(i + x - 1, j + y - 1) || inside_engulfer)
-                            pline("%s resists the %s!", Monnam(mtmp), str);
+                            pline("%s 抵抗%s!", Monnam(mtmp), str);
                         mdam = (dam + 1) / 2;
                     }
                     if (mtmp == u.ustuck)
@@ -430,12 +430,12 @@ int expltype;
         if (flags.verbose && (type < 0 || olet != SCROLL_CLASS)) {
             if (do_hallu) { /* (see explanation above) */
                 do {
-                    Sprintf(hallu_buf, "%s explosion",
+                    Sprintf(hallu_buf, "%s爆炸",
                             s_suffix(rndmonnam(NULL)));
                 } while (*hallu_buf != lowc(*hallu_buf));
                 str = hallu_buf;
             }
-            You("are caught in the %s!", str);
+            You("被卷入了%s!", str);
             iflags.last_msg = PLNMSG_CAUGHT_IN_EXPLOSION;
         }
         /* do property damage first, in case we end up leaving bones */
@@ -443,7 +443,7 @@ int expltype;
             burn_away_slime();
         if (Invulnerable) {
             damu = 0;
-            You("are unharmed!");
+            You("没有受伤!");
         } else if (adtyp == AD_PHYS || physical_dmg)
             damu = Maybe_Half_Phys(damu);
         if (adtyp == AD_FIRE)
@@ -476,11 +476,11 @@ int expltype;
                     killer.format = KILLED_BY_AN;
                 } else if (type >= 0 && olet != SCROLL_CLASS) {
                     killer.format = NO_KILLER_PREFIX;
-                    Sprintf(killer.name, "caught %sself in %s own %s", uhim(),
+                    Sprintf(killer.name, "使%s自己卷入%s 自己的 %s", uhim(),
                             uhis(), str);
                 } else {
-                    killer.format = (!strcmpi(str, "tower of flame")
-                                     || !strcmpi(str, "fireball"))
+                    killer.format = (!strcmpi(str, "火之塔")
+                                     || !strcmpi(str, "火球"))
                                         ? KILLED_BY_AN
                                         : KILLED_BY;
                     Strcpy(killer.name, str);
@@ -488,9 +488,9 @@ int expltype;
                 if (iflags.last_msg == PLNMSG_CAUGHT_IN_EXPLOSION
                     || iflags.last_msg
                            == PLNMSG_TOWER_OF_FLAME) /*seffects()*/
-                    pline("It is fatal.");
+                    pline("它是致命的.");
                 else
-                    pline_The("%s is fatal.", str);
+                    pline_The("%s 是致命的.", str);
                 /* Known BUG: BURNING suppresses corpse in bones data,
                    but done does not handle killer reason correctly */
                 done((adtyp == AD_FIRE) ? BURNING : DIED);

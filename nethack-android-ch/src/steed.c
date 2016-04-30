@@ -308,7 +308,7 @@ boolean force;      /* Quietly force this animal */
         }
         You("在试图骑上%s 时滑了下来.", mon_nam(mtmp));
 
-        Sprintf(buf, "slipped while mounting %s",
+        Sprintf(buf, "在骑上%s时滑倒",
                 /* "a saddled mumak" or "a saddled pony called Dobbin" */
                 x_monnam(mtmp, ARTICLE_A, (char *) 0,
                          SUPPRESS_IT | SUPPRESS_INVISIBLE
@@ -478,7 +478,7 @@ int reason; /* Player was thrown off etc. */
         You("从%s上%s下!", mon_nam(mtmp), verb);
         if (!have_spot)
             have_spot = landing_spot(&cc, reason, 1);
-        losehp(Maybe_Half_Phys(rn1(10, 10)), "riding accident", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(rn1(10, 10)), "乘骑事故", KILLED_BY_AN);
         set_wounded_legs(BOTH_SIDES, (int) HWounded_legs + rn1(5, 5));
         repair_leg_damage = FALSE;
         break;

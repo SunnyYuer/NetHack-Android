@@ -1102,7 +1102,7 @@ register struct attack *mattk;
                     You("被 %s所冰冻!", mon_nam(mtmp));
                 nomovemsg = You_can_move_again;
                 nomul(-rnd(10));
-                multi_reason = "paralyzed by a monster";
+                multi_reason = "被怪物麻痹";
                 exercise(A_DEX, FALSE);
             }
         }
@@ -1110,7 +1110,7 @@ register struct attack *mattk;
     case AD_DRLI:
         hitmsg(mtmp, mattk);
         if (uncancelled && !rn2(3) && !Drain_resistance) {
-            losexp("life drainage");
+            losexp("生命流逝");
         }
         break;
     case AD_LEGS: {
@@ -2423,7 +2423,7 @@ register struct monst *mon;
         case 3:
             if (!resists_drli(&youmonst)) {
                 You_feel("不成样子.");
-                losexp("overexertion");
+                losexp("过度费力");
             } else {
                 You("有一种古怪的感觉...");
             }
@@ -2433,7 +2433,7 @@ register struct monst *mon;
             You_feel("疲惫的.");
             exercise(A_STR, FALSE);
             tmp = rn1(10, 6);
-            losehp(Maybe_Half_Phys(tmp), "exhaustion", KILLED_BY);
+            losehp(Maybe_Half_Phys(tmp), "精疲力竭", KILLED_BY);
             break;
         }
         }

@@ -436,8 +436,8 @@ ghost_from_bottle()
     if (flags.verbose)
         You("are frightened to death, and unable to move.");
     nomul(-3);
-    multi_reason = "being frightened to death";
-    nomovemsg = "You regain your composure.";
+    multi_reason = "害怕得要死";
+    nomovemsg = "你重获了你的镇静.";
 }
 
 /* "Quaffing is like drinking, except you spill more." - Terry Pratchett */
@@ -606,7 +606,7 @@ register struct obj *otmp;
                         you_unwere(FALSE);
                     u.ulycn = NON_PM; /* cure lycanthropy */
                 }
-                losehp(Maybe_Half_Phys(d(2, 6)), "potion of holy water",
+                losehp(Maybe_Half_Phys(d(2, 6)), "圣水",
                        KILLED_BY_AN);
             } else if (otmp->cursed) {
                 You_feel("对你自己非常骄傲.");
@@ -627,7 +627,7 @@ register struct obj *otmp;
             } else {
                 if (u.ualign.type == A_LAWFUL) {
                     pline("这烧得像酸!");
-                    losehp(Maybe_Half_Phys(d(2, 6)), "potion of unholy water",
+                    losehp(Maybe_Half_Phys(d(2, 6)), "邪水",
                            KILLED_BY_AN);
                 } else
                     You_feel("充满恐惧.");
@@ -746,7 +746,7 @@ register struct obj *otmp;
                 Your("%s 被冻结到%s!", makeplural(body_part(FOOT)),
                      surface(u.ux, u.uy));
             nomul(-(rn1(10, 25 - 12 * bcsign(otmp))));
-            multi_reason = "frozen by a potion";
+            multi_reason = "被一瓶药水冰冻";
             nomovemsg = You_can_move_again;
             exercise(A_DEX, FALSE);
         }
@@ -804,7 +804,7 @@ register struct obj *otmp;
             pline("( 但实际上它是有点不新鲜的%s.)", fruitname(TRUE));
             if (!Role_if(PM_HEALER)) {
                 /* NB: blessed otmp->fromsink is not possible */
-                losehp(1, "mildly contaminated potion", KILLED_BY_AN);
+                losehp(1, "轻微污染的药水", KILLED_BY_AN);
             }
         } else {
             if (Poison_resistance)
@@ -817,9 +817,9 @@ register struct obj *otmp;
                 int typ = rn2(A_MAX);
 
                 Sprintf(contaminant, "%s%s",
-                        (Poison_resistance) ? "mildly " : "",
-                        (otmp->fromsink) ? "contaminated tap water"
-                                         : "contaminated potion");
+                        (Poison_resistance) ? "稍微 " : "",
+                        (otmp->fromsink) ? "污染的自来水"
+                                         : "污染的药水");
                 if (!Fixed_abil) {
                     poisontell(typ, FALSE);
                     (void) adjattrib(typ, Poison_resistance ? -1 : -rn1(4, 3),
@@ -987,7 +987,7 @@ register struct obj *otmp;
 
                     You("你的%s 撞到了%s.", body_part(HEAD),
                         ceiling(u.ux, u.uy));
-                    losehp(Maybe_Half_Phys(dmg), "colliding with the ceiling",
+                    losehp(Maybe_Half_Phys(dmg), "撞到了天花板",
                            KILLED_BY);
                 }
             } /*cursed*/
@@ -1044,7 +1044,7 @@ register struct obj *otmp;
             } else {
                 You("的%s 被烧伤.", body_part(FACE));
                 /* fire damage */
-                losehp(d(Fire_resistance ? 1 : 3, 4), "burning potion of oil",
+                losehp(d(Fire_resistance ? 1 : 3, 4), "燃烧的油药水",
                        KILLED_BY_AN);
             }
         } else if (otmp->cursed)
@@ -1065,7 +1065,7 @@ register struct obj *otmp;
                   otmp->blessed ? " 有一点" : otmp->cursed ? " 许多"
                                                              : " 像酸");
             dmg = d(otmp->cursed ? 2 : 1, otmp->blessed ? 4 : 8);
-            losehp(Maybe_Half_Phys(dmg), "potion of acid", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(dmg), "酸药水", KILLED_BY_AN);
             exercise(A_CON, FALSE);
         }
         if (Stoned)
@@ -1235,7 +1235,7 @@ boolean your_fault;
         distance = 0;
         pline_The("%s crashes on your %s and breaks into shards.", botlnam,
                   body_part(HEAD));
-        losehp(Maybe_Half_Phys(rnd(2)), "thrown potion", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(rnd(2)), "投掷的药水", KILLED_BY_AN);
     } else {
         /* sometimes it hits the saddle */
         if (((mon->misc_worn_check & W_SADDLE)
@@ -1292,7 +1292,7 @@ boolean your_fault;
                       obj->blessed ? " a little"
                                    : obj->cursed ? " a lot" : "");
                 dmg = d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8);
-                losehp(Maybe_Half_Phys(dmg), "potion of acid", KILLED_BY_AN);
+                losehp(Maybe_Half_Phys(dmg), "酸药水", KILLED_BY_AN);
             }
             break;
         }
@@ -1584,7 +1584,7 @@ register struct obj *obj;
         if (!Free_action) {
             pline("%s seems to be holding you.", Something);
             nomul(-rnd(5));
-            multi_reason = "frozen by a potion";
+            multi_reason = "被一瓶药水冰冻";
             nomovemsg = You_can_move_again;
             exercise(A_DEX, FALSE);
         } else
@@ -1595,7 +1595,7 @@ register struct obj *obj;
         if (!Free_action && !Sleep_resistance) {
             You_feel("rather tired.");
             nomul(-rnd(5));
-            multi_reason = "sleeping off a magical draught";
+            multi_reason = "因魔力的药水睡过头";
             nomovemsg = You_can_move_again;
             exercise(A_DEX, FALSE);
         } else
@@ -1890,7 +1890,7 @@ dodip()
             useupall(obj);
             useup(potion);
             losehp((int) (amt + rnd(9)), /* not physical damage */
-                   "alchemic blast", KILLED_BY_AN);
+                   "炼金术爆炸", KILLED_BY_AN);
             return 1;
         }
 

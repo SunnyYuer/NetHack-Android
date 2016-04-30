@@ -805,7 +805,7 @@ struct obj *obj;
                         pline("Yikes!  You've frozen yourself!");
                     if (!Hallucination || !rn2(4)) {
                         nomul(-rnd(MAXULEV + 6 - u.ulevel));
-                        multi_reason = "gazing into a mirror";
+                        multi_reason = "凝视镜子";
                     }
                     nomovemsg = 0; /* default, "you can move again" */
                 }
@@ -1584,7 +1584,7 @@ int magic; /* 0=Physical, otherwise skill level */
                 long side = rn2(3) ? LEFT_SIDE : RIGHT_SIDE;
 
                 You("rip yourself free of the bear trap!  Ouch!");
-                losehp(Maybe_Half_Phys(rnd(10)), "jumping out of a bear trap",
+                losehp(Maybe_Half_Phys(rnd(10)), "跳出捕兽夹",
                        KILLED_BY);
                 set_wounded_legs(side, rn1(1000, 500));
                 break;
@@ -1632,7 +1632,7 @@ int magic; /* 0=Physical, otherwise skill level */
         teleds(cc.x, cc.y, TRUE);
         sokoban_guilt();
         nomul(-1);
-        multi_reason = "jumping around";
+        multi_reason = "周围跳跃";
         nomovemsg = "";
         morehungry(rnd(25));
         return 1;
@@ -2520,7 +2520,7 @@ struct obj *obj;
         if (dam <= 0)
             dam = 1;
         You("hit your %s with your bullwhip.", body_part(FOOT));
-        Sprintf(buf, "killed %sself with %s bullwhip", uhim(), uhis());
+        Sprintf(buf, "被%s牛鞭所杀", uhis());
         losehp(Maybe_Half_Phys(dam), buf, NO_KILLER_PREFIX);
         context.botl = 1;
         return 1;
@@ -3055,7 +3055,7 @@ struct obj *obj;
     default: /* Yourself (oops!) */
         if (P_SKILL(typ) <= P_BASIC) {
             You("hook yourself!");
-            losehp(Maybe_Half_Phys(rn1(10, 10)), "a grappling hook",
+            losehp(Maybe_Half_Phys(rn1(10, 10)), "爪钩",
                    KILLED_BY);
             return 1;
         }
@@ -3263,7 +3263,7 @@ struct obj *obj;
             }
             damage = zapyourself(obj, FALSE);
             if (damage) {
-                Sprintf(buf, "killed %sself by breaking a wand", uhim());
+                Sprintf(buf, "被折断一个魔杖所杀");
                 losehp(Maybe_Half_Phys(damage), buf, NO_KILLER_PREFIX);
             }
             if (context.botl)

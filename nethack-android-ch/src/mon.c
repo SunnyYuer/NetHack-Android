@@ -1886,7 +1886,7 @@ boolean was_swallowed; /* digestion */
             if (was_swallowed && magr) {
                 if (magr == &youmonst) {
                     There("is an explosion in your %s!", body_part(STOMACH));
-                    Sprintf(killer.name, "%s explosion",
+                    Sprintf(killer.name, "%s爆炸",
                             s_suffix(mdat->mname));
                     losehp(Maybe_Half_Phys(tmp), killer.name, KILLED_BY_AN);
                 } else {

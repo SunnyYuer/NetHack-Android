@@ -1591,7 +1591,7 @@ struct obj **cobjp;
         You("carefully open the bag...");
         pline("It develops a huge set of teeth and bites you!");
         tmp = rnd(10);
-        losehp(Maybe_Half_Phys(tmp), "carnivorous bag", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(tmp), "肉食性的袋子", KILLED_BY_AN);
         makeknown(BAG_OF_TRICKS);
         return 1;
     }
@@ -2043,7 +2043,7 @@ register struct obj *obj;
         else
             panic("in_container:  bag not found.");
 
-        losehp(d(6, 6), "magical explosion", KILLED_BY_AN);
+        losehp(d(6, 6), "魔力爆炸", KILLED_BY_AN);
         current_container = 0; /* baggone = TRUE; */
     }
 
@@ -2282,7 +2282,7 @@ int held;
         /* even if the trap fails, you've used up this turn */
         if (multi >= 0) { /* in case we didn't become paralyzed */
             nomul(-1);
-            multi_reason = "opening a container";
+            multi_reason = "打开容器";
             nomovemsg = "";
         }
         return 1;
@@ -2856,7 +2856,7 @@ struct obj *box; /* or bag */
         /* even if the trap fails, you've used up this turn */
         if (multi >= 0) { /* in case we didn't become paralyzed */
             nomul(-1);
-            multi_reason = "tipping a container";
+            multi_reason = "倒出容器";
             nomovemsg = "";
         }
     } else if (box->otyp == BAG_OF_TRICKS || box->otyp == HORN_OF_PLENTY) {

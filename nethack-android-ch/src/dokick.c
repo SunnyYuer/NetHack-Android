@@ -519,7 +519,7 @@ xchar x, y;
             ; /* hero has been transformed but kick continues */
         } else {
             /* normalize body shape here; foot, not body_part(FOOT) */
-            Sprintf(killer.name, "kicking %s barefoot",
+            Sprintf(killer.name, "赤脚踢%s",
                     killer_xname(kickedobj));
             instapetrify(killer.name);
         }
@@ -717,34 +717,34 @@ char *buf;
     else if (maploc == &nowhere)
         what = "nothing";
     else if (IS_DOOR(maploc->typ))
-        what = "a door";
+        what = "门";
     else if (IS_TREE(maploc->typ))
-        what = "a tree";
+        what = "树";
     else if (IS_STWALL(maploc->typ))
-        what = "a wall";
+        what = "墙壁";
     else if (IS_ROCK(maploc->typ))
-        what = "a rock";
+        what = "岩石";
     else if (IS_THRONE(maploc->typ))
-        what = "a throne";
+        what = "王座";
     else if (IS_FOUNTAIN(maploc->typ))
-        what = "a fountain";
+        what = "喷泉";
     else if (IS_GRAVE(maploc->typ))
-        what = "a headstone";
+        what = "墓碑";
     else if (IS_SINK(maploc->typ))
-        what = "a sink";
+        what = "水槽";
     else if (IS_ALTAR(maploc->typ))
-        what = "an altar";
+        what = "祭坛";
     else if (IS_DRAWBRIDGE(maploc->typ))
-        what = "a drawbridge";
+        what = "吊桥";
     else if (maploc->typ == STAIRS)
-        what = "the stairs";
+        what = "楼梯";
     else if (maploc->typ == LADDER)
-        what = "a ladder";
+        what = "梯子";
     else if (maploc->typ == IRONBARS)
-        what = "an iron bar";
+        what = "铁球";
     else
         what = "something weird";
-    return strcat(strcpy(buf, "kicking "), what);
+    return strcat(strcpy(buf, "踢 "), what);
 }
 
 #ifdef ANDROID

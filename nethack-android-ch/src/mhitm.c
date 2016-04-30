@@ -73,7 +73,7 @@ register struct attack *mattk;
         far_noise = farq;
         noisetime = moves;
         You_hear("%s%s.",
-                 farq ? " 远处的" : "",
+                 farq ? "远处的" : "",
                  (mattk->aatyp == AT_EXPL) ? "爆炸声" : "一些声响");
     }
 }

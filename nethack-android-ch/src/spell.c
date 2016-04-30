@@ -151,7 +151,7 @@ struct obj *bp;
         /* temp disable in_use; death should not destroy the book */
         bp->in_use = FALSE;
         losestr(Poison_resistance ? rn1(2, 1) : rn1(4, 3));
-        losehp(rnd(Poison_resistance ? 6 : 10), "contact-poisoned spellbook",
+        losehp(rnd(Poison_resistance ? 6 : 10), "接触涂毒的魔法书",
                KILLED_BY_AN);
         bp->in_use = TRUE;
         break;
@@ -163,7 +163,7 @@ struct obj *bp;
             pline("在你读这本书的时候, 它%s 在你的%s 上!", explodes,
                   body_part(FACE));
             dmg = 2 * rnd(10) + 5;
-            losehp(Maybe_Half_Phys(dmg), "exploding rune", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(dmg), "爆炸的符文", KILLED_BY_AN);
         }
         return TRUE;
     default:
@@ -339,7 +339,7 @@ learn(VOID_ARGS)
         context.spbook.book = 0; /* no longer studying */
         context.spbook.o_id = 0;
         nomul(context.spbook.delay); /* remaining delay is uninterrupted */
-        multi_reason = "reading a book";
+        multi_reason = "阅读一本书";
         nomovemsg = 0;
         context.spbook.delay = 0;
         return 0;
@@ -541,7 +541,7 @@ register struct obj *spellbook;
             boolean gone = cursed_book(spellbook);
 
             nomul(context.spbook.delay); /* study time */
-            multi_reason = "reading a book";
+            multi_reason = "阅读一本书";
             nomovemsg = 0;
             context.spbook.delay = 0;
             if (gone || !rn2(3)) {
@@ -559,7 +559,7 @@ register struct obj *spellbook;
                 spellbook->in_use = FALSE;
             }
             nomul(context.spbook.delay);
-            multi_reason = "reading a book";
+            multi_reason = "阅读一本书";
             nomovemsg = 0;
             context.spbook.delay = 0;
             return 1;
@@ -1016,7 +1016,7 @@ boolean atme;
                     if (!u.dx && !u.dy && !u.dz) {
                         if ((damage = zapyourself(pseudo, TRUE)) != 0) {
                             char buf[BUFSZ];
-                            Sprintf(buf, "zapped %sself with a spell",
+                            Sprintf(buf, "对%s自己施展魔法",
                                     uhim());
                             losehp(damage, buf, NO_KILLER_PREFIX);
                         }
@@ -1081,7 +1081,7 @@ boolean atme;
                 if ((damage = zapyourself(pseudo, TRUE)) != 0) {
                     char buf[BUFSZ];
 
-                    Sprintf(buf, "zapped %sself with a spell", uhim());
+                    Sprintf(buf, "对%s自己施展魔法", uhim());
                     if (physical_damage)
                         damage = Maybe_Half_Phys(damage);
                     losehp(damage, buf, NO_KILLER_PREFIX);

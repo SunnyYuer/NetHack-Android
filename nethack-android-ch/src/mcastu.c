@@ -362,7 +362,7 @@ int spellnum;
                 You("have an out of body experience.");
             } else {
                 killer.format = KILLED_BY_AN;
-                Strcpy(killer.name, "touch of death");
+                Strcpy(killer.name, "死亡之触");
                 done(DIED);
             }
         } else {
@@ -656,7 +656,7 @@ int spellnum;
             if (multi >= 0)
                 You("stiffen briefly.");
             nomul(-1);
-            multi_reason = "paralyzed by a monster";
+            multi_reason = "被怪物麻痹";
         } else {
             if (multi >= 0)
                 You("are frozen in place!");
@@ -664,7 +664,7 @@ int spellnum;
             if (Half_spell_damage)
                 dmg = (dmg + 1) / 2;
             nomul(-dmg);
-            multi_reason = "paralyzed by a monster";
+            multi_reason = "被怪物麻痹";
         }
         nomovemsg = 0;
         dmg = 0;

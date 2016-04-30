@@ -503,8 +503,8 @@ int roomno;
             if (flags.verbose)
                 You("are frightened to death, and unable to move.");
             nomul(-3);
-            multi_reason = "being terrified of a demon";
-            nomovemsg = "You regain your composure.";
+            multi_reason = "被一个恶魔吓坏了";
+            nomovemsg = "你重获了你的镇静.";
         }
     }
 }

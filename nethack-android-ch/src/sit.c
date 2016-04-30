@@ -90,7 +90,7 @@ dosit()
                 if (trap && trap->ttyp == SPIKED_PIT) {
                     You("sit down on a spike.  Ouch!");
                     losehp(Half_physical_damage ? rn2(2) : 1,
-                           "sitting on an iron spike", KILLED_BY);
+                           "坐在铁钉上", KILLED_BY);
                     exercise(A_STR, FALSE);
                 } else
                     You("sit down in the pit.");
@@ -104,7 +104,7 @@ dosit()
                 if (Slimed)
                     burn_away_slime();
                 u.utrap += rnd(4);
-                losehp(d(2, 10), "sitting in lava",
+                losehp(d(2, 10), "坐在熔岩上",
                        KILLED_BY); /* lava damage */
             } else if (u.utraptype == TT_INFLOOR
                        || u.utraptype == TT_BURIEDBALL) {
@@ -149,7 +149,7 @@ dosit()
         }
         pline_The("lava burns you!");
         losehp(d((Fire_resistance ? 2 : 10), 10), /* lava damage */
-               "sitting on lava", KILLED_BY);
+               "坐在熔岩上", KILLED_BY);
     } else if (is_ice(u.ux, u.uy)) {
         You(sit_message, defsyms[S_ice].explanation);
         if (!Cold_resistance)
@@ -162,7 +162,7 @@ dosit()
             switch (rnd(13)) {
             case 1:
                 (void) adjattrib(rn2(A_MAX), -rn1(4, 3), FALSE);
-                losehp(rnd(10), "cursed throne", KILLED_BY_AN);
+                losehp(rnd(10), "被诅咒的王座", KILLED_BY_AN);
                 break;
             case 2:
                 (void) adjattrib(rn2(A_MAX), 1, FALSE);
@@ -170,7 +170,7 @@ dosit()
             case 3:
                 pline("A%s electric shock shoots through your body!",
                       (Shock_resistance) ? "n" : " massive");
-                losehp(Shock_resistance ? rnd(6) : rnd(30), "electric chair",
+                losehp(Shock_resistance ? rnd(6) : rnd(30), "电椅",
                        KILLED_BY_AN);
                 exercise(A_CON, FALSE);
                 break;

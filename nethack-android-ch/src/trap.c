@@ -42,7 +42,7 @@ STATIC_VAR int force_mintrap = 0;
 
 STATIC_VAR const char *const a_your[2] = { "a", "your" };
 STATIC_VAR const char *const A_Your[2] = { "A", "Your" };
-STATIC_VAR const char tower_of_flame[] = "tower of flame";
+STATIC_VAR const char tower_of_flame[] = "火焰塔";
 STATIC_VAR const char *const A_gush_of_water_hits = "A gush of water hits";
 STATIC_VAR const char *const blindgas[6] = { "humid",   "odorless",
                                              "pungent", "chilling",
@@ -953,7 +953,7 @@ unsigned trflags;
             stackobj(otmp);
             newsym(u.ux, u.uy); /* map the rock */
 
-            losehp(Maybe_Half_Phys(dmg), "falling rock", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(dmg), "掉落的岩石", KILLED_BY_AN);
             exercise(A_STR, FALSE);
         }
         break;
@@ -1006,7 +1006,7 @@ unsigned trflags;
             set_wounded_legs(rn2(2) ? RIGHT_SIDE : LEFT_SIDE, rn1(10, 10));
             if (u.umonnum == PM_OWLBEAR || u.umonnum == PM_BUGBEAR)
                 You("howl in anger!");
-            losehp(Maybe_Half_Phys(dmg), "bear trap", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(dmg), "捕兽夹", KILLED_BY_AN);
         }
         exercise(A_DEX, FALSE);
         break;
@@ -1072,7 +1072,7 @@ unsigned trflags;
 
             pline("%s you!", A_gush_of_water_hits);
             You("are covered with rust!");
-            losehp(Maybe_Half_Phys(dam), "rusting away", KILLED_BY);
+            losehp(Maybe_Half_Phys(dam), "锈掉", KILLED_BY);
         } else if (u.umonnum == PM_GREMLIN && rn2(3)) {
             pline("%s you!", A_gush_of_water_hits);
             (void) split_mon(&youmonst, (struct monst *) 0);
@@ -1148,9 +1148,9 @@ unsigned trflags;
                 oldumort = u.umortality;
                 losehp(Maybe_Half_Phys(rnd(adj_pit ? 6 : 10)),
                        plunged
-                           ? "deliberately plunged into a pit of iron spikes"
-                           : adj_pit ? "stepped into a pit of iron spikes"
-                                     : "fell into a pit of iron spikes",
+                           ? "故意陷入一个有铁钉的坑"
+                           : adj_pit ? "走进了一个有铁钉的坑"
+                                     : "掉进了一个有铁钉的坑",
                        NO_KILLER_PREFIX);
                 if (!rn2(6))
                     poisoned("spikes", A_STR,
@@ -1164,8 +1164,8 @@ unsigned trflags;
                 if (!adj_pit
                     && !(plunged && (Flying || is_clinger(youmonst.data))))
                     losehp(Maybe_Half_Phys(rnd(6)),
-                           plunged ? "deliberately plunged into a pit"
-                                   : "fell into a pit",
+                           plunged ? "故意陷入一个坑"
+                                   : "掉进一个坑",
                            NO_KILLER_PREFIX);
             }
             if (Punished && !carried(uball)) {
@@ -1308,7 +1308,7 @@ unsigned trflags;
             deltrap(trap);
             newsym(u.ux, u.uy); /* update position */
             You("are caught in a magical explosion!");
-            losehp(rnd(10), "magical explosion", KILLED_BY_AN);
+            losehp(rnd(10), "魔力爆炸", KILLED_BY_AN);
             Your("body absorbs some of the magical energy!");
             u.uen = (u.uenmax += 2);
             break;
@@ -1351,7 +1351,7 @@ unsigned trflags;
                                      : (dmgval2 >= hp / 4) ? "very lethargic."
                                                            : "sluggish.");
             /* opposite of magical explosion */
-            losehp(dmgval2, "anti-magic implosion", KILLED_BY_AN);
+            losehp(dmgval2, "反魔法内爆", KILLED_BY_AN);
         }
         break;
 
@@ -1425,7 +1425,7 @@ unsigned trflags;
         if (steed_mid && saddle && !u.usteed)
             (void) keep_saddle_with_steedcorpse(steed_mid, fobj, saddle);
         newsym(u.ux, u.uy); /* update trap symbol */
-        losehp(Maybe_Half_Phys(rnd(16)), "land mine", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(rnd(16)), "地雷", KILLED_BY_AN);
         /* fall recursively into the pit... */
         if ((trap = t_at(u.ux, u.uy)) != 0)
             dotrap(trap, RECURSIVETRAP);
@@ -2881,7 +2881,7 @@ long hmask, emask; /* might cancel timeout */
                         pline("Bummer!  You've crashed.");
                     else
                         You("fall over.");
-                    losehp(rnd(2), "dangerous winds", KILLED_BY);
+                    losehp(rnd(2), "危险的风", KILLED_BY);
                     if (u.usteed)
                         dismount_steed(DISMOUNT_FELL);
                     selftouch("As you fall, you");
@@ -2984,7 +2984,7 @@ struct obj *box; /* null for floor trap */
         if (Fire_resistance)
             You("are uninjured.");
         else
-            losehp(rnd(3), "boiling water", KILLED_BY);
+            losehp(rnd(3), "沸腾的水", KILLED_BY);
         return;
     }
     pline("A %s %s from %s!", tower_of_flame, box ? "bursts" : "erupts",
@@ -3548,7 +3548,7 @@ drown()
         i = Maybe_Half_Phys(d(2, 6));
         if (u.mhmax > i)
             u.mhmax -= i;
-        losehp(i, "rusting away", KILLED_BY);
+        losehp(i, "锈掉", KILLED_BY);
     }
     if (inpool_ok)
         return FALSE;
@@ -3649,8 +3649,8 @@ crawl:
         pool_of_water = waterbody_name(u.ux, u.uy);
         killer.format = KILLED_BY_AN;
         /* avoid "drowned in [a] water" */
-        if (!strcmp(pool_of_water, "water"))
-            pool_of_water = "deep water", killer.format = KILLED_BY;
+        if (!strcmp(pool_of_water, "水"))
+            pool_of_water = "深水", killer.format = KILLED_BY;
         Strcpy(killer.name, pool_of_water);
         done(DROWNING);
         /* oops, we're still alive.  better get out of the water. */
@@ -4586,7 +4586,7 @@ boolean disarm;
                        && *in_rooms(ox, oy, SHOPBASE) == *u.ushops);
 
             pline("%s!", Tobjnam(obj, "explode"));
-            Sprintf(buf, "exploding %s", xname(obj));
+            Sprintf(buf, "爆炸的 %s", xname(obj));
 
             if (costly)
                 loss += stolen_value(obj, ox, oy, (boolean) shkp->mpeaceful,
@@ -4663,7 +4663,7 @@ boolean disarm;
             destroy_item(RING_CLASS, AD_ELEC);
             destroy_item(WAND_CLASS, AD_ELEC);
             if (dmg)
-                losehp(dmg, "electric shock", KILLED_BY_AN);
+                losehp(dmg, "电冲击", KILLED_BY_AN);
             break;
         } /* case 6 */
         case 5:
@@ -4672,7 +4672,7 @@ boolean disarm;
             if (!Free_action) {
                 pline("Suddenly you are frozen in place!");
                 nomul(-d(5, 6));
-                multi_reason = "frozen by a trap";
+                multi_reason = "被一个陷阱冰冻";
                 exercise(A_DEX, FALSE);
                 nomovemsg = You_can_move_again;
             } else
@@ -4877,7 +4877,7 @@ int bodypart;
 
     pline("KABOOM!!  %s was booby-trapped!", The(item));
     wake_nearby();
-    losehp(Maybe_Half_Phys(dmg), "explosion", KILLED_BY_AN);
+    losehp(Maybe_Half_Phys(dmg), "爆炸", KILLED_BY_AN);
     exercise(A_STR, FALSE);
     if (bodypart)
         exercise(A_CON, FALSE);
@@ -4955,7 +4955,7 @@ unconscious()
                               || !strncmp(nomovemsg, "You are consci", 14))));
 }
 
-static const char lava_killer[] = "molten lava";
+static const char lava_killer[] = "熔岩";
 
 boolean
 lava_effects()
@@ -5102,7 +5102,7 @@ sink_into_lava()
         u.utrap -= (1 << 8);
         if (u.utrap < (1 << 8)) {
             killer.format = KILLED_BY;
-            Strcpy(killer.name, "molten lava");
+            Strcpy(killer.name, "熔岩");
             You("sink below the surface and die.");
             burn_away_slime(); /* add insult to injury? */
             done(DISSOLVED);

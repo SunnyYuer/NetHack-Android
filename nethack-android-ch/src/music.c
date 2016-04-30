@@ -387,7 +387,7 @@ int force;
                             u.utrap = rn1(6, 2);
                             u.utraptype = TT_PIT;
                             losehp(Maybe_Half_Phys(rnd(6)),
-                                   "fell into a chasm", NO_KILLER_PREFIX);
+                                   "掉落进峡谷", NO_KILLER_PREFIX);
                             selftouch("Falling, you");
                         } else if (u.utrap && u.utraptype == TT_PIT) {
                             boolean keepfooting =
@@ -398,7 +398,7 @@ int force;
                             u.utrap = rn1(6, 2);
                             u.utraptype = TT_PIT; /* superfluous */
                             losehp(Maybe_Half_Phys(rnd(keepfooting ? 2 : 4)),
-                                   "hurt in a chasm", NO_KILLER_PREFIX);
+                                   "在峡谷受伤", NO_KILLER_PREFIX);
                             if (keepfooting)
                                 exercise(A_DEX, TRUE);
                             else
@@ -495,7 +495,7 @@ struct obj *instr;
                 if ((damage = zapyourself(instr, TRUE)) != 0) {
                     char buf[BUFSZ];
 
-                    Sprintf(buf, "using a magical horn on %sself", uhim());
+                    Sprintf(buf, "在%s自己身上使用魔力号角", uhim());
                     losehp(damage, buf, KILLED_BY); /* fire or frost damage */
                 }
             } else {

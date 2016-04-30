@@ -88,11 +88,11 @@ int how;
 {
     static NEARDATA const char *const killed_by_prefix[] = {
         /* DIED, CHOKING, POISONING, STARVING, */
-        "killed by ", "choked on ", "poisoned by ", "died of ",
+        "所杀", "所噎死", "所毒死", "致死",
         /* DROWNING, BURNING, DISSOLVED, CRUSHING, */
-        "drowned in ", "burned by ", "dissolved in ", "crushed to death by ",
+        "淹死", "烧死", "溶化", "压死",
         /* STONING, TURNED_SLIME, GENOCIDED, */
-        "petrified by ", "turned to slime by ", "killed by ",
+        "石化", "变成了粘液", "所杀",
         /* PANICKED, TRICKED, QUIT, ESCAPED, ASCENDED */
         "", "", "", "", ""
     };
@@ -105,19 +105,19 @@ int how;
         impossible("bad killer format? (%d)", killer.format);
         /*FALLTHRU*/
     case NO_KILLER_PREFIX:
+        (void) strncat(buf, kname, siz - 1);
         break;
     case KILLED_BY_AN:
-        kname = an(kname);
+        kname = kname;
         /*FALLTHRU*/
     case KILLED_BY:
+        strcpy(buf,"被");
+        (void) strncat(buf, kname, siz - 1);
         (void) strncat(buf, killed_by_prefix[how], siz - 1);
-        l = strlen(buf);
-        buf += l, siz -= l;
         break;
     }
     /* we're writing into buf[0] (after possibly advancing buf) rather than
        appending, but strncat() appends a terminator and strncpy() doesn't */
-    (void) strncat(buf, kname, siz - 1);
 }
 
 STATIC_OVL void
@@ -289,8 +289,8 @@ struct toptenentry *tt;
                        tt->plalign);
     (void) fprintf(rfile, fmtX, onlyspace(tt->name) ? "_" : tt->name,
                    tt->death,
-                   (multi ? ", while " : ""),
-                   (multi ? (multi_reason ? multi_reason : "helpless") : ""));
+                   (multi ? ", 当" : ""),
+                   (multi ? (multi_reason ? multi_reason : "无助之时") : ""));
 
 #ifdef NO_SCAN_BRACK
     nsb_unmung_line(tt->name);
@@ -550,8 +550,8 @@ time_t when;
                 char pbuf[BUFSZ];
                 topten_print("");
                 Sprintf(pbuf,
-             "Since you were in %s mode, the score list will not be checked.",
-                        wizard ? "wizard" : "discover");
+             "既然你是在%s模式中, 就不会进入到分数排名.",
+                        wizard ? "向导" : "探索");
                 topten_print(pbuf);
             }
         goto showwin;
@@ -613,7 +613,7 @@ time_t when;
                     char pbuf[BUFSZ];
 
                     Sprintf(pbuf,
-                        "You didn't beat your previous score of %ld points.",
+                        "你没能打败你之前的分数%ld.",
                             t1->points);
                     topten_print(pbuf);
                     topten_print("");
@@ -650,12 +650,12 @@ time_t when;
         if (!done_stopprint)
             if (rank0 > 0) {
                 if (rank0 <= 10) {
-                    topten_print("You made the top ten list!");
+                    topten_print("你进入了前十!");
                 } else {
                     char pbuf[BUFSZ];
 
                     Sprintf(pbuf,
-                            "You reached the %d%s place on the top %d list.",
+                            "你的排名为%d%s 进入了前%d.",
                             rank0, ordin(rank0), sysopt.entrymax);
                     topten_print(pbuf);
                 }
@@ -743,7 +743,7 @@ outheader()
     char linebuf[BUFSZ];
     register char *bp;
 
-    Strcpy(linebuf, " No  Points     Name");
+    Strcpy(linebuf, "  排名       分数   姓名");
     bp = eos(linebuf);
     while (bp < linebuf + COLNO - 9)
         *bp++ = ' ';
@@ -784,7 +784,7 @@ boolean so;
     else
         Strcat(linebuf, " ");
     if (!strncmp("escaped", t1->death, 7)) {
-        Sprintf(eos(linebuf), "escaped the dungeon %s[max level %d]",
+        Sprintf(eos(linebuf), "逃离了地牢 %s[ 最大层数%d]",
                 !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "",
                 t1->maxlvl);
         /* fixup for closing paren in "escaped... with...Amulet)[max..." */
@@ -792,47 +792,47 @@ boolean so;
             *bp = (t1->deathdnum == astral_level.dnum) ? '\0' : ' ';
         second_line = FALSE;
     } else if (!strncmp("ascended", t1->death, 8)) {
-        Sprintf(eos(linebuf), "ascended to demigod%s-hood",
-                (t1->plgend[0] == 'F') ? "dess" : "");
+        Sprintf(eos(linebuf), "升为%s半神",
+                (t1->plgend[0] == 'F') ? "女" : "");
         second_line = FALSE;
     } else {
-        if (!strncmp(t1->death, "quit", 4)) {
-            Strcat(linebuf, "quit");
+        if (!strncmp(t1->death, "退出", 6)) {
+            Strcat(linebuf, "退出");
             second_line = FALSE;
-        } else if (!strncmp(t1->death, "died of st", 10)) {
-            Strcat(linebuf, "starved to death");
+        } else if (!strncmp(t1->death, "被饥饿", 9)) {
+            Strcat(linebuf, "饿死");
             second_line = FALSE;
-        } else if (!strncmp(t1->death, "choked", 6)) {
-            Sprintf(eos(linebuf), "choked on h%s food",
-                    (t1->plgend[0] == 'F') ? "er" : "is");
-        } else if (!strncmp(t1->death, "poisoned", 8)) {
-            Strcat(linebuf, "was poisoned");
-        } else if (!strncmp(t1->death, "crushed", 7)) {
-            Strcat(linebuf, "was crushed to death");
-        } else if (!strncmp(t1->death, "petrified by ", 13)) {
-            Strcat(linebuf, "turned to stone");
+        } else if (strstr(t1->death, "噎死")) {
+            Sprintf(eos(linebuf), "被%s的食物噎死",
+                    (t1->plgend[0] == 'F') ? "她" : "他");
+        } else if (strstr(t1->death, "毒死")) {
+            Strcat(linebuf, "被毒死");
+        } else if (strstr(t1->death, "压死")) {
+            Strcat(linebuf, "被压死");
+        } else if (strstr(t1->death, "石化")) {
+            Strcat(linebuf, "变成了石头");
         } else
-            Strcat(linebuf, "died");
+            Strcat(linebuf, "死");
 
         if (t1->deathdnum == astral_level.dnum) {
-            const char *arg, *fmt = " on the Plane of %s";
+            const char *arg, *fmt = " 在%s位面";
 
             switch (t1->deathlev) {
             case -5:
-                fmt = " on the %s Plane";
-                arg = "Astral";
+                fmt = " 在%s界";
+                arg = "星";
                 break;
             case -4:
-                arg = "Water";
+                arg = "水";
                 break;
             case -3:
-                arg = "Fire";
+                arg = "火";
                 break;
             case -2:
-                arg = "Air";
+                arg = "气";
                 break;
             case -1:
-                arg = "Earth";
+                arg = "土";
                 break;
             default:
                 arg = "Void";
@@ -840,15 +840,15 @@ boolean so;
             }
             Sprintf(eos(linebuf), fmt, arg);
         } else {
-            Sprintf(eos(linebuf), " in %s", dungeons[t1->deathdnum].dname);
+            Sprintf(eos(linebuf), " 在%s", dungeons[t1->deathdnum].dname);
             if (t1->deathdnum != knox_level.dnum)
-                Sprintf(eos(linebuf), " on level %d", t1->deathlev);
+                Sprintf(eos(linebuf), " 层数%d", t1->deathlev);
             if (t1->deathlev != t1->maxlvl)
                 Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);
         }
 
         /* kludge for "quit while already on Charon's boat" */
-        if (!strncmp(t1->death, "quit ", 5))
+        if (!strncmp(t1->death, "退出了", 9))
             Strcat(linebuf, t1->death + 4);
     }
     Strcat(linebuf, ".");

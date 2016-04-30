@@ -1253,7 +1253,7 @@ struct obj *obj;
     }
     /* apply an article if appropriate; caller should always use KILLED_BY */
     if (obj->quan == 1L && !strstri(buf, "'s ") && !strstri(buf, "s' "))
-        buf = (obj_is_pname(obj) || the_unique_obj(obj)) ? the(buf) : an(buf);
+        buf = (obj_is_pname(obj) || the_unique_obj(obj)) ? the(buf) : buf;
 
     objects[obj->otyp].oc_name_known = save_ocknown;
     objects[obj->otyp].oc_uname = save_ocuname;

@@ -271,11 +271,11 @@ drinkfountain()
             if (Poison_resistance) {
                 pline("Perhaps it is runoff from the nearby %s farm.",
                       fruitname(FALSE));
-                losehp(rnd(4), "unrefrigerated sip of juice", KILLED_BY_AN);
+                losehp(rnd(4), "未冷藏的一小口果汁", KILLED_BY_AN);
                 break;
             }
             losestr(rn1(4, 3));
-            losehp(rnd(10), "contaminated water", KILLED_BY);
+            losehp(rnd(10), "受污染的水", KILLED_BY);
             exercise(A_CON, FALSE);
             break;
         case 22: /* Fountain of snakes! */
@@ -524,7 +524,7 @@ drinksink()
         if (Fire_resistance)
             pline("It seems quite tasty.");
         else
-            losehp(rnd(6), "sipping boiling water", KILLED_BY);
+            losehp(rnd(6), "喝沸腾的水", KILLED_BY);
         /* boiling water burns considered fire damage */
         break;
     case 3:

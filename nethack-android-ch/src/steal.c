@@ -422,7 +422,7 @@ gotobj:
                 named++;
                 /* the following is to set multi for later on */
                 nomul(-armordelay);
-                multi_reason = "taking off clothes";
+                multi_reason = "脱下衣服";
                 nomovemsg = 0;
                 remove_worn_item(otmp, TRUE);
                 otmp->cursed = curssv;

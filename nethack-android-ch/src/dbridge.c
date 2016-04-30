@@ -444,14 +444,14 @@ int dest, how;
             /* use more specific killer if specified */
             if (!killer.name[0]) {
                 killer.format = KILLED_BY_AN;
-                Strcpy(killer.name, "falling drawbridge");
+                Strcpy(killer.name, "掉落的吊桥");
             }
             done(how);
             /* So, you didn't die */
             if (!e_survives_at(etmp, etmp->ex, etmp->ey)) {
                 if (enexto(&xy, etmp->ex, etmp->ey, etmp->edata)) {
-                    pline("A %s force teleports you away...",
-                          Hallucination ? "normal" : "strange");
+                    pline("一种%s力量把你传送走了...",
+                          Hallucination ? "普通的" : "奇怪的");
                     teleds(xy.x, xy.y, FALSE);
                 }
                 /* otherwise on top of the drawbridge is the
@@ -720,7 +720,7 @@ struct entity *etmp;
         }
         if (!e_survives_at(etmp, etmp->ex, etmp->ey)) {
             killer.format = KILLED_BY_AN;
-            Strcpy(killer.name, "closing drawbridge");
+            Strcpy(killer.name, "关闭吊桥");
             e_died(etmp, 0, CRUSHING); /* no message */
             return;
         }
@@ -751,7 +751,7 @@ struct entity *etmp;
                           lava ? "lava" : "moat");
             }
         killer.format = NO_KILLER_PREFIX;
-        Strcpy(killer.name, "fell from a drawbridge");
+        Strcpy(killer.name, "从吊桥上掉落");
         e_died(etmp, e_inview ? 3 : 2, /* CRUSHING is arbitrary */
                (is_pool(etmp->ex, etmp->ey))
                    ? DROWNING
@@ -957,7 +957,7 @@ int x, y;
                 pline("%s blown apart by flying debris.",
                       E_phrase(etmp2, "are"));
             killer.format = KILLED_BY_AN;
-            Strcpy(killer.name, "exploding drawbridge");
+            Strcpy(killer.name, "爆炸的吊桥");
             e_died(etmp2, e_inview ? 3 : 2, CRUSHING); /*no corpse*/
         } /* nothing which is vulnerable can survive this */
     }
@@ -987,7 +987,7 @@ int x, y;
                 }
             }
             killer.format = KILLED_BY_AN;
-            Strcpy(killer.name, "collapsing drawbridge");
+            Strcpy(killer.name, "倒塌的吊桥");
             e_died(etmp1, e_inview ? 3 : 2, CRUSHING); /*no corpse*/
             if (levl[etmp1->ex][etmp1->ey].typ == MOAT)
                 do_entity(etmp1);

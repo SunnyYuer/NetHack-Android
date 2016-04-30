@@ -107,7 +107,7 @@ boolean pushing;
                 burn_away_slime();
                 dmg = d((Fire_resistance ? 1 : 3), 6);
                 losehp(Maybe_Half_Phys(dmg), /* lava damage */
-                       "molten lava", KILLED_BY);
+                       "熔岩", KILLED_BY);
             } else if (!fills_up && flags.verbose
                        && (pushing ? !Blind : cansee(rx, ry)))
                 pline("It sinks without a trace!");
@@ -163,7 +163,7 @@ const char *verb;
             } else {
                 if (!Passes_walls && !throws_rocks(youmonst.data)) {
                     losehp(Maybe_Half_Phys(rnd(15)),
-                           "squished under a boulder", NO_KILLER_PREFIX);
+                           "在巨石下被挤扁", NO_KILLER_PREFIX);
                     return FALSE; /* player remains trapped */
                 } else
                     u.utrap = 0;
@@ -1320,8 +1320,8 @@ boolean at_stairs, falling, portal;
                     dismount_steed(DISMOUNT_FELL);
                 else
                     losehp(Maybe_Half_Phys(rnd(3)),
-                           at_ladder ? "falling off a ladder"
-                                     : "tumbling down a flight of stairs",
+                           at_ladder ? "从梯子上掉下来"
+                                     : "滚下楼梯",
                            KILLED_BY);
                 selftouch("Falling, you");
             } else { /* ordinary descent */

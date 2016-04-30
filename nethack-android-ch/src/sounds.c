@@ -718,7 +718,7 @@ register struct monst *mtmp;
         pline("%s rattles noisily.", Monnam(mtmp));
         You("freeze for a moment.");
         nomul(-2);
-        multi_reason = "scared by rattling";
+        multi_reason = "被嘎嘎声吓到了";
         nomovemsg = 0;
         break;
     case MS_LAUGH: {

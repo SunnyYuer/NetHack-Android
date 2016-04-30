@@ -879,7 +879,7 @@ int thrown; /* HMON_xxx (0 => hand-to-hand, other => ranged) */
                             char *what = xname(obj);
 
                             if (!thrown && obj->quan > 1L)
-                                what = singular(obj, xname);
+                                what = the(singular(obj, xname));
                             /* note: s_suffix returns a modifiable buffer */
                             if (haseyes(mdat)
                                 && mdat != &mons[PM_FLOATING_EYE])
@@ -1905,7 +1905,7 @@ register struct attack *mattk;
                 if (is_rider(pd)) {
                     pline("Unfortunately, digesting any of it is fatal.");
                     end_engulf();
-                    Sprintf(killer.name, "unwisely tried to eat %s",
+                    Sprintf(killer.name, "试图不明智地吃%s",
                             pd->mname);
                     killer.format = NO_KILLER_PREFIX;
                     done(DIED);
@@ -1945,7 +1945,7 @@ register struct attack *mattk;
                         if (Slow_digestion)
                             tmp *= 2;
                         nomul(-tmp);
-                        multi_reason = "digesting something";
+                        multi_reason = "消化某物";
                         nomovemsg = msgbuf;
                     } else
                         pline1(msgbuf);
@@ -2425,7 +2425,7 @@ boolean wep_was_destroyed;
                     } else {
                         You("被 %s 凝视所冰冻!", s_suffix(mon_nam(mon)));
                         nomul((ACURR(A_WIS) > 12 || rn2(4)) ? -tmp : -127);
-                        multi_reason = "frozen by a monster's gaze";
+                        multi_reason = "被怪物的凝视所冰冻";
                         nomovemsg = 0;
                     }
                 } else {
@@ -2440,7 +2440,7 @@ boolean wep_was_destroyed;
                 You("被 %s所冰冻!", mon_nam(mon));
                 nomovemsg = You_can_move_again;
                 nomul(-tmp);
-                multi_reason = "frozen by a monster";
+                multi_reason = "被一个怪物冰冻";
                 exercise(A_DEX, FALSE);
             }
             break;

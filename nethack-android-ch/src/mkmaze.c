@@ -1204,19 +1204,19 @@ xchar x, y;
         ltyp = db_under_typ(lev->drawbridgemask);
 
     if (ltyp == LAVAPOOL)
-        return "lava";
+        return "岩浆";
     else if (ltyp == ICE)
-        return "ice";
+        return "冰";
     else if (ltyp == POOL)
-        return "pool of water";
+        return "一池水";
     else if (ltyp == WATER || Is_waterlevel(&u.uz))
         ; /* fall through to default return value */
     else if (Is_juiblex_level(&u.uz))
-        return "swamp";
+        return "沼泽";
     else if (ltyp == MOAT && !Is_medusa_level(&u.uz))
-        return "moat";
+        return "护城河";
 
-    return "water";
+    return "水";
 }
 
 STATIC_OVL void

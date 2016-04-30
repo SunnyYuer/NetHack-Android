@@ -511,7 +511,7 @@ int curse_bless;
                 Ring_gone(obj);
             s = rnd(3 * abs(obj->spe)); /* amount of damage */
             useup(obj);
-            losehp(Maybe_Half_Phys(s), "exploding ring", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(s), "爆炸的戒指", KILLED_BY_AN);
         } else {
             long mask = is_on ? (obj == uleft ? LEFT_RING : RIGHT_RING) : 0L;
 
@@ -1554,7 +1554,7 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             } else {
                 pline_The("卷轴着火了并烧到了你的%s.",
                           makeplural(body_part(HAND)));
-                losehp(1, "scroll of fire", KILLED_BY_AN);
+                losehp(1, "火卷轴", KILLED_BY_AN);
             }
             break;
         }
@@ -1680,7 +1680,7 @@ boolean confused, helmet_protects, byu, skip_uswallow;
         newsym(u.ux, u.uy);
     }
     if (dmg)
-        losehp(Maybe_Half_Phys(dmg), "scroll of earth", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(dmg), "大地卷轴", KILLED_BY_AN);
 }
 
 boolean
@@ -1797,7 +1797,7 @@ int chg; /* recharging */
     dmg = d(n, k);
     obj->in_use = TRUE; /* in case losehp() is fatal (or --More--^C) */
     pline("%s %s explodes!", Yname2(obj), expl);
-    losehp(Maybe_Half_Phys(dmg), "exploding wand", KILLED_BY_AN);
+    losehp(Maybe_Half_Phys(dmg), "爆炸的魔杖", KILLED_BY_AN);
     useup(obj);
     /* obscure side-effect */
     exercise(A_STR, FALSE);
@@ -2201,14 +2201,14 @@ int how;
             u.uhp = -1;
             if (how & PLAYER) {
                 killer.format = KILLED_BY;
-                Strcpy(killer.name, "genocidal confusion");
+                Strcpy(killer.name, "灭绝混乱");
             } else if (how & ONTHRONE) {
                 /* player selected while on a throne */
                 killer.format = KILLED_BY_AN;
-                Strcpy(killer.name, "imperious order");
+                Strcpy(killer.name, "专横的命令");
             } else { /* selected player deliberately, not confused */
                 killer.format = KILLED_BY_AN;
-                Strcpy(killer.name, "scroll of genocide");
+                Strcpy(killer.name, "灭绝卷轴");
             }
 
             /* Polymorphed characters will die as soon as they're rehumanized.

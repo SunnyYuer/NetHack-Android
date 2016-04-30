@@ -2057,7 +2057,7 @@ struct obj *otmp;
     otmp->in_use = TRUE; /* in case losehp() is fatal */
     pline("%s suddenly explodes!", The(xname(otmp)));
     dmg = d(otmp->spe + 2, 6);
-    losehp(Maybe_Half_Phys(dmg), "exploding wand", KILLED_BY_AN);
+    losehp(Maybe_Half_Phys(dmg), "爆炸的魔杖", KILLED_BY_AN);
     useup(otmp);
 }
 
@@ -2093,7 +2093,7 @@ dozap()
                && !(objects[obj->otyp].oc_dir == NODIR)) {
         if ((damage = zapyourself(obj, TRUE)) != 0) {
             char buf[BUFSZ];
-            Sprintf(buf, "zapped %sself with a wand", uhim());
+            Sprintf(buf, "对%s自己使用魔杖", uhim());
             losehp(Maybe_Half_Phys(damage), buf, NO_KILLER_PREFIX);
         }
     } else {
@@ -2223,7 +2223,7 @@ boolean ordinary;
     case SPE_DRAIN_LIFE:
         if (!Drain_resistance) {
             learn_it = TRUE; /* (no effect for spells...) */
-            losexp("life drainage");
+            losexp("生命流逝");
         }
         damage = 0; /* No additional damage */
         break;
@@ -2302,7 +2302,7 @@ boolean ordinary;
             break;
         }
         learn_it = TRUE;
-        Sprintf(killer.name, "shot %sself with a death ray", uhim());
+        Sprintf(killer.name, "用死亡射线射击%s自己", uhim());
         killer.format = NO_KILLER_PREFIX;
         You("irradiate yourself with pure energy!");
         You("die.");
@@ -2458,9 +2458,8 @@ int amt;          /* pseudo-damage used to determine blindness duration */
             ordinary = FALSE; /* say blasted rather than zapped */
         how = (obj->oclass != SPBOOK_CLASS)
                   ? (const char *) ansimpleoname(obj)
-                  : "spell of light";
-        Sprintf(buf, "%s %sself with %s", ordinary ? "zapped" : "blasted",
-                uhim(), how);
+                  : "光亮魔法";
+        Sprintf(buf, "用%s对%s自己%s", how, uhim(), ordinary ? "施展" : "爆炸");
         /* might rehumanize(); could be fatal, but only for Unchanging */
         losehp(Maybe_Half_Phys(dmg), buf, NO_KILLER_PREFIX);
     }
@@ -2683,7 +2682,7 @@ struct obj *obj; /* wand or spell */
             pline("A rock is dislodged from the %s and falls on your %s.",
                   ceiling(x, y), body_part(HEAD));
             dmg = rnd((uarmh && is_metallic(uarmh)) ? 2 : 6);
-            losehp(Maybe_Half_Phys(dmg), "falling rock", KILLED_BY_AN);
+            losehp(Maybe_Half_Phys(dmg), "掉落的岩石", KILLED_BY_AN);
             if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE)) != 0) {
                 (void) xname(otmp); /* set dknown, maybe bknown */
                 stackobj(otmp);
@@ -4521,13 +4520,13 @@ register struct obj *obj;
  */
 const char *const destroy_strings[][3] = {
     /* also used in trap.c */
-    { "freezes and shatters", "freeze and shatter", "shattered potion" },
-    { "boils and explodes", "boil and explode", "boiling potion" },
-    { "ignites and explodes", "ignite and explode", "exploding potion" },
-    { "catches fire and burns", "catch fire and burn", "burning scroll" },
-    { "catches fire and burns", "", "burning book" },
-    { "turns to dust and vanishes", "", "" },
-    { "breaks apart and explodes", "", "exploding wand" },
+    { "冻结并破碎了", "冻结并破碎", "破碎的药水" },
+    { "沸腾并爆炸了", "沸腾并爆炸", "沸腾的药水" },
+    { "点燃并爆炸了", "点燃并爆炸", "爆炸的药水" },
+    { "着火并燃烧了", "着火并燃烧", "燃烧的卷轴" },
+    { "着火并燃烧了", "", "燃烧的书" },
+    { "变成灰尘并消失了", "", "" },
+    { "分裂并爆炸了", "", "爆炸的魔杖" },
 };
 
 void

@@ -23,14 +23,14 @@ STATIC_DCL void FDECL(center, (int, char *));
 static const char *rip_txt[] = {
     "                       ----------",
     "                      /          \\",
-    "                     /    REST    \\",
-    "                    /      IN      \\",
-    "                   /     PEACE      \\",
+    "                     /      安     \\",
+    "                    /       息      \\",
+    "                   /        吧       \\",
     "                  /                  \\",
-    "                  |                  |", /* Name of player */
+    "                  |                  |            ", /* Name of player */
     "                  |                  |", /* Amount of $ */
-    "                  |                  |", /* Type of death */
-    "                  |                  |", /* . */
+    "                  |                  |            ", /* Type of death */
+    "                  |                  |            ", /* . */
     "                  |                  |", /* . */
     "                  |                  |", /* . */
     "                  |       1001       |", /* Real year of death */
@@ -61,7 +61,7 @@ static const char *rip_txt[] = {
 #define STONE_LINE_CENT 19 /* char[] element of center of stone face */
 #endif                     /* NH320_DEDICATION */
 #define STONE_LINE_LEN                               \
-    16               /* # chars that fit on one line \
+    15               /* # chars that fit on one line \
                       * (note 1 ' ' border)          \
                       */
 #define NAME_LINE 6  /* *char[] line # for player name */
@@ -71,6 +71,22 @@ static const char *rip_txt[] = {
 
 static char **rip;
 
+int chcharlen(char *text)
+{
+    double len=0.0;
+    int i=0;
+    for (i=0;i<strlen(text);i++)
+    {
+        if(text[i]<=127&&text[i]>=0) len=len+1;
+        else
+        {
+            i=i+2;
+            len=len+1.5;  /*大约2个汉字和3个字母对齐*/
+        }
+    }
+    return (int)len;
+}
+
 STATIC_OVL void
 center(line, text)
 int line;
@@ -78,9 +94,15 @@ char *text;
 {
     register char *ip, *op;
     ip = text;
-    op = &rip[line][STONE_LINE_CENT - ((strlen(text) + 1) >> 1)];
+    op = &rip[line][STONE_LINE_CENT - ((chcharlen(text) + 1) >> 1)];
+    int start=STONE_LINE_CENT - ((chcharlen(text) + 1) >> 1);
+    int rlen=37-start-chcharlen(text);
     while (*ip)
         *op++ = *ip++;
+    if(start+strlen(text)<=37)  /*未覆盖'|'*/
+        op[37-start-strlen(text)]=' ';
+    op[rlen]='|';
+    if(op[rlen+1]) op[rlen+1]='\0';
 }
 
 void

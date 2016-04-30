@@ -1501,7 +1501,7 @@ register struct obj *otmp;
         return 0;
     if (delay) {
         nomul(delay);
-        multi_reason = "disrobing";
+        multi_reason = "脱衣服";
         if (is_helmet(otmp)) {
             /* ick... */
             nomovemsg = !strcmp(helm_simple_name(otmp), "帽子")
@@ -1872,7 +1872,7 @@ struct obj *obj;
         delay = -objects[obj->otyp].oc_delay;
         if (delay) {
             nomul(delay);
-            multi_reason = "dressing up";
+            multi_reason = "穿着打扮";
             if (is_boots(obj))
                 afternmv = Boots_on;
             if (is_helmet(obj))

@@ -610,7 +610,7 @@ boolean via_disintegration;
     You("%s!", !via_disintegration ? "被电成灰烬"
                                    : "被分解为一堆灰尘");
     killer.format = KILLED_BY;
-    Sprintf(killer.name, "the wrath of %s", align_gname(resp_god));
+    Sprintf(killer.name, "%s的愤怒", align_gname(resp_god));
     done(DIED);
 }
 
@@ -1357,7 +1357,7 @@ dosacrifice()
                         dmon->mpeaceful = TRUE;
                     You("被惊吓住, 无法移动了.");
                     nomul(-3);
-                    multi_reason = "being terrified of a demon";
+                    multi_reason = "被一个恶魔吓坏了";
                     nomovemsg = 0;
                 } else
                     pline_The("%s.", demonless_msg);
@@ -1462,7 +1462,7 @@ dosacrifice()
                 pline("%s shrugs and retains dominion over %s,", Moloch,
                       u_gname());
                 pline("then mercilessly snuffs out your life.");
-                Sprintf(killer.name, "%s indifference", s_suffix(Moloch));
+                Sprintf(killer.name, "%s 冷淡", s_suffix(Moloch));
                 killer.format = KILLED_BY;
                 done(DIED);
                 /* life-saved (or declined to die in wizard/explore mode) */
@@ -1796,7 +1796,7 @@ dopray()
         }
     }
     nomul(-3);
-    multi_reason = "praying";
+    multi_reason = "祈祷";
     nomovemsg = "你完成了你的祈祷.";
     afternmv = prayer_done;
 
@@ -1825,7 +1825,7 @@ prayer_done() /* M. Stephenson (1.0.3b) */
         /* KMH -- Gods have mastery over unchanging */
         rehumanize();
         /* no Half_physical_damage adjustment here */
-        losehp(rnd(20), "residual undead turning effect", KILLED_BY_AN);
+        losehp(rnd(20), "残余的超度效果", KILLED_BY_AN);
         exercise(A_CON, FALSE);
         return 1;
     }
@@ -1966,7 +1966,7 @@ doturn()
         }
     }
     nomul(-5);
-    multi_reason = "trying to turn the monsters";
+    multi_reason = "试图超度怪物";
     nomovemsg = You_can_move_again;
     return 1;
 }

@@ -507,7 +507,7 @@ register xchar ox, oy;
     newsym(ox, oy);
 }
 
-static NEARDATA const char fell_on_sink[] = "fell onto a sink";
+static NEARDATA const char fell_on_sink[] = "掉落在水槽上";
 
 STATIC_OVL void
 dosinkfall()
@@ -1692,7 +1692,7 @@ domove()
     /* must come after we finished picking up, in spoteffects() */
     if (cause_delay) {
         nomul(-2);
-        multi_reason = "dragging an iron ball";
+        multi_reason = "拖一个铁球";
         nomovemsg = "";
     }
 

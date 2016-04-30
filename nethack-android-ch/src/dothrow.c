@@ -91,7 +91,7 @@ int shotlimit;
             /* throwing with one hand, but pluralize since the
                expression "with your bare hands" sounds better */
             makeplural(body_part(HAND)));
-        Sprintf(killer.name, "throwing %s bare-handed", killer_xname(obj));
+        Sprintf(killer.name, "投掷%s赤手的", killer_xname(obj));
         instapetrify(killer.name);
     }
     if (welded(obj)) {
@@ -550,11 +550,11 @@ int x, y;
 
             pline("Ouch!");
             if (IS_TREE(levl[x][y].typ))
-                s = "bumping into a tree";
+                s = "碰到树";
             else if (IS_ROCK(levl[x][y].typ))
-                s = "bumping into a wall";
+                s = "碰到墙";
             else
-                s = "bumping into a door";
+                s = "碰到门";
             dmg = rnd(2 + *range);
             losehp(Maybe_Half_Phys(dmg), s, KILLED_BY);
             wake_nearto(x,y, 10);
@@ -563,7 +563,7 @@ int x, y;
         if (levl[x][y].typ == IRONBARS) {
             You("crash into some iron bars.  Ouch!");
             dmg = rnd(2 + *range);
-            losehp(Maybe_Half_Phys(dmg), "crashing into iron bars",
+            losehp(Maybe_Half_Phys(dmg), "撞上铁球",
                    KILLED_BY);
             wake_nearto(x,y, 20);
             return FALSE;
@@ -571,7 +571,7 @@ int x, y;
         if ((obj = sobj_at(BOULDER, x, y)) != 0) {
             You("bump into a %s.  Ouch!", xname(obj));
             dmg = rnd(2 + *range);
-            losehp(Maybe_Half_Phys(dmg), "bumping into a boulder", KILLED_BY);
+            losehp(Maybe_Half_Phys(dmg), "碰到巨石", KILLED_BY);
             wake_nearto(x,y, 10);
             return FALSE;
         }
@@ -579,7 +579,7 @@ int x, y;
             /* did we hit a no-dig non-wall position? */
             You("smack into something!");
             dmg = rnd(2 + *range);
-            losehp(Maybe_Half_Phys(dmg), "touching the edge of the universe",
+            losehp(Maybe_Half_Phys(dmg), "触碰到宇宙的边缘",
                    KILLED_BY);
             wake_nearto(x,y, 10);
             return FALSE;
@@ -593,7 +593,7 @@ int x, y;
                 You("%sget forcefully wedged into a crevice.",
                     too_much ? "and all your belongings " : "");
                 dmg = rnd(2 + *range);
-                losehp(Maybe_Half_Phys(dmg), "wedging into a narrow crevice",
+                losehp(Maybe_Half_Phys(dmg), "挤进一个狭窄的缝隙",
                        KILLED_BY);
                 wake_nearto(x,y, 10);
                 return FALSE;
@@ -729,7 +729,7 @@ boolean verbose;
         return; /* paranoia */
 
     nomul(-range);
-    multi_reason = "moving through the air";
+    multi_reason = "穿过空气";
     nomovemsg = ""; /* it just happens */
     if (verbose)
         You("%s in the opposite direction.", range > 1 ? "hurtle" : "float");
@@ -927,8 +927,8 @@ boolean hitsroof;
                         && polymon(PM_STONE_GOLEM))) {
         petrify:
             killer.format = KILLED_BY;
-            Strcpy(killer.name, "elementary physics"); /* "what goes up..." */
-            You("turn to stone.");
+            Strcpy(killer.name, "基础物理"); /* "what goes up..." */
+            You("变成了石头.");
             if (obj)
                 dropy(obj); /* bypass most of hitfloor() */
             thrownobj = 0;  /* now either gone or on floor */
@@ -937,7 +937,7 @@ boolean hitsroof;
         }
         hitfloor(obj);
         thrownobj = 0;
-        losehp(Maybe_Half_Phys(dmg), "falling object", KILLED_BY_AN);
+        losehp(Maybe_Half_Phys(dmg), "掉落的东西", KILLED_BY_AN);
     }
     return TRUE;
 }

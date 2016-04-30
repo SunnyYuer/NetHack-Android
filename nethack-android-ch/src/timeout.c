@@ -53,7 +53,7 @@ stoned_dialogue()
     case 3: /* limbs turned to stone */
         stop_occupation();
         nomul(-3); /* can't move anymore */
-        multi_reason = "getting stoned";
+        multi_reason = "醉了";
         nomovemsg = You_can_move_again; /* not unconscious */
         break;
     default:
@@ -274,7 +274,7 @@ nh_timeout()
                     Strcpy(killer.name, kptr->name);
                 } else {
                     killer.format = NO_KILLER_PREFIX;
-                    Strcpy(killer.name, "killed by petrification");
+                    Strcpy(killer.name, "被石化所杀");
                 }
                 dealloc_killer(kptr);
                 /* (unlike sliming, you aren't changing form here) */
@@ -286,7 +286,7 @@ nh_timeout()
                     Strcpy(killer.name, kptr->name);
                 } else {
                     killer.format = NO_KILLER_PREFIX;
-                    Strcpy(killer.name, "turned into green slime");
+                    Strcpy(killer.name, "变成了绿粘液");
                 }
                 dealloc_killer(kptr);
                 /* involuntarily break "never changed form" conduct */
@@ -389,7 +389,7 @@ nh_timeout()
             case STRANGLED:
                 killer.format = KILLED_BY;
                 Strcpy(killer.name,
-                       (u.uburied) ? "suffocation" : "strangulation");
+                       (u.uburied) ? "窒息" : "绞窄");
                 done(DIED);
                 /* must be declining to die in explore|wizard mode;
                    treat like being cured of strangulation by prayer */
@@ -404,7 +404,7 @@ nh_timeout()
                 if (u.umoved && !Levitation) {
                     slip_or_trip();
                     nomul(-2);
-                    multi_reason = "fumbling";
+                    multi_reason = "笨拙的";
                     nomovemsg = "";
                     /* The more you are carrying the more likely you
                      * are to make noise when you fumble.  Adjustments
@@ -437,7 +437,7 @@ boolean wakeup_msg;
 {
     stop_occupation();
     nomul(how_long);
-    multi_reason = "sleeping";
+    multi_reason = "沉睡";
     /* generally don't notice sounds while sleeping */
     if (wakeup_msg && multi == how_long) {
         /* caller can follow with a direct call to Hear_again() if
@@ -723,8 +723,8 @@ slip_or_trip()
         }
         if (!uarmf && otmp->otyp == CORPSE
             && touch_petrifies(&mons[otmp->corpsenm]) && !Stone_resistance) {
-            Sprintf(killer.name, "tripping over %s corpse",
-                    an(mons[otmp->corpsenm].mname));
+            Sprintf(killer.name, "被%s尸体绊倒",
+                    mons[otmp->corpsenm].mname);
             instapetrify(killer.name);
         }
     } else if (rn2(3) && is_ice(u.ux, u.uy)) {
@@ -1291,7 +1291,7 @@ do_storms()
         if (!u.uinvulnerable) {
             stop_occupation();
             nomul(-3);
-            multi_reason = "hiding from thunderstorm";
+            multi_reason = "隐藏于雷暴";
             nomovemsg = 0;
         }
     } else

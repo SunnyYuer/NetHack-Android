@@ -933,7 +933,7 @@ struct obj **optr;
             useup(obj);
             *optr = obj = 0; /* it's gone */
             /* physical damage cause by the shards and force */
-            losehp(Maybe_Half_Phys(rnd(30)), "exploding crystal ball",
+            losehp(Maybe_Half_Phys(rnd(30)), "爆炸的水晶球",
                    KILLED_BY_AN);
             break;
         }
@@ -986,7 +986,7 @@ struct obj **optr;
     }
     You("窥视%s里面...", the(xname(obj)));
     nomul(-rnd(10));
-    multi_reason = "gazing into a crystal ball";
+    multi_reason = "凝视水晶球";
     nomovemsg = "";
     if (obj->spe <= 0)
         pline_The("视界不清晰.");

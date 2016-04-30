@@ -690,7 +690,7 @@ struct monst *mon;
         /* add half (maybe quarter) of the usual silver damage bonus */
         if (objects[obj->otyp].oc_material == SILVER && Hate_silver)
             tmp = rnd(10), dmg += Maybe_Half_Phys(tmp);
-        Sprintf(buf, "touching %s", oart->name);
+        Sprintf(buf, "触摸%s", oart->name);
         losehp(dmg, buf, KILLED_BY); /* magic damage, not physical */
         exercise(A_WIS, FALSE);
     }
@@ -1052,7 +1052,7 @@ char *hittee;              /* target's name: "you" or mon_nam(mdef) */
                 resisted = TRUE;
             } else {
                 nomul(-3);
-                multi_reason = "being scared stiff";
+                multi_reason = "被吓坏了";
                 nomovemsg = "";
                 if (magr && magr == u.ustuck && sticks(youmonst.data)) {
                     u.ustuck = (struct monst *) 0;
@@ -1369,7 +1369,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
             else
                 pline("%s drains your %s!", The(distant_name(otmp, xname)),
                       life);
-            losexp("life drainage");
+            losexp("生命流逝");
             if (magr && magr->mhp < magr->mhpmax) {
                 magr->mhp += (oldhpmax - u.uhpmax) / 2;
                 if (magr->mhp > magr->mhpmax)
@@ -1900,7 +1900,7 @@ boolean loseit;    /* whether to drop it if hero can longer touch it */
                 tmp = rnd(10), dmg += Maybe_Half_Phys(tmp);
             if (bane)
                 dmg += rnd(10);
-            Sprintf(buf, "handling %s", killer_xname(obj));
+            Sprintf(buf, "执握 %s", killer_xname(obj));
             losehp(dmg, buf, KILLED_BY);
             exercise(A_CON, FALSE);
         }

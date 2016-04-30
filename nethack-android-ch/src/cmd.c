@@ -714,7 +714,7 @@ wiz_level_change(VOID_ARGS)
         if (newlevel < 1)
             newlevel = 1;
         while (u.ulevel > newlevel)
-            losexp("#levelchange");
+            losexp("# 改变等级");
     } else {
         if (u.ulevel >= MAXULEV) {
             You("你已经达到最高等级.");
@@ -1617,7 +1617,7 @@ int final;
                       /* if hero dies while dismounting, u.usteed will still
                          be set; we want to ignore steed in that situation */
                       && !(final == ENL_GAMEOVERDEAD
-                           && !strcmp(killer.name, "riding accident")));
+                           && !strcmp(killer.name, "乘骑事故")));
     const char *steedname = (!Riding ? (char *) 0
                       : x_monnam(u.usteed,
                                  u.usteed->mtame ? ARTICLE_YOUR : ARTICLE_THE,

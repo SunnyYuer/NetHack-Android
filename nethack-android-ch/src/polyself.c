@@ -392,7 +392,7 @@ int psflags;
         && !isvamp) {
         if (rn2(20) > ACURR(A_CON)) {
             You1(shudder_for_moment);
-            losehp(rnd(30), "system shock", KILLED_BY_AN);
+            losehp(rnd(30), "系统冲击", KILLED_BY_AN);
             exercise(A_CON, FALSE);
             return;
         }
@@ -1355,7 +1355,7 @@ dogaze()
                                   ? -d((int) mtmp->m_lev + 1,
                                        (int) mtmp->data->mattk[0].damd)
                                   : -200);
-                        multi_reason = "frozen by a monster's gaze";
+                        multi_reason = "被怪物的凝视所冰冻";
                         nomovemsg = 0;
                         return 1;
                     } else

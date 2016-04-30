@@ -1219,7 +1219,7 @@ register struct obj *otmp;
                 tmp = d(2, 12);
                 if (Half_spell_damage)
                     tmp = (tmp + 1) / 2;
-                losehp(tmp, "wand", KILLED_BY_AN);
+                losehp(tmp, "魔杖", KILLED_BY_AN);
             } else
                 pline_The("wand misses you.");
             stop_occupation();

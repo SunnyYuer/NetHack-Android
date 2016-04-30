@@ -331,7 +331,7 @@ dig(VOID_ARGS)
                 else if (uarmf)
                     dmg = (dmg + 1) / 2;
                 You("hit yourself in the %s.", body_part(FOOT));
-                Sprintf(kbuf, "chopping off %s own %s", uhis(),
+                Sprintf(kbuf, "砍掉%s自己的%s", uhis(),
                         body_part(FOOT));
                 losehp(Maybe_Half_Phys(dmg), kbuf, KILLED_BY);
             } else {
@@ -1035,7 +1035,7 @@ struct obj *obj;
         if (dam <= 0)
             dam = 1;
         You("用%s打你自己.", yname(uwep));
-        Sprintf(buf, "%s own %s", uhis(), OBJ_NAME(objects[obj->otyp]));
+        Sprintf(buf, "%s 自己的 %s", uhis(), OBJ_NAME(objects[obj->otyp]));
         losehp(Maybe_Half_Phys(dam), buf, KILLED_BY);
         context.botl = 1;
         return 1;
@@ -1064,8 +1064,8 @@ struct obj *obj;
                 /* you ought to be able to let go; tough luck */
                 /* (maybe `move_into_trap()' would be better) */
                 nomul(-d(2, 2));
-                multi_reason = "stuck in a spider web";
-                nomovemsg = "You pull free.";
+                multi_reason = "困于蜘蛛网";
+                nomovemsg = "你拉出来.";
             } else if (lev->typ == IRONBARS) {
                 pline("铛!");
                 wake_nearby();
@@ -1080,7 +1080,7 @@ struct obj *obj;
                       sobj_at(STATUE, rx, ry) ? "雕像" : "巨石",
                       vibrate ? " 斧柄剧烈地震动!" : "");
                 if (vibrate)
-                    losehp(Maybe_Half_Phys(2), "axing a hard object",
+                    losehp(Maybe_Half_Phys(2), "砍坚硬的东西",
                            KILLED_BY);
             } else if (u.utrap && u.utraptype == TT_PIT && trap
                        && (trap_with_u = t_at(u.ux, u.uy))
@@ -1410,7 +1410,7 @@ zap_dig()
                 You("loosen a rock from the %s.", ceiling(u.ux, u.uy));
                 pline("It falls on your %s!", body_part(HEAD));
                 dmg = rnd((uarmh && is_metallic(uarmh)) ? 2 : 6);
-                losehp(Maybe_Half_Phys(dmg), "falling rock", KILLED_BY_AN);
+                losehp(Maybe_Half_Phys(dmg), "落石", KILLED_BY_AN);
                 otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE);
                 if (otmp) {
                     (void) xname(otmp); /* set dknown, maybe bknown */
