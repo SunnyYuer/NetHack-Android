@@ -141,7 +141,7 @@ CC = $(NDK)/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/arm-linu
 # flags for Linux
 #   compile normally
 # CFLAGS = -O2 -fomit-frame-pointer -I../include
-CFLAGS = -DANDROID -DDEBUG -Wno-format -fsigned-char -I../include
+CFLAGS = -DANDROID -Wno-format -fsigned-char -I../include
 LFLAGS = -shared -Wl,--fix-cortex-a8
 
 # LFLAGS = -L/usr/X11R6/lib

@@ -42,4 +42,6 @@ LOCAL_SRC_FILES :=		\
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include
 
+LOCAL_CFLAGS := -Wno-format -fsigned-char
+
 include $(BUILD_SHARED_LIBRARY)
