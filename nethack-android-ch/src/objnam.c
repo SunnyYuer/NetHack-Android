@@ -874,7 +874,7 @@ boolean with_price;
             goto plus;
         if (obj->otyp == CANDELABRUM_OF_INVOCATION) {
             if (!obj->spe)
-                Strcpy(tmpbuf, "无");
+                Strcpy(tmpbuf, " 无");
             else
                 Sprintf(tmpbuf, "%d", obj->spe);
             Sprintf(eos(bp), " (%s 蜡烛%s)", tmpbuf,

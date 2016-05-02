@@ -249,7 +249,7 @@ struct obj *obj; /* aatyp == AT_WEAP, AT_SPIT */
         for (; o; o = o->nobj)
             if ((o->owornmask & W_ARMH)
                 && (s = OBJ_DESCR(objects[o->otyp])) != (char *) 0
-                && !strcmp(s, "visored helmet"))
+                && !strcmp(s, "檐帽头盔"))
                 return FALSE;
     }
 

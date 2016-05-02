@@ -115,11 +115,11 @@ struct obj *otmp;
     if (Confusion || Fumbling || Glib)
         chance -= 20;
     else if (uarmg && (s = OBJ_DESCR(objects[uarmg->otyp])) != (char *) 0
-             && !strncmp(s, "riding ", 7))
+             && !strncmp(s, "骑手", 6))
         /* Bonus for wearing "riding" (but not fumbling) gloves */
         chance += 10;
     else if (uarmf && (s = OBJ_DESCR(objects[uarmf->otyp])) != (char *) 0
-             && !strncmp(s, "riding ", 7))
+             && !strncmp(s, "马靴", 6))
         /* ... or for "riding boots" */
         chance += 10;
     if (otmp->cursed)

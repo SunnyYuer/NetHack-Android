@@ -47,9 +47,9 @@ $place = { (33,0), (0,12), (25,20), (75,05) }
 SHUFFLE: $place
 
 STAIR:$place[0],down
-MONSTER:('m',"巨型拟型怪"), $place[1], m_feature "staircase down"
-MONSTER:('m',"大拟型怪"), $place[2], m_feature "staircase down"
-MONSTER:('m',"小拟型怪"), $place[3], m_feature "staircase down"
+MONSTER:('m',"巨型拟型怪"), $place[1], m_feature "通往下面的楼梯"
+MONSTER:('m',"大拟型怪"), $place[2], m_feature "通往下面的楼梯"
+MONSTER:('m',"小拟型怪"), $place[3], m_feature "通往下面的楼梯"
 # Portal arrival point
 BRANCH:(19,09,19,09),(0,0,0,0)
 # Doors (secret)

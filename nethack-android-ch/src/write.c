@@ -358,9 +358,9 @@ char *outbuf;
     /* subset of description strings from objects.c; if it grows
        much, we may need to add a new flag field to objects[] instead */
     static const char *const compositions[] = {
-        "parchment",
-        "vellum",
-        "cloth",
+        "羊皮纸",
+        "牛皮纸",
+        "布",
 #if 0
         "canvas", "hardcover", /* not used */
         "papyrus", /* not applicable--can't be produced via writing */
@@ -374,7 +374,7 @@ char *outbuf;
         if (!strcmpi(descr, *comp_p))
             break;
 
-    Sprintf(outbuf, "%s%s", *comp_p ? "into " : "", descr);
+    Sprintf(outbuf, "%s%s", *comp_p ? "" : "", descr);
     return outbuf;
 }
 

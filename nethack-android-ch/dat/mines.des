@@ -891,19 +891,19 @@ NON_DIGGABLE:(00,00,74,17)
 OBJECT:('*',"钻石"),$place[0]
 OBJECT:('*',"祖母绿"),$place[0]
 OBJECT:('*',"毫无价值的一块紫色玻璃"),$place[0]
-MONSTER:'m',$place[0], m_object "luckstone"
+MONSTER:'m',$place[0], m_object "幸运石"
 OBJECT:('*',"毫无价值的一块白色玻璃"),$place[1]
 OBJECT:('*',"祖母绿"),$place[1]
 OBJECT:('*',"紫水晶"),$place[1]
-MONSTER:'m',$place[1], m_object "loadstone"
+MONSTER:'m',$place[1], m_object "天然磁石"
 OBJECT:('*',"钻石"),$place[2]
 OBJECT:('*',"毫无价值的一块绿色玻璃"),$place[2]
 OBJECT:('*',"紫水晶"),$place[2]
-MONSTER:'m',$place[2], m_object "flint"
+MONSTER:'m',$place[2], m_object "打火石"
 OBJECT:('*',"毫无价值的一块白色玻璃"),$place[3]
 OBJECT:('*',"祖母绿"),$place[3]
 OBJECT:('*',"毫无价值的一块紫色玻璃"),$place[3]
-MONSTER:'m',$place[3], m_object "touchstone"
+MONSTER:'m',$place[3], m_object "试金石"
 OBJECT:('*',"毫无价值的一块红色玻璃"),$place[4]
 OBJECT:('*',"红宝石"),$place[4]
 OBJECT:('*',"天然磁石"),$place[4]

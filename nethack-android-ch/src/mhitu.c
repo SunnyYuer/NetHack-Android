@@ -2287,20 +2287,20 @@ register struct monst *mon;
             if (ring->owornmask && uarmg) {
                 /* don't take off worn ring if gloves are in the way */
                 if (!tried_gloves++)
-                    mayberem(uarmg, "gloves");
+                    mayberem(uarmg, "手套");
                 if (uarmg)
                     continue; /* next ring might not be worn */
             }
             if (rn2(20) < ACURR(A_CHA)) {
-                (void) safe_qbuf(qbuf, "\"That ",
-                                 " looks pretty.  May I have it?\"", ring,
+                (void) safe_qbuf(qbuf, "\" 那个 ",
+                                 "看起来很漂亮.  我可以拥有它吗?\"", ring,
                                  xname, simpleonames, "ring");
                 makeknown(RIN_ADORNMENT);
                 if (yn(qbuf) == 'n')
                     continue;
             } else
-                pline("%s decides she'd like %s, and takes it.",
-                      Blind ? "She" : Monnam(mon), yname(ring));
+                pline("%s 决定了她想要的%s, 然后拿走了它.",
+                      Blind ? "她" : Monnam(mon), yname(ring));
             makeknown(RIN_ADORNMENT);
             if (ring == uleft || ring == uright)
                 Ring_gone(ring);

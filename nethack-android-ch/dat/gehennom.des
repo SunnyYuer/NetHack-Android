@@ -234,9 +234,9 @@ BRANCH:levregion(01,00,11,20),(0,0,50,17)
 TELEPORT_REGION:levregion(01,00,11,20),(0,0,50,17),up
 TELEPORT_REGION:levregion(69,00,79,20),(0,0,50,17),down
 FOUNTAIN:$place[0]
-MONSTER:('m',"巨型拟型怪"),$place[1],m_feature "fountain"
-MONSTER:('m',"巨型拟型怪"),$place[2],m_feature "fountain"
-MONSTER:('m',"巨型拟型怪"),$place[3],m_feature "fountain"
+MONSTER:('m',"巨型拟型怪"),$place[1],m_feature "喷泉"
+MONSTER:('m',"巨型拟型怪"),$place[2],m_feature "喷泉"
+MONSTER:('m',"巨型拟型怪"),$place[3],m_feature "喷泉"
 # The demon of the swamp
 MONSTER:('&',"朱比烈斯"),(25,08)
 # And a couple demons

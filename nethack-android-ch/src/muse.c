@@ -72,12 +72,12 @@ struct obj *obj;
 
     if (obj->oclass == POTION_CLASS) {
         coord cc;
-        static const char *empty = "The potion turns out to be empty.";
+        static const char *empty = "这瓶药水原来是空的.";
         const char *potion_descr;
         struct monst *mtmp;
 
         potion_descr = OBJ_DESCR(objects[obj->otyp]);
-        if (potion_descr && !strcmp(potion_descr, "milky")) {
+        if (potion_descr && !strcmp(potion_descr, "乳白色")) {
             if (!(mvitals[PM_GHOST].mvflags & G_GONE)
                 && !rn2(POTION_OCCUPANT_CHANCE(mvitals[PM_GHOST].born))) {
                 if (!enexto(&cc, mon->mx, mon->my, &mons[PM_GHOST]))
@@ -91,11 +91,11 @@ struct obj *obj;
                 } else {
                     if (vis) {
                         pline(
-                            "As %s opens the bottle, an enormous %s emerges!",
+                            "当%s 打开瓶子, 一个巨大的%s 浮现了!",
                               mon_nam(mon),
                               Hallucination ? rndmonnam(NULL)
-                                            : (const char *) "ghost");
-                        pline("%s is frightened to death, and unable to move.",
+                                            : (const char *) "鬼魂");
+                        pline("%s 吓得要死, 不能移动了.",
                               Monnam(mon));
                     }
                     paralyze_monst(mon, 3);
@@ -103,7 +103,7 @@ struct obj *obj;
                 return 2;
             }
         }
-        if (potion_descr && !strcmp(potion_descr, "smoky")
+        if (potion_descr && !strcmp(potion_descr, "冒烟的")
             && !(mvitals[PM_DJINNI].mvflags & G_GONE)
             && !rn2(POTION_OCCUPANT_CHANCE(mvitals[PM_DJINNI].born))) {
             if (!enexto(&cc, mon->mx, mon->my, &mons[PM_DJINNI]))
@@ -116,18 +116,18 @@ struct obj *obj;
                     pline1(empty);
             } else {
                 if (vis)
-                    pline("In a cloud of smoke, %s emerges!", a_monnam(mtmp));
+                    pline("在一片烟雾中, %s 浮现了!", a_monnam(mtmp));
                 pline("%s speaks.", vis ? Monnam(mtmp) : Something);
                 /* I suspect few players will be upset that monsters */
                 /* can't wish for wands of death here.... */
                 if (rn2(2)) {
-                    verbalize("You freed me!");
+                    verbalize("你释放了我!");
                     mtmp->mpeaceful = 1;
                     set_malign(mtmp);
                 } else {
-                    verbalize("It is about time.");
+                    verbalize("是时候了.");
                     if (vis)
-                        pline("%s vanishes.", Monnam(mtmp));
+                        pline("%s 消失了.", Monnam(mtmp));
                     mongone(mtmp);
                 }
             }
@@ -140,10 +140,10 @@ struct obj *obj;
 
         if (!Deaf) {
             if (vis)
-                pline("%s zaps %s, which suddenly explodes!", Monnam(mon),
-                      an(xname(obj)));
+                pline("%s 挥动%s, 却突然爆炸了!", Monnam(mon),
+                      xname(obj));
             else
-                You_hear("a zap and an explosion in the distance.");
+                You_hear("远处的挥杖和爆炸声.");
         }
         m_useup(mon, obj);
         if (mon->mhp <= dam) {

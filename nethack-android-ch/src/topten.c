@@ -112,8 +112,15 @@ int how;
         /*FALLTHRU*/
     case KILLED_BY:
         strcpy(buf,"被");
+        int t=-1;
+        if(strstr(kname," ( 带着护身符)"))
+        {
+            t=strstr(kname," ( 带着护身符)");
+            kname[t]='\0';
+        }
         (void) strncat(buf, kname, siz - 1);
         (void) strncat(buf, killed_by_prefix[how], siz - 1);
+        if(t>=0) strcat(buf,"( 带着护身符)");
         break;
     }
     /* we're writing into buf[0] (after possibly advancing buf) rather than

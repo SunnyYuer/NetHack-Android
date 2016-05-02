@@ -7,9 +7,9 @@
 static NEARDATA const char see_yourself[] = "看见自己";
 static NEARDATA const char unknown_type[] = "Unknown type of %s (%d)";
 static NEARDATA const char c_armor[] = "盔甲", c_suit[] = "套装",
-                           c_shirt[] = "shirt", c_cloak[] = "cloak",
-                           c_gloves[] = "gloves", c_boots[] = "boots",
-                           c_helmet[] = "helmet", c_shield[] = "shield",
+                           c_shirt[] = "衬衫", c_cloak[] = "斗蓬",
+                           c_gloves[] = "手套", c_boots[] = "靴子",
+                           c_helmet[] = "helmet", c_shield[] = "盾牌",
                            c_weapon[] = "武器", c_sword[] = "剑",
                            c_axe[] = "斧", c_that_[] = "那个";
 

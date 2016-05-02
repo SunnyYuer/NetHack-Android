@@ -272,7 +272,7 @@ find_skates()
     register const char *s;
 
     for (i = SPEED_BOOTS; i <= LEVITATION_BOOTS; i++)
-        if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "snow boots"))
+        if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "雪地靴"))
             return i;
 
     impossible("snow boots not found?");
