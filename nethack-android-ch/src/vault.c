@@ -92,9 +92,9 @@ boolean forceshow;
         egrd->fcbeg++;
     }
     if (sawcorridor)
-        pline_The("corridor disappears.");
+        pline_The("通道消失了.");
     if (IS_ROCK(levl[u.ux][u.uy].typ))
-        You("are encased in rock.");
+        You("被围在岩石里.");
     return TRUE;
 }
 
@@ -335,26 +335,26 @@ invault()
         reset_faint(); /* if fainted - wake up */
         gsensed = !canspotmon(guard);
         if (!gsensed)
-            pline("Suddenly one of the Vault's %s enters!",
+            pline("突然一个金库的%s 进来了!",
                   makeplural(guard->data->mname));
         else
-            pline("Someone else has entered the Vault.");
+            pline("有人已经进入了金库.");
         newsym(guard->mx, guard->my);
         if (u.uswallow) {
             /* can't interrogate hero, don't interrogate engulfer */
-            verbalize("What's going on here?");
+            verbalize("这里发生了什么事?");
             if (gsensed)
-                pline_The("other presence vanishes.");
+                pline_The("其他人不见了踪影.");
             mongone(guard);
             return;
         }
         if (youmonst.m_ap_type == M_AP_OBJECT || u.uundetected) {
             if (youmonst.m_ap_type == M_AP_OBJECT
                 && youmonst.mappearance != GOLD_PIECE)
-                verbalize("Hey! Who left that %s in here?",
+                verbalize("嘿! 谁把%s 放在这儿的?",
                           mimic_obj_name(&youmonst));
             /* You're mimicking some object or you're hidden. */
-            pline("Puzzled, %s turns around and leaves.", mhe(guard));
+            pline("很困惑, %s 转身离开.", mhe(guard));
             mongone(guard);
             return;
         }
@@ -362,7 +362,7 @@ invault()
             /* [we ought to record whether this this message has already
                been given in order to vary it upon repeat visits, but
                discarding the monster and its egd data renders that hard] */
-            verbalize("I'll be back when you're ready to speak to me!");
+            verbalize("当你准备跟我说话时, 我会回来的!");
             mongone(guard);
             return;
         }
@@ -374,7 +374,7 @@ invault()
         }
         trycount = 5;
         do {
-            getlin("\"Hello stranger, who are you?\" -", buf);
+            getlin("\"你好陌生人, 你是谁?\" -", buf);
             (void) mungspaces(buf);
         } while (!letter(buf[0]) && --trycount > 0);
 
@@ -388,11 +388,11 @@ invault()
             || !strcmpi(buf, "Creosote")) {
             if (!mvitals[PM_CROESUS].died) {
                 verbalize(
-                    "Oh, yes, of course.  Sorry to have disturbed you.");
+                    "哦, 是的, 当然.  抱歉打扰你了.");
                 mongone(guard);
             } else {
                 setmangry(guard);
-                verbalize("Back from the dead, are you?  I'll remedy that!");
+                verbalize("你死而复生?  我会纠正你!");
                 /* don't want guard to waste next turn wielding a weapon */
                 if (!MON_WEP(guard)) {
                     guard->weapon_check = NEED_HTH_WEAPON;
@@ -401,18 +401,18 @@ invault()
             }
             return;
         }
-        verbalize("I don't know you.");
+        verbalize("我不认识你.");
         umoney = money_cnt(invent);
         if (Deaf) {
             ;
         } else if (!umoney && !hidden_gold()) {
-            verbalize("Please follow me.");
+            verbalize("请跟我来.");
         } else {
             if (!umoney)
-                verbalize("You have hidden gold.");
+                verbalize("你隐藏了金币.");
             verbalize(
-                "Most likely all your gold was stolen from this vault.");
-            verbalize("Please drop that gold and follow me.");
+                "很可能你所有的金币都是从这个的金库偷的.");
+            verbalize("请扔掉金币然后跟着我.");
         }
         EGD(guard)->gdx = gx;
         EGD(guard)->gdy = gy;
@@ -521,13 +521,13 @@ struct monst *grd;
 
     if (movedgold || fixed) {
         if (in_fcorridor(grd, grd->mx, grd->my) || cansee(grd->mx, grd->my))
-            pline("%s whispers an incantation.", noit_Monnam(grd));
+            pline("%s 低声念了一句咒语.", noit_Monnam(grd));
         else
-            You_hear("a distant chant.");
+            You_hear("远处的咏唱声.");
         if (movedgold)
-            pline("A mysterious force moves the gold into the vault.");
+            pline("一种神秘的力量把金币移进了金库.");
         if (fixed)
-            pline_The("damaged vault's walls are magically restored!");
+            pline_The("被破坏的金库的墙壁魔法般的恢复了!");
     }
 }
 
@@ -578,8 +578,8 @@ register struct monst *grd;
         return -1; /* teleported guard - treat as monster */
 
     if (egrd->witness) {
-        verbalize("How dare you %s that gold, scoundrel!",
-                  (egrd->witness & GD_EATGOLD) ? "consume" : "destroy");
+        verbalize("你竟敢%s金币, 恶棍!",
+                  (egrd->witness & GD_EATGOLD) ? "吃掉" : "毁坏");
         egrd->witness = 0;
         grd->mpeaceful = 0;
         return -1;
@@ -587,16 +587,16 @@ register struct monst *grd;
     if (egrd->fcend == 1) {
         if (u_in_vault && (u_carry_gold || um_dist(grd->mx, grd->my, 1))) {
             if (egrd->warncnt == 3 && !Deaf)
-                verbalize("I repeat, %sfollow me!",
+                verbalize("我重复一遍, %s跟我来!",
                           u_carry_gold
-                              ? (!umoney ? "drop that hidden money and "
-                                         : "drop that money and ")
+                              ? (!umoney ? "扔掉那个隐藏的金币并"
+                                         : "扔掉那个金币并")
                               : "");
             if (egrd->warncnt == 7) {
                 m = grd->mx;
                 n = grd->my;
                 if (!Deaf)
-                    verbalize("You've been warned, knave!");
+                    verbalize("已经警告过你了, 无赖!");
                 mnexto(grd);
                 levl[m][n].typ = egrd->fakecorr[0].ftyp;
                 newsym(m, n);
@@ -619,17 +619,17 @@ register struct monst *grd;
                 grd->mpeaceful = 0;
             letknow:
                 if (!cansee(grd->mx, grd->my) || !mon_visible(grd))
-                    You_hear("the shrill sound of a guard's whistle.");
+                    You_hear("警卫尖锐的哨声.");
                 else
                     You(um_dist(grd->mx, grd->my, 2)
-                            ? "see %s approaching."
-                            : "are confronted by %s.",
+                            ? "看见%s接近."
+                            : "面对着%s.",
                         /* "an angry guard" */
-                        x_monnam(grd, ARTICLE_A, "angry", 0, FALSE));
+                        x_monnam(grd, ARTICLE_A, "生气的", 0, FALSE));
                 return -1;
             } else {
                 if (!Deaf)
-                    verbalize("Well, begone.");
+                    verbalize("好吧, 去吧.");
                 wallify_vault(grd);
                 egrd->gddone = 1;
                 goto cleanup;
@@ -642,7 +642,7 @@ register struct monst *grd;
             && !egrd->gddone && !in_fcorridor(grd, u.ux, u.uy)
             && levl[egrd->fakecorr[0].fx][egrd->fakecorr[0].fy].typ
                    == egrd->fakecorr[0].ftyp) {
-            pline("%s, confused, disappears.", noit_Monnam(grd));
+            pline("%s, 混乱的, 消失了.", noit_Monnam(grd));
             disappear_msg_seen = TRUE;
             goto cleanup;
         }
@@ -656,11 +656,11 @@ register struct monst *grd;
             if (egrd->warncnt < 6) {
                 egrd->warncnt = 6;
                 if (!Deaf)
-                    verbalize("Drop all your gold, scoundrel!");
+                    verbalize("扔掉你所有的金币, 恶棍!");
                 return 0;
             } else {
                 if (!Deaf)
-                    verbalize("So be it, rogue!");
+                    verbalize("就这样, 无赖!");
                 grd->mpeaceful = 0;
                 return -1;
             }
@@ -687,7 +687,7 @@ register struct monst *grd;
             /* just for insurance... */
             if (MON_AT(m, n) && m != grd->mx && n != grd->my) {
                 if (!Deaf)
-                    verbalize("Out of my way, scum!");
+                    verbalize("别挡道, 浮渣!");
                 (void) rloc(m_at(m, n), FALSE);
             }
             remove_monster(grd->mx, grd->my);
@@ -696,8 +696,8 @@ register struct monst *grd;
             mpickgold(grd); /* does a newsym */
         }
         if (cansee(m, n))
-            pline("%s%s picks up the gold.", Monnam(grd),
-                  grd->mpeaceful ? " calms down and" : "");
+            pline("%s%s 捡起了金币.", Monnam(grd),
+                  grd->mpeaceful ? "平静下来" : "");
         if (x != grd->mx || y != grd->my) {
             remove_monster(grd->mx, grd->my);
             newsym(grd->mx, grd->my);
@@ -712,7 +712,7 @@ register struct monst *grd;
     if (um_dist(grd->mx, grd->my, 1) || egrd->gddone) {
         if (!egrd->gddone && !rn2(10) && !Deaf && !u.uswallow
             && !(u.ustuck && !sticks(youmonst.data)))
-            verbalize("Move along!");
+            verbalize("往前走!");
         restfakecorr(grd);
         return 0; /* didn't move */
     }
@@ -833,7 +833,7 @@ newpos:
         restfakecorr(grd);
         if (!semi_dead && (in_fcorridor(grd, u.ux, u.uy) || cansee(x, y))) {
             if (!disappear_msg_seen && see_guard)
-                pline("Suddenly, %s disappears.", noit_mon_nam(grd));
+                pline("突然, %s消失了.", noit_mon_nam(grd));
             return 1;
         }
         return -2;
@@ -848,7 +848,7 @@ newpos:
            it and give an inappropriate message */
         mpickgold(grd);
         if (canspotmon(grd))
-            pline("%s picks up some gold.", Monnam(grd));
+            pline("%s 捡起了一些金币.", Monnam(grd));
     } else
         newsym(grd->mx, grd->my);
     restfakecorr(grd);
@@ -869,7 +869,7 @@ paygd()
         return;
 
     if (u.uinvault) {
-        Your("%ld %s goes into the Magic Memory Vault.", umoney,
+        Your("%ld %s 进入了魔力的记忆金库.", umoney,
              currency(umoney));
         gx = u.ux;
         gy = u.uy;
@@ -879,10 +879,10 @@ paygd()
             return;
         }
         mnexto(grd);
-        pline("%s remits your gold to the vault.", Monnam(grd));
+        pline("%s 把你的金币传送回了金库.", Monnam(grd));
         gx = rooms[EGD(grd)->vroom].lx + rn2(2);
         gy = rooms[EGD(grd)->vroom].ly + rn2(2);
-        Sprintf(buf, "To Croesus: here's the gold recovered from %s the %s.",
+        Sprintf(buf, "致克罗伊斯: 这里是从%s %s获得的金币.",
                 plname, mons[u.umonster].mname);
         make_grave(gx, gy, buf);
     }

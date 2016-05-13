@@ -588,11 +588,11 @@ boolean polyspot;
         mon->weapon_check = NO_WEAPON_WANTED;
         obj_extract_self(obj);
         if (cansee(mon->mx, mon->my)) {
-            pline("%s drops %s.", Monnam(mon), distant_name(obj, doname));
+            pline("%s扔掉%s.", Monnam(mon), distant_name(obj, doname));
             newsym(mon->mx, mon->my);
         }
         /* might be dropping object into water or lava */
-        if (!flooreffects(obj, mon->mx, mon->my, "drop")) {
+        if (!flooreffects(obj, mon->mx, mon->my, "掉落")) {
             if (polyspot)
                 bypass_obj(obj);
             place_object(obj, mon->mx, mon->my);
@@ -685,16 +685,16 @@ register struct monst *mon;
 
                 if (bimanual(mw_tmp))
                     mon_hand = makeplural(mon_hand);
-                Sprintf(welded_buf, "%s welded to %s %s",
-                        otense(mw_tmp, "are"), mhis(mon), mon_hand);
+                Sprintf(welded_buf, "%s粘到了%s %s上",
+                        otense(mw_tmp, "自动"), mhis(mon), mon_hand);
 
                 if (obj->otyp == PICK_AXE) {
-                    pline("Since %s weapon%s %s,", s_suffix(mon_nam(mon)),
-                          plur(mw_tmp->quan), welded_buf);
-                    pline("%s cannot wield that %s.", mon_nam(mon),
+                    pline("既然%s武器%s,", s_suffix(mon_nam(mon)),
+                           welded_buf);
+                    pline("%s 就不能拿那个%s.", mon_nam(mon),
                           xname(obj));
                 } else {
-                    pline("%s tries to wield %s.", Monnam(mon), doname(obj));
+                    pline("%s试图拿%s.", Monnam(mon), doname(obj));
                     pline("%s %s!", Yname2(mw_tmp), welded_buf);
                 }
                 mw_tmp->bknown = 1;
@@ -706,10 +706,10 @@ register struct monst *mon;
         setmnotwielded(mon, mw_tmp);
         mon->weapon_check = NEED_WEAPON;
         if (canseemon(mon)) {
-            pline("%s wields %s!", Monnam(mon), doname(obj));
+            pline("%s 拿着%s!", Monnam(mon), doname(obj));
             if (mwelded(mw_tmp)) {
-                pline("%s %s to %s %s!", Tobjnam(obj, "weld"),
-                      is_plural(obj) ? "themselves" : "itself",
+                pline("%s %s了%s %s上!", Tobjnam(obj, "自动"),
+                      is_plural(obj) ? "粘到" : "粘到",
                       s_suffix(mon_nam(mon)), mbodypart(mon, HAND));
                 obj->bknown = 1;
             }
@@ -717,7 +717,7 @@ register struct monst *mon;
         if (artifact_light(obj) && !obj->lamplit) {
             begin_burn(obj, FALSE);
             if (canseemon(mon))
-                pline("%s %s in %s %s!", Tobjnam(obj, "shine"),
+                pline("%s %s的光芒在%s %s上!", Tobjnam(obj, "照射出"),
                       arti_light_description(obj), s_suffix(mon_nam(mon)),
                       mbodypart(mon, HAND));
         }
@@ -819,14 +819,14 @@ boolean verbose;
     if (newspe > obj->spe) {
         if (verbose) {
             const char *wetness = (newspe < 3)
-                                     ? (!obj->spe ? "damp" : "damper")
-                                     : (!obj->spe ? "wet" : "wetter");
+                                     ? (!obj->spe ? "潮湿" : "更加潮湿")
+                                     : (!obj->spe ? "湿" : "更加湿");
 
             if (carried(obj))
-                pline("%s gets %s.", Yobjnam2(obj, (const char *) 0),
+                pline("%s 变得%s.", Yobjnam2(obj, (const char *) 0),
                       wetness);
             else if (mcarried(obj) && canseemon(obj->ocarry))
-                pline("%s %s gets %s.", s_suffix(Monnam(obj->ocarry)),
+                pline("%s %s 变得%s.", s_suffix(Monnam(obj->ocarry)),
                       xname(obj), wetness);
         }
     }
@@ -851,11 +851,11 @@ boolean verbose;
     if (newspe < obj->spe) {
         if (verbose) {
             if (carried(obj))
-                pline("%s dries%s.", Yobjnam2(obj, (const char *) 0),
-                      !newspe ? " out" : "");
+                pline("%s%s变干.", Yobjnam2(obj, (const char *) 0),
+                      !newspe ? "完全" : "");
             else if (mcarried(obj) && canseemon(obj->ocarry))
-                pline("%s %s drie%s.", s_suffix(Monnam(obj->ocarry)),
-                      xname(obj), !newspe ? " out" : "");
+                pline("%s %s%s变干.", s_suffix(Monnam(obj->ocarry)),
+                      xname(obj), !newspe ? "完全" : "");
         }
     }
     newspe = min(newspe, 7);
@@ -1523,9 +1523,9 @@ register struct obj *obj;
     if (artifact_light(obj) && obj->lamplit) {
         end_burn(obj, FALSE);
         if (canseemon(mon))
-            pline("%s in %s %s %s shining.", The(xname(obj)),
+            pline("%s在%s %s上%s了发光.", The(xname(obj)),
                   s_suffix(mon_nam(mon)), mbodypart(mon, HAND),
-                  otense(obj, "stop"));
+                  otense(obj, "停止"));
     }
     if (MON_WEP(mon) == obj)
         MON_NOWEP(mon);

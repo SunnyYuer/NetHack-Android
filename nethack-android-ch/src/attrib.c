@@ -237,7 +237,7 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
               plural ? "是" : "是");
     }
     if (Poison_resistance) {
-        if (!strcmp(reason, "blast"))
+        if (!strcmp(reason, "爆炸"))
             shieldeff(u.ux, u.uy);
         pline_The("毒似乎没有影响你.");
         return;
@@ -277,7 +277,7 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
         killer.format = kprefix;
         Strcpy(killer.name, pkiller);
         /* "Poisoned by a poisoned ___" is redundant */
-        done(strstri(pkiller, "poison") ? DIED : POISONING);
+        done(strstri(pkiller, "毒") ? DIED : POISONING);
     }
     (void) encumber_msg();
 }

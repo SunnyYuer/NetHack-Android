@@ -405,7 +405,7 @@ dig(VOID_ARGS)
         } else if (IS_WALL(lev->typ)) {
             if (shopedge) {
                 add_damage(dpx, dpy, 10L * ACURRSTR);
-                dmgtxt = "damage";
+                dmgtxt = "毁坏";
             }
             if (level.flags.is_maze_lev) {
                 lev->typ = ROOM;
@@ -425,7 +425,7 @@ dig(VOID_ARGS)
             digtxt = "你打破了门.";
             if (shopedge) {
                 add_damage(dpx, dpy, 400L);
-                dmgtxt = "break";
+                dmgtxt = "弄坏";
             }
             if (!(lev->doormask & D_TRAPPED))
                 lev->doormask = D_BROKEN;
@@ -609,7 +609,7 @@ int ttyp;
             else
                 You("在%s上挖了一个坑.", surface_type);
             if (shopdoor)
-                pay_for_damage("ruin", FALSE);
+                pay_for_damage("毁灭", FALSE);
         } else if (!madeby_obj && canseemon(madeby))
             pline("%s 在%s上挖了一个坑.", Monnam(madeby), surface_type);
         else if (cansee(x, y) && flags.verbose)
@@ -658,7 +658,7 @@ int ttyp;
                 if (oldobjs != newobjs)
                     (void) pickup(1);
                 if (shopdoor && madeby_u)
-                    pay_for_damage("ruin", FALSE);
+                    pay_for_damage("毁灭", FALSE);
 
             } else {
                 d_level newlevel;
@@ -667,7 +667,7 @@ int ttyp;
                     shopdig(1); /* shk might snatch pack */
                 /* handle earlier damage, eg breaking wand of digging */
                 else if (!madeby_u)
-                    pay_for_damage("dig into", TRUE);
+                    pay_for_damage("挖进", TRUE);
 
                 You("掉落下去...");
                 /* Earlier checks must ensure that the destination
@@ -681,7 +681,7 @@ int ttyp;
             }
         } else {
             if (shopdoor && madeby_u)
-                pay_for_damage("ruin", FALSE);
+                pay_for_damage("毁灭", FALSE);
             if (newobjs)
                 impact_drop((struct obj *) 0, x, y, 0);
             if (mtmp) {
@@ -735,7 +735,7 @@ const char *fillmsg;
     unearth_objs(x, y);
 
     if (fillmsg)
-        pline(fillmsg, typ == LAVAPOOL ? "lava" : "water");
+        pline(fillmsg, typ == LAVAPOOL ? "熔岩" : "水");
     if (u_spot && !(Levitation || Flying)) {
         if (typ == LAVAPOOL)
             (void) lava_effects();
@@ -1565,7 +1565,7 @@ zap_dig()
     }
 
     if (shopdoor || shopwall)
-        pay_for_damage(shopdoor ? "destroy" : "dig into", FALSE);
+        pay_for_damage(shopdoor ? "破坏" : "挖进", FALSE);
     return;
 }
 

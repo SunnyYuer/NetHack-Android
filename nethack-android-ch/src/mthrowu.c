@@ -55,26 +55,26 @@ const char *name; /* if null, then format `obj' */
 
     if (u.uac + tlev <= rnd(20)) {
         if (Blind || !flags.verbose)
-            pline("It misses.");
+            pline("它没打中.");
         else
-            You("are almost hit by %s.", onm);
+            You("几乎要被%s打中.", onm);
         return 0;
     } else {
         if (Blind || !flags.verbose)
-            You("are hit%s", exclam(dam));
+            You("被打中了%s", exclam(dam));
         else
-            You("are hit by %s%s", onm, exclam(dam));
+            You("被%s打中了%s", onm, exclam(dam));
 
         if (obj && objects[obj->otyp].oc_material == SILVER && Hate_silver) {
             /* extra damage already applied by dmgval() */
-            pline_The("silver sears your flesh!");
+            pline_The("银灼伤了你的身体!");
             exercise(A_CON, FALSE);
         }
         if (is_acid && Acid_resistance)
-            pline("It doesn't seem to hurt you.");
+            pline("它似乎没有伤到你.");
         else {
             if (is_acid)
-                pline("It burns!");
+                pline("它灼烧!");
             losehp(dam, knm, kprefix); /* acid damage */
             exercise(A_STR, FALSE);
         }

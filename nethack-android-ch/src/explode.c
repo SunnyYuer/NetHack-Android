@@ -501,11 +501,11 @@ int expltype;
 
     if (shopdamage) {
         pay_for_damage(adtyp == AD_FIRE
-                           ? "burn away"
+                           ? "烧掉"
                            : adtyp == AD_COLD
-                                 ? "shatter"
-                                 : adtyp == AD_DISN ? "disintegrate"
-                                                    : "destroy",
+                                 ? "打破"
+                                 : adtyp == AD_DISN ? "分解"
+                                                    : "破坏",
                        FALSE);
     }
 

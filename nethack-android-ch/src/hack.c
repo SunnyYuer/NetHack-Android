@@ -439,7 +439,7 @@ xchar x, y;
     } else if (IS_WALL(lev->typ)) {
         if (*in_rooms(x, y, SHOPBASE)) {
             add_damage(x, y, 10L * ACURRSTR);
-            dmgtxt = "damage";
+            dmgtxt = "毁坏";
         }
         digtxt = "chew a hole in the wall.";
         if (level.flags.is_maze_lev) {
@@ -469,7 +469,7 @@ xchar x, y;
     } else if (IS_DOOR(lev->typ)) {
         if (*in_rooms(x, y, SHOPBASE)) {
             add_damage(x, y, 400L);
-            dmgtxt = "break";
+            dmgtxt = "弄坏";
         }
         if (lev->doormask & D_TRAPPED) {
             lev->doormask = D_NODOOR;

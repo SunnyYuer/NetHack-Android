@@ -3747,8 +3747,8 @@ boolean cant_mollify;
     register boolean uinshp = (*u.ushops != '\0');
     char qbuf[80];
     register xchar x, y;
-    boolean dugwall = (!strcmp(dmgstr, "dig into")    /* wand */
-                       || !strcmp(dmgstr, "damage")); /* pick-axe */
+    boolean dugwall = (!strcmp(dmgstr, "挖进")    /* wand */
+                       || !strcmp(dmgstr, "毁坏")); /* pick-axe */
     boolean animal, pursue;
     struct damage *tmp_dam, *appear_here = 0;
     /* any number >= (80*80)+(24*24) would do, actually */
@@ -3827,7 +3827,7 @@ boolean cant_mollify;
     if (uinshp) {
         if (um_dist(shkp->mx, shkp->my, 1)
             && !um_dist(shkp->mx, shkp->my, 3)) {
-            pline("%s leaps towards you!", shkname(shkp));
+            pline("%s 跳向你!", shkname(shkp));
             mnexto(shkp);
         }
         pursue = um_dist(shkp->mx, shkp->my, 1);
@@ -3842,8 +3842,8 @@ boolean cant_mollify;
          */
         if (MON_AT(x, y)) {
             if (!Deaf && !animal) {
-                You_hear("an angry voice:");
-                verbalize("Out of my way, scum!");
+                You_hear("生气的声音:");
+                verbalize("别挡道, 浮渣!");
                 wait_synch();
 #if defined(UNIX) || defined(VMS)
 #if defined(SYSV) || defined(ULTRIX) || defined(VMS)
@@ -3866,33 +3866,33 @@ boolean cant_mollify;
             if (animal && shkp->mcanmove && !shkp->msleeping)
                 yelp(shkp);
         } else if (pursue || uinshp || !um_dist(x, y, 1)) {
-            verbalize("How dare you %s my %s?", dmgstr,
-                      dugwall ? "shop" : "door");
+            verbalize("你竟敢%s 我的 %s?", dmgstr,
+                      dugwall ? "商店" : "门");
         } else {
-            pline("%s shouts:", shkname(shkp));
-            verbalize("Who dared %s my %s?", dmgstr,
-                      dugwall ? "shop" : "door");
+            pline("%s 叫喊:", shkname(shkp));
+            verbalize("谁竟敢%s 我的 %s?", dmgstr,
+                      dugwall ? "商店" : "门");
         }
         hot_pursuit(shkp);
         return;
     }
 
     if (Invis)
-        Your("invisibility does not fool %s!", shkname(shkp));
-    Sprintf(qbuf, "%sYou did %ld %s worth of damage!%s  Pay?",
+        Your("隐形不会愚弄%s!", shkname(shkp));
+    Sprintf(qbuf, "%s你造成了价值%ld %s 的损害!%s  赔偿?",
             !animal ? cad(TRUE) : "", cost_of_damage,
             currency(cost_of_damage), !animal ? "\"" : "");
     if (yn(qbuf) != 'n') {
         cost_of_damage = check_credit(cost_of_damage, shkp);
         money2mon(shkp, cost_of_damage);
         context.botl = 1;
-        pline("Mollified, %s accepts your restitution.", shkname(shkp));
+        pline("怒气平息了, %s 接受了你的赔偿.", shkname(shkp));
         /* move shk back to his home loc */
         home_shk(shkp, FALSE);
         pacify_shk(shkp);
     } else {
         if (!animal)
-            verbalize("Oh, yes!  You'll pay!");
+            verbalize("哦, 是的!  你要赔偿!");
         else
             growl(shkp);
         hot_pursuit(shkp);
@@ -4401,16 +4401,16 @@ boolean altusage; /* used as a verbalized exclamation:  \"Cad! ...\" */
 
     switch (is_demon(youmonst.data) ? 3 : poly_gender()) {
     case 0:
-        res = "cad";
+        res = "卑鄙男子";
         break;
     case 1:
-        res = "minx";
+        res = "轻佻女子";
         break;
     case 2:
-        res = "beast";
+        res = "畜生";
         break;
     case 3:
-        res = "fiend";
+        res = "魔鬼";
         break;
     default:
         impossible("cad: unknown gender");
@@ -4422,7 +4422,7 @@ boolean altusage; /* used as a verbalized exclamation:  \"Cad! ...\" */
 
         /* alternate usage adds a leading double quote and trailing
            exclamation point plus sentence separating spaces */
-        Sprintf(cadbuf, "\"%s!  ", res);
+        Sprintf(cadbuf, "\" %s!  ", res);
         cadbuf[1] = highc(cadbuf[1]);
         res = cadbuf;
     }

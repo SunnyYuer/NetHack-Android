@@ -3072,7 +3072,7 @@ STATIC_OVL int
 do_break_wand(obj)
 struct obj *obj;
 {
-    static const char nothing_else_happens[] = "But nothing else happens...";
+    static const char nothing_else_happens[] = "但是没有别的事发生...";
     register int i, x, y;
     register struct monst *mon;
     int dmg, damage;
@@ -3085,18 +3085,18 @@ struct obj *obj;
 
     if (!paranoid_query(ParanoidBreakwand,
                        safe_qbuf(confirm,
-                                 "Are you really sure you want to break ",
+                                 "你确定要折断",
                                  "?", obj, yname, ysimple_name, "the wand")))
         return 0;
 
     if (nohands(youmonst.data)) {
-        You_cant("break %s without hands!", yname(obj));
+        You_cant("没有手就折断%s!", yname(obj));
         return 0;
     } else if (ACURR(A_STR) < (is_fragile ? 5 : 10)) {
-        You("don't have the strength to break %s!", yname(obj));
+        You("没有足够的力量来折断%s!", yname(obj));
         return 0;
     }
-    pline("Raising %s high above your %s, you break it in two!", yname(obj),
+    pline("把%s举过你的%s, 你把它折成了两半!", yname(obj),
           body_part(HEAD));
 
     /* [ALI] Do this first so that wand is removed from bill. Otherwise,
@@ -3210,7 +3210,7 @@ struct obj *obj;
                     liquid_flow(x, y, typ, t_at(x, y),
                                 fillmsg
                                   ? (char *) 0
-                                  : "Some holes are quickly filled with %s!");
+                                  : "一些洞迅速被%s填满!");
                     fillmsg = TRUE;
                 } else
                     digactualhole(x, y, BY_OBJECT, (rn2(obj->spe) < 3
@@ -3277,7 +3277,7 @@ struct obj *obj;
     /* Note: if player fell thru, this call is a no-op.
        Damage is handled in digactualhole in that case */
     if (shop_damage)
-        pay_for_damage("dig into", FALSE);
+        pay_for_damage("挖进", FALSE);
 
     if (obj->otyp == WAN_LIGHT)
         litroom(TRUE, obj); /* only needs to be done once */

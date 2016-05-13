@@ -2067,7 +2067,7 @@ int how;
         mondied(mdef);
 
     if (be_sad && mdef->mhp <= 0)
-        You("have a sad feeling for a moment, then it passes.");
+        You("片刻有一种悲伤的感觉, 然后消失了.");
 }
 
 void
@@ -2124,7 +2124,7 @@ int dest; /* dest==1, normal; dest==0, don't print message; dest==2, don't
                     ? mon_nam(mtmp)
                     : x_monnam(mtmp,
                                (has_mname(mtmp)) ? ARTICLE_NONE : ARTICLE_THE,
-                               "poor",
+                               "可怜的",
                                (has_mname(mtmp)) ? SUPPRESS_SADDLE : 0,
                                FALSE));
         }

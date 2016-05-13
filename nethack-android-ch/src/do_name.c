@@ -1241,13 +1241,13 @@ roguename()
 }
 
 static NEARDATA const char *const hcolors[] = {
-    "ultraviolet", "infrared", "bluish-orange", "reddish-green", "dark white",
-    "light black", "sky blue-pink", "salty", "sweet", "sour", "bitter",
-    "striped", "spiral", "swirly", "plaid", "checkered", "argyle", "paisley",
-    "blotchy", "guernsey-spotted", "polka-dotted", "square", "round",
-    "triangular", "cabernet", "sangria", "fuchsia", "wisteria", "lemon-lime",
-    "strawberry-banana", "peppermint", "romantic", "incandescent",
-    "octarine", /* Discworld: the Colour of Magic */
+    "紫外线的", "红外线的", "蓝橙色", "红绿色", "黑白",
+    "浅黑色", "天空蓝粉色", "咸的", "甜的", "酸的", "苦的",
+    "有条纹的", "螺旋形的", "涡旋形的", "格子图案的", "有方格的", "菱形花纹的", "涡纹图案的",
+    "有污渍的", "根西岛斑点的", "圆点花纹的", "正方形的", "圆的",
+    "三角的", "卡百内的", "桑格利亚的", "紫红色的", "紫藤的", "柠檬酸橙的",
+    "草莓香蕉的", "薄荷的", "浪漫的", "辉耀的",
+    "黄绿紫色的", /* Discworld: the Colour of Magic */
 };
 
 const char *
@@ -1265,7 +1265,7 @@ rndcolor()
     int k = rn2(CLR_MAX);
 
     return Hallucination ? hcolor((char *) 0)
-                         : (k == NO_COLOR) ? "colorless"
+                         : (k == NO_COLOR) ? "无色的"
                                            : c_obj_colors[k];
 }
 

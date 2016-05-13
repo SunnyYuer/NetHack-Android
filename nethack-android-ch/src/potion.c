@@ -448,7 +448,7 @@ dodrink()
     const char *potion_descr;
 
     if (Strangled) {
-        pline("If you can't breathe air, how can you drink liquid?");
+        pline("如果你不能呼吸空气, 你如何喝液体?");
         return 0;
     }
     /* Is there a fountain to drink from here? */
@@ -471,8 +471,8 @@ dodrink()
     }
     /* Or are you surrounded by water? */
     if (Underwater && !u.uswallow) {
-        if (yn("Drink the water around you?") == 'y') {
-            pline("Do you know what lives in this water?");
+        if (yn("喝你周围的水?") == 'y') {
+            pline("你知道什么生存在这水里吗?");
             return 1;
         }
     }
@@ -653,7 +653,7 @@ register struct obj *otmp;
         if (otmp->cursed) {
             You("失去知觉.");
             multi = -rnd(15);
-            nomovemsg = "You awake with a headache.";
+            nomovemsg = "你醒来时头痛.";
         }
         break;
     case POT_ENLIGHTENMENT:

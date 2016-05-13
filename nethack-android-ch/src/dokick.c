@@ -1287,7 +1287,7 @@ dokick() {
         /* break the door */
         if (maploc->doormask & D_TRAPPED) {
             if (flags.verbose)
-                You("kick the door.");
+                You("踢门.");
             exercise(A_STR, FALSE);
             maploc->doormask = D_NODOOR;
             b_trapped("door", FOOT);
@@ -1304,7 +1304,7 @@ dokick() {
         unblock_point(x, y); /* vision */
         if (shopdoor) {
             add_damage(x, y, 400L);
-            pay_for_damage("break", FALSE);
+            pay_for_damage("弄坏", FALSE);
         }
         if (in_town(x, y))
             for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {

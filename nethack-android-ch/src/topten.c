@@ -112,15 +112,8 @@ int how;
         /*FALLTHRU*/
     case KILLED_BY:
         strcpy(buf,"被");
-        int t=-1;
-        if(strstr(kname," ( 带着护身符)"))
-        {
-            t=strstr(kname," ( 带着护身符)");
-            kname[t]='\0';
-        }
         (void) strncat(buf, kname, siz - 1);
         (void) strncat(buf, killed_by_prefix[how], siz - 1);
-        if(t>=0) strcat(buf,"( 带着护身符)");
         break;
     }
     /* we're writing into buf[0] (after possibly advancing buf) rather than
@@ -296,8 +289,8 @@ struct toptenentry *tt;
                        tt->plalign);
     (void) fprintf(rfile, fmtX, onlyspace(tt->name) ? "_" : tt->name,
                    tt->death,
-                   (multi ? ", 当" : ""),
-                   (multi ? (multi_reason ? multi_reason : "无助之时") : ""));
+                   (multi ? ", 那时正" : ""),
+                   (multi ? (multi_reason ? multi_reason : "无助") : ""));
 
 #ifdef NO_SCAN_BRACK
     nsb_unmung_line(tt->name);
@@ -856,7 +849,7 @@ boolean so;
 
         /* kludge for "quit while already on Charon's boat" */
         if (!strncmp(t1->death, "退出了", 9))
-            Strcat(linebuf, t1->death + 4);
+            Strcat(linebuf, t1->death);
     }
     Strcat(linebuf, ".");
 

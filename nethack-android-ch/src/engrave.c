@@ -216,7 +216,7 @@ register int x, y;
      * see check_special_room()
      */
     if (*in_rooms(x, y, VAULT))
-        what = "地下室的天花板";
+        what = "金库的天花板";
     else if (*in_rooms(x, y, TEMPLE))
         what = "寺庙的天花板";
     else if (*in_rooms(x, y, SHOPBASE))
