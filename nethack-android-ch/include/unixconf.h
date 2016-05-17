@@ -33,10 +33,16 @@
 /* define any of the following that are appropriate */
 #define SVR4           /* use in addition to SYSV for System V Release 4 */
                        /* including Solaris 2+ */
+#ifdef ANDROID
 /* #define NETWORK */       /* if running on a networked system */
+#else
+#define NETWORK        /* if running on a networked system */
+#endif
                        /* e.g. Suns sharing a playground through NFS */
 /* #define SUNOS4 */   /* SunOS 4.x */
+#ifdef ANDROID
 #define LINUX    /* Another Unix clone */
+#endif
 /* #define CYGWIN32 */ /* Unix on Win32 -- use with case sensitive defines */
 /* #define GENIX */    /* Yet Another Unix Clone */
 /* #define HISX */     /* Bull Unix for XPS Machines */
@@ -139,7 +145,9 @@
  * A stat system call is done on the mailbox every MAILCKFREQ moves.
  */
 #if !defined(NOMAIL)
-/* #define MAIL */ /* Deliver mail during the game */
+#if !defined(ANDROID)
+#define MAIL  /* Deliver mail during the game */
+#endif
 #endif
 
 /* The Andrew Message System does mail a little differently from normal
@@ -213,7 +221,9 @@
  * Comment out the USE_FCNTL if for some reason you have a strange
  * OS/filesystem combination for which fcntl(2) does not work. */
 #ifdef POSIX_TYPES
-//#define USE_FCNTL
+#if !defined(ANDROID)
+#define USE_FCNTL
+#endif
 #endif
 
 /*

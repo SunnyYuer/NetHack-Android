@@ -1,4 +1,4 @@
-/* NetHack 3.6	dbridge.c	$NHDT-Date: 1449269914 2015/12/04 22:58:34 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.35 $ */
+﻿/* NetHack 3.6	dbridge.c	$NHDT-Date: 1449269914 2015/12/04 22:58:34 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.35 $ */
 /*      Copyright (c) 1989 by Jean-Christophe Collet              */
 /* NetHack may be freely redistributed.  See license for details. */
 

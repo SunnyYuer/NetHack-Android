@@ -40,7 +40,9 @@
  * Define all of those you want supported in your binary.
  * Some combinations make no sense.  See the installation document.
  */
+#ifdef ANDROID
 #define NOTTYGRAPHICS
+#endif
 #if !defined(NOTTYGRAPHICS)
 #define TTY_GRAPHICS /* good old tty based graphics */
 #endif
@@ -137,7 +139,9 @@
  * would allow:
  *  xpmtoppm <x11tiles.xpm | pnmscale 1.25 | ppmquant 90 >x11tiles_big.xpm
  */
+#ifdef ANDROID
 #define USE_XPM /* Disable if you do not have the XPM library */
+#endif
 #ifdef USE_XPM
 #define GRAPHIC_TOMBSTONE /* Use graphical tombstone (rip.xpm) */
 #endif
@@ -200,8 +204,10 @@
 #endif
 
 #ifndef SYSCF
-//#define SYSCF                /* use a global configuration */
-//#define SYSCF_FILE "sysconf" /* global configuration is in a file */
+#ifndef ANDROID
+#define SYSCF                /* use a global configuration */
+#define SYSCF_FILE "sysconf" /* global configuration is in a file */
+#endif
 #endif
 
 #ifndef GDBPATH
@@ -226,7 +232,11 @@
  *      maximum number of scores to keep, for example) if SYSCF is enabled.
  */
 #ifndef PERSMAX
+#ifdef ANDROID
 #define PERSMAX 30 /* entries per name/uid per char. allowed */
+#else
+#define PERSMAX 3 /* entries per name/uid per char. allowed */
+#endif
 #endif
 #ifndef POINTSMIN
 #define POINTSMIN 1 /* must be > 0 */

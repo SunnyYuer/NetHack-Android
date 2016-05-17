@@ -23,7 +23,9 @@ STATIC_PTR int FDECL(ckvalidcat, (struct obj *));
 STATIC_PTR char *FDECL(safeq_xprname, (struct obj *));
 STATIC_PTR char *FDECL(safeq_shortxprname, (struct obj *));
 STATIC_DCL char FDECL(display_pickinv, (const char *, BOOLEAN_P, long *));
+#ifdef ANDROID
 STATIC_DCL char FDECL(display_pickinv_q, (const char *,BOOLEAN_P, long *, const char *, BOOLEAN_P));
+#endif
 STATIC_DCL char FDECL(display_used_invlets, (CHAR_P));
 STATIC_DCL void FDECL(tally_BUCX,
                       (struct obj *, int *, int *, int *, int *, int *));
@@ -2019,6 +2021,7 @@ register const char *lets;
 boolean want_reply;
 long *out_cnt;
 {
+#ifdef ANDROID
 	display_pickinv_q(lets, want_reply, out_cnt, 0, FALSE);
 }
 
@@ -2030,6 +2033,7 @@ long* out_cnt;
 const char *quest;
 boolean allownone;
 {
+#endif
     struct obj *otmp;
     char ilet, ret;
     char *invlet = flags.inv_order;
@@ -2164,7 +2168,11 @@ nextclass:
 	}
 #endif
     free(oarray);
+#ifdef ANDROID
     end_menu(win, (char *) quest);
+#else
+    end_menu(win, (char *) 0);
+#endif
 
     n = select_menu(win, want_reply ? PICK_ONE : PICK_NONE, &selected);
     if (n > 0) {

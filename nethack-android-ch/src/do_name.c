@@ -10,7 +10,9 @@ STATIC_DCL void NDECL(do_mname);
 STATIC_DCL void FDECL(do_oname, (struct obj *));
 STATIC_DCL void NDECL(namefloorobj);
 STATIC_DCL char *FDECL(bogusmon, (char *,char *));
+#ifdef ANDROID
 STATIC_DCL void FDECL(docall_ext, (struct obj *, boolean));
+#endif
 
 extern const char what_is_an_unknown_object[]; /* from pager.c */
 
@@ -668,7 +670,11 @@ docallcmd()
                 You("know those as well as you ever will.");
 #endif
             } else {
+#ifdef ANDROID
                 docall_ext(obj, FALSE);
+#else
+                docall(obj);
+#endif
             }
         }
         break;
@@ -689,6 +695,7 @@ void
 docall(obj)
 register struct obj *obj;
 {
+#ifdef ANDROID
 	docall_ext(obj, TRUE);
 }
 
@@ -697,6 +704,7 @@ docall_ext(obj, showlog)
 register struct obj *obj;
 boolean showlog;
 {
+#endif
     char buf[BUFSZ], qbuf[QBUFSZ];
     struct obj otemp;
     register char **str1;
