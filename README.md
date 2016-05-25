@@ -41,5 +41,5 @@ http://developer.android.com/sdk/ndk
 * [Github Issues](https://github.com/SunnyEric/NetHack_android/issues)
 * 邮箱956768385@qq.com
 
-##软件许可证
-[license](https://github.com/SunnyEric/NetHack_android/blob/master/nethack-android-ch/dat/license)
+##协议
+[NetHack 通用公共许可证](https://github.com/SunnyEric/NetHack_android/blob/master/nethack-android-ch/dat/license)
