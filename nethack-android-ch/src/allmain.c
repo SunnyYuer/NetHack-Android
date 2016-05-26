@@ -253,7 +253,7 @@ boolean resuming;
                             } else if (!Upolyd && u.uhp > 1) {
                                 u.uhp--;
                             } else {
-                                You("pass out from exertion!");
+                                You("因劳累而昏倒!");
                                 exercise(A_CON, FALSE);
                                 fall_asleep(-10, FALSE);
                             }

@@ -1472,14 +1472,14 @@ boolean noprefix;
 {
     static char tnbuf[12];
     const char *tn,
-        *tnnames[12] = { "C调",  "降D大调", "D调",  "降E大调",
-                         "E调",  "F调", "升F大调", "G调",
-                         "升G大调", "A调", "降B大调",  "B调" };
+        *tnnames[12] = { "C 调",  "降D 大调", "D 调",  "降E 大调",
+                         "E 调",  "F 调", "升F 大调", "G 调",
+                         "升G 大调", "A 调", "降B 大调",  "B 调" };
 
     tnbuf[0] = '\0';
     tn = tnnames[trap->tnote];
     if (!noprefix)
-        Sprintf(tnbuf, "%s ",
+        Sprintf(tnbuf, "%s",
                 (*tn == 'A' || *tn == 'E' || *tn == 'F') ? "" : "");
     Sprintf(eos(tnbuf), "%s", tn);
     return tnbuf;

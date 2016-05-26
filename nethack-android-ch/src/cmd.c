@@ -1137,7 +1137,9 @@ doterrain(VOID_ARGS)
     men = create_nhwindow(NHW_MENU);
     any = zeroany;
     any.a_int = 1;
+#ifdef ANDROID
     start_menu(men);
+#endif
     add_menu(men, NO_GLYPH, &any, 0, 0, ATR_NONE,
              "没有怪物, 物品, 和陷阱的已知地图",
              MENU_SELECTED);
@@ -2036,7 +2038,7 @@ int final;
         you_are(buf, from_what(ADORNED));
     }
     if (Invisible)
-        you_are("隐身的", from_what(INVIS));
+        you_are("隐形的", from_what(INVIS));
     else if (Invis)
         you_are("对别人来说是隐形的", from_what(INVIS));
     /* ordinarily "visible" is redundant; this is a special case for
@@ -2426,18 +2428,18 @@ int msgflag;          /* for variant message phrasing */
 {
     char *bp, buf[BUFSZ];
 
-    Strcpy(buf, "hiding");
+    Strcpy(buf, "隐藏");
     if (youmonst.m_ap_type != M_AP_NOTHING) {
         /* mimic; hero is only able to mimic a strange object or gold
            or hallucinatory alternative to gold, so we skip the details
            for the hypothetical furniture and monster cases */
-        bp = eos(strcpy(buf, "mimicking"));
+        bp = eos(strcpy(buf, "模仿"));
         if (youmonst.m_ap_type == M_AP_OBJECT) {
-            Sprintf(bp, " %s", an(simple_typename(youmonst.mappearance)));
+            Sprintf(bp, " %s", simple_typename(youmonst.mappearance));
         } else if (youmonst.m_ap_type == M_AP_FURNITURE) {
-            Strcpy(bp, " something");
+            Strcpy(bp, " 什么东西");
         } else if (youmonst.m_ap_type == M_AP_MONSTER) {
-            Strcpy(bp, " someone");
+            Strcpy(bp, " 某人");
         } else {
             ; /* something unexpected; leave 'buf' as-is */
         }
@@ -2445,24 +2447,24 @@ int msgflag;          /* for variant message phrasing */
         bp = eos(buf); /* points past "hiding" */
         if (youmonst.data->mlet == S_EEL) {
             if (is_pool(u.ux, u.uy))
-                Sprintf(bp, " in the %s", waterbody_name(u.ux, u.uy));
+                Sprintf(bp, " 在%s里", waterbody_name(u.ux, u.uy));
         } else if (hides_under(youmonst.data)) {
             struct obj *o = level.objects[u.ux][u.uy];
 
             if (o)
-                Sprintf(bp, " underneath %s", ansimpleoname(o));
+                Sprintf(bp, " 在%s下面", ansimpleoname(o));
         } else if (is_clinger(youmonst.data) || Flying) {
             /* Flying: 'lurker above' hides on ceiling but doesn't cling */
-            Sprintf(bp, " on the %s", ceiling(u.ux, u.uy));
+            Sprintf(bp, " 在%s上", ceiling(u.ux, u.uy));
         } else {
             /* on floor; is_hider() but otherwise not special: 'trapper' */
             if (u.utrap && u.utraptype == TT_PIT) {
                 struct trap *t = t_at(u.ux, u.uy);
 
-                Sprintf(bp, " in a %spit",
-                        (t && t->ttyp == SPIKED_PIT) ? "spiked " : "");
+                Sprintf(bp, " 在一个%s坑里",
+                        (t && t->ttyp == SPIKED_PIT) ? "有钉子的 " : "");
             } else
-                Sprintf(bp, " on the %s", surface(u.ux, u.uy));
+                Sprintf(bp, " 在%s上", surface(u.ux, u.uy));
         }
     } else {
         ; /* shouldn't happen; will result in generic "you are hiding" */
@@ -2474,7 +2476,7 @@ int msgflag;          /* for variant message phrasing */
         you_are(buf, "");
     } else {
         /* for dohide(), when player uses '#monster' command */
-        You("are %s %s.", msgflag ? "already" : "now", buf);
+        You("%s %s.", msgflag ? "已经" : "现在", buf);
     }
 }
 
@@ -2646,7 +2648,7 @@ static const struct func_tab cmdlist[] = {
     { 'R', FALSE, doremring },
     { M('r'), FALSE, dorub },
     { M('R'), FALSE, doride }, /* #ride */
-    { 's', TRUE, dosearch, "searching" },
+    { 's', TRUE, dosearch, "搜索" },
     { 'S', TRUE, dosave },
     { M('s'), FALSE, dosit },
     { 't', FALSE, dothrow },
@@ -2676,7 +2678,7 @@ static const struct func_tab cmdlist[] = {
 #ifdef SHELL
     { '!', TRUE, dosh },
 #endif
-    { '.', TRUE, donull, "waiting" },
+    { '.', TRUE, donull, "等待" },
     { ' ', TRUE, donull, "waiting" },
     { ',', FALSE, dopickup },
     { ':', TRUE, dolook },

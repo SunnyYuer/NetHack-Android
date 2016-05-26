@@ -185,7 +185,7 @@ register int x, y;
     else if (IS_AIR(lev->typ) && Is_airlevel(&u.uz))
         return "天空";
     else if (is_pool(x, y))
-        return (Underwater && !Is_waterlevel(&u.uz)) ? "bottom" : "water";
+        return (Underwater && !Is_waterlevel(&u.uz)) ? "水底" : "水中";
     else if (is_ice(x, y))
         return "冰";
     else if (is_lava(x, y))
@@ -369,7 +369,7 @@ int x, y;
                 et = buf;
             } else
                 et = ep->engr_txt;
-            You("%s: \"%s\".", (Blind) ? "感受这句话" : "读道", et);
+            You("%s: \" %s\".", (Blind) ? "感受这句话" : "读道", et);
             if (context.run > 1)
                 nomul(0);
         }

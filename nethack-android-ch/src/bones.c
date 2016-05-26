@@ -1,4 +1,4 @@
-/* NetHack 3.6	bones.c	$NHDT-Date: 1449269914 2015/12/04 22:58:34 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.66 $ */
+﻿/* NetHack 3.6	bones.c	$NHDT-Date: 1449269914 2015/12/04 22:58:34 $  $NHDT-Branch: NetHack-3.6.0 $:$NHDT-Revision: 1.66 $ */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985,1993. */
 /* NetHack may be freely redistributed.  See license for details. */
 
@@ -193,6 +193,8 @@ char *namebuf;
        that assumption false */
     while (*namebuf) {
         c = *namebuf & 0177;
+        if(*namebuf>=0)  /*不处理中文字符*/
+        {
         if (c < ' ' || c == '\177') {
             /* non-printable or undesirable */
             *namebuf = '.';
@@ -200,6 +202,7 @@ char *namebuf;
             /* expected to be printable if user wants such things */
             if (strip_8th_bit)
                 *namebuf = '_';
+        }
         }
         ++namebuf;
     }

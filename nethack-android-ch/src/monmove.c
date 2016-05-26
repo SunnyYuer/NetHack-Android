@@ -57,9 +57,9 @@ struct monst *mon;
 const char *shout;
 {
     if (canspotmon(mon))
-        pline("%s yells:", Amonnam(mon));
+        pline("%s 叫喊:", Amonnam(mon));
     else
-        You_hear("someone yell:");
+        You_hear("某人叫喊:");
     verbalize1(shout);
 }
 

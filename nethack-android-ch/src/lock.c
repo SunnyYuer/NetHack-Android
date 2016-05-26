@@ -512,7 +512,7 @@ doforce()
     picktyp = is_blade(uwep) && !is_pick(uwep);
     if (xlock.usedtime && xlock.box && picktyp == xlock.picktyp) {
         You("重新开始尝试撬锁.");
-        set_occupation(forcelock, "forcing the lock", 0);
+        set_occupation(forcelock, "撬锁", 0);
         return 1;
     }
 
@@ -548,7 +548,7 @@ doforce()
         }
 
     if (xlock.box)
-        set_occupation(forcelock, "forcing the lock", 0);
+        set_occupation(forcelock, "撬锁", 0);
     else
         You("决定不硬来.");
     return 1;

@@ -1116,8 +1116,8 @@ struct obj *obj;
 const char *txt;
 {
     if (flags.beginner || !txt)
-        You("have a %s feeling for a moment, then it passes.",
-            Hallucination ? "normal" : "strange");
+        You("片刻有一种%s感觉, 然后它消失了.",
+            Hallucination ? "正常的" : "奇怪的");
     else
         pline1(txt);
 

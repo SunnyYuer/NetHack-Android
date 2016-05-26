@@ -121,13 +121,13 @@ static const struct {
     Bitfield(greasy, 1);                  /* causes slippery fingers */
 } tintxts[] = { { "腐烂的", -50, 0, 0 },  /* ROTTEN_TIN = 0 */
                 { "自制的", 50, 1, 0 }, /* HOMEMADE_TIN = 1 */
-                { "做成的汤", 20, 1, 0 },
-                { "薯条", 40, 0, 1 },
+                { "做成汤的", 20, 1, 0 },
+                { "油炸的", 40, 0, 1 },
                 { "腌制的", 40, 1, 0 },
                 { "煮熟的", 50, 1, 0 },
                 { "熏制的", 50, 1, 0 },
                 { "干的", 55, 1, 0 },
-                { "油炸的", 60, 0, 1 },
+                { "深油炸的", 60, 0, 1 },
                 { "四川", 70, 1, 0 },
                 { "烧烤的", 80, 0, 0 },
                 { "炒的", 80, 0, 1 },
@@ -169,7 +169,7 @@ eatmupdate()
 
     if (is_obj_mappear(&youmonst,ORANGE) && !Hallucination) {
         /* revert from hallucinatory to "normal" mimicking */
-        altmsg = "You now prefer mimicking yourself.";
+        altmsg = "你现在更喜欢模仿自己.";
         altapp = GOLD_PIECE;
     } else if (is_obj_mappear(&youmonst,GOLD_PIECE) && Hallucination) {
         /* won't happen; anything which might make immobilized
@@ -827,28 +827,28 @@ register struct permonst *ptr;
     case FIRE_RES:
         debugpline0("Trying to give fire resistance");
         if (!(HFire_resistance & FROMOUTSIDE)) {
-            You(Hallucination ? "be chillin'." : "feel a momentary chill.");
+            You(Hallucination ? "是chillin'." : "感觉短暂的寒冷.");
             HFire_resistance |= FROMOUTSIDE;
         }
         break;
     case SLEEP_RES:
         debugpline0("Trying to give sleep resistance");
         if (!(HSleep_resistance & FROMOUTSIDE)) {
-            You_feel("wide awake.");
+            You_feel("清醒的.");
             HSleep_resistance |= FROMOUTSIDE;
         }
         break;
     case COLD_RES:
         debugpline0("Trying to give cold resistance");
         if (!(HCold_resistance & FROMOUTSIDE)) {
-            You_feel("full of hot air.");
+            You_feel("夸夸其谈.");
             HCold_resistance |= FROMOUTSIDE;
         }
         break;
     case DISINT_RES:
         debugpline0("Trying to give disintegration resistance");
         if (!(HDisint_resistance & FROMOUTSIDE)) {
-            You_feel(Hallucination ? "totally together, man." : "very firm.");
+            You_feel(Hallucination ? "整个在一起, 哈." : "非常结实.");
             HDisint_resistance |= FROMOUTSIDE;
         }
         break;
@@ -856,39 +856,39 @@ register struct permonst *ptr;
         debugpline0("Trying to give shock resistance");
         if (!(HShock_resistance & FROMOUTSIDE)) {
             if (Hallucination)
-                You_feel("grounded in reality.");
+                You_feel("基于现实的.");
             else
-                Your("health currently feels amplified!");
+                Your("健康现在感觉放大了!");
             HShock_resistance |= FROMOUTSIDE;
         }
         break;
     case POISON_RES:
         debugpline0("Trying to give poison resistance");
         if (!(HPoison_resistance & FROMOUTSIDE)) {
-            You_feel(Poison_resistance ? "especially healthy." : "healthy.");
+            You_feel(Poison_resistance ? "格外的健康." : "健康的.");
             HPoison_resistance |= FROMOUTSIDE;
         }
         break;
     case TELEPORT:
         debugpline0("Trying to give teleport");
         if (!(HTeleportation & FROMOUTSIDE)) {
-            You_feel(Hallucination ? "diffuse." : "very jumpy.");
+            You_feel(Hallucination ? "弥漫的." : "很神经兮兮的.");
             HTeleportation |= FROMOUTSIDE;
         }
         break;
     case TELEPORT_CONTROL:
         debugpline0("Trying to give teleport control");
         if (!(HTeleport_control & FROMOUTSIDE)) {
-            You_feel(Hallucination ? "centered in your personal space."
-                                   : "in control of yourself.");
+            You_feel(Hallucination ? "集中在你的个人空间."
+                                   : "在控制你自己.");
             HTeleport_control |= FROMOUTSIDE;
         }
         break;
     case TELEPAT:
         debugpline0("Trying to give telepathy");
         if (!(HTelepat & FROMOUTSIDE)) {
-            You_feel(Hallucination ? "in touch with the cosmos."
-                                   : "a strange mental acuity.");
+            You_feel(Hallucination ? "接触到了宇宙."
+                                   : "奇怪的精神敏锐.");
             HTelepat |= FROMOUTSIDE;
             /* If blind, make sure monsters show up. */
             if (Blind)
@@ -1262,7 +1262,7 @@ const char *mesg;
 
     r = tin_variety(tin, FALSE);
     if (tin->otrapped || (tin->cursed && r != HOMEMADE_TIN && !rn2(8))) {
-        b_trapped("tin", 0);
+        b_trapped("罐头", 0);
         costly_tin(COST_DSTROY);
         goto use_up_tin;
     }
@@ -1570,7 +1570,7 @@ struct obj *otmp;
             /* make sure new ill doesn't result in improvement */
             if (Sick && (sick_time > Sick))
                 sick_time = (Sick > 1L) ? Sick - 1L : 1L;
-            make_sick(sick_time, corpse_xname(otmp, "rotted", CXN_NORMAL),
+            make_sick(sick_time, corpse_xname(otmp, "腐烂的", CXN_NORMAL),
                       TRUE, SICK_VOMITABLE);
         }
         if (carried(otmp))
@@ -2343,7 +2343,7 @@ doeat()
         int res = edibility_prompts(otmp);
         if (res) {
             Your(
-               "%s 停止了刺痛你的嗅觉回到正常.",
+               "%s 停止了刺痛, 你的嗅觉回到正常.",
                  body_part(NOSE));
             u.uedibility = 0;
             if (res == 1)
@@ -2744,7 +2744,7 @@ void
 reset_faint()
 {
     if (afternmv == unfaint)
-        unmul("You revive.");
+        unmul("你恢复了.");
 }
 
 /* compute and comment on your (new?) hunger status */
@@ -2809,7 +2809,7 @@ boolean incr;
                 stop_occupation();
                 You("因缺乏食物而昏倒.");
                 if (!Levitation)
-                    selftouch("Falling, you");
+                    selftouch("掉落, 你");
                 incr_itimeout(&HDeaf, duration);
                 nomul(-duration);
                 multi_reason = "因缺乏食物而昏厥";

@@ -1165,7 +1165,7 @@ register const char *let, *word;
         if (!buf[0]) {
             Sprintf(qbuf, "你想%s哪个? [*]", word);
         } else {
-            Sprintf(qbuf, "你想%s哪个? [%s or ?*]", word, buf);
+            Sprintf(qbuf, "你想%s哪个? [%s  或 ?*]", word, buf);
         }
         if (in_doagain)
             ilet = readchar();
@@ -1217,17 +1217,17 @@ register const char *let, *word;
                 char *suf = (char *) 0;
 
                 strcpy(buf, word);
-                if ((bp = strstr(buf, " on the ")) != 0) {
+                if ((bp = strstr(buf, "在石头上擦拭")) != 0) {
                     /* rub on the stone[s] */
                     *bp = '\0';
                     suf = (bp + 1);
                 }
-                if ((bp = strstr(buf, " or ")) != 0) {
+                if ((bp = strstr(buf, "a使用")) != 0) {
                     *bp = '\0';
                     bp = (rn2(2) ? buf : (bp + 4));
                 } else
                     bp = buf;
-                You("mime %s something%s%s.", ing_suffix(bp), suf ? " " : "",
+                You("模仿%s 什么东西%s%s.", ing_suffix(bp), suf ? " " : "",
                     suf ? suf : "");
             }
             return (allownone ? &zeroobj : (struct obj *) 0);
@@ -1456,7 +1456,7 @@ unsigned *resultflags;
         *resultflags = 0;
     takeoff = ident = allflag = m_seen = FALSE;
     if (!invent) {
-        You("have nothing to %s.", word);
+        You("没有东西来%s.", word);
         return 0;
     }
     add_valid_menu_class(0); /* reset */
@@ -1530,23 +1530,23 @@ unsigned *resultflags;
             if (index(extra_removeables, oc_of_sym)) {
                 ; /* skip rest of takeoff checks */
             } else if (!index(removeables, oc_of_sym)) {
-                pline("Not applicable.");
+                pline("不适用.");
                 return 0;
             } else if (oc_of_sym == ARMOR_CLASS && !wearing_armor()) {
                 noarmor(FALSE);
                 return 0;
             } else if (oc_of_sym == WEAPON_CLASS && !uwep && !uswapwep
                        && !uquiver) {
-                You("are not wielding anything.");
+                You("没有拿着任何东西.");
                 return 0;
             } else if (oc_of_sym == RING_CLASS && !uright && !uleft) {
-                You("are not wearing rings.");
+                You("没有戴戒指.");
                 return 0;
             } else if (oc_of_sym == AMULET_CLASS && !uamul) {
-                You("are not wearing an amulet.");
+                You("没有戴护身符.");
                 return 0;
             } else if (oc_of_sym == TOOL_CLASS && !ublindf) {
-                You("are not wearing a blindfold.");
+                You("没有戴眼罩.");
                 return 0;
             }
         }
@@ -1575,7 +1575,7 @@ unsigned *resultflags;
         } else if (sym == 'm') {
             m_seen = TRUE;
         } else if (oc_of_sym == MAXOCLASSES) {
-            You("don't have any %c's.", sym);
+            You("没有任何 %c's.", sym);
         } else if (oc_of_sym != VENOM_CLASS) { /* suppress venom */
             if (!index(olets, oc_of_sym)) {
                 add_valid_menu_class(oc_of_sym);
@@ -1740,9 +1740,9 @@ nextclass:
     if (olets && *olets && *++olets)
         goto nextclass;
     if (!takeoff && (dud || cnt))
-        pline("That was all.");
+        pline("就是这些了.");
     else if (!dud && !cnt)
-        pline("No applicable objects.");
+        pline("没有适用物品.");
 ret:
     bypass_objlist(*objchn, FALSE);
     return cnt;
@@ -1805,13 +1805,13 @@ int id_limit;
         } else if (n == -2) { /* player used ESC to quit menu */
             break;
         } else if (n == -1) { /* no eligible items found */
-            pline("That was all.");
+            pline("就是这些了.");
             break;
         } else if (!--tryct) { /* stop re-prompting */
             pline1(thats_enough_tries);
             break;
         } else { /* try again */
-            pline("Choose an item; use ESC to decline.");
+            pline("选择一项; 使用ESC 来退出.");
         }
     }
 }
@@ -2439,7 +2439,7 @@ dounpaid()
                     char contbuf[BUFSZ];
 
                     /* Shopkeeper knows what to charge for contents */
-                    Sprintf(contbuf, "%s contents", s_suffix(xname(otmp)));
+                    Sprintf(contbuf, "%s里面", s_suffix(xname(otmp)));
                     putstr(win, 0,
                            xprname((struct obj *) 0, contbuf, CONTAINED_SYM,
                                    TRUE, contcost, 0L));
@@ -2450,7 +2450,7 @@ dounpaid()
 
     putstr(win, 0, "");
     putstr(win, 0,
-           xprname((struct obj *) 0, "Total:", '*', FALSE, totcost, 0L));
+           xprname((struct obj *) 0, "合计:", '*', FALSE, totcost, 0L));
     display_nhwindow(win, FALSE);
     destroy_nhwindow(win);
 }
@@ -2593,15 +2593,15 @@ dotypeinv()
         if (billx)
             (void) doinvbill(1);
         else
-            pline("No used-up objects%s.",
-                  unpaid_count ? " on your shopping bill" : "");
+            pline("没有用过的物品%s.",
+                  unpaid_count ? "在你的购物清单上" : "");
         return 0;
     }
     if (c == 'u' || (c == 'U' && unpaid_count && !ucnt)) {
         if (unpaid_count)
             dounpaid();
         else
-            You("are not carrying any unpaid objects.");
+            You("没有携带任何未付款的物品.");
         return 0;
     }
     if (traditional) {
@@ -2618,24 +2618,24 @@ dotypeinv()
 
             switch (c) {
             case 'B':
-                which = "known to be blessed";
+                which = "已知为受祝福的";
                 break;
             case 'U':
-                which = "known to be uncursed";
+                which = "已知为未被诅咒的";
                 break;
             case 'C':
-                which = "known to be cursed";
+                which = "已知为被诅咒的";
                 break;
             case 'X':
                 You(
           "have no objects whose blessed/uncursed/cursed status is unknown.");
                 break; /* better phrasing is desirable */
             default:
-                which = "such";
+                which = "这种";
                 break;
             }
             if (which)
-                You("have no %s objects.", which);
+                You("没有%s物品.", which);
             return 0;
         }
         this_type = oclass;
@@ -3063,20 +3063,20 @@ noarmor(report_uskin)
 boolean report_uskin;
 {
     if (!uskin || !report_uskin) {
-        You("are not wearing any armor.");
+        You("没有穿戴任何防具.");
     } else {
         char *p, *uskinname, buf[BUFSZ];
 
         uskinname = strcpy(buf, simpleonames(uskin));
         /* shorten "set of <color> dragon scales" to "<color> scales"
            and "<color> dragon scale mail" to "<color> scale mail" */
-        if (!strncmpi(uskinname, "set of ", 7))
+        if (!strncmpi(uskinname, "一套 ", 7))
             uskinname += 7;
-        if ((p = strstri(uskinname, " dragon ")) != 0)
-            while ((p[1] = p[8]) != '\0')
+        if ((p = strstri(uskinname, "龙")) != 0)
+            while ((p[0] = p[3]) != '\0')
                 ++p;
 
-        You("are not wearing armor but have %s embedded in your skin.",
+        You("没有穿戴防具但有%s嵌入在你的皮肤里.",
             uskinname);
     }
 }
@@ -3366,7 +3366,7 @@ doorganize() /* inventory organizer by Del Lamb */
     const char *adj_type;
 
     if (!invent) {
-        You("aren't carrying anything to adjust.");
+        You("没有携带任何东西来调整.");
         return 0;
     }
 
@@ -3447,11 +3447,11 @@ doorganize() /* inventory organizer by Del Lamb */
             break; /* got one */
         if (trycnt == 5)
             goto noadjust;
-        pline("Select an inventory slot letter."); /* else try again */
+        pline("选择一个库存位置字母."); /* else try again */
     }
 
     /* change the inventory and print the resulting item */
-    adj_type = !splitting ? "Moving:" : "Splitting:";
+    adj_type = !splitting ? "移动:" : "拆分:";
 
     /*
      * don't use freeinv/addinv to avoid double-touching artifacts,
@@ -3462,13 +3462,13 @@ doorganize() /* inventory organizer by Del Lamb */
     for (otmp = invent; otmp;) {
         if (!splitting) {
             if (merged(&otmp, &obj)) {
-                adj_type = "Merging:";
+                adj_type = "合并:";
                 obj = otmp;
                 otmp = otmp->nobj;
                 extract_nobj(obj, &invent);
                 continue; /* otmp has already been updated */
             } else if (otmp->invlet == let) {
-                adj_type = "Swapping:";
+                adj_type = "交换:";
                 otmp->invlet = obj->invlet;
             }
         } else {
@@ -3500,7 +3500,7 @@ doorganize() /* inventory organizer by Del Lamb */
                 } else if (inv_cnt(FALSE) >= 52) {
                     (void) merged(&splitting, &obj); /* undo split */
                     /* "knapsack cannot accommodate any more items" */
-                    Your("pack is too full.");
+                    Your("背包太满了.");
                     return 0;
                 } else {
                     bumped = otmp;
@@ -3532,7 +3532,7 @@ doorganize() /* inventory organizer by Del Lamb */
     /* messages deferred until inventory has been fully reestablished */
     prinv(adj_type, obj, 0L);
     if (bumped)
-        prinv("Moving:", bumped, 0L);
+        prinv("移动:", bumped, 0L);
     if (splitting)
         clear_splitobjs(); /* reset splitobj context */
     update_inventory();
@@ -3609,7 +3609,7 @@ char *title;
         have_inv = (mon->minvent != 0), have_any = (have_inv || incl_hero);
 
     Sprintf(tmp, "%s %s:", s_suffix(noit_Monnam(mon)),
-            do_all ? "possessions" : "armament");
+            do_all ? "物品" : "武器");
 
     if (do_all ? have_any : (mon->misc_worn_check || MON_WEP(mon))) {
         /* Fool the 'weapon in hand' routine into
@@ -3625,7 +3625,7 @@ char *title;
 
         set_uasmon();
     } else {
-        invdisp_nothing(title ? title : tmp, "(none)");
+        invdisp_nothing(title ? title : tmp, "( 无)");
         n = 0;
     }
 
@@ -3650,14 +3650,14 @@ register struct obj *obj;
     int n;
     menu_item *selected = 0;
 
-    (void) safe_qbuf(qbuf, "Contents of ", ":", obj, doname, ansimpleoname,
+    (void) safe_qbuf(qbuf, "内容", ":", obj, doname, ansimpleoname,
                      "that");
 
     if (obj->cobj) {
         n = query_objlist(qbuf, obj->cobj, INVORDER_SORT, &selected,
                           PICK_NONE, allow_all);
     } else {
-        invdisp_nothing(qbuf, "(empty)");
+        invdisp_nothing(qbuf, "( 空)");
         n = 0;
     }
     if (n > 0) {
@@ -3705,7 +3705,7 @@ boolean as_if_seen;
     if (n) {
         only.x = x;
         only.y = y;
-        if (query_objlist("Things that are buried here:", level.buriedobjlist,
+        if (query_objlist("埋在这里的东西有:", level.buriedobjlist,
                           INVORDER_SORT, &selected, PICK_NONE, only_here) > 0)
             free((genericptr_t) selected);
         only.x = only.y = 0;

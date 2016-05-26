@@ -1101,19 +1101,19 @@ doidtrap()
                     break;
             }
             tt = what_trap(tt);
-            pline("That is %s%s%s.",
-                  an(defsyms[trap_to_defsym(tt)].explanation),
+            pline("那是%s%s%s.",
+                  defsyms[trap_to_defsym(tt)].explanation,
+                  !trap->madeby_u ? "" : "由你所",
                   !trap->madeby_u
                      ? ""
                      : (tt == WEB)
-                        ? " woven"
+                        ? "编织"
                         /* trap doors & spiked pits can't be made by
                            player, and should be considered at least
                            as much "set" as "dug" anyway */
                         : (tt == HOLE || tt == PIT)
-                           ? " dug"
-                           : " set",
-                  !trap->madeby_u ? "" : " by you");
+                           ? "挖掘"
+                           : "设置");
             return 0;
         }
     pline("那里没有陷阱.");

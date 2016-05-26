@@ -90,7 +90,7 @@ const char *goal;
     boolean hilite_state = FALSE;
 
     if (!goal)
-        goal = "desired location";
+        goal = "期望位置";
     if (flags.verbose) {
         pline("( 选取哪个对象?)");
         msg_given = TRUE;
@@ -424,12 +424,12 @@ do_mname()
     char qbuf[QBUFSZ];
 
     if (Hallucination) {
-        You("would never recognize it anyway.");
+        You("永远不会认出它无论如何.");
         return;
     }
     cc.x = u.ux;
     cc.y = u.uy;
-    if (getpos(&cc, FALSE, "the monster you want to name") < 0
+    if (getpos(&cc, FALSE, "你想要命名的怪物") < 0
         || (cx = cc.x) < 0)
         return;
     cy = cc.y;
@@ -438,7 +438,7 @@ do_mname()
         if (u.usteed && canspotmon(u.usteed))
             mtmp = u.usteed;
         else {
-            pline("This %s creature is called %s and cannot be renamed.",
+            pline("这个%s生物叫做%s 且不能被改名了.",
                   beautiful(), plname);
             return;
         }
@@ -455,7 +455,7 @@ do_mname()
         return;
     }
     /* special case similar to the one in lookat() */
-    Sprintf(qbuf, "What do you want to call %s?",
+    Sprintf(qbuf, "你想命名%s 为什么?",
             distant_monnam(mtmp, ARTICLE_THE, monnambuf));
     getlin(qbuf, buf);
     if (!*buf || *buf == '\033')
@@ -467,13 +467,13 @@ do_mname()
        shopkeepers, temple priests and other minions use alternate
        name formatting routines which ignore any user-supplied name */
     if (mtmp->data->geno & G_UNIQ)
-        pline("%s doesn't like being called names!", upstart(monnambuf));
+        pline("%s 不喜欢被取名字!", upstart(monnambuf));
     else if (mtmp->isshk
              && !(Deaf || mtmp->msleeping || !mtmp->mcanmove
                   || mtmp->data->msound <= MS_ANIMAL))
-        verbalize("I'm %s, not %s.", shkname(mtmp), buf);
+        verbalize("我是%s, 不是%s.", shkname(mtmp), buf);
     else if (mtmp->ispriest || mtmp->isminion || mtmp->isshk)
-        pline("%s will not accept the name %s.", upstart(monnambuf), buf);
+        pline("%s 不会接受这个名字%s.", upstart(monnambuf), buf);
     else
         (void) christen_monst(mtmp, buf);
 }
@@ -494,7 +494,7 @@ register struct obj *obj;
 
     /* Do this now because there's no point in even asking for a name */
     if (obj->otyp == SPE_NOVEL) {
-        pline("%s already has a published name.", Ysimple_name2(obj));
+        pline("%s 已经有一个出版的名字.", Ysimple_name2(obj));
         return;
     }
 
@@ -512,7 +512,7 @@ register struct obj *obj;
         Strcpy(buf, aname);
 
     if (obj->oartifact) {
-        pline_The("artifact seems to resist the attempt.");
+        pline_The("神器似乎在抵抗.");
         return;
     } else if (restrict_name(obj, buf) || exist_artifact(obj->otyp, buf)) {
         /* this used to change one letter, substituting a value
@@ -532,9 +532,9 @@ register struct obj *obj;
         do {
             wipeout_text(bufp, rnd(2), (unsigned) 0);
         } while (!strcmp(buf, bufcpy));
-        pline("While engraving, your %s slips.", body_part(HAND));
+        pline("雕刻的时候, 你的%s滑了一下.", body_part(HAND));
         display_nhwindow(WIN_MESSAGE, FALSE);
-        You("engrave: \"%s\".", buf);
+        You("刻上: \" %s\".", buf);
     }
     obj = oname(obj, buf);
 }
@@ -763,8 +763,8 @@ namefloorobj()
     /* "dot for under/over you" only makes sense when the cursor hasn't
        been moved off the hero's '@' yet, but there's no way to adjust
        the help text once getpos() has started */
-    Sprintf(buf, "object on map (or '.' for one %s you)",
-            (u.uundetected && hides_under(youmonst.data)) ? "over" : "under");
+    Sprintf(buf, "地图上的东西( 或 '.'  在你%s)",
+            (u.uundetected && hides_under(youmonst.data)) ? "上面" : "下面");
     if (getpos(&cc, FALSE, buf) < 0 || cc.x <= 0)
         return;
     if (cc.x == u.ux && cc.y == u.uy) {
@@ -808,15 +808,15 @@ namefloorobj()
         unames[4] = roguename();
         /* silly */
         unames[5] = "Wibbly Wobbly";
-        pline("%s %s to call you \"%s.\"",
-              The(buf), use_plural ? "decide" : "decides",
+        pline("%s %s叫你 \"%s.\"",
+              The(buf), use_plural ? "决定" : "决定",
               unames[rn2(SIZE(unames))]);
     } else if (!objtyp_is_callable(obj->otyp)) {
-        pline("%s %s can't be assigned a type name.",
-              use_plural ? "Those" : "That", buf);
+        pline("%s %s 不能被指定一个类型名字.",
+              use_plural ? "那些" : "那个", buf);
     } else if (!obj->dknown) {
-        You("don't know %s %s well enough to name %s.",
-            use_plural ? "those" : "that", buf, use_plural ? "them" : "it");
+        You("不是很了解%s %s 来命名%s.",
+            use_plural ? "那些" : "那个", buf, use_plural ? "它们" : "它");
     } else {
         docall(obj);
     }

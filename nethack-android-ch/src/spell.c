@@ -573,7 +573,7 @@ register struct obj *spellbook;
     context.spbook.book = spellbook;
     if (context.spbook.book)
         context.spbook.o_id = context.spbook.book->o_id;
-    set_occupation(learn, "studying", 0);
+    set_occupation(learn, "学习", 0);
     return 1;
 }
 
@@ -1523,7 +1523,7 @@ int *spell_no;
      * given string and are of the form "a - ".
      */
     if (!iflags.menu_tab_sep) {
-        Sprintf(buf, "%-20s\t\t\t等级 %-12s  失败几率  记忆度", "\t\t   名称",
+        Sprintf(buf, "%-20s        等级 %-12s  失败几率  记忆度", "        名称",
                 "   种类");
         fmt = "%-20s  %2d   %-12s %3d%% %9s";
     } else {

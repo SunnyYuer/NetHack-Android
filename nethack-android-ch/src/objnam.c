@@ -688,7 +688,7 @@ char *prefix;
             Strcat(prefix, "非常 ");
             break;
         case 3:
-            Strcat(prefix, "完全 ");
+            Strcat(prefix, "彻底 ");
             break;
         }
         Strcat(prefix, is_rustprone(obj) ? "生锈的 " : "烧焦的 ");
@@ -699,7 +699,7 @@ char *prefix;
             Strcat(prefix, "非常 ");
             break;
         case 3:
-            Strcat(prefix, "完全 ");
+            Strcat(prefix, "彻底 ");
             break;
         }
         Strcat(prefix, is_corrodeable(obj) ? "腐蚀的 " : "腐烂的 ");
@@ -2540,7 +2540,7 @@ struct obj *no_wish;
         } else if (!strncmpi(bp, "非常", l = 6)) {
             /* very rusted very heavy iron ball */
             very = 1;
-        } else if (!strncmpi(bp, "完全", l = 6)) {
+        } else if (!strncmpi(bp, "彻底", l = 6)) {
             very = 2;
         } else if (!strncmpi(bp, "生锈的", l = 9)
                    || !strncmpi(bp, "rusted ", l = 7)
