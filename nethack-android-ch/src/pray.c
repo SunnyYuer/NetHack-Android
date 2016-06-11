@@ -41,7 +41,7 @@ STATIC_DCL boolean FDECL(blocked_boulder, (int, int));
  *      responsible for the theft of the Amulet from Marduk, the Creator.
  *      Moloch is unaligned.
  */
-static const char *Moloch = "Moloch";
+static const char *Moloch = "摩洛";
 
 static const char *godvoices[] = {
     "低沉", "怒喝", "响起", "洪亮",

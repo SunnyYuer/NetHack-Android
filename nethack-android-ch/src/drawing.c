@@ -155,7 +155,7 @@ const struct symdef defsyms[MAXPCHARS] = {
        { '|', "打开的门", C(CLR_BROWN) },           /* hodoor */
        { '+', "关上的门", C(CLR_BROWN) },         /* vcdoor */
        { '+', "关上的门", C(CLR_BROWN) },         /* hcdoor */
-       { '#', "铁栏杆", C(HI_METAL) },            /* bars */
+       { '#', "铁栅栏", C(HI_METAL) },            /* bars */
        { '#', "树", C(CLR_GREEN) },                /* tree */
        { '.', "房间的地板", C(CLR_GRAY) },      /* room */
 /*20*/ { '.', "房间的黑暗部分", C(CLR_BLACK) }, /* dark room */
@@ -196,7 +196,7 @@ const struct symdef defsyms[MAXPCHARS] = {
        { '^', "陷阱门", C(CLR_BROWN) },           /* trap */
        { '^', "传送陷阱", C(CLR_MAGENTA) },  /* trap */
        { '^', "地层传送", C(CLR_MAGENTA) },    /* trap */
-       { '^', "魔法门", C(CLR_BRIGHT_MAGENTA) }, /* trap */
+       { '^', "魔法入口", C(CLR_BRIGHT_MAGENTA) }, /* trap */
        { '"', "网", C(CLR_GRAY) },                    /* web */
 /*60*/ { '^', "雕像陷阱", C(CLR_GRAY) },            /* trap */
        { '^', "魔法陷阱", C(HI_ZAP) },               /* trap */

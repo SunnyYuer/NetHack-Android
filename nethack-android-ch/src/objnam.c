@@ -232,7 +232,7 @@ boolean juice; /* whether or not to append " juice" to the name */
     else
         fruit_nam = pl_fruit; /* use it as is */
 
-    Sprintf(buf, "%s%s", makesingular(fruit_nam), juice ? " juice" : "");
+    Sprintf(buf, "%s%s", makesingular(fruit_nam), juice ? " 果汁" : "");
     return buf;
 }
 
@@ -2572,9 +2572,9 @@ struct obj *no_wish;
 
         p[(p > bp && p[-1] == ' ') ? -1 : 0] = '\0'; /*terminate bp */
         ++p; /* advance past '(' */
-        if (!strncmpi(p, "点着)", 6)) {
+        if (!strncmpi(p, "点着)", 7)) {
             islit = 1;
-            p += 6 - 1; /* point at ')' */
+            p += 7 - 1; /* point at ')' */
         } else {
             spe = atoi(p);
             while (digit(*p))
@@ -2836,11 +2836,12 @@ struct obj *no_wish;
     if (strncmpi(bp, "防具附魔", 12) && strncmpi(bp, "防具毁坏", 12)
         && strncmpi(bp, "武器附魔", 12)
         && strncmpi(bp, "探测食物", 12)
+        && strncmpi(bp, "长柄武器", 12)
         && strncmpi(bp, "食物探测", 12) && strncmpi(bp, "锁环甲", 9)
         && strncmpi(bp, "嵌皮甲", 9)
         && strncmpi(bp, "皮甲", 6)
         && strncmpi(bp, "加工号角", 12) && strncmpi(bp, "口粮", 6)
-        && strncmpi(bp, "肉环", 6))
+        && strncmpi(bp, "肉环", 6))  //这些不当做物品类别
         for (i = 0; i < (int) (sizeof wrpsym); i++) {
             register int j = strlen(wrp[i]);
             if (!strncmpi(bp, wrp[i], j)) {
@@ -2881,15 +2882,16 @@ struct obj *no_wish;
      * " object", but " trap" is suggested--to either the trap
      * name or the object name.
      */
-    if (wizard && (!strncmpi(bp, "bear", 4) || !strncmpi(bp, "land", 4))) {
-        boolean beartrap = (lowc(*bp) == 'b');
-        char *zp = bp + 4; /* skip "bear"/"land" */
+     int sl=0;
+    if (wizard && (!strncmpi(bp, "捕兽", sl=6) || !strncmpi(bp, "地", sl=3))) {
+        boolean beartrap = (sl==6);
+        char *zp = bp + sl; /* skip "bear"/"land" */
 
         if (*zp == ' ')
             ++zp; /* embedded space is optional */
-        if (!strncmpi(zp, beartrap ? "trap" : "mine", 4)) {
-            zp += 4;
-            if (trapped == 2 || !strcmpi(zp, " object")) {
+        if (!strncmpi(zp, beartrap ? "夹" : "雷", 3)) {
+            zp += 3;
+            if (trapped == 2 || !strcmpi(zp, "物品")) {
                 /* "untrapped <foo>" or "<foo> object" */
                 typ = beartrap ? BEARTRAP : LAND_MINE;
                 goto typfnd;
@@ -3116,108 +3118,108 @@ wiztrap:
             if ((t = maketrap(x, y, trap)) != 0) {
                 trap = t->ttyp;
                 tname = defsyms[trap_to_defsym(trap)].explanation;
-                pline("%s%s.", An(tname),
-                      (trap != MAGIC_PORTAL) ? "" : " to nowhere");
+                pline("一个%s%s.", tname,
+                      (trap != MAGIC_PORTAL) ? "" : "不知通向哪里");
             } else
-                pline("Creation of %s failed.", an(tname));
+                pline("生成%s 失败.", tname);
             return &zeroobj;
         }
 
         /* furniture and terrain */
         lev = &levl[x][y];
         p = eos(bp);
-        if (!BSTRCMPI(bp, p - 8, "fountain")) {
+        if (!BSTRCMPI(bp, p - 6, "喷泉")) {
             lev->typ = FOUNTAIN;
             level.flags.nfountains++;
-            if (!strncmpi(bp, "magic ", 6))
+            if (!strncmpi(bp, "魔法", 6))
                 lev->blessedftn = 1;
-            pline("A %sfountain.", lev->blessedftn ? "magic " : "");
+            pline("一个%s喷泉.", lev->blessedftn ? "魔法" : "");
             newsym(x, y);
             return &zeroobj;
         }
-        if (!BSTRCMPI(bp, p - 6, "throne")) {
+        if (!BSTRCMPI(bp, p - 6, "王座")) {
             lev->typ = THRONE;
-            pline("A throne.");
+            pline("一个王座.");
             newsym(x, y);
             return &zeroobj;
         }
-        if (!BSTRCMPI(bp, p - 4, "sink")) {
+        if (!BSTRCMPI(bp, p - 6, "水槽")) {
             lev->typ = SINK;
             level.flags.nsinks++;
-            pline("A sink.");
+            pline("一个水槽.");
             newsym(x, y);
             return &zeroobj;
         }
         /* ("water" matches "potion of water" rather than terrain) */
-        if (!BSTRCMPI(bp, p - 4, "pool") || !BSTRCMPI(bp, p - 4, "moat")) {
-            lev->typ = !BSTRCMPI(bp, p - 4, "pool") ? POOL : MOAT;
+        if (!BSTRCMPI(bp, p - 6, "水池") || !BSTRCMPI(bp, p - 9, "护城河")) {
+            lev->typ = !BSTRCMPI(bp, p - 6, "水池") ? POOL : MOAT;
             del_engr_at(x, y);
-            pline("A %s.", (lev->typ == POOL) ? "pool" : "moat");
+            pline("%s.", (lev->typ == POOL) ? "水池" : "护城河");
             /* Must manually make kelp! */
             water_damage_chain(level.objects[x][y], TRUE);
             newsym(x, y);
             return &zeroobj;
         }
-        if (!BSTRCMPI(bp, p - 4, "lava")) { /* also matches "molten lava" */
+        if (!BSTRCMPI(bp, p - 6, "熔岩")) { /* also matches "molten lava" */
             lev->typ = LAVAPOOL;
             del_engr_at(x, y);
-            pline("A pool of molten lava.");
+            pline("一池熔岩.");
             if (!(Levitation || Flying))
                 (void) lava_effects();
             newsym(x, y);
             return &zeroobj;
         }
 
-        if (!BSTRCMPI(bp, p - 5, "altar")) {
+        if (!BSTRCMPI(bp, p - 6, "祭坛")) {
             aligntyp al;
 
             lev->typ = ALTAR;
-            if (!strncmpi(bp, "chaotic ", 8))
+            if (!strncmpi(bp, "混沌", 6))
                 al = A_CHAOTIC;
-            else if (!strncmpi(bp, "neutral ", 8))
+            else if (!strncmpi(bp, "中立", 6))
                 al = A_NEUTRAL;
-            else if (!strncmpi(bp, "lawful ", 7))
+            else if (!strncmpi(bp, "秩序", 6))
                 al = A_LAWFUL;
-            else if (!strncmpi(bp, "unaligned ", 10))
+            else if (!strncmpi(bp, "无阵营", 9))
                 al = A_NONE;
             else /* -1 - A_CHAOTIC, 0 - A_NEUTRAL, 1 - A_LAWFUL */
                 al = (!rn2(6)) ? A_NONE : rn2((int) A_LAWFUL + 2) - 1;
             lev->altarmask = Align2amask(al);
-            pline("%s altar.", An(align_str(al)));
+            pline("一个%s祭坛.", align_str(al));
             newsym(x, y);
             return &zeroobj;
         }
 
-        if (!BSTRCMPI(bp, p - 5, "grave")
-            || !BSTRCMPI(bp, p - 9, "headstone")) {
+        if (!BSTRCMPI(bp, p - 6, "坟墓")
+            || !BSTRCMPI(bp, p - 6, "墓碑")) {
             make_grave(x, y, (char *) 0);
-            pline("%s.", IS_GRAVE(lev->typ) ? "A grave"
-                                            : "Can't place a grave here");
+            pline("%s.", IS_GRAVE(lev->typ) ? "一座坟墓"
+                                            : "不能把坟墓放这里");
             newsym(x, y);
             return &zeroobj;
         }
 
-        if (!BSTRCMPI(bp, p - 4, "tree")) {
+        if (!BSTRCMPI(bp, p - 3, "树")) {
             lev->typ = TREE;
-            pline("A tree.");
+            pline("一棵树.");
             newsym(x, y);
             block_point(x, y);
             return &zeroobj;
         }
 
-        if (!BSTRCMPI(bp, p - 4, "bars")) {
+        if (!BSTRCMPI(bp, p - 6, "栅栏")) {
             lev->typ = IRONBARS;
-            pline("Iron bars.");
+            pline("铁栅栏.");
             newsym(x, y);
             return &zeroobj;
         }
     }
 
     if (!oclass && !typ) {
-        if (!strncmpi(bp, "polearm", 7)) {
+        if (!strncmpi(bp, "长柄武器", 12)) {
             typ = rnd_otyp_by_wpnskill(P_POLEARMS);
             goto typfnd;
-        } else if (!strncmpi(bp, "hammer", 6)) {
+        } else if (!strncmpi(bp, "铁锤", 6)) {
             typ = rnd_otyp_by_wpnskill(P_HAMMER);
             goto typfnd;
         }

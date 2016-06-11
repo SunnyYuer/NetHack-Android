@@ -751,7 +751,7 @@ NEARDATA struct permonst mons[] = {
         SIZ(40, 30, MS_SQEEK, MZ_TINY), MR_POISON, 0,
         M1_NOHANDS | M1_POIS | M1_REGEN | M1_CARNIVORE,
         M2_NOPOLY | M2_WERE | M2_HOSTILE, M3_INFRAVISIBLE, CLR_BROWN),
-    MON("摇滚鼹鼠", S_RODENT, LVL(3, 3, 0, 20, 0), (G_GENO | 2),  //rock mole
+    MON("岩石鼹鼠", S_RODENT, LVL(3, 3, 0, 20, 0), (G_GENO | 2),  //rock mole
         A(ATTK(AT_BITE, AD_PHYS, 1, 6), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(30, 30, MS_SILENT, MZ_SMALL), 0, 0,

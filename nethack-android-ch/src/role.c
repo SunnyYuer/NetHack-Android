@@ -751,9 +751,9 @@ struct Race urace = {
 
 /* Table of all genders */
 const struct Gender genders[] = {
-    { "m男性", "he", "他", "他的", "Mal", ROLE_MALE },
-    { "f女性", "she", "她", "她的", "Fem", ROLE_FEMALE },
-    { "n无性", "it", "它", "它的", "Ntr", ROLE_NEUTER }
+    { "m男性", "他", "他", "他的", "Mal", ROLE_MALE },
+    { "f女性", "她", "她", "她的", "Fem", ROLE_FEMALE },
+    { "n无性", "它", "它", "它的", "Ntr", ROLE_NEUTER }
 };
 
 /* Table of all alignments */

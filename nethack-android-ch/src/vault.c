@@ -374,7 +374,7 @@ invault()
         }
         trycount = 5;
         do {
-            getlin("\"你好陌生人, 你是谁?\" -", buf);
+            getlin("\" 你好陌生人, 你是谁?\" -", buf);
             (void) mungspaces(buf);
         } while (!letter(buf[0]) && --trycount > 0);
 
