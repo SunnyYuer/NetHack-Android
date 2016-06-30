@@ -56,14 +56,14 @@ MONSTER:('@',"萨托领主"),(20,04)
 # The treasure of Lord Sato
 OBJECT:('(',"箱子"),(20,04)
 # roshi guards for the audience chamber
-MONSTER:('@',"龟仙人"),(18,04)
-MONSTER:('@',"龟仙人"),(18,05)
-MONSTER:('@',"龟仙人"),(18,06)
-MONSTER:('@',"龟仙人"),(18,07)
-MONSTER:('@',"龟仙人"),(26,04)
-MONSTER:('@',"龟仙人"),(26,05)
-MONSTER:('@',"龟仙人"),(26,06)
-MONSTER:('@',"龟仙人"),(26,07)
+MONSTER:('@',"禅师"),(18,04)
+MONSTER:('@',"禅师"),(18,05)
+MONSTER:('@',"禅师"),(18,06)
+MONSTER:('@',"禅师"),(18,07)
+MONSTER:('@',"禅师"),(26,04)
+MONSTER:('@',"禅师"),(26,05)
+MONSTER:('@',"禅师"),(26,06)
+MONSTER:('@',"禅师"),(26,07)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps

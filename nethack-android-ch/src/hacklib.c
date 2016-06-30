@@ -80,7 +80,7 @@ boolean
 letter(c)
 char c;
 {
-    return (boolean) ('@' <= c && c <= 'Z') || ('a' <= c && c <= 'z');
+    return (boolean) ('@' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || (c < 0);
 }
 
 /* force 'c' into uppercase */

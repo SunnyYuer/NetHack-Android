@@ -342,16 +342,16 @@ char c;
         str = align_gname(A_LAWFUL);
         break;
     case 'C':
-        str = "chaotic";
+        str = "混沌";
         break;
     case 'N':
-        str = "neutral";
+        str = "中立";
         break;
     case 'L':
-        str = "lawful";
+        str = "秩序";
         break;
     case 'x':
-        str = Blind ? "sense" : "see";
+        str = Blind ? "感觉" : "看见";
         break;
     case 'Z':
         str = dungeons[0].dname;
@@ -388,7 +388,7 @@ char *in_line, *out_line;
                 switch (*(++c)) {
                 /* insert "a"/"an" prefix */
                 case 'A':
-                    Strcat(cc, An(cvt_buf));
+                    Strcat(cc, cvt_buf);
                     cc += strlen(cc);
                     continue; /* for */
                 case 'a':

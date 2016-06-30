@@ -254,17 +254,17 @@ boolean foundyou;
         return (0);
     }
     if (canspotmon(mtmp) || !is_undirected_spell(mattk->adtyp, spellnum)) {
-        pline("%s 向%s施展了一个魔法!",
+        pline("%s%s施展了一个魔法!",
               canspotmon(mtmp) ? Monnam(mtmp) : "什么东西",
               is_undirected_spell(mattk->adtyp, spellnum)
                   ? ""
                   : (Invisible && !perceives(mtmp->data)
                      && (mtmp->mux != u.ux || mtmp->muy != u.uy))
-                        ? "你附近的一点"
+                        ? "向你附近的一点"
                         : (Displaced
                            && (mtmp->mux != u.ux || mtmp->muy != u.uy))
-                              ? "你的位移幻影"
-                              : "你");
+                              ? "向你的位移幻影"
+                              : "向你");
     }
 
     /*

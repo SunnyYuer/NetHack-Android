@@ -427,7 +427,7 @@ const struct Role roles[] = {
         { "将", 0 } },       /* supreme commander, warlord */  //Shogun
       "_天照女神", "雷神", "须佐之男", /* Japanese */
       "Sam",
-      "塔罗家族城堡",
+      "太郎家族城堡",
       "将军城堡",
       PM_SAMURAI,
       NON_PM,

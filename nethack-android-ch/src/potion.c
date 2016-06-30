@@ -464,7 +464,7 @@ dodrink()
     if (IS_SINK(levl[u.ux][u.uy].typ)
         /* not as low as floor level but similar restrictions apply */
         && can_reach_floor(FALSE)) {
-        if (yn("饮用池水?") == 'y') {
+        if (yn("饮用水槽的水?") == 'y') {
             drinksink();
             return 1;
         }

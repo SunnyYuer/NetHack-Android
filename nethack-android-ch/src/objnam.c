@@ -855,7 +855,7 @@ boolean with_price;
         break;
     case ARMOR_CLASS:
         if (obj->owornmask & W_ARMOR)
-            Strcat(bp, (obj == uskin) ? " (embedded in your skin)"
+            Strcat(bp, (obj == uskin) ? " ( 嵌在你的皮肤里)"
                                       : " ( 穿戴中)");
         goto plus;
     case TOOL_CLASS:
@@ -2081,7 +2081,7 @@ const char *oldstr;
         goto bottom;
     }
     /* Default: append an 's' */
-    Strcasecpy(spot + 1, "s");
+    Strcasecpy(spot + 1, "");
 
 bottom:
     if (excess)

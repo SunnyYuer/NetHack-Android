@@ -833,20 +833,20 @@ register struct trap *ttmp;
     if (!on_level(&u.uz, &u.uz0))
         return;
 
-    You("activated a magic portal!");
+    You("激活了一个魔法入口!");
 
     /* prevent the poor shnook, whose amulet was stolen while in
      * the endgame, from accidently triggering the portal to the
      * next level, and thus losing the game
      */
     if (In_endgame(&u.uz) && !u.uhave.amulet) {
-        You_feel("dizzy for a moment, but nothing happens...");
+        You_feel("眩晕了片刻, 但无事发生...");
         return;
     }
 
     target_level = ttmp->dst;
     schedule_goto(&target_level, FALSE, FALSE, 1,
-                  "You feel dizzy for a moment, but the sensation passes.",
+                  "你感觉眩晕了片刻, 但感觉又消失了.",
                   (char *) 0);
 }
 

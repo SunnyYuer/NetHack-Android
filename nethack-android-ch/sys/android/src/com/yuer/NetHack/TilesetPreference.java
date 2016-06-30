@@ -135,7 +135,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		super.onBindView(view);
 
 		SharedPreferences prefs = getSharedPreferences();
-		String currentValue = prefs.getString("tileset", TTY);
+		String currentValue = prefs.getString("tileset", "default_32");
 
 		int i = mEntryValues.indexOf(currentValue);
 		if(i < 0)

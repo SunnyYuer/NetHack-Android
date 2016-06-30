@@ -3183,7 +3183,7 @@ struct permonst _mons2[] = {
         M1_HUMANOID | M1_OMNIVORE,
         M2_NOPOLY | M2_HUMAN | M2_HOSTILE | M2_STRONG | M2_COLLECT,
         M3_INFRAVISIBLE, HI_DOMESTIC),
-    MON("龟仙人", S_HUMAN, LVL(5, 12, 10, 10, 3), G_NOGEN,  //roshi
+    MON("禅师", S_HUMAN, LVL(5, 12, 10, 10, 3), G_NOGEN,  //roshi
         A(ATTK(AT_WEAP, AD_PHYS, 1, 8), ATTK(AT_WEAP, AD_PHYS, 1, 8), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(WT_HUMAN, 400, MS_GUARDIAN, MZ_HUMAN), 0, 0,
