@@ -96,7 +96,7 @@ public interface Cmd
 		{
 			if(mLabel.length() > 0)
 				return mLabel;
-			return "ÉèÖÃ";
+			return StringValue.getKey("menu");
 		}
 
 		// ____________________________________________________________________________________

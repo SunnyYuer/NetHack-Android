@@ -115,7 +115,7 @@ public class CmdPanel
 			return createCmdButtonFromCmd(new Cmd.ToggleKeyboard(mState, label));
 		}
 		// special case for menu.
-		if(chars.equalsIgnoreCase("menu")||chars.equals("设置"))
+		if(chars.equalsIgnoreCase("menu")||chars.equals(StringValue.getKey("menu")))
 		{
 			return createCmdButtonFromCmd(new Cmd.OpenMenu(mContext, label));
 		}
@@ -169,7 +169,7 @@ public class CmdPanel
 		MenuInflater inflater = mContext.getMenuInflater();
 		inflater.inflate(R.menu.customize_cmd, menu);
 		Cmd cmd = (Cmd)v.getTag();
-		String title = "命令: " + cmd.getCommand();
+		String title = StringValue.getKey("Command")+": " + cmd.getCommand();
 		if(cmd.hasLabel())
 			title = title + " (" + cmd.getLabel() + ")";
 		menu.setHeaderTitle(title);
@@ -212,10 +212,10 @@ public class CmdPanel
 			mInput.selectAll();
 
 			mEditDlg = new NH_Dialog(mContext);
-			mEditDlg.setTitle("输入本地标签");
+			mEditDlg.setTitle(StringValue.getKey("Type custom label"));
 			mEditDlg.setView(mInput);
-			mEditDlg.setNegativeButton("取消", null);
-			mEditDlg.setPositiveButton("确定", onPositiveButton);
+			mEditDlg.setNegativeButton(StringValue.getKey("Cancel"), null);
+			mEditDlg.setPositiveButton(StringValue.getKey("Ok"), onPositiveButton);
 			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();
@@ -229,10 +229,10 @@ public class CmdPanel
 			mInput.selectAll();
 
 			mEditDlg = new NH_Dialog(mContext);
-			mEditDlg.setTitle("输入命令");
+			mEditDlg.setTitle(StringValue.getKey("Type command sequence"));
 			mEditDlg.setView(mInput);
-			mEditDlg.setNegativeButton("取消", null);
-			mEditDlg.setPositiveButton("确定", onPositiveButton);
+			mEditDlg.setNegativeButton(StringValue.getKey("Cancel"), null);
+			mEditDlg.setPositiveButton(StringValue.getKey("Ok"), onPositiveButton);
 			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();
