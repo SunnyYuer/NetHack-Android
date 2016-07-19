@@ -90,7 +90,7 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			mProgress = new ProgressDialog(mNetHack);
 			mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mProgress.setMax((int)mRequiredSpace);
-			mProgress.setMessage(StringValue.getKey("Preparing content..."));
+			mProgress.setMessage(StringValue.getKey(R.string.preparingcontent));
 			mProgress.setCancelable(false);
 			mProgress.show();
 		}

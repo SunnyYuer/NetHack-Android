@@ -8,41 +8,25 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.Context;
+
 import com.yuer.NetHack.NetHack;
 
 public class StringValue {
 	public static StringValue inst = new StringValue();
 	
-	private Map<String, String> values = new HashMap();
+	private Context context;
 	
 	public StringValue(){}
 	private void _Init(NetHack nethack){
-		try{
-			InputStream fis = nethack.getResources().getAssets().open("string_cn.csv");
-			InputStreamReader reader = new InputStreamReader(fis);
-			
-			BufferedReader br = new BufferedReader(reader);
-			String txt ;
-			while((txt = br.readLine()) != null){
-				String[] arr = txt.split(",");
-				values.put(arr[0], arr[1]);
-			}
-			reader.close();
-		}
-		catch(Exception e){
-			
-		}
+		context = nethack;
 	}
 	
 	public static void Init(NetHack nethack){
 		inst._Init(nethack);
 	}
 	
-	public static String getKey(String k){
-		String v = (String)inst.values.get(k);
-		if(v != null)
-			return v;
-		else
-			return k;			
+	public static String getKey(int res){
+		return inst.context.getString(res);		
 	}
 }
