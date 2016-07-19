@@ -60,6 +60,7 @@ public class NetHack extends Activity
 
 		if(nhState == null)
 		{
+			StringValue.Init(this);
 			nhState = new NH_State(this);
 			new UpdateAssets(this).execute((Void[])null);
 		}
@@ -162,7 +163,7 @@ public class NetHack extends Activity
 		mMetaDown = false;
 
 		Log.print("onCreateOptionsMenu");
-		menu.add(0, 1, 0, "ÉèÖÃ");
+		menu.add(0, 1, 0, "ï¿½ï¿½ï¿½ï¿½");
 
 		return super.onCreateOptionsMenu(menu);
 	}
