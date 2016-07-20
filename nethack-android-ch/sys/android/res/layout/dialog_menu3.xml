@@ -35,21 +35,21 @@
 			<Button
 				android:id="@+id/btn_all"
 				style="@style/ButtonText"
-				android:text="选择全部"
+				android:text="@string/SelectAll"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 				android:id="@+id/btn_ok"
 				style="@style/ButtonText"
-				android:text="确定"
+				android:text="@string/ok"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 				android:id="@+id/btn_cancel"
 				style="@style/ButtonText"
-				android:text="取消"
+				android:text="@string/cancel"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>

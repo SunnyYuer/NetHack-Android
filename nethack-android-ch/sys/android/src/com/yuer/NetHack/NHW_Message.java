@@ -261,7 +261,7 @@ public class NHW_Message implements NH_Window
 		{
 			updateText();
 			if( mDispCount > SHOW_MAX_LINES ) {
-				m_more.setText("--" + Integer.toString(mDispCount - SHOW_MAX_LINES) + " ¸ü¶à--");
+				m_more.setText("--" + Integer.toString(mDispCount - SHOW_MAX_LINES) + " " + mContext.getString(R.string.more) + "--");
 				m_more.setVisibility(View.VISIBLE);
 			} else
 				m_more.setVisibility(View.GONE);

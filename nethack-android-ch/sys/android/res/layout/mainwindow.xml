@@ -51,7 +51,7 @@
                         android:id="@+id/more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="--更多--"
+                        android:text="@string/more2"
                         android:background="@android:color/background_light"
                         android:textColor="@android:color/black"
                         android:clickable="true"

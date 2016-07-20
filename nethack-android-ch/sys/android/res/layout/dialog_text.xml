@@ -38,7 +38,7 @@
 			android:layout_height="wrap_content">
 			<Button
 			    style="@style/ButtonText"
-				android:text="确定"
+				android:text="@string/ok"
 				android:layout_gravity="center"
 				android:id="@+id/btn_ok"
 				android:layout_width="fill_parent"

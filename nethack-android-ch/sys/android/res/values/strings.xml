@@ -529,4 +529,30 @@ from sharing it farther.
     <string name="HearseDescription">Hearse enables you to share Bones files from your dead characters with other Nethack players over the Internet. You will also encounter theirs as you play.</string>
     <string name="HearseDeleteBonesDesc">By default, Hearse deletes your bones after uploading.</string>
     <string name="HearseIDDescription">Hearse ID (This is generated the first time you send data to Hearse. You can copy it to keep the same identity on multiple machines.)</string>
+    
+    <string name="menu">设置</string>
+    <string name="command">命令</string>
+    <string name="TypeCustomLabel">输入本地标签</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="TypeCommandSequence">输入命令</string>
+    <string name="DefaultPanel">#|扩展 ... .|休息 ,|拾取 i|物品 s|搜索 ^P|消息 ^X|属性 10. 10s</string>
+    <string name="WhoAreYou">你叫什么?</string>
+    <string name="KeyContinue">按任意键继续</string>
+    <string name="TapContinue">轻触继续</string>
+    <string name="ClearAll">全部不选</string>
+    <string name="SelectAll">选择全部</string>
+    <string name="more">更多</string>
+    <string name="ChooseTile">选择tile图像</string>
+    <string name="preparing">准备中</string>
+    
+    <string name="ChooseNum">选择数量</string>
+    <string name="WizardMode">向导模式</string>
+    <string name="save">保存</string>
+    <string name="more2">--更多--</string>
+    <string name="custom">本地</string>
+    <string name="TileImg">地图图像</string>
+    <string name="IndiTileSize">个人地图尺寸</string>
+    <string name="width">宽:</string>
+    <string name="height">高:</string>
 </resources>

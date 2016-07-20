@@ -96,7 +96,7 @@ public interface Cmd
 		{
 			if(mLabel.length() > 0)
 				return mLabel;
-			return "…Ë÷√";
+			return mContext.getString(R.string.menu);
 		}
 
 		// ____________________________________________________________________________________

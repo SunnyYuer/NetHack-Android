@@ -705,15 +705,15 @@ public class NHW_Menu implements NH_Window
 				{
 					public void onClick(View view)
 					{
-						if("全部不选".equals(selectAllBtn.getText().toString()))
+						if(mContext.getString(R.string.ClearAll).equals(selectAllBtn.getText().toString()))
 						{
 							clearAll();
-							selectAllBtn.setText("选择全部");
+							selectAllBtn.setText(mContext.getString(R.string.SelectAll));
 						}
 						else
 						{
 							selectAll();
-							selectAllBtn.setText("全部不选");
+							selectAllBtn.setText(mContext.getString(R.string.ClearAll));
 						}
 
 					}
