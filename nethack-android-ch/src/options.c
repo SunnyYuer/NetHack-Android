@@ -1228,22 +1228,22 @@ static const struct {
     const char *name;
     const int color;
 } colornames[] = {
-    { "black", CLR_BLACK },
-    { "red", CLR_RED },
-    { "green", CLR_GREEN },
-    { "brown", CLR_BROWN },
-    { "blue", CLR_BLUE },
-    { "magenta", CLR_MAGENTA },
-    { "cyan", CLR_CYAN },
-    { "gray", CLR_GRAY },
-    { "grey", CLR_GRAY },
-    { "orange", CLR_ORANGE },
-    { "light green", CLR_BRIGHT_GREEN },
-    { "yellow", CLR_YELLOW },
-    { "light blue", CLR_BRIGHT_BLUE },
-    { "light magenta", CLR_BRIGHT_MAGENTA },
-    { "light cyan", CLR_BRIGHT_CYAN },
-    { "white", CLR_WHITE }
+    { "黑色", CLR_BLACK },
+    { "红色", CLR_RED },
+    { "绿色", CLR_GREEN },
+    { "褐色", CLR_BROWN },
+    { "蓝色", CLR_BLUE },
+    { "洋红色", CLR_MAGENTA },
+    { "蓝绿色", CLR_CYAN },
+    { "灰色", CLR_GRAY },
+    { "灰白色", CLR_GRAY },
+    { "橙色", CLR_ORANGE },
+    { "亮绿色", CLR_BRIGHT_GREEN },
+    { "黄色", CLR_YELLOW },
+    { "亮蓝色", CLR_BRIGHT_BLUE },
+    { "亮洋红色", CLR_BRIGHT_MAGENTA },
+    { "亮蓝绿色", CLR_BRIGHT_CYAN },
+    { "白色", CLR_WHITE }
 };
 
 static const struct {
@@ -1294,13 +1294,13 @@ query_color()
     start_menu(tmpwin);
     any = zeroany;
     for (i = 0; i < SIZE(colornames); i++) {
-        if (!strcmp(colornames[i].name, "grey"))
+        if (!strcmp(colornames[i].name, "灰白色"))
             continue;
         any.a_int = i + 1;
         add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, colornames[i].name,
                  MENU_UNSELECTED);
     }
-    end_menu(tmpwin, "Pick a color");
+    end_menu(tmpwin, "选择一种颜色");
     pick_cnt = select_menu(tmpwin, PICK_ONE, &picks);
     destroy_nhwindow(tmpwin);
     if (pick_cnt > 0) {
@@ -1328,7 +1328,7 @@ const char *prompt;
         add_menu(tmpwin, NO_GLYPH, &any, 0, 0, attrnames[i].attr,
                  attrnames[i].name, MENU_UNSELECTED);
     }
-    end_menu(tmpwin, prompt ? prompt : "Pick an attribute");
+    end_menu(tmpwin, prompt ? prompt : "选择一个属性");
     pick_cnt = select_menu(tmpwin, PICK_ONE, &picks);
     destroy_nhwindow(tmpwin);
     if (pick_cnt > 0) {

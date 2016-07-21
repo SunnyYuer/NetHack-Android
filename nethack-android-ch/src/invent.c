@@ -1463,7 +1463,7 @@ unsigned *resultflags;
     if (taking_off(word)) {
         takeoff = TRUE;
         filter = is_worn;
-    } else if (!strcmp(word, "identify")) {
+    } else if (!strcmp(word, "鉴定")) {  //identify
         ident = TRUE;
         filter = not_fully_identified;
     }
@@ -1496,7 +1496,7 @@ unsigned *resultflags;
     ilets[iletct] = '\0';
 
     for (;;) {
-        Sprintf(qbuf, "What kinds of thing do you want to %s? [%s]", word,
+        Sprintf(qbuf, "你想%s 哪种物品? [%s]", word,
                 ilets);
         getlin(qbuf, buf);
         if (buf[0] == '\033')
@@ -1629,11 +1629,11 @@ register int FDECL((*fn), (OBJ_P)), FDECL((*ckfn), (OBJ_P));
     char qbuf[QBUFSZ], qpfx[QBUFSZ];
 
     takeoff = taking_off(word);
-    ident = !strcmp(word, "identify");
-    take_out = !strcmp(word, "take out");
-    put_in = !strcmp(word, "put in");
-    nodot = (!strcmp(word, "nodot") || !strcmp(word, "drop") || ident
-             || takeoff || take_out || put_in);
+    ident = !strcmp(word, "鉴定");  //identify
+    take_out = !strcmp(word, "拿出");  //take out
+    put_in = !strcmp(word, "放入");  //put in
+    nodot = (!strcmp(word, "nodot") || !strcmp(word, "扔掉") || ident
+             || takeoff || take_out || put_in);  //drop
     ininv = (*objchn == invent);
     first = TRUE;
 /* Changed so the askchain is interrogated in the order specified.
@@ -1850,8 +1850,8 @@ boolean learning_id; /* true if we just read unknown identify scroll */
         n = 0;
         if (flags.menu_style == MENU_TRADITIONAL)
             do {
-                n = ggetobj("identify", identify, id_limit, FALSE,
-                            (unsigned *) 0);
+                n = ggetobj("鉴定", identify, id_limit, FALSE,
+                            (unsigned *) 0);  //identify
                 if (n < 0)
                     break; /* quit or no eligible items */
             } while ((id_limit -= n) > 0);

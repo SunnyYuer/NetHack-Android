@@ -75,24 +75,24 @@ boolean pushing;
             if (pushing) {
                 char whobuf[BUFSZ];
 
-                Strcpy(whobuf, "you");
+                Strcpy(whobuf, "你");
                 if (u.usteed)
                     Strcpy(whobuf, y_monnam(u.usteed));
-                pline("%s %s %s into the %s.", upstart(whobuf),
-                      vtense(whobuf, "push"), the(xname(otmp)), what);
+                pline("%s把%s%s进%s.", upstart(whobuf),
+                      the(xname(otmp)), vtense(whobuf, "推"), what);
                 if (flags.verbose && !Blind)
-                    pline("Now you can cross it!");
+                    pline("现在你能穿过它了!");
                 /* no splashing in this case */
             }
         }
         if (!fills_up || !pushing) { /* splashing occurs */
             if (!u.uinwater) {
                 if (pushing ? !Blind : cansee(rx, ry)) {
-                    There("is a large splash as %s %s the %s.",
-                          the(xname(otmp)), fills_up ? "fills" : "falls into",
+                    There("有一个大的飞溅在%s %s%s的时候.",
+                          the(xname(otmp)), fills_up ? "填充了 " : "掉进了",
                           what);
                 } else if (!Deaf)
-                    You_hear("a%s splash.", lava ? " sizzling" : "");
+                    You_hear("%s飞溅声.", lava ? " 咝咝响的" : "");
                 wake_nearto(rx, ry, 40);
             }
 
@@ -100,17 +100,17 @@ boolean pushing;
                 u.uinwater = 0;
                 docrt();
                 vision_full_recalc = 1;
-                You("find yourself on dry land again!");
+                You("发现自己再次在旱地上了!");
             } else if (lava && distu(rx, ry) <= 2) {
                 int dmg;
-                You("are hit by molten lava%c", Fire_resistance ? '.' : '!');
+                You("被熔岩打中%c", Fire_resistance ? '.' : '!');
                 burn_away_slime();
                 dmg = d((Fire_resistance ? 1 : 3), 6);
                 losehp(Maybe_Half_Phys(dmg), /* lava damage */
                        "熔岩", KILLED_BY);
             } else if (!fills_up && flags.verbose
                        && (pushing ? !Blind : cansee(rx, ry)))
-                pline("It sinks without a trace!");
+                pline("它无影无踪地沉下去了!");
         }
 
         /* boulder is now gone */
@@ -293,9 +293,9 @@ polymorph_sink()
         make_grave(u.ux, u.uy, (char *) 0);
         break;
     }
-    pline_The("sink transforms into %s!", (levl[u.ux][u.uy].typ == THRONE)
-                                              ? "a throne"
-                                              : an(surface(u.ux, u.uy)));
+    pline_The("水槽变形为了 %s!", (levl[u.ux][u.uy].typ == THRONE)
+                                              ? "一个王座"
+                                              : surface(u.ux, u.uy));
     newsym(u.ux, u.uy);
 }
 
@@ -340,53 +340,53 @@ register struct obj *obj;
     boolean ideed = TRUE;
     boolean nosink = FALSE;
 
-    You("drop %s down the drain.", doname(obj));
+    You("把%s 扔进了下水道.", doname(obj));
     obj->in_use = TRUE;  /* block free identification via interrupt */
     switch (obj->otyp) { /* effects that can be noticed without eyes */
     case RIN_SEARCHING:
-        You("thought %s got lost in the sink, but there it is!", yname(obj));
+        You("认为%s 在水槽里丢了, 但事实如此!", yname(obj));
         goto giveback;
     case RIN_SLOW_DIGESTION:
-        pline_The("ring is regurgitated!");
+        pline_The("戒指被回流了!");
     giveback:
         obj->in_use = FALSE;
         dropx(obj);
         trycall(obj);
         return;
     case RIN_LEVITATION:
-        pline_The("sink quivers upward for a moment.");
+        pline_The("水槽向上震动了片刻.");
         break;
     case RIN_POISON_RESISTANCE:
-        You("smell rotten %s.", makeplural(fruitname(FALSE)));
+        You("闻到腐烂的 %s气味.", makeplural(fruitname(FALSE)));
         break;
     case RIN_AGGRAVATE_MONSTER:
-        pline("Several %s buzz angrily around the sink.",
-              Hallucination ? makeplural(rndmonnam(NULL)) : "flies");
+        pline("几个围绕在水槽的%s生气地嗡嗡叫.",
+              Hallucination ? makeplural(rndmonnam(NULL)) : "苍蝇");
         break;
     case RIN_SHOCK_RESISTANCE:
-        pline("Static electricity surrounds the sink.");
+        pline("静电围绕着水槽.");
         break;
     case RIN_CONFLICT:
-        You_hear("loud noises coming from the drain.");
+        You_hear("很大的噪音从下水道传来.");
         break;
     case RIN_SUSTAIN_ABILITY: /* KMH */
-        pline_The("water flow seems fixed.");
+        pline_The("水流似乎稳固了.");
         break;
     case RIN_GAIN_STRENGTH:
-        pline_The("water flow seems %ser now.",
-                  (obj->spe < 0) ? "weak" : "strong");
+        pline_The("水流现在似乎更%s了.",
+                  (obj->spe < 0) ? "弱" : "强");
         break;
     case RIN_GAIN_CONSTITUTION:
-        pline_The("water flow seems %ser now.",
-                  (obj->spe < 0) ? "less" : "great");
+        pline_The("水流现在似乎更%s了.",
+                  (obj->spe < 0) ? "少" : "多");
         break;
     case RIN_INCREASE_ACCURACY: /* KMH */
-        pline_The("water flow %s the drain.",
-                  (obj->spe < 0) ? "misses" : "hits");
+        pline_The("水流%s下水道.",
+                  (obj->spe < 0) ? "未达到" : "到达了");
         break;
     case RIN_INCREASE_DAMAGE:
-        pline_The("water's force seems %ser now.",
-                  (obj->spe < 0) ? "small" : "great");
+        pline_The("水的力量现在似乎更%s了.",
+                  (obj->spe < 0) ? "小" : "大");
         break;
     case RIN_HUNGER:
         ideed = FALSE;
@@ -395,8 +395,8 @@ register struct obj *obj;
             if (otmp != uball && otmp != uchain
                 && !obj_resists(otmp, 1, 99)) {
                 if (!Blind) {
-                    pline("Suddenly, %s %s from the sink!", doname(otmp),
-                          otense(otmp, "vanish"));
+                    pline("突然, %s 从水槽%s了!", doname(otmp),
+                          otense(otmp, "消失"));
                     ideed = TRUE;
                 }
                 delobj(otmp);
@@ -405,7 +405,7 @@ register struct obj *obj;
         break;
     case MEAT_RING:
         /* Not the same as aggravate monster; besides, it's obvious. */
-        pline("Several flies buzz around the sink.");
+        pline("几只围绕在水槽的苍蝇嗡嗡叫.");
         break;
     default:
         ideed = FALSE;
@@ -415,46 +415,46 @@ register struct obj *obj;
         ideed = TRUE;
         switch (obj->otyp) { /* effects that need eyes */
         case RIN_ADORNMENT:
-            pline_The("faucets flash brightly for a moment.");
+            pline_The("水龙头明亮地闪烁了片刻.");
             break;
         case RIN_REGENERATION:
-            pline_The("sink looks as good as new.");
+            pline_The("水槽看起来和新的一样好.");
             break;
         case RIN_INVISIBILITY:
-            You("don't see anything happen to the sink.");
+            You("没有看见水槽发生任何事.");
             break;
         case RIN_FREE_ACTION:
-            You_see("the ring slide right down the drain!");
+            You_see("戒指直接滑进了下水道!");
             break;
         case RIN_SEE_INVISIBLE:
-            You_see("some %s in the sink.",
-                    Hallucination ? "oxygen molecules" : "air");
+            You_see("一些%s在水槽里.",
+                    Hallucination ? "氧分子" : "空气");
             break;
         case RIN_STEALTH:
-            pline_The("sink seems to blend into the floor for a moment.");
+            pline_The("水槽似乎片刻融入了地板.");
             break;
         case RIN_FIRE_RESISTANCE:
-            pline_The("hot water faucet flashes brightly for a moment.");
+            pline_The("热水龙头明亮地闪烁了片刻.");
             break;
         case RIN_COLD_RESISTANCE:
-            pline_The("cold water faucet flashes brightly for a moment.");
+            pline_The("冷水龙头明亮地闪烁了片刻.");
             break;
         case RIN_PROTECTION_FROM_SHAPE_CHAN:
-            pline_The("sink looks nothing like a fountain.");
+            pline_The("水槽看起来丝毫不像喷泉.");
             break;
         case RIN_PROTECTION:
-            pline_The("sink glows %s for a moment.",
+            pline_The("水槽发出%s光芒了片刻.",
                       hcolor((obj->spe < 0) ? NH_BLACK : NH_SILVER));
             break;
         case RIN_WARNING:
-            pline_The("sink glows %s for a moment.", hcolor(NH_WHITE));
+            pline_The("水槽发出%s光芒了片刻.", hcolor(NH_WHITE));
             break;
         case RIN_TELEPORTATION:
             nosink = teleport_sink();
-            pline_The("sink %svanishes.", nosink ? "" : "momentarily ");
+            pline_The("水槽%s消失了.", nosink ? "" : "瞬间 ");
             break;
         case RIN_TELEPORT_CONTROL:
-            pline_The("sink looks like it is being beamed aboard somewhere.");
+            pline_The("水槽看起来像是被指向什么地方.");
             break;
         case RIN_POLYMORPH:
             polymorph_sink();
@@ -462,17 +462,17 @@ register struct obj *obj;
             break;
         case RIN_POLYMORPH_CONTROL:
             pline_The(
-                "sink momentarily looks like a regularly erupting geyser.");
+                "水槽瞬间看起来像是一个定期喷发的间歇泉.");
             break;
         }
     }
     if (ideed)
         trycall(obj);
     else if (!nosink)
-        You_hear("the ring bouncing down the drainpipe.");
+        You_hear("戒指跳进了排水管.");
 
     if (!rn2(20) && !nosink) {
-        pline_The("sink backs up, leaving %s.", doname(obj));
+        pline_The("水槽堵塞了, 留下了 %s.", doname(obj));
         obj->in_use = FALSE;
         dropx(obj);
     } else
@@ -721,7 +721,7 @@ doddrop()
     if (*u.ushops)
         sellobj_state(SELL_DELIBERATE);
     if (flags.menu_style != MENU_TRADITIONAL
-        || (result = ggetobj("drop", drop, 0, FALSE, (unsigned *) 0)) < -1)
+        || (result = ggetobj("扔掉", drop, 0, FALSE, (unsigned *) 0)) < -1)  //drop
         result = menu_drop(result);
     if (*u.ushops)
         sellobj_state(SELL_NORMAL);
@@ -765,7 +765,7 @@ int retry;
         unsigned ggoresults = 0;
         all_categories = FALSE;
         /* Gather valid classes via traditional NetHack method */
-        i = ggetobj("drop", drop, 0, TRUE, &ggoresults);
+        i = ggetobj("扔掉", drop, 0, TRUE, &ggoresults);  //drop
         if (i == -2)
             all_categories = TRUE;
         if (ggoresults & ALL_FINISHED) {
@@ -797,7 +797,7 @@ int retry;
         bypass_objlist(invent, FALSE);
     } else {
         /* should coordinate with perm invent, maybe not show worn items */
-        n = query_objlist("What would you like to drop?", invent,
+        n = query_objlist("你想要扔掉什么?", invent,
                           USE_INVLET | INVORDER_SORT, &pick_list, PICK_ANY,
                           all_categories ? allow_all : allow_category);
         if (n > 0) {
@@ -883,7 +883,7 @@ dodown()
             if (float_down(I_SPECIAL | TIMEOUT, W_ARTI)) {
                 return 1; /* came down, so moved */
             } else if (!HLevitation && !ELevitation) {
-                Your("latent levitation ceases.");
+                Your("潜在的飘浮停止了.");
                 return 1; /* did something, effectively moved */
             }
         }
@@ -901,8 +901,8 @@ dodown()
                 ladder_down =
                     (glyph_to_cmap(levl[u.ux][u.uy].glyph) == S_dnladder);
         }
-        floating_above(stairs_down ? "stairs" : ladder_down
-                                                    ? "ladder"
+        floating_above(stairs_down ? "楼梯" : ladder_down
+                                                    ? "梯子"
                                                     : surface(u.ux, u.uy));
         return 0; /* didn't move */
     }
@@ -922,30 +922,30 @@ dodown()
         }
     }
     if (u.ustuck) {
-        You("are %s, and cannot go down.",
-            !u.uswallow ? "being held" : is_animal(u.ustuck->data)
-                                             ? "swallowed"
-                                             : "engulfed");
+        You("被%s, 不能下去.",
+            !u.uswallow ? "牵制着" : is_animal(u.ustuck->data)
+                                             ? "吞食了"
+                                             : "吞没了");
         return 1;
     }
     if (on_level(&valley_level, &u.uz) && !u.uevent.gehennom_entered) {
-        You("are standing at the gate to Gehennom.");
-        pline("Unspeakable cruelty and harm lurk down there.");
-        if (yn("Are you sure you want to enter?") != 'y')
+        You("站在通往葛汉诺姆的入口前.");
+        pline("无法形容的残酷和危害潜伏在那里.");
+        if (yn("你确定要进入?") != 'y')
             return 0;
         else
-            pline("So be it.");
+            pline("诚心所愿.");
         u.uevent.gehennom_entered = 1; /* don't ask again */
     }
 
     if (!next_to_u()) {
-        You("are held back by your pet!");
+        You("被你的宠物阻止了!");
         return 0;
     }
 
     if (trap)
-        You("%s %s.", Flying ? "fly" : locomotion(youmonst.data, "jump"),
-            trap->ttyp == HOLE ? "down the hole" : "through the trap door");
+        You("%s %s.", Flying ? "飞" : locomotion(youmonst.data, "跳"),
+            trap->ttyp == HOLE ? "下了洞" : "过了陷阱门");
 
     if (trap && Is_stronghold(&u.uz)) {
         goto_hell(FALSE, TRUE);
@@ -981,24 +981,24 @@ doup()
         return 0;
     }
     if (u.ustuck) {
-        You("are %s, and cannot go up.",
-            !u.uswallow ? "being held" : is_animal(u.ustuck->data)
-                                             ? "swallowed"
-                                             : "engulfed");
+        You("被 %s, 不能上去.",
+            !u.uswallow ? "牵制着" : is_animal(u.ustuck->data)
+                                             ? "吞食了"
+                                             : "吞没了");
         return 1;
     }
     if (near_capacity() > SLT_ENCUMBER) {
         /* No levitation check; inv_weight() already allows for it */
-        Your("load is too heavy to climb the %s.",
-             levl[u.ux][u.uy].typ == STAIRS ? "stairs" : "ladder");
+        Your("负荷太重不能爬%s.",
+             levl[u.ux][u.uy].typ == STAIRS ? "楼梯" : "梯子");
         return 1;
     }
     if (ledger_no(&u.uz) == 1) {
-        if (yn("注意, 这将退出游戏! 还要上去吗?") != 'y')
+        if (yn("注意, 那将不会回来了! 还要上去吗?") != 'y')
             return 0;
     }
     if (!next_to_u()) {
-        You("are held back by your pet!");
+        You("被你的宠物阻止了!");
         return 0;
     }
     at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
@@ -1138,7 +1138,7 @@ boolean at_stairs, falling, portal;
 
             new_ledger = ledger_no(newlevel);
 
-            pline("A mysterious force momentarily surrounds you...");
+            pline("一种神秘的力量暂时围绕着你...");
             if (on_level(newlevel, &u.uz)) {
                 (void) safe_teleds(FALSE);
                 (void) next_to_u();
@@ -1152,7 +1152,7 @@ boolean at_stairs, falling, portal;
      * (s)he has been given the go-ahead by the leader.
      */
     if (on_level(&u.uz, &qstart_level) && !newdungeon && !ok_to_quest()) {
-        pline("A mysterious force prevents you from descending.");
+        pline("一种神秘的力量阻止你下去.");
         return;
     }
 
@@ -1306,11 +1306,11 @@ boolean at_stairs, falling, portal;
                 ; /* stayed on same level? (no transit effects) */
             } else if (Flying) {
                 if (flags.verbose)
-                    You("fly down %s.",
-                        at_ladder ? "along the ladder" : "the stairs");
+                    You("飞下了%s.",
+                        at_ladder ? "梯子" : "楼梯");
             } else if (near_capacity() > UNENCUMBERED || Punished
                        || Fumbling) {
-                You("fall down the %s.", at_ladder ? "ladder" : "stairs");
+                You("掉下了%s.", at_ladder ? "梯子" : "楼梯");
                 if (Punished) {
                     drag_down();
                     ballrelease(FALSE);
@@ -1323,10 +1323,10 @@ boolean at_stairs, falling, portal;
                            at_ladder ? "从梯子上掉下来"
                                      : "滚下楼梯",
                            KILLED_BY);
-                selftouch("Falling, you");
+                selftouch("掉落, 你");
             } else { /* ordinary descent */
                 if (flags.verbose)
-                    You("%s.", at_ladder ? "climb down the ladder"
+                    You("%s.", at_ladder ? "沿梯子爬下来"
                                          : "顺着楼梯下来");
             }
         }
@@ -1335,7 +1335,7 @@ boolean at_stairs, falling, portal;
         if (falling) {
             if (Punished)
                 ballfall();
-            selftouch("Falling, you");
+            selftouch("掉落, 你");
         }
     }
 
@@ -1414,14 +1414,14 @@ boolean at_stairs, falling, portal;
     /* Check whether we just entered Gehennom. */
     if (!In_hell(&u.uz0) && Inhell) {
         if (Is_valley(&u.uz)) {
-            You("arrive at the Valley of the Dead...");
-            pline_The("odor of burnt flesh and decay pervades the air.");
+            You("到达了死亡山谷...");
+            pline_The("烧焦的肉和腐烂的气味弥漫在空气中.");
 #ifdef MICRO
             display_nhwindow(WIN_MESSAGE, FALSE);
 #endif
-            You_hear("groans and moans everywhere.");
+            You_hear("到处都是呻吟声和呜咽声.");
         } else
-            pline("It is hot here.  You smell smoke...");
+            pline("这里很热.  你闻到烟味...");
         u.uachieve.enter_gehennom = 1;
     }
     /* in case we've managed to bypass the Valley's stairway down */
@@ -1430,14 +1430,14 @@ boolean at_stairs, falling, portal;
 
     if (familiar) {
         static const char *const fam_msgs[4] = {
-            "You have a sense of deja vu.",
-            "You feel like you've been here before.",
-            "This place %s familiar...", 0 /* no message */
+            "你有一种似曾相识的感觉.",
+            "你感觉好像你以前来过这里.",
+            "这个地方%s很熟悉...", 0 /* no message */
         };
         static const char *const halu_fam_msgs[4] = {
-            "Whoa!  Everything %s different.",
-            "You are surrounded by twisty little passages, all alike.",
-            "Gee, this %s like uncle Conan's place...", 0 /* no message */
+            "哇!  一切%s都不同.",
+            "你的周围都是曲折的小通道, 都是一样的.",
+            "哎呀, 这%s像是科南叔叔的地方...", 0 /* no message */
         };
         const char *mesg;
         char buf[BUFSZ];
@@ -1448,7 +1448,7 @@ boolean at_stairs, falling, portal;
         else
             mesg = fam_msgs[which];
         if (mesg && index(mesg, '%')) {
-            Sprintf(buf, mesg, !Blind ? "looks" : "seems");
+            Sprintf(buf, mesg, !Blind ? "看起来" : "似乎");
             mesg = buf;
         }
         if (mesg)
@@ -1465,12 +1465,12 @@ boolean at_stairs, falling, portal;
         onquest(); /* might be reaching locate|goal level */
     } else if (In_V_tower(&u.uz)) {
         if (newdungeon && In_hell(&u.uz0))
-            pline_The("heat and smoke are gone.");
+            pline_The("炎热和烟都不见了.");
     } else if (Is_knox(&u.uz)) {
         /* alarm stops working once Croesus has died */
         if (new || !mvitals[PM_CROESUS].died) {
-            You("have penetrated a high security area!");
-            pline("An alarm sounds!");
+            You("进入了高度安全区!");
+            pline("报警声响起!");
             for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
                 if (DEADMONSTER(mtmp))
                     continue;
@@ -1499,7 +1499,7 @@ boolean at_stairs, falling, portal;
 #endif
 
     if ((annotation = get_annotation(&u.uz)))
-        You("remember this level as %s.", annotation);
+        You("记得这层是 %s.", annotation);
 
     /* assume this will always return TRUE when changing level */
     (void) in_out_region(u.ux, u.uy);
@@ -1607,7 +1607,7 @@ struct obj *corpse;
     is_uwep = (corpse == uwep);
     chewed = (corpse->oeaten != 0);
     Strcpy(cname,
-           corpse_xname(corpse, chewed ? "bite-covered" : (const char *) 0,
+           corpse_xname(corpse, chewed ? "全身被咬的" : (const char *) 0,
                         CXN_SINGULAR));
     mcarry = (where == OBJ_MINVENT) ? corpse->ocarry : 0;
 
@@ -1628,26 +1628,26 @@ struct obj *corpse;
         switch (where) {
         case OBJ_INVENT:
             if (is_uwep)
-                pline_The("%s writhes out of your grasp!", cname);
+                pline_The("%s 扭动出了你的控制!", cname);
             else
-                You_feel("squirming in your backpack!");
+                You_feel("到你背包里的蠕动!");
             break;
 
         case OBJ_FLOOR:
             if (cansee(mtmp->mx, mtmp->my))
-                pline("%s rises from the dead!",
-                      chewed ? Adjmonnam(mtmp, "bite-covered")
+                pline("%s 死而复生!",
+                      chewed ? Adjmonnam(mtmp, "全身被咬的")
                              : Monnam(mtmp));
             break;
 
         case OBJ_MINVENT: /* probably a nymph's */
             if (cansee(mtmp->mx, mtmp->my)) {
                 if (canseemon(mcarry))
-                    pline("Startled, %s drops %s as it revives!",
-                          mon_nam(mcarry), an(cname));
+                    pline("受惊吓的, %s 当它复活时扔下了%s!",
+                          mon_nam(mcarry), cname);
                 else
-                    pline("%s suddenly appears!",
-                          chewed ? Adjmonnam(mtmp, "bite-covered")
+                    pline("%s 突然出现了!",
+                          chewed ? Adjmonnam(mtmp, "全身被咬的")
                                  : Monnam(mtmp));
             }
             break;
@@ -1656,17 +1656,17 @@ struct obj *corpse;
 
             if (container_where == OBJ_MINVENT && cansee(mtmp->mx, mtmp->my)
                 && mcarry && canseemon(mcarry) && container) {
-                pline("%s writhes out of %s!", Amonnam(mtmp),
+                pline("%s 扭动出了%s!", Amonnam(mtmp),
                       yname(container));
             } else if (container_where == OBJ_INVENT && container) {
-                Strcpy(sackname, an(xname(container)));
-                pline("%s %s out of %s in your pack!",
+                Strcpy(sackname, xname(container));
+                pline("%s 在你背包里%s 出了%s!",
                       Blind ? Something : Amonnam(mtmp),
-                      locomotion(mtmp->data, "writhes"), sackname);
+                      locomotion(mtmp->data, "扭动"), sackname);
             } else if (container_where == OBJ_FLOOR && container
                        && cansee(mtmp->mx, mtmp->my)) {
-                Strcpy(sackname, an(xname(container)));
-                pline("%s escapes from %s!", Amonnam(mtmp), sackname);
+                Strcpy(sackname, xname(container));
+                pline("%s 逃离了%s!", Amonnam(mtmp), sackname);
             }
             break;
         }
@@ -1701,11 +1701,11 @@ long timeout UNUSED;
 
         if (rloc(mtmp, TRUE)) {
             if (notice_it && !canseemon(mtmp))
-                pline("%s vanishes.", monname);
+                pline("%s 消失了.", monname);
             else if (!notice_it && canseemon(mtmp))
-                pline("%s appears.", Monnam(mtmp)); /* not pre-rloc monname */
+                pline("%s 出现了.", Monnam(mtmp)); /* not pre-rloc monname */
             else if (notice_it && dist2(mtmp->mx, mtmp->my, x, y) > 2)
-                pline("%s teleports.", monname); /* saw it and still see it */
+                pline("%s 传送走了.", monname); /* saw it and still see it */
         }
     }
 
@@ -1720,7 +1720,7 @@ long timeout UNUSED;
                 if (!rn2(3))
                     break;
         } else { /* rot this corpse away */
-            You_feel("%sless hassled.", is_rider(mptr) ? "much " : "");
+            You_feel("%s不那么烦恼了.", is_rider(mptr) ? "完全 " : "");
             action = ROT_CORPSE;
             when = 250L - (monstermoves - body->age);
             if (when < 1L)
@@ -1748,7 +1748,7 @@ wipeoff(VOID_ARGS)
     else
         Blinded -= 4;
     if (!Blinded) {
-        pline("You've got the glop off.");
+        pline("粘糊糊的东西没有了.");
         u.ucreamed = 0;
         if (!gulp_blnd_check()) {
             Blinded = 1;
@@ -1756,7 +1756,7 @@ wipeoff(VOID_ARGS)
         }
         return 0;
     } else if (!u.ucreamed) {
-        Your("%s feels clean now.", body_part(FACE));
+        Your("%s 现在感觉干净了.", body_part(FACE));
         return 0;
     }
     return 1; /* still busy */
@@ -1768,7 +1768,7 @@ dowipe()
     if (u.ucreamed) {
         static NEARDATA char buf[39];
 
-        Sprintf(buf, "wiping off your %s", body_part(FACE));
+        Sprintf(buf, "擦拭你的%s", body_part(FACE));
         set_occupation(wipeoff, buf, 0);
         /* Not totally correct; what if they change back after now
          * but before they're finished wiping?

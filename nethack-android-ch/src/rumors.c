@@ -453,10 +453,10 @@ boolean delphi;
         if (delphi)
             putstr(tmpwin, 0,
                    special
-                     ? "The Oracle scornfully takes all your money and says:"
-                     : "The Oracle meditates for a moment and then intones:");
+                     ? "神谕轻蔑地拿走了你所有的钱然后说:"
+                     : "神谕沉思片刻然后吟诵:");
         else
-            putstr(tmpwin, 0, "The message reads:");
+            putstr(tmpwin, 0, "消息显示:");
         putstr(tmpwin, 0, "");
 
         while (dlb_fgets(line, COLNO, oracles) && strcmp(line, "---\n")) {
@@ -486,17 +486,17 @@ struct monst *oracl;
     umoney = money_cnt(invent);
 
     if (!oracl) {
-        There("is no one here to consult.");
+        There("没有人来咨询.");
         return 0;
     } else if (!oracl->mpeaceful) {
-        pline("%s is in no mood for consultations.", Monnam(oracl));
+        pline("%s 没有心情让你咨询.", Monnam(oracl));
         return 0;
     } else if (!umoney) {
-        You("have no money.");
+        You("没有钱.");
         return 0;
     }
 
-    Sprintf(qbuf, "\"Wilt thou settle for a minor consultation?\" (%d %s)",
+    Sprintf(qbuf, "\" 汝欲小咨询否?\" (%d %s)",
             minor_cost, currency((long) minor_cost));
     switch (ynq(qbuf)) {
     default:
@@ -504,7 +504,7 @@ struct monst *oracl;
         return 0;
     case 'y':
         if (umoney < (long) minor_cost) {
-            You("don't even have enough money for that!");
+            You("没有足够的钱咨询!");
             return 0;
         }
         u_pay = minor_cost;
@@ -513,7 +513,7 @@ struct monst *oracl;
         if (umoney <= (long) minor_cost /* don't even ask */
             || (oracle_cnt == 1 || oracle_flg < 0))
             return 0;
-        Sprintf(qbuf, "\"Then dost thou desire a major one?\" (%d %s)",
+        Sprintf(qbuf, "\" 则汝欲大咨询耶?\" (%d %s)",
                 major_cost, currency((long) major_cost));
         if (yn(qbuf) != 'y')
             return 0;

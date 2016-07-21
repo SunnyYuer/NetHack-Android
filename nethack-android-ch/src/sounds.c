@@ -685,7 +685,7 @@ register struct monst *mtmp;
             return 0; /* no sound */
         break;
     case MS_BUZZ:
-        pline_msg = mtmp->mpeaceful ? "drones." : "buzzes angrily.";
+        pline_msg = mtmp->mpeaceful ? "嗡嗡叫." : "愤怒地嗡嗡叫.";
         break;
     case MS_GRUNT:
         pline_msg = "咕噜叫.";

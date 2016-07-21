@@ -145,7 +145,7 @@ struct obj *bp;
     case 5:
         pline_The("书中被涂了毒!");
         if (uarmg) {
-            erode_obj(uarmg, "gloves", ERODE_CORRODE, EF_GREASE | EF_VERBOSE);
+            erode_obj(uarmg, "手套", ERODE_CORRODE, EF_GREASE | EF_VERBOSE);
             break;
         }
         /* temp disable in_use; death should not destroy the book */
@@ -225,7 +225,7 @@ struct obj *book2;
             if (!u.uhave.bell)
                 You_hear("一个微弱的钟声...");
             if (!u.uhave.menorah)
-                pline("Vlad's doppelganger is amused.");
+                pline("弗拉德的幽灵很开心.");
             return;
         }
 
@@ -627,7 +627,7 @@ rejectcasting()
 {
     /* rejections which take place before selecting a particular spell */
     if (Stunned) {
-        You("are too impaired to cast a spell.");
+        You("在施展魔法时太受影响.");
         return TRUE;
     } else if (!freehand()) {
         /* Note: !freehand() occurs when weapon and shield (or two-handed
@@ -637,7 +637,7 @@ rejectcasting()
          * But why isn't lack of free arms (for gesturing) an issue when
          * poly'd hero has no limbs?
          */
-        Your("arms are not free to cast!");
+        Your("手没空施法!");
         return TRUE;
     }
     return FALSE;
@@ -687,7 +687,7 @@ int *spell_no;
 
             idx = spell_let_to_idx(ilet);
             if (idx < 0 || idx >= nspells) {
-                You("don't know that spell.");
+                You("不知道那个魔法.");
                 continue; /* ask again */
             }
             *spell_no = idx;
@@ -786,28 +786,28 @@ cast_protection()
             const char *hgolden = hcolor(NH_GOLDEN), *atmosphere;
 
             if (u.uspellprot) {
-                pline_The("%s haze around you becomes more dense.", hgolden);
+                pline_The("你周围%s雾霭变得更加浓密了.", hgolden);
             } else {
                 rmtyp = levl[u.ux][u.uy].typ;
                 atmosphere = u.uswallow
                                 ? ((u.ustuck->data == &mons[PM_FOG_CLOUD])
-                                   ? "mist"
+                                   ? "薄雾"
                                    : is_whirly(u.ustuck->data)
-                                      ? "maelstrom"
+                                      ? "大漩涡"
                                       : is_animal(u.ustuck->data)
-                                         ? "maw"
-                                         : "ooze")
+                                         ? "胃"
+                                         : "软泥")
                                 : (u.uinwater
-                                   ? "water"
+                                   ? "水"
                                    : (rmtyp == CLOUD)
-                                      ? "cloud"
+                                      ? "云"
                                       : IS_TREE(rmtyp)
-                                         ? "vegitation"
+                                         ? "草木"
                                          : IS_STWALL(rmtyp)
-                                            ? "stone"
-                                            : "air");
-                pline_The("%s around you begins to shimmer with %s haze.",
-                          atmosphere, an(hgolden));
+                                            ? "石头"
+                                            : "空气");
+                pline_The("你周围的%s开始发出微弱的%s暗淡色泽.",
+                          atmosphere, hgolden);
             }
         }
         u.uspellprot += gain;
@@ -817,7 +817,7 @@ cast_protection()
             u.usptime = u.uspmtime;
         find_ac();
     } else {
-        Your("skin feels warm for a moment.");
+        Your("皮肤感觉温暖了片刻.");
     }
 }
 
@@ -892,38 +892,38 @@ boolean atme;
      * decrement of spell knowledge is done every turn.
      */
     if (spellknow(spell) <= 0) {
-        Your("knowledge of this spell is twisted.");
-        pline("It invokes nightmarish images in your mind...");
+        Your("对这个魔法的知识扭曲了.");
+        pline("它在你的心中产生噩梦般的图像...");
         spell_backfire(spell);
         return 1;
     } else if (spellknow(spell) <= KEEN / 200) { /* 100 turns left */
-        You("strain to recall the spell.");
+        You("尽力回想这个魔法.");
     } else if (spellknow(spell) <= KEEN / 40) { /* 500 turns left */
-        You("have difficulty remembering the spell.");
+        You("回想这个魔法有困难.");
     } else if (spellknow(spell) <= KEEN / 20) { /* 1000 turns left */
-        Your("knowledge of this spell is growing faint.");
+        Your("对这个魔法的知识越来越模糊.");
     } else if (spellknow(spell) <= KEEN / 10) { /* 2000 turns left */
-        Your("recall of this spell is gradually fading.");
+        Your("对这个魔法的记忆力正在逐渐消退.");
     }
     energy = (spellev(spell) * 5); /* 5 <= energy <= 35 */
 
     if (u.uhunger <= 10 && spellid(spell) != SPE_DETECT_FOOD) {
-        You("are too hungry to cast that spell.");
+        You("太饿了不能施展那个魔法.");
         return 0;
     } else if (ACURR(A_STR) < 4 && spellid(spell) != SPE_RESTORE_ABILITY) {
-        You("lack the strength to cast spells.");
+        You("缺乏力量来施展魔法.");
         return 0;
     } else if (check_capacity(
-                "Your concentration falters while carrying so much stuff.")) {
+                "你携带了太多的东西注意力动摇了.")) {
         return 1;
     }
 
     if (u.uhave.amulet) {
-        You_feel("the amulet draining your energy away.");
+        You_feel("护身符在消耗你的能量.");
         energy += rnd(2 * energy);
     }
     if (energy > u.uen) {
-        You("don't have enough energy to cast that spell.");
+        You("没有足够的能量来施展魔法.");
         return 0;
     } else {
         if (spellid(spell) != SPE_DETECT_FOOD) {
@@ -1075,7 +1075,7 @@ boolean atme;
                  * spelleffects() is organized means that aborting with
                  * "nevermind" is not an option.
                  */
-                pline_The("magical energy is released!");
+                pline_The("魔法能量被释放了!");
             }
             if (!u.dx && !u.dy && !u.dz) {
                 if ((damage = zapyourself(pseudo, TRUE)) != 0) {
@@ -1128,9 +1128,9 @@ boolean atme;
         break;
     case SPE_CURE_SICKNESS:
         if (Sick)
-            You("are no longer ill.");
+            You("不再是生病的.");
         if (Slimed)
-            make_slimed(0L, "The slime disappears!");
+            make_slimed(0L, "粘液消失了!");
         healup(0, 0, TRUE, FALSE);
         break;
     case SPE_CREATE_FAMILIAR:
@@ -1141,7 +1141,7 @@ boolean atme;
             do_vicinity_map();
         /* at present, only one thing blocks clairvoyance */
         else if (uarmh && uarmh->otyp == CORNUTHAUM)
-            You("sense a pointy hat on top of your %s.", body_part(HEAD));
+            You("感觉到在你%s上的一顶尖尖的帽子.", body_part(HEAD));
         break;
     case SPE_PROTECTION:
         cast_protection();
@@ -1171,24 +1171,24 @@ throwspell()
     struct monst *mtmp;
 
     if (u.uinwater) {
-        pline("You're joking! In this weather?");
+        pline("你在开玩笑吧! 在这种天气里?");
         return 0;
     } else if (Is_waterlevel(&u.uz)) {
-        You("had better wait for the sun to come out.");
+        You("最好等到太阳出来.");
         return 0;
     }
 
-    pline("Where do you want to cast the spell?");
+    pline("你想在哪儿施展魔法?");
     cc.x = u.ux;
     cc.y = u.uy;
-    if (getpos(&cc, TRUE, "the desired position") < 0)
+    if (getpos(&cc, TRUE, "期望位置") < 0)
         return 0; /* user pressed ESC */
     /* The number of moves from hero to where the spell drops.*/
     if (distmin(u.ux, u.uy, cc.x, cc.y) > 10) {
-        pline_The("spell dissipates over the distance!");
+        pline_The("魔法在这段距离中消散了!");
         return 0;
     } else if (u.uswallow) {
-        pline_The("spell is cut short!");
+        pline_The("魔法被打断!");
         exercise(A_WIS, FALSE); /* What were you THINKING! */
         u.dx = 0;
         u.dy = 0;
@@ -1196,7 +1196,7 @@ throwspell()
     } else if ((!cansee(cc.x, cc.y)
                 && (!(mtmp = m_at(cc.x, cc.y)) || !canspotmon(mtmp)))
                || IS_STWALL(levl[cc.x][cc.y].typ)) {
-        Your("mind fails to lock onto that location!");
+        Your("心无法锁定到那个位置!");
         return 0;
     }
 
