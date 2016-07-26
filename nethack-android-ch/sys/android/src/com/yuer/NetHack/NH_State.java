@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Rect;
@@ -15,8 +16,7 @@ import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
-
-import com.yuer.NetHack.R;
+import com.yuer.NetHack.*;
 import com.yuer.NetHack.Hearse.Hearse;
 
 public class NH_State
@@ -36,7 +36,6 @@ public class NH_State
 	private NH_Question mQuestion;
 	private ArrayList<NH_Window> mWindows;
 	private Tileset mTileset;
-	private String mDataDir;
 	private CmdPanelLayout mCmdPanelLayout;
 	private DPadOverlay mDPad;
 	private boolean mIsDPadActive;
@@ -51,16 +50,16 @@ public class NH_State
 	private SoftKeyboard.KEYBOARD mRegularKeyboard;
 
 	// ____________________________________________________________________________________
-	public NH_State(NetHack context)
+	public NH_State(Activity context, ByteDecoder decoder)
 	{
-		mIO = new NetHackIO(this);
+		mIO = new NetHackIO(context, NhHandler, decoder);
 		mTileset = new Tileset(context);
 		mWindows = new ArrayList<NH_Window>();
 		mGetLine = new NH_GetLine(mIO, this);
 		mQuestion = new NH_Question(mIO, this);
 		mMessage = new NHW_Message(context, mIO);
 		mStatus = new NHW_Status(context, mIO);
-		mMap = new NHW_Map(context, mTileset, mStatus, this);
+		mMap = new NHW_Map(context, mTileset, mStatus, this, decoder);
 		mCmdPanelLayout = (CmdPanelLayout)context.findViewById(R.id.cmdPanelLayout1);
 		mDPad = new DPadOverlay(this);
 		mKeyboard = new SoftKeyboard(context, this);
@@ -70,7 +69,7 @@ public class NH_State
 	}
 
 	// ____________________________________________________________________________________
-	public void setContext(NetHack context)
+	public void setContext(Activity context)
 	{
 		mContext = context;
 		for(NH_Window w : mWindows)
@@ -88,8 +87,7 @@ public class NH_State
 	// ____________________________________________________________________________________
 	public void startNetHack(String path)
 	{
-		mDataDir = path;
-		mIO.start();
+		mIO.start(path);
 
 		preferencesUpdated();
 		updateVisibleState();
@@ -101,13 +99,6 @@ public class NH_State
 		mHearse = new Hearse(mContext, prefs, path);
 	}
 
-	// ____________________________________________________________________________________
-	public void setLastUsername(String username)
-	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-		prefs.edit().putString("lastUsername", username).commit();
-	}
-	
 	// ____________________________________________________________________________________
 	private String getLastUsername()
 	{
@@ -137,6 +128,8 @@ public class NH_State
 
 		mCmdPanelLayout.preferencesUpdated(prefs);
 		mDPad.preferencesUpdated(prefs);
+		mStatus.preferencesUpdated(prefs);
+		mMessage.preferencesUpdated(prefs);
 
 		if(mMode == CmdMode.Panel)
 			mCmdPanelLayout.show();
@@ -170,17 +163,17 @@ public class NH_State
 			return true;
 		}
 		
-		KeyEventResult ret = mQuestion.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
+		KeyEventResult ret = mGetLine.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
+
+		if(ret == KeyEventResult.IGNORED)
+			ret = mQuestion.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
 
 		for(int i = mWindows.size() - 1; ret == KeyEventResult.IGNORED && i >= 0; i--)
 		{
 			NH_Window w = mWindows.get(i);
 			ret = w.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
 		}
-
-		if(ret == KeyEventResult.IGNORED)
-			ret = mGetLine.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
-
+		
 		if(ret == KeyEventResult.HANDLED)
 			return true;
 		if(ret == KeyEventResult.RETURN_TO_SYSTEM)
@@ -227,133 +220,6 @@ public class NH_State
 			Debug.stopMethodTracing();
 		return sendKeyCmd(nhKey);
 	}
-	
-	// ____________________________________________________________________________________
-	public boolean handleKeyUp(int keyCode)
-	{
-		if(mMap.handleKeyUp(keyCode))
-			return true;
-
-		if(keyCode == KeyAction.Keyboard)
-		{
-			if(!mStickyKeyboard && mMode == CmdMode.Keyboard)
-				hideKeyboard();
-			mStickyKeyboard = false;
-			return true;
-		}
-		else if(keyCode == KeyAction.Control || keyCode == KeyAction.Meta)
-		{
-			if(mMode == CmdMode.Keyboard)
-			{
-				if(mHideQuickKeyboard)
-					hideKeyboard();
-				restoreRegularKeyboard();
-			}
-					
-			mHideQuickKeyboard = false;
-			return true;
-		}
-		return false;
-	}
-
-	// ____________________________________________________________________________________
-	public void setCursorPos(int wid, int x, int y)
-	{
-		NH_Window wnd = getWindow(wid);
-		if(wnd != null)
-			wnd.setCursorPos(x, y);
-	}
-
-	// ____________________________________________________________________________________
-	public void putString(int wid, int attr, String msg, int append, int color)
-	{
-		NH_Window wnd = getWindow(wid);
-		if(wnd == null)
-		{
-			Log.print("[no wnd] " + msg);
-			mMessage.printString(attr, msg, append, color);
-		}
-		else
-			wnd.printString(attr, msg, append, color);
-	}
-
-	// ____________________________________________________________________________________
-	public void setHealthColor(int color)
-	{
-		if(mMap != null)
-			mMap.setHealthColor(color);
-	}
-
-	// ____________________________________________________________________________________
-	public void rawPrint(int attr, String msg)
-	{
-		mMessage.printString(attr, msg, 0, -1);
-	}
-
-	// ____________________________________________________________________________________
-	public void printTile(int wid, int x, int y, int tile, int ch, int col, int special)
-	{
-		mMap.printTile(x, y, tile, ch, col, special);
-	}
-
-	// ____________________________________________________________________________________
-	public void ynFunction(String question, byte[] choices, int def)
-	{
-		mQuestion.show(mContext, question, choices, def);
-	}
-
-	// ____________________________________________________________________________________
-	public void getLine(String title, int nMaxChars, boolean showLog)
-	{
-		if(showLog)
-			mGetLine.show(mContext, mMessage.getLogLine(2) + title, nMaxChars);
-		else
-			mGetLine.show(mContext, title, nMaxChars);
-	}
-
-	// ____________________________________________________________________________________
-	public void askName(int nMaxChars, String[] saves) {
-		String last = getLastUsername();
-		List<String> list = new ArrayList<String>();
-		for(String s : saves)
-		{
-			if(last.equals(s))
-				list.add(0, s);
-			else
-				list.add(s);
-		}
-		mGetLine.showWhoAreYou(mContext, nMaxChars, list);
-	}
-	
-	// ____________________________________________________________________________________
-	public void createWindow(int wid, int type)
-	{
-		switch(type)
-		{
-		case 1: // #define NHW_MESSAGE 1
-			mMessage.setId(wid);
-			mWindows.add(mMessage);
-		break;
-
-		case 2: // #define NHW_STATUS 2
-			mStatus.setId(wid);
-			mWindows.add(mStatus);
-		break;
-
-		case 3: // #define NHW_MAP 3
-			mMap.setId(wid);
-			mWindows.add(mMap);
-		break;
-
-		case 4: // #define NHW_MENU 4
-			mWindows.add(new NHW_Menu(wid, mContext, mIO, mTileset));
-		break;
-
-		case 5: // #define NHW_TEXT 5
-			mWindows.add(new NHW_Text(wid, mContext, mIO));
-		break;
-		}
-	}
 
 	// ____________________________________________________________________________________
 	public NH_Window getWindow(int wid)
@@ -387,92 +253,39 @@ public class NH_State
 		}
 		return w;
 	}
-	
-	// ____________________________________________________________________________________
-	public void displayWindow(final int wid, final int bBlocking)
-	{
-		NH_Window win = toFront(wid);
-		if(win != null)
-			win.show(bBlocking != 0);
-	}
 
 	// ____________________________________________________________________________________
-	public void clearWindow(final int wid, final int isRogueLevel)
+	public boolean handleKeyUp(int keyCode)
 	{
-		NH_Window wnd = getWindow(wid);
-		if(wnd != null)
+		if(mMap.handleKeyUp(keyCode))
+			return true;
+
+		if(keyCode == KeyAction.Keyboard)
 		{
-			wnd.clear();
-			if(wnd == mMap)
-				mMap.setRogueLevel(isRogueLevel != 0);
+			if(!mStickyKeyboard && mMode == CmdMode.Keyboard)
+				hideKeyboard();
+			mStickyKeyboard = false;
+			return true;
 		}
-	}
-
-	// ____________________________________________________________________________________
-	public void destroyWindow(final int wid)
-	{
-		int i = getWindowI(wid);
-		mWindows.get(i).destroy();
-		mWindows.remove(i);
-	}
-
-	// ____________________________________________________________________________________
-	public void startMenu(final int wid)
-	{
-		((NHW_Menu)getWindow(wid)).startMenu();
-	}
-
-	// ____________________________________________________________________________________
-	public void addMenu(int wid, int tile, int id, int acc, int groupAcc, int attr, String text, int bSelected, int color)
-	{
-		((NHW_Menu)getWindow(wid)).addMenu(tile, id, acc, groupAcc, attr, text, bSelected, color);
-	}
-
-	// ____________________________________________________________________________________
-	public void endMenu(int wid, String prompt)
-	{
-		((NHW_Menu)getWindow(wid)).endMenu(prompt);
-	}
-
-	// ____________________________________________________________________________________
-	public void selectMenu(int wid, int how)
-	{
-		((NHW_Menu)toFront(wid)).selectMenu(NHW_Menu.SelectMode.fromInt(how));
-	}
-
-	// ____________________________________________________________________________________
-	public void cliparound(int x, int y, int playerX, int playerY)
-	{
-		mMap.cliparound(x, y, playerX, playerY);
-	}
-
-	// ____________________________________________________________________________________
-	public void showLog(final int bBlocking)
-	{
-		mMessage.showLog(bBlocking != 0);
-	}
-
-	// ____________________________________________________________________________________
-	public void editOpts()
-	{
-	}
-	
-	// ____________________________________________________________________________________
-	public void lockMouse()
-	{
-		mIsMouseLocked = true;
+		else if(keyCode == KeyAction.Control || keyCode == KeyAction.Meta)
+		{
+			if(mMode == CmdMode.Keyboard)
+			{
+				if(mHideQuickKeyboard)
+					hideKeyboard();
+				restoreRegularKeyboard();
+			}
+					
+			mHideQuickKeyboard = false;
+			return true;
+		}
+		return false;
 	}
 
 	// ____________________________________________________________________________________
 	public boolean isMouseLocked()
 	{
 		return mIsMouseLocked;
-	}
-
-	// ____________________________________________________________________________________
-	public String getDataDir()
-	{
-		return mDataDir;
 	}
 
 	// ____________________________________________________________________________________
@@ -617,20 +430,6 @@ public class NH_State
 	}
 	
 	// ____________________________________________________________________________________
-	public void showDPad()
-	{
-		mIsDPadActive = true;
-		updateVisibleState();
-	}
-
-	// ____________________________________________________________________________________
-	public void hideDPad()
-	{
-		mIsDPadActive = false;
-		updateVisibleState();
-	}
-
-	// ____________________________________________________________________________________
 	public void updateVisibleState()
 	{
 		if(mControlsVisible)
@@ -672,19 +471,250 @@ public class NH_State
 	}
 
 	// ____________________________________________________________________________________
-	public void setNumPadOption(boolean numPadOn) {
-		mNumPad = numPadOn;
-		mDPad.updateNumPadState();
-	}
-
-	// ____________________________________________________________________________________
-	public boolean isNumPadOn() {
+	public boolean isNumPadOn()
+	{
 		return mNumPad;
 	}
 
 	// ____________________________________________________________________________________
-	public void redrawStatus()
+	public void startPreferences()
 	{
-		mStatus.redraw();
+		Intent prefsActivity = new Intent(mContext.getBaseContext(), Settings.class);
+		mContext.startActivityForResult(prefsActivity, 42);
 	}
+
+	// ____________________________________________________________________________________
+	private NH_Handler NhHandler = new NH_Handler()
+	{
+		@Override
+		public void setLastUsername(String username)
+		{
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+			prefs.edit().putString("lastUsername", username).commit();
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void setCursorPos(int wid, int x, int y)
+		{
+			NH_Window wnd = getWindow(wid);
+			if(wnd != null)
+				wnd.setCursorPos(x, y);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void putString(int wid, int attr, String msg, int append, int color)
+		{
+			NH_Window wnd = getWindow(wid);
+			if(wnd == null)
+			{
+				Log.print("[no wnd] " + msg);
+				mMessage.printString(attr, msg, append, color);
+			}
+			else
+				wnd.printString(attr, msg, append, color);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void setHealthColor(int color)
+		{
+			if(mMap != null)
+				mMap.setHealthColor(color);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void rawPrint(int attr, String msg)
+		{
+			mMessage.printString(attr, msg, 0, -1);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void printTile(int wid, int x, int y, int tile, int ch, int col, int special)
+		{
+			mMap.printTile(x, y, tile, ch, col, special);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void ynFunction(String question, byte[] choices, int def)
+		{
+			mQuestion.show(mContext, question, choices, def);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void getLine(String title, int nMaxChars, boolean showLog)
+		{
+			if(showLog)
+				mGetLine.show(mContext, mMessage.getLogLine(2) + title, nMaxChars);
+			else
+				mGetLine.show(mContext, title, nMaxChars);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void askName(int nMaxChars, String[] saves) {
+			String last = getLastUsername();
+			List<String> list = new ArrayList<String>();
+			for(String s : saves)
+			{
+				if(last.equals(s))
+					list.add(0, s);
+				else
+					list.add(s);
+			}
+			mGetLine.showWhoAreYou(mContext, nMaxChars, list);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void createWindow(int wid, int type)
+		{
+			switch(type)
+			{
+			case 1: // #define NHW_MESSAGE 1
+				mMessage.setId(wid);
+				mWindows.add(mMessage);
+			break;
+
+			case 2: // #define NHW_STATUS 2
+				mStatus.setId(wid);
+				mWindows.add(mStatus);
+			break;
+
+			case 3: // #define NHW_MAP 3
+				mMap.setId(wid);
+				mWindows.add(mMap);
+			break;
+
+			case 4: // #define NHW_MENU 4
+				mWindows.add(new NHW_Menu(wid, mContext, mIO, mTileset));
+			break;
+
+			case 5: // #define NHW_TEXT 5
+				mWindows.add(new NHW_Text(wid, mContext, mIO));
+			break;
+			}
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void displayWindow(final int wid, final int bBlocking)
+		{
+			NH_Window win = toFront(wid);
+			if(win != null)
+				win.show(bBlocking != 0);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void clearWindow(final int wid, final int isRogueLevel)
+		{
+			NH_Window wnd = getWindow(wid);
+			if(wnd != null)
+			{
+				wnd.clear();
+				if(wnd == mMap)
+					mMap.setRogueLevel(isRogueLevel != 0);
+			}
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void destroyWindow(final int wid)
+		{
+			int i = getWindowI(wid);
+			mWindows.get(i).destroy();
+			mWindows.remove(i);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void startMenu(final int wid)
+		{
+			((NHW_Menu)getWindow(wid)).startMenu();
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void addMenu(int wid, int tile, int id, int acc, int groupAcc, int attr, String text, int bSelected, int color)
+		{
+			((NHW_Menu)getWindow(wid)).addMenu(tile, id, acc, groupAcc, attr, text, bSelected, color);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void endMenu(int wid, String prompt)
+		{
+			((NHW_Menu)getWindow(wid)).endMenu(prompt);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void selectMenu(int wid, int how)
+		{
+			((NHW_Menu)toFront(wid)).selectMenu(MenuSelectMode.fromInt(how));
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void cliparound(int x, int y, int playerX, int playerY)
+		{
+			mMap.cliparound(x, y, playerX, playerY);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void showLog(final int bBlocking)
+		{
+			mMessage.showLog(bBlocking != 0);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void editOpts()
+		{
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void lockMouse()
+		{
+			mIsMouseLocked = true;
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void showDPad()
+		{
+			mIsDPadActive = true;
+			updateVisibleState();
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void hideDPad()
+		{
+			mIsDPadActive = false;
+			updateVisibleState();
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void setNumPadOption(boolean numPadOn) {
+			mNumPad = numPadOn;
+			mDPad.updateNumPadState();
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void redrawStatus()
+		{
+			mStatus.redraw();
+		}
+	};
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="namespace">com.yuer.NetHack</string>
+	<string name="oldActivityName">NetHack</string>
+	<string name="nativeDataDir">nethackdir</string>
+	<string name="libraryName">nethack</string>
+	<string name="defaultsFile">defaults.nh</string>
+	<string name="DefaultPanel">#|扩展 ... .|休息 ,|拾取 i|物品 s|搜索 ^P|消息 ^X|属性 10. 10s</string>
+	<bool name="useCP437Decoder">true</bool>
+	<bool name="hearseAvailable">true</bool>
+	<string name="hearseClientName">Gurr Android Nethack 3.6.0</string>
+	<string name="hearseRoles">Arc|Bar|Cav|Hea|Kni|Mon|Pri|Rog|Ran|Sam|Tou|Val|Wiz</string>
+	<string name="hearseNethackVersion">54</string>
+	<bool name="hearseLittleEndian">false</bool>
+</resources>

@@ -15,12 +15,14 @@ import android.content.DialogInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import com.yuer.NetHack.Log;
 
 public class EditFilePreference extends Preference implements DialogInterface.OnDismissListener
 {
@@ -32,6 +34,7 @@ public class EditFilePreference extends Preference implements DialogInterface.On
 	public EditFilePreference(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
+		//setSummary("Manually specify options in " + getContext().getResources().getString(R.string.defaultsFile));
 	}
 
 	public EditFilePreference(Context context, AttributeSet attrs)
@@ -151,8 +154,8 @@ public class EditFilePreference extends Preference implements DialogInterface.On
 
 	private void loadFile()
 	{
-		File dir = NetHack.getApplicationDir();
-		File file = new File(dir, "defaults.nh");
+		File dir = new File(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("datadir", ""));
+		File file = new File(dir, getContext().getResources().getString(R.string.defaultsFile));
 
 		try
 		{
@@ -176,8 +179,8 @@ public class EditFilePreference extends Preference implements DialogInterface.On
 
 	private void saveFile(String text)
 	{
-		File dir = NetHack.getApplicationDir();
-		File file = new File(dir, "defaults.nh");
+		File dir = new File(PreferenceManager.getDefaultSharedPreferences(getContext()).getString("datadir", ""));
+		File file = new File(dir, getContext().getResources().getString(R.string.defaultsFile));
 
 		try
 		{

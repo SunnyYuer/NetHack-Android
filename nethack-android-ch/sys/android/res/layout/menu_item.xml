@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/menu_item_layout"
 	android:layout_width="fill_parent"
 	android:layout_height="?android:attr/listPreferredItemHeight"
 	android:paddingLeft="4dip"
@@ -26,7 +25,6 @@
 		android:layout_marginRight="6dip"/>
 
 	<LinearLayout 
-		android:id="@+id/menu_item_layout"
 		android:orientation="vertical"
 		android:layout_weight="1"
 		android:layout_gravity="center_vertical"

@@ -14,12 +14,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.yuer.NetHack.R;
 import com.yuer.NetHack.Input.Modifier;
 
 public class NHW_Menu implements NH_Window
@@ -41,24 +38,9 @@ public class NHW_Menu implements NH_Window
 	}
 
 	private Type mType;
-	private SelectMode mHow;
+	private MenuSelectMode mHow;
 	private int mWid;
 	private int mKeyboardCount;
-
-	// ____________________________________________________________________________________
-	public enum SelectMode
-	{
-		PickNone, PickOne, PickMany;
-
-		public static SelectMode fromInt(int i)
-		{
-			if(i == 2)
-				return PickMany;
-			if(i == 1)
-				return PickOne;
-			return PickNone;
-		}
-	}
 
 	// ____________________________________________________________________________________
 	public NHW_Menu(int wid, Activity context, NetHackIO io, Tileset tileset)
@@ -72,12 +54,14 @@ public class NHW_Menu implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public String getTitle()
 	{
 		return mTitle;
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void setContext(Activity context)
 	{
 		mUI = new UI(context);
@@ -92,12 +76,14 @@ public class NHW_Menu implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void clear()
 	{
 		throw new UnsupportedOperationException();
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void show(boolean bBlocking)
 	{
 		mIsVisible = true;
@@ -119,6 +105,7 @@ public class NHW_Menu implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void destroy()
 	{
 		mIsVisible = false;
@@ -126,6 +113,7 @@ public class NHW_Menu implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public int id()
 	{
 		return mWid;
@@ -218,7 +206,7 @@ public class NHW_Menu implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
-	public void selectMenu(SelectMode how)
+	public void selectMenu(MenuSelectMode how)
 	{
 		mType = Type.Menu;
 		mKeyboardCount = -1;
@@ -326,7 +314,7 @@ public class NHW_Menu implements NH_Window
 				case KeyEvent.KEYCODE_SPACE:
 					if(bSoftInput)
 					{						
-						if(mHow == SelectMode.PickNone)
+						if(mHow == MenuSelectMode.PickNone)
 							menuOk();
 						else
 							toggleItemOrGroupAt(mListView.getSelectedItemPosition());
@@ -336,7 +324,7 @@ public class NHW_Menu implements NH_Window
 				break;
 
 				default:
-					if(mHow == SelectMode.PickNone)
+					if(mHow == MenuSelectMode.PickNone)
 					{
 						if(getAccelerator(ch) >= 0)
 						{
@@ -362,11 +350,12 @@ public class NHW_Menu implements NH_Window
 		}
 
 		// ____________________________________________________________________________________
+		@Override
 		public void onDismissCount(MenuItem item, int amount)
 		{
 			mAmountSelector = null;
 			showInternal();
-			if(mHow == SelectMode.PickOne)
+			if(mHow == MenuSelectMode.PickOne)
 			{
 				if(amount > 0)
 					sendSelectOne(item, amount);
@@ -468,7 +457,7 @@ public class NHW_Menu implements NH_Window
 		// ____________________________________________________________________________________
 		private void toggleItemOrGroupAt(int itemPos)
 		{
-			if(mHow != SelectMode.PickMany)
+			if(mHow != MenuSelectMode.PickMany)
 				return;
 
 			if(itemPos < 0 || itemPos >= mItems.size())
@@ -532,20 +521,20 @@ public class NHW_Menu implements NH_Window
 		{
 			if(acc == 0)
 				return false;
-			if(isShowing() && mHow != SelectMode.PickNone)
+			if(isShowing() && mHow != MenuSelectMode.PickNone)
 			{
 				boolean bRet = false;
 				int i = getAccelerator(acc);
 				if(i >= 0)
 				{
 					MenuItem item = mItems.get(i);
-					if(mHow == SelectMode.PickOne)
+					if(mHow == MenuSelectMode.PickOne)
 						sendSelectOne(item, mKeyboardCount);
 					else
 						toggleItem(item, false);
 					bRet = true;
 				}
-				else if(mHow == SelectMode.PickMany)
+				else if(mHow == MenuSelectMode.PickMany)
 				{
 					// Do group acc if none was found
 					// Cancel keyboard count first
@@ -586,7 +575,7 @@ public class NHW_Menu implements NH_Window
 		// ____________________________________________________________________________________
 		private void selectAll()
 		{
-			if(isShowing() && mHow == SelectMode.PickMany)
+			if(isShowing() && mHow == MenuSelectMode.PickMany)
 			{
 				for(int i = 0; i < mItems.size(); i++)
 				{
@@ -602,7 +591,7 @@ public class NHW_Menu implements NH_Window
 		// ____________________________________________________________________________________
 		private void clearAll()
 		{
-			if(isShowing() && mHow == SelectMode.PickMany)
+			if(isShowing() && mHow == MenuSelectMode.PickMany)
 			{
 				for(int i = 0; i < mItems.size(); i++)
 				{
@@ -626,6 +615,7 @@ public class NHW_Menu implements NH_Window
 			View btn = mRoot.findViewById(R.id.btn_ok);
 			btn.setOnClickListener(new View.OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					closeInternal();
@@ -634,6 +624,7 @@ public class NHW_Menu implements NH_Window
 
 			mRoot.setOnKeyListener(new OnKeyListener()
 			{
+				@Override
 				public boolean onKey(View v, int keyCode, KeyEvent event)
 				{
 					Log.print("MENU ONKEY");
@@ -660,7 +651,7 @@ public class NHW_Menu implements NH_Window
 		}
 
 		// ____________________________________________________________________________________
-		public void createMenu(SelectMode how)
+		public void createMenu(MenuSelectMode how)
 		{
 			if(mRoot == null || mHow != how)
 				inflateLayout(how);
@@ -679,7 +670,7 @@ public class NHW_Menu implements NH_Window
 		}
 		
 		// ____________________________________________________________________________________
-		private void inflateLayout(SelectMode how)
+		private void inflateLayout(MenuSelectMode how)
 		{
 			mHow = how;
 			switch(mHow)
@@ -703,6 +694,7 @@ public class NHW_Menu implements NH_Window
 			if(selectAllBtn != null)
 				selectAllBtn.setOnClickListener(new OnClickListener()
 				{
+					@Override
 					public void onClick(View view)
 					{
 						if(mContext.getString(R.string.ClearAll).equals(selectAllBtn.getText().toString()))
@@ -723,6 +715,7 @@ public class NHW_Menu implements NH_Window
 			if(btn != null)
 				btn.setOnClickListener(new OnClickListener()
 				{
+					@Override
 					public void onClick(View view)
 					{
 						menuOk();
@@ -733,6 +726,7 @@ public class NHW_Menu implements NH_Window
 			if(btn != null)
 				btn.setOnClickListener(new OnClickListener()
 				{
+					@Override
 					public void onClick(View view)
 					{
 						sendCancelSelect();
@@ -743,6 +737,7 @@ public class NHW_Menu implements NH_Window
 
 			mListView.setOnItemClickListener(new OnItemClickListener()
 			{
+				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					switch(mHow)
@@ -764,20 +759,22 @@ public class NHW_Menu implements NH_Window
 
 			mListView.setOnItemLongClickListener(new OnItemLongClickListener()
 			{
+				@Override
 				public boolean onItemLongClick(AdapterView<?> parent, final View view, int position, long id)
 				{
 					final MenuItem item = mItems.get(position);
 					if(!item.isSelectable())
 						return false;
-					if(item.getMaxCount() < 2 || mHow == SelectMode.PickNone)
+					if(item.getMaxCount() < 2 || mHow == MenuSelectMode.PickNone)
 						return false;
-					mAmountSelector = new AmountSelector(UI.this, mContext, mIO, mTileset, item);
+					mAmountSelector = new AmountSelector(UI.this, mContext, mTileset, item);
 					return true;
 				}
 			});
 
 			mListView.setOnKeyListener(new OnKeyListener()
 			{
+				@Override
 				public boolean onKey(View v, int keyCode, KeyEvent event)
 				{
 					Log.print("MENU ONKEY");

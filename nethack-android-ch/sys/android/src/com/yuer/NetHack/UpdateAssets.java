@@ -15,16 +15,21 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.text.*;
-import android.text.method.LinkMovementMethod;
-import android.text.style.URLSpan;
-import android.widget.TextView;
+import android.preference.PreferenceManager;
 
 public class UpdateAssets extends AsyncTask<Void, Void, Void>
 {
+	public interface Listener
+	{
+		void onAssetsReady(File path);
+	}
+
+	private static String DATADIR_KEY = "datadir";
+	private static String VERDAT_KEY = "verDat";
+	private static String SRCVER_KEY = "srcVer";
+	
 	private AssetManager mAM;
 	private SharedPreferences mPrefs;
-	//private ProgressDialog m_initDialog;
 	private boolean mIsInitiating;
 	private ProgressDialog mProgress;
 	private File mDstPath;
@@ -32,40 +37,80 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 	private boolean mWipeUserdata;
 	private long mRequiredSpace;
 	private long mTotalRead;
-	private NetHack mNetHack;
-	volatile Boolean mWipeConfirmed = null;
+	private Activity mActivity;
+	private final Listener mListener;
+	private final String mNativeDataDir;
+	private final String mNamespace;
+	private final String mDefaultsFile;
 
 	// ____________________________________________________________________________________
-	public UpdateAssets(NetHack nethack)
+	public UpdateAssets(Activity activity, Listener listener)
 	{
-		mNetHack = nethack;
-		mPrefs = mNetHack.getPreferences(Activity.MODE_PRIVATE);
-		mAM = mNetHack.getResources().getAssets();
-		//m_initDialog = ProgressDialog.show(m_nethack, "", "Initiating. Please wait...", true);
+		convertFromOldPreferences(activity);
+		mActivity = activity;
+		mPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		mAM = mActivity.getResources().getAssets();
 		mIsInitiating = true;
 		mTotalRead = 0;
 		mRequiredSpace = 0;
+		mListener = listener;
+		mNativeDataDir = activity.getResources().getString(R.string.nativeDataDir);
+		mNamespace = activity.getResources().getString(R.string.namespace);
+		mDefaultsFile = activity.getResources().getString(R.string.defaultsFile);
+	}
+
+	// ____________________________________________________________________________________
+	private static void convertFromOldPreferences(Activity activity)
+	{
+		// Old versions used a different preference store than the rest of the app
+		String oldActivityName = activity.getResources().getString(R.string.oldActivityName);
+		if(oldActivityName == null || oldActivityName.length() == 0)
+			return;
+
+		SharedPreferences oldPrefs = activity.getSharedPreferences(oldActivityName, Activity.MODE_PRIVATE);
+		SharedPreferences newPrefs = PreferenceManager.getDefaultSharedPreferences(activity);
+		SharedPreferences.Editor oldEditor = oldPrefs.edit();
+		SharedPreferences.Editor newEditor = newPrefs.edit();
+
+		boolean hasDataDir = oldPrefs.contains(DATADIR_KEY);
+		boolean hasVerDat = oldPrefs.contains(VERDAT_KEY);
+		boolean hasSrcVer = oldPrefs.contains(SRCVER_KEY);
+		if(hasDataDir)
+		{
+			newEditor.putString(DATADIR_KEY, oldPrefs.getString(DATADIR_KEY, ""));
+			oldEditor.remove(DATADIR_KEY);
+		}
+		if(hasVerDat)
+		{
+			newEditor.putLong(VERDAT_KEY, oldPrefs.getLong(VERDAT_KEY, 0));
+			oldEditor.remove(VERDAT_KEY);
+		}
+		if(hasSrcVer)
+		{
+			newEditor.putLong(SRCVER_KEY, oldPrefs.getLong(SRCVER_KEY, 0));
+			oldEditor.remove(SRCVER_KEY);
+		}
+		if(hasDataDir || hasVerDat || hasSrcVer)
+		{
+			newEditor.commit();
+			oldEditor.commit();
+		}
 	}
 
 	// ____________________________________________________________________________________
 	@Override
 	protected void onPostExecute(Void unused)
 	{
-		//if(m_initDialog != null)
-		//	m_initDialog.dismiss();
 		if(mProgress != null)
 			mProgress.dismiss();
 		if(mDstPath == null)
 		{
-			if(mWipeConfirmed == null || mWipeConfirmed == true)
-				showError();
-			else
-				mNetHack.finish();
+			showError();
 		}
 		else
 		{
-			Log.print("Starting on: " + mDstPath.getAbsolutePath());			
-			mNetHack.start(mDstPath);
+			Log.print("Starting on: " + mDstPath.getAbsolutePath());
+			mListener.onAssetsReady(mDstPath);
 		}
 	}
 
@@ -81,16 +126,14 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 	@Override
     protected void onProgressUpdate(Void... progress)
 	{
-		if(mTotalRead > 0 && mIsInitiating)// m_initDialog != null)
+		if(mTotalRead > 0 && mIsInitiating)
 		{
-			//m_initDialog.dismiss();
-			//m_initDialog = null;
 			mIsInitiating = false;
 			
-			mProgress = new ProgressDialog(mNetHack);
+			mProgress = new ProgressDialog(mActivity);
 			mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 			mProgress.setMax((int)mRequiredSpace);
-			mProgress.setMessage(mNetHack.getString(R.string.preparing)+"...");
+			mProgress.setMessage(mActivity.getString(R.string.preparing)+"...");
 			mProgress.setCancelable(false);
 			mProgress.show();
 		}
@@ -102,17 +145,14 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 	{
 		try
 		{
-			File dstPath = new File(mPrefs.getString("datadir", ""));
+			File dstPath = new File(mPrefs.getString(DATADIR_KEY, ""));
 			if(!isUpToDate(dstPath))
 			{
 				dstPath = findDataPath();
 	
 				if(mWipeUserdata)
 				{
-					if(confirmWipe(dstPath))
-						deleteDirContent(dstPath);
-					else
-						return null;
+					deleteDirContent(dstPath);
 				}
 				
 				if(dstPath == null)
@@ -146,80 +186,26 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		catch(IOException e)
 		{
 			e.printStackTrace();
-			mError = "Unkown error while preparing content";
+			mError = "Unknown error while preparing content";
 			return null;
 		}
-	}
-
-	private boolean confirmWipe(File datapath) {
-
-		String[] saves = new File(datapath, "save").list();
-		if(saves == null || saves.length == 0)
-			return true;
-
-		mNetHack.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				final TextView text = new TextView(mNetHack);
-
-				SpannableStringBuilder b = new SpannableStringBuilder(
-						"Your saved games are not compatible with this version. If you continue they will be deleted.\n\n"
-						+ "Old releases can be found ");
-
-				Spannable url = new SpannableString("at GitHub");
-				url.setSpan(new URLSpan("https://github.com/gurrhack/NetHack-Android"), 0, url.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-				b.append(url);
-
-				text.setText(b, TextView.BufferType.SPANNABLE);
-				text.setMovementMethod(LinkMovementMethod.getInstance());
-
-				final float density = mNetHack.getResources().getDisplayMetrics().density;
-				int padding = (int)(5 * density);
-				text.setPadding(3*padding, padding, 3*padding, 2*padding);
-
-				AlertDialog.Builder builder = new AlertDialog.Builder(mNetHack);
-				builder.setTitle("This is NetHack 3.6.0").setView(text)
-						.setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								mWipeConfirmed = true;
-							}
-						})
-						.setNegativeButton("Quit", new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int id) {
-								mWipeConfirmed = false;
-							}
-						}).setOnCancelListener(new DialogInterface.OnCancelListener() {
-							public void onCancel(DialogInterface dialog) {
-								mWipeConfirmed = false;
-							}
-						});
-
-				builder.create().show();
-			}
-		});
-
-		while(mWipeConfirmed == null) {
-			try {
-				Thread.sleep(10);
-			} catch(InterruptedException e) {
-			}
-		}
-
-		return mWipeConfirmed;
 	}
 
 	// ____________________________________________________________________________________
 	private void showError()
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(mNetHack);
-		builder.setMessage(mError).setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				mNetHack.finish();
+		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+		builder.setMessage(mError).setPositiveButton("Ok", new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{
+				mActivity.finish();
 			}
-		}).setOnCancelListener(new DialogInterface.OnCancelListener() {
-			public void onCancel(DialogInterface dialog) {
-				mNetHack.finish();
+		}).setOnCancelListener(new DialogInterface.OnCancelListener()
+		{
+			public void onCancel(DialogInterface dialog)
+			{
+				mActivity.finish();
 			}
 		});
 		AlertDialog alert = builder.create();
@@ -235,8 +221,8 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			return false;
 		}
 
-		long verDat = mPrefs.getLong("verDat", 0);
-		long srcVer = mPrefs.getLong("srcVer", 0);
+		long verDat = mPrefs.getLong(VERDAT_KEY, 0);
+		long srcVer = mPrefs.getLong(SRCVER_KEY, 0);
 
 		Scanner s = new Scanner(mAM.open("ver"));
 		long curVer = s.nextLong();
@@ -248,7 +234,7 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			return false;
 		}
 
-		String[] files = mAM.list("nethackdir");
+		String[] files = mAM.list(mNativeDataDir);
 		for(String file : files)
 		{
 			File dst = new File(dstPath, file);
@@ -258,7 +244,7 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 				return false;
 			}
 			
-			if(!file.equals("defaults.nh") && dst.lastModified() > verDat)
+			if(!file.equals(mDefaultsFile) && dst.lastModified() > verDat)
 			{
 				Log.print("Update required. '" + file + "' has been tampered with");
 				return false;
@@ -276,13 +262,13 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			dstPath.mkdirs();
 
 		byte[] buf = new byte[10240];
-		String[] files = mAM.list("nethackdir");
+		String[] files = mAM.list(mNativeDataDir);
 
 		for(String file : files)
 		{
 			File dstFile = new File(dstPath, file);
 
-			InputStream is = mAM.open("nethackdir/" + file);
+			InputStream is = mAM.open(mNativeDataDir + "/" + file);
 			OutputStream os = new FileOutputStream(dstFile, false);
 
 			while(true)
@@ -304,13 +290,13 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		SharedPreferences.Editor edit = mPrefs.edit();
 
 		Scanner s = new Scanner(mAM.open("ver"));
-		edit.putLong("srcVer", s.nextLong());
+		edit.putLong(SRCVER_KEY, s.nextLong());
 
 		// add a few seconds just in case
 		long lastMod = new File(dstPath, files[files.length - 1]).lastModified() + 1000 * 60;
-		edit.putLong("verDat", lastMod);
+		edit.putLong(VERDAT_KEY, lastMod);
 
-		edit.putString("datadir", dstPath.getAbsolutePath());
+		edit.putString(DATADIR_KEY, dstPath.getAbsolutePath());
 
 		edit.commit();
 	}
@@ -354,24 +340,24 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		File dataDir = null;
 		String state = Environment.getExternalStorageState();
 		if(Environment.MEDIA_MOUNTED.equals(state))
-			dataDir = new File(Environment.getExternalStorageDirectory(), "/Android/data/com.yuer.NetHack");
+			dataDir = new File(Environment.getExternalStorageDirectory(), "/Android/data/" + mNamespace);
 		return dataDir;
 	}
 
 	// ____________________________________________________________________________________
 	private File getInternalDataPath()
 	{
-		return mNetHack.getFilesDir();
+		return mActivity.getFilesDir();
 	}
 
 	// ____________________________________________________________________________________
 	private void getRequiredSpace() throws IOException
 	{
 		mRequiredSpace = 0;
-		String[] files = mAM.list("nethackdir");
+		String[] files = mAM.list(mNativeDataDir);
 		for(String file : files)
 		{
-			InputStream is = mAM.open("nethackdir/" + file);
+			InputStream is = mAM.open(mNativeDataDir + "/" + file);
 			mRequiredSpace += is.skip(0x7fffffff);
 		}
 	}

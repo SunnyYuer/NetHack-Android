@@ -25,11 +25,9 @@ public class AmountSelector
 	}
 
 	private View mRoot;
-	private Tileset mTileset;
 	private TextView mAmountText;
 	private int mMax;
 	private MenuItem mItem;
-	private Activity mContext;
 	private Listener mListener;
 
 	private AmountTuner mAmountTuner = new AmountTuner();
@@ -74,24 +72,22 @@ public class AmountSelector
 			mSeek.incrementProgressBy(mIncrease ? amount : -amount);
 			mView.postDelayed(this, 100);
 		}
-	};
+	}
 
 	// ____________________________________________________________________________________
-	public AmountSelector(Listener listener, Activity context, NetHackIO io, Tileset tileset, MenuItem item)
+	public AmountSelector(Listener listener, Activity context, Tileset tileset, MenuItem item)
 	{
 		mItem = item;
 		mListener = listener;
-		mContext = context;
-		mTileset = tileset;
 		mMax = item.getMaxCount();
 
-		mRoot = Util.inflate(mContext, R.layout.amount_selector, R.id.dlg_frame);
+		mRoot = Util.inflate(context, R.layout.amount_selector, R.id.dlg_frame);
 		ImageView tileView = (ImageView)mRoot.findViewById(R.id.amount_tile);
 		final SeekBar seek = ((SeekBar)mRoot.findViewById(R.id.amount_slider));
-		if(item.getTile() != 0 && mTileset.hasTiles())
+		if(item.getTile() != 0 && tileset.hasTiles())
 		{
 			tileView.setVisibility(View.VISIBLE);
-			tileView.setImageDrawable(new TileDrawable(mTileset, item.getTile()));
+			tileView.setImageDrawable(new TileDrawable(tileset, item.getTile()));
 		}
 		else
 		{

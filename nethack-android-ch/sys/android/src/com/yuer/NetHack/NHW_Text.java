@@ -2,8 +2,6 @@ package com.yuer.NetHack;
 
 import java.util.Set;
 
-import com.yuer.NetHack.R;
-
 import android.app.Activity;
 import android.text.SpannableStringBuilder;
 import android.view.KeyEvent;
@@ -31,12 +29,14 @@ public class NHW_Text implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public String getTitle()
 	{
 		return "NHW_Text";
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void setContext(Activity context)
 	{
 		mUI = new UI(context);
@@ -47,6 +47,7 @@ public class NHW_Text implements NH_Window
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void clear()
 	{
 		mBuilder = new SpannableStringBuilder();
@@ -63,6 +64,7 @@ public class NHW_Text implements NH_Window
 	}*/
 
 	// ____________________________________________________________________________________
+	@Override
 	public void printString(int attr, String str, int append, int color)
 	{
 		if(mBuilder.length() > 0)
@@ -78,6 +80,7 @@ public class NHW_Text implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void show(boolean bBlocking)
 	{
 		mIsBlocking = bBlocking;
@@ -93,12 +96,14 @@ public class NHW_Text implements NH_Window
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void destroy()
 	{
 		close();
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public int id()
 	{
 		return mWid;
@@ -149,6 +154,7 @@ public class NHW_Text implements NH_Window
 
 			mTextView.setOnClickListener(new OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					if(isVisible())
@@ -191,6 +197,7 @@ public class NHW_Text implements NH_Window
 			{
 				mScroll.post(new Runnable() // gives the view a chance to update itself
 				{
+					@Override
 					public void run()
 					{
 						mScroll.fullScroll(ScrollView.FOCUS_DOWN);

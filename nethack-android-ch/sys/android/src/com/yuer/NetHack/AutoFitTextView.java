@@ -88,6 +88,7 @@ public class AutoFitTextView extends TextView {
 			paint.setTextSize(textSize);
 			textW = paint.measureText(text, 0, text.length());
 		}
+		Log.print("Size: " + textSize);
 		super.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize*1.0f);
 		super.setLineSpacing(mAdd, mMul);
 	}

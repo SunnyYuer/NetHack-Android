@@ -1,7 +1,5 @@
 package com.yuer.NetHack;
 
-import com.yuer.NetHack.R;
-
 import android.content.Context;
 import android.preference.Preference;
 import android.text.Html;
@@ -13,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.yuer.NetHack.Util;
 
 public class TextViewPreference extends Preference
 {
@@ -31,8 +30,6 @@ public class TextViewPreference extends Preference
 		int res;
 		if(title.equalsIgnoreCase("license"))
 			res = R.string.license;
-		else if(title.equalsIgnoreCase("history"))
-			res = R.string.history;
 		else if(title.equalsIgnoreCase("credits"))
 			res = R.string.credits;
 		else

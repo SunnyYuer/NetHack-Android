@@ -1,13 +1,15 @@
 package com.yuer.NetHack;
 
-public class CP437
+public class CP437 implements ByteDecoder
 {
-	public static char decode(int b)
+	@Override
+	public char decode(int b)
 	{
 		return UNICODE[b & 0xff];
 	}
 
-	public static String decode(byte[] bytes)
+	@Override
+	public String decode(byte[] bytes)
 	{
 		StringBuilder builder = new StringBuilder(bytes.length);
 		for(byte b : bytes)

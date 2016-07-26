@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.yuer.NetHack.R;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -35,7 +36,7 @@ public class CmdPanelLayout extends FrameLayout
 	}
 
 	private ArrayList<Panel> mPanelCmds = new ArrayList<Panel>();
-	private NetHack mContext;
+	private Activity mContext;
 	private NH_State mState;
 	private boolean mPortraitMode;
 	private boolean mShowPanels = true;
@@ -219,6 +220,14 @@ public class CmdPanelLayout extends FrameLayout
 				case Gravity.FILL_HORIZONTAL:
 					childLeft = parentLeft;
 					childRight = parentRight;
+					if(child instanceof HorizontalScrollView)
+					{
+						// Don't cover the entire width if it's not needed. The additional space will be used for map input
+						// TODO maybe do this in onMeasure instead
+						int panelW = ((HorizontalScrollView)child).getChildAt(0).getMeasuredWidth();
+						if(panelW < (childRight-childLeft))
+							childRight = childLeft + panelW;
+					}
 				break;
 				default:
 					childLeft = parentLeft + parentRight - childWidth >> 1;
@@ -242,6 +251,14 @@ public class CmdPanelLayout extends FrameLayout
 				case Gravity.FILL_VERTICAL:
 					childTop = parentTop;
 					childBottom = parentBottom;
+					if(child instanceof ScrollView)
+					{
+						// Don't cover the entire height if it's not needed. The additional space will be used for map input
+						// TODO maybe do this in onMeasure instead
+						int panelH = ((ScrollView)child).getChildAt(0).getMeasuredHeight();
+						if(panelH < (childBottom-childTop))
+							childBottom = childTop + panelH;
+					}
 				break;
 				default:
 					childTop = parentTop + parentBottom - childHeight >> 1;
@@ -303,7 +320,7 @@ public class CmdPanelLayout extends FrameLayout
 	}
 
 	// ____________________________________________________________________________________
-	public void setContext(NetHack context, NH_State nhState)
+	public void setContext(Activity context, NH_State nhState)
 	{
 		mContext = context;
 		mState = nhState;
@@ -337,7 +354,7 @@ public class CmdPanelLayout extends FrameLayout
 		}
 
 		//
-		boolean forceAddMenu = prefs.getBoolean("forceAddMenu", true);
+		boolean forceAddMenu = prefs.getBoolean("forceAddMenu", false);
 		if(forceAddMenu)
 		{
 			editor.putBoolean("forceAddMenu", false);

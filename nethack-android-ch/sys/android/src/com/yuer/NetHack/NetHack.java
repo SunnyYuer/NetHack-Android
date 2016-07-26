@@ -21,24 +21,21 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Debug;
 import android.preference.PreferenceManager;
-import android.view.ContextMenu;
+import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 
 import com.yuer.NetHack.R;
 import com.yuer.NetHack.Input.Modifier;
 
 import java.io.File;
 import java.util.EnumSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class NetHack extends Activity
 {
 	private static NH_State nhState;
-	private static File mAppDir;
 	private boolean mCtrlDown;
 	private boolean mMetaDown;
 	private boolean mBackTracking;
@@ -50,7 +47,23 @@ public class NetHack extends Activity
 		super.onCreate(savedInstanceState);
 
 		Log.print("onCreate");
-
+		
+		if(DEBUG.isOn())
+		{
+			if(getResources().getString(R.string.namespace).length() == 0
+			|| getResources().getString(R.string.nativeDataDir).length() == 0
+			|| getResources().getString(R.string.libraryName).length() == 0
+			|| getResources().getString(R.string.defaultsFile).length() == 0
+			|| getResources().getString(R.string.DefaultPanel).length() == 0)
+				throw new RuntimeException("missing config vars");
+			if(getResources().getBoolean(R.bool.hearseAvailable))
+			{
+				if(getResources().getString(R.string.hearseClientName).length() == 0
+				|| getResources().getString(R.string.hearseNethackVersion).length() == 0
+				|| getResources().getString(R.string.hearseRoles).length() == 0)
+					throw new RuntimeException("missing config vars");
+			}
+		}
 		// turn off the window's title bar
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setDefaultKeyMode(DEFAULT_KEYS_DISABLE);
@@ -60,8 +73,24 @@ public class NetHack extends Activity
 
 		if(nhState == null)
 		{
-			nhState = new NH_State(this);
-			new UpdateAssets(this).execute((Void[])null);
+			ByteDecoder decoder;
+			if(getResources().getBoolean(R.bool.useCP437Decoder))
+				decoder = new CP437();
+			else
+				decoder = new ByteDecoder() {
+					@Override
+					public char decode(int b) {
+						return (char)b;
+					}
+
+					@Override
+					public String decode(byte[] bytes) {
+						return new String(bytes);
+					}
+				};
+
+			nhState = new NH_State(this, decoder);
+			new UpdateAssets(this, onAssetsReady).execute((Void[])null);
 		}
 		else
 		{
@@ -80,18 +109,20 @@ public class NetHack extends Activity
 	}
 	
 	// ____________________________________________________________________________________
-	public void start(File path)
+	private UpdateAssets.Listener onAssetsReady = new UpdateAssets.Listener()
 	{
-		mAppDir = path;
-		
-		// Create save directory if it doesn't exist
-		File nhSaveDir = new File(path, "save");
-		if(!nhSaveDir.exists())
-			nhSaveDir.mkdir();
+		@Override
+		public void onAssetsReady(File path)
+		{
+			// Create save directory if it doesn't exist
+			File nhSaveDir = new File(path, "save");
+			if(!nhSaveDir.exists())
+				nhSaveDir.mkdir();
 
-		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-		nhState.startNetHack(path.getAbsolutePath());
-	}
+			PreferenceManager.setDefaultValues(NetHack.this, R.xml.preferences, false);
+			nhState.startNetHack(path.getAbsolutePath());
+		}
+	};
 
 	// ____________________________________________________________________________________
 	@Override
@@ -146,9 +177,8 @@ public class NetHack extends Activity
 		mMetaDown = false;
 		
 		Log.print("onDestroy()");
-		if(nhState != null) {
+		if(nhState != null)
             nhState.saveAndQuit();
-        }
 		nhState = null;
 		
 		super.onDestroy();
@@ -231,7 +261,7 @@ public class NetHack extends Activity
 		Log.print("onSaveInstanceState(Bundle outState)");
 		if(nhState != null)
 			nhState.saveState();
-	};
+	}
 
 	// ____________________________________________________________________________________
 	@Override
@@ -290,9 +320,9 @@ public class NetHack extends Activity
 			mMetaDown = true;
 		
 		if(mCtrlDown)
-			modifiers.add(Input.Modifier.Control);
+			modifiers.add(Modifier.Control);
 		else if(mMetaDown)
-			modifiers.add(Input.Modifier.Meta);
+			modifiers.add(Modifier.Meta);
 		
 		char ch = (char)unicodeChar;
 		
@@ -331,10 +361,5 @@ public class NetHack extends Activity
 			return true;
 		}
 		return super.onKeyUp(keyCode, event);
-	}
-
-	public static File getApplicationDir()
-	{
-		return mAppDir;
 	}
 }

@@ -2066,7 +2066,7 @@ boolean allownone;
      */
     if (!invent && !(flags.perm_invent && !lets && !want_reply)
 #ifdef ANDROID
-		&& iflags.automenu && !allownone
+                && (!iflags.automenu || !allownone)
 #endif
 	) {
         pline("没有携带任何东西.");
@@ -2164,7 +2164,7 @@ nextclass:
                         add_menu(win, NO_GLYPH, &any, '-', 0, ATR_NONE, "( 无)", MENU_UNSELECTED);
 		}
 	    any.a_char = '*';
-            add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "( 更多)", MENU_UNSELECTED);
+	    add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "( 列出全部)", MENU_UNSELECTED);
 	}
 #endif
     free(oarray);

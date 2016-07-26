@@ -2,6 +2,6 @@ package com.yuer.NetHack;
 
 public class DEBUG
 {
-	static boolean isOn() { return false; }
-	static boolean runTrace() { return false; }
+	public static boolean isOn() { return false; }
+	public static boolean runTrace() { return false; }
 }

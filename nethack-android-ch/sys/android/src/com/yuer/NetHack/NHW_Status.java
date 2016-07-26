@@ -2,9 +2,8 @@ package com.yuer.NetHack;
 
 import java.util.Set;
 
-import com.yuer.NetHack.R;
-
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 
@@ -16,6 +15,7 @@ public class NHW_Status implements NH_Window
 	private UI mUI;
 	private boolean mIsVisible;
 	private int mWid;
+	private int mOpacity;
 
 	// ____________________________________________________________________________________
 	public NHW_Status(Activity context, NetHackIO io)
@@ -29,12 +29,14 @@ public class NHW_Status implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public String getTitle()
 	{
 		return "NHW_Status";
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void setContext(Activity context)
 	{
 		mUI = new UI(context);
@@ -45,6 +47,7 @@ public class NHW_Status implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void show(boolean bBlocking)
 	{
 		mIsVisible = true;
@@ -57,6 +60,7 @@ public class NHW_Status implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void destroy()
 	{
 		hide();
@@ -76,12 +80,14 @@ public class NHW_Status implements NH_Window
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public int id()
 	{
 		return mWid;
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void clear()
 	{
 		mRows[0] = new SpannableStringBuilder();
@@ -120,9 +126,17 @@ public class NHW_Status implements NH_Window
 		return KeyEventResult.IGNORED;
 	}
 
+	// ____________________________________________________________________________________
 	public float getHeight()
 	{
 		return mUI.getHeight();
+	}
+	
+	// ____________________________________________________________________________________
+	public void preferencesUpdated(SharedPreferences prefs)
+	{
+		mOpacity = prefs.getInt("statusOpacity", 0);
+		mUI.updateOpacity();
 	}
 
 	// ____________________________________________________________________________________ //
@@ -138,6 +152,7 @@ public class NHW_Status implements NH_Window
 			mViews = new AutoFitTextView[2];
 			mViews[0] = (AutoFitTextView)context.findViewById(R.id.nh_stat0);
 			mViews[1] = (AutoFitTextView)context.findViewById(R.id.nh_stat1);
+			updateOpacity();
 		}
 
 		// ____________________________________________________________________________________
@@ -168,6 +183,13 @@ public class NHW_Status implements NH_Window
 		public float getHeight()
 		{
 			return mViews[0].getMinTextSize() * 2;
+		}
+		
+		// ____________________________________________________________________________________
+		public void updateOpacity()
+		{
+			mViews[0].setBackgroundColor(mOpacity << 24);
+			mViews[1].setBackgroundColor(mOpacity << 24);
 		}
 	}
 }

@@ -21,6 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
+import com.yuer.NetHack.Tileset;
+import com.yuer.NetHack.Util;
 
 import java.io.*;
 import java.util.Arrays;
@@ -40,7 +42,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 	private EditText mTileH;
 	private ViewGroup mTilesetUI;
 	private LinearLayout mRoot;
-	private Settings mSettings;
+	private Activity mActivity;
 	private String mCustomTilesetPath;
 	private Bitmap mCustomTileset;
 	private ImageButton mBrowse;
@@ -166,7 +168,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		Intent intent = new Intent();
 		intent.setType("image/*");
 		intent.setAction(Intent.ACTION_GET_CONTENT);
-		mSettings.startActivityForResult(Intent.createChooser(intent, getContext().getString(R.string.ChooseTile)), GET_IMAGE_REQUEST);
+		mActivity.startActivityForResult(Intent.createChooser(intent, getContext().getString(R.string.ChooseTile)), GET_IMAGE_REQUEST);
 	}
 
 	@Override
@@ -176,9 +178,9 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		{
 			if(createCustomTilesetLocalCopy(data.getData()))
 			{
-			String path = queryPath(data.getData());
-			mTilesetPath.setText(path);
-		}
+				String path = queryPath(data.getData());
+				mTilesetPath.setText(path);
+			}
 		}
 		return requestCode == GET_IMAGE_REQUEST;
 	}
@@ -189,7 +191,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		OutputStream outputStream = null;
 		try {
 			inputStream = getContext().getContentResolver().openInputStream(from);
-			File file = Tileset.getLocalTilesetFile();
+			File file = Tileset.getLocalTilesetFile(getContext());
 			outputStream = new FileOutputStream(file, false);
 			Util.copy(inputStream, outputStream);
 			return true;
@@ -207,7 +209,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 	public String queryPath(Uri uri)
 	{
 		String[] projection = {MediaStore.Images.Media.DATA};
-		Cursor cursor = mSettings.managedQuery(uri, projection, null, null, null);
+		Cursor cursor = mActivity.managedQuery(uri, projection, null, null, null);
 		if(cursor != null)
 		{
 			int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
@@ -360,14 +362,14 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 			{
 				try
 				{
-					File localFile = Tileset.getLocalTilesetFile();
+					File localFile = Tileset.getLocalTilesetFile(getContext());
 					if(!localFile.exists())
 					{
 						// User deleted local copy, or coming from an old version
 						createCustomTilesetLocalCopy(Uri.fromFile(new File(newPath)));
 					}
 
-					mCustomTileset = BitmapFactory.decodeFile(Tileset.getLocalTilesetFile().getPath());
+					mCustomTileset = BitmapFactory.decodeFile(Tileset.getLocalTilesetFile(getContext()).getPath());
 					if(mCustomTileset == null)
 						Toast.makeText(getContext(), "Error loading: " + newPath, Toast.LENGTH_LONG).show();
 
@@ -422,8 +424,8 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		return null;
 	}
 
-	public void setActivity(Settings settings)
+	public void setActivity(Activity activity)
 	{
-		mSettings = settings;
+		mActivity = activity;
 	}
 }

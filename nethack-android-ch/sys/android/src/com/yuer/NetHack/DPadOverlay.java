@@ -281,6 +281,7 @@ public class DPadOverlay
 		// ____________________________________________________________________________________
 		private OnClickListener onDPad = new OnClickListener()
 		{
+			@Override
 			public void onClick(View v)
 			{
 				int k = ((Button)v).getText().charAt(0);

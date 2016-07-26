@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.yuer.NetHack.Log;
+import com.yuer.NetHack.R;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -18,21 +19,11 @@ import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -46,10 +37,8 @@ import java.util.regex.Pattern;
  */
 public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-	private static final String CLIENT_NAME = "Gurr Android Nethack";
-	private static final String CLIENT_VERSION = "3.6.0";
-	private static final String CLIENT_ID = CLIENT_NAME + " " + CLIENT_VERSION;
-	private static final String HEARSE_CRC = getStringMD5(CLIENT_ID);
+	private final String CLIENT_ID;
+	private final String HEARSE_CRC;
 	private static final String HOST = "hearse.krollmark.com";
 	private static final String BASE_URL = "http://hearse.krollmark.com/bones.dll?act=";
 	// hearse commands
@@ -93,7 +82,7 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 	 * bon<dungeon code><0 | role code>.<level boneid | level number>
 	 * XXX case_tolerant if appropriate
 	 */
-	private static final Pattern PATTERN = Pattern.compile("^bon[A-Z](0|(Arc|Bar|Cav|Hea|Kni|Mon|Pri|Rog|Ran|Sam|Tou|Val|Wiz))\\.([A-Z]|\\d+)\\z", Pattern.CASE_INSENSITIVE);
+	private final Pattern PATTERN;
 	private static final String TAG = "MD5";
 	private static final String PREFS_HEARSE_ID = "hearseID";
 	private static final String PREFS_HEARSE_MAIL = "hearseMail";
@@ -111,11 +100,13 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 	private final boolean keepUploaded;
 	private long lastUpload;
 	private final HttpClient httpClient;
+	private final boolean mLittleEndian;
+	private final String mNethackVersion;
 
 	/**
 	 * Creates a new instance of Hearse
 	 *
-	 * @param context The {@link android.app.Activity} application for access to {@link Activity}, through which it can
+	 * @param context The {@link Activity} application for access to {@link Activity}, through which it can
 	 *            create {@link Toast} notifications, etc.
 	 * @param prefs SharedPreferences
 	 * @param path nethack datadir
@@ -125,6 +116,12 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		this.context = context;
 		dataDirString = path;
 		this.prefs = prefs;
+		
+		CLIENT_ID = context.getResources().getString(R.string.hearseClientName);
+		HEARSE_CRC = getStringMD5(CLIENT_ID);
+		PATTERN = Pattern.compile("^bon[A-Z](0|(" + context.getResources().getString(R.string.hearseRoles) + "))\\.([A-Z]|\\d+)\\z", Pattern.CASE_INSENSITIVE);
+		mLittleEndian = context.getResources().getBoolean(R.bool.hearseLittleEndian);
+		mNethackVersion = context.getResources().getString(R.string.hearseNethackVersion);
 
 		userToken = prefs.getString(PREFS_HEARSE_ID, "");
 		userEmail = prefs.getString(PREFS_HEARSE_MAIL, "");
@@ -360,7 +357,7 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 	private int downloadBones() {
 
 		int nDownloaded = 0;
-		String hackver = prefs.getString(HEADER_NETHACKVER, "54"); // 54 is us, 26 is Windows 3.4.3
+		String hackver = prefs.getString(HEADER_NETHACKVER, mNethackVersion);
 
 		StringBuilder builder = new StringBuilder();
 		for(File bones : enumerateBones()) {
@@ -516,12 +513,17 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 			}
 
 			NHFileInfo info = loadFile(files.get(i));
+			
+			String info1 = info.get1();
+			String info2 = info.get2();
+			String info3 = info.get3();
+			String info4 = info.get4();
 
 //            headerList.add(new BasicHeader(HEADER_VERSION + 1, info.get1()));
 //            headerList.add(new BasicHeader(HEADER_VERSION + 2, info.get2()));
 //            headerList.add(new BasicHeader(HEADER_VERSION + 3, info.get3()));
 //            headerList.add(new BasicHeader(HEADER_VERSION + 4, info.get4()));
-			headerList.add(new BasicHeader(HEADER_VERSIONCRC, getStringMD5(info.get1() + "," + info.get2() + "," + info.get3() + "," + info.get4())));
+			headerList.add(new BasicHeader(HEADER_VERSIONCRC, getStringMD5(info1 + "," + info2 + "," + info3 + "," + info4)));
 
 			headerList.add(new BasicHeader(HEADER_BONES_CRC, info.md5));
 
@@ -611,8 +613,8 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 			results.data = data;
 
 			ByteBuffer buf = ByteBuffer.wrap(data);
-			// realized don't want to do this as it masks platform differences
-//            buf.order(ByteOrder.LITTLE_ENDIAN);
+			if(mLittleEndian)
+				buf.order(ByteOrder.LITTLE_ENDIAN);
 			results.incarnation = ((long)buf.getInt()) & 0xffffffffL;
 			results.feature_set = ((long)buf.getInt()) & 0xffffffffL;
 			results.entity_count = ((long)buf.getInt()) & 0xffffffffL;

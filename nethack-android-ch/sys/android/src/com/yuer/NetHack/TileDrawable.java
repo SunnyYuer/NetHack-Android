@@ -1,13 +1,12 @@
 package com.yuer.NetHack;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import com.yuer.NetHack.Tileset;
 
-class TileDrawable extends Drawable
+public class TileDrawable extends Drawable
 {
 	private Tileset mTileset;
 	private int mTile;

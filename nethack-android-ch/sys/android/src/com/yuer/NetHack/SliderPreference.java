@@ -86,6 +86,7 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 			mValue = (Integer)defaultValue;
 	}
 
+	@Override
 	public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
 	{
 		String t = String.valueOf(value);
@@ -95,10 +96,12 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 		callChangeListener(new Integer(value));
 	}
 
+	@Override
 	public void onStartTrackingTouch(SeekBar seek)
 	{
 	}
 
+	@Override
 	public void onStopTrackingTouch(SeekBar seek)
 	{
 	}

@@ -8,7 +8,10 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.view.Window;
+import com.yuer.NetHack.TilesetPreference;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener
 {
@@ -51,6 +54,14 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
 		mTilesetPref = (TilesetPreference)findPreference("tilesetPreference");
 		mTilesetPref.setActivity(this);
+		
+		if(!getApplicationContext().getResources().getBoolean(R.bool.hearseAvailable))
+		{
+			PreferenceCategory hearseParent = (PreferenceCategory)findPreference("advanced");
+			Preference hearsePref = findPreference("hearse");
+			if(hearsePref != null)
+				hearseParent.removePreference(hearsePref);
+		}
 	}
 
 	// ____________________________________________________________________________________

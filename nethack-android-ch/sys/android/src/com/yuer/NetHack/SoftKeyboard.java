@@ -1,6 +1,8 @@
 package com.yuer.NetHack;
 
 import java.util.EnumSet;
+
+import android.app.Activity;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
@@ -22,7 +24,7 @@ public class SoftKeyboard implements OnKeyboardActionListener
 	private static final int KEYCODE_META = -10;
 	private static final int KEYCODE_ABC = -11;
 
-	enum KEYBOARD
+	public enum KEYBOARD
 	{
 		QWERTY,
 		SYMBOLS,
@@ -30,7 +32,7 @@ public class SoftKeyboard implements OnKeyboardActionListener
 		META,
 	}
 
-	private NetHack mContext;
+	private Activity mContext;
 	private ViewGroup mKeyboardFrame;
 	private KeyboardView mKeyboardView;
 	private Keyboard mSymbolsKeyboard;
@@ -42,7 +44,7 @@ public class SoftKeyboard implements OnKeyboardActionListener
 	private boolean mIsShifted;
 
 	// ____________________________________________________________________________________
-	public SoftKeyboard(NetHack context, NH_State state)
+	public SoftKeyboard(Activity context, NH_State state)
 	{
 		mContext = context;
 		mState = state;
@@ -71,15 +73,15 @@ public class SoftKeyboard implements OnKeyboardActionListener
 
 			switch(mCurrent)
 			{
-				case SYMBOLS:
-					setKeyboard(KEYBOARD.SYMBOLS);
-				break;
-				case CTRL:
-					setKeyboard(KEYBOARD.CTRL);
-				break;
-				case META:
-					setKeyboard(KEYBOARD.META);
-				break;
+			case SYMBOLS:
+				setKeyboard(KEYBOARD.SYMBOLS);
+			break;
+			case CTRL:
+				setKeyboard(KEYBOARD.CTRL);
+			break;
+			case META:
+				setKeyboard(KEYBOARD.META);
+			break;
 			}
 			mKeyboardFrame.setVisibility(View.VISIBLE);
 		}
@@ -112,16 +114,19 @@ public class SoftKeyboard implements OnKeyboardActionListener
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void onPress(int primaryCode)
 	{
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void onRelease(int primaryCode)
 	{
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void onKey(int primaryCode, int[] keyCodes)
 	{
 		switch(primaryCode)
@@ -157,7 +162,7 @@ public class SoftKeyboard implements OnKeyboardActionListener
 		break;
 
 		case KEYCODE_ESC:
-			mState.handleKeyDown('\033', '\033', 111 /*KeyEvent.KEYCODE_ESC*/, Input.modifiers(), 0, true);
+			mState.handleKeyDown('\033', '\033', KeyEvent.KEYCODE_ESCAPE, Input.modifiers(), 0, true);
 		break;
 
 		case Keyboard.KEYCODE_DELETE:
@@ -230,27 +235,32 @@ public class SoftKeyboard implements OnKeyboardActionListener
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void swipeLeft()
 	{
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void swipeDown()
 	{
 		handleClose();
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void swipeRight()
 	{
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void swipeUp()
 	{
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void onText(CharSequence text)
 	{
 	}

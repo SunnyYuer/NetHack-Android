@@ -2,21 +2,25 @@ package com.yuer.NetHack;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import android.os.Handler;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View;
 
-public class NetHackIO implements Runnable
+import android.app.Activity;
+import android.content.res.Resources;
+import android.os.Handler;
+import com.yuer.NetHack.*;
+
+public class NetHackIO
 {
-	private Handler mHandler;
-	private Thread mThread;
-	private NH_State mState;
-	private ConcurrentLinkedQueue<Integer> mCmdQue;
+	private final Handler mHandler;
+	private final NH_Handler mNhHandler;
+	private final Thread mThread;
+	private final ByteDecoder mDecoder;
+	private final String mLibraryName;
+	private final ConcurrentLinkedQueue<Integer> mCmdQue;
 	private int mNextWinId;
 	private int mMessageWid;
 	private volatile Integer mIsReady = 0;
-	private Object mReadyMonitor = new Object();
+	private final Object mReadyMonitor = new Object();
+	private String mDataDir;
 
 	// ____________________________________________________________________________________ //
 	// Send commands																		//
@@ -27,41 +31,24 @@ public class NetHackIO implements Runnable
 	private static final int SelectCmd = 0xb0000000;
 	private static final int SaveStateCmd = 0xc0000000;
 	private static final int AbortCmd = 0xd0000000;
-
-	private static final int FlagCmd = 0xe0000000;
-	private static final int CmdMask = 0xf0000000;
 	private static final int DataMask = 0x0fffffff;
 
 	// ____________________________________________________________________________________
-	public NetHackIO(NH_State state)
+	public NetHackIO(Activity context, NH_Handler nhHandler, ByteDecoder decoder)
 	{
-		mState = state;
+		mNhHandler = nhHandler;
+		mDecoder = decoder;
+		mLibraryName = context.getResources().getString(R.string.libraryName);
 		mNextWinId = 1;
 		mCmdQue = new ConcurrentLinkedQueue<Integer>();
 		mHandler = new Handler();
-/*		Looper.myQueue().addIdleHandler(new MessageQueue.IdleHandler()
-		{			
-			@Override
-			public boolean queueIdle()
-			{
-				//Log.print("idling...");
-				waitOut(2000);
-				while(!mHandler.empty())
-				{
-					flushIn();
-					waitOut(2000);
-				}
-				return true;
-			}
-		});*/
+		mThread = new Thread(ThreadMain, "nh_thread");
 	}
 
 	// ____________________________________________________________________________________
-	public void start()
+	public void start(String path)
 	{
-		if(mThread != null)
-			throw new IllegalStateException();
-		mThread = new Thread(this, "nh_thread");
+		mDataDir = path;
 		mThread.start();
 	}
 
@@ -140,33 +127,26 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
-	public void run()
+	private Runnable ThreadMain = new Runnable()
 	{
-		Log.print("start native process");
-		try
+		@Override
+		public void run()
 		{
-			System.loadLibrary("nethack");
-			RunNetHack(mState.getDataDir());
-		}
-		catch(Exception e)
-		{
-			Log.print("EXCEPTED");
-		}
-		Log.print("native process finished");
-		System.exit(0);
-	}
+			Log.print("start native process");
 
-	// ____________________________________________________________________________________
-	public void onCreateContextMenu(ContextMenu menu, View v)
-	{
-		mState.onCreateContextMenu(menu, v);
-	}
-
-	// ____________________________________________________________________________________
-	public void onContextItemSelected(android.view.MenuItem item)
-	{
-		mState.onContextItemSelected(item);
-	}
+			try
+			{
+				System.loadLibrary(mLibraryName);
+				RunNetHack(mDataDir);
+			}
+			catch(Exception e)
+			{
+				Log.print("EXCEPTED");
+			}
+			Log.print("native process finished");
+			System.exit(0);
+		}
+	};
 
 	// ____________________________________________________________________________________
 	int verifyData(int d)
@@ -179,7 +159,7 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	public void sendKeyCmd(char key)
 	{
-		mState.hideDPad();
+		mNhHandler.hideDPad();
 		mCmdQue.add(KeyCmd);
 		mCmdQue.add((int)key);
 	}
@@ -187,7 +167,7 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	public void sendDirKeyCmd(char key)
 	{
-		mState.hideDPad();
+		mNhHandler.hideDPad();
 		mCmdQue.add(PosCmd);
 		mCmdQue.add((int)key);
 		mCmdQue.add(0);
@@ -197,7 +177,7 @@ public class NetHackIO implements Runnable
 	// ____________________________________________________________________________________
 	public void sendPosCmd(int x, int y)
 	{
-		mState.hideDPad();
+		mNhHandler.hideDPad();
 		mCmdQue.add(PosCmd);
 		mCmdQue.add(0);
 		mCmdQue.add(verifyData(x));
@@ -345,6 +325,7 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private int receiveKeyCmd()
 	{
 		int key = 0x80;
@@ -359,6 +340,7 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private int receivePosKeyCmd(int lockMouse, int[] pos)
 	{
 		incReady();
@@ -367,9 +349,10 @@ public class NetHackIO implements Runnable
 		{
 			mHandler.post(new Runnable()
 			{
+				@Override
 				public void run()
 				{
-					mState.lockMouse();
+					mNhHandler.lockMouse();
 				}
 			});
 		}
@@ -397,24 +380,28 @@ public class NetHackIO implements Runnable
 	// ------------------------------------------------------------------------------------
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void debugLog(final byte[] cmsg)
 	{
-		Log.print(CP437.decode(cmsg));
+		Log.print(mDecoder.decode(cmsg));
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void setCursorPos(final int wid, final int x, final int y)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.setCursorPos(wid, x, y);
+				mNhHandler.setCursorPos(wid, x, y);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void putString(final int wid, final int attr, final byte[] cmsg, final int append, final int color)
 	{
 		Chinese ch = new Chinese();
@@ -425,64 +412,74 @@ public class NetHackIO implements Runnable
 
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.putString(wid, attr, msg, append, color);
+				mNhHandler.putString(wid, attr, msg, append, color);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void setHealthColor(final int color)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.setHealthColor(color);
+				mNhHandler.setHealthColor(color);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void redrawStatus()
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.redrawStatus();
+				mNhHandler.redrawStatus();
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void rawPrint(final int attr, final byte[] cmsg)
 	{
-		final String msg = CP437.decode(cmsg);
+		final String msg = mDecoder.decode(cmsg);
 		Log.print(msg);
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.rawPrint(attr, msg);
+				mNhHandler.rawPrint(attr, msg);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void printTile(final int wid, final int x, final int y, final int tile, final int ch, final int col, final int special)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.printTile(wid, x, y, tile, ch, col, special);
+				mNhHandler.printTile(wid, x, y, tile, ch, col, special);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void ynFunction(final byte[] cquestion, final byte[] choices, final int def)
 	{
 		Chinese ch = new Chinese();
@@ -491,15 +488,17 @@ public class NetHackIO implements Runnable
 		//Log.print("nhthread: ynFunction");
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				//Log.print("uithread: ynFunction");
-				mState.ynFunction(question, choices, def);
+				mNhHandler.ynFunction(question, choices, def);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private String getLine(final byte[] title, final int nMaxChars, final int showLog, int reentry)
 	{
 		if(reentry == 0)
@@ -510,10 +509,11 @@ public class NetHackIO implements Runnable
 			//Log.print("nhthread: getLine");
 			mHandler.post(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					//Log.print("uithread: getLine");
-					mState.getLine(msg, nMaxChars, showLog != 0);
+					mNhHandler.getLine(msg, nMaxChars, showLog != 0);
 				}
 			});
 		}
@@ -548,6 +548,7 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void delayOutput()
 	{
 		try
@@ -560,7 +561,7 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
-	// @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	private int createWindow(final int type)
 	{
 		final int wid = mNextWinId++;
@@ -568,63 +569,73 @@ public class NetHackIO implements Runnable
 			mMessageWid = wid;
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.createWindow(wid, type);
+				mNhHandler.createWindow(wid, type);
 			}
 		});
 		return wid;
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void displayWindow(final int wid, final int bBlocking)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.displayWindow(wid, bBlocking);
+				mNhHandler.displayWindow(wid, bBlocking);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void clearWindow(final int wid, final int isRogueLevel)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.clearWindow(wid, isRogueLevel);
+				mNhHandler.clearWindow(wid, isRogueLevel);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void destroyWindow(final int wid)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.destroyWindow(wid);
+				mNhHandler.destroyWindow(wid);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void startMenu(final int wid)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.startMenu(wid);
+				mNhHandler.startMenu(wid);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void addMenu(final int wid, final int tile, final int id, final int acc, final int groupAcc, final int attr, final byte[] text, final int bSelected, final int color)
 	{
 		Chinese ch = new Chinese();
@@ -632,14 +643,16 @@ public class NetHackIO implements Runnable
 		//final String msg = CP437.decode(text);
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.addMenu(wid, tile, id, acc, groupAcc, attr, msg, bSelected, color);
+				mNhHandler.addMenu(wid, tile, id, acc, groupAcc, attr, msg, bSelected, color);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void endMenu(final int wid, final byte[] prompt)
 	{
 		Chinese ch = new Chinese();
@@ -648,15 +661,17 @@ public class NetHackIO implements Runnable
 		//Log.print("nhthread: endMenu");
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
 				//Log.print("uithread: endMenu");
-				mState.endMenu(wid, msg);
+				mNhHandler.endMenu(wid, msg);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private int[] selectMenu(final int wid, final int how, final int reentry)
 	{
 		//Log.print("nhthread: selectMenu");
@@ -664,10 +679,11 @@ public class NetHackIO implements Runnable
 		{
 			mHandler.post(new Runnable()
 			{
+				@Override
 				public void run()
 				{
 					//Log.print("uithread: selectMenu");
-					mState.selectMenu(wid, how);
+					mNhHandler.selectMenu(wid, how);
 				}
 			});
 		}
@@ -705,85 +721,99 @@ public class NetHackIO implements Runnable
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void cliparound(final int x, final int y, final int playerX, final int playerY)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.cliparound(x, y, playerX, playerY);
+				mNhHandler.cliparound(x, y, playerX, playerY);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void askDirection()
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.showDPad();
+				mNhHandler.showDPad();
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void showLog(final int bBlocking)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.showLog(bBlocking);
+				mNhHandler.showLog(bBlocking);
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void editOpts()
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.editOpts();
+				mNhHandler.editOpts();
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void setUsername(final byte[] username)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.setLastUsername(new String(username));
+				mNhHandler.setLastUsername(new String(username));
 			}
 		});
 	}
 
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private void setNumPadOption(final int num_pad)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.setNumPadOption(num_pad != 0);
+				mNhHandler.setNumPadOption(num_pad != 0);
 			}
 		});
 	}
 	
 	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
 	private String askName(final int nMaxChars, final String[] saves)
 	{
 		mHandler.post(new Runnable()
 		{
+			@Override
 			public void run()
 			{
-				mState.askName(nMaxChars, saves);
+				mNhHandler.askName(nMaxChars, saves);
 			}
 		});
 		return waitForLine();

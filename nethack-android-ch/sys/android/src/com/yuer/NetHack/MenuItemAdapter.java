@@ -13,17 +13,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yuer.NetHack.R;
-import com.yuer.NetHack.NHW_Menu.SelectMode;
+import com.yuer.NetHack.MenuItem;
+import com.yuer.NetHack.MenuSelectMode;
+import com.yuer.NetHack.TileDrawable;
+import com.yuer.NetHack.Tileset;
 
 public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 {
 	private ArrayList<MenuItem> mItems;
 	private Context mContext;
 	private Tileset mTileset;
-	private SelectMode mHow;
+	private MenuSelectMode mHow;
 
 	// ____________________________________________________________________________________
-	public MenuItemAdapter(Activity context, int textViewResourceId, ArrayList<MenuItem> items, Tileset tileset, SelectMode how)
+	public MenuItemAdapter(Activity context, int textViewResourceId, ArrayList<MenuItem> items, Tileset tileset, MenuSelectMode how)
 	{
 		super(context, textViewResourceId, items);
 		mItems = items;
@@ -92,7 +95,7 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 					tile.setVisibility(View.INVISIBLE);
 			}
 			CheckBox cb = (CheckBox)v.findViewById(R.id.item_check);
-			if(mHow == SelectMode.PickMany && !item.isHeader())
+			if(mHow == MenuSelectMode.PickMany && !item.isHeader())
 			{
 				cb.setVisibility(View.VISIBLE);
 				cb.setChecked(item.isSelected());

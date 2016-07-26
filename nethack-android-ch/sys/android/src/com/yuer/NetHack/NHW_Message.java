@@ -6,10 +6,6 @@ import com.yuer.NetHack.R;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.text.Spanned;
-import android.text.SpannedString;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -29,6 +25,7 @@ public class NHW_Message implements NH_Window
 	private NHW_Text mLogView;
 	private boolean mIsVisible;
 	private int mWid;
+	private int mOpacity;
 
 	// ____________________________________________________________________________________
 	public NHW_Message(Activity context, NetHackIO io)
@@ -38,12 +35,14 @@ public class NHW_Message implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public String getTitle()
 	{
 		return "NHW_Message";
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void setContext(Activity context)
 	{
 		if(mContext == context)
@@ -65,10 +64,11 @@ public class NHW_Message implements NH_Window
 		KeyEventResult ret;
 		if(isLogShowing() && (ret = mLogView.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput)) != KeyEventResult.IGNORED)
 			return ret;
-		return mUI.handleKeyDown(ch, nhKey, keyCode, modifiers, bSoftInput) ? KeyEventResult.HANDLED : KeyEventResult.IGNORED;
+		return mUI.handleKeyDown(ch) ? KeyEventResult.HANDLED : KeyEventResult.IGNORED;
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void clear()
 	{
 		mDispCount = 0;
@@ -84,6 +84,7 @@ public class NHW_Message implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void printString(int attr, String str, int append, int color)
 	{
 		mCurrentIdx = getIndex(mLogCount - 1);
@@ -105,6 +106,7 @@ public class NHW_Message implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void setCursorPos( int x, int y )
 	{
 	}
@@ -123,12 +125,12 @@ public class NHW_Message implements NH_Window
 		if(mDispCount <= 0)
 			return "";
 		
-		int nLines = Math.min( mDispCount, maxLineCount );
+		int nLines = Math.min(mDispCount, maxLineCount);
 		
 		StringBuilder line = new StringBuilder();
 		for( int i = nLines - 1; i >= 0; i-- ) {
 			int idx = getIndex(mCurrentIdx - i);
-			line.append( mLog[idx] );
+			line.append(mLog[idx]);
 			line.append(' ');
 		}
 		line.append('\n');
@@ -136,6 +138,7 @@ public class NHW_Message implements NH_Window
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public void show(boolean bBlocking)
 	{
 		mIsVisible = true;
@@ -148,6 +151,7 @@ public class NHW_Message implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void destroy()
 	{
 		mIsVisible = false;
@@ -201,9 +205,17 @@ public class NHW_Message implements NH_Window
 	}
 	
 	// ____________________________________________________________________________________
+	@Override
 	public int id()
 	{
 		return mWid;
+	}
+	
+	// ____________________________________________________________________________________
+	public void preferencesUpdated(SharedPreferences prefs)
+	{
+		mOpacity = prefs.getInt("statusOpacity", 0);
+		mUI.updateOpacity();
 	}
 	
 	// ____________________________________________________________________________________ //
@@ -222,11 +234,13 @@ public class NHW_Message implements NH_Window
 			m_more.setVisibility(View.GONE);
 			m_more.setOnClickListener(new OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					showLog(false);
 				}
 			});
+			updateOpacity();
 		}
 
 		// ____________________________________________________________________________________
@@ -268,7 +282,7 @@ public class NHW_Message implements NH_Window
 		}
 
 		// ____________________________________________________________________________________
-		public boolean handleKeyDown(char ch, int nhKey, int keyCode, Set<Input.Modifier> modifiers, boolean bSoftInput)
+		public boolean handleKeyDown(char ch)
 		{
 			if(isMoreVisible() && ch == ' ' && !isLogShowing()) {
 				showLog(false);
@@ -291,6 +305,12 @@ public class NHW_Message implements NH_Window
 					m_view.append(msg);
 				}
 			}
+		}
+		
+		// ____________________________________________________________________________________
+		public void updateOpacity()
+		{
+			m_view.setBackgroundColor(mOpacity << 24);
 		}
 	}
 }

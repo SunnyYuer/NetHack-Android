@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string
+		name="license">
+<![CDATA[
+&nbsp;&nbsp;&nbsp;&nbsp;NetHack GENERAL PUBLIC LICENSE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(Copyright 1989 M. Stephenson)<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Based on the BISON general public license,<br/>
+&nbsp;&nbsp;&nbsp;copyright 1988 Richard M. Stallman)<br/>
+<br/>
+&nbsp;Everyone is permitted to copy and distribute verbatim copies of this<br/>
+&nbsp;license, but changing it is not allowed.  You can also use this wording to<br/>
+&nbsp;make the terms for other programs.<br/>
+<br/>
+&nbsp;&nbsp;The license agreements of most software companies keep you at the mercy of<br/>
+those companies.  By contrast, our general public license is intended to give<br/>
+everyone the right to share NetHack.  To make sure that you get the rights we<br/>
+want you to have, we need to make restrictions that forbid anyone to deny you<br/>
+these rights or to ask you to surrender the rights.  Hence this license<br/>
+agreement.<br/>
+<br/>
+&nbsp;&nbsp;Specifically, we want to make sure that you have the right to give away<br/>
+copies of NetHack, that you receive source code or else can get it if you<br/>
+want it, that you can change NetHack or use pieces of it in new free<br/>
+programs, and that you know you can do these things.<br/>
+<br/>
+&nbsp;&nbsp;To make sure that everyone has such rights, we have to forbid you to<br/>
+deprive anyone else of these rights.  For example, if you distribute copies<br/>
+of NetHack, you must give the recipients all the rights that you have.  You<br/>
+must make sure that they, too, receive or can get the source code.  And you<br/>
+must tell them their rights.<br/>
+<br/>
+&nbsp;&nbsp;Also, for our own protection, we must make certain that everyone finds out<br/>
+that there is no warranty for NetHack.  If NetHack is modified by someone<br/>
+else and passed on, we want its recipients to know that what they have is<br/>
+not what we distributed.<br/>
+<br/>
+&nbsp;&nbsp;Therefore we (Mike Stephenson and other holders of NetHack copyrights) make<br/>
+the following terms which say what you must do to be allowed to distribute or<br/>
+change NetHack.<br/>
+<br/>
+<br/>
+COPYING POLICIES<br/>
+<br/>
+&nbsp;&nbsp;1. You may copy and distribute verbatim copies of NetHack source code as<br/>
+you receive it, in any medium, provided that you keep intact the notices on<br/>
+all files that refer to copyrights, to this License Agreement, and to the<br/>
+absence of any warranty; and give any other recipients of the NetHack<br/>
+program a copy of this License Agreement along with the program.<br/>
+<br/>
+&nbsp;&nbsp;2. You may modify your copy or copies of NetHack or any portion of it, and<br/>
+copy and distribute such modifications under the terms of Paragraph 1 above<br/>
+(including distributing this License Agreement), provided that you also do the<br/>
+following:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a) cause the modified files to carry prominent notices stating that you<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;changed the files and the date of any change; and<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b) cause the whole of any work that you distribute or publish, that in<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;whole or in part contains or is a derivative of NetHack or any part<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;thereof, to be licensed at no charge to all third parties on terms<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;identical to those contained in this License Agreement (except that you<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;may choose to grant more extensive warranty protection to some or all<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;third parties, at your option)<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c) You may charge a distribution fee for the physical act of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;transferring a copy, and you may at your option offer warranty protection<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;in exchange for a fee.<br/>
+<br/>
+&nbsp;&nbsp;3. You may copy and distribute NetHack (or a portion or derivative of it,<br/>
+under Paragraph 2) in object code or executable form under the terms of<br/>
+Paragraphs 1 and 2 above provided that you also do one of the following:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a) accompany it with the complete machine-readable source code, which<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;must be distributed under the terms of Paragraphs 1 and 2 above; or,<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b) accompany it with full information as to how to obtain the complete<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;machine-readable source code from an appropriate archive site.  (This<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;alternative is allowed only for noncommercial distribution.)<br/>
+<br/>
+For these purposes, complete source code means either the full source<br/>
+distribution as originally released over Usenet or updated copies of the<br/>
+files in this distribution used to create the object code or executable.<br/>
+<br/>
+&nbsp;&nbsp;4. You may not copy, sublicense, distribute or transfer NetHack except as<br/>
+expressly provided under this License Agreement.  Any attempt otherwise to<br/>
+copy, sublicense, distribute or transfer NetHack is void and your rights to<br/>
+use the program under this License agreement shall be automatically<br/>
+terminated.  However, parties who have received computer software programs<br/>
+from you with this License Agreement will not have their licenses terminated<br/>
+so long as such parties remain in full compliance.<br/>
+<br/>
+<br/>
+Stated plainly:  You are permitted to modify NetHack, or otherwise use parts<br/>
+of NetHack, provided that you comply with the conditions specified above;<br/>
+in particular, your modified NetHack or program containing parts of NetHack<br/>
+must remain freely available as provided in this License Agreement.  In<br/>
+other words, go ahead and share NetHack, but don\'t try to stop anyone else<br/>
+from sharing it farther.
+]]>
+	</string>
+</resources>

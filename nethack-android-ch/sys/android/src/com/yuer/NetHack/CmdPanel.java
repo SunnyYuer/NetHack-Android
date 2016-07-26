@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Typeface;
@@ -27,7 +28,7 @@ import com.yuer.NetHack.Cmd.KeySequnece;
 
 public class CmdPanel
 {
-	private NetHack mContext;
+	private Activity mContext;
 	private NH_State mState;
 	private LinearLayout mBtnPanel;
 	private Button mContextView;
@@ -42,7 +43,7 @@ public class CmdPanel
 	private int btnSize;
 
 	// ____________________________________________________________________________________
-	public CmdPanel(NetHack context, NH_State state, CmdPanelLayout layout, String cmds, int opacity, int btnSiz)
+	public CmdPanel(Activity context, NH_State state, CmdPanelLayout layout, String cmds, int opacity, int btnSiz)
 	{
 		mContext = context;
 		mState = state;
@@ -115,9 +116,9 @@ public class CmdPanel
 			return createCmdButtonFromCmd(new Cmd.ToggleKeyboard(mState, label));
 		}
 		// special case for menu.
-		if(chars.equalsIgnoreCase("menu")||chars.equals(mContext.getString(R.string.menu)))
+		if(chars.equalsIgnoreCase("menu"))
 		{
-			return createCmdButtonFromCmd(new Cmd.OpenMenu(mContext, label));
+			return createCmdButtonFromCmd(new Cmd.OpenMenu(mState, label));
 		}
 
 		KeySequnece cmd = new Cmd.KeySequnece(mState, chars, label);
@@ -200,7 +201,7 @@ public class CmdPanel
 		else if(mItemId == R.id.add_settings)
 		{
 			int idx = mBtnPanel.indexOfChild(mContextView);
-			mBtnPanel.addView(createCmdButtonFromString("menu", ""), idx);
+			mBtnPanel.addView(createCmdButtonFromString("menu", mContext.getString(R.string.menu)), idx);
 			mLayout.savePanelCmds(this);
 			mContextView = null;
 		}
@@ -275,19 +276,19 @@ public class CmdPanel
 			{
 				String cmd = "";
 				String label = "";
-				switch(mItemId)
+				if(mItemId == R.id.add)
 				{
-				case R.id.add:
 					cmd = mInput.getText().toString();
-				break;
-				case R.id.change:
+				}
+				else if(mItemId == R.id.change)
+				{
 					cmd = mInput.getText().toString();
 					label = ((Cmd)mContextView.getTag()).getLabel();
-				break;
-				case R.id.label:
+				}
+				else if(mItemId == R.id.label)
+				{
 					cmd = ((Cmd)mContextView.getTag()).getCommand();
 					label = mInput.getText().toString();
-				break;
 				}
 				if(mItemId == R.id.change || mItemId == R.id.label)
 					mBtnPanel.removeViewAt(idx);

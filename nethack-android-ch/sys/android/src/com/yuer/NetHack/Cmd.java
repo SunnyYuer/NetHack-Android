@@ -1,11 +1,8 @@
 package com.yuer.NetHack;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumSet;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Handler;
 
 import com.yuer.NetHack.Input.Modifier;
@@ -34,6 +31,7 @@ public interface Cmd
 		}
 
 		// ____________________________________________________________________________________
+		@Override
 		public void execute()
 		{
 			mState.showKeyboard();
@@ -71,23 +69,23 @@ public interface Cmd
 	}
 
 	// ____________________________________________________________________________________
-	public class OpenMenu implements Cmd
+	class OpenMenu implements Cmd
 	{
-		private Activity mContext;
+		private NH_State mState;
 		private String mLabel = "";
 
 		// ____________________________________________________________________________________
-		public OpenMenu(Activity context, String label)
+		public OpenMenu(NH_State state, String label)
 		{
-			mContext = context;
+			mState = state;
 			mLabel = label;
 		}
 
 		// ____________________________________________________________________________________
+		@Override
 		public void execute()
 		{
-			Intent prefsActivity = new Intent(mContext.getBaseContext(), Settings.class);
-			mContext.startActivityForResult(prefsActivity, 42);
+			mState.startPreferences();
 		}
 
 		// ____________________________________________________________________________________
@@ -96,7 +94,7 @@ public interface Cmd
 		{
 			if(mLabel.length() > 0)
 				return mLabel;
-			return mContext.getString(R.string.menu);
+			return "menu";
 		}
 
 		// ____________________________________________________________________________________
@@ -122,7 +120,7 @@ public interface Cmd
 	}
 
 	// ____________________________________________________________________________________
-	public class KeySequnece implements Cmd
+	class KeySequnece implements Cmd
 	{
 		private class KeyCmd
 		{
@@ -175,6 +173,7 @@ public interface Cmd
 		}
 
 		// ____________________________________________________________________________________
+		@Override
 		public void execute()
 		{
 			// Prevent re-entry while already executing the command!
@@ -238,6 +237,20 @@ public interface Cmd
 						mod.add(Input.Modifier.Meta);
 						ch = n;
 						i += 2;
+					}
+				}
+				else if(ch == '\\' && mCommand.length() - i >= 2)
+				{
+					char n = mCommand.charAt(i + 1);
+					if(n == 'e')
+					{
+						ch = '\033';
+						i++;
+					}
+					else if(n == 'n')
+					{
+						ch = '\n';
+						i++;
 					}
 				}
 				mSeq.add(new KeyCmd(ch, mod));

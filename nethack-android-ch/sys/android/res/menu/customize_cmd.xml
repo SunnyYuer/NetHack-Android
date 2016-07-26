@@ -15,7 +15,7 @@
 		android:title="新建命令"/>
 	<item
 		android:id="@+id/add_kbd"
-		android:titleCondensed="Add kbd..."
+		android:titleCondensed="Add kbd"
 		android:title="增加键盘命令"/>
 	<item
 		android:id="@+id/add_settings"

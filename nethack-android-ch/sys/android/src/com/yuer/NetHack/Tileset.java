@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
+import android.preference.PreferenceManager;
 import android.text.TextPaint;
 import android.widget.Toast;
 
@@ -31,11 +32,13 @@ public class Tileset
 	private Context mContext;
 	private boolean mFallbackRenderer;
 	private final Map<Integer, Bitmap> mTileCache = new HashMap<Integer, Bitmap>();
+	private final String mNamespace;
 
 	// ____________________________________________________________________________________
-	public Tileset(NetHack context)
+	public Tileset(Context context)
 	{
 		mContext = context;
+		mNamespace = context.getResources().getString(R.string.namespace);
 	}
 
 	// ____________________________________________________________________________________
@@ -77,8 +80,14 @@ public class Tileset
 			else
 				loadFromResources(tilesetName, r);
 
-			BitmapDrawable bmpDrawable = (BitmapDrawable)r.getDrawable(R.drawable.overlays);
-			mOverlay = bmpDrawable.getBitmap();
+			int id = mContext.getResources().getIdentifier("overlays", "drawable", mNamespace);
+			if(id > 0)
+			{
+				BitmapDrawable bmpDrawable = (BitmapDrawable)r.getDrawable(id);
+				mOverlay = bmpDrawable.getBitmap();
+			}
+			else
+				mOverlay = null;
 
 			if(mBitmap == null || mOverlay == null)
 				TTY = true;
@@ -111,7 +120,7 @@ public class Tileset
 	// ____________________________________________________________________________________
 	private void loadCustomTileset(String tilesetName) {
 		clearBitmap();
-		mBitmap = tryLoadBitmap(getLocalTilesetFile().getPath(), false);
+		mBitmap = tryLoadBitmap(getLocalTilesetFile(mContext).getPath(), false);
 		// Fallback if coming from an old version
 		if(mBitmap == null)
 			mBitmap = tryLoadBitmap(tilesetName, true);
@@ -143,7 +152,7 @@ public class Tileset
 	// ____________________________________________________________________________________
 	private void loadFromResources(String tilesetName, Resources r)
 	{
-		int id = r.getIdentifier(tilesetName, "drawable", "com.yuer.NetHack");
+		int id = r.getIdentifier(tilesetName, "drawable", mNamespace);
 
 		clearBitmap();
 		if(id > 0)
@@ -253,8 +262,9 @@ public class Tileset
 	}
 
 	// ____________________________________________________________________________________
-	public static File getLocalTilesetFile() {
-		File dir = NetHack.getApplicationDir();
+	public static File getLocalTilesetFile(Context context) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		File dir = new File(prefs.getString("datadir", ""));
 		File file = new File(dir, LOCAL_TILESET_NAME);
 		return file;
 	}

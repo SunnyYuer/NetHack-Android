@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.yuer.NetHack.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences.Editor;
@@ -25,7 +23,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 
 public class NH_GetLine
 {
@@ -50,7 +47,7 @@ public class NH_GetLine
 		mContext = context;
 		mTitle = title;
 		mMaxChars = nMaxChars;
-		mUI = new UI(context, loadHistory(), true, true, false);
+		mUI = new UI(context, loadHistory(), true, true, false, !isWishingPrompt());
 	}
 	
 	// ____________________________________________________________________________________
@@ -59,7 +56,7 @@ public class NH_GetLine
 		mContext = context;
 		mTitle = mContext.getString(R.string.WhoAreYou);
 		mMaxChars = nMaxChars;
-		mUI = new UI(context, history, false, false, true);
+		mUI = new UI(context, history, false, false, true, true);
 	}
 
 	// ____________________________________________________________________________________
@@ -67,7 +64,12 @@ public class NH_GetLine
 	{
 		mContext = context;
 		if(mUI != null)
-			mUI = new UI(context, mUI.mHistory, mUI.mSaveHistory, mUI.mSaveHistory, mUI.mShowWizard);
+			mUI = new UI(context, mUI.mHistory, mUI.mSaveHistory, mUI.mSaveHistory, mUI.mShowWizard, !isWishingPrompt());
+	}
+
+	private boolean isWishingPrompt()
+	{
+		return mTitle.contains("For what do you wish");
 	}
 
 	// ____________________________________________________________________________________
@@ -132,7 +134,7 @@ public class NH_GetLine
 		public boolean mShowWizard;
 
 		// ____________________________________________________________________________________
-		public UI(Activity context, List<String> history, boolean saveHistory, boolean showKeyboard, boolean showWizard)
+		public UI(Activity context, List<String> history, boolean saveHistory, boolean showKeyboard, boolean showWizard, boolean initWithHistory)
 		{
 			mContext = context;
 			
@@ -140,11 +142,12 @@ public class NH_GetLine
 			mHistory = history;
 			mShowWizard = showWizard;
 
-			mRoot = (View)Util.inflate(context, R.layout.dialog_getline, R.id.dlg_frame);
+			mRoot = Util.inflate(context, R.layout.dialog_getline, R.id.dlg_frame);
 			mInput = (EditText)mRoot.findViewById(R.id.input);
 			mInput.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(mMaxChars) });
 			mInput.setOnKeyListener(new OnKeyListener()
 			{
+				@Override
 				public boolean onKey(View v, int keyCode, KeyEvent event)
 				{
 					if(event.getAction() != KeyEvent.ACTION_DOWN)
@@ -184,6 +187,7 @@ public class NH_GetLine
 
 			mRoot.findViewById(R.id.history).setOnClickListener(new OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					if(v != null)
@@ -205,6 +209,7 @@ public class NH_GetLine
 
 			mHistoryList.setOnItemClickListener(new OnItemClickListener()
 			{
+				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 				{
 					mInput.setText(mAdapter.getItem(position));
@@ -216,6 +221,7 @@ public class NH_GetLine
 
 			mHistoryList.setOnKeyListener(new OnKeyListener()
 			{
+				@Override
 				public boolean onKey(View v, int keyCode, KeyEvent event)
 				{
 					return false;
@@ -224,6 +230,7 @@ public class NH_GetLine
 			
 			mRoot.findViewById(R.id.btn_0).setOnClickListener(new OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					if(v != null)
@@ -234,6 +241,7 @@ public class NH_GetLine
 			});
 			mRoot.findViewById(R.id.btn_1).setOnClickListener(new OnClickListener()
 			{
+				@Override
 				public void onClick(View v)
 				{
 					cancel();
@@ -243,7 +251,7 @@ public class NH_GetLine
 			mState.hideControls();
 			mInput.requestFocus();
 			
-			if(mHistory.size() > 0)
+			if(initWithHistory && mHistory.size() > 0)
 				mInput.setText(mHistory.get(0));
 			mInput.selectAll();
 			
@@ -275,6 +283,13 @@ public class NH_GetLine
 			default:
 				if(ch == '\033')
 					cancel();
+				else if(bSoftInput)
+				{
+					if(mInput.hasSelection())
+						mInput.setText(mInput.getText().replace(mInput.getSelectionStart(), mInput.getSelectionEnd(), ""));
+					mInput.append(""+ch);
+					return KeyEventResult.HANDLED;
+				}
 				else
 					return KeyEventResult.RETURN_TO_SYSTEM;
 			}

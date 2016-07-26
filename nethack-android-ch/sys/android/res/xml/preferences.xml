@@ -2,7 +2,8 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android">
 	<PreferenceCategory
-		android:title="设置">
+		android:title="设置"
+		android:key="settings">
 		<PreferenceScreen
 			android:title="地图风格"
 			android:summary="游戏的图形视觉效果">
@@ -14,20 +15,6 @@
 				android:layout="@layout/tileset_select_menu"/>
 
 		</PreferenceScreen>
-
-		<CheckBoxPreference
-			android:title="使用回退渲染"
-			android:summary="如果你遇到渲染问题就检查这个"
-			android:persistent="true"
-			android:defaultValue="false"
-			android:key="fallbackRenderer"/>
-
-		<CheckBoxPreference
-			android:title="重置命令面板"
-			android:summary="将命令面板的排列重设为默认"
-			android:persistent="true"
-			android:defaultValue="false"
-			android:key="reset"/>
 
 		<CheckBoxPreference
 			android:title="全屏"
@@ -69,11 +56,16 @@
                 android:persistent="true"
                 android:defaultValue="true"
                 android:key="lockView"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-		android:title="高级设置">
+        
+        <com.yuer.NetHack.SliderPreference
+			android:title="状态背景透明度"
+			android:summary="状态行的背景透明度"
+			android:persistent="true"
+			android:key="statusOpacity"
+			android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
+			android:defaultValue="0"
+			android:text=""
+			android:max="255"/>
         
         <ListPreference
 				android:title="按钮大小"
@@ -130,6 +122,12 @@
 				android:text=""
 				android:max="255"/>
 			
+			<CheckBoxPreference
+				android:title="允许地图输入"
+				android:summary="当方向键显示时允许点击地图输入方向"
+				android:persistent="true"
+				android:key="allowMapDir"
+				android:defaultValue="false"/>
 			
 		</PreferenceScreen>
 		
@@ -168,7 +166,7 @@
 					android:title="命令按钮"
 					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="#|扩展 ... .|休息 ,|拾取 i|物品 s|搜索 ^P|消息 ^X|属性 10. 10s"
+					android:defaultValue="@string/DefaultPanel"
 					android:singleLine="false"
 					android:key="pCmdString0"/>
 	
@@ -526,9 +524,23 @@
 			</PreferenceScreen>
 			
 		</PreferenceScreen>
+		
+		<CheckBoxPreference
+			android:title="重置命令面板"
+			android:summary="将命令面板的排列重设为默认"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="reset"/>
+		
+	</PreferenceCategory>
+
+	<PreferenceCategory
+		android:title="高级设置"
+		android:key="advanced">
 
 		<PreferenceScreen
 			android:title="Hearse"
+			android:key="hearse"
 			android:summary="在网络上分享bones文件">
 
 			<CheckBoxPreference
@@ -584,13 +596,20 @@
 		<com.yuer.NetHack.EditFilePreference
 			android:title="编辑配置文件"
 			android:summary="在'defaults.nh'中手动设置特别的选项"/>
+		
+		<CheckBoxPreference
+			android:title="使用回退渲染"
+			android:summary="如果你遇到渲染问题就检查这个"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="fallbackRenderer"/>
 	
 	</PreferenceCategory>
 
 	<PreferenceCategory
 		android:title="关于">
-
-		<PreferenceScreen
+		
+	    <PreferenceScreen
 			android:title="介绍"
 			android:summary="如何操作">
 
@@ -599,24 +618,14 @@
 				android:summary="如何操作"/>
 
 		</PreferenceScreen>
-
-		<PreferenceScreen
+		
+	    <PreferenceScreen
 			android:title="License"
 			android:summary="NETHACK GENERAL PUBLIC LICENSE">
 
 			<com.yuer.NetHack.TextViewPreference
 				android:title="License"
 				android:summary="NETHACK GENERAL PUBLIC LICENSE"/>
-		</PreferenceScreen>
-
-		<PreferenceScreen
-			android:title="历史"
-			android:summary="NetHack的历史">
-
-			<com.yuer.NetHack.TextViewPreference
-				android:title="History"
-				android:summary="NetHack的历史"/>
-
 		</PreferenceScreen>
 
 		<PreferenceScreen
