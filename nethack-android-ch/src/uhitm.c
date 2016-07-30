@@ -648,7 +648,7 @@ int thrown; /* HMON_xxx (0 => hand-to-hand, other => ranged) */
                 } else if (mon->mflee && Role_if(PM_ROGUE) && !Upolyd
                            /* multi-shot throwing is too powerful here */
                            && hand_to_hand) {
-                    You("strike %s from behind!", mon_nam(mon));
+                    You("从后面打击 %s!", mon_nam(mon));
                     tmp += rnd(u.ulevel);
                     hittxt = TRUE;
                 } else if (dieroll == 2 && obj == uwep
@@ -1903,7 +1903,7 @@ register struct attack *mattk;
             case AD_DGST:
                 /* eating a Rider or its corpse is fatal */
                 if (is_rider(pd)) {
-                    pline("Unfortunately, digesting any of it is fatal.");
+                    pline("不幸的是, 消化它的任何东西都是致命的.");
                     end_engulf();
                     Sprintf(killer.name, "试图不明智地吃%s",
                             pd->mname);
@@ -2377,9 +2377,9 @@ boolean wep_was_destroyed;
         /* wrath of gods for attacking Oracle */
         if (Antimagic) {
             shieldeff(u.ux, u.uy);
-            pline("A hail of magic missiles narrowly misses you!");
+            pline("一阵魔法飞弹勉强没打中你!");
         } else {
-            You("are hit by magic missiles appearing from thin air!");
+            You("被稀薄空气中出现的魔法飞弹打中了!");
             mdamageu(mon, tmp);
         }
         break;

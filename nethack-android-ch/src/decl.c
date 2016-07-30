@@ -240,22 +240,22 @@ const char *c_obj_colors[] = {
 struct c_common_strings c_common_strings = { "无事发生.",
                                              "试得足够多了!",
                                              "%s那个是件傻傻的事.",
-                                             "shudder for a moment.",
+                                             "颤抖了片刻.",
                                              "什么东西",
                                              "什么东西",
                                              "你可以移动了.",
                                              "不用了.",
-                                             "vision quickly clears.",
+                                             "视野迅速清晰了.",
                                              { "", "你的" } };
 
 /* NOTE: the order of these words exactly corresponds to the
    order of oc_material values #define'd in objclass.h. */
-const char *materialnm[] = { "mysterious", "liquid",  "wax",        "organic",
-                             "flesh",      "paper",   "cloth",      "leather",
-                             "wooden",     "bone",    "dragonhide", "iron",
-                             "metal",      "copper",  "silver",     "gold",
-                             "platinum",   "mithril", "plastic",    "glass",
-                             "gemstone",   "stone" };
+const char *materialnm[] = { "神秘的", "透明的",  "蜡制的",        "有机的",
+                             "肉",      "纸",   "布",      "皮革",
+                             "木",     "骨",    "龙皮", "铁",
+                             "金属",      "铜",  "银",     "金",
+                             "白金",   "秘银", "塑料",    "玻璃",
+                             "宝石",   "石" };
 
 /* Vision */
 NEARDATA boolean vision_full_recalc = 0;

@@ -1213,8 +1213,8 @@ dokick() {
                 exercise(A_DEX, TRUE);
                 return 1;
             } else if (!rn2(3)) {
-                pline("Flupp!  %s.",
-                      (Blind ? "你听见摇晃的声音"
+                pline("泼溅声!  %s.",
+                      (Blind ? "你听见泼溅的声音"
                              : "泥泞的垃圾从下水道出来"));
                 if (!(maploc->looted & S_LRING)) { /* once per sink */
                     if (!Blind)

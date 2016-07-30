@@ -760,11 +760,11 @@ doengrave()
                 type = BURN;
                 if (!objects[otmp->otyp].oc_name_known) {
                     if (flags.verbose)
-                        pline("这个%s是一把光亮魔杖!", xname(otmp));
+                        pline("这个%s是一把闪电魔杖!", xname(otmp));
                     doknown = TRUE;
                 }
                 if (!Blind) {
-                    Strcpy(post_engr_text, "魔杖发出光亮弧线.");
+                    Strcpy(post_engr_text, "魔杖发出闪电弧线.");
                     doblind = TRUE;
                 } else
                     Strcpy(post_engr_text, "你听到喀啦声!");
@@ -784,7 +784,7 @@ doengrave()
                     zapwand = TRUE;
                 /* empty wand just doesn't write */
                 else
-                    pline_The("wand is too worn out to engrave.");
+                    pline_The("魔杖太破旧了不能刻写.");
             }
         }
         break;

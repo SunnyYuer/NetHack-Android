@@ -810,7 +810,7 @@ coord *cc;
              * digging makes a hole, but the boulder immediately
              * fills it.  Final outcome:  no hole, no boulder.
              */
-            pline("KADOOM! 巨石掉进去!");
+            pline("咚! 巨石掉进去!");
             (void) delfloortrap(ttmp);
         }
         delobj(boulder_here);
@@ -1804,7 +1804,7 @@ boolean *dealloced;
         unpunish();
         u.utrap = rn1(50, 20);
         u.utraptype = TT_BURIEDBALL;
-        pline_The("iron ball gets buried!");
+        pline_The("铁球被掩埋了!");
     }
     /* after unpunish(), or might get deallocated chain */
     otmp2 = otmp->nexthere;

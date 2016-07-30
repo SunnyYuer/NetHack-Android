@@ -835,7 +835,7 @@ struct obj *obj, *otmp; /* obj *is* a box */
     case WAN_LOCKING:
     case SPE_WIZARD_LOCK:
         if (!obj->olocked) { /* lock it; fix if broken */
-            pline("Klunk!");
+            pline("哐啷!");
             obj->olocked = 1;
             obj->obroken = 0;
             if (Role_if(PM_WIZARD))
@@ -848,7 +848,7 @@ struct obj *obj, *otmp; /* obj *is* a box */
     case WAN_OPENING:
     case SPE_KNOCK:
         if (obj->olocked) { /* unlock; couldn't be broken */
-            pline("Klick!");
+            pline("咔玲!");
             obj->olocked = 0;
             res = 1;
             if (Role_if(PM_WIZARD))

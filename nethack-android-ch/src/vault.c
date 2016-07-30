@@ -385,7 +385,7 @@ invault()
         }
 
         if (!strcmpi(buf, "Croesus") || !strcmpi(buf, "Kroisos")
-            || !strcmpi(buf, "Creosote")) {
+            || !strcmpi(buf, "Creosote") || !strcmpi(buf, "克罗伊斯")) {
             if (!mvitals[PM_CROESUS].died) {
                 verbalize(
                     "哦, 是的, 当然.  抱歉打扰你了.");

@@ -183,7 +183,7 @@ struct obj *spellbook;
     if (!rn2(3) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
         spellbook->in_use = TRUE; /* in case called from learn */
         pline(
-         "Being confused you have difficulties in controlling your actions.");
+         "于混乱中你很难控制你的行动.");
         display_nhwindow(WIN_MESSAGE, FALSE);
         You("不小心把书撕碎了.");
         if (!objects[spellbook->otyp].oc_name_known
@@ -374,7 +374,7 @@ learn(VOID_ARGS)
             /* reset spestudied as if polymorph had taken place */
             book->spestudied = rn2(book->spestudied);
         } else if (spellknow(i) > KEEN / 10) {
-            You("已经了解%s非常好了.", splname);
+            You("已经了解%s 非常好了.", splname);
             costly = FALSE;
         } else { /* spellknow(i) <= KEEN/10 */
             Your("对%s的熟悉%s.", splname,

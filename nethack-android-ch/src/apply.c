@@ -3157,7 +3157,7 @@ struct obj *obj;
         goto discard_broken_wand;
     case WAN_STRIKING:
         /* we want this before the explosion instead of at the very end */
-        pline("A wall of force smashes down around you!");
+        pline("力墙被打碎倒在你周围!");
         dmg = d(1 + obj->spe, 6); /* normally 2d12 */
         /*FALLTHRU*/
     case WAN_CANCELLATION:

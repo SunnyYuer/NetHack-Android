@@ -175,7 +175,7 @@ eatmupdate()
         /* won't happen; anything which might make immobilized
            hero begin hallucinating (black light attack, theft
            of Grayswandir) will terminate the mimicry first */
-        altmsg = "Your rind escaped intact.";
+        altmsg = "你的皮不能完好无损.";
         altapp = ORANGE;
     }
 
@@ -550,7 +550,7 @@ int *dmg_p; /* for dishing out extra damage in lieu of Int loss */
                 killer.format = KILLED_BY;
                 done(DIED);
                 /* amulet of life saving has now been used up */
-                pline("Unfortunately your brain is still gone.");
+                pline("不幸的是你的大脑仍然是无脑的.");
                 /* sanity check against adding other forms of life-saving */
                 u.uprops[LIFESAVED].extrinsic =
                     u.uprops[LIFESAVED].intrinsic = 0L;
@@ -827,7 +827,7 @@ register struct permonst *ptr;
     case FIRE_RES:
         debugpline0("Trying to give fire resistance");
         if (!(HFire_resistance & FROMOUTSIDE)) {
-            You(Hallucination ? "是chillin'." : "感觉短暂的寒冷.");
+            You(Hallucination ? "是寒冷的'." : "感觉短暂的寒冷.");
             HFire_resistance |= FROMOUTSIDE;
         }
         break;
@@ -2985,7 +2985,7 @@ vomit() /* A good idea from David Neves */
     if (cantvomit(youmonst.data))
         /* doesn't cure food poisoning; message assumes that we aren't
            dealing with some esoteric body_part() */
-        Your("jaw gapes convulsively.");
+        Your("下巴痉挛性地张开.");
     else
         make_sick(0L, (char *) 0, TRUE, SICK_VOMITABLE);
     nomul(-2);

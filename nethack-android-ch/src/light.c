@@ -666,11 +666,11 @@ struct obj *obj;
 {
     switch (arti_light_radius(obj)) {
     case 3:
-        return "brilliantly"; /* blessed */
+        return "灿烂的"; /* blessed */
     case 2:
-        return "brightly"; /* uncursed */
+        return "明亮的"; /* uncursed */
     case 1:
-        return "dimly"; /* cursed */
+        return "昏暗的"; /* cursed */
     default:
         break;
     }

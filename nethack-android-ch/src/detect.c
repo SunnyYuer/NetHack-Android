@@ -884,10 +884,10 @@ static const struct {
     const char *what;
     d_level *where;
 } level_detects[] = {
-    { "Delphi", &oracle_level },
-    { "Medusa's lair", &medusa_level },
-    { "a castle", &stronghold_level },
-    { "the Wizard of Yendor's tower", &wiz1_level },
+    { "德尔斐", &oracle_level },
+    { "美杜莎的巢穴", &medusa_level },
+    { "一座城堡", &stronghold_level },
+    { "岩德巫师之塔", &wiz1_level },
 };
 
 void

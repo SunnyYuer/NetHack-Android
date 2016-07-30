@@ -577,7 +577,7 @@ struct obj *obj; /* only scatter this obj        */
             && ((otmp->otyp == BOULDER) || (otmp->otyp == STATUE))
             && rn2(10)) {
             if (otmp->otyp == BOULDER) {
-                pline("%s apart.", Tobjnam(otmp, "break"));
+                pline("%s开了.", Tobjnam(otmp, "裂"));
                 fracture_rock(otmp);
                 place_object(otmp, sx, sy);
                 if ((otmp = sobj_at(BOULDER, sx, sy)) != 0) {
@@ -590,7 +590,7 @@ struct obj *obj; /* only scatter this obj        */
 
                 if ((trap = t_at(sx, sy)) && trap->ttyp == STATUE_TRAP)
                     deltrap(trap);
-                pline("%s.", Tobjnam(otmp, "crumble"));
+                pline("%s了.", Tobjnam(otmp, "粉碎"));
                 (void) break_statue(otmp);
                 place_object(otmp, sx, sy); /* put fragments on floor */
             }

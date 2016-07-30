@@ -785,7 +785,7 @@ register struct attack *mattk;
             return MM_AGR_DIED;
         }
         if (flags.verbose && !Deaf)
-            verbalize("Burrrrp!");
+            verbalize("嗝!");
         tmp = mdef->mhp;
         /* Use up amulet of life saving */
         if (!!(obj = mlifesaver(mdef)))

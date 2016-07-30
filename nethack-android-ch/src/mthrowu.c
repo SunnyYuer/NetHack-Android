@@ -642,7 +642,7 @@ struct monst *mtmp;
         } else {
             /* "an arrow" */
             onm = singular(otmp, xname);
-            onm = obj_is_pname(otmp) ? the(onm) : an(onm);
+            onm = obj_is_pname(otmp) ? the(onm) : onm;
         }
         m_shot.s = ammo_and_launcher(otmp, mwep) ? TRUE : FALSE;
         pline("%s %s %s!", Monnam(mtmp), m_shot.s ? "射击" : "投掷", onm);

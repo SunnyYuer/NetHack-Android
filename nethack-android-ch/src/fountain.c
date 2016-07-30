@@ -580,7 +580,7 @@ drinksink()
         newexplevel();
         break;
     case 9:
-        pline("Gaggg...  这尝起来像污水!  你呕吐了.");
+        pline("呕...  这尝起来像污水!  你呕吐了.");
         morehungry(rn1(30 - ACURR(A_CON), 11));
         vomit();
         break;

@@ -1140,7 +1140,7 @@ register struct obj *otmp;
         } else {
             changed = TRUE; /* !was_blind */
             /* "You were wearing the Eyes of the Overworld." */
-            You_cant("see anything now!");
+            You_cant("看见任何东西了!");
             /* set ball&chain variables before the hero goes blind */
             if (Punished)
                 set_bc(0);

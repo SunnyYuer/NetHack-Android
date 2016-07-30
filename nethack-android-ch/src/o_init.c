@@ -426,7 +426,7 @@ dodiscovered() /* free after Robert Viduya */
     for (i = dis = 0; i < SIZE(uniq_objs); i++)
         if (objects[uniq_objs[i]].oc_name_known) {
             if (!dis++)
-                putstr(tmpwin, iflags.menu_headings, "Unique items");
+                putstr(tmpwin, iflags.menu_headings, "稀有物品");
             Sprintf(buf, "  %s", OBJ_NAME(objects[uniq_objs[i]]));
             putstr(tmpwin, 0, buf);
             ++ct;
@@ -462,7 +462,7 @@ dodiscovered() /* free after Robert Viduya */
         }
     }
     if (ct == 0) {
-        You("haven't discovered anything yet...");
+        You("目前还没有发现任何物品...");
     } else
         display_nhwindow(tmpwin, TRUE);
     destroy_nhwindow(tmpwin);
@@ -491,7 +491,7 @@ doclassdisco()
     static NEARDATA const char
         prompt[] = "查看已发现的哪类物品?",
         havent_discovered_any[] = "还没有发现任何 %s.",
-        unique_items[] = "独特物品",
+        unique_items[] = "稀有物品",
         artifact_items[] = "神器";
     char *s, c, oclass, menulet, allclasses[MAXOCLASSES],
         discosyms[2 + MAXOCLASSES + 1], buf[BUFSZ];
@@ -556,7 +556,7 @@ doclassdisco()
 
     /* there might not be anything for us to do... */
     if (!discosyms[0]) {
-        You(havent_discovered_any, "items");
+        You(havent_discovered_any, "物品");
         if (tmpwin != WIN_ERR)
             destroy_nhwindow(tmpwin);
         return 0;
@@ -699,9 +699,9 @@ rename_disco()
         }
     }
     if (ct == 0) {
-        You("haven't discovered anything yet...");
+        You("目前还没有发现任何物品...");
     } else if (mn == 0) {
-        pline("None of your discoveries can be assigned names...");
+        pline("你的发现物没有一个能被指定名字...");
     } else {
         end_menu(tmpwin, "选择一个对象来命名");
         dis = STRANGE_OBJECT;

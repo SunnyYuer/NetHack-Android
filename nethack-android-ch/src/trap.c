@@ -1792,7 +1792,7 @@ int style;
                 case LANDMINE:
                     if (rn2(10) > 2) {
                         pline(
-                            "KAABLAMM!!!%s",
+                            "嘣!!!%s",
                             cansee(bhitpos.x, bhitpos.y)
                                 ? " 滚动的巨石触发了一个地雷."
                                 : "");
@@ -2558,11 +2558,11 @@ register struct monst *mtmp;
                 }
             } else if (in_sight) {
                 newsym(mtmp->mx, mtmp->my);
-                pline("KAABLAMM!!!  %s 触发了%s地雷!", Monnam(mtmp),
+                pline("嘣!!!  %s 触发了%s地雷!", Monnam(mtmp),
                       a_your[trap->madeby_u]);
             }
             if (!in_sight)
-                pline("Kaablamm!  你听见远处的爆炸声!");
+                pline("嘣!  你听见远处的爆炸声!");
             blow_up_landmine(trap);
             /* explosion might have destroyed a drawbridge; don't
                dish out more damage if monster is already dead */
@@ -3074,7 +3074,7 @@ domagictrap()
 
         /* odd feelings */
         case 13:
-            pline("A shiver runs up and down your %s!", body_part(SPINE));
+            pline("颤抖在你的%s里跑上跑下!", body_part(SPINE));
             break;
         case 14:
             You_hear(Hallucination ? "月亮在对你嚎叫."
@@ -4534,7 +4534,7 @@ boolean disarm;
 
     otmp->otrapped = 0; /* trap is one-shot; clear flag first in case
                            chest kills you and ends up in bones file */
-    You(disarm ? "set it off!" : "trigger a trap!");
+    You(disarm ? "触发了它!" : "触发了一个陷阱!");
     display_nhwindow(WIN_MESSAGE, FALSE);
     if (Luck > -13 && rn2(13 + Luck) > 7) { /* saved by luck */
         /* trap went off, but good luck prevents damage */

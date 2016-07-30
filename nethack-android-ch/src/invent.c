@@ -2628,7 +2628,7 @@ dotypeinv()
                 break;
             case 'X':
                 You(
-          "have no objects whose blessed/uncursed/cursed status is unknown.");
+          "没有受祝福的/ 未被诅咒的/ 被诅咒的 状态未知的物品.");
                 break; /* better phrasing is desirable */
             default:
                 which = "这种";

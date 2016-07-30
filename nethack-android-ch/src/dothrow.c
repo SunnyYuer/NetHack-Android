@@ -917,7 +917,7 @@ boolean hitsroof;
         if (uarmh) {
             if (less_damage && dmg < (Upolyd ? u.mh : u.uhp)) {
                 if (!artimsg)
-                    pline("Fortunately, you are wearing a hard helmet.");
+                    pline("幸运的是, 你戴着一个坚硬的头盔.");
                 /* helmet definitely protects you when it blocks petrification
                  */
             } else if (!petrifier) {

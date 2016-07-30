@@ -316,7 +316,7 @@ found:
            have passed the write-an-unknown scroll test
            above we can still fail this one, so it's doubly
            hard to write an unknown scroll while blind */
-        You("fail to write the scroll correctly and it disappears.");
+        You("无法正确地写卷轴然后它消失了.");
         useup(paper);
         obfree(new_obj, (struct obj *) 0);
         return 1;
