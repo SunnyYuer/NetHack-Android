@@ -11,7 +11,7 @@
 static const char
     *const plusattr[] = { "强壮", "聪明", "博学",  //力量 智力 感知
                           "灵活",  "结实", "迷人" },  //敏捷 体质 魅力
-    *const minusattr[] = { "无力",    "愚蠢",  //力量 智力
+    *const minusattr[] = { "无力", "愚蠢",  //力量 智力
                            "无知", "笨拙",  //感知 敏捷
                            "体弱", "丑恶" };  //体质 魅力
 
@@ -21,69 +21,69 @@ static const struct innate {
     const char *gainstr, *losestr;
 } arc_abil[] = { { 1, &(HStealth), "", "" },
                  { 1, &(HFast), "", "" },
-                 { 10, &(HSearching), "perceptive", "" },
+                 { 10, &(HSearching), "感知", "" },//
                  { 0, 0, 0, 0 } },
 
   bar_abil[] = { { 1, &(HPoison_resistance), "", "" },
-                 { 7, &(HFast), "quick", "slow" },
-                 { 15, &(HStealth), "stealthy", "" },
+                 { 7, &(HFast), "敏捷", "笨拙" }//quick，slow
+                 { 15, &(HStealth), "轻捷的", "" },//stealthy
                  { 0, 0, 0, 0 } },
 
-  cav_abil[] = { { 7, &(HFast), "quick", "slow" },
-                 { 15, &(HWarning), "sensitive", "" },
+  cav_abil[] = { { 7, &(HFast), "敏捷", "笨拙" },
+                 { 15, &(HWarning), "敏感的", "" },//sensitive
                  { 0, 0, 0, 0 } },
 
   hea_abil[] = { { 1, &(HPoison_resistance), "", "" },
-                 { 15, &(HWarning), "sensitive", "" },
+                 { 15, &(HWarning), "敏感的", "" },
                  { 0, 0, 0, 0 } },
 
-  kni_abil[] = { { 7, &(HFast), "quick", "slow" }, { 0, 0, 0, 0 } },
+  kni_abil[] = { { 7, &(HFast), "敏捷", "笨拙" }, { 0, 0, 0, 0 } },
 
   mon_abil[] = { { 1, &(HFast), "", "" },
                  { 1, &(HSleep_resistance), "", "" },
                  { 1, &(HSee_invisible), "", "" },
-                 { 3, &(HPoison_resistance), "healthy", "" },
-                 { 5, &(HStealth), "stealthy", "" },
-                 { 7, &(HWarning), "sensitive", "" },
-                 { 9, &(HSearching), "perceptive", "unaware" },
-                 { 11, &(HFire_resistance), "cool", "warmer" },
-                 { 13, &(HCold_resistance), "warm", "cooler" },
-                 { 15, &(HShock_resistance), "insulated", "conductive" },
-                 { 17, &(HTeleport_control), "controlled", "uncontrolled" },
+                 { 3, &(HPoison_resistance), "健康的", "" },
+                 { 5, &(HStealth), "轻捷的", "" },
+                 { 7, &(HWarning), "敏感的", "" },
+                 { 9, &(HSearching), "有感知的", "无知的" },
+                 { 11, &(HFire_resistance), "冷的", "热的" },
+                 { 13, &(HCold_resistance), "暖和的", "寒冷的" },
+                 { 15, &(HShock_resistance), "绝缘的", "导电的" },
+                 { 17, &(HTeleport_control), "可控的", "失控的" },
                  { 0, 0, 0, 0 } },
 
-  pri_abil[] = { { 15, &(HWarning), "sensitive", "" },
-                 { 20, &(HFire_resistance), "cool", "warmer" },
+  pri_abil[] = { { 15, &(HWarning), "敏感的", "" },
+                 { 20, &(HFire_resistance), "寒冷的", "温暖的" },
                  { 0, 0, 0, 0 } },
 
   ran_abil[] = { { 1, &(HSearching), "", "" },
-                 { 7, &(HStealth), "stealthy", "" },
+                 { 7, &(HStealth), "轻捷的", "" },
                  { 15, &(HSee_invisible), "", "" },
                  { 0, 0, 0, 0 } },
 
   rog_abil[] = { { 1, &(HStealth), "", "" },
-                 { 10, &(HSearching), "perceptive", "" },
+                 { 10, &(HSearching), "有感知的", "" },
                  { 0, 0, 0, 0 } },
 
   sam_abil[] = { { 1, &(HFast), "", "" },
-                 { 15, &(HStealth), "stealthy", "" },
+                 { 15, &(HStealth), "轻捷的", "" },
                  { 0, 0, 0, 0 } },
 
-  tou_abil[] = { { 10, &(HSearching), "perceptive", "" },
-                 { 20, &(HPoison_resistance), "hardy", "" },
+  tou_abil[] = { { 10, &(HSearching), "有感知的", "" },
+                 { 20, &(HPoison_resistance), "强壮的", "" },
                  { 0, 0, 0, 0 } },
 
   val_abil[] = { { 1, &(HCold_resistance), "", "" },
                  { 1, &(HStealth), "", "" },
-                 { 7, &(HFast), "quick", "slow" },
+                 { 7, &(HFast), "快的", "慢的" },
                  { 0, 0, 0, 0 } },
 
-  wiz_abil[] = { { 15, &(HWarning), "sensitive", "" },
-                 { 17, &(HTeleport_control), "controlled", "uncontrolled" },
+  wiz_abil[] = { { 15, &(HWarning), "敏感的", "" },
+                 { 17, &(HTeleport_control), "可控的", "失控的" },
                  { 0, 0, 0, 0 } },
 
   /* Intrinsics conferred by race */
-    elf_abil[] = { { 4, &(HSleep_resistance), "awake", "tired" },
+    elf_abil[] = { { 4, &(HSleep_resistance), "警惕的", "困倦的" },//awake，tired
                    { 0, 0, 0, 0 } },
 
   orc_abil[] = { { 1, &(HPoison_resistance), "", "" }, { 0, 0, 0, 0 } };
@@ -108,7 +108,7 @@ int msgflg; /* positive => no message, zero => message, and */
 
     if ((ndx == A_INT || ndx == A_WIS) && uarmh && uarmh->otyp == DUNCE_CAP) {
         if (msgflg == 0)
-            Your("cap constricts briefly, then relaxes again.");
+            Your("帽子短暂的收缩，然后放松了。");
         return FALSE;
     }
 
@@ -196,12 +196,12 @@ static const struct poison_effect_message {
     void VDECL((*delivery_func), (const char *, ...));
     const char *effect_msg;
 } poiseff[] = {
-    { You_feel, "weaker" },             /* A_STR */
-    { Your, "brain is on fire" },       /* A_INT */
-    { Your, "judgement is impaired" },  /* A_WIS */
-    { Your, "muscles won't obey you" }, /* A_DEX */
-    { You_feel, "very sick" },          /* A_CON */
-    { You, "break out in hives" }       /* A_CHA */
+    { You_feel, "虚弱" },             /* A_STR weaker*/
+    { Your, "大脑失火" },       /* A_INT brain is on fire*/
+    { Your, "判断力减弱" },  /* A_WIS */
+    { Your, "无法控制肌肉" }, /* A_DEX */
+    { You_feel, "非常恶心" },          /* A_CON */
+    { You, "发麻疹" }       /* A_CHA break out in hives或者浑身沸腾*/
 };
 
 /* feedback for attribute loss due to poisoning */
@@ -229,7 +229,7 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
     /* inform player about being poisoned unless that's already been done;
        "blast" has given a "blast of poison gas" message; "poison arrow",
        "poison dart", etc have implicitly given poison messages too... */
-    if (strcmp(reason, "blast") && !strstri(reason, "poison")) {
+    if (strcmp(reason, "爆炸") && !strstri(reason, "毒药")) {
         boolean plural = (reason[strlen(reason) - 1] == 's') ? 1 : 0;
 
         /* avoid "The" Orcus's sting was poisoned... */
@@ -396,7 +396,7 @@ exerper()
                                                                  ? WEAK
                                                                  : FAINTING;
 
-        debugpline0("exerper: Hunger checks");
+        debugpline0("exerper: 饥饿检测");
         switch (hs) {
         case SATIATED:
             exercise(A_DEX, FALSE);
@@ -418,7 +418,7 @@ exerper()
         }
 
         /* Encumbrance Checks */
-        debugpline0("exerper: Encumber checks");
+        debugpline0("exerper: 负重检测");
         switch (near_capacity()) {
         case MOD_ENCUMBER:
             exercise(A_STR, TRUE);
@@ -436,7 +436,7 @@ exerper()
 
     /* status checks */
     if (!(moves % 5)) {
-        debugpline0("exerper: Status checks");
+        debugpline0("exerper: 状态检测");
         if ((HClairvoyant & (INTRINSIC | TIMEOUT)) && !BClairvoyant)
             exercise(A_WIS, TRUE);
         if (HRegeneration)
@@ -471,11 +471,11 @@ exerchk()
     exerper();
 
     if (moves >= context.next_attrib_check) {
-        debugpline1("exerchk: ready to test. multi = %d.", multi);
+        debugpline1("exerchk: 准备好测试. multi = %d.", multi);
     }
     /*  Are we ready for a test? */
     if (moves >= context.next_attrib_check && !multi) {
-        debugpline0("exerchk: testing.");
+        debugpline0("exerchk: 测试中.");
         /*
          *      Law of diminishing returns (Part II):
          *
@@ -505,7 +505,7 @@ exerchk()
             if (Upolyd && i != A_WIS)
                 goto nextattrib;
 
-            debugpline2("exerchk: testing %s (%d).",
+            debugpline2("exerchk: 测试中 %s (%d).",
                         (i == A_STR)
                             ? "Str"
                             : (i == A_INT)
@@ -529,9 +529,9 @@ exerchk()
             if (rn2(AVAL) > ((i != A_WIS) ? (abs(ax) * 2 / 3) : abs(ax)))
                 goto nextattrib;
 
-            debugpline1("exerchk: changing %d.", i);
+            debugpline1("exerchk: 改变 %d 中.", i);
             if (adjattrib(i, mod_val, -1)) {
-                debugpline1("exerchk: changed %d.", i);
+                debugpline1("exerchk: 改变了 %d.", i);
                 /* if you actually changed an attrib - zero accumulation */
                 AEXE(i) = ax = 0;
                 /* then print an explanation */
@@ -545,7 +545,7 @@ exerchk()
             AEXE(i) = (abs(ax) / 2) * mod_val;
         }
         context.next_attrib_check += rn1(200, 800);
-        debugpline1("exerchk: next check at %ld.", context.next_attrib_check);
+        debugpline1("exerchk: 下一个测试在 %ld.", context.next_attrib_check);
     }
 }
 
@@ -767,10 +767,10 @@ int propidx; /* special cases can have negative values */
                 Sprintf(buf, because_of, ysimple_name(ublindf));
 
             /* remove some verbosity and/or redundancy */
-            if ((p = strstri(buf, " pair of ")) != 0)
+            if ((p = strstri(buf, " 一双 ")) != 0)
                 copynchars(p + 1, p + 9, BUFSZ); /* overlapping buffers ok */
             else if (propidx == STRANGLED
-                     && (p = strstri(buf, " of strangulation")) != 0)
+                     && (p = strstri(buf, " 窒息")) != 0)
                 *p = '\0';
 
         } else { /* negative property index */
@@ -898,7 +898,7 @@ int oldlevel, newlevel;
                 if (*(abil->losestr))
                     You_feel("%s!", abil->losestr);
                 else if (*(abil->gainstr))
-                    You_feel("less %s!", abil->gainstr);
+                    You_feel("少于 %s!", abil->gainstr);
             }
         }
         if (prevabil != *(abil->ability)) /* it changed */
@@ -1080,8 +1080,8 @@ int reason; /* 0==conversion, 1==helm-of-OA on, 2==helm-of-OA off */
         /* worn helm of opposite alignment might block change */
         if (!uarmh || uarmh->otyp != HELM_OF_OPPOSITE_ALIGNMENT)
             u.ualign.type = u.ualignbase[A_CURRENT];
-        You("have a %ssense of a new direction.",
-            (u.ualign.type != oldalign) ? "sudden " : "");
+        You("有一个 %s新的思路方向.",
+            (u.ualign.type != oldalign) ? "突然 " : "");
     } else {
         /* putting on or taking off a helm of opposite alignment */
         u.ualign.type = (aligntyp) newalign;
