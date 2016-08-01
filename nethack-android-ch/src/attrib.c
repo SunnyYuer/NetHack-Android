@@ -197,10 +197,10 @@ static const struct poison_effect_message {
     const char *effect_msg;
 } poiseff[] = {
     { You_feel, "虚弱" },             /* A_STR weaker*/
-    { Your, "大脑失火" },       /* A_INT brain is on fire*/
+    { Your, "大脑着火" },       /* A_INT brain is on fire*/
     { Your, "判断力减弱" },  /* A_WIS */
     { Your, "无法控制肌肉" }, /* A_DEX */
-    { You_feel, "非常恶心" },          /* A_CON */
+    { You_feel, "非常不健康" },          /* A_CON */
     { You, "发麻疹" }       /* A_CHA break out in hives或者浑身沸腾*/
 };
 
@@ -229,7 +229,8 @@ boolean thrown_weapon; /* thrown weapons are less deadly */
     /* inform player about being poisoned unless that's already been done;
        "blast" has given a "blast of poison gas" message; "poison arrow",
        "poison dart", etc have implicitly given poison messages too... */
-    if (strcmp(reason, "爆炸") && !strstri(reason, "毒药")) {
+       /*这里不需要汉化，只是用来判断要不要加 s 的*/
+    if (strcmp(reason, "blast") && !strstri(reason, "poison")) {
         boolean plural = (reason[strlen(reason) - 1] == 's') ? 1 : 0;
 
         /* avoid "The" Orcus's sting was poisoned... */
@@ -767,10 +768,10 @@ int propidx; /* special cases can have negative values */
                 Sprintf(buf, because_of, ysimple_name(ublindf));
 
             /* remove some verbosity and/or redundancy */
-            if ((p = strstri(buf, " 一双 ")) != 0)
+            if ((p = strstri(buf, " pair of ")) != 0)
                 copynchars(p + 1, p + 9, BUFSZ); /* overlapping buffers ok */
             else if (propidx == STRANGLED
-                     && (p = strstri(buf, " 窒息")) != 0)
+                     && (p = strstri(buf, " of strangulation")) != 0)
                 *p = '\0';
 
         } else { /* negative property index */
@@ -898,7 +899,7 @@ int oldlevel, newlevel;
                 if (*(abil->losestr))
                     You_feel("%s!", abil->losestr);
                 else if (*(abil->gainstr))
-                    You_feel("少于 %s!", abil->gainstr);
+                    You_feel("不那么 %s!", abil->gainstr);
             }
         }
         if (prevabil != *(abil->ability)) /* it changed */
@@ -1080,7 +1081,7 @@ int reason; /* 0==conversion, 1==helm-of-OA on, 2==helm-of-OA off */
         /* worn helm of opposite alignment might block change */
         if (!uarmh || uarmh->otyp != HELM_OF_OPPOSITE_ALIGNMENT)
             u.ualign.type = u.ualignbase[A_CURRENT];
-        You("有一个 %s新的思路方向.",
+        You("%s有一个新的方向感.",
             (u.ualign.type != oldalign) ? "突然 " : "");
     } else {
         /* putting on or taking off a helm of opposite alignment */
