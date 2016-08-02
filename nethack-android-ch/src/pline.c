@@ -471,76 +471,76 @@ ustatusline()
 
     info[0] = '\0';
     if (Sick) {
-        Strcat(info, ", dying from");
+        Strcat(info, ", 垂死于");
         if (u.usick_type & SICK_VOMITABLE)
-            Strcat(info, " food poisoning");
+            Strcat(info, " 食物中毒");
         if (u.usick_type & SICK_NONVOMITABLE) {
             if (u.usick_type & SICK_VOMITABLE)
-                Strcat(info, " and");
-            Strcat(info, " illness");
+                Strcat(info, " 和");
+            Strcat(info, " 疾病");
         }
     }
     if (Stoned)
-        Strcat(info, ", solidifying");
+        Strcat(info, ", 固化");
     if (Slimed)
-        Strcat(info, ", becoming slimy");
+        Strcat(info, ", 黏液化");
     if (Strangled)
-        Strcat(info, ", being strangled");
+        Strcat(info, ", 被窒息");
     if (Vomiting)
-        Strcat(info, ", nauseated"); /* !"nauseous" */
+        Strcat(info, ", 作呕"); /* !"nauseous" */
     if (Confusion)
-        Strcat(info, ", confused");
+        Strcat(info, ", 混乱");
     if (Blind) {
-        Strcat(info, ", blind");
+        Strcat(info, ", 失明");
         if (u.ucreamed) {
             if ((long) u.ucreamed < Blinded || Blindfolded
                 || !haseyes(youmonst.data))
-                Strcat(info, ", cover");
-            Strcat(info, "ed by sticky goop");
+                Strcat(info, ", 被覆盖");
+            Strcat(info, "因黏糊糊的东西");
         } /* note: "goop" == "glop"; variation is intentional */
     }
     if (Stunned)
-        Strcat(info, ", stunned");
+        Strcat(info, ", 眩晕");
     if (!u.usteed && Wounded_legs) {
         const char *what = body_part(LEG);
         if ((Wounded_legs & BOTH_SIDES) == BOTH_SIDES)
             what = makeplural(what);
-        Sprintf(eos(info), ", injured %s", what);
+        Sprintf(eos(info), ", %s受伤了", what);
     }
     if (Glib)
-        Sprintf(eos(info), ", slippery %s", makeplural(body_part(HAND)));
+        Sprintf(eos(info), ", 很滑的 %s", makeplural(body_part(HAND)));
     if (u.utrap)
-        Strcat(info, ", trapped");
+        Strcat(info, ", 受困");
     if (Fast)
-        Strcat(info, Very_fast ? ", very fast" : ", fast");
+        Strcat(info, Very_fast ? ", 非常快" : ", 快");
     if (u.uundetected)
-        Strcat(info, ", concealed");
+        Strcat(info, ", 隐蔽的");
     if (Invis)
-        Strcat(info, ", invisible");
+        Strcat(info, ", 隐形的");
     if (u.ustuck) {
         if (sticks(youmonst.data))
-            Strcat(info, ", holding ");
+            Strcat(info, ", 牵制着 ");
         else
-            Strcat(info, ", held by ");
+            Strcat(info, ", 受牵制于 ");
         Strcat(info, mon_nam(u.ustuck));
     }
 
-    pline("Status of %s (%s%s):  Level %d  HP %d(%d)  AC %d%s.", plname,
+    pline("%s ( %s%s) 状态:  等级 %d  HP %d(%d)  防 %d%s.", plname,
           (u.ualign.record >= 20)
-              ? "piously "
+              ? "虔诚的 "
               : (u.ualign.record > 13)
-                    ? "devoutly "
+                    ? "虔敬地 "
                     : (u.ualign.record > 8)
-                          ? "fervently "
+                          ? "热诚地 "
                           : (u.ualign.record > 3)
-                                ? "stridently "
+                                ? "简诚的 "
                                 : (u.ualign.record == 3)
                                       ? ""
                                       : (u.ualign.record >= 1)
-                                            ? "haltingly "
+                                            ? "犹豫的 "
                                             : (u.ualign.record == 0)
-                                                  ? "nominally "
-                                                  : "insufficiently ",
+                                                  ? "名义上的 "
+                                                  : "不够的 ",
           align_str(u.ualign.type),
           Upolyd ? mons[u.umonnum].mlevel : u.ulevel, Upolyd ? u.mh : u.uhp,
           Upolyd ? u.mhmax : u.uhpmax, u.uac, info);
@@ -569,19 +569,19 @@ struct obj *otmp2;
     if ((!Blind && visible) || inpack) {
         if (Hallucination) {
             if (onfloor) {
-                You_see("parts of the floor melting!");
+                You_see("部分地板在融化!");
             } else if (inpack) {
-                Your("pack reaches out and grabs something!");
+                Your("背包伸出手并抓住了什么东西!");
             }
             /* even though we can see where they should be,
              * they'll be out of our view (minvent or container)
              * so don't actually show anything */
         } else if (onfloor || inpack) {
-            pline("The %s coalesce%s.", makeplural(obj_typename(otmp->otyp)),
-                  inpack ? " inside your pack" : "");
+            pline("%s %s合并.", makeplural(obj_typename(otmp->otyp)),
+                  inpack ? "在你的背包里" : "");
         }
     } else {
-        You_hear("a faint sloshing sound.");
+        You_hear("一种微弱的泼溅声");
     }
 }
 
