@@ -25,7 +25,7 @@ static const struct innate {
                  { 0, 0, 0, 0 } },
 
   bar_abil[] = { { 1, &(HPoison_resistance), "", "" },
-                 { 7, &(HFast), "敏捷", "笨拙" }//quick，slow
+                 { 7, &(HFast), "敏捷", "笨拙" },//quick，slow
                  { 15, &(HStealth), "轻捷的", "" },//stealthy
                  { 0, 0, 0, 0 } },
 
