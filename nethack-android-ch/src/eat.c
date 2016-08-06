@@ -128,7 +128,7 @@ static const struct {
                 { "熏制的", 50, 1, 0 },
                 { "干的", 55, 1, 0 },
                 { "深油炸的", 60, 0, 1 },
-                { "四川", 70, 1, 0 },
+                { "川味", 70, 1, 0 },
                 { "烧烤的", 80, 0, 0 },
                 { "炒的", 80, 0, 1 },
                 { "清炒的", 95, 0, 0 },
@@ -841,7 +841,7 @@ register struct permonst *ptr;
     case COLD_RES:
         debugpline0("Trying to give cold resistance");
         if (!(HCold_resistance & FROMOUTSIDE)) {
-            You_feel("夸夸其谈.");
+            You_feel("充满了热空气.");
             HCold_resistance |= FROMOUTSIDE;
         }
         break;
