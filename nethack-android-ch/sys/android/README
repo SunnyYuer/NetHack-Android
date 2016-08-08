@@ -1,45 +1,23 @@
+##编译说明
 
-Build instructions
+=== 准备 ===
 
+1. 在linux中安装ndk
+http://developer.android.com/sdk/ndk
 
-These instructions are written for a 64-bit Ubuntu installation.
-Modifying them for other linux distributionos should be little to no
-work. If you're running Windows you're on your own.
+2. 下载源代码并解压
+[下载](https://github.com/SunnyEric/NetHack-Android/archive/master.zip)
 
+=== 编译NetHack ===
 
+1. 进入nethack-android-ch/sys/android目录
+2. 打开Makefile.src文件并更改NDK目录为你的NDK目录
+3. 终端操作./setup.sh
+4. 终端操作cd ../..
+5. 终端操作make all
 
-=== Preparations ===
+=== 编译app ===
 
- - Install the Android SDK
-     http://developer.android.com/sdk
- 
- - Download and extract the Android NDK
-     http://developer.android.com/sdk/ndk
-      
- - Install 'bison' and 'flex'
- 
- - Download the source
-     https://github.com/SunnyEric/NetHack_android
-
-
-
-=== Building NetHack ===
-
-1. cd <NetHack-Android>/sys/android
-2. Open Makefile.src and change NDK to the appropriate path
-3. sh ./setup.sh
-4. cd ../..
-5. make all
-
-
-
-
-=== Building the app ===
-
-1. Start Eclipse
-2. Create New Android Project -> "Create project from existing source"
-3. Point the location to: <NetHack-Android>/sys/android
-4. Build and Run!
-
-
-Happy hacking!
+1. 打开Eclipse
+2. 导入安卓工程
+3. 运行

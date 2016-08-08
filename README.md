@@ -17,7 +17,7 @@
 http://developer.android.com/sdk/ndk
  
 2. 下载源代码并解压
-[下载](https://github.com/SunnyEric/NetHack_android/archive/master.zip)
+[下载](https://github.com/SunnyEric/NetHack-Android/archive/master.zip)
 
 === 编译NetHack ===
 
@@ -38,8 +38,8 @@ http://developer.android.com/sdk/ndk
 
 ##问题反馈或建议
 * 百度贴吧http://tieba.baidu.com/p/4359900236
-* [Github Issues](https://github.com/SunnyEric/NetHack_android/issues)
+* [Github Issues](https://github.com/SunnyEric/NetHack-Android/issues)
 * 邮箱956768385@qq.com
 
 ##协议
-[NetHack 通用公共许可证](https://github.com/SunnyEric/NetHack_android/blob/master/nethack-android-ch/dat/license)
+[NetHack 通用公共许可证](https://github.com/SunnyEric/NetHack-Android/blob/master/nethack-android-ch/dat/license)
