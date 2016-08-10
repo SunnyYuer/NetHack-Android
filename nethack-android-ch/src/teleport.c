@@ -440,7 +440,7 @@ struct obj *scroll;
 
     if ((u.uhave.amulet || On_W_tower_level(&u.uz)) && !rn2(3)) {
         You_feel("迷失方向了片刻.");
-        if (!wizard || yn("Override?") != 'y')
+        if (!wizard || yn("无视?") != 'y')
             return FALSE;
     }
     if ((Teleport_control && !Stunned) || wizard) {
