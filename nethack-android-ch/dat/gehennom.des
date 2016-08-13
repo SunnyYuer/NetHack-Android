@@ -411,9 +411,9 @@ MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
 MONSTER:(' ',"魂灵"),random
-MONSTER:('Z',"巨型僵尸"),random
-MONSTER:('Z',"巨型僵尸"),random
-MONSTER:('Z',"巨型僵尸"),random
+MONSTER:('Z',"巨人僵尸"),random
+MONSTER:('Z',"巨人僵尸"),random
+MONSTER:('Z',"巨人僵尸"),random
 MONSTER:('Z',"双头僵尸"),random
 MONSTER:('Z',"双头僵尸"),random
 MONSTER:('Z',"双头僵尸"),random
