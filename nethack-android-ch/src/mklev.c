@@ -672,7 +672,7 @@ makelevel()
             char fillname[9];
             s_level *loc_lev;
 
-            Sprintf(fillname, "%s-loca", urole.filecode);
+            Sprintf(fillname, "%s- 中心", urole.filecode);
             loc_lev = find_level(fillname);
 
             Sprintf(fillname, "%s-fil", urole.filecode);
@@ -1673,7 +1673,7 @@ xchar x, y;
     branch *br;
     schar u_depth;
 
-    br = dungeon_branch("Fort Ludios");
+    br = dungeon_branch("吕底人堡垒");  //Fort Ludios
     if (on_level(&knox_level, &br->end1)) {
         source = &br->end2;
     } else {
@@ -1688,7 +1688,7 @@ xchar x, y;
         return;
 
     if (!(u.uz.dnum == oracle_level.dnum      /* in main dungeon */
-          && !at_dgn_entrance("The Quest")    /* but not Quest's entry */
+          && !at_dgn_entrance("任务")    /* but not Quest's entry */  //The Quest
           && (u_depth = depth(&u.uz)) > 10    /* beneath 10 */
           && u_depth < depth(&medusa_level))) /* and above Medusa */
         return;

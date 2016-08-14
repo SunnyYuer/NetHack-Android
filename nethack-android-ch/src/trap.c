@@ -3091,7 +3091,7 @@ domagictrap()
                 You("突然思念%s.",
                     Hallucination
                         ? "克利夫兰"
-                        : (In_quest(&u.uz) || at_dgn_entrance("The Quest"))
+                        : (In_quest(&u.uz) || at_dgn_entrance("任务"))  //The Quest
                               ? "你附近的故乡"
                               : "你遥远的故乡");
             break;

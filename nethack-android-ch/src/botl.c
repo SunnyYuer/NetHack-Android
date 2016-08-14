@@ -455,12 +455,12 @@ char *buf;
     if (Is_knox(&u.uz))
         Sprintf(buf, "%s ", dungeons[u.uz.dnum].dname);
     else if (In_quest(&u.uz))
-        Sprintf(buf, "Home %d ", dunlev(&u.uz));
+        Sprintf(buf, "家乡 %d ", dunlev(&u.uz));
     else if (In_endgame(&u.uz))
-        Sprintf(buf, Is_astralevel(&u.uz) ? "Astral Plane " : "End Game ");
+        Sprintf(buf, Is_astralevel(&u.uz) ? "星界 " : "终局 ");
     else {
         /* ports with more room may expand this one */
-        Sprintf(buf, "Dlvl:%-2d ", depth(&u.uz));
+        Sprintf(buf, "地牢:%-2d ", depth(&u.uz));
         ret = 0;
     }
     return ret;

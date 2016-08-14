@@ -14,22 +14,22 @@
 #		number of choices for its branch level _first_.
 #
 
-DUNGEON:	"The Dungeons of Doom" "D" (25, 5)
+DUNGEON:	"命运地牢" "D" (25, 5)
 ALIGNMENT:	unaligned
-BRANCH:		"The Gnomish Mines" @ (2, 3)
+BRANCH:		"侏儒矿坑" @ (2, 3)
 LEVEL:		"rogue" "R" @ (15, 4)
 LEVELDESC:	roguelike
-LEVEL:		"oracle" "O" @ (5, 5)
+LEVEL:		"神谕" "O" @ (5, 5)
 LEVALIGN:	neutral
-CHAINBRANCH:	"Sokoban" "oracle" + (1, 0) up
-RNDLEVEL:	"bigrm" "B" @ (10, 3) 40 10
-CHAINBRANCH:	"The Quest" "oracle" + (6, 2) portal
-BRANCH:		"Fort Ludios" @ (18, 4) portal
-RNDLEVEL:	"medusa" "none" @ (-5, 4) 4
+CHAINBRANCH:	"仓库番" "神谕" + (1, 0) up
+RNDLEVEL:	"大房间" "B" @ (10, 3) 40 10
+CHAINBRANCH:	"任务" "神谕" + (6, 2) portal
+BRANCH:		"吕底人堡垒" @ (18, 4) portal
+RNDLEVEL:	"美杜莎" "none" @ (-5, 4) 4
 LEVALIGN:	chaotic
-LEVEL:		"castle" "none" @ (-1, 0)
-CHAINBRANCH:	"Gehennom" "castle" + (0, 0) no_down
-BRANCH:		"The Elemental Planes" @ (1, 0) no_down up
+LEVEL:		"城堡" "none" @ (-1, 0)
+CHAINBRANCH:	"葛汉诺姆" "城堡" + (0, 0) no_down
+BRANCH:		"元素位面" @ (1, 0) no_down up
 
 #
 #	Gehennom
@@ -48,32 +48,32 @@ BRANCH:		"The Elemental Planes" @ (1, 0) no_down up
 #		monsters can properly migrate here under certain
 #		circumstances.
 #
-DUNGEON:	"Gehennom" "G" (20, 5)
+DUNGEON:	"葛汉诺姆" "G" (20, 5)
 DESCRIPTION:	mazelike
 DESCRIPTION:	hellish
 ALIGNMENT:	noalign
-BRANCH:		"Vlad's Tower" @ (9, 5) up
-LEVEL:		"valley" "V" @ (1, 0)
-LEVEL:		"sanctum" "none" @ (-1, 0)
-LEVEL:		"juiblex" "J" @ (4, 4)
-LEVEL:		"baalz" "B" @ (6, 4)
-LEVEL:		"asmodeus" "A" @ (2, 6)
-LEVEL:		"wizard1" "none" @ (11, 6)
-CHAINLEVEL:	"wizard2" "X" "wizard1" + (1, 0)
-CHAINLEVEL:	"wizard3" "Y" "wizard1" + (2, 0)
-LEVEL:		"orcus" "O" @ (10, 6)
-LEVEL:		"fakewiz1" "F" @ (-6,4)
-LEVEL:		"fakewiz2" "G" @ (-6,4)
+BRANCH:		"弗拉德之塔" @ (9, 5) up
+LEVEL:		"山谷" "V" @ (1, 0)
+LEVEL:		"密室" "none" @ (-1, 0)
+LEVEL:		"朱比烈斯" "J" @ (4, 4)
+LEVEL:		"巴力西卜" "B" @ (6, 4)
+LEVEL:		"阿斯莫德" "A" @ (2, 6)
+LEVEL:		"巫师塔1" "none" @ (11, 6)
+CHAINLEVEL:	"巫师塔2" "X" "巫师塔1" + (1, 0)
+CHAINLEVEL:	"巫师塔3" "Y" "巫师塔1" + (2, 0)
+LEVEL:		"奥迦斯" "O" @ (10, 6)
+LEVEL:		"伪巫师塔1" "F" @ (-6,4)
+LEVEL:		"伪巫师塔2" "G" @ (-6,4)
 
 #
 #	The Mines of the Gnomes of Zurich.
 #
-DUNGEON:	"The Gnomish Mines" "M" (8, 2)
+DUNGEON:	"侏儒矿坑" "M" (8, 2)
 ALIGNMENT:	lawful
 DESCRIPTION:	mazelike
-RNDLEVEL:	"minetn" "T" @ (3, 2) 7
+RNDLEVEL:	"矿坑小镇" "T" @ (3, 2) 7
 LEVELDESC:	town
-RNDLEVEL:	"minend" "E" @ (-1, 0) 3
+RNDLEVEL:	"矿坑底层" "E" @ (-1, 0) 3
 
 #
 #	The Questdungeon
@@ -83,42 +83,42 @@ RNDLEVEL:	"minend" "E" @ (-1, 0) 3
 #	A special "x-fill" level must be defined in the levels description
 #	file.  It will be used for all levels not defined explicitly below.
 #
-DUNGEON:	"The Quest" "Q" (5, 2)
-LEVEL:	"x-strt" "none" @ (1, 1)
-LEVEL:	"x-loca" "L" @ (3, 1)
-LEVEL:	"x-goal" "none" @ (-1, 0)
+DUNGEON:	"任务" "Q" (5, 2)
+LEVEL:	"x- 开始" "none" @ (1, 1)
+LEVEL:	"x- 中心" "L" @ (3, 1)
+LEVEL:	"x- 终点" "none" @ (-1, 0)
 
 #
 # Sokoban
 #
-DUNGEON:		"Sokoban" "none" (4, 0)
+DUNGEON:		"仓库番" "none" (4, 0)
 DESCRIPTION:    mazelike
 ALIGNMENT:      neutral
 ENTRY:          -1
-RNDLEVEL:		"soko1" "none" @ (1, 0) 2
-RNDLEVEL:		"soko2" "none" @ (2, 0) 2
-RNDLEVEL:		"soko3" "none" @ (3, 0) 2
-RNDLEVEL:		"soko4" "none" @ (4, 0) 2
+RNDLEVEL:		"仓库番1" "none" @ (1, 0) 2
+RNDLEVEL:		"仓库番2" "none" @ (2, 0) 2
+RNDLEVEL:		"仓库番3" "none" @ (3, 0) 2
+RNDLEVEL:		"仓库番4" "none" @ (4, 0) 2
 
 #
 #	The Central Vault of Croesus.
 #
-DUNGEON:	"Fort Ludios" "K" (1, 0)
+DUNGEON:	"吕底人堡垒" "K" (1, 0)
 DESCRIPTION:	mazelike
 ALIGNMENT:	unaligned
-LEVEL:		"knox" "K" @ (-1, 0)
+LEVEL:		"诺克斯" "K" @ (-1, 0)
 #
 #	Vlad's Tower
 #
 #	It has been removed from Gehennom, and it is surrounded by stone.
 #	Must not allow bones files for its top level.
 #
-DUNGEON:	"Vlad's Tower" "T" (3, 0)
+DUNGEON:	"弗拉德之塔" "T" (3, 0)
 PROTOFILE:	"tower"
 DESCRIPTION:	mazelike
 ALIGNMENT:	chaotic
 ENTRY:		-1
-LEVEL:		"tower1" "none" @ (1, 0)
+LEVEL:		"塔1" "none" @ (1, 0)
 
 #
 #	The Endgame levels
@@ -127,13 +127,13 @@ LEVEL:		"tower1" "none" @ (1, 0)
 #	placeholder for surface level, and should be unreachable.
 #	[Note: the name "dummy" is checked for in init_dungeons().]
 #
-DUNGEON:	"The Elemental Planes" "E" (6, 0)
+DUNGEON:	"元素位面" "E" (6, 0)
 DESCRIPTION:	mazelike
 ALIGNMENT:	unaligned
 ENTRY:		-2
-LEVEL:		"astral" "none" @ (1, 0)
-LEVEL:		"water"  "none" @ (2, 0)
-LEVEL:		"fire"   "none" @ (3, 0)
-LEVEL:		"air"    "none" @ (4, 0)
-LEVEL:		"earth"  "none" @ (5, 0)
-LEVEL:		"dummy"  "none" @ (6, 0)
+LEVEL:		"星界" "none" @ (1, 0)
+LEVEL:		"水"  "none" @ (2, 0)
+LEVEL:		"火"   "none" @ (3, 0)
+LEVEL:		"气"    "none" @ (4, 0)
+LEVEL:		"土"  "none" @ (5, 0)
+LEVEL:		"虚无"  "none" @ (6, 0)

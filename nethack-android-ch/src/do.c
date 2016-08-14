@@ -1481,7 +1481,7 @@ boolean at_stairs, falling, portal;
         if (new && Is_rogue_level(&u.uz))
             You("进入了看起来更古老更原始的世界.");
         /* main dungeon message from your quest leader */
-        if (!In_quest(&u.uz0) && at_dgn_entrance("The Quest")
+        if (!In_quest(&u.uz0) && at_dgn_entrance("任务")  //The Quest
             && !(u.uevent.qcompleted || u.uevent.qexpelled
                  || quest_status.leader_is_dead)) {
             if (!u.uevent.qcalled) {

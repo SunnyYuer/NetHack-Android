@@ -505,20 +505,90 @@ fixup_special()
     num_lregions = 0;
 }
 
+char *
+cnspetoen(s, ensp)
+register const char *s;
+char *ensp;
+{
+    if(!strcmp(s, "矿坑小镇")) return "minetn";
+    if(!strcmp(s, "矿坑底层")) return "minend";
+    if(!strcmp(s, "神谕")) return "oracle";
+    if(!strncmp(s, "仓库番", 9))
+    {
+        strcpy(ensp, "soko");
+        ensp[4] = s[9];
+        ensp[5] = '\0';
+        return ensp;
+    }
+    if(!strcmp(s, "大房间")) return "bigrm";
+    if(strstr(s, "开始"))
+    {
+        strcpy(ensp, s);
+        ensp[4]='\0';
+        strcat(ensp, "strt");
+        return ensp;
+    }
+    if(strstr(s, "中心"))
+    {
+        strcpy(ensp, s);
+        ensp[4]='\0';
+        strcat(ensp, "loca");
+        return ensp;
+    }
+    if(strstr(s, "终点"))
+    {
+        strcpy(ensp, s);
+        ensp[4]='\0';
+        strcat(ensp, "goal");
+        return ensp;
+    }
+    if(!strcmp(s, "诺克斯")) return "knox";
+    if(!strcmp(s, "美杜莎")) return "medusa";
+    if(!strcmp(s, "城堡")) return "castle";
+    if(!strcmp(s, "山谷")) return "valley";
+    if(!strcmp(s, "阿斯莫德")) return "asmodeus";
+    if(!strcmp(s, "巴力西卜")) return "baalz";
+    if(!strcmp(s, "朱比烈斯")) return "juiblex";
+    if(!strcmp(s, "奥迦斯")) return "orcus";
+    if(!strcmp(s, "塔1")) return "tower1";
+    if(!strncmp(s, "巫师塔", 9))
+    {
+        strcpy(ensp, "wizard");
+        ensp[6] = s[9];
+        ensp[7] = '\0';
+        return ensp;
+    }
+    if(!strncmp(s, "伪巫师塔", 12))
+    {
+        strcpy(ensp, "fakewiz");
+        ensp[7] = s[12];
+        ensp[8] = '\0';
+        return ensp;
+    }
+    if(!strcmp(s, "密室")) return "sanctum";
+    if(!strcmp(s, "土")) return "earth";
+    if(!strcmp(s, "气")) return "air";
+    if(!strcmp(s, "火")) return "fire";
+    if(!strcmp(s, "水")) return "water";
+    if(!strcmp(s, "星界")) return "astral";
+    return strcpy(ensp, s);
+}
+
 void
 makemaz(s)
 register const char *s;
 {
     int x, y;
     char protofile[20];
+    char ensp[20];
     s_level *sp = Is_special(&u.uz);
     coord mm;
 
     if (*s) {
         if (sp && sp->rndlevs)
-            Sprintf(protofile, "%s-%d", s, rnd((int) sp->rndlevs));
+            Sprintf(protofile, "%s-%d", cnspetoen(s, ensp), rnd((int) sp->rndlevs));
         else
-            Strcpy(protofile, s);
+            Strcpy(protofile, cnspetoen(s, ensp));
     } else if (*(dungeons[u.uz.dnum].proto)) {
         if (dunlevs_in_dungeon(&u.uz) > 1) {
             if (sp && sp->rndlevs)
