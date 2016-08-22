@@ -138,14 +138,14 @@ boolean talk;
 
     if (wizard && talk) {
         if (u.ualign.type != original_alignment) {
-            You("are currently %s instead of %s.", align_str(u.ualign.type),
+            You("当前是%s而不是%s.", align_str(u.ualign.type),
                 align_str(original_alignment));
         } else if (u.ualignbase[A_CURRENT] != original_alignment) {
-            You("have converted.");
+            You("改变了信仰.");
         } else if (u.ualign.record < MIN_QUEST_ALIGN) {
-            You("are currently %d and require %d.", u.ualign.record,
+            You("当前为 %d 而要求为 %d.", u.ualign.record,
                 MIN_QUEST_ALIGN);
-            if (yn_function("adjust?", (char *) 0, 'y') == 'y')
+            if (yn_function("调整?", (char *) 0, 'y') == 'y')
                 u.ualign.record = MIN_QUEST_ALIGN;
         }
     }
@@ -172,7 +172,7 @@ boolean seal;
     struct trap *t;
     int portal_flag;
 
-    br = dungeon_branch("The Quest");
+    br = dungeon_branch("任务");  //The Quest
     dest = (br->end1.dnum == u.uz.dnum) ? &br->end2 : &br->end1;
     portal_flag = u.uevent.qexpelled ? 0 /* returned via artifact? */
                                      : !seal ? 1 : -1;
@@ -371,8 +371,8 @@ struct monst *mtmp;
         && (mtmp->mstrategy & STRAT_WAITMASK)) {
         /* Awaken the prisoner */
         if (canseemon(mtmp))
-            pline("%s speaks:", Monnam(mtmp));
-        verbalize("I'm finally free!");
+            pline("%s 说:", Monnam(mtmp));
+        verbalize("我终于自由了!");
         mtmp->mstrategy &= ~STRAT_WAITMASK;
         mtmp->mpeaceful = 1;
 

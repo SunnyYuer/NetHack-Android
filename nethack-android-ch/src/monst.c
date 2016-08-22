@@ -1587,7 +1587,7 @@ struct permonst _mons2[] = {
         SIZ(1700, 250, MS_SILENT, MZ_HUGE), MR_COLD | MR_SLEEP | MR_POISON, 0,
         M1_BREATHLESS | M1_MINDLESS | M1_HUMANOID | M1_POIS,
         M2_UNDEAD | M2_HOSTILE | M2_STRONG, M3_INFRAVISION, CLR_BLUE),
-    MON("巨型木乃伊", S_MUMMY, LVL(8, 14, 3, 30, -7),  //giant mummy
+    MON("巨人木乃伊", S_MUMMY, LVL(8, 14, 3, 30, -7),  //giant mummy
         (G_GENO | G_NOCORPSE | 1),
         A(ATTK(AT_CLAW, AD_PHYS, 3, 4), ATTK(AT_CLAW, AD_PHYS, 3, 4), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
@@ -2011,7 +2011,7 @@ struct permonst _mons2[] = {
         SIZ(400, 50, MS_SILENT, MZ_SMALL), MR_COLD | MR_SLEEP | MR_POISON, 0,
         M1_BREATHLESS | M1_MINDLESS | M1_HUMANOID | M1_POIS | M1_OMNIVORE,
         M2_UNDEAD | M2_WANDER | M2_HOSTILE, M3_INFRAVISION, CLR_BLACK),
-    MON("巨型僵尸", S_ZOMBIE, LVL(8, 8, 6, 0, -4),  //giant zombie
+    MON("巨人僵尸", S_ZOMBIE, LVL(8, 8, 6, 0, -4),  //giant zombie
         (G_GENO | G_NOCORPSE | 1),
         A(ATTK(AT_CLAW, AD_PHYS, 2, 8), ATTK(AT_CLAW, AD_PHYS, 2, 8), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
