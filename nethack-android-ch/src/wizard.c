@@ -57,11 +57,11 @@ amulet()
             if (ttmp->ttyp == MAGIC_PORTAL) {
                 int du = distu(ttmp->tx, ttmp->ty);
                 if (du <= 9)
-                    pline("%s hot!", Tobjnam(amu, "feel"));
+                    pline("%s 烫！", Tobjnam(amu, "feel"));
                 else if (du <= 64)
-                    pline("%s very warm.", Tobjnam(amu, "feel"));
+                    pline("%s 非常温暖", Tobjnam(amu, "feel"));
                 else if (du <= 144)
-                    pline("%s warm.", Tobjnam(amu, "feel"));
+                    pline("%s 温暖.", Tobjnam(amu, "feel"));
                 /* else, the amulet feels normal */
                 break;
             }
@@ -78,7 +78,7 @@ amulet()
             mtmp->msleeping = 0;
             if (distu(mtmp->mx, mtmp->my) > 2)
                 You(
-      "get the creepy feeling that somebody noticed your taking the Amulet.");
+      "有人注意到你的护身符让人毛骨悚然。");
             return;
         }
     }
@@ -363,7 +363,7 @@ register struct monst *mtmp;
 
                 if ((otmp = on_ground(which_arti(targ))) != 0) {
                     if (cansee(mtmp->mx, mtmp->my))
-                        pline("%s picks up %s.", Monnam(mtmp),
+                        pline("%s 捡起 %s.", Monnam(mtmp),
                               (distu(mtmp->mx, mtmp->my) <= 5)
                                   ? doname(otmp)
                                   : distant_name(otmp, doname));
@@ -552,8 +552,8 @@ resurrect()
         mtmp->mtame = mtmp->mpeaceful = 0; /* paranoia */
         set_malign(mtmp);
         if (!Deaf) {
-            pline("A voice booms out...");
-            verbalize("So thou thought thou couldst %s me, fool.", verb);
+            pline("一个声音传出...");
+            verbalize("所以你认为你可以为我 %s ，傻瓜", verb);
         }
     }
 }
@@ -568,11 +568,11 @@ intervene()
     switch (which) {
     case 0:
     case 1:
-        You_feel("vaguely nervous.");
+        You_feel("隐约感到紧张");
         break;
     case 2:
         if (!Blind)
-            You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+            You("注意到一个 %s 光环笼罩了你.", hcolor(NH_BLACK));
         rndcurse();
         break;
     case 3:
@@ -626,16 +626,16 @@ register struct monst *mtmp;
         return;
     if (mtmp->iswiz) {
         if (!rn2(5)) /* typical bad guy action */
-            pline("%s laughs fiendishly.", Monnam(mtmp));
+            pline("%s 猛烈的笑着", Monnam(mtmp));
         else if (u.uhave.amulet && !rn2(SIZE(random_insult)))
-            verbalize("Relinquish the amulet, %s!",
+            verbalize("放弃护身符, %s!",
                       random_insult[rn2(SIZE(random_insult))]);
         else if (u.uhp < 5 && !rn2(2)) /* Panic */
-            verbalize(rn2(2) ? "Even now thy life force ebbs, %s!"
-                             : "Savor thy breath, %s, it be thy last!",
+            verbalize(rn2(2) ? "即使现在你的生命正在衰减, %s!"
+                             : "细细品味你的呼吸，%s ，这是你最后一次！",
                       random_insult[rn2(SIZE(random_insult))]);
         else if (mtmp->mhp < 5 && !rn2(2)) /* Parthian shot */
-            verbalize(rn2(2) ? "I shall return." : "I'll be back.");
+            verbalize(rn2(2) ? "我应该回去" : "我马上回来");
         else
             verbalize("%s %s!",
                       random_malediction[rn2(SIZE(random_malediction))],
@@ -645,7 +645,7 @@ register struct monst *mtmp;
                   + QT_ANGELIC);
     } else {
         if (!rn2(5))
-            pline("%s casts aspersions on your ancestry.", Monnam(mtmp));
+            pline("%s 诽谤你的血统", Monnam(mtmp));
         else
             com_pager(rn2(QTN_DEMONIC) + QT_DEMONIC);
     }

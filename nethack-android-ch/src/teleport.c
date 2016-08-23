@@ -392,7 +392,7 @@ boolean force_it;
     if (mtmp->mleashed) {
         otmp = get_mleash(mtmp);
         if (!otmp) {
-            impossible("%s is leashed, without a leash.", Monnam(mtmp));
+            impossible("%s 系，没有皮带。", Monnam(mtmp));
             goto release_it;
         }
         if (otmp->cursed && !force_it) {
