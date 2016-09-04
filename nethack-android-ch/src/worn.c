@@ -283,11 +283,11 @@ struct obj *obj; /* item to make known if effect can be seen */
             /* mimic the player's petrification countdown; "slowing down"
                even if fast movement rate retained via worn speed boots */
             if (flags.verbose)
-                pline("%s is slowing down.", Monnam(mon));
+                pline("%s 在下落.", Monnam(mon));
         } else if (adjust > 0 || mon->mspeed == MFAST)
-            pline("%s is suddenly moving %sfaster.", Monnam(mon), howmuch);
+            pline("%s 突然移动 %s更快了.", Monnam(mon), howmuch);
         else
-            pline("%s seems to be moving %sslower.", Monnam(mon), howmuch);
+            pline("%s 似乎移动 %s更慢了", Monnam(mon), howmuch);
 
         /* might discover an object if we see the speed change happen */
         if (obj != 0)
@@ -599,10 +599,10 @@ outer_break:
                 Sprintf(buf, " removes %s and", distant_name(old, doname));
             else
                 buf[0] = '\0';
-            pline("%s%s puts on %s.", Monnam(mon), buf,
+            pline("%s%s 穿上 %s.", Monnam(mon), buf,
                   distant_name(best, doname));
             if (autocurse)
-                pline("%s %s %s %s for a moment.", s_suffix(Monnam(mon)),
+                pline("%s %s %s %s 一会", s_suffix(Monnam(mon)),
                       simpleonames(best), otense(best, "glow"),
                       hcolor(NH_BLACK));
         } /* can see it */
@@ -621,7 +621,7 @@ outer_break:
     /* if couldn't see it but now can, or vice versa, */
     if (!creation && (unseen ^ !canseemon(mon))) {
         if (mon->minvis && !See_invisible) {
-            pline("Suddenly you cannot see %s.", nambuf);
+            pline("你突然失明 %s.", nambuf);
             makeknown(best->otyp);
         } /* else if (!mon->minvis) pline("%s suddenly appears!",
              Amonnam(mon)); */
@@ -785,42 +785,42 @@ boolean polyspot;
                      "the dragon merges with his scaly armor" is odd
                      and the monster's previous form is already gone */
             else if (vis)
-                pline("%s breaks out of %s armor!", Monnam(mon), ppronoun);
+                pline("%s 逃出 %s 装备!", Monnam(mon), ppronoun);
             else
-                You_hear("a cracking sound.");
+                You_hear("一声开裂的声音");
             m_useup(mon, otmp);
         }
         if ((otmp = which_armor(mon, W_ARMC)) != 0) {
             if (otmp->oartifact) {
                 if (vis)
-                    pline("%s %s falls off!", s_suffix(Monnam(mon)),
+                    pline("%s %s 坠落", s_suffix(Monnam(mon)),
                           cloak_simple_name(otmp));
                 if (polyspot)
                     bypass_obj(otmp);
                 m_lose_armor(mon, otmp);
             } else {
                 if (vis)
-                    pline("%s %s tears apart!", s_suffix(Monnam(mon)),
+                    pline("%s %s 撕裂!", s_suffix(Monnam(mon)),
                           cloak_simple_name(otmp));
                 else
-                    You_hear("a ripping sound.");
+                    You_hear("一个刺耳的声音");
                 m_useup(mon, otmp);
             }
         }
         if ((otmp = which_armor(mon, W_ARMU)) != 0) {
             if (vis)
-                pline("%s shirt rips to shreds!", s_suffix(Monnam(mon)));
+                pline("%s 衬衫撕成碎片!", s_suffix(Monnam(mon)));
             else
-                You_hear("a ripping sound.");
+                You_hear("一个刺耳的声音");
             m_useup(mon, otmp);
         }
     } else if (sliparm(mdat)) {
         if ((otmp = which_armor(mon, W_ARM)) != 0) {
             if (vis)
-                pline("%s armor falls around %s!", s_suffix(Monnam(mon)),
+                pline("%s 装备掉落在 %s周围!", s_suffix(Monnam(mon)),
                       pronoun);
             else
-                You_hear("a thud.");
+                You_hear("砰的一声");
             if (polyspot)
                 bypass_obj(otmp);
             m_lose_armor(mon, otmp);
@@ -828,10 +828,10 @@ boolean polyspot;
         if ((otmp = which_armor(mon, W_ARMC)) != 0) {
             if (vis) {
                 if (is_whirly(mon->data))
-                    pline("%s %s falls, unsupported!", s_suffix(Monnam(mon)),
+                    pline("%s %s 毫无支持地跌落!", s_suffix(Monnam(mon)),
                           cloak_simple_name(otmp));
                 else
-                    pline("%s shrinks out of %s %s!", Monnam(mon), ppronoun,
+                    pline("%s 缩小了 %s %s!", Monnam(mon), ppronoun,
                           cloak_simple_name(otmp));
             }
             if (polyspot)
@@ -841,10 +841,10 @@ boolean polyspot;
         if ((otmp = which_armor(mon, W_ARMU)) != 0) {
             if (vis) {
                 if (sliparm(mon->data))
-                    pline("%s seeps right through %s shirt!", Monnam(mon),
+                    pline("%s 渗透 %s 衬衫!", Monnam(mon),
                           ppronoun);
                 else
-                    pline("%s becomes much too small for %s shirt!",
+                    pline("%s 变得太小了 %s 衬衫!",
                           Monnam(mon), ppronoun);
             }
             if (polyspot)
@@ -856,7 +856,7 @@ boolean polyspot;
         /* [caller needs to handle weapon checks] */
         if ((otmp = which_armor(mon, W_ARMG)) != 0) {
             if (vis)
-                pline("%s drops %s gloves%s!", Monnam(mon), ppronoun,
+                pline("%s 掉落 %s 手套%s!", Monnam(mon), ppronoun,
                       MON_WEP(mon) ? " and weapon" : "");
             if (polyspot)
                 bypass_obj(otmp);
@@ -864,7 +864,7 @@ boolean polyspot;
         }
         if ((otmp = which_armor(mon, W_ARMS)) != 0) {
             if (vis)
-                pline("%s can no longer hold %s shield!", Monnam(mon),
+                pline("%s 无法再持有 %s 的盾牌!", Monnam(mon),
                       ppronoun);
             else
                 You_hear("a clank.");

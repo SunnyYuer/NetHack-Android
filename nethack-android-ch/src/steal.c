@@ -112,7 +112,7 @@ register struct monst *mtmp;
         /* reduce "rear hooves/claws" to "hooves/claws" */
         if (!strncmp(what, "rear ", 5))
             what += 5;
-        pline("%s quickly snatches some gold from %s %s %s!", Monnam(mtmp),
+        pline("%s 迅速抢走一些金子从 %s %s %s!", Monnam(mtmp),
               (Levitation || Flying) ? "beneath" : "between", whose, what);
         if (!ygold || !rn2(5)) {
             if (!tele_restrict(mtmp))
@@ -130,7 +130,7 @@ register struct monst *mtmp;
             setnotworn(ygold);
         freeinv(ygold);
         add_to_minv(mtmp, ygold);
-        Your("purse feels lighter.");
+        Your("感觉更亮了");
         if (!tele_restrict(mtmp))
             (void) rloc(mtmp, TRUE);
         monflee(mtmp, 0, FALSE, FALSE);
@@ -266,9 +266,9 @@ char *objnambuf;
     nothing_to_steal:
         /* Not even a thousand men in armor can strip a naked man. */
         if (Blind)
-            pline("Somebody tries to rob you, but finds nothing to steal.");
+            pline("有人想要抢劫你，但是发现你一无所有");
         else
-            pline("%s tries to rob you, but there is nothing to steal!",
+            pline("%s 想要抢劫你，但是发现你一无所有",
                   Monnam(mtmp));
         return 1; /* let her flee */
     }
@@ -301,7 +301,7 @@ retry:
                 break;
         }
     if (!otmp) {
-        impossible("Steal fails!");
+        impossible("偷窃失败！");
         return 0;
     }
     /* can't steal ring(s) while wearing gloves */
@@ -488,7 +488,7 @@ register struct obj *otmp;
     if (obj_sheds_light(otmp) && attacktype(mtmp->data, AT_ENGL)) {
         /* this is probably a burning object that you dropped or threw */
         if (u.uswallow && mtmp == u.ustuck && !Blind)
-            pline("%s out.", Tobjnam(otmp, "go"));
+            pline("%s 出去了。", Tobjnam(otmp, "go"));
         snuff_otmp = TRUE;
     }
     /* for hero owned object on shop floor, mtmp is taking possession
@@ -579,21 +579,21 @@ int ochance, achance; /* percent chance for ordinary item, artifact */
             /* mon might be invisible; avoid "It pulls ... and absorbs it!" */
             if (!strcmp(MonName, "It"))
                 MonName = "Something";
-            pline("%s pulls %s away from you and absorbs %s!", MonName,
+            pline("%s 把 %s 从你那里拉开然后吸引走 %s!", MonName,
                   yname(obj), (obj->quan > 1L) ? "them" : "it");
         } else {
             const char *hand_s = body_part(HAND);
 
             if (bimanual(obj))
                 hand_s = makeplural(hand_s);
-            pline("%s %s pulled from your %s!", upstart(yname(obj)),
+            pline("%s %s 被拉向你 %s!", upstart(yname(obj)),
                   otense(obj, "are"), hand_s);
         }
         freeinv(obj);
     } else {
         /* not carried; presumably thrown or kicked */
         if (canspotmon(mon))
-            pline("%s absorbs %s!", Monnam(mon), yname(obj));
+            pline("%s 吸引 %s!", Monnam(mon), yname(obj));//absorbs 吞并？吸引？
     }
     /* add to mon's inventory */
     (void) mpickobj(mon, obj);
@@ -675,7 +675,7 @@ boolean is_pet; /* If true, pet should keep wielded/worn items */
     if (mtmp->isgd && (otmp = findgold(mtmp->minvent)) != 0) {
         if (canspotmon(mtmp))
             pline("%s gold %s.", s_suffix(Monnam(mtmp)),
-                  canseemon(mtmp) ? "vanishes" : "seems to vanish");
+                  canseemon(mtmp) ? "消失" : "看起来消失了");
         obj_extract_self(otmp);
         obfree(otmp, (struct obj *) 0);
     } /* isgd && has gold */
