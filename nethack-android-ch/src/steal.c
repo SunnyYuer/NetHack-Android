@@ -130,7 +130,7 @@ register struct monst *mtmp;
             setnotworn(ygold);
         freeinv(ygold);
         add_to_minv(mtmp, ygold);
-        Your("钱包感觉轻了");
+        Your("钱包感觉轻了.");
         if (!tele_restrict(mtmp))
             (void) rloc(mtmp, TRUE);
         monflee(mtmp, 0, FALSE, FALSE);
@@ -266,9 +266,9 @@ char *objnambuf;
     nothing_to_steal:
         /* Not even a thousand men in armor can strip a naked man. */
         if (Blind)
-            pline("有人想要偷取你, 但是发现你一无所有");
+            pline("有人想要偷取你, 但是发现你一无所有.");
         else
-            pline("%s 想要偷取你, 但是发现你一无所有",
+            pline("%s 想要偷取你, 但是发现你一无所有.",
                   Monnam(mtmp));
         return 1; /* let her flee */
     }

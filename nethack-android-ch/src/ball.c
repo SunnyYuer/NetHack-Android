@@ -16,7 +16,7 @@ boolean showmsg;
 {
     if (carried(uball)) {
         if (showmsg)
-            pline("吃了一惊, 你掉落了铁球");
+            pline("吃了一惊, 你掉落了铁球.");
         if (uwep == uball)
             setuwep((struct obj *) 0);
         if (uswapwep == uball)
@@ -723,7 +723,7 @@ xchar x, y;
                 pline(pullmsg, "捕兽夹");
                 set_wounded_legs(side, rn1(1000, 500));
                 if (!u.usteed) {
-                    Your("%s %s 受到严重的损害",
+                    Your("%s %s 受到严重的损害.",
                          (side == LEFT_SIDE) ? "左" : "右",
                          body_part(LEG));
                     losehp(Maybe_Half_Phys(2),
