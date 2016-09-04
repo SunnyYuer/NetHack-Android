@@ -16,7 +16,7 @@ boolean showmsg;
 {
     if (carried(uball)) {
         if (showmsg)
-            pline("Startled, you drop the iron ball.");
+            pline("吃了一惊, 你掉落了铁球");
         if (uwep == uball)
             setuwep((struct obj *) 0);
         if (uswapwep == uball)
@@ -39,13 +39,13 @@ ballfall()
     ballrelease(TRUE);
     if (gets_hit) {
         int dmg = rn1(7, 25);
-        pline_The("iron ball falls on your %s.", body_part(HEAD));
+        pline_The("铁球掉在你的%s上.", body_part(HEAD));
         if (uarmh) {
             if (is_metallic(uarmh)) {
-                pline("Fortunately, you are wearing a hard helmet.");
+                pline("幸运的是, 你戴着一个硬头盔.");
                 dmg = 3;
             } else if (flags.verbose)
-                pline("%s does not protect you.", Yname2(uarmh));
+                pline("%s 没有保护到你.", Yname2(uarmh));
         }
         losehp(Maybe_Half_Phys(dmg), "被一个铁球砸到头",
                NO_KILLER_PREFIX);
@@ -180,7 +180,7 @@ bc_order()
         if (obj == uball)
             return BCPOS_BALL;
     }
-    impossible("bc_order:  ball&chain not in same location!");
+    impossible("bc_order:  ball&chain 不在同一位置!");
     return BCPOS_DIFFER;
 }
 
@@ -575,7 +575,7 @@ boolean allow_drag;
             break;
 
         default:
-            impossible("bad chain movement");
+            impossible("坏的铁链不可移动");
             break;
         }
 #undef SKIP_TO_DRAG
@@ -586,8 +586,8 @@ boolean allow_drag;
 drag:
 
     if (near_capacity() > SLT_ENCUMBER && dist2(x, y, u.ux, u.uy) <= 2) {
-        You("cannot %sdrag the heavy iron ball.",
-            invent ? "carry all that and also " : "");
+        You("不能 %s 拖着沉重的铁球.",
+            invent ? "带着所有那些, 也不能" : "");
         nomul(0);
         return FALSE;
     }
@@ -601,13 +601,13 @@ drag:
             && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == HOLE
                 || t->ttyp == TRAPDOOR))) {
         if (Levitation) {
-            You_feel("a tug from the iron ball.");
+            You_feel("到铁球的拉力.");
             if (t)
                 t->tseen = 1;
         } else {
             struct monst *victim;
 
-            You("are jerked back by the iron ball!");
+            You("被铁球猛拉回来!");
             if ((victim = m_at(uchain->ox, uchain->oy)) != 0) {
                 int tmp;
 
@@ -702,29 +702,29 @@ xchar x, y;
 
     if (x != u.ux || y != u.uy) {
         struct trap *t;
-        const char *pullmsg = "The ball pulls you out of the %s!";
+        const char *pullmsg = "球把你拉出了%s!";
 
         if (u.utrap && u.utraptype != TT_INFLOOR
             && u.utraptype != TT_BURIEDBALL) {
             switch (u.utraptype) {
             case TT_PIT:
-                pline(pullmsg, "pit");
+                pline(pullmsg, "坑");
                 break;
             case TT_WEB:
-                pline(pullmsg, "web");
-                pline_The("web is destroyed!");
+                pline(pullmsg, "网");
+                pline_The("网被破坏了!");
                 deltrap(t_at(u.ux, u.uy));
                 break;
             case TT_LAVA:
-                pline(pullmsg, "lava");
+                pline(pullmsg, "熔岩");
                 break;
             case TT_BEARTRAP: {
                 register long side = rn2(3) ? LEFT_SIDE : RIGHT_SIDE;
-                pline(pullmsg, "bear trap");
+                pline(pullmsg, "捕兽夹");
                 set_wounded_legs(side, rn1(1000, 500));
                 if (!u.usteed) {
-                    Your("%s %s is severely damaged.",
-                         (side == LEFT_SIDE) ? "left" : "right",
+                    Your("%s %s 受到严重的损害",
+                         (side == LEFT_SIDE) ? "左" : "右",
                          body_part(LEG));
                     losehp(Maybe_Half_Phys(2),
                            "被拉出捕兽夹时腿损伤",
@@ -782,7 +782,7 @@ litter()
         nextobj = otmp->nobj;
         if ((otmp != uball) && (rnd(capacity) <= (int) otmp->owt)) {
             if (canletgo(otmp, "")) {
-                pline("%s you down the stairs.", Yobjnam2(otmp, "follow"));
+                pline("%s 你从楼梯下来.", Yobjnam2(otmp, "跟着"));
                 dropx(otmp);
             }
         }
@@ -807,25 +807,25 @@ drag_down()
     forward = carried(uball) && (uwep == uball || !uwep || !rn2(3));
 
     if (carried(uball))
-        You("lose your grip on the iron ball.");
+        You("没有紧握住铁球.");
 
     if (forward) {
         if (rn2(6)) {
-            pline_The("iron ball drags you downstairs!");
+            pline_The("铁球把你拖下了楼梯!");
             losehp(Maybe_Half_Phys(rnd(6)),
                    "被一个铁球拖下楼", NO_KILLER_PREFIX);
             litter();
         }
     } else {
         if (rn2(2)) {
-            pline_The("iron ball smacks into you!");
+            pline_The("铁球撞到你!");
             losehp(Maybe_Half_Phys(rnd(20)), "铁球碰撞",
                    KILLED_BY_AN);
             exercise(A_STR, FALSE);
             dragchance -= 2;
         }
         if ((int) dragchance >= rnd(6)) {
-            pline_The("iron ball drags you downstairs!");
+            pline_The("铁球把你拖下了楼梯!");
             losehp(Maybe_Half_Phys(rnd(3)),
                    "被一个铁球拖下楼", NO_KILLER_PREFIX);
             exercise(A_STR, FALSE);
