@@ -1873,7 +1873,7 @@ dodip()
         /* [N of] the {obj(s)} mix(es) with [one of] {the potion}... */
         pline("%s %s 和%s%s%s...", qbuf, simpleonames(obj),
               (potion->quan > 1L) ? "一个" : "",
-              thesimpleoname(potion), otense(obj, "混合"),);
+              thesimpleoname(potion), otense(obj, "混合"));
         /* Mixing potions is dangerous...
            KMH, balance patch -- acid is particularly unstable */
         if (obj->cursed || obj->otyp == POT_ACID || !rn2(10)) {
