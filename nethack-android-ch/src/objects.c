@@ -436,7 +436,7 @@ ARMOR("皮夹克", None,  //"leather jacket"
       1, 0, 0,  0, 12, 0,  30,  10,  9, 0,  ARM_SUIT, LEATHER, CLR_BLACK),
 
 /* shirts */
-ARMOR("夏威夷衫", None,  //"Hawaiian shirt"
+ARMOR("夏威夷衬衫", None,  //"Hawaiian shirt"
       1, 0, 0,  0,  8, 0,   5,   3, 10, 0,  ARM_SHIRT, CLOTH, CLR_MAGENTA),
 ARMOR("T 恤衫", None,  //"T-shirt"
       1, 0, 0,  0,  2, 0,   5,   2, 10, 0,  ARM_SHIRT, CLOTH, CLR_WHITE),

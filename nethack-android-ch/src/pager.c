@@ -411,36 +411,38 @@ boolean user_typed_name, without_asking;
         dbase_str = strcpy(newstr, inp);
     (void) lcase(dbase_str);
 
-    if (!strncmp(dbase_str, "interior of ", 12))
-        dbase_str += 12;
+    if (ep=strstri(dbase_str, "的内部"))
+        *ep = '\0';
     if (!strncmp(dbase_str, "a ", 2))
         dbase_str += 2;
     else if (!strncmp(dbase_str, "an ", 3))
         dbase_str += 3;
     else if (!strncmp(dbase_str, "the ", 4))
         dbase_str += 4;
-    if (!strncmp(dbase_str, "tame ", 5))
-        dbase_str += 5;
-    else if (!strncmp(dbase_str, "peaceful ", 9))
-        dbase_str += 9;
-    if (!strncmp(dbase_str, "invisible ", 10))
+    if (!strncmp(dbase_str, "驯服的 ", 10))
         dbase_str += 10;
-    if (!strncmp(dbase_str, "saddled ", 8))
-        dbase_str += 8;
-    if (!strncmp(dbase_str, "statue of ", 10))
+    else if (!strncmp(dbase_str, "和平的 ", 10))
+        dbase_str += 10;
+    if (!strncmp(dbase_str, "隐形的 ", 10))
+        dbase_str += 10;
+    if (!strncmp(dbase_str, "装有鞍的 ", 13))
+        dbase_str += 13;
+    if (!strncmp(dbase_str, "雕像之", 9))
         dbase_str[6] = '\0';
-    else if (!strncmp(dbase_str, "figurine of ", 12))
-        dbase_str[8] = '\0';
+    else if (!strncmp(dbase_str, "小雕像之", 12))
+        dbase_str[9] = '\0';
 
     /* Make sure the name is non-empty. */
     if (*dbase_str) {
         /* adjust the input to remove "named " and convert to lower case */
         char *alt = 0; /* alternate description */
 
-        if ((ep = strstri(dbase_str, " named ")) != 0)
-            alt = ep + 7;
+        if ((ep = strstri(dbase_str, "  名为 ")) != 0)
+            alt = ep + 9;
+        else if ((ep = strstri(dbase_str, " 被称为 ")) != 0)
+            ep = strstri(dbase_str, " 被称为 ");
         else
-            ep = strstri(dbase_str, " called ");
+            ep = strstri(dbase_str, " 叫做 ");
         if (!ep)
             ep = strstri(dbase_str, ", ");
         if (ep && ep > dbase_str)

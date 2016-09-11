@@ -76,7 +76,7 @@ MONSTER:('s',"蝎子"),(62,05)
 MONSTER:('p',"岩石锥子"),(63,05)
 #
 MONSTER:('U',"土巨怪"),(40,05)
-MONSTER:('v',"尘埃漩涡"),(42,05)
+MONSTER:('v',"尘埃旋涡"),(42,05)
 MONSTER:('T',"岩石巨魔"),(38,06)
 MONSTER:('E',"土元素"),(39,06),hostile
 MONSTER:('E',"土元素"),(41,06),hostile
@@ -324,7 +324,7 @@ MONSTER:('s',"蝎子"),random
 MONSTER:('H',"火巨人"),random
 #
 MONSTER:('d',"地狱猎犬"),random
-MONSTER:('v',"尘埃漩涡"),random
+MONSTER:('v',"尘埃旋涡"),random
 MONSTER:('v',"火旋涡"),random
 MONSTER:('E',"火元素"),random,hostile
 MONSTER:('E',"火元素"),random,hostile

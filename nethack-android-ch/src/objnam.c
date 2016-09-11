@@ -297,7 +297,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         else if (nn)
             Strcpy(buf, actualn);
         else if (un)
-            Sprintf(buf, "护身符被称为 %s", un);
+            Sprintf(buf, "护身符 被称为 %s", un);
         else
             Sprintf(buf, "%s 护身符", dn);
         break;
@@ -482,7 +482,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         else if (nn)
             Sprintf(buf, "%s  魔杖", actualn);
         else if (un)
-            Sprintf(buf, "魔杖被称为 %s", un);
+            Sprintf(buf, "魔杖 被称为 %s", un);
         else
             Sprintf(buf, "%s魔杖", dn);
         break;
@@ -493,7 +493,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
             else if (nn)
                 Strcpy(buf, actualn);
             else if (un)
-                Sprintf(buf, "被称为%s的小说", un);
+                Sprintf(buf, "小说 被称为 %s", un);
             else
                 Sprintf(buf, "%s 书", dn);
             break;
@@ -505,7 +505,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
                 Strcpy(buf, "魔法书之  ");
             Strcat(buf, actualn);
         } else if (un) {
-            Sprintf(buf, "魔法书被称为 %s", un);
+            Sprintf(buf, "魔法书 被称为 %s", un);
         } else
             Sprintf(buf, "%s 魔法书", dn);
         break;
@@ -515,7 +515,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
         else if (nn)
             Sprintf(buf, " %s  戒指", actualn);
         else if (un)
-            Sprintf(buf, "戒指被称为 %s", un);
+            Sprintf(buf, "戒指 被称为 %s", un);
         else
             Sprintf(buf, "%s戒指", dn);
         break;

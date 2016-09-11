@@ -24,7 +24,7 @@
  * God names use a leading underscore to flag goddesses.
  */
 const struct Role roles[] = {
-    { { "a考古学家", 0 },
+    { { "a考古学家", 0 },  //Archeologist
       { { "挖掘者", 0 },  //Digger
         { "现场调查员", 0 },  //Field Worker
         { "调查员", 0 },  //Investigator
@@ -35,9 +35,10 @@ const struct Role roles[] = {
         { "采集者", 0 },  //Collector
         { "馆长", 0 } },  //Curator
       "羽蛇神", "卡玛瑟特利", "修堤库特里", /* Central American */
+	  //"Quetzalcoatl", "Camaxtli", "Huhetotl"
       "Arc",
-      "考古学院",
-      "托尔特克国王墓室",
+      "考古学院",  //"the College of Archeology"
+      "托尔特克国王墓室",  //"the Tomb of the Toltec Kings",
       PM_ARCHEOLOGIST,
       NON_PM,
       NON_PM,
@@ -66,7 +67,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_MAGIC_MAPPING,
       -4 },
-    { { "b野蛮人", 0 },
+    { { "b野蛮人", 0 },  //Barbarian
       { { "掠夺者", "女掠夺者" },  //Plunderer Plunderess
         { "抢劫者", 0 },  //Pillager
         { "强盗", 0 },  //Bandit
@@ -77,9 +78,10 @@ const struct Role roles[] = {
         { "头目", "女头目" },  //Chieftain Chieftainess
         { "征服者", "女征服者" } },  //Conqueror Conqueress
       "米特拉", "克罗姆", "赛特", /* Hyborian */
+	  //"Mitra", "Crom", "Set"
       "Bar",
-      "原始部落营地",
-      "原始绿洲",
+      "原始部落营地",  //"the Camp of the Duali Tribe"
+      "原始绿洲",  //"the Duali Oasis"
       PM_BARBARIAN,
       NON_PM,
       NON_PM,
@@ -108,7 +110,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_HASTE_SELF,
       -4 },
-    { { "c穴居人", "女性穴居人" },
+    { { "c穴居人", "女性穴居人" },  //"Caveman", "Cavewoman"
       { { "穴居者", 0 },  //Troglodyte
         { "土著", 0 },  //Aborigine
         { "流浪者", 0 },  //Wanderer
@@ -119,9 +121,10 @@ const struct Role roles[] = {
         { "漫游者", 0 },  //Rover
         { "开拓者", 0 } },  //Pioneer
       "安努", "_伊师塔", "安沙尔", /* Babylonian */
+	  //"Anu", "_Ishtar", "Anshar"
       "Cav",
-      "祖先洞穴",
-      "龙巢穴",
+      "祖先洞穴",  //"the Caves of the Ancestors"
+      "龙巢穴",  //"the Dragon's Lair"
       PM_CAVEMAN,
       PM_CAVEWOMAN,
       PM_LITTLE_DOG,
@@ -150,7 +153,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_DIG,
       -4 },
-    { { "h医生", 0 },
+    { { "h医生", 0 },  //Healer
       { { "采药者", 0 },  //Rhizotomist
         { "庸医", 0 },  //Empiric
         { "敛尸官", 0 },  //Embalmer
@@ -161,9 +164,10 @@ const struct Role roles[] = {
         { "主治医师", 0 },  //Physician
         { "外科医师", 0 } },  //Chirurgeon
       "_雅典娜", "赫耳墨斯", "波塞冬", /* Greek */
+	  //"_Athena", "Hermes", "Poseidon"
       "Hea",
-      "埃皮达鲁斯神庙",
-      "科俄斯神庙",
+      "埃皮达鲁斯神庙",  //"the Temple of Epidaurus"
+      "科俄斯神庙",  //"the Temple of Coeus"
       PM_HEALER,
       NON_PM,
       NON_PM,
@@ -191,7 +195,7 @@ const struct Role roles[] = {
       A_WIS,
       SPE_CURE_SICKNESS,
       -4 },
-    { { "k骑士", 0 },
+    { { "k骑士", 0 },  //Knight
       { { "豪侠", 0 },  //Gallant
         { "绅士", 0 },  //Esquire
         { "年轻骑士", 0 },  //Bachelor
@@ -202,9 +206,10 @@ const struct Role roles[] = {
         { "爵士", "女爵士" },  //Seignieur Dame
         { "圣骑士", 0 } },  //Paladin
       "鲁格", "_布里吉特", "玛娜曼麦克利尔", /* Celtic */
+	  //"Lugh", "_Brigit", "Manannan Mac Lir"
       "Kni",
-      "卡米洛特城堡",
-      "玻璃岛",
+      "卡米洛特城堡",  //"Camelot Castle"
+      "玻璃岛",  //"the Isle of Glass"
       PM_KNIGHT,
       NON_PM,
       PM_PONY,
@@ -232,7 +237,7 @@ const struct Role roles[] = {
       A_WIS,
       SPE_TURN_UNDEAD,
       -4 },
-    { { "m僧侣", 0 },
+    { { "m僧侣", 0 },  //Monk
       { { "和尚候选人", 0 },  //Candidate
         { "新和尚", 0 },  //Novice
         { "入门和尚", 0 },  //Initiate
@@ -243,9 +248,10 @@ const struct Role roles[] = {
         { "火之学子", 0 },  //Student of Fire
         { "禅师", 0 } },  //Master
       "山雷精", "赤松子", "黄帝", /* Chinese */
+	  //"Shan Lai Ching", "Chih Sung-tzu", "Huan Ti"
       "Mon",
-      "禅本寺",
-      "大地之主寺庙",
+      "禅本寺",  //"the Monastery of Chan-Sune"
+      "大地之主寺庙",  //"the Monastery of the Earth-Lord"
       PM_MONK,
       NON_PM,
       NON_PM,
@@ -274,7 +280,7 @@ const struct Role roles[] = {
       A_WIS,
       SPE_RESTORE_ABILITY,
       -4 },
-    { { "p牧师", "女性牧师" },
+    { { "p牧师", "女性牧师" },  //"Priest", "Priestess"
       { { "修道者", 0 },  //Aspirant
         { "侍祭", 0 },  //Acolyte
         { "修行师", 0 },  //Adept
@@ -286,8 +292,8 @@ const struct Role roles[] = {
         { "教皇", "女教皇" } },  //High Priest
       0, 0, 0, /* deities from a randomly chosen other role will be used */
       "Pri",
-      "圣堂",
-      "纳宗殿",
+      "圣堂",  //"the Great Temple"
+      "纳宗殿",  //"the Temple of Nalzok"
       PM_PRIEST,
       PM_PRIESTESS,
       NON_PM,
@@ -318,7 +324,7 @@ const struct Role roles[] = {
       -4 },
     /* Note:  Rogue precedes Ranger so that use of `-R' on the command line
        retains its traditional meaning. */
-    { { "r盗贼", 0 },
+    { { "r盗贼", 0 },  //Rogue
       { { "拦路贼", 0 },  //Footpad
         { "扒手", 0 },  //Cutpurse
         { "小贼", 0 },  //Rogue
@@ -329,9 +335,10 @@ const struct Role roles[] = {
         { "骗子", "女骗子" },  //Magsman Magswoman
         { "盗圣", 0 } },  //Thief
       "伊赛克", "莫格", "科斯", /* Nehwon */
+	  //"Issek", "Mog", "Kos"
       "Rog",
-      "盗贼会馆",
-      "刺客会馆",
+      "盗贼会馆",  //"the Thieves' Guild Hall"
+      "刺客会馆",  //"the Assassins' Guild Hall"
       PM_ROGUE,
       NON_PM,
       NON_PM,
@@ -359,7 +366,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_DETECT_TREASURE,
       -4 },
-    { { "R游侠", 0 },
+    { { "R游侠", 0 },  //Ranger
       {
 #if 0 /* OBSOLETE */
         {"Edhel",   "Elleth"},
@@ -384,9 +391,10 @@ const struct Role roles[] = {
         { "射手", 0 },  //Sharpshooter
         { "神射手", "女神射手" } },  //Marksman Markswoman
       "墨丘利", "_维纳斯", "马耳斯", /* Roman/planets */
+	  //"Mercury", "_Venus", "Mars"
       "Ran",
-      "猎户座营地",
-      "狮头象洞穴",
+      "猎户座营地",  //"Orion's camp"
+      "狮头象洞穴",  //"the cave of the wumpus"
       PM_RANGER,
       NON_PM,
       PM_LITTLE_DOG /* Orion & canis major */,
@@ -415,7 +423,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_INVISIBILITY,
       -4 },
-    { { "s武士", 0 },
+    { { "s武士", 0 },  //Samurai
       { { "旗本", 0 },       /* Banner Knight */  //Hatamoto
         { "浪人", 0 },          /* no allegiance */  //Ronin
         { "忍者", "女忍者" }, /* secret society */  //Ninja  Kunoichi
@@ -426,9 +434,10 @@ const struct Role roles[] = {
         { "公家", 0 },           /* Noble of the Court */  //Kuge
         { "将", 0 } },       /* supreme commander, warlord */  //Shogun
       "_天照女神", "雷神", "须佐之男", /* Japanese */
+	  //"_Amaterasu Omikami", "Raijin", "Susanowo"
       "Sam",
-      "太郎家族城堡",
-      "将军城堡",
+      "太郎家族城堡",  //"the Castle of the Taro Clan"
+      "将军城堡",  //"the Shogun's Castle"
       PM_SAMURAI,
       NON_PM,
       PM_LITTLE_DOG,
@@ -456,7 +465,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_CLAIRVOYANCE,
       -4 },
-    { { "t游客", 0 },
+    { { "t游客", 0 },  //Tourist
       { { "漫步者", 0 },  //Rambler
         { "观光者", 0 },  //Sightseer
         { "远足者", 0 },  //Excursionist
@@ -467,9 +476,10 @@ const struct Role roles[] = {
         { "探险家", 0 },  //Explorer
         { "冒险家", 0 } },  //Adventurer
       "盲木卫", "_圣夫人", "昂福尔", /* Discworld */
+	  //"Blind Io", "_The Lady", "Offler"
       "Tou",
-      "安科莫波克",
-      "盗贼会馆",
+      "安科莫波克",  //"Ankh-Morpork"
+      "盗贼会馆",  //"the Thieves' Guild Hall"
       PM_TOURIST,
       NON_PM,
       NON_PM,
@@ -497,7 +507,7 @@ const struct Role roles[] = {
       A_INT,
       SPE_CHARM_MONSTER,
       -4 },
-    { { "v女武神", 0 },
+    { { "v女武神", 0 },  //Valkyrie
       { { "女强人", 0 },  //Stripling
         { "散兵", 0 },  //Skirmisher
         { "女斗士", 0 },  //Fighter
@@ -508,9 +518,10 @@ const struct Role roles[] = {
         { "冠军", 0 },  //Champion
         { "君主", "女神" } },  //Lady
       "蒂尔", "欧丁神", "洛基", /* Norse */
+	  //"Tyr", "Odin", "Loki"
       "Val",
-      "命运之神殿",
-      "叙尔特洞穴",
+      "命运之神殿",  //"the Shrine of Destiny"
+      "叙尔特洞穴",  //"the cave of Surtur"
       PM_VALKYRIE,
       NON_PM,
       NON_PM /*PM_WINTER_WOLF_CUB*/,
@@ -538,7 +549,7 @@ const struct Role roles[] = {
       A_WIS,
       SPE_CONE_OF_COLD,
       -4 },
-    { { "w巫师", 0 },
+    { { "w巫师", 0 },  //Wizard
       { { "聚能师", 0 },  //Evoker
         { "咒法师", 0 },  //Conjurer
         { "咒术士", 0 },  //Thaumaturge
@@ -549,9 +560,10 @@ const struct Role roles[] = {
         { "巫师", 0 },  //Wizard
         { "大魔导师", 0 } },  //Mage
       "卜塔", "透特", "安赫", /* Egyptian */
+	  //"Ptah", "Thoth", "Anhur"
       "Wiz",
-      "孤独塔",
-      "黑暗之塔",
+      "孤独塔",  //"the Lonely Tower"
+      "黑暗之塔",  //"the Tower of Darkness"
       PM_WIZARD,
       NON_PM,
       PM_KITTEN,
@@ -2064,7 +2076,7 @@ role_init()
         urole.cgod = roles[flags.pantheon].cgod;
     }
     /* 0 or 1; no gods are neuter, nor is gender randomized */
-    quest_status.godgend = !strcmpi(align_gtitle(alignmnt), "goddess");
+    quest_status.godgend = !strcmpi(align_gtitle(alignmnt), "女神");
 
     /* Fix up infravision */
     if (mons[urace.malenum].mflags3 & M3_INFRAVISION) {

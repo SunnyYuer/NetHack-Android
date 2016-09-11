@@ -17,6 +17,7 @@
 # prevents "orc mummy" and "orc zombie" from matching.
 #
 abbot
+方丈
 	For it had been long apparent to Count Landulf that nothing
 	could be done with his seventh son Thomas, except to make him
 	an Abbot or something of that kind.  Born in 1226, he had from
@@ -33,6 +34,8 @@ ac
 armor*
 armour*
 suit or piece of armor
+盔甲
+防具
 	"The last spot on the school jousting team came down to another
 	boy and me.  He was poor, and his only armor was a blanket his
 	mother had made him from her hair.  I, on the other hand, had
@@ -54,12 +57,15 @@ suit or piece of armor
 		[ When Help Collides, by J. D. Berry ]
 aclys
 aklys
+链棒
 	A short studded or spiked club attached to a cord allowing
 	it to be drawn back to the wielder after having been thrown.
 	It should not be confused with the atlatl, which is a device
 	used to throw spears for longer distances.
 ~agate ring
+~玛瑙戒指
 agate*
+玛瑙*
 	Translucent, cryptocrystalline variety of quartz and a subvariety
 	of chalcedony.  Agates are identical in chemical structure to
 	jasper, flint, chert, petrified wood, and tiger's-eye, and are
@@ -70,11 +76,13 @@ agate*
 	rock.
 		[ The Columbia Encyclopedia, Sixth Edition ]
 aleax
+亚历克斯
 	Said to be a doppelganger sent to inflict divine punishment
 	for alignment violations.
 *altar
 offer*
 sacrific*
+*祭坛
 	祭坛有三种类别:
 	1.  在寺庙里.它们是用来祭祀的[...].  石头的顶部雕有血槽, 整个
 	祭坛都被干涸的灰褐色的血迹所覆盖, 那是以前的祭品留下的痕
@@ -96,12 +104,14 @@ amaterasu omikami
 	his left eye.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 amber*
+琥珀*
 	"Tree sap," Wu explained, "often flows over insects and traps
 	them.  The insects are then perfectly preserved within the
 	fossil.  One finds all kinds of insects in amber - including
 	biting insects that have sucked blood from larger animals."
 		[ Jurassic Park, by Michael Crichton ]
 *amnesia
+*失忆
 maud
 	Get thee hence, nor come again,
 	Mix not memory with doubt,
@@ -123,8 +133,11 @@ maud
 	Than ever I have been yet!
 		[ Maud, And Other Poems by Alfred, Lord Tennyson ]
 ~amulet of yendor
+~岩德护身符
 ~amulet of restful sleep
+~深度睡眠护身符
 *amulet
+*护身符
 amulet of *
 amulet versus *
 	"The complete Amulet can keep off all the things that make
@@ -142,6 +155,7 @@ amulet versus *
 	"Now you're talking," said Robert.
 		[ The Story of the Amulet, by Edith Nesbit ]
 amulet of yendor
+岩德护身符
 	This mysterious talisman is the object of your quest.  It is
 	said to possess powers which mere mortals can scarcely
 	comprehend, let alone utilize.  The gods will grant the gift of
@@ -149,6 +163,7 @@ amulet of yendor
 	depths of Moloch's Sanctum and offer it on the appropriate high
 	altar on the Astral Plane.
 angel*
+天使*
 	He answered and said unto them, he that soweth the good seed
 	is the Son of man; the field is the world, and the good seed
 	are the children of the kingdom; but the weeds are the
@@ -162,6 +177,7 @@ angel*
 	wailing and gnashing of teeth.
 		[ The Gospel According to Matthew, 13:37-42, 49-50 ]
 angry god*
+生气的神*
 	Cold wind blows.
 	The gods look down in anger on this poor child.
 
@@ -169,6 +185,7 @@ angry god*
 	And why so cold?
 		[ Bridge of Sighs, by Robin Trower ]
 anhur
+安赫
 	An Egyptian god of war and a great hunter, few gods can match
 	his fury.  Unlike many gods of war, he is a force for good.
 	The wrath of Anhur is slow to come, but it is inescapable
@@ -177,6 +194,7 @@ anhur
 	his right arms to wield and which is tipped with a fragment
 	of the sun.  He is married to Mehut, a lion-headed goddess.
 ankh-morpork
+安科莫波克
 	The twin city of Ankh-Morpork, foremost of all the cities
 	bounding the Circle Sea, was as a matter of course the home
 	of a large number of gangs, thieves' guilds, syndicates and
@@ -187,18 +205,22 @@ ankh-morpork
 	of the competing gangs.
 	    [ The Colour of Magic, by Terry Pratchett ]
 anshar
+安沙尔
 	A primordial Babylonian-Akkadian deity, Anshar is mentioned
 	in the Babylonian creation epic _Enuma Elish_ as one of a
 	pair of offspring (with Kishar) of Lahmu and Lahamu.  Anshar
 	is linked with heaven while Kishar is identified with earth.
 	    [ Encyclopedia of Gods, by Michael Jordan ]
 ant
+蚂蚁
 * ant
+*蚁
 	This giant variety of the ordinary ant will fight just as
 	fiercely as its small, distant cousin.  Various varieties
 	exist, and they are known and feared for their relentless
 	persecution of their victims.
 anu
+安努
 	Anu was the Babylonian god of the heavens, the monarch of
 	the north star.  He was the oldest of the Babylonian gods,
 	the father of all gods, and the ruler of heaven and destiny.
@@ -208,6 +230,7 @@ anu
 ape
 apelike creature
 * ape
+*猿
 	The most highly evolved of all the primates, as shown by
 	all their anatomical characters and particularly the
 	development of the brain.  Both arboreal and terrestrial,
@@ -224,6 +247,7 @@ apelike creature
 		[ Battle for the Planet of the Apes,
 			by David Gerrold ]
 apple
+苹果
 	NEWTONIAN, adj.  Pertaining to a philosophy of the universe
 	invented by Newton, who discovered that an apple will fall
 	to the ground, but was unable to say why.  His successors
@@ -232,6 +256,7 @@ apple
 		[ The Devil's Dictionary, by Ambrose Bierce ]
 archeolog*
 * archeologist
+*考古学家
 	Archeology is the search for fact, not truth. [...]
 	So forget any ideas you've got about lost cities, exotic travel,
 	and digging up the world. We do not follow maps to buried
@@ -252,6 +277,7 @@ archeolog*
 		[ the brightonomicon, by Robert Rankin ]
 #		[title & author: same situation as with "bad luck" entry]
 archon
+执政官
 	Archons are the predominant inhabitants of the heavens.
 	However unusual their appearance, they are not generally
 	evil.  They are beings at peace with themselves and their
@@ -263,6 +289,7 @@ arioch
 	and many more names besides.
 		[ Elric of Melnibone, by Michael Moorcock ]
 *arrow
+*箭
 	I shot an arrow into the air,
 	It fell to earth, I knew not where;
 	For, so swiftly it flew, the sight
@@ -280,6 +307,7 @@ arioch
 		[ The Arrow and the Song,
 		  by Henry Wadsworth Longfellow ]
 ashikaga takauji
+足利尊氏
 	Ashikaga Takauji was a daimyo of the Minamoto clan who
 	joined forces with the Go-Daigo to defeat the Hojo armies.
 	Later when Go-Daigo attempted to reduce the powers of the
@@ -290,6 +318,7 @@ ashikaga takauji
 	governments was known as the Nambokucho.
 	[ Samurai - The Story of a Warrior Tradition, by Cook ]
 asmodeus
+阿斯莫德
 	It is said that Asmodeus is the overlord over all of hell.
 	His appearance, unlike many other demons and devils, is
 	human apart from his horns and tail.  He can freeze flesh
@@ -307,6 +336,7 @@ asmodeus
 	or unhappiness.
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 athame
+仪式刀
 	崇拜巫术者眼中的神圣仪式小刀( 四种基本工具之一, 另外三种
 	是魔杖, 圣杯, 五芒星阵). 传统的仪祭匕首是双刃黑柄的, 并带有
 	十字护手, 通常六到十八英寸长.
@@ -317,6 +347,7 @@ athen*
 	bird was the owl, and the plant sacred to her is the olive.
 	    [ Bulfinch's Mythology, by Thomas Bulfinch ]
 axe
+斧头
 	"For ev'ry silver ringing blow,
 	Cities and palaces shall grow!"
 
@@ -335,7 +366,9 @@ axe
 axolotl
 	A mundane salamander, harmless.
 bag
+袋子
 bag of *
+*袋
 sack
 	"Now, this third handkerchief," Mein Herr proceeded, "has also
 	four edges, which you can trace continuously round and round:
@@ -354,6 +387,7 @@ sack
 	you have all the wealth of the world in that leetle Purse!"
 		[ Sylvie and Bruno Concluded, by Lewis Carroll ]
 b*lzebub
+巴力西卜
 	The "lord of the flies" is a translation of the Hebrew
 	Ba'alzevuv (Beelzebub in Greek).  It has been suggested that
 	it was a mistranslation of a mistransliterated word which
@@ -362,6 +396,7 @@ b*lzebub
 	destruction, demoralization, hysteria and panic...
 		[ Notes on _Lord of the Flies_, by E. L. Epstein ]
 balrog
+炎魔
 	...  It came to the edge of the fire and the light faded as
 	if a cloud had bent over it.  Then with a rush it leaped
 	the fissure.  The flames roared up to greet it, and wreathed
@@ -372,7 +407,9 @@ balrog
 	'Ai, ai!' wailed Legolas.  'A Balrog!  A Balrog is come!'
 		   [ The Fellowship of the Ring, by J.R.R. Tolkien ]
 baluchitherium
+俾路支兽
 titanothere
+雷兽
 	Extinct rhinos include a variety of forms, the most
 	spectacular being _Baluchitherium_ from the Oligocene of
 	Asia, which is the largest known land mammal.  Its body, 18
@@ -383,6 +420,7 @@ titanothere
 	of the Oligocene being 8 feet high at the shoulder.
 		[ Prehistoric Animals, by Barry Cox ]
 banana
+香蕉
 	He took another step and she cocked her right wrist in
 	viciously.  She heard the spring click.  Weight slapped into
 	her hand.
@@ -410,6 +448,7 @@ banshee
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 barbarian
 * barbarian
+*野蛮人
 	They dressed alike -- in buckskin boots, leathern breeks and
 	deerskin shirts, with broad girdles that held axes and short
 	swords; and they were all gaunt and scarred and hard-eyed;
@@ -423,6 +462,7 @@ barbarian
 	They were wolves, but he was a tiger.
 		[ Conan - The Warrior, by Robert E. Howard ]
 barbed devil
+哈玛魔
 	Barbed devils lack any real special abilities, though they
 	are quite difficult to kill.
 # takes "bat or bird" when specifying 'B'
@@ -430,6 +470,7 @@ barbed devil
 ~wombat
 *bat
 bat or bird
+*蝙蝠
 	A bat, flitting in the darkness outside, took the wrong turn
 	as it made its nightly rounds and came in through the window
 	which had been left healthfully open.  It then proceeded to
@@ -440,6 +481,7 @@ bat or bird
 	some kind of a home.
 		[ A Pelican at Blandings, by P. G. Wodehouse ]
 bear*trap
+捕兽夹
 	Probably most commonly associated with trapping, the leghold
 	trap is a rather simple mechanical trap.  It is made up of two
 	jaws, a spring of some sort, and a trigger in the middle.  When
@@ -456,6 +498,8 @@ bear*trap
 	This also allows the trapper to release unwanted catches.
 		[ Wikipedia, the free encyclopedia ]
 *bee
+*蜂
+蜂*
 	This giant variety of its useful normal cousin normally
 	appears in small groups, looking for raw material to produce
 	the royal jelly needed to feed their queen.  On rare
@@ -463,6 +507,7 @@ bear*trap
 	queen bee is being well provided for, and guarded against
 	intruders.
 *beetle
+*甲虫
 	[ The Creator ] has an inordinate fondness for beetles.
 		[ attributed to biologist J.B.S. Haldane ]
 
@@ -473,6 +518,7 @@ bear*trap
 	wings are folded.
 		[ Van Dale's Groot Woordenboek der Nederlandse Taal ]
 bell of opening
+开启之铃
 	"A bell, book and candle job."
 	The Bursar sighed.  "We tried that, Archchancellor."
 	The Archchancellor leaned towards him.
@@ -488,6 +534,7 @@ bell of opening
 	bell tower.
 		[ Eric, by Terry Pratchett ]
 blindfold
+眼罩
 	The blindfolding was performed by binding a piece of the
 	yellowish linen whereof those of the Amahagger who condescended
 	to wear anything in particular made their dresses tightly round
@@ -500,6 +547,7 @@ blindfold
 	should impart the secrets of the route to us.
 		[ She, by H. Rider Haggard ]
 blind io
+盲木卫
 	On this particular day Blind Io, by dint of constant vigilance
 	the chief of the gods, sat with his chin on his hand
 	and looked at the gaming board on the red marble table in
@@ -510,10 +558,15 @@ blind io
 	own.  Several were currently hovering above the table.
 	    [ The Colour of Magic, by Terry Pratchett ]
 * blob
+酸滴
+颤抖的斑点
 ooze
 * ooze
+灰泥怪
 *pudding
+*布丁
 * slime
+*黏液
 	这些巨大的变形虫生物看起来只是像一堆粘液, 不过它们却可以靠着
 	食用金属或木头来生存和运动, 偶尔来地牢探险的冒险家们也会成为
 	它们的加餐.
@@ -528,6 +581,7 @@ ooze
 	并友好地清除了所有的垃圾.
 		[ At the Mountains of Madness, by H.P. Lovecraft,  译者Msajka ]
 blue jelly
+蓝色果冻
 	I'd planned how to prevent the lock from sealing behind me; it
 	required a temporary sacrifice, not cleverness.  I used the door
 	itself to help me cut off a portion of my body, after shunting all
@@ -536,11 +590,15 @@ blue jelly
 	force open the outer door until I returned and rejoined it.
 		[ Beholder's Eye, by Julie E. Czerneda ]
 bone devil
+骨魔
 	Bone devils attack with weapons and with a great hooked tail
 	which causes a loss of strength to those they sting.
 book of the dead
+死亡之书
 candelabrum*
+*烛台
 *candle
+*烛
 	Faustus: Come on Mephistopheles.  What shall we do?
 	Mephistopheles: Nay, I know not.  We shall be cursed with bell,
 	book, and candle.
@@ -551,6 +609,7 @@ candelabrum*
 	(Enter all the Friars to sing the dirge)
 		[ Doctor Faustus and Other Plays, by Christopher Marlowe ]
 boomerang
+回飞镖
 	Rincewind pulled himself up and thought about reaching for his
 	stick.  And then he thought again.  The man had a couple of spears
 	stuck in the ground, and people here were good at spears, because
@@ -563,7 +622,9 @@ boomerang
 	of wood that grew here.
 		[ The Last Continent, by Terry Pratchett ]
 ~*jack*boot*
+~长筒靴
 *boot*
+*靴
 	In Fantasyland these are remarkable in that they seldom or
 	never wear out and are suitable for riding or walking in
 	without the need of Socks.  Boots never pinch, rub, or get
@@ -575,7 +636,9 @@ boomerang
 	Elves, and Gnomes).
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 *booze
+*酒
 potion of sleeping
+药水之*沉睡
 	On waking, he found himself on the green knoll whence he had
 	first seen the old man of the glen.  He rubbed his eyes -- it
 	was a bright sunny morning.  The birds were hopping and
@@ -590,6 +653,7 @@ potion of sleeping
 		[ Rip Van Winkle, a Posthumous Writing
 		  of Diedrich Knickerbocker, by Washington Irving ]
 boulder
+巨石
 	I worked the lever well under, and stretched my back; the end
 	of the stone rose up, and I kicked the fulcrum under.  Then,
 	when I was going to bear down, I remembered there was
@@ -607,8 +671,11 @@ boulder
 	would do it; and so I did.
 		[ The King Must Die, by Mary Renault ]
 ~*longbow of diana
+~*戴安娜的长弓
 bow
 * bow
+~十字弓
+*弓
 	"Stand to it, my hearts of gold," said the old bowman as he
 	passed from knot to knot.  "By my hilt! we are in luck this
 	journey.  Bear in mind the old saying of the Company."
@@ -624,6 +691,7 @@ bow
 	girdle he had four farthings'-worth of wine."
 		[ The White Company, by Sir Arthur Conan Doyle ]
 brigit
+布里吉特
 	Brigit (Brigid, Bride, Banfile), which means the Exalted One,
 	was the Celtic (continental European and Irish) fertility
 	goddess.  She was originally celebrated on February first in
@@ -636,18 +704,22 @@ brigit
 	midwife to the Virgin Mary.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 ~stormbringer
+~兴风者
 *broadsword
+*大刀
 	Bring me my broadsword
 	And clear understanding.
 	Bring me my cross of gold,
 	As a talisman.
 		[ "Broadsword" (refrain) by Ian Anderson ]
 bugbear
+熊地精
 	Bugbears are relatives of goblins, although they tend to be
 	larger and more hairy.  They are aggressive carnivores and
 	sometimes kill just for the treasure their victims may be
 	carrying.
 bugle
+军号
 	'I read you by your bugle horn
 	And by your palfrey good,
 	I read you for a Ranger sworn
@@ -658,11 +730,13 @@ bugle
 	And mine at dead of night.'
 		[ Brignall Banks, by Sir Walter Scott ]
 bullwhip
+牛鞭
 	"Good," he said and, unbelievably, smiled at me, a smirk like
 	a round of rotted cheese.  "What did your keeper use on you?
 	A bullwhip?"
 		[ Melusine, by Sarah Monette ]
 *camaxtli
+卡玛瑟特利
 	A classical Mesoamerican Aztec god, also known as Mixcoatl-
 	Camaxtli (the Cloud Serpent), Camaxtli is the god of war.  He
 	is also a deity of hunting and fire who received human
@@ -671,6 +745,7 @@ bullwhip
 	to make fire by twirling the sacred fire sticks.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 camelot*
+卡米洛特城堡
 	The seat of Arthur's power in medieval romance.  The name is
 	of unknown origin and refers to the castle but also includes
 	the surrounding town.  ...  Camelot appears, most significantly,
@@ -683,6 +758,7 @@ camelot*
 	in the 14th century.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 candy bar
+条形糖果
 	Only once a year, on his birthday, did Charlie Bucket ever
 	get to taste a bit of chocolate.  The whole family saved up
 	their money for that special occasion, and when the great
@@ -702,6 +778,7 @@ candy bar
 	of birthday chocolate last him for more than a month.
 		[ Charlie and the Chocolate Factory, by Roald Dahl ]
 carrot
+胡萝卜
 	In World War II, Britain's air ministry spread the word that
 	a diet of these vegetables helped pilots see Nazi bombers
 	attacking at night.  That was a lie intended to cover the real
@@ -716,6 +793,7 @@ carrot
 	blackouts.
 		[ Urban Legends Reference Pages ]
 s*d*g*r* cat
+薛定谔的猫
 	Imagine a sealed container, so perfectly constructed that no
 	physical influence can pass either inwards or outwards across its
 	walls.  Imagine that inside the container is a cat, and also a
@@ -735,6 +813,7 @@ s*d*g*r* cat
 *cat
 *feline
 kitten
+*猫
 	Well-known quadruped domestic animal from the family of
 	predatory felines (_Felis ochreata domestica_), with a thick,
 	soft pelt; often kept as a pet.  Various folklores have the
@@ -748,7 +827,10 @@ kitten
 		[ The Cats of Ulthar, by H.P. Lovecraft ]
 # this one doesn't work very well for dwarven and gnomish cavemen
 cave*man
+穴居人
+女穴居人
 human cave*man
+人类*穴居人
 	Now it was light enough to leave.  Moon-Watcher picked up
 	the shriveled corpse and dragged it after him as he bent
 	under the low overhang of the cave.  Once outside, he
@@ -764,6 +846,8 @@ human cave*man
 		[ 2001: A Space Odyssey, by Arthur C. Clarke ]
 dwar* cave*man
 gnom* cave*man
+矮人*穴居人
+侏儒*穴居人
 	'Twas in a land unkempt of life's red dawn;
 	Where in his sanded cave he dwelt alone;
 	Sleeping by day, or sometimes worked upon
@@ -780,6 +864,7 @@ gnom* cave*man
 	And sank into a sleep too deep for dream.
 		[ The Dreamer, by Robert Service ]
 *centaur
+*半人马
 	Of all the monsters put together by the Greek imagination
 	the Centaurs (Kentauroi) constituted a class in themselves.
 	Despite a strong streak of sensuality, in their make-up,
@@ -798,6 +883,7 @@ gnom* cave*man
 	with the hills of Thessaly and the range of Erymanthos.
 		     [ Mythology of all races, Vol. 1, pp. 270-271 ]
 centipede
+蜈蚣
 	I observed here, what I had often seen before, that certain
 	districts abound in centipedes.  Here they have light
 	reddish bodies and blue legs; great myriapedes are seen
@@ -811,6 +897,7 @@ centipede
 			by Dr. David Livingstone ]
 cerberus
 kerberos
+刻耳柏洛斯
 	Cerberus, (or Kerberos in Greek), was the three-headed dog
 	that guarded the Gates of Hell.  He allowed any dead to enter,
 	and likewise prevented them all from ever leaving.  He was
@@ -819,6 +906,7 @@ kerberos
 	Hercules confronted him and took him to the world of the
 	living (as his twelfth and last labor).
 chameleon
+变色龙
 	A small lizard perched on a brown stone.  Feeling threatened by
 	the approach of human beings along the path, it metamorphosed
 	into a stingray beetle, then into a stench-puffer, then into a
@@ -832,6 +920,7 @@ chameleon
 	could strike him, he would be horribly dead.
 		[ A Spell for Chameleon, by Piers Anthony ]
 charo*n
+卡隆
 	When an ancient Greek died, his soul went to the nether world:
 	the Hades.  To reach the nether world, the souls had to cross
 	the river Styx, the river that separated the living from the
@@ -841,6 +930,7 @@ charo*n
 	man.
 chest
 large box
+*箱子
 	Dantes rapidly cleared away the earth around the chest.  Soon
 	the center lock appeared, then the handles at each end, all
 	delicately wrought in the manner of that period when art made
@@ -861,6 +951,7 @@ large box
 	against the windowpanes.
 		[ The Count of Monte Cristo, by Alexandre Dumas ]
 chih*sung*tzu
+赤松子
 	A character in Chinese mythology noted for bringing about the
 	end of a terrible drought which threatened the survival of
 	the people.  He achieved this by means of sprinkling the
@@ -870,14 +961,19 @@ chih*sung*tzu
 	Kunlun.
 	[ The Illustrated Who's Who In Mythology, by Michael Senior ]
 chromatic dragon
+彩色龙
 tiamat
 	Tiamat is said to be the mother of evil dragonkind.  She is
 	extremely vain.
 citrine*
+黄水晶*
 	A pale yellow variety of crystalline quartz resembling topaz.
 ~elven cloak
+~精灵斗篷
 ~oilskin cloak
+~油布斗篷
 *cloak*
+*斗篷*
 	Cloaks are the universal outer garb of everyone who is not a
 	Barbarian.  It is hard to see why.  They are open in front
 	and require you at most times to use one hand to hold them
@@ -891,6 +987,7 @@ citrine*
 	are less than practical for anyone on an arduous Tour.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 cloud*
+云
 	I wandered lonely as a cloud
 	That floats on high o'er vales and hills,
 	When all at once I saw a crowd,
@@ -899,6 +996,7 @@ cloud*
 	Fluttering and dancing in the breeze.
 		[ I Wandered Lonely as a Cloud, by William Wordsworth ]
 cobra
+眼镜蛇
 	Darzee and his wife only cowered down in the nest without
 	answering, for from the thick grass at the foot of the bush
 	there came a low hiss -- a horrid cold sound that made
@@ -916,6 +1014,7 @@ cobra
 	afraid!'
 		[ Rikki-tikki-tavi, by Rudyard Kipling ]
 c*ckatrice
+*鸡蛇
 	Once in a great while, when the positions of the stars are
 	just right, a seven-year-old rooster will lay an egg.  Then,
 	along will come a snake, to coil around the egg, or a toad,
@@ -966,12 +1065,14 @@ tiff
 		  by Graham Chapman, Peter Cook, Bernard McKenna ]
 cope
 * cope
+装饰性长袍
 	The cope is a liturgical vestment which may be worn by any
 	rank of the clergy.  Copes are made in all liturgical colours,
 	and are like a very long mantle or cloak, fastened at the breast
 	by a clasp.
 		[ Wikipedia, the free encyclopedia ]
 cornuthaum
+巫师帽
 	He was dressed in a flowing gown with fur tippets which had
 	the signs of the zodiac embroidered over it, with various
 	cabalistic signs, such as triangles with eyes in them, queer
@@ -992,11 +1093,14 @@ cornuthaum
 	wizardish.
 			[ The Elfin Ship, James P. Blaylock ]
 couatl
+羽蛇
 	A mythical feathered serpent.  The couatl are very rare.
 coyote
+土狼
 	This carnivore is known for its voracious appetite and
 	inflated view of its own intelligence.
 cram*
+压缩口粮
 	If you want to know what cram is, I can only say that I don't
 	know the recipe; but it is biscuitish, keeps good indefinitely,
 	is supposed to be sustaining, and is certainly not entertaining,
@@ -1004,6 +1108,7 @@ cram*
 	exercise.  It was made by the Lake-men for long journeys.
 		[ The Hobbit, by J.R.R. Tolkien ]
 cream pie
+奶油派
 		Gregor stared at the pastry tray, and sighed.  "I suppose
 	it would disturb the guards if I tried to shove a cream torte up
 	your nose."
@@ -1012,6 +1117,7 @@ cream pie
 	of justice flies one way," Miles snickered.
 		[ The Vor Game, by Lois McMaster Bujold ]
 *crocodile
+*鳄鱼
 	A big animal with the appearance of a lizard, constituting
 	an order of the reptiles (_Loricata_ or _Crocodylia_), the
 	crocodile is a large, dangerous predator native to tropical
@@ -1032,6 +1138,7 @@ cream pie
 croesus
 kroisos
 creosote
+克罗伊斯
 	Croesus (in Greek: Kroisos), the wealthy last king of Lydia;
 	his empire was destroyed when he attacked Cyrus in 549, after
 	the Oracle of Delphi (q.v.) had told him:  "if you attack the
@@ -1041,6 +1148,7 @@ creosote
 	happy and that no one should be considered fortunate before
 	his death.
 crom
+克罗姆
 	Warily Conan scanned his surroundings, all of his senses alert
 	for signs of possible danger.  Off in the distance, he could
 	see the familiar shapes of the Camp of the Duali tribe.
@@ -1052,6 +1160,8 @@ crom
 	[ Conan the Avenger by Robert E. Howard, Bjorn Nyberg, and
 	  L. Sprague de Camp ]
 crossbow*
+十字弓
+弩箭
 	"God save thee, ancient Mariner!
 	From the fiends, that plague thee thus! -
 	Why look'st thou so?" - With my cross-bow
@@ -1059,6 +1169,7 @@ crossbow*
 		[ The Rime of the Ancient Mariner, by Samuel Taylor
 		  Coleridge ]
 crystal ball
+水晶球
 	You look into one of these and see _vapours swirling like
 	clouds_.  These shortly clear away to show a sort of video
 	without sound of something that is going to happen to you
@@ -1087,6 +1198,7 @@ cwn*n
 	seen in midwinter and is accompanied by a howling wind.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 cyclops
+独眼巨人
 	And after he had milked his cattle swiftly,
 	he again took hold of two of my men
 	and had them as his supper.
@@ -1119,7 +1231,9 @@ cyclops
 	the drunk vomited lumps of human flesh.
 		[ The Odyssey, (chapter Epsilon), by Homer ]
 ~sting
+~杀兽针
 *dagger
+*匕首
 	Is this a dagger which I see before me,
 	The handle toward my hand? Come, let me clutch thee.
 	I have thee not, and yet I see thee still.
@@ -1131,6 +1245,7 @@ cyclops
 	As this which now I draw.
 		[ Macbeth, by William Shakespeare ]
 dark one
+黑暗魔君
 	... But he ruled rather by force and fear, if they might
 	avail; and those who perceived his shadow spreading over the
 	world called him the Dark Lord and named him the Enemy; and
@@ -1141,6 +1256,7 @@ dark one
 		[ The Silmarillion, by J.R.R. Tolkien ]
 # includes "dart trap"
 dart*
+飞镖*
 	Darts are missile weapons, designed to fly such that a sharp,
 	often weighted point will strike first.  They can be
 	distinguished from javelins by fletching (i.e., feathers on
@@ -1155,6 +1271,7 @@ dart*
 	Turn to a golden staff.
 		[ Gifts, by Mary Coleridge ]
 demogorgon
+魔神
 	A terrible deity, whose very name was capable of producing the
 	most horrible effects.  He is first mentioned by the 4th-century
 	Christian writer, Lactantius, who in doing so broke with the
@@ -1179,6 +1296,7 @@ major demon
 	they are friendly.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 diamond
+钻石
 	The hardest known mineral (with a hardness of 10 on Mohs' scale).
 	It is an allotropic form of pure carbon that has crystallized in
 	the cubic system, usually as octahedra or cubes, under great
@@ -1200,6 +1318,7 @@ diamond
 	on the left arm.  It is likewise found in Arabia.
 	 	[ The Aberdeen Bestiary, translated by Colin McLaren ]
 dilithium*
+双锂水晶
 	The most famous and the first to be named of the imaginary
 	"minerals" of Star Trek is dilithium. ... Because of this
 	mineral's central role in the storyline, a whole mythology
@@ -1222,14 +1341,17 @@ dilithium*
 	properties ascribed to dilithium.
 		[ The Mineralogy of Star Trek, by Jeffrey de Fourestier ]
 dingo
+澳洲野狗
 	A wolflike wild dog, Canis dingo, of Australia, having a
 	reddish- or yellowish-brown coat, believed to have been
 	introduced by the aborigines.
 	[Webster's Encyclopedic Unabridged Dictionary of the English Language]
 disenchanter
+解魔怪
 	Ask not, what your magic can do to it.  Ask what it can do
 	to your magic.
 dispater
+迪斯帕特
 	The Roman ruler of the underworld and fortune, similar to the
 	Greek Hades.  Every hundred years, the Ludi Tarentini were
 	celebrated in his honor.  The Gauls regarded Dis Pater as
@@ -1239,6 +1361,7 @@ dispater
 	earth.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 djinn*
+灯神
 	The djinn are genies from the elemental plane of Air.  There,
 	among their kind, they have their own societies.  They are
 	sometimes encountered on earth and may even be summoned here
@@ -1252,6 +1375,7 @@ djinn*
 ~slasher
 ~sirius
 *dog
+*狗
 pup*
 *canine
 	A domestic animal, the _tame dog_ (_Canis familiaris_), of
@@ -1262,9 +1386,13 @@ pup*
 	trained to perform various tasks.
 # typing "spellbook or a closed door" shouldn't yield this entry
 ~trap*door
+~陷阱门
 ~*spellbook*
+~*魔法书*
 *door
+*门
 doorway
+门口
 	穿过吾汝将踏进悲苦之城:
 	穿过吾汝将墮入永痛深坑:
 	穿过吾与永生迷失者结朋.
@@ -1278,6 +1406,7 @@ doorway
 		[ The Inferno, from The Divine Comedy of Dante
 			Alighieri, translated by H.F. Cary,  译者Msajka ]
 doppelganger
+变形怪
 	"Then we can only give thanks that this is Antarctica, where
 	there is not one, single, solitary, living thing for it to
 	imitate, except these animals in camp."
@@ -1306,6 +1435,10 @@ doppelganger
 	Xander Double: No, _I_ am.
 	    [ Buffy the Vampire Slayer, Episode 5.03, "The Replacement" ]
 *dragon
+~颊脖龙
+~变色龙
+~恶龙
+*龙
 *xoth
 	In the West the dragon was the natural enemy of man.  Although
 	preferring to live in bleak and desolate regions, whenever it
@@ -1326,6 +1459,7 @@ doppelganger
 	then you're a dragonlord."
 		[ The Tombs of Atuan, by Ursula K. Le Guin ]
 *dragon*scale*
+*龙鳞*
 	Stephen had argued, and the expert armorer had grudgingly
 	admitted, that dragonscale shield or armor, provided it proved
 	feasible to make at all, ought to offer some real, practical
@@ -1336,6 +1470,7 @@ doppelganger
 		[ The Last Book of Swords: Shieldbreaker's Story,
 			by Fred Saberhagen ]
 *drum*
+*鼓
 	Many travelers have seen the drums of the great apes, and
 	some have heard the sounds of their beating and the noise of
 	the wild, weird revelry of these first lords of the jungle,
@@ -1344,6 +1479,7 @@ doppelganger
 	of the Dum-Dum.
 		[ Tarzan of the Apes, by Edgar Rice Burroughs ]
 dunce*
+愚人帽
 	A dunce cap, also variously known as a dunce hat, dunce's
 	cap, or dunce's hat, is a tall conical hat.  In popular
 	culture, it is typically made of paper and often marked with
@@ -1371,8 +1507,11 @@ dungeon*
 	As from the Center thrice to th' utmost Pole.
 		[ Paradise Lost, by John Milton ]
 ~dwarf ??m*
+~矮人木乃伊
+~矮人僵尸
 #~dwar* cave*man
 dwarf*
+矮人*
 	Dwarfs have faces like men (ugly men, with wrinkled, leathery
 	skins), but are generally either flat-footed, duck-footed, or
 	have feet pointing backwards.  They are of the earth, earthy,
@@ -1413,6 +1552,7 @@ elwing
 		[ The Silmarillion, by J.R.R. Tolkien ]
 eel
 giant eel
+巨型鳗鱼
 	The behaviour of eels in fresh water extends the air of
 	mystery surrounding them.  They move freely into muddy, silty
 	bottoms of lakes, lying buried in the daylight hours in summer.
@@ -1423,6 +1563,7 @@ giant eel
 	carrion.
 	    [ Freshwater Fishes of Canada, by Scott and Crossman ]
 egg
+蛋
 	But I asked why not keep it and let the hen sit on it till it
 	hatched, and then we could see what would come out of it.
 	"Nothing good, I'm certain of that," Mom said.  "It would
@@ -1452,21 +1593,27 @@ elbereth
 	Come on!"
 	   [ The Fellowship of the Ring, by J.R.R. Tolkien ]
 electric eel
+电鳗
 	South-American fish (_Gymnotus electricus_), living in fresh
 	water.  Shaped like a serpent, it can grow up to 2 metres.
 	This eel is known for its electrical organ which enables it
 	to paralyse creatures up to the size of a horse.
 	   [ Van Dale's Groot Woordenboek der Nederlandse Taal ]
 *elemental
+*元素
 	Elementals are manifestations of the basic nature of the
 	universe.  There are four known forms of elementals:  air, fire,
 	water, and earth.  Some mystics have postulated the necessity
 	for a fifth type, the spirit elemental, but none have ever
 	been encountered, at least on this plane of existence.
 ~human or elf*
+~人类或精灵*
 ~elf ??m*
+~精灵木乃伊
+~精灵僵尸
 *elf*
 elvenking
+*精灵*
 	The Elves sat round the fire upon the grass or upon the sawn
 	rings of old trunks.  Some went to and fro bearing cups and
 	pouring drinks; others brought food on heaped plates and
@@ -1487,6 +1634,7 @@ elvenking
 	the singing that went to my heart, if you know what I mean."
 	   [ The Fellowship of the Ring, by J.R.R. Tolkien ]
 elven cloak
+精灵斗篷
 	The Elves next unwrapped and gave to each of the Company the
 	clothes they had brought.  For each they had provided a hood
 	and cloak, made according to his size, of the light but warm
@@ -1498,6 +1646,7 @@ elven cloak
 	the stars.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 emerald
+祖母绿
 	'Put off that mask of burning gold
 	With emerald eyes.'
 	'O no, my dear, you make so bold
@@ -1540,6 +1689,7 @@ A.S*
 		[ Journey to the Centre of the Earth, by Jules Verne,
 		  translated by Robert Baldick ]
 *epidaurus
+埃皮达鲁斯神庙
 	The asclepieion at Epidaurus was the most celebrated healing
 	center of the Classical world, the place where ill people went
 	in the hope of being cured.  To find out the right cure for
@@ -1551,12 +1701,15 @@ A.S*
 		[ Wikipedia, the free encyclopedia ]
 erinys
 erinyes
+伊里逆丝
 	These female-seeming devils named after the Furies of mythology
 	attack hand to hand and poison their unwary victims as well.
 ettin
+双头巨人
 	The two-headed giant, or ettin, is a vicious and unpredictable
 	hunter that stalks by night and eats any meat it can catch.
 excalibur
+誓约胜利之剑
 	At first only its tip was visible, but then it rose, straight,
 	proud, all that was noble and great and wondrous.  The tip of
 	the blade pointed toward the moon, as if it would cleave it
@@ -1572,6 +1725,7 @@ excalibur
 	blue-green color of the ocean.
 		[ Knight Life, by Peter David ]
 expensive camera
+高档相机
 	There was a time when Rincewind had quite liked the iconoscope.
 	He believed, against all experience, that the world was
 	fundamentally understandable, and that if he could only equip
@@ -1584,6 +1738,7 @@ expensive camera
 	upset to find that out.
 		[ The Light Fantastic, by Terry Pratchett ]
 eye of the aethiopica
+艾奇奥匹亚之眼
 	This is a powerful amulet of ESP.  In addition to its standard
 	powers, it regenerates the energy of anyone who carries
 	it, allowing them to cast spells more often.  It also reduces
@@ -1593,6 +1748,7 @@ eye of the aethiopica
 	dungeon, allowing its invoker to travel quickly between
 	areas.
 eyes of the overworld
+超世界之眼
 	... and finally there is "the Eyes of the Overworld".  This
 	obscure artifact pushes the wearer's view sense into the
 	"overworld" -- another name for a segment of the Astral Plane.
@@ -1600,12 +1756,14 @@ eyes of the overworld
 	is also able to look back and see the area around herself,
 	much like looking on a map.  Why anyone would want to ...
 fedora
+软呢帽
 	Some hats can only be worn if you're willing to be jaunty, to set
 	them at an angle and to walk beneath them with a spring in your
 	stride as if you're only a step away from dancing.  They demand a
 	lot of you.
 		[ Anansi Boys, by Neil Gaiman ]
 figurine*
+小雕像*
 	Then it appeared in Paris at just about the time that Paris
 	was full of Carlists who had to get out of Spain.  One of
 	them must have brought it with him, but, whoever he was, it's
@@ -1618,6 +1776,7 @@ figurine*
 	it was under the skin.
 		[ The Maltese Falcon, by Dashiell Hammett ]
 fire trap
+火焰陷阱
 	'Let him be for a while,' said Cohen.  'I reckon the fish
 	disagreed with him.'
 	'Don't see why,' said Truckle.  'I pulled him out before it'd
@@ -1631,10 +1790,13 @@ fire trap
 	_anywhere_?'
 		[ The Last Hero, by Terry Pratchett ]
 f* brand
+冰霜之剑
+烈焰之剑
 	One of a pair of legendary swords that possess the powers
 	of elemental flame and ice, and will grant these to whoever
 	is fortunate enough to wield them.
 flesh golem
+肉魔像
 	With an anxiety that almost amounted to agony, I collected
 	the instruments of life around me, that I might infuse a spark
 	of being into the lifeless thing that lay at my feet.  It was
@@ -1657,6 +1819,7 @@ flesh golem
 	black lips.
 		[ Frankenstein, by Mary Wollstonecraft Shelley ]
 flint*
+打火石*
 	An emerald is as green as grass;
 	A ruby red as blood;
 	A sapphire shines as blue as heaven;
@@ -1668,6 +1831,7 @@ flint*
 	But a flint holds fire.
 		[ Precious Stones, by Christina Giorgina Rossetti ]
 floating eye
+浮眼
 	Floating eyes, not surprisingly, are large, floating eyeballs
 	which drift about the dungeon.  Though not dangerous in and
 	of themselves, their power to paralyse those who gaze at
@@ -1676,6 +1840,7 @@ floating eye
 	its mystic powers, and then nibbled to death by some other
 	creature that lurked around nearby.
 *flute
+*笛
 	With this thou canst do mighty deeds
 	And change men's passions for thy needs:
 	A man's despair with joy allay,
@@ -1683,6 +1848,7 @@ floating eye
 		[ The Magic Flute, by Wolfgang Amadeus Mozart ]
 # also takes fog/vapor cloud
 fog* cloud
+雾云
 	The fog comes
 	on little cat feet.
 
@@ -1693,6 +1859,8 @@ fog* cloud
 	     [ Fog, by Carl Sandburg ]
 # includes "food detection" and "detect food", which might not be the best
 *food*
+*食物*
+口粮
 	The little girl stood on tip-toe and picked one of the nicest
 	and biggest lunch-boxes, and then she sat down upon the ground
 	and eagerly opened it.  Inside she found, nicely wrapped in
@@ -1703,6 +1871,7 @@ fog* cloud
 	of luncheon in the box before she had finished.
 		[ Ozma of Oz, by L. Frank Baum ]
 fountain
+喷泉
 	Rest! This little Fountain runs
 	Thus for aye: -- It never stays
 	For the look of summer suns,
@@ -1719,6 +1888,7 @@ fountain
 	And thank the great god Pan for all!
 		[ For a Fountain, by Bryan Waller Procter ]
 fox
+狐狸
 	One hot summer's day a Fox was strolling through an orchard
 	till he came to a bunch of Grapes just ripening on a vine
 	which had been trained over a lofty branch. "Just the thing
@@ -1731,6 +1901,7 @@ fox
 	sour."
 		[ Aesop's Fables ]
 *fung*
+紫真菌
 	Fungi, division of simple plants that lack chlorophyll, true
 	stems, roots, and leaves.  Unlike algae, fungi cannot
 	photosynthesize, and live as parasites or saprophytes.  The
@@ -1753,6 +1924,7 @@ fox
 	production.
 		[ The Concise Columbia Encyclopedia ]
 *gargoyle
+*石像鬼
 	And so it came to pass that while Man ruled on Earth, the
 	gargoyles waited, lurking, hidden from the light.  Reborn
 	every 600 years in Man's reckoning of time, the gargoyles
@@ -1768,6 +1940,7 @@ fox
 	[ Excerpt from the opening narration to the movie
 		_Gargoyles_, written by Stephen and Elinor Karpf ]
 *garlic
+蒜瓣
 	1 November - All day long we have travelled, and at a good
 	speed.  The horses seem to know that they are being kindly
 	treated, for they go willingly their full stage at best
@@ -1802,6 +1975,7 @@ hell
 	Thus, in the New Testament, Gehenna became synonymous with hell.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 gelatinous cube
+黏胶立方怪
 	Despite its popularity (or perhaps because of it), the
 	gelatinous cube is also widely known as one of the sillier
 	role-playing monsters.  It is something of a commentary on the
@@ -1813,12 +1987,15 @@ gelatinous cube
 	metal items.
 		[ Wikipedia, the free encyclopedia ]
 *gem
+*宝石
 gem or rock
+宝石或石头
 	The difference between false memories and true ones is the
 	same as for jewels:  it is always the false ones that look the
 	most real, the most brilliant.
 		[ Salvador Dali ]
 geryon
+吉里昂
 	Forthwith that image vile of fraud appear'd,
 	His head and upper part expos'd on land,
 	But laid not on the shore his bestial train.
@@ -1844,6 +2021,7 @@ geryon
 		[ The Inferno, from The Divine Comedy of Dante
 			Alighieri, translated by H.F. Cary ]
 *ghost
+*鬼魂
 valley of *dea*
 	And now the souls of the dead who had gone below came swarming
 	up from Erebus -- fresh brides, unmarried youths, old men
@@ -1856,6 +2034,7 @@ valley of *dea*
 	Panic drained the blood from my cheeks.
 	     [ The Odyssey, (chapter Lambda), by Homer ]
 ghoul
+食尸鬼
 	The forces of the gloom know each other, and are strangely
 	balanced by each other.  Teeth and claws fear what they cannot
 	grasp.  Blood-drinking bestiality, voracious appetites, hunger
@@ -1873,6 +2052,10 @@ ghoul
 	a ghoul.
 		[ Les Miserables, by Victor Hugo ]
 *giant
+~山区巨人
+~双头巨人
+~独眼巨人
+*巨人
 giant humanoid
 	Giants have always walked the earth, though they are rare in
 	these times.  They range in size from little over nine feet
@@ -1882,8 +2065,11 @@ giant humanoid
 	fried.  Their table manners are legendary.
 # note: "gnomish wizard" is a monster
 ~gnome ??m*
+~侏儒木乃伊
+~侏儒僵尸
 #~gnom* cave*man
 gnome*
+侏儒*
 gnomish wizard
 	...  And then a gnome came by, carrying a bundle, an old
 	fellow three times as large as an imp and wearing clothes of
@@ -1914,6 +2100,7 @@ gnomish wizard
 	and turned it upside down.
 	  [ Harry Potter and the Chamber of Secrets, by J. K. Rowling ]
 goblin
+地精
 	Now goblins are cruel, wicked, and bad-hearted.  They make
 	no beautiful things, but they make many clever ones.  They
 	can tunnel and mine as well as any but the most skilled
@@ -1941,6 +2128,7 @@ goddess
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 gold
 gold piece
+金币
 	A metal of characteristic yellow colour, the most precious
 	metal used as a common commercial medium of exchange.  Symbol,
 	Au; at. no. 79; at. wt. 197.2.  It is the most malleable
@@ -1951,6 +2139,7 @@ gold piece
 	     [ Webster's New International Dictionary
 		  of the English Language, Second Edition ]
 gold golem
+金魔像
 	The bellows he set away from the fire, and gathered all the tools
 	wherewith he wrought into a silver chest; and with a sponge wiped
 	he his face and his two hands withal, and his mighty neck and
@@ -1962,10 +2151,15 @@ gold golem
 	gods.
 		[ The Iliad, by Homer ]
 ~flesh golem
+~肉魔像
 ~gold golem
+~金魔像
 ~straw golem
+~稻草魔像
 ~wood golem
+~木魔像
 *golem
+*魔像
 	"The original story harks back, so they say, to the sixteenth
 	century.  Using long-lost formulas from the Kabbala, a rabbi is
 	said to have made an artificial man -- the so-called Golem -- to
@@ -1985,12 +2179,14 @@ gold golem
 	the Old Synagogue." ...
 	    [ The Golem, by Gustav Meyrink ]
 grave
+坟墓
 	"Who'd care to dig 'em," said the old, old man,
 	"Those six feet marked in chalk?
 	Much I talk, more I walk;
 	Time I were buried," said the old, old man.
 		[ Three Songs to the Same Tune, by W.B. Yeats ]
 grayswandir
+夜刃
 	Why had I been wearing Grayswandir?  Would another weapon have
 	affected a Logrus-ghost as strongly?  Had it really been my
 	father, then, who had brought me here?  And had he felt I might
@@ -1998,10 +2194,12 @@ grayswandir
 	think so, to believe that he had been more than a Pattern-ghost.
 		[ Knight of Shadows, by Roger Zelazny ]
 *grease
+油脂罐
 	ANOINT, v.t.  To grease a king or other great functionary
 	already sufficiently slippery.
 		[ The Devil's Dictionary, by Ambrose Bierce ]
 gremlin
+小鬼
 	The gremlin is a highly intelligent and completely evil
 	creature.  It lives to torment other creatures and will go
 	to great lengths to inflict pain or cause injury.
@@ -2017,6 +2215,7 @@ gremlin
 	He was thinking that when the man appeared again.
 		[ Nightmare at 20,000 Feet, by Richard Matheson ]
 grid bug
+电子虫
 	These electronically based creatures are not native to this
 	universe.  They appear to come from a world whose laws of
 	motion are radically different from ours.
@@ -2032,6 +2231,7 @@ grid bug
 	until this moment -- was healthy and sound."
 	    [ Tron, novel by Brian Daley, story by Steven Lisberger ]
 gunyoki
+饭团
 	The samurai's last meal before battle.  It was usually made
 	up of cooked chestnuts, dried seaweed, and sake.
 hachi
@@ -2044,6 +2244,7 @@ hachi
 	statue was erected on the station platform in his honor.  It
 	is said to bring you luck if you touch his statue.
 *harp
+*竖琴
 	A triangular stringed instrument, often Magic.  Even when not
 	Magic, a Harp is surprisingly portable and tough and can be
 	carried everywhere on the back of the Bard or Harper in all
@@ -2067,6 +2268,7 @@ hachi
 		[ Jack and the Beanstalk, from English Fairy Tales,
 		  by Joseph Jacobs ]
 hawaiian*shirt
+夏威夷衬衫
 	'One of the things he can't do, he can't ride a horse,' he
 	said.  Then he stiffened as if sandbagged by a sudden
 	recollection, gave a small yelp of terror and dashed into
@@ -2078,7 +2280,9 @@ hawaiian*shirt
 		[ The Colour of Magic, by Terry Pratchett ]
 healer
 * healer
+*医生
 attendant
+护理者
 doctor
 physician
 	I swear by Apollo the physician, and Aesculapius, and Health,
@@ -2102,6 +2306,7 @@ physician
 	dogs when well.
 		[ The Devil's Dictionary, by Ambrose Bierce ]
 heart of ahriman
+阿里曼之心
 	The other three drew in their breath sharply, and the dark,
 	powerful man who stood at the head of the sarcophagus whispered:
 	"The Heart of Ahriman!"  The other lifted a quick hand
@@ -2122,6 +2327,7 @@ heart of ahriman
 	ready to crumble at a touch.  We are fools ---"
 		[ Conan The Conqueror, by Robert E. Howard ]
 hell hound*
+地狱*猎犬
 	But suddenly they started forward in a rigid, fixed stare,
 	and his lips parted in amazement.  At the same instant Lestrade
 	gave a yell of terror and threw himself face downward upon the
@@ -2138,6 +2344,7 @@ hell hound*
 	of fog.
 	[ The Hound of the Baskervilles, by Sir Arthur Conan Doyle. ]
 hermes
+赫耳墨斯
 	Messenger and herald of the Olympians.  Being required to do
 	a great deal of travelling and speaking in public, he became
 	the god of eloquence, travellers, merchants, and thieves.  He
@@ -2154,9 +2361,11 @@ hermes
 	to have invented, among other things, the lyre, Pan's Pipes,
 	numbers, the alphabet, weights and measures, and sacrificing.
 hezrou
+狂战魔
 	"Hezrou" is the common name for the type II demon.  It is
 	among the weaker of demons, but still quite formidable.
 hippocrates
+希波克拉底
 	Greek physician, recognized as the father of medicine.  He
 	is believed to have been born on the island of Cos, to have
 	studied under his father, a physician, to have traveled for
@@ -2169,6 +2378,7 @@ hippocrates
 	deductive reasoning.
 		[ The Columbia Encyclopedia, Sixth Edition ]
 hobbit
+霍比特人
 	Hobbits are an unobtrusive but very ancient people, more
 	numerous formerly than they are today; for they love peace
 	and quiet and good tilled earth:  a well-ordered and well-
@@ -2180,6 +2390,7 @@ hobbit
 	now they avoid us with dismay and are becoming hard to find.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 hobgoblin
+大地精
 	Hobgoblin.  Used by the Puritans and in later times for
 	wicked goblin spirits, as in Bunyan's "Hobgoblin nor foul
 	friend", but its more correct use is for the friendly spirits
@@ -2204,6 +2415,7 @@ hobgoblin
 	heard of on the road between Hurworth and Neasham.
 		[ A Dictionary of Fairies, by Katharine Briggs ]
 holy water
+圣*水
 	"We want a word with you," said Ligur (in a tone of voice
 	intended to imply that "word" was synonymous with "horrifically
 	painful eternity"), and the squat demon pushed open the office
@@ -2227,6 +2439,7 @@ holy water
 	"Yet," corrected Crowley.
 		[ Good Omens, by Neil Gaiman and Terry Pratchett ]
 hom*nculus
+雏形人
 	A homunculus is a creature summoned by a mage to perform some
 	particular task.  They are particularly good at spying.  They
 	are smallish creatures, but very agile.  They can put their
@@ -2242,6 +2455,7 @@ hom*nculus
 		[ Conan the Rebel, by Poul Anderson ]
 # also gets 'pruning hook' aka guisarme
 *hook
+*钩
 	But as for Queequeg -- why, Queequeg sat there among them --
 	at the head of the table, too, it so chanced; as cool as an
 	icicle.  To be sure I cannot say much for his breeding.  His
@@ -2252,7 +2466,9 @@ hom*nculus
 	beefsteaks towards him.
 		[ Moby Dick, by Herman Melville ]
 ~unicorn horn
+~独角兽的角
 *horn
+*号角
 	Roland hath set the Olifant to his mouth,
 	He grasps it well, and with great virtue sounds.
 	High are those peaks, afar it rings and loud,
@@ -2263,6 +2479,7 @@ hom*nculus
 	"That were a lie, in any other mouth."
 		[ The Song of Roland ]
 horn of plenty
+丰饶之角
 cornucopia
 	The infant Zeus was fed with goat's milk by Amalthea,
 	daughter of Melisseus, King of Crete.  Zeus, in gratitude,
@@ -2276,10 +2493,13 @@ cornucopia
 	And scatters corn and wine, and fruits and flowers.
 		[ Os Lusiadas, by Luis Vaz de Camoes ]
 horned devil
+有角的魔鬼
 	Horned devils lack any real special abilities, though they
 	are quite difficult to kill.
 ~horsem*
 *horse
+~小马
+*马
 	King Richard III: A horse! a horse! my kingdom for a horse!
 	Catesby: Withdraw, my lord; I'll help you to a horse.
 	King Richard III: Slave, I have set my life upon a cast,
@@ -2291,9 +2511,13 @@ horned devil
 *horsem*
 rider*
 death
+死亡
 famine
+饥荒
 pestilence
+瘟疫
 war
+战争
 hunger
 	[Pestilence:] And I saw when the Lamb opened one of the seals,
 	and I heard, as it were the noise of thunder, one of the four
@@ -2322,12 +2546,14 @@ hunger
 	hunger, and with death, and with the beasts of the earth.
 	     [ Revelations of John, 6:1-8 ]
 huan*ti
+黄帝
 	The first of five mythical Chinese emperors, Huan Ti is known
 	as the yellow emperor.  He rules the _moving_ heavens, as
 	opposed to the _dark_ heavens.  He is an inventor, said to
 	have given mankind among other things, the wheel, armour, and
 	the compass.  He is the god of fortune telling and war.
 hu*h*eto*l
+修堤库特里*
 minion of huhetotl
 	Huehuetotl, or Huhetotl, which means Old God, was the Aztec
 	(classical Mesoamerican) god of fire.  He is generally
@@ -2343,15 +2569,25 @@ humanoid
 	human settlements.
 # takes "human or elf or you" when specifying '@' as a dwarf, gnome, or orc
 human
+人
 chieftain
+酋长
 guard
+警卫
 ninja
+忍者
 nurse
+护士
 ronin
+浪人
 student
+学者
 warrior
+战士
 *watch*
+警卫员*
 human or elf*
+人类或精灵*
 	These strange creatures live mostly on the surface of the
 	earth, gathering together in societies of various forms, but
 	occasionally a stray will descend into the depths and commit
@@ -2360,6 +2596,7 @@ human or elf*
 	using weapons and magic, and it is even rumored that the
 	Wizard of Yendor is a member of this species.
 hunter
+猎人
 	What of the hunting, hunter bold?
 	Brother, the watch was long and cold.
 	What of the quarry ye went to kill?
@@ -2370,6 +2607,7 @@ hunter
 	Brother, I go to my lair to die.
 		[ The Jungle Book, by Rudyard Kipling ]
 ice devil
+冰魔
 	Ice devils are large semi-insectoid creatures, who are
 	equally at home in the fires of Hell and the cold of Limbo,
 	and who can cause the traveller to feel the latter with just
@@ -2385,7 +2623,9 @@ idefix
 		[ Wikipedia, the free encyclopedia ]
 # takes "imp or minor demon" when specifying 'i'
 imp
+小恶魔
 imp or minor demon
+小恶魔或小魔鬼
 	 ... imps ... little creatures of two feet high that could
 	gambol and jump prodigiously; ...
 		[ The Charwoman's Shadow, by Lord Dunsany ]
@@ -2400,7 +2640,9 @@ imp or minor demon
 	ghostly and the diabolic state.
 		[ A Dictionary of Fairies, by Katharine Briggs ]
 incubus
+梦魇
 succubus
+魅魔
 	The incubus and succubus are male and female versions of the
 	same demon, one who lies with a human for its own purposes,
 	usually to the detriment of the mortals who are unwise in
@@ -2429,7 +2671,9 @@ succubus
 	himself, and went out from Pharaoh.
 		[ Exodus, 10:4-6 ]
 *iron ball
+*铁球
 *iron chain
+*铁链
 	"You are fettered, " said Scrooge, trembling.  "Tell me why?"
 	"I wear the chain I forged in life," replied the Ghost.  "I
 	made it link by link, and yard by yard; I girded it on of my
@@ -2442,6 +2686,7 @@ succubus
 	have laboured on it, since.  It is a ponderous chain!"
 		[ A Christmas Carol, by Charles Dickens ]
 iron bars
+铁栅栏
 	Stone walls do not a prison make,
 	  Nor iron bars a cage;
 	Minds innocent and quiet take
@@ -2452,6 +2697,7 @@ iron bars
 	  Enjoy such liberty.
 		[ To Althea from Prison, by Richard Lovelace ]
 ishtar
+伊师塔
 	Ishtar (the star of heaven) is the Mesopotamian goddess of
 	fertility and war.  She is usually depicted with wings and
 	weapon cases at her shoulders, carrying a ceremonial double-
@@ -2460,6 +2706,7 @@ ishtar
 	pointed star.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 issek
+伊赛克
 	Now Issek of the Jug, whom Fafhrd chose to serve, was once
 	of the most lowly and unsuccessful of the gods, godlets
 	rather, in Lankhmar.  He had dwelt there for about thirteen
@@ -2494,7 +2741,9 @@ izchak
 	memory.
 			[ Mike Stephenson, for the NetHack DevTeam ]
 jabberwock
+颊脖龙
 vorpal*
+斩首剑
 	"Beware the Jabberwock, my son!
 	  The jaws that bite, the claws that catch!
 	Beware the Jubjub bird, and shun
@@ -2516,6 +2765,7 @@ vorpal*
 	  He went galumphing back.
 				[ Jabberwocky, by Lewis Carroll ]
 jacinth*
+红锆石*
 	Sweet in the rough weather
 	  The voice of the turtle-dove
 	'Beautiful altogether
@@ -2526,6 +2776,7 @@ jacinth*
 	Is He among the sons.'
 		[ The Beloved, by May Probyn ]
 jackal
+豺狼
 	In Asiatic folktale, jackal provides for the lion; he scares
 	up game, which the lion kills and eats, and receives what is
 	left as reward.  In stories from northern India he is
@@ -2540,6 +2791,7 @@ jackal
 	Jackal".
 		[ Funk & Wagnalls Standard Dictionary of Folklore ]
 *jack*boot*
+*长筒靴
 	A large boot extending over the knee, acting as protective
 	armour for the leg, worn by troopers in the 17th and 18th
 	centuries and later.  It is still the type of boot worn by
@@ -2548,6 +2800,7 @@ jackal
 	jack-boot_ is to be controlled by a brutal military regime.
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 jade*
+翡翠*
 	Nothing grew among the ruins of the city.  The streets were
 	broken and the walls of the houses had fallen, but there were
 	no weeds flowering in the cracks and it seemed that the city
@@ -2559,11 +2812,13 @@ jade*
 	"The eyes!" Duke Avan Astran said.  "They're gone!"
 		[ The Jade Man's Eyes, by Michael Moorcock ]
 jaguar
+捷豹
 	Large, flesh-eating animal of the cat family, of Central and
 	South America.  This feline predator (_Panthera onca_) is
 	sometimes incorrectly called a panther.
 	 [ Van Dale's Groot Woordenboek der Nederlandse Taal ]
 jellyfish
+水母
 	I do not care to share the seas
 	With jellyfishes such as these;
 	Particularly Portuguese.
@@ -2571,6 +2826,7 @@ jellyfish
 			Bathing, by Michael Flanders ]
 juiblex
 jubilex
+朱比烈斯
 	Little is known about the Faceless Lord, even the correct
 	spelling of his name.  He does not have a physical form as
 	we know it, and those who have peered into his realm claim
@@ -2578,6 +2834,7 @@ jubilex
 	alive, spits acidic secretions, and causes disease in his
 	victims which can be almost instantly fatal.
 k?ration
+K*口粮
 	The K ration was the [ Quartermaster Subsistence Research
 	and Development Laboratory's ] answer to the demand for an
 	individual, easy-to-carry ration that could be used in
@@ -2608,11 +2865,13 @@ kabuto
 	downwards into a flange that rested against the forehead.
 	   [ Arms & Armour of the Samurai, by Bottomley & Hopson ]
 katana
+武士刀
 	The katana is a long, single-edged samurai sword with a
 	slightly curved blade.  Its long handle is designed to allow
 	it to be wielded with either one or two hands.
 kelp*
 *frond
+海藻叶子
 	I noticed that all the plants were attached to the soil by
 	an almost imperceptible bond.  Devoid of roots, they seemed
 	not to require any nourishment from sand, soil, or pebble.
@@ -2627,12 +2886,14 @@ kelp*
 	specimens in their native setting.
 		[ 20,000 Leagues Under the Sea, by Jules Verne ]
 ki-rin
+麒麟
 	The ki-rin is a strange-looking flying creature.  It has
 	scales, a mane like a lion, a tail, hooves, and a horn.  It
 	is brightly colored, and can usually be found flying in the
 	sky looking for good deeds to reward.
 king arthur
 *arthur
+亚瑟王
 	Ector took both his sons to the church before which the
 	anvil had been placed.  There, standing before the anvil, he
 	commanded Kay:  "Put the sword back into the steel if you
@@ -2657,7 +2918,9 @@ king arthur
 	   [ Van Gouden Tijden Zingen de Harpen, by Vladimir Hulpach,
 		Emanuel Frynta, and Vackav Cibula ]
 knife
+小刀
 stiletto
+小剑
 	Possibly perceiving an expression of dubiosity on their
 	faces, the globetrotter went on adhering to his adventures.
 
@@ -2675,6 +2938,7 @@ stiletto
 		[ Ulysses, by James Joyce ]
 knight
 * knight
+*骑士
 	Here lies the noble fearless knight,
 	Whose valour rose to such a height;
 	When Death at last had struck him down,
@@ -2686,13 +2950,17 @@ knight
 		[ Don Quixote of La Mancha, by Miquel de
 		  Cervantes Saavedra ]
 ~kobold ??m*
+~狗头人木乃伊
+~狗头人僵尸
 *kobold*
+*狗头人*
 	The race of kobolds are reputed to be an artificial creation
 	of a master wizard (demi-god?).  They are about 3' tall with
 	a vaguely dog-like face.  They bear a violent dislike of the
 	Elven race, and will go out of their way to cause trouble
 	for Elves at any time.
 *kop*
+*警察*
 	The Kops are a brilliant concept.  To take a gaggle of inept
 	policemen and display them over and over again in a series of
 	riotously funny physical punishments plays equally well to the
@@ -2722,6 +2990,7 @@ knight
 	humor.  Sennett got the humor.)
 		[ Silent Stars, by Jeanine Basinger ]
 kos
+科斯
 	"I am not a coward!" he cried.  "I'll dare Thieves' House
 	and fetch you Krovas' head and toss it with blood a-drip at
 	Vlana's feet.  I swear that, witness me, Kos the god of
@@ -2729,8 +2998,10 @@ kos
 	sword Graywand here at my side!"
 	   [ Swords and Deviltry, by Fritz Leiber ]
 koto
+日本筝
 	A Japanese harp.
 kraken
+海妖
 	Out from the water a long sinuous tentacle had crawled; it
 	was pale-green and luminous and wet.  Its fingered end had
 	hold of Frodo's foot, and was dragging him into the water.
@@ -2740,7 +3011,9 @@ kraken
 	water boiled, and there was a hideous stench.
 	   [ The Fellowship of the Ring, by J.R.R. Tolkien ]
 *lady
+圣夫人
 offler
+昂福尔
 	Blind Io took up the dice-box, which was a skull whose various
 	orifices had been stoppered with rubies, and with several of
 	his eyes on the Lady he rolled three fives.  She smiled.  This
@@ -2772,6 +3045,7 @@ offler
 	"Come _on_," he said wearily, "Play fair."
 		[ The Colour of Magic, by Terry Pratchett ]
 *lamp
+*灯
 	When he came to himself he told his mother what had passed,
 	and showed her the lamp and the fruits he had gathered in the
 	garden, which were in reality precious stones.  He then asked
@@ -2788,6 +3062,7 @@ offler
 	"Fetch me something to eat!"
 		[ Aladdin, from The Arabian Nights, by Andrew Lang ]
 lance
+长戟
 	With this the wind increased, and the mill sails began to turn
 	about; which Don Quixote espying, said, 'Although thou movest
 	more arms than the giant Briareus thou shalt stoop to me.'
@@ -2803,18 +3078,21 @@ lance
 		[ Don Quixote of La Mancha, by Miquel de
 		  Cervantes Saavedra ]
 land mine
+地雷
 	Your heart is intact, your brain is not badly damaged, but the rest
 	of your injuries are comparable to stepping on a land mine.  You'd
 	never walk again, and you'd be in great pain.  You would come to
 	wish you had not survived.
 		[ Steel Beach, by John Varley ]
 *lantern
+黄铜灯笼
 	While pretending to be a fancy safety lamp, it is in fact
 	battery powered.  A discreet little switch is marked "on/off"
 	in elaborate lettering.
 		[ Adventure 770, by Mike Arnautov ]
 lava
 * lava
+*熔岩
 	You are on the edge of a breath-taking view.  Far below you
 	is an active volcano, from which great gouts of molten lava
 	come surging out, cascading back down into the depths.  The
@@ -2839,6 +3117,7 @@ lava
 	south.
 		[ Adventure, by Will Crowther and Doug Woods. ]
 leash
+狗链
 	They had splendid heads, fine shoulders, strong legs, and
 	straight tails.  The spots on their bodies were jet-black and
 	mostly the size of a two-shilling piece; they had smaller
@@ -2849,6 +3128,7 @@ leash
 	putting the Dearlys on the leash to lead them over crossings.
 		[ The Hundred and One Dalmatians, by Dodie Smith ]
 lembas*
+兰巴斯片
 	In the morning, as they were beginning to pack their slender
 	goods, Elves that could speak their tongue came to them and
 	brought them many gifts of food and clothing for their
@@ -2869,6 +3149,7 @@ lembas*
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 lemure
 larvae
+劣魔
 	The Larvae (Lemures) are Roman spirits of deceased family
 	members.  These malignant spirits dwell throughout the house
 	and frighten the inhabitants.  People tried to reconcile or
@@ -2881,6 +3162,7 @@ larvae
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 leocrotta
 leu*otta
+狼狗
 	... the leucrocotta, a wild beast of extraordinary swiftness,
 	the size of the wild ass, with the legs of a Stag, the neck,
 	tail, and breast of a lion, the head of a badger, a cloven
@@ -2889,6 +3171,7 @@ leu*otta
 	imitate the human voice.
 		[ Curious Creatures in Zoology, by John Ashton ]
 leprechaun
+小矮妖
 	The Irish Leprechaun is the Faeries' shoemaker and is known
 	under various names in different parts of Ireland:
 	Cluricaune in Cork, Lurican in Kerry, Lurikeen in Kildare
@@ -2908,6 +3191,7 @@ leprechaun
 		[ A Field Guide to the Little People
 			       by Nancy Arrowsmith & George Moorse ]
 *lich
+*巫妖*
 	But on its heels ere the sunset faded, there came a second
 	apparition, striding with incredible strides and halting when
 	it loomed almost upon me in the red twilight-the monstrous mummy
@@ -2927,6 +3211,7 @@ leprechaun
 	reached out and fumbled for my throat . . .
 		[ The Abominations of Yondo, by Clark Ashton Smith ]
 lichen
+地衣
 	The chamber was of unhewn rock, round, as near as might
 	be, eighteen or twenty feet across, and gay with rich
 	variety of fern and moss and lichen.  The fern was in
@@ -2936,14 +3221,19 @@ lichen
 		[ Lorna Doone, by R.D. Blackmore ]
 # takes "light" when specifying 'y'
 ~* of light
+~之*
 * light
 light
+*光
 	Strange creatures formed from energy rather than matter,
 	lights are given to self-destructive behavior when battling
 	foes.
 gecko
+壁虎
 iguana
+鬣蜥
 lizard
+蜥蜴
 	Lizards, snakes and the burrowing amphisbaenids make up the
 	order Squamata, meaning the scaly ones.  The elongate, slim,
 	long-tailed bodies of lizards have become modified to enable
@@ -2954,6 +3244,7 @@ lizard
 	small vertebrate prey, but others feed on vegetation.
 		[ Macmillan Illustrated Animal Encyclopedia ]
 loki
+洛基
 	Loki, or Lopt, is described in Snorri's _Edda_ as being
 	"pleasing and handsome in appearance, evil in character, and
 	very capricious in behaviour".  He is the son of the giant
@@ -2969,11 +3260,14 @@ loki
 	Midgard, the mistress of the netherworld, Hel, and the wolf
 	Fenrir, who will devour the sun at Ragnarok.
 *longbow of diana
+*戴安娜的长弓
 	This legendary bow grants ESP when carried and can reflect magical
 	attacks when wielded.  When invoked it provides a supply of arrows.
 # long worm -- see "worm"
 looking glass
+镜子
 mirror
+反光镜
 	But as Snow White grew, she became more and more beautiful,
 	and by the time she was seven years old she was as beautiful
 	as the day and more beautiful than the queen herself.  One
@@ -2988,6 +3282,7 @@ mirror
 		But Snow White is a thousand times more fair."
 		[ Snow White, by Jakob and Wilhelm Grimm ]
 lord carnarvon
+卡那封勋爵
 	Lord Carnarvon was a personality who could have been produced
 	nowhere but in England, a mixture of sportsman and collector,
 	gentleman and world traveler, a realist in action and a
@@ -2997,10 +3292,12 @@ lord carnarvon
 	...  In 1906 he began his own excavations.
 		[ Gods, Graves, and Scholars, by C. W. Ceram ]
 lord sato
+萨托领主
 	Lord Sato was the family head of the Taro Clan, and a mighty
 	daimyo.  He is a loyal servant of the Emperor, and will do
 	everything in his power to further the imperial cause.
 lord surt*
+叙尔特领主
 	Yet first was the world in the southern region, which was
 	named Muspell; it is light and hot; that region is glowing
 	and burning, and impassable to such as are outlanders and
@@ -3029,6 +3326,7 @@ bad luck
 #			[no relation... both cover and title page list
 #			 this book's title in all lower case]
 lug*
+鲁格
 	Lugh, or Lug, was the sun god of the Irish Celts.  One of his
 	weapons was a rod-sling which worshippers sometimes saw in
 	the sky as a rainbow.  As a tribal god, he was particularly
@@ -3038,11 +3336,13 @@ lug*
 	attractive deity than Dagda, the father of the gods.  Being
 	able to shapeshift, his name translates as lynx.
 lurker*
+潜伏者
 	These dungeon scavengers are very adept at blending into the
 	surrounding walls and ceilings of the dungeon due to the
 	stone-like coloring of their skin.
 lycanthrope
 were*
+*?人
 human were*
 *were
 	In 1573, the Parliament of Dole published a decree, permitting
@@ -3063,6 +3363,7 @@ human were*
 	eating infants on a fast day.
 		[ The History of Vampires, by Dudley Wright ]
 lynx
+猞猁
 	To dream of seeing a lynx, enemies are undermining your
 	business and disrupting your home affairs.  For a woman,
 	this dream indicates that she has a wary woman rivaling her
@@ -3070,7 +3371,9 @@ lynx
 	will overcome her rival.
 		[ 10,000 Dreams Interpreted, by Gustavus Hindman Miller ]
 ~*sceptre of might
+~*力量权杖
 mace
+权杖
 sceptre
 	Originally a club armed with iron, and used in war; now a staff
 	of office pertaining to certain dignitaries, as the Speaker of
@@ -3080,9 +3383,11 @@ sceptre
 	their rights.
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 magic marker
+魔笔
 	The pen is mightier than the sword.
 		[ Richelieu, by Edward Bulwer-Lytton ]
 magic mirror of merlin
+梅林的魔镜
 	  [...] In Dehenbarth (that now South Wales is hight,
 	  What time King Ryence reigned, and dealed right)
 	  The great magician Merlin had devised,
@@ -3102,12 +3407,14 @@ magic mirror of merlin
 #	Like the world itself, and seemed a world of glass.
 		[ The Faerie Queene, by Edmund Spencer ]
 magicbane
+神魔克星
 	A highly enchanted athame said to hold the power to channel
 	and direct magical energy.
 mail d*emon
 	It is rumoured that these strange creatures can be harmed by
 	domesticated canines only.
 ma*annan*
+玛娜曼麦克利尔
 	Normally called Manannan, Ler's son was the patron of
 	merchants and sailors.  Manannan had a sword which never
 	failed to slay, a boat which propelled itself wherever its
@@ -3116,6 +3423,7 @@ ma*annan*
 	god of the sea, beneath which he lived in Tir na nOc, the
 	underworld.
 manes
+灵魂
 	Manes or Di Manes ("good ones") is the euphemistic description
 	of the souls of the deceased, worshipped as divinities.  The
 	formula D.M. (= Dis Manibus; "dedicated to the Manes-gods")
@@ -3139,12 +3447,14 @@ marduk
 	events in the lives of men.
 		[ The Immortals, by Derek and Julia Parker ]
 marilith
+六臂蛇魔
 	The marilith has a torso shaped like that of a human female,
 	and the lower body of a great snake.  It has multiple arms,
 	and can freely attack with all of them.  Since it is
 	intelligent enough to use weapons, this means it can cause
 	great damage.
 mars
+马耳斯
 	The god of war, and one of the most prominent and worshipped
 	gods.  In early Roman history he was a god of spring, growth in
 	nature, and fertility, and the protector of cattle.  Mars is
@@ -3153,6 +3463,7 @@ mars
 	He is the son of Jupiter and Juno.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 master assassin
+刺客大师
 	He strolled down the stairs, followed by a number of assassins.
 	When he was directly in front of Ymor he said: "I've come for
 	the tourist." ...
@@ -3173,12 +3484,14 @@ master assassin
 	etiquette."
 		[ The Colour of Magic, by Terry Pratchett ]
 master key of thievery
+盗窃专用万能钥匙
 	This skeleton key was fashioned in ages past and imbued with
 	a powerful magic which allows it to open any lock.  When
 	carried, it grants its owner warning, teleport control, and
 	reduces all physical damage by half.  Finally, when invoked,
 	it has the ability to disarm any trap.
 master of thieves
+盗贼大师
 	There was a flutter of wings at the window.  Ymor shifted his
 	bulk out of the chair and crossed the room, coming back with
 	a large raven.  After he'd unfastened the message capsule from
@@ -3191,12 +3504,14 @@ master of thieves
 	man his ambitions.
 		[ The Colour of Magic, by Terry Pratchett ]
 mastodon
+乳齿象
 	Any large, elephantlike mammal of the genera Mammut, Mastodon,
 	etc., from the Oligocene and Pleistocene epochs, having
 	conical projections on the molar teeth.
 		[ Webster's Encyclopedic Unabridged Dictionary
 			of the English Language ]
 *mattock
+矮人鹤嘴锄
 	A mattock is an agricultural tool similar to a mining pick.
 	It is distinguished by the head terminating in a broader blade
 	rather than a narrow spike, which makes it particularly suitable
@@ -3205,13 +3520,16 @@ mastodon
 	weapon for the poorer classes.
 		[ Wikipedia, the free encyclopedia ]
 meat*
+肉*
 huge chunk of meat
+大块肉
 	Some hae meat and canna eat,
 	And some would eat that want it;
 	But we hae meat, and we can eat,
 	Sae let the Lord be thankit.
 		[ Grace Before Meat, by Robert Burns ]
 medusa
+美杜莎
 perseus
 	Medusa, one of the three Gorgons or Graeae, is the only one
 	of her sisters to have assumed mortal form and inhabited the
@@ -3236,6 +3554,7 @@ perseus
 	middle of her Aegis.
 		[ Bulfinch's Mythology, by Thomas Bulfinch ]
 melon
+甜瓜
 	"What is it, Umbopa, son of a fool?" I shouted in Zulu.
 	"It is food and water, Macumazahn," and again he waved the
 	green thing.
@@ -3247,10 +3566,12 @@ melon
 	fruit as they were, I doubt if I ever thought anything nicer.
 		[ King Solomon's Mines, by H. Rider Haggard ]
 mercury
+墨丘利
 	Roman god of commerce, trade and travellers.  He is commonly
 	depicted carrying a caduceus (a staff with two snakes
 	intertwining around it) and a purse.
 *mimic
+*拟型怪
 	The ancestors of the modern day chameleon, these creatures can
 	assume the form of anything in their surroundings.  They may
 	assume the shape of objects or dungeon features.  Unlike the
@@ -3258,6 +3579,7 @@ mercury
 	and goes in hunt of food, the mimic waits patiently for its
 	meals to come in search of it.
 *mind flayer
+夺心魔*
 	This creature has a humanoid body, tentacles around its
 	covered mouth, and three long fingers on each hand.  Mind
 	flayers are telepathic, and love to devour intelligent beings,
@@ -3279,6 +3601,7 @@ gnomish mines
 	armor and weapons (_wondrous_).
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 minotaur
+弥诺陶洛斯
 	The Minotaur was a monster, half bull, half human, the
 	offspring of Minos' wife Pasiphae and a wonderfully beautiful
 	bull. ...  When the Minotaur was born Minos did not kill him.
@@ -3289,6 +3612,7 @@ minotaur
 	without ever finding the exit.
 		[ Mythology, by Edith Hamilton ]
 mit*ra*
+米特拉
 	Originating in India (Mitra), Mithra is a god of light who
 	was translated into the attendant of the god Ahura Mazda in
 	the light religion of Persia; from this he was adopted as
@@ -3306,6 +3630,7 @@ mit*ra*
 			Nations, by Herbert Spencer Robinson and
 			Knox Wilson ]
 *mithril*
+*秘银*
 	_Mithril_!  All folk desired it.  It could be beaten like
 	copper, and polished like glass; and the Dwarves could make
 	of it a metal, light and yet harder than tempered steel.
@@ -3313,11 +3638,13 @@ mit*ra*
 	of _mithril_ did not tarnish or grow dim.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 *mitre of holiness
+圣洁的冠冕
 	This helm of brilliance performs all of the normal functions
 	of a helm of brilliance, but also has the ability to protect
 	anyone who carries it from fire.  When invoked, it boosts
 	the energy of the invoker, allowing them to cast more spells.
 mjollnir
+雷神之锤
 	Forged by the dwarves Eitri and Brokk, in response to Loki's
 	challenge, Mjollnir is an indestructible war hammer.  It has
 	two magical properties:  when thrown it always returned to
@@ -3333,10 +3660,12 @@ mjollnir
 	governance over the entire cycle of life - fertility, birth,
 	destruction, and resurrection.
 mog
+莫格
 	Mog is known as the Spider God.  Mog resembles a four-limbed
 	spider with a handsome, if not entirely human, face.
 ~slime mold
 *mold
+*霉菌
 	Mold, multicellular organism of the division Fungi, typified
 	by plant bodies composed of a network of cottony filaments.
 	The colors of molds are due to spores borne on the filaments.
@@ -3362,8 +3691,11 @@ mol?ch
 		[ Leviticus 20:1-5 ]
 monk
 * monk
+*僧侣
 grand master
+宗师
 master kaen
+凯恩大师
 	One day, an army general invited the Buddhist monk I-Hsiu
 	(literally, "One Rest") to his military head office for a
 	dinner.  I-Hsiu was not accustomed to wearing luxurious
@@ -3403,6 +3735,7 @@ master kaen
 		[ Dining with a General - a Zen Buddhism Koan,
 		  translation by Yiu-man Chan ]
 monkey
+猴子
 	"Listen, man-cub," said the Bear, and his voice rumbled like
 	thunder on a hot night.  "I have taught thee all the Law of
 	the Jungle for all the peoples of the jungle--except the
@@ -3419,6 +3752,7 @@ monkey
 	we do not hunt where they hunt; we do not die where they die...."
 		[ The Jungle Book, by Rudyard Kipling ]
 morning star
+流星锤
 	The morning star was a medieval weapon resembling a mace, but
 	with a large spike on the end and smaller spikes around the
 	circumference.  It was also known as the goedendag (from the
@@ -3434,6 +3768,7 @@ morning star
 		[ Dictionary of Medieval Knighthood and Chivalry,
 		  by Bradford Broughton ]
 mumak*
+猛犸
 	... the Mumak of Harad was indeed a beast of vast bulk, and
 	the like of him does not walk now in Middle-Earth; his kin
 	that live still in latter days are but memories of his girth
@@ -3443,6 +3778,7 @@ mumak*
 	His upturned hornlike tusks ... dripped with blood.
 		[ The Two Towers, by J.R.R. Tolkien ]
 *mummy
+*木乃伊
 	But for an account of the manner in which the body was
 	bandaged, and a list of the unguents and other materials
 	employed in the process, and the words of power which were
@@ -3458,6 +3794,7 @@ mumak*
 	for the tomb.
 		[ Egyptian Magic, by E.A. Wallis Budge ]
 mummy wrapping
+木乃伊绷带
 	He held a white cloth -- it was a serviette he had brought
 	with him -- over the lower part of his face, so that his
 	mouth and jaws were completely hidden, and that was the
@@ -3475,11 +3812,13 @@ mummy wrapping
 		[ The Invisible Man, by H.G. Wells ]
 *naga*
 *naja*
+*纳迦*
 	The naga is a mystical creature with the body of a snake and
 	the head of a man or woman.  They will fiercely protect the
 	territory they consider their own.  Some nagas can be forced
 	to serve as guardians by a spellcaster of great power.
 naginata
+太刀
 	A Japanese pole-arm, fitted with a curved single-edged blade.
 	The blades ranged in length from two to four feet, mounted on
 	shafts about four to five feet long.  The naginata were cut
@@ -3500,9 +3839,11 @@ naginata
 	blade snapped at the hilt."
 	    [ Story of Tsutsui no Jomio Meishu from Tales of Heike ]
 nalfeshnee
+判魂魔
 	Not only do these demons do physical damage with their claws
 	and bite, but they are capable of using magic as well.
 nalzok
+纳宗魔
 	Nalzok is Moloch's cunning and unfailingly loyal battle
 	lieutenant, to whom he trusts the command of warfare when he
 	does not wish to exercise it himself.  Nalzok is a major
@@ -3511,11 +3852,13 @@ nalzok
 	him, but, trusting his own power enough, chooses to allow
 	Nalzok his position because he is useful.
 neanderthal*
+尼安德特人
 	1.  Valley between Duesseldorf and Elberfeld in Germany,
 	where an ancient skull of a prehistoric ancestor to modern
 	man was found.  2.  Human(oid) of the race mentioned above.
 neferet
 neferet the green
+绿衣娜菲利特
 	Neferet the Green holds office in her hidden tower, only
 	reachable by magical means, where she teaches her apprentices
 	the enigmatic skills of occultism.  Despite her many years, she
@@ -3524,6 +3867,7 @@ neferet the green
 	apprentice herself, she accidentally turned her skin green, and
 	has kept it that way ever since.
 newt
+蝾螈
 	(kinds of) small animal, like a lizard, which spends most of
 	its time in the water.
 		[ Oxford's Student's Dictionary of Current English ]
@@ -3538,8 +3882,10 @@ newt
 	Like a hell-broth boil and bubble."
 		[ Macbeth, by William Shakespeare ]
 ninja-to
+忍者大刀
 	A Japanese broadsword.
 *norn
+诺恩
 	The Norns were the three Norse Fates, or the goddesses of fate.
 	Female giants, they brought the wonderful Golden Age to an end.
 	They cast lots over the cradle of every child that was born,
@@ -3555,6 +3901,7 @@ ninja-to
 			Nations by Herbert Spencer Robinson and Knox
 			Wilson ]
 nunchaku
+双节棍
 	A nunchaku is two sections of wood (or metal in modern
 	incarnations) connected by a cord or chain.  There is much
 	controversy over its origins; some say it was originally a
@@ -3569,6 +3916,7 @@ nunchaku
 	Hong Kong.
 		[ Wikipedia, the free encyclopedia ]
 *nymph
+*仙女
 naiad
 	A female creature from Roman and Greek mythology, the nymph
 	occupied rivers, forests, ponds, etc.  A nymph's beauty is
@@ -3595,6 +3943,7 @@ naiad
 	that the road to nymphs is beset by monsters.
 		[ The Minotaur, by Bernard Evslin ]
 obsidian*
+黑曜石*
 	A volcanic glass, homogeneous in texture and having a low water
 	content, with a vitreous luster and a conchoidal fracture.  The
 	color is commonly black, but may be some shade of red or brown,
@@ -3606,6 +3955,7 @@ obsidian*
 	and other weapons and tools.
 		[ The Columbia Encyclopedia, Sixth Edition ]
 odin
+欧丁神
 	Also called Sigtyr (god of Victory), Val-father (father of
 	the slain), One-Eyed, Hanga-god (god of the hanged), Farma-
 	god (god of cargoes), Hapta-god (god of prisoners), and
@@ -3629,6 +3979,7 @@ odin
 	eyes to Mimir, the guardian of the well of wisdom in Hel, in
 	exchange for a draught of knowledge).
 ogre*
+食人魔*
 	Anyone who has met a gluttonous, nude, angry ogre, will not
 	easily forget this encounter -- if he survives it at all.
 	Both male and female ogres can easily grow as tall as three
@@ -3646,6 +3997,7 @@ ogre*
 	meal.
 		[ het Boek van de Regels; Het Oog des Meesters ]
 oilskin cloak
+油布斗篷
 	During our watches below we overhauled our clothes, and made
 	and mended everything for bad weather.  Each of us had made
 	for himself a suit of oil-cloth or tarpaulin, and these we
@@ -3656,6 +4008,7 @@ oilskin cloak
 	Pacific to prepare for its other face.
 		[ Two Years Before the Mast, by Richard Henry Dana ]
 oilskin sack
+防水袋
 	Summer passed all too quickly.  On the last day of camp, Mr.
 	Brickle called his counselors together and paid them what he
 	owed them.  Louis received one hundred dollars - the first
@@ -3666,6 +4019,7 @@ oilskin sack
 	lifesaving medal.
 		[ The Trumpet of the Swan, by E.B. White ]
 olog-hai
+欧罗海
 	But at the end of the Third Age a troll-race not before seen
 	appeared in southern Mirkwood and in the mountain borders of
 	Mordor.  Olog-hai they were called in the Black Speech.  That
@@ -3680,6 +4034,7 @@ olog-hai
 	and the only tongue they knew was the Black Speech of Barad-dur.
 		[ The Return of the King, by J.R.R. Tolkien ]
 oracle
+神谕
 delphi
 p*thia
 	Delphi under towering Parnassus, where Apollo's oracle was,
@@ -3692,7 +4047,9 @@ p*thia
 	a trance before she spoke.
 		[ Mythology, by Edith Hamilton ]
 orange
+橙子
 pear
+梨
 	What was the fruit like?  Unfortunately, no one can describe
 	a taste.  All I can say is that, compared with those fruits,
 	the freshest grapefruit you've ever eaten was dull, and the
@@ -3705,11 +4062,13 @@ pear
 	country and taste it for yourself.
 		[ The Last Battle, by C.S. Lewis ]
 *orb of detection
+*探测之球
 	This Orb is a crystal ball of exceptional powers.  When
 	carried, it grants ESP, limits damage done by spells, and
 	protects the carrier from magic missiles.  When invoked it
 	allows the carrier to become invisible.
 *orb of fate
+命运之球
 	Some say that Odin himself created this ancient crystal ball,
 	although others argue that Loki created it and forged Odin's
 	signature on the bottom.  In any case, it is a powerful
@@ -3729,15 +4088,23 @@ orcrist
 	They hated it and hated worse any one that carried it.
 		[ The Hobbit, by J.R.R. Tolkien ]
 orcus
+奥迦斯
 	Orcus, Prince of the Undead, has a ram's head and a poison
 	stinger.  He is most feared, though, for his powerful magic
 	abilities.  His wand causes death to those he chooses.
 ~orc ??m*
+~兽人僵尸
+~兽人木乃伊
 ~orcish barbarian
+~兽人*野蛮人
 ~orcish ranger
+~兽人*游侠
 ~orcish rogue
+~兽人*盗贼
 ~orcish wizard
+~兽人*巫师
 orc*
+*兽人*
 * orc
 uruk*hai
 	Orcs, bipeds with a humanoid appearance, are related to the
@@ -3777,8 +4144,10 @@ sirius
 	before him.
 		[ Bulfinch's Mythology, by Thomas Bulfinch ]
 osaku
+破锁忍具
 	The osaku is a small tool for picking locks.
 owlbear
+枭熊
 	Owlbears are probably the crossbreed creation of a demented
 	wizard; given the lethal nature of this creation, it is quite
 	likely the wizard who created them is no longer alive.  As
@@ -3786,12 +4155,14 @@ owlbear
 	a giant owl and a bear.  They are covered with fur and
 	feathers.
 page
+实习骑士
 	A male servant or attendant; specifically, in chivalry,
 	a lad or young man in training for knighthood, or a youth
 	of gentle parentage attending a royal or princely personage.
 		[ Webster's Comprehensive International Dictionary
 		  of the English Language ]
 *pall
+褪色的斗篷
 	_Pallium._  The Roman name for a square woollen cloak worn
 	by men in ancient Greece, especially by philosophers and
 	courtesans, corresponding to the Roman toga.  Hence the
@@ -3799,6 +4170,7 @@ page
 	called themselves _gens togata._
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 panther
+美洲豹
 	And lo! almost where the ascent began,
 	A panther light and swift exceedingly,
 	Which with a spotted skin was covered o'er!
@@ -3809,6 +4181,8 @@ panther
 		[ Dante's Inferno, as translated
 			by Henry Wadsworth Longfellow ]
 *paper
+空白
+白纸
 	Some players, who unconsciously perceive Paper as weak or a
 	sign of surrender, will shy away from using it entirely or
 	drop it from their game when they are falling behind.  On the
@@ -3823,6 +4197,7 @@ panther
 		[ The Official Rock Paper Scissors Strategy Guide,
 			by Douglas and Graham Walker ]
 pelias
+珀利阿斯
 	Conan cried out sharply and recoiled, thrusting his companion
 	back.  Before them rose the great shimmering white form of Satha,
 	an ageless hate in its eyes.  Conan tensed himself for one mad
@@ -3842,13 +4217,16 @@ pelias
 	soul."
 	    [ Conan the Usurper, by Robert E. Howard and L. Sprague de Camp ]
 pick*ax*
+鹤嘴锄
 broad pick
+宽阔锄头
 	The mine is full of holes;
 	With the wound of pickaxes.
 	But look at the goldsmith's store.
 	There, there is gold everywhere.
 		[ Divan-i Kebir Meter 2, by Mevlana Celaleddin Rumi ]
 *piercer
+*锥子
 	Ye Piercer doth look like unto a stalactyte, and hangeth
 	from the roofs of caves and caverns.  Unto the height of a
 	man, and thicker than a man's thigh do they grow, and in
@@ -3858,6 +4236,7 @@ broad pick
 	but exceeding slow.
 		[ the Bestiary of Xygag ]
 piranha
+水虎鱼
 	They live in "schools." Many times they will wait for prey
 	to come to the shallow water of the river. Then the large
 	group of piranhas will attack. These large groups are able
@@ -3868,6 +4247,7 @@ piranha
 		[ http://www.animalsoftherainforest.com ]
 pit
 spiked pit
+*坑
 	Amid the thought of the fiery destruction that impended, the
 	idea of the coolness of the well came over my soul like balm.
 	I rushed to its deadly brink.  I threw my straining vision
@@ -3879,11 +4259,13 @@ spiked pit
 	oh! any horror but this!
 		[ The Pit and the Pendulum, by Edgar Allan Poe ]
 pit fiend
+深渊恶魔
 	Pit fiends are among the more powerful of devils, capable of
 	attacking twice with weapons as well as grabbing and crushing
 	the life out of those unwary enough to enter their
 	domains.
 platinum yendorian express card
+岩德至尊白金卡
 	This is an ancient artifact made of an unknown material.  It
 	is rectangular in shape, very thin, and inscribed with
 	unreadable ancient runes.  When carried, it grants the one
@@ -3909,6 +4291,7 @@ user
 		[ It's a Jungle Out There, by Randy Newman ]
 #			[ theme song from "Monk" ]
 pony
+小马
 		Hey! now! Come hoy now! Whither do you wander?
 		Up, down, near or far, here, there or yonder?
 		Sharp-ears, Wise-nose, Swish-tail and Bumpkin,
@@ -3924,6 +4307,7 @@ pony
 	run to save themselves, then they run the right way."
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 *portal
+魔法入口
 	Portals can be Mirrors, Pictures, Standing Stones, Stone
 	Circles, Windows, and special gates set up for the purpose.
 	You will travel through them both to distant parts of the
@@ -3931,6 +4315,7 @@ pony
 	of their working is a Management secret.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 poseido*n
+波塞冬
 	Poseido(o)n, lord of the seas and father of rivers and
 	fountains, was the son of Chronos and Rhea, brother of Zeus,
 	Hades, Hera, Hestia and Demeter.  His rank of ruler of the
@@ -3949,8 +4334,11 @@ poseido*n
 		[ The Encyclopedia of Myths and Legends of All
 		  Nations, by Herbert Robinson and Knox Wilson ]
 ~*sleeping
+~*沉睡
 ~*booze
+~*酒
 *potion*
+*药水*
 	可饮用品, 名词. 适合饮用的事物. 水被认为是可饮用品;
 	事实上, 一些人宣称是我们的天然饮料, 人们只在承受干
 	渴的失调感时才会发现它的美味, 它像一种治疗干渴的
@@ -3978,8 +4366,11 @@ pray*
 	two be not four.
 		[ Fathers and Sons, by Ivan Turgenev ]
 priest*
+*牧师
 * priest*
+高级祭司
 acolyte
+侍祭
 	[...]  For the two priests were talking exactly like priests,
 	piously, with learning and leisure, about the most aerial
 	enigmas of theology.  The little Essex priest spoke the more
@@ -3997,6 +4388,7 @@ acolyte
 	utterly unreasonable?"
 		[ The Innocence of Father Brown, by G.K. Chesterton ]
 prisoner
+囚犯
 	Where am I?
 		In the Village.
 	What do you want?
@@ -4013,6 +4405,7 @@ prisoner
 	I am not a number!  I am a free man!
 		[ The Prisoner, by Patrick McGoohan ]
 ptah
+卜塔
 	Known under various names (Nu, Neph, Cenubis, Amen-Kneph,
 	Khery-Bakef), Ptah is the creator god and god of craftsmen.
 	He is usually depicted as wearing a closely fitting robe
@@ -4023,6 +4416,7 @@ ptah
 	life.  He is otherwise symbolized by his sacred animal, the
 	bull.
 *purple worm
+*紫蠕虫
 	A gargantuan version of the harmless rain-worm, the purple
 	worm poses a huge threat to the ordinary adventurer.  It is
 	known to swallow whole and digest its victims within only a
@@ -4030,6 +4424,7 @@ ptah
 	to the most minute vibrations in the earth, but may also
 	be awakened by a remote shriek.
 pyrolisk
+蛇鸡兽
 	At first glance around the corner, I thought it was another
 	cockatrice. I had encountered the wretched creatures two or
 	three times since leaving the open area. I quickly ducked my
@@ -4044,6 +4439,7 @@ pyrolisk
 	back, around that corner, desperately striving to get out of
 	its sight.
 python
+巨蟒
 	A monstrous serpent in Greek mythology, and the child of Gaia,
 	the goddess earth.  It was produced from the slime and mud
 	that was left on the earth by the great flood of Deucalion.
@@ -4063,6 +4459,7 @@ quadruped
 	adventurers have nevertheless met their end numerous times
 	due to the claws, hooves, or bites of such animals.
 quantum mechanic
+量子力学
 	These creatures are not native to this universe; they seem
 	to have strangely derived powers, and unknown motives.
 		[]
@@ -4081,6 +4478,7 @@ quantum mechanic
 	be less accurate because of the lower wavelength.
 		[ A Concise Dictionary of Physics ]
 quasit
+夸塞魔
 	Quasits are small, evil creatures, related to imps.  Their
 	talons release a very toxic poison when used in an attack.
 *quest
@@ -4098,6 +4496,7 @@ quasit
 	designed to help you do it.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 quetzalcoatl
+羽蛇神
 	One of the principal Aztec-Toltec gods was the great and wise
 	Quetzalcoatl, who was called Kukumatz in Guatemala, and
 	Kukulcan in Yucatan.  His image, the plumed serpent, is found
@@ -4122,6 +4521,7 @@ quit*
 		  written by Will McRobb and Chris Viscardi ]
 raijin
 raiden
+雷神
 	The Japanese god of thunder (rai) and lightning (den).  He
 	prevented the Mongols from invading Japan in 1274.  Sitting on
 	a cloud he sent forth a shower of lightning arrows upon the
@@ -4132,6 +4532,7 @@ raiden
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 ranger
 * ranger
+*游侠
 	"Lonely men are we, Rangers of the wild, hunters -- but hunters
 	ever of the servants of the Enemy; for they are found in many
 	places, not in Mordor only.
@@ -4148,6 +4549,9 @@ ranger
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 rat
 * rat
+~岩石鼹鼠
+~土拨鼠
+*鼠
 	Rats are long-tailed rodents.  They are aggressive,
 	omnivorous, and adaptable, often carrying diseases.
 		[]
@@ -4163,6 +4567,7 @@ rat
 	when a human being is helpless."
 		[ 1984, by George Orwell ]
 raven
+乌鸦
 	But the raven, sitting lonely on the placid bust, spoke only
 	That one word, as if his soul in that one word he did outpour.
 	Nothing further then he uttered -- not a feather then he fluttered--
@@ -4171,8 +4576,10 @@ raven
 		Then the bird said, 'Nevermore.'
 				[ The Raven, by Edgar Allan Poe ]
 ~*invisibility
+~*隐身*
 ring
 * ring
+*戒指
 ring of *
 	Three Rings for the Elven-kings under the sky,
 	Seven for the Dwarf-lords in their halls of stone,
@@ -4184,6 +4591,7 @@ ring of *
 	In the Land of Mordor where the Shadows lie.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 ring of invisibility
+隐身*戒指
 	"When time came for the shepherds to hold their customary
 	assembly in order to prepare their monthly report to the king
 	about the state of the flocks, he came too, wearing this ring.
@@ -4203,6 +4611,7 @@ ring of invisibility
 	leadership."
 		[ The Republic, by Plato, translated by James Adam ]
 robe
+长袍
 	Robes are the only garments, apart from Shirts, ever to have
 	sleeves.  They have three uses:
 	1.  As the official uniform of Priests, Priestesses, Monks,
@@ -4215,6 +4624,7 @@ robe
 	3.  As the garb of Desert Nomads.  [...]
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 rock
+岩石
 	Bilbo saw that the moment had come when he must do something.
 	He could not get up at the brutes and he had nothing to shoot
 	with; but looking about he saw that in this place there were
@@ -4237,6 +4647,7 @@ rock
 	curled up.
 		[ The Hobbit, by J.R.R. Tolkien ]
 rock mole
+岩石鼹鼠
 	A rock mole is a member of the rodent family.  They get their
 	name from their ability to tunnel through rock in the same
 	fashion that a mole tunnels through earth.  They are known to
@@ -4251,6 +4662,7 @@ rodent*
 		  of the English Language ]
 rogue
 * rogue
+*盗贼
 	I understand the business, I hear it: to have an open ear, a
 	quick eye, and a nimble hand, is necessary for a cut-purse; a
 	good nose is requisite also, to smell out work for the other
@@ -4263,6 +4675,7 @@ rogue
 		[ Autolycus the Rogue, from The Winter's Tale by
 			William Shakespeare ]
 roshi
+禅师
 	Roshi is a Japanese word, common in Zen Buddhism, meaning "old"
 	(ro) and "teacher" (shi).  Roshi can be used as a term of
 	respect, as in the Rinzai school; as a simple reference to
@@ -4271,10 +4684,12 @@ roshi
 	teacher.
 		[ Wikipedia, the free encyclopedia ]
 rothe
+洛斯兽
 	The rothe (pronounced roth-AY) is a musk ox-like creature with
 	an aversion to light.  It prefers to live underground near
 	lichen and moss.
 *royal jelly
+蜂王浆
 	"'Royal Jelly,'" he read aloud, "'must be a substance of
 	tremendous nourishing power, for on this diet alone, the
 	honey-bee larva increases in weight fifteen hundred times in
@@ -4290,7 +4705,9 @@ rothe
 	weight to five tons!"
 		[ Royal Jelly, by Roald Dahl ]
 ruby
+红宝石
 sapphire
+蓝宝石
 	_Corundum._  Mineral, aluminum oxide, Al2O3.  The clear
 	varieties are used as gems and the opaque as abrasive materials.
 	Corundum occurs in crystals of the hexagonal system and in
@@ -4299,14 +4716,17 @@ sapphire
 	(red) and the sapphire (blue).
 		[ The Columbia Encyclopedia, Sixth Edition ]
 rust monster
+锈怪
 	These strange creatures live on a diet of metals.  They can
 	turn a suit of armour into so much useless rusted scrap in no
 	time at all.
 # takes "rust monster or disenchanter" when specifying 'R'
 rust monster or disenchanter
+锈怪或解魔怪
 	These ground-dwelling monsters are known to make short
 	work out of degrading adventurers' combat equipment.
 *saber
+银剑
 *sabre
 	Flashed all their sabres bare,
 	Flashed as they turned in air,
@@ -4323,6 +4743,7 @@ rust monster or disenchanter
 		[ The Charge of the Light Brigade,
 		  by Alfred, Lord Tennyson ]
 saddle
+鞍
 	The horseman serves the horse,
 	The neat-herd serves the neat,
 	The merchant serves the purse,
@@ -4333,8 +4754,10 @@ saddle
 	And ride mankind.
 		[ Ode, by Ralph Waldo Emerson ]
 sake
+清酒
 	Japanese rice wine.
 salamander
+火蜥蜴
 	For hundreds of years, many people believed that salamanders
 	were magical.  In England in the Middle Ages, people thought
 	that fire created salamanders.  When they set fire to damp
@@ -4344,6 +4767,7 @@ salamander
 		[ Salamanders, by Cherie Winner ]
 samurai
 * samurai
+*武士
 	By that time, Narahara had already slipped his arm from the
 	sleeve of his outer robe, drew out his two-and-a-half-foot
 	Fujiwara Tadahiro sword, and, brandishing it over his head,
@@ -4356,6 +4780,7 @@ samurai
 	managed to escape virtually unscathed.
 		[ The Fox-horse, from Drunk as a Lord, by Ryotaro Shiba ]
 sandestin
+桑德斯廷
 	Ildefonse left the terrace and almost immediately sounds
 	of contention came from the direction of the work-room.
 	Ildefonse presently returned to the terrace, followed by
@@ -4388,6 +4813,7 @@ sandestin
 	such things inside myself, I might well become uneasy."
 		[ Rhialto the Marvellous, by Jack Vance ]
 sasquatch
+北美野人
 	The name _Sasquatch_ doesn't really become important in Canada
 	until the 1930s, when it appeared in the works of J. W. Burns,
 	a British Columbian writer who used a great deal of Indian
@@ -4407,12 +4833,14 @@ sasquatch
 	creature that we have all come to know.
 		[ The Encyclopedia of Monsters, by Daniel Cohen ]
 scalpel
+手术刀
 	A scalpel is a very sharp knife used for surgery ... Merely
 	touching a medical scalpel with bare hands to test it will
 	cut through the skin. ... Medical scalpel blades are gradually
 	curved for greater precision when cutting through tissue.
 		[ Wikipedia, the free encyclopedia ]
 *sceptre of might
+*力量权杖
 	This mace was created aeons ago in some unknown cave,
 	and has been passed down from generation to generation of
 	cave dwellers.  It is a very mighty mace indeed, and in
@@ -4420,18 +4848,21 @@ scalpel
 	missile attacks.  When invoked, it causes conflict in the
 	area around it.
 scimitar
+短弯刀
 	Oh, how handsome, how noble was the Vizier Ali Tebelin,
 	my father, as he stood there in the midst of the shot, his
 	scimitar in his hand, his face black with powder!  How his
 	enemies fled before him!
 		[ The Count of Monte Cristo, by Alexandre Dumas ]
 scorpio*
+蝎子
 	A sub-species of the spider (_Scorpionidae_), the scorpion
 	distinguishes itself from them by having a lower body that
 	ends in a long, jointed tail tapering to a poisonous stinger.
 	They have eight legs and pincers.
 		[ Van Dale's Groot Woordenboek der Nederlandse Taal ]
 scorpius
+蝎弩
 	Since early times, the Scorpion has represented death, darkness,
 	and evil.  Scorpius is the reputed slayer of Orion the Hunter.
 	[...]  The gods put both scorpion and hunter among the stars, but
@@ -4440,6 +4871,7 @@ scorpius
 		[ 365 Starry Nights, by Chet Raymo ]
 *scroll
 scroll *
+*卷轴*
 	And I was gazing on the surges prone,
 	With many a scalding tear and many a groan,
 	When at my feet emerg'd an old man's hand,
@@ -4460,6 +4892,7 @@ scroll *
 		[ Endymion, by John Keats ]
 set
 seth
+赛特
 	The ancient Egyptian god of chaos (Set), the embodiment of
 	hostility and even of outright evil.  He is also a god of war,
 	deserts, storms, and foreign lands. ... In the Book of the
@@ -4474,21 +4907,25 @@ seth
 	hippopotamus, and the pig.
 		[ Encyclopedia Mythica, ed. M.F. Lindemans ]
 shad*
+魂灵
 	Shades are undead creatures.  They differ from zombies in
 	that a zombie is an undead animation of a corpse, while a
 	shade is an undead creature magically created by the use
 	of black magic.
 shaman karnov
+萨满卡诺夫
 	Making his quarters in the Caves of the Ancestors, Shaman
 	Karnov unceasingly tries to shield his neanderthal people
 	from Tiamat's minions' harassments.
 shan*lai*ching
+山雷精
 	The Chinese god of Mountains and Seas, also the name of an
 	old book (also Shan Hai Tjing), the book of mountains and
 	seas - which deals with the monster Kung Kung trying to
 	seize power from Yao, the fourth emperor.
 		[ Spectrum Atlas van de Mythologie ]
 shark
+鲨鱼
 	As the shark moved, its dark top reflected virtually no
 	light.  The denticles on its skin muted the whoosh of its
 	movements as the shark rose, driven by the power of the
@@ -4505,8 +4942,10 @@ shark
 	the depths.
 		[ Close to Shore, by Michael Capuzzo ]
 shito
+锥
 	A Japanese stabbing knife.
 shopkeeper
+店主
 	There have been three general theories put forward to explain
 	the phenomenon of the wandering shops or, as they are
 	generically known, _tabernae vagantes._
@@ -4532,6 +4971,7 @@ shopkeeper
 	completely and utterly wrong.
 		[ The Light Fantastic, by Terry Pratchett ]
 shrieker
+尖叫蕈
 	With a single, savage thrust of her spear, the warrior-woman
 	impaled the fungus, silencing it.  However, it was too late:
 	the alarm had been raised[...]
@@ -4540,7 +4980,9 @@ shrieker
 	great dark worm, but that was about all they were sure of.
 		[ The Adventurers, Epic IV, by Thomas A. Miller ]
 throwing star
+投掷镖
 shuriken
+手里剑
 	You know, that's what I hate most about fighting against magic:
 	you never know what they're trying to do to you until it hits.
 	The sorceress knew what hit her, however.  Two of the shuriken
@@ -4549,6 +4991,7 @@ shuriken
 	kill her, but she wouldn't be fighting anyone for a while.
 		[ Jhereg, by Steven Brust ]
 skeleton
+骷髅
 	A skeleton is a magically animated undead creature.  Unlike
 	shades, only a humanoid creature can be used to create a
 	skeleton.  No one knows why this is true, but it has become
@@ -4572,12 +5015,15 @@ slasher
 	better warrior than many a man."
 		[ Conan The Warrior, by Robert E Howard ]
 *sleep
+~药水之*沉睡
+*沉睡
 	Sleep is a death; oh, make me try
 	By sleeping, what it is to die,
 	And as gently lay my head
 	On my grave, as now my bed.
 		[ Religio Medici, by Sir Thomas Browne ]
 slime mold
+黏液
 	Science fiction did not invent the slime molds, but it has
 	borrowed from them in using the idea of sheets of liquid, flowing
 	cytoplasm engulfing and dissolving every living thing they touch.
@@ -4587,6 +5033,7 @@ slime mold
 	enough.
 		[ Encyclopaedia Britannica, 1977 ]
 sling
+投石器
 	And it came to pass, when the Philistine arose, and came and
 	drew nigh to meet David, that David hasted, and ran toward
 	the army to meet the Philistine.
@@ -4599,6 +5046,11 @@ sling
 	was no sword in the hand of David.
 		[ 1 Samuel 17:48-50 ]
 *snake
+~小鸡蛇
+~鸡蛇
+~羽蛇
+~眼镜蛇
+*蛇
 serpent
 water moccasin
 pit viper
@@ -4647,9 +5099,13 @@ sokoban
 	Boxxle, Sokoban Perfect and Sokoban Revenge.
 		[ Wikipedia, the free encyclopedia ]
 *soldier
+士兵
 sergeant
+中士
 lieutenant
+中尉
 captain
+上尉
 	The soldiers of Yendor are well-trained in the art of war,
 	many trained by the Wizard himself.  Some say the soldiers
 	are explorers who were unfortunate enough to be captured,
@@ -4659,7 +5115,11 @@ captain
 	gear, however, one can usually run away from them, and doing
 	so is considered a wise thing.
 *spear
+~三叉矛
+~斩矛
+*矛
 javelin
+标枪
 	- they come together with great random, and a spear is brast,
 	and one party brake his shield and the other one goes down,
 	horse and man, over his horse-tail and brake his neck, and
@@ -4679,6 +5139,7 @@ javelin
 		[ A Connecticut Yankee in King Arthur's Court, by Mark
 		  Twain ]
 *spellbook*
+*魔法书*
 	The Book of Three lay closed on the table.  Taran had never
 	been allowed to read the volume for himself; now he was sure
 	it held more than Dallben chose to tell him.  In the sun-
@@ -4696,6 +5157,7 @@ javelin
 	they blistered."
 		[ The Book of Three, by Lloyd Alexander ]
 *spider
+*蜘蛛
 	Eight legged creature capable of spinning webs to trap prey.
 		[]
 
@@ -4708,12 +5170,17 @@ javelin
 	"Why, yes, of course," said Wilbur.
 		[ Charlotte's Web, by E.B. White ]
 *spore
+气体孢子
 *sphere
+冻结球
+火焰球
+电球
 	The attack by those who want to die -- this is the attack
 	against which you cannot prepare a perfect defense.
 					--Human aphorism
 		[ The Dosadi Experiment, by Frank Herbert ]
 squeaky board
+尖板
 	A floorboard creaked.  Galder had spent many hours tuning them,
 	always a wise precaution with an ambitious assistant who walked
 	like a cat.
@@ -4723,7 +5190,10 @@ squeaky board
 	of you to come.  Shut the door, will you?"
 		[ The Light Fantastic, by Terry Pratchett ]
 ~*aesculapius
+~阿斯克勒庇俄斯之杖
 *staff
+棒子
+铁头木棒
 	So they stood, each in his place, neither moving a finger's
 	breadth back, for one good hour, and many blows were given
 	and received by each in that time, till here and there were
@@ -4743,6 +5213,7 @@ squeaky board
 	water, as the queen pin falls in a game of bowls.
 		[ The Merry Adventures of Robin Hood, by Howard Pyle ]
 *staff of aesculapius
+*阿斯克勒庇俄斯之杖
 	This staff is considered sacred to all healers, as it truly
 	holds the powers of life and death.  When wielded, it
 	protects its user from all life draining attacks, and
@@ -4770,7 +5241,9 @@ stair*
 		[ Ghostbusters, directed by Ivan Reitman,
 		  written by Dan Ackroyd and Harold Ramis ]
 ~statue trap
+~雕像陷阱
 statue*
+雕像*
 	Then at last he began to wonder why the lion was standing so
 	still - for it hadn't moved one inch since he first set eyes
 	on it.  Edmund now ventured a little nearer, still keeping in
@@ -4789,6 +5262,7 @@ statue*
 	snow.  Of course it must be only a statue!
 		[ The Lion, the Witch and the Wardrobe by C.S. Lewis ]
 sting
+杀兽针
 	There was the usual dim grey light of the forest-day about
 	him when he came to his senses.  The spider lay dead beside
 	him, and his sword-blade was stained black.  Somehow the
@@ -4802,6 +5276,7 @@ sting
 	you Sting."
 		[ The Hobbit, by J.R.R. Tolkien ]
 stormbringer
+兴风者
 	There were sounds in the distance, incongruent with the
 	sounds of even this nameless, timeless sea: thin sounds,
 	agonized and terrible, for all that they remained remote -
@@ -4826,6 +5301,7 @@ stormbringer
 	seemed to be alive.
 		[ Crime and Punishment, by Fyodor Dostoevsky ]
 straw golem
+稻草魔像
 	Dorothy leaned her chin upon her hand and gazed thoughtfully
 	at the Scarecrow.  Its head was a small sack stuffed with
 	straw, with eyes, nose, and mouth painted on it to represent
@@ -4838,6 +5314,7 @@ straw golem
 	pole stuck up its back.
 		[ The Wonderful Wizard of Oz, by L. Frank Baum ]
 susano*o
+须佐之男
 	The Shinto chthonic and weather god and brother of the sun
 	goddess Amaterasu, he was born from the nose of the
 	primordial creator god Izanagi and represents the physical,
@@ -4845,8 +5322,10 @@ susano*o
 	up residence on earth.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 tanko
+挂甲
 	Samurai plate armor of the Yamato period (AD 300 - 710).
 tengu
+天狗
 	The tengu was the most troublesome creature of Japanese
 	legend.  Part bird and part man, with red beak for a nose
 	and flashing eyes, the tengu was notorious for stirring up
@@ -4855,6 +5334,7 @@ tengu
 	instructors in the use of arms.
 	[ Mythical Beasts, by Deirdre Headon (The Leprechaun Library) ]
 thoth
+透特
 	The Egyptian god of the moon and wisdom, Thoth is the patron
 	deity of scribes and of knowledge, including scientific,
 	medical and mathematical writing, and is said to have given
@@ -4875,12 +5355,14 @@ thoth
 	hearts.
 		[ Encyclopedia of Gods, by Michael Jordan ]
 thoth*amon
+图特阿蒙
 	Men say that he [Thutothmes] has opposed Thoth-Amon, who is
 	master of all priests of Set, and dwells in Luxor, and that
 	Thutothmes seeks hidden power [The Heart of Ahriman] to
 	overthrow the Great One.
 		[ Conan the Conqueror, by Robert E. Howard ]
 *throne
+*王座
 	Methought I saw the footsteps of a throne
 	Which mists and vapours from mine eyes did shroud--
 	Nor view of who might sit thereon allowed;
@@ -4898,6 +5380,7 @@ thoth*amon
 	A lovely Beauty in a summer grave!
 		[ Sonnet, by William Wordsworth ]
 thug
+刺客
 	A worshipper of Kali, who practised _thuggee_, the strangling
 	of human victims in the name of the religion.  Robbery of the
 	victim provided the means of livelihood.  They were also
@@ -4908,6 +5391,7 @@ thug
 	In common parlance the word is used for any violent "tough".
 		[ Brewer's Concise Dictionary of Phrase and Fable ]
 tiger
+老虎
 	1.  A well-known tropical predator (_Felis tigris_): a
 	feline.  It has a yellowish skin with darker spots or
 	stripes.  2.  Figurative: _a paper tiger_, something that is
@@ -4922,7 +5406,9 @@ tiger
 		[ The Tyger, by William Blake ]
 tin
 tin of *
+罐头*
 tinning kit
+装罐器
 	"You know salmon, Sarge," said Nobby.
 	"It is a fish of which I am aware, yes."
 	"You know they sell kind of slices of it in tins..."
@@ -4932,6 +5418,7 @@ tinning kit
 	"Interesting point, Nobby.  I think-"
 		[ Soul Music, by Terry Pratchett ]
 tin opener
+开罐器
 	Less than thirty Cat tribes now survived, roaming the cargo
 	decks on their hind legs in a desperate search for food.
 	But the food had gone.
@@ -4953,6 +5440,7 @@ tin opener
 	And inside the rock was Alphabetti spaghetti in tomato sauce.
 		[ Red Dwarf, by Rob Grant and Doug Naylor ]
 titan
+提坦
 	Gaea, mother earth, arose from the Chaos and gave birth to
 	Uranus, heaven, who became her consort.  Uranus hated all
 	their children, because he feared they might challenge his
@@ -4965,6 +5453,7 @@ titan
 	Mount Olympus.
 		[ Greek Mythology, by Richard Patrick ]
 topaz
+黄宝石
 	Aluminum silicate mineral with either hydroxyl radicals or
 	fluorine, Al2SiO4(F,OH)2, used as a gem.  It is commonly
 	colorless or some shade of pale yellow to wine-yellow;
@@ -4976,10 +5465,12 @@ topaz
 	metamorphic rocks, e.g., gneisses and schists.
 		[ The Columbia Encyclopedia, Sixth Edition ]
 touch*stone
+试金石
 	"Gold is tried by a touchstone, men by gold."
 		[ Chilon (c. 560 BC) ]
 tourist
 * tourist
+*游客
 	The road from Ankh-Morpork to Chrim is high, white and
 	winding, a thirty-league stretch of potholes and half-buried
 	rocks that spirals around mountains and dips into cool green
@@ -4999,6 +5490,7 @@ tourist
 	Tourist, Rincewind had decided, meant "idiot".
 		[ The Colour of Magic, by Terry Pratchett ]
 towel
+毛巾
 	The Hitchhiker's Guide to the Galaxy has a few things to say
 	on the subject of towels.
 	A towel, it says, is about the most massively useful thing
@@ -5029,6 +5521,7 @@ towel
 	point towards the end of your Tour.
 	[ The Tough Guide to Fantasyland, by Diana Wynne Jones ]
 trap*door
+陷阱门
 	I knew my Erik too well to feel at all comfortable on jumping
 	into his house.  I knew what he had made of a certain palace at
 	Mazenderan.  From being the most honest building conceivable, he
@@ -5039,13 +5532,16 @@ trap*door
 		[ The Phantom of the Opera, by Gaston Leroux ]
 # takes "trapper or lurker above" when specifying 't'
 trapper
+捕兽者
 trapper or lurker above
+捕兽者或潜伏者
 	The trapper is a creature which has evolved a chameleon-like
 	ability to blend into the dungeon surroundings.  It captures
 	its prey by remaining very still and blending into the
 	surrounding dungeon features, until an unsuspecting creature
 	passes by.  It wraps itself around its prey and digests it.
 tree
+树
 	我想我从未见过一首
 	美如玉树的诗章.
 	一棵张着饥饿嘴巴的树,
@@ -5061,6 +5557,7 @@ tree
 		[ Trees, by Joyce Kilmer ]
 tripe
 tripe ration
+牛肚
 	If you start from scratch, cooking tripe is a long-drawn-out
 	affair.  Fresh whole tripe calls for a minimum of 12 hours of
 	cooking, some time-honored recipes demanding as much as 24.
@@ -5072,6 +5569,7 @@ tripe ration
 	it has the consistency of wet shoe leather.
 		[ Joy of Cooking, by I Rombauer and M Becker ]
 *troll
+*巨魔
 	The troll shambled closer.  He was perhaps eight feet tall,
 	perhaps more.  His forward stoop, with arms dangling past
 	thick claw-footed legs to the ground, made it hard to tell.
@@ -5088,13 +5586,16 @@ tripe ration
 	waning faggot cast red light over his fangs.
 		[ Three Hearts and Three Lions, by Poul Anderson ]
 *tsurugi of muramasa
+*妖刀村正
 	This most ancient of swords has been passed down through the
 	leadership of the Samurai legions for hundreds of years.  It
 	is said to grant luck to its wielder, but its main power is
 	terrible to behold.  It has the capability to cut in half any
 	creature it is wielded against, instantly killing them.
 ~*muramasa
+~*妖刀村正
 tsurugi
+武士剑
 	The tsurugi, also known as the long samurai sword, is an
 	extremely sharp, two-handed blade favored by the samurai.
 	It is made of hardened steel, and is manufactured using a
@@ -5102,7 +5603,9 @@ tsurugi
 	rumored to be so sharp that it can occasionally cut
 	opponents in half!
 ~*spellbook
+~*魔法书
 turquoise*
+绿松石*
 	TUBAL:  There came divers of Antonio's creditors in my company
 	to Venice that swear he cannot choose but break.
 	SHYLOCK:  I am very glad of it; I'll plague him, I'll torture
@@ -5114,7 +5617,9 @@ turquoise*
 	not have given it for a wilderness of monkeys.
 		[ The Merchant of Venice, by William Shakespeare ]
 twoflower
+双花
 guide
+导游
 	"Rincewind!"
 	Twoflower sprang off the bed.  The wizard jumped back,
 	wrenching his features into a smile.
@@ -5139,6 +5644,7 @@ guide
 	_excitement_."
 		[ The Colour of Magic, by Terry Pratchett ]
 tyr
+蒂尔
 	Yet remains that one of the Aesir who is called Tyr:
 	he is most daring, and best in stoutness of heart, and he
 	has much authority over victory in battle; it is good for
@@ -5154,12 +5660,14 @@ tyr
 	handed, and is not called a reconciler of men.
 			[ The Prose Edda, by Snorri Sturluson ]
 *hulk
+土巨怪
 	Umber hulks are powerful subterranean predators whose
 	iron-like claws allow them to burrow through solid stone in
 	search of prey.  They are tremendously strong; muscles bulge
 	beneath their thick, scaly hides and their powerful arms and
 	legs all end in great claws.
 *unicorn
+*独角兽*
 unicorn horn
 	Men have always sought the elusive unicorn, for the single
 	twisted horn which projected from its forehead was thought to
@@ -5189,6 +5697,7 @@ unicorn horn
 		[ Unicorn Variations, by Roger Zelazny ]
 valkyrie
 * valkyrie
+*女武神
 	The Valkyries were the thirteen choosers of the slain, the
 	beautiful warrior-maids of Odin who rode through the air and
 	over the sea.  They watched the progress of the battle and
@@ -5203,14 +5712,18 @@ valkyrie
 			Nations, by Herbert Robinson and Knox
 			Wilson ]
 vampire
+吸血鬼
 ~vampire bat
+~吸血蝙蝠
 vampire lord
+吸血鬼领主
 	The Oxford English Dictionary is quite unequivocal:
 	_vampire_ - "a preternatural being of a malignant nature (in
 	the original and usual form of the belief, a reanimated
 	corpse), supposed to seek nourishment, or do harm, by sucking
 	the blood of sleeping persons. ..."
 venus
+维纳斯
 	Venus, the goddess of love and beauty, was the daughter of
 	Jupiter and Dione.  Others say that Venus sprang from the
 	foam of the sea.  The zephyr wafted her along the waves to
@@ -5223,6 +5736,7 @@ venus
 	most ill-favoured of gods.
 		[ Bulfinch's Mythology, by Thomas Bulfinch ]
 vlad*
+穿刺者弗拉德
 	Vlad Dracula the Impaler was a 15th-Century monarch of the
 	Birgau region of the Carpathian Mountains, in what is now
 	Romania.  In Romanian history he is best known for two things.
@@ -5233,6 +5747,7 @@ vlad*
 	them upright on wooden stakes.  Visiting dignitaries who
 	failed to doff their hats had them nailed to their head.
 *vortex
+*旋涡
 vortices
 	Swirling clouds of pure elemental energies, the vortices are
 	thought to be related to the larger elementals.  Though the
@@ -5241,11 +5756,13 @@ vortices
 	swallowed by a vortex will soon perish from exposure to the
 	element the vortex is composed of.
 vrock
+弗洛魔
 	The vrock is one of the weaker forms of demon.  It resembles
 	a cross between a human being and a vulture and does physical
 	damage by biting and by using the claws on both its arms and
 	feet.
 wakizashi
+胁差
 	A wakizashi was used as a samurai's weapon when the katana
 	was unavailable.  When entering a building, a samurai would
 	leave his katana on a rack near the entrance.  However, the
@@ -5258,8 +5775,10 @@ wakizashi
 		[ Wikipedia, the free encyclopedia ]
 # takes "wand or a wall" when specifying '/'
 ~*sleep
+~*沉睡*魔杖
 wand *
 *wand
+*魔杖
 	'Saruman!' he cried, and his voice grew in power and authority.
 	'Behold, I am not Gandalf the Grey, whom you betrayed.  I am
 	Gandalf the White, who has returned from death.  You have no
@@ -5271,6 +5790,7 @@ wand *
 	Saruman fell back and crawled away.
 		[ The Two Towers, by J.R.R. Tolkien ]
 warg
+座狼
 	Suddenly Aragorn leapt to his feet.  "How the wind howls!"
 	he cried.  "It is howling with wolf-voices.  The Wargs have
 	come west of the Mountains!"
@@ -5289,7 +5809,9 @@ warg
 	where the warg howls, there also the orc prowls."
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 ~mjollnir
+~雷神之锤
 war*hammer
+战锤
 	They had come together at the ford of the Trident while the
 	battle crashed around them, Robert with his warhammer and his
 	great antlered helm, the Targaryen prince armored all in
@@ -5304,6 +5826,7 @@ war*hammer
 	rubies knocked free of his armor.
 		[ A Game of Thrones, by George R.R. Martin ]
 water
+水
 	Day after day, day after day,
 	We stuck, nor breath nor motion;
 	As idle as a painted ship
@@ -5316,6 +5839,7 @@ water
 		[ The Rime of the Ancient Mariner, by Samuel Taylor
 		  Coleridge ]
 water demon
+水妖
 	[ The monkey king ] walked along the bank, around the pond.
 	He examined the footprints of the animals that had gone into
 	the water, and saw that none came out again!  So he realized
@@ -5342,10 +5866,12 @@ weapon
 	A weapon is a device for making your enemy change his mind.
 		[ The Vor Game, by Lois McMaster Bujold ]
 web
+网
 	Oh what a tangled web we weave,
 	When first we practise to deceive!
 		[ Marmion, by Sir Walter Scott ]
 whistle
+口哨
 	There were legends both on the front and on the back of the 
 	whistle. The one read thus:
 
@@ -5363,6 +5889,7 @@ whistle
 		 'Oh, Whistle, and I'll Come to You My Lad']
 # werecritter -- see "lycanthrope"
 *wight
+古墓尸妖
 	When he came to himself again, for a moment he could recall
 	nothing except a sense of dread.  Then suddenly he knew that
 	he was imprisoned, caught hopelessly; he was in a barrow.  A
@@ -5375,9 +5902,13 @@ whistle
 # note: need to convert player character "gnomish wizard" into just "wizard"
 # in the lookup code to avoid conflict with the monster of that same name
 ~gnomish wizard
+~侏儒巫师
+~岩德巫师
 wizard
 * wizard
+*巫师
 apprentice
+魔法学徒
 	Ebenezum walked before me along the closest thing we could
 	find to a path in these overgrown woods.  Every few paces he
 	would pause, so that I, burdened with a pack stuffed with
@@ -5387,6 +5918,7 @@ apprentice
 	and his mind free for the thoughts of a mage.
 		[ A Dealing with Demons, by Craig Shaw Gardner ]
 wizard of yendor
+岩德巫师
 	No one knows how old this mighty wizard is, or from whence he
 	came.  It is known that, having lived a span far greater than
 	any normal man's, he grew weary of lesser mortals; and so,
@@ -5400,12 +5932,18 @@ wizard of yendor
 wolf
 *wolf
 *wolf cub
+~土狼
+~座狼
+~狼狗
+~豺狼*
+*狼*
 	The ancestors of the modern day domestic dog, wolves are
 	powerful muscular animals with bushy tails.  Intelligent,
 	social animals, wolves live in family groups or packs made
 	up of multiple family units.  These packs cooperate in hunting
 	down prey.
 *wolfsbane
+附子草枝
 	1.  Any of various, usually poisonous perennial herbs of the
 	genus Aconitum, having tuberous roots, palmately lobed leaves,
 	blue or white flowers with large hoodlike upper sepals, and an
@@ -5416,6 +5954,7 @@ wolf
 	[ The American Heritage Dictionary of the English Language,
 	  Fourth Edition. ]
 wood golem
+木魔像
 	Come, old broomstick, you are needed,
 	Take these rags and wrap them round you!
 	Long my orders you have heeded,
@@ -5436,6 +5975,7 @@ wood golem
 	[ The Sorcerer's Apprentice, by Johann Wolfgang von Goethe,
 	  translation by Edwin Zeydel ]
 woodchuck
+土拨鼠
 	The Usenet Oracle requires an answer to this question!
 
 	> How much wood could a woodchuck chuck if a woodchuck could
@@ -5450,9 +5990,11 @@ woodchuck
 	by a loud ZZZZOTTTTT and the smell of ozone.
 		[ Excerpted from Internet Oracularity 576.6 ]
 *worm
+*蠕虫*
 long worm tail
 worm tooth
 crysknife
+迅捷小刀
 	[The crysknife] is manufactured in two forms from teeth taken
 	from dead sandworms.  The two forms are "fixed" and "unfixed".
 	An unfixed knife requires proximity to a human body's
@@ -5460,7 +6002,9 @@ crysknife
 	are treated for storage.  All are about 20 centimeters long.
 		[ Dune, by Frank Herbert ]
 wraith
+幽灵
 nazgul
+戒灵
 	Immediately, though everything else remained as before, dim
 	and dark, the shapes became terribly clear.  He was able to
 	see beneath their black wrappings.  There were five tall
@@ -5479,6 +6023,7 @@ nazgul
 	on Frodo.
 		[ The Fellowship of the Ring, by J.R.R. Tolkien ]
 *wumpus
+狮头象
 	The Wumpus, by the way, is not bothered by the hazards since
 	he has sucker feet and is too big for a bat to lift.  If you
 	try to shoot him and miss, there's also a chance that he'll
@@ -5491,6 +6036,7 @@ nazgul
 	are rich mud-brown, and they hold your own without effort.
 		[ Hunter, In Darkness, by Andrew Plotkin ]
 xan
+玄蚊
 	They sent their friend the mosquito [xan] ahead of them to
 	find out what lay ahead.  "Since you are the one who sucks
 	the blood of men walking along paths," they told the mosquito,
@@ -5504,12 +6050,14 @@ xan
 	knew the names of all twelve.
 			[ Popul Vuh, as translated by Ralph Nelson ]
 xorn
+索尔石怪
 	A distant cousin of the earth elemental, the xorn has the
 	ability to shift the cells of its body around in such a way
 	that it becomes porous to inert material.  This gives it the
 	ability to pass through any obstacle that might be between it
 	and its next meal.
 ya
+矢
 	The arrow of choice of the samurai, ya are made of very
 	straight bamboo, and are tipped with hardened steel.
 yeenoghu
@@ -5519,6 +6067,7 @@ yeenoghu
 	gaze into his piercing eyes may hopelessly confuse the
 	battle-weary adventurer.
 yeti
+雪人
 	The Abominable Snowman, or yeti, is one of the truly great
 	unknown animals of the twentieth century.  It is a large hairy
 	biped that lives in the Himalayan region of Asia ... The story
@@ -5535,20 +6084,24 @@ yeti
 	confused.
 		[ The Encyclopedia of Monsters, by Daniel Cohen ]
 *yugake
+*和弓手套
 	Japanese leather archery gloves.  Gloves made for use while
 	practicing had thumbs reinforced with horn.  Those worn into
 	battle had thumbs reinforced with a double layer of leather.
 yumi
+弩
 	The samurai is highly trained with a special type of bow,
 	the yumi.  Like the ya, the yumi is made of bamboo.  With
 	the yumi-ya, the bow and arrow, the samurai is an extremely
 	accurate and deadly warrior.
 *zombi*
+*僵尸
 	The zombi... is a soulless human corpse, still dead, but
 	taken from the grave and endowed by sorcery with a
 	mechanical semblance of life, -- it is a dead body which is
 	made to walk and act and move as if it were alive.
 		[ W. B. Seabrook ]
 zruty
+山区巨人
 	The zruty are wild and gigantic beings, living in the
 	wildernesses of the Tatra mountains.

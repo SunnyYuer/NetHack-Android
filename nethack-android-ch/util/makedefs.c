@@ -1667,7 +1667,7 @@ do_data()
             free(line);
             continue;
         }
-        if (*line > ' ') { /* got an entry name */
+        if (*line > ' ' || *line < 0) { /* got an entry name */
             /* first finish previous entry */
             if (line_cnt)
                 Fprintf(ofp, "%d\n", line_cnt), line_cnt = 0;
