@@ -2963,9 +2963,9 @@ const char *force; /* usually either "." or "!" */
 {
     if ((!cansee(bhitpos.x, bhitpos.y) && !canspotmon(mtmp)
          && !(u.uswallow && mtmp == u.ustuck)) || !flags.verbose)
-        pline("%s %s它.", The(str), vtense(str, "打中"));
+        pline("%s %s了它.", The(str), vtense(str, "打中"));
     else
-        pline("%s %s %s%s", The(str), vtense(str, "打中"),
+        pline("%s %s了%s%s", The(str), vtense(str, "打中"),
               mon_nam(mtmp), force);
 }
 
