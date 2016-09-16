@@ -1730,16 +1730,16 @@ struct monst *mtmp, *victim;
         ptr = &mons[newtype];
         if (mvitals[newtype].mvflags & G_GENOD) { /* allow G_EXTINCT */
             if (canspotmon(mtmp))
-                pline("As %s grows up into %s, %s %s!", mon_nam(mtmp),
-                      an(ptr->mname), mhe(mtmp),
-                      nonliving(ptr) ? "expires" : "dies");
+                pline("As %s 成长为了一个%s, %s %s!", mon_nam(mtmp),
+                      ptr->mname, mhe(mtmp),
+                      nonliving(ptr) ? "寿终了" : "死了");
             set_mon_data(mtmp, ptr, -1); /* keep mvitals[] accurate */
             mondied(mtmp);
             return (struct permonst *) 0;
         } else if (canspotmon(mtmp)) {
-            pline("%s %s %s.", Monnam(mtmp),
-                  humanoid(ptr) ? "becomes" : "grows up into",
-                  an(ptr->mname));
+            pline("%s %s 一个%s.", Monnam(mtmp),
+                  humanoid(ptr) ? "变成了" : "成长为了",
+                  ptr->mname);
         }
         set_mon_data(mtmp, ptr, 1);    /* preserve intrinsics */
         newsym(mtmp->mx, mtmp->my);    /* color may change */
@@ -2106,7 +2106,7 @@ int *seencount;  /* secondary output */
         impossible("bad bag o' tricks");
     } else if (bag->spe < 1) {
         /* if tipping known empty bag, give normal empty container message */
-        pline1((tipping && bag->cknown) ? "It's empty." : nothing_happens);
+        pline1((tipping && bag->cknown) ? "它是空的." : nothing_happens);
         /* now known to be empty if sufficiently discovered */
         if (bag->dknown && objects[bag->otyp].oc_name_known)
             bag->cknown = 1;
@@ -2132,7 +2132,7 @@ int *seencount;  /* secondary output */
             if (bag->dknown)
                 makeknown(BAG_OF_TRICKS);
         } else if (!tipping) {
-            pline1(!moncount ? nothing_happens : "Nothing seems to happen.");
+            pline1(!moncount ? nothing_happens : "似乎什么都没有发生.");
         }
     }
     return moncount;
