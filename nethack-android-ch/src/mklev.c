@@ -1535,8 +1535,8 @@ mkinvokearea()
     xchar ymin = inv_pos.y, ymax = inv_pos.y;
     register xchar i;
 
-    pline_The("floor shakes violently under you!");
-    pline_The("walls around you begin to bend and crumble!");
+    pline_The("地板在你下面剧烈晃动!");
+    pline_The("你周围的墙壁开始弯曲和崩溃!");
     display_nhwindow(WIN_MESSAGE, TRUE);
 
     /* any trap hero is stuck in will be going away now */
@@ -1571,7 +1571,7 @@ mkinvokearea()
         delay_output();
     }
 
-    You("are standing at the top of a stairwell leading down!");
+    You("站在通往下面的楼梯井的顶端!");
     mkstairs(u.ux, u.uy, 0, (struct mkroom *) 0); /* down */
     newsym(u.ux, u.uy);
     vision_full_recalc = 1; /* everything changed */
