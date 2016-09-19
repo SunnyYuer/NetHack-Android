@@ -16,7 +16,7 @@ STATIC_DCL void FDECL(maybewakesteed, (struct monst *));
 void
 rider_cant_reach()
 {
-    You("aren't skilled enough to reach from %s.", y_monnam(u.usteed));
+    You("还不够熟练从%s上够到.", y_monnam(u.usteed));
 }
 
 /*** Putting the saddle on ***/
@@ -375,11 +375,11 @@ kick_steed()
                 u.usteed->mcanmove = 1;
             }
             if (u.usteed->msleeping || !u.usteed->mcanmove)
-                pline("%s stirs.", He);
+                pline("%s 开始活跃了.", He);
             else
-                pline("%s rouses %sself!", He, mhim(u.usteed));
+                pline("%s 唤醒了%s自己!", He, mhim(u.usteed));
         } else
-            pline("%s does not respond.", He);
+            pline("%s 没有反应.", He);
         return;
     }
 
@@ -395,7 +395,7 @@ kick_steed()
         return;
     }
 
-    pline("%s gallops!", Monnam(u.usteed));
+    pline("%s 急驰!", Monnam(u.usteed));
     u.ugallop += rn1(20, 30);
     return;
 }
@@ -514,7 +514,7 @@ int reason; /* Player was thrown off etc. */
             if (Hallucination)
                 pline("从雨中走出来感觉很好.");
         } else
-            You("dismount %s.", mon_nam(mtmp));
+            You("从%s 下来.", mon_nam(mtmp));
     }
     /* While riding, Wounded_legs refers to the steed's legs;
        after dismounting, it reverts to the hero's legs. */
@@ -643,7 +643,7 @@ struct monst *steed;
         }
     }
     if (wasimmobile && !steed->msleeping && steed->mcanmove)
-        pline("%s wakes up.", Monnam(steed));
+        pline("%s 醒了.", Monnam(steed));
     /* regardless of waking, terminate any meal in progress */
     finish_meating(steed);
 }
@@ -659,12 +659,12 @@ boolean checkfeeding;
     if (steed) {
         /* check whether steed can move */
         if (steed->msleeping || !steed->mcanmove) {
-            pline("%s won't move!", upstart(y_monnam(steed)));
+            pline("%s 不动了!", upstart(y_monnam(steed)));
             return TRUE;
         }
         /* optionally check whether steed is in the midst of a meal */
         if (checkfeeding && steed->meating) {
-            pline("%s is still eating.", upstart(y_monnam(steed)));
+            pline("%s 还在吃.", upstart(y_monnam(steed)));
             return TRUE;
         }
     }

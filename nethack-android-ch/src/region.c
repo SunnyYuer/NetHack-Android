@@ -927,17 +927,17 @@ genericptr_t p2;
         if (u.uinvulnerable || nonliving(youmonst.data) || Breathless)
             return FALSE;
         if (!Blind) {
-            Your("%s sting.", makeplural(body_part(EYE)));
+            Your("%s 刺痛.", makeplural(body_part(EYE)));
             make_blinded(1L, FALSE);
         }
         if (!Poison_resistance) {
-            pline("%s is burning your %s!", Something,
+            pline("%s 在烧你的 %s!", Something,
                   makeplural(body_part(LUNG)));
-            You("cough and spit blood!");
+            You("咳嗽并咳出了血!");
             losehp(Maybe_Half_Phys(rnd(dam) + 5), "气体云", KILLED_BY_AN);
             return FALSE;
         } else {
-            You("cough!");
+            You("咳嗽!");
             return FALSE;
         }
     } else { /* A monster is inside the cloud */
@@ -947,7 +947,7 @@ genericptr_t p2;
         if (!(nonliving(mtmp->data) || is_vampshifter(mtmp))
             && !breathless(mtmp->data)) {
             if (cansee(mtmp->mx, mtmp->my))
-                pline("%s coughs!", Monnam(mtmp));
+                pline("%s 咳嗽!", Monnam(mtmp));
             if (heros_fault(reg))
                 setmangry(mtmp);
             if (haseyes(mtmp->data) && mtmp->mcansee) {
@@ -961,7 +961,7 @@ genericptr_t p2;
                 if (heros_fault(reg))
                     killed(mtmp);
                 else
-                    monkilled(mtmp, "gas cloud", AD_DRST);
+                    monkilled(mtmp, "气体云", AD_DRST);
                 if (mtmp->mhp <= 0) { /* not lifesaved */
                     return TRUE;
                 }
@@ -1058,10 +1058,10 @@ region_safety()
         safe_teleds(FALSE);
     } else if (r) {
         remove_region(r);
-        pline_The("gas cloud enveloping you dissipates.");
+        pline_The("笼罩你的气体云消散了.");
     } else {
         /* cloud dissipated on its own, so nothing needs to be done */
-        pline_The("gas cloud has dissipated.");
+        pline_The("气体云消散了.");
     }
     /* maybe cure blindness too */
     if ((Blinded & TIMEOUT) == 1L)

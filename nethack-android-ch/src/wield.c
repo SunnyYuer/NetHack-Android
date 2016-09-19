@@ -94,7 +94,7 @@ register struct obj *obj;
     if (uwep == obj && artifact_light(olduwep) && olduwep->lamplit) {
         end_burn(olduwep, FALSE);
         if (!Blind)
-            pline("%s shining.", Tobjnam(olduwep, "stop"));
+            pline("%s了闪烁.", Tobjnam(olduwep, "停止"));
     }
     /* Note: Explicitly wielding a pick-axe will not give a "bashing"
      * message.  Wielding one via 'a'pplying it will.
@@ -124,7 +124,7 @@ struct obj *obj;
     You("用你的光着的%s 拿着%s.",
         makeplural(body_part(HAND)),
         corpse_xname(obj, (const char *) 0, CXN_PFX_THE));
-    Sprintf(kbuf, "wielding %s bare-handed", killer_xname(obj));
+    Sprintf(kbuf, "光着手拿着%s", killer_xname(obj));
     instapetrify(kbuf);
     return TRUE;
 }
@@ -189,7 +189,7 @@ struct obj *wep;
         if (artifact_light(wep) && !wep->lamplit) {
             begin_burn(wep, FALSE);
             if (!Blind)
-                pline("%s to shine %s!", Tobjnam(wep, "begin"),
+                pline("%s%s闪烁!", Tobjnam(wep, "开始"),
                       arti_light_description(wep));
         }
 #if 0
@@ -206,7 +206,7 @@ struct obj *wep;
 
             if ((this_shkp = shop_keeper(inside_shop(u.ux, u.uy)))
                 != (struct monst *) 0) {
-                pline("%s says \"You be careful with my %s!\"",
+                pline("%s 说 \" 拿着我的%s小心一点!\"",
                       shkname(this_shkp), xname(wep));
             }
         }
@@ -248,7 +248,7 @@ dowield()
     /* May we attempt this? */
     multi = 0;
     if (cantwield(youmonst.data)) {
-        pline("Don't be ridiculous!");
+        pline("别太离谱了!");
         return 0;
     }
 
@@ -276,7 +276,7 @@ dowield()
     else if (wep == uquiver)
         setuqwep((struct obj *) 0);
     else if (wep->owornmask & (W_ARMOR | W_ACCESSORY | W_SADDLE)) {
-        You("cannot wield that!");
+        You("不能拿着那个!");
         return 0;
     }
 
@@ -299,7 +299,7 @@ doswapweapon()
     /* May we attempt this? */
     multi = 0;
     if (cantwield(youmonst.data)) {
-        pline("Don't be ridiculous!");
+        pline("别太离谱了!");
         return 0;
     }
     if (welded(uwep)) {
@@ -372,7 +372,7 @@ dowieldquiver()
               !is_plural(uwep) ? "那个" : "那些");
         return 0;
     } else if (newquiver->owornmask & (W_ARMOR | W_ACCESSORY | W_SADDLE)) {
-        You("cannot ready that!");
+        You("不能准备那个!");
         return 0;
     } else {
         long dummy;
@@ -479,7 +479,7 @@ can_twoweapon()
 #define NOT_WEAPON(obj) (!is_weptool(obj) && obj->oclass != WEAPON_CLASS)
     if (!could_twoweap(youmonst.data)) {
         if (Upolyd)
-            You_cant("在你当前的形式使用两把武器.");
+            You_cant("在你当前的外貌使用两把武器.");
         else
             pline("%s 没法同时使用两把武器.",
                   makeplural((flags.female && urole.name.f) ? urole.name.f
@@ -558,7 +558,7 @@ uwepgone()
         if (artifact_light(uwep) && uwep->lamplit) {
             end_burn(uwep, FALSE);
             if (!Blind)
-                pline("%s shining.", Tobjnam(uwep, "stop"));
+                pline("%s 了闪烁.", Tobjnam(uwep, "停止"));
         }
         setworn((struct obj *) 0, W_WEP);
         unweapon = TRUE;
@@ -588,7 +588,7 @@ void
 untwoweapon()
 {
     if (u.twoweap) {
-        You("can no longer use two weapons at once.");
+        You("不再能同时使用两把武器.");
         u.twoweap = FALSE;
         update_inventory();
     }
@@ -608,8 +608,8 @@ register int amount;
     if (!uwep || (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep))) {
         char buf[BUFSZ];
 
-        Sprintf(buf, "Your %s %s.", makeplural(body_part(HAND)),
-                (amount >= 0) ? "twitch" : "itch");
+        Sprintf(buf, "你的 %s %s.", makeplural(body_part(HAND)),
+                (amount >= 0) ? "抽搐" : "发痒");
         strange_feeling(otmp, buf);
         exercise(A_DEX, (boolean) (amount >= 0));
         return 0;
@@ -621,8 +621,8 @@ register int amount;
     if (uwep->otyp == WORM_TOOTH && amount >= 0) {
         multiple = (uwep->quan > 1L);
         /* order: message, transformation, shop handling */
-        Your("%s %s much sharper now.", simpleonames(uwep),
-             multiple ? "fuse, and become" : "is");
+        Your("%s %s现在锋利多了.", simpleonames(uwep),
+             multiple ? "熔化, 并且" : "");
         uwep->otyp = CRYSKNIFE;
         uwep->oerodeproof = 0;
         if (multiple) {
@@ -642,8 +642,8 @@ register int amount;
     } else if (uwep->otyp == CRYSKNIFE && amount < 0) {
         multiple = (uwep->quan > 1L);
         /* order matters: message, shop handling, transformation */
-        Your("%s %s much duller now.", simpleonames(uwep),
-             multiple ? "fuse, and become" : "is");
+        Your("%s %s现在钝多了.", simpleonames(uwep),
+             multiple ? "熔化, 并且" : "");
         costly_alteration(uwep, COST_DEGRD); /* DECHNT? other? */
         uwep->otyp = WORM_TOOTH;
         uwep->oerodeproof = 0;
@@ -662,26 +662,26 @@ register int amount;
         wepname = ONAME(uwep);
     if (amount < 0 && uwep->oartifact && restrict_name(uwep, wepname)) {
         if (!Blind)
-            pline("%s %s.", Yobjnam2(uwep, "faintly glow"), color);
+            pline("%s %sgm光芒.", Yobjnam2(uwep, "微弱地发出"), color);
         return 1;
     }
     /* there is a (soft) upper and lower limit to uwep->spe */
     if (((uwep->spe > 5 && amount >= 0) || (uwep->spe < -5 && amount < 0))
         && rn2(3)) {
         if (!Blind)
-            pline("%s %s for a while and then %s.",
-                  Yobjnam2(uwep, "violently glow"), color,
-                  otense(uwep, "evaporate"));
+            pline("%s %s光芒了一会儿然后%s了.",
+                  Yobjnam2(uwep, "猛烈地发出"), color,
+                  otense(uwep, "蒸发"));
         else
-            pline("%s.", Yobjnam2(uwep, "evaporate"));
+            pline("%s了.", Yobjnam2(uwep, "蒸发"));
 
         useupall(uwep); /* let all of them disappear */
         return 1;
     }
     if (!Blind) {
-        xtime = (amount * amount == 1) ? "moment" : "while";
-        pline("%s %s for a %s.",
-              Yobjnam2(uwep, amount == 0 ? "violently glow" : "glow"), color,
+        xtime = (amount * amount == 1) ? "片刻" : "一会儿";
+        pline("%s %s光芒了%s.",
+              Yobjnam2(uwep, amount == 0 ? "猛烈地发出" : "发出"), color,
               xtime);
         if (otyp != STRANGE_OBJECT && uwep->known
             && (amount > 0 || (amount < 0 && otmp->bknown)))
@@ -704,15 +704,15 @@ register int amount;
      * spe dependent.  Give an obscure clue here.
      */
     if (uwep->oartifact == ART_MAGICBANE && uwep->spe >= 0) {
-        Your("right %s %sches!", body_part(HAND),
-             (((amount > 1) && (uwep->spe > 1)) ? "flin" : "it"));
+        Your("右%s %s!", body_part(HAND),
+             (((amount > 1) && (uwep->spe > 1)) ? "缩回了" : "发痒"));
     }
 
     /* an elven magic clue, cookie@keebler */
     /* elven weapons vibrate warningly when enchanted beyond a limit */
     if ((uwep->spe > 5)
         && (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
-        pline("%s unexpectedly.", Yobjnam2(uwep, "suddenly vibrate"));
+        pline("%s.", Yobjnam2(uwep, "突然意外地振动"));
 
     return 1;
 }
