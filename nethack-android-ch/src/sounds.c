@@ -1,4 +1,4 @@
-﻿/* NetHack 3.6	sounds.c	$NHDT-Date: 1446713641 2015/11/05 08:54:01 $  $NHDT-Branch: master $:$NHDT-Revision: 1.74 $ */
+/* NetHack 3.6	sounds.c	$NHDT-Date: 1446713641 2015/11/05 08:54:01 $  $NHDT-Branch: master $:$NHDT-Revision: 1.74 $ */
 /*      Copyright (c) 1989 Janet Walz, Mike Threepoint */
 /* NetHack may be freely redistributed.  See license for details. */
 

@@ -1,4 +1,4 @@
-﻿/* NetHack 3.6	rip.c	$NHDT-Date: 1436753522 2015/07/13 02:12:02 $  $NHDT-Branch: master $:$NHDT-Revision: 1.18 $ */
+/* NetHack 3.6	rip.c	$NHDT-Date: 1436753522 2015/07/13 02:12:02 $  $NHDT-Branch: master $:$NHDT-Revision: 1.18 $ */
 /* Copyright (c) Stichting Mathematisch Centrum, Amsterdam, 1985. */
 /* NetHack may be freely redistributed.  See license for details. */
 

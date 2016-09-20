@@ -1,4 +1,4 @@
-﻿准备
+准备
 Microsoft Visual Studio 2010版本以上
 
 编译
