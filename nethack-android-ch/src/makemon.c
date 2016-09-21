@@ -1730,7 +1730,7 @@ struct monst *mtmp, *victim;
         ptr = &mons[newtype];
         if (mvitals[newtype].mvflags & G_GENOD) { /* allow G_EXTINCT */
             if (canspotmon(mtmp))
-                pline("As %s 成长为了一个%s, %s %s!", mon_nam(mtmp),
+                pline("当%s 成长为了一个%s, %s %s!", mon_nam(mtmp),
                       ptr->mname, mhe(mtmp),
                       nonliving(ptr) ? "寿终了" : "死了");
             set_mon_data(mtmp, ptr, -1); /* keep mvitals[] accurate */
