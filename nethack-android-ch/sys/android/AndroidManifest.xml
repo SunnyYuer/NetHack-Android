@@ -2,8 +2,8 @@
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.yuer.NetHack"
-	android:versionCode="14"
-	android:versionName="3.6.0.4-21"
+	android:versionCode="15"
+	android:versionName="3.6.0.4-22"
 	android:installLocation="auto">
 	<uses-sdk
 		android:minSdkVersion="7"/>

@@ -48,7 +48,7 @@ REPLACE_TERRAIN:(0,0,75,19), ' ', ('.', unlit), 5%
 
 #  Since there are no stairs, this forces the hero's initial placement
 TELEPORT_REGION:(69,16,69,16),(0,0,0,0)
-PORTAL:(0,0,75,19),(65,13,75,19),"air"
+PORTAL:(0,0,75,19),(65,13,75,19),"气"
 #  Some helpful monsters.  Making sure a
 #  pick axe and at least one wand of digging
 #  are available.
@@ -167,7 +167,7 @@ ENDMAP
 # the preceding level; the exit portal is placed inside the down region.
 TELEPORT_REGION:levregion(01,00,24,20),levregion(25,00,79,20),up
 TELEPORT_REGION:levregion(56,00,79,20),levregion(01,00,55,20),down
-PORTAL:levregion(57,01,78,19),(0,0,0,0),"fire"
+PORTAL:levregion(57,01,78,19),(0,0,0,0),"火"
 REGION:(00,00,75,19),lit,"ordinary"
 MONSTER:('E',"空气元素"),random,hostile
 MONSTER:('E',"空气元素"),random,hostile
@@ -259,7 +259,7 @@ MAP
 .................................LL....................LL...................
 ENDMAP
 TELEPORT_REGION:(69,16,69,16),(0,0,0,0)
-PORTAL:(0,0,75,19),(65,13,75,19),"water"
+PORTAL:(0,0,75,19),(65,13,75,19),"水"
 
 TRAP:"fire",random
 TRAP:"fire",random
@@ -411,7 +411,7 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 ENDMAP
 TELEPORT_REGION:(0,0,25,19),(0,0,0,0)
-PORTAL:(51,0,75,19),(0,0,0,0),"astral"
+PORTAL:(51,0,75,19),(0,0,0,0),"星界"
 # A fisherman's dream...
 MONSTER:(';',"巨型鳗鱼"),random
 MONSTER:(';',"巨型鳗鱼"),random

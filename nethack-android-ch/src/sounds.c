@@ -592,7 +592,7 @@ register struct monst *mtmp;
             static const char *const vampmsg[] = {
                 /* These first two (0 and 1) are specially handled below */
                 "我想要吮吸你的%s!",
-                "我会不后悔而紧跟着%s!",
+                "我会不后悔而紧跟着一个%s!",
                 /* other famous vampire quotes can follow here if desired */
             };
             if (kindred)

@@ -631,7 +631,7 @@ const struct Race races[] = {
         "人类",
         "humanity",
         "Hum",
-        { "man", "woman" },
+        { "人", "女人" },
         PM_HUMAN,
         NON_PM,
         PM_HUMAN_MUMMY,

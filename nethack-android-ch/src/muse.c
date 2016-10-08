@@ -117,7 +117,7 @@ struct obj *obj;
             } else {
                 if (vis)
                     pline("在一片烟雾中, %s 浮现了!", a_monnam(mtmp));
-                pline("%s speaks.", vis ? Monnam(mtmp) : Something);
+                pline("%s 说.", vis ? Monnam(mtmp) : Something);
                 /* I suspect few players will be upset that monsters */
                 /* can't wish for wands of death here.... */
                 if (rn2(2)) {
