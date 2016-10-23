@@ -3765,7 +3765,7 @@ int x, y, mod;
 					if(cmd[0] != '.')
 					{
 						/* On stairs with object(s) */
-						c = yn_function("那里有一些物品. 还要爬上去吗?", ynqchars, 'y');
+						c = yn_function("那里有一些物品. 还要爬吗?", ynqchars, 'y');
 
 						if(c == 'n')
 							cmd[0] = Is_container(level.objects[u.ux][u.uy]) ? M('l') : ',';
