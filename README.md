@@ -37,7 +37,7 @@ http://developer.android.com/sdk/ndk
 [NetHack中文维基](http://nhcnwiki.wealthlibre.info/%E9%A6%96%E9%A1%B5)
 
 ##问题反馈或建议
-* 百度贴吧http://tieba.baidu.com/p/4359900236
+* 百度贴吧http://tieba.baidu.com/p/4720022918
 * [Github Issues](https://github.com/SunnyEric/NetHack-Android/issues)
 * 邮箱956768385@qq.com
 
