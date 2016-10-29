@@ -654,7 +654,7 @@ register struct monst *mtmp;
                     pline("%s 大口的吸入一些空气!", Monnam(mtmp));
                 } else {
                     if (youseeit)
-                        pline("%s 向前刺并弹回了s!", Monnam(mtmp));
+                        pline("%s 向前冲然后弹回了!", Monnam(mtmp));
                     else
                         You_hear("附近有%s.",
                                  is_whirly(mtmp->data) ? "哗哗的噪声"
