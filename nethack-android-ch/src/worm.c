@@ -388,10 +388,10 @@ struct obj *weap;
     if (!new_worm) {
         if (context.mon_moving) {
             if (canspotmon(worm))
-                pline("Part of %s tail has been cut off.",
+                pline("%s 部分尾巴被切断了.",
                       s_suffix(mon_nam(worm)));
         } else
-            You("cut part of the tail off of %s.", mon_nam(worm));
+            You("切断了%s 的部分尾巴.", mon_nam(worm));
         toss_wsegs(new_tail, TRUE);
         if (worm->mhp > 1)
             worm->mhp /= 2;
@@ -421,9 +421,9 @@ struct obj *weap;
     place_wsegs(new_worm);
 
     if (context.mon_moving)
-        pline("%s is cut in half.", Monnam(worm));
+        pline("%s 被切成两半.", Monnam(worm));
     else
-        You("cut %s in half.", mon_nam(worm));
+        You("把%s 切成两半.", mon_nam(worm));
 }
 
 /*
