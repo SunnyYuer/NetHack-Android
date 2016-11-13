@@ -3332,17 +3332,17 @@ So, have you succeeded in your quest for the Amulet of Yendor?"
 你不能完全弄清楚最后一条信息.
 %E
 %Cp - 00003
-You again sense %l pleading for help.
+你再次感觉到%l 在请求帮助.
 %E
 %Cp - 00004
-You again sense %l demanding your attendance.
+你再次感觉到%l 在请求你的出席.
 %E
 # Completed the quest by returning with artifact, but not carrying
 # the Bell of Opening; quest leader lets you know that it is needed.
 #[ Should this be role-specific so that each leader has variant text? ]
 %Cp - 00005
-"The silver bell which was hoarded by %n will be
-essential in locating the Amulet of Yendor."
+" 被%n 贮藏的银铃在查找
+岩德护身符时是必不可少的."
 %E
 #
 #	Angelic maledictions.
