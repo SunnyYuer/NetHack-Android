@@ -727,7 +727,7 @@ int skill;
     case P_ESCAPE_SPELL:
         return "逃脱";
     case P_MATTER_SPELL:
-        return "事情";
+        return "物质";
     default:
         impossible("Unknown spell skill, %d;", skill);
         return "";

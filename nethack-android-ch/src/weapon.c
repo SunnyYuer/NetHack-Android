@@ -43,7 +43,7 @@ STATIC_VAR NEARDATA const char *const odd_skill_names[] = {
     "no skill", "bare hands", /* use barehands_or_martial[] instead */
     "双武器战斗", "乘骑", "长柄武器", "佩剑", "铁锤", "鞭子",
     "攻击魔法", "治愈魔法", "预测魔法",
-    "迷惑魔法", "神圣魔法", "逃脱魔法", "事情魔法",
+    "迷惑魔法", "神圣魔法", "逃脱魔法", "物质魔法",
 };
 /* indexed vis `is_martial() */
 STATIC_VAR NEARDATA const char *const barehands_or_martial[] = {
