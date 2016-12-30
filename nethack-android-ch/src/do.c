@@ -245,9 +245,9 @@ register struct obj *obj;
     }
 
     if (obj->blessed || obj->cursed) {
-        There("发出%s 闪光当%s %s祭坛.",
-              hcolor(obj->blessed ? NH_AMBER : NH_BLACK), doname(obj),
-              otense(obj, "撞到"));
+        pline("当%s %s祭坛时发出%s 闪光.",
+              doname(obj), otense(obj, "碰到"),
+              hcolor(obj->blessed ? NH_AMBER : NH_BLACK));
         if (!Hallucination)
             obj->bknown = 1;
     } else {
