@@ -2631,12 +2631,12 @@ STATIC_OVL const char *
 shop_string(rtype)
 int rtype;
 {
-    const char *str = "shop"; /* catchall */
+    const char *str = "商店"; /* catchall */
 
     /* Yuck, redundancy...but shclass.name doesn't cut it as a noun */
     switch (rtype) {
     case SHOPBASE - 1:
-        str = "untended shop";
+        str = "无人看管的商店";
         break; /* see recalc_mapseen */
     case SHOPBASE:
         str = "杂货店";

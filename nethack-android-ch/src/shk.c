@@ -3953,7 +3953,7 @@ register struct obj *first_obj;
     struct monst *shkp = shop_keeper(inside_shop(u.ux, u.uy));
 
     tmpwin = create_nhwindow(NHW_MENU);
-    putstr(tmpwin, 0, "Fine goods for sale:");
+    putstr(tmpwin, 0, "好的商品出售:");
     putstr(tmpwin, 0, "");
     for (otmp = first_obj; otmp; otmp = otmp->nexthere) {
         if (otmp->oclass == COIN_CLASS)
@@ -3965,11 +3965,11 @@ register struct obj *first_obj;
         if (Has_contents(otmp))
             cost += contained_cost(otmp, shkp, 0L, FALSE, FALSE);
         if (!cost) {
-            Strcpy(price, "no charge");
+            Strcpy(price, "免费");
             contentsonly = FALSE;
         } else {
-            Sprintf(price, "%ld %s%s", cost, currency(cost),
-                    (otmp->quan) > 1L ? " each" : "");
+            Sprintf(price, "%s%ld %s", (otmp->quan) > 1L ? "每个" : "",
+                    cost, currency(cost));
         }
         Sprintf(buf, "%s%s, %s", contentsonly ? the_contents_of : "",
                 doname(otmp), price);
@@ -3986,8 +3986,8 @@ register struct obj *first_obj;
                cost and contentsonly are already set up */
             Sprintf(buf, "%s%s", contentsonly ? the_contents_of : "",
                     doname(first_obj));
-            pline("%s, price %ld %s%s%s", upstart(buf), cost, currency(cost),
-                  (first_obj->quan > 1L) ? " each" : "",
+            pline("%s, %s价格为%ld %s%s", upstart(buf), 
+                  (first_obj->quan > 1L) ? "每个" : "", cost, currency(cost),
                   contentsonly ? "." : shk_embellish(first_obj, cost));
         }
     }
@@ -4010,40 +4010,40 @@ long cost;
             else
                 o = itm->oclass;
             if (o == FOOD_CLASS)
-                return ", gourmets' delight!";
+                return ", 美食家的喜悦!";
             if (objects[itm->otyp].oc_name_known
                     ? objects[itm->otyp].oc_magic
                     : (o == AMULET_CLASS || o == RING_CLASS || o == WAND_CLASS
                        || o == POTION_CLASS || o == SCROLL_CLASS
                        || o == SPBOOK_CLASS))
-                return ", painstakingly developed!";
-            return ", superb craftsmanship!";
+                return ", 煞费苦心!";
+            return ", 精湛做工!";
         case 3:
-            return ", finest quality.";
+            return ", 上等品质.";
         case 2:
-            return ", an excellent choice.";
+            return ", 明智的选择.";
         case 1:
-            return ", a real bargain.";
+            return ", 非常便宜.";
         default:
             break;
         }
     } else if (itm->oartifact) {
-        return ", one of a kind!";
+        return ", 独一无二!";
     }
     return ".";
 }
 
 /* First 4 supplied by Ronen and Tamar, remainder by development team */
 const char *Izchak_speaks[] = {
-    "%s says: 'These shopping malls give me a headache.'",
-    "%s says: 'Slow down.  Think clearly.'",
-    "%s says: 'You need to take things one at a time.'",
+    "%s 说: ' 这些购物中心让我头痛.'",
+    "%s 说: ' 慢下来.  想清楚.'",
+    "%s 说: ' 你需要一次只拿一个东西.'",
     "%s says: 'I don't like poofy coffee... give me Columbian Supremo.'",
     "%s says that getting the devteam's agreement on anything is difficult.",
-    "%s says that he has noticed those who serve their deity will prosper.",
-    "%s says: 'Don't try to steal from me - I have friends in high places!'",
-    "%s says: 'You may well need something from this shop in the future.'",
-    "%s comments about the Valley of the Dead as being a gateway."
+    "%s 说他注意到那些侍奉他们神的人将会顺利.",
+    "%s 说: ' 不要试图偷我的东西 -  我有地位高的朋友!'",
+    "%s 说: ' 将来你可能很需要这个商店的什么东西.'",
+    "%s 评论死亡山谷就像是一个关口."
 };
 
 void
@@ -4057,7 +4057,7 @@ struct monst *shkp;
            not actually a shk, which could happen if someone
            wishes for a shopkeeper statue and then animates it.
            (Note: shkname() would be "" in a case like this.) */
-        pline("%s asks whether you've seen any untended shops recently.",
+        pline("%s 问你最近是否见过任何无人看管的商店.",
               Monnam(shkp));
         /* [Perhaps we ought to check whether this conversation
            is taking place inside an untended shop, but a shopless
@@ -4067,38 +4067,38 @@ struct monst *shkp;
 
     eshk = ESHK(shkp);
     if (ANGRY(shkp)) {
-        pline("%s mentions how much %s dislikes %s customers.",
-              shkname(shkp), mhe(shkp), eshk->robbed ? "non-paying" : "rude");
+        pline("%s 提到%s有多不喜欢%s顾客.",
+              shkname(shkp), mhe(shkp), eshk->robbed ? "不付钱的" : "粗鲁的");
     } else if (eshk->following) {
         if (strncmp(eshk->customer, plname, PL_NSIZ)) {
-            verbalize("%s %s!  I was looking for %s.",
+            verbalize("%s %s!  我在寻找%s.",
                       Hello(shkp), plname, eshk->customer);
             eshk->following = 0;
         } else {
-            verbalize("%s %s!  Didn't you forget to pay?",
+            verbalize("%s %s!  你没忘记付钱吧?",
                       Hello(shkp), plname);
         }
     } else if (eshk->billct) {
         register long total = addupbill(shkp) + eshk->debit;
 
-        pline("%s says that your bill comes to %ld %s.",
+        pline("%s 说你的账单总计%ld %s.",
               shkname(shkp), total, currency(total));
     } else if (eshk->debit) {
-        pline("%s reminds you that you owe %s %ld %s.",
+        pline("%s 提醒你欠%s %ld %s.",
               shkname(shkp), mhim(shkp), eshk->debit, currency(eshk->debit));
     } else if (eshk->credit) {
-        pline("%s encourages you to use your %ld %s of credit.",
+        pline("%s 鼓励你用你的%ld %s 的信用.",
               shkname(shkp), eshk->credit, currency(eshk->credit));
     } else if (eshk->robbed) {
-        pline("%s complains about a recent robbery.", shkname(shkp));
+        pline("%s 抱怨着最近的抢劫.", shkname(shkp));
     } else if ((shkmoney = money_cnt(shkp->minvent)) < 50) {
-        pline("%s complains that business is bad.", shkname(shkp));
+        pline("%s 抱怨生意不好.", shkname(shkp));
     } else if (shkmoney > 4000) {
-        pline("%s says that business is good.", shkname(shkp));
+        pline("%s 说生意很好.", shkname(shkp));
     } else if (is_izchak(shkp, FALSE)) {
         pline(Izchak_speaks[rn2(SIZE(Izchak_speaks))], shkname(shkp));
     } else {
-        pline("%s talks about the problem of shoplifters.", shkname(shkp));
+        pline("%s 谈论着商店扒手的问题.", shkname(shkp));
     }
 }
 
