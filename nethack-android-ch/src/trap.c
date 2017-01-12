@@ -1443,7 +1443,7 @@ unsigned trflags;
                         trap->launch2.x, trap->launch2.y, style)) {
             deltrap(trap);
             newsym(u.ux, u.uy); /* get rid of trap symbol */
-            pline("你狠幸运, 没有巨石出来.");
+            pline("你很幸运, 没有巨石出来.");
         }
         break;
     }

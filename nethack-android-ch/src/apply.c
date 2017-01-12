@@ -570,7 +570,7 @@ struct obj *obj;
     int spotmon;
 
     if (!obj->leashmon && number_leashed() >= MAXLEASHED) {
-        You("不能栓更多的宠物.");
+        You("不能拴更多的宠物.");
         return;
     }
 
@@ -583,7 +583,7 @@ struct obj *obj;
             spotmon = 1;
             goto got_target;
         }
-        pline("栓你自己?  非常有趣...");
+        pline("拴你自己?  非常有趣...");
         return;
     }
 
@@ -599,7 +599,7 @@ got_target:
         if (!spotmon)
             There("没有生物.");
         else
-            pline("%s %s栓着!", Monnam(mtmp),
+            pline("%s %s拴着!", Monnam(mtmp),
                   (!obj->leashmon) ? "不能被" : "没有被");
         return;
     }
@@ -615,7 +615,7 @@ got_target:
             return;
         }
 
-        You("解开%s%s周围的狗链.", spotmon ? "你的" : "",
+        You("给%s%s 拴上狗链.", spotmon ? "你的" : "",
             l_monnam(mtmp));
         mtmp->mleashed = 1;
         obj->leashmon = (int) mtmp->m_id;
@@ -1606,7 +1606,7 @@ int magic; /* 0=Physical, otherwise skill level */
                     makeplural(body_part(LEG)),
                     (u.utraptype == TT_INFLOOR)
                         ? "卡在地板上"
-                        : "被埋着的球栓着");
+                        : "被埋着的球拴着");
                 set_wounded_legs(LEFT_SIDE, rn1(10, 11));
                 set_wounded_legs(RIGHT_SIDE, rn1(10, 11));
                 return 1;
