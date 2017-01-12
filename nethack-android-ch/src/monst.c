@@ -625,7 +625,7 @@ NEARDATA struct permonst mons[] = {
         SIZ(850, 150, MS_ORC, MZ_HUMAN), 0, 0, M1_HUMANOID | M1_OMNIVORE,
         M2_NOPOLY | M2_ORC | M2_STRONG | M2_GREEDY | M2_JEWELS | M2_COLLECT,
         M3_INFRAVISIBLE | M3_INFRAVISION, CLR_RED),
-    MON("希尔兽人", S_ORC, LVL(2, 9, 10, 0, -4), (G_GENO | G_LGROUP | 2),  //hill orc
+    MON("丘陵兽人", S_ORC, LVL(2, 9, 10, 0, -4), (G_GENO | G_LGROUP | 2),  //hill orc
         A(ATTK(AT_WEAP, AD_PHYS, 1, 6), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(1000, 200, MS_ORC, MZ_HUMAN), 0, 0, M1_HUMANOID | M1_OMNIVORE,
@@ -1399,7 +1399,7 @@ struct permonst _mons2[] = {
         M2_GIANT | M2_STRONG | M2_ROCKTHROW | M2_NASTY | M2_COLLECT
             | M2_JEWELS,
         M3_INFRAVISIBLE | M3_INFRAVISION, CLR_GRAY),
-    MON("希尔巨人", S_GIANT, LVL(8, 10, 6, 0, -2), (G_GENO | G_SGROUP | 1),  //hill giant
+    MON("丘陵巨人", S_GIANT, LVL(8, 10, 6, 0, -2), (G_GENO | G_SGROUP | 1),  //hill giant
         A(ATTK(AT_WEAP, AD_PHYS, 2, 8), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(2200, 700, MS_BOAST, MZ_HUGE), 0, 0, M1_HUMANOID | M1_CARNIVORE,

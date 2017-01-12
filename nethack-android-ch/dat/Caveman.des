@@ -173,13 +173,13 @@ MONSTER:('h',"熊地精"),random,hostile
 MONSTER:('h',"熊地精"),random,hostile
 MONSTER:'h',random,hostile
 MONSTER:'H',random,hostile
-MONSTER:('H',"希尔巨人"),(03,12),hostile
-MONSTER:('H',"希尔巨人"),(20,17),hostile
-MONSTER:('H',"希尔巨人"),(35,08),hostile
-MONSTER:('H',"希尔巨人"),random,hostile
-MONSTER:('H',"希尔巨人"),random,hostile
-MONSTER:('H',"希尔巨人"),random,hostile
-MONSTER:('H',"希尔巨人"),random,hostile
+MONSTER:('H',"丘陵巨人"),(03,12),hostile
+MONSTER:('H',"丘陵巨人"),(20,17),hostile
+MONSTER:('H',"丘陵巨人"),(35,08),hostile
+MONSTER:('H',"丘陵巨人"),random,hostile
+MONSTER:('H',"丘陵巨人"),random,hostile
+MONSTER:('H',"丘陵巨人"),random,hostile
+MONSTER:('H',"丘陵巨人"),random,hostile
 MONSTER:'H',random,hostile
 WALLIFY
 
@@ -279,7 +279,7 @@ MONSTER: ('h', "熊地精"), random, hostile
 MONSTER: ('h', "熊地精"), random, hostile
 MONSTER: ('h', "熊地精"), random, hostile
 MONSTER: 'h', random, hostile
-MONSTER: ('H', "希尔巨人"), random, hostile
+MONSTER: ('H', "丘陵巨人"), random, hostile
 
 MAZE: "Cav-filb" , ' '
 INIT_MAP: mines, '.' , ' ' , true , true , random , true
@@ -312,5 +312,5 @@ MONSTER: ('h', "熊地精"), random, hostile
 MONSTER: ('h', "熊地精"), random, hostile
 MONSTER: 'h', random, hostile
 MONSTER: 'h', random, hostile
-MONSTER: ('H', "希尔巨人"), random, hostile
-MONSTER: ('H', "希尔巨人"), random, hostile
+MONSTER: ('H', "丘陵巨人"), random, hostile
+MONSTER: ('H', "丘陵巨人"), random, hostile

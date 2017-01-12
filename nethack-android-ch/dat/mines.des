@@ -174,7 +174,7 @@ LOOP [2d3] {
 # to run into outside the bars
 LOOP [9 + 2d5] {
     IF [90%] {
-        MONSTER: ('o', "希尔兽人"), random, hostile
+        MONSTER: ('o', "丘陵兽人"), random, hostile
     } ELSE {
         MONSTER: ('o', "地精"), random, hostile
     }

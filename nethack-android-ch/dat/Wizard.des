@@ -368,7 +368,7 @@ MONSTER:('@',"盗贼"),(35,06),peaceful,"Pug"
 MONSTER:('Y',"枭熊"),(47,06),peaceful,asleep
 MONSTER:('@',"巫师"),(32,11),peaceful,asleep,"Newt"
 MONSTER:('@',"灰精灵"),(44,11),peaceful
-MONSTER:('H',"希尔巨人"),(47,11),peaceful,asleep
+MONSTER:('H',"丘陵巨人"),(47,11),peaceful,asleep
 MONSTER:('G',"侏儒巫师"),(38,06),peaceful
 MONSTER:('@',"囚犯"),(35,11),peaceful
 MONSTER:('@',"囚犯"),(41,11),peaceful,asleep
