@@ -1274,7 +1274,7 @@ xchar x, y;
         ltyp = db_under_typ(lev->drawbridgemask);
 
     if (ltyp == LAVAPOOL)
-        return "岩浆";
+        return "熔岩";
     else if (ltyp == ICE)
         return "冰";
     else if (ltyp == POOL)

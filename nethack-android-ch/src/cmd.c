@@ -1663,7 +1663,7 @@ int final;
         /* show active Wwalking here, potential Wwalking elsewhere */
         Sprintf(buf, "走在 %s上",
                 is_pool(u.ux, u.uy) ? "水面"
-                : is_lava(u.ux, u.uy) ? "岩浆"
+                : is_lava(u.ux, u.uy) ? "熔岩"
                   : surface(u.ux, u.uy)); /* catchall; shouldn't happen */
         you_are(buf, from_what(WWALKING));
     }

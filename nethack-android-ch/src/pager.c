@@ -176,7 +176,7 @@ int x, y;
         Strcat(buf, (Upolyd && sticks(youmonst.data))
                      ? ", 受牵制" : ", 牵制着你");
     if (mtmp->mleashed)
-        Strcat(buf, ", 被你栓着");
+        Strcat(buf, ", 被你拴着");
 
     if (mtmp->mtrapped && cansee(mtmp->mx, mtmp->my)) {
         struct trap *t = t_at(mtmp->mx, mtmp->my);

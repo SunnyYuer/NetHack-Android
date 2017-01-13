@@ -1106,7 +1106,7 @@ doremove()
                       surface(u.ux, u.uy));
             return 0;
         }
-        You("没有被栓着任何东西!");
+        You("没有被拴着任何东西!");
         return 0;
     }
     unpunish();

@@ -1666,7 +1666,7 @@ boolean noisy;
                          makeplural(body_part(FOOT)), surface(u.ux, u.uy));
             } else { /*TT_BURIEDBALL*/
                 if (noisy)
-                    Your("%s 被栓在埋葬的球上!",
+                    Your("%s 被拴在埋葬的球上!",
                          body_part(LEG));
             }
             err++;
