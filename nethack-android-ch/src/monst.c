@@ -354,7 +354,7 @@ NEARDATA struct permonst mons[] = {
         SIZ(200, 200, MS_MEW, MZ_SMALL), 0, 0,
         M1_ANIMAL | M1_NOHANDS | M1_CARNIVORE, M2_DOMESTIC, M3_INFRAVISIBLE,
         HI_DOMESTIC),
-    MON("捷豹", S_FELINE, LVL(4, 15, 6, 0, 0), (G_GENO | 2),  //jaguar
+    MON("美洲豹", S_FELINE, LVL(4, 15, 6, 0, 0), (G_GENO | 2),  //jaguar
         A(ATTK(AT_CLAW, AD_PHYS, 1, 4), ATTK(AT_CLAW, AD_PHYS, 1, 4),
           ATTK(AT_BITE, AD_PHYS, 1, 8), NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(600, 300, MS_GROWL, MZ_LARGE), 0, 0,
@@ -366,7 +366,7 @@ NEARDATA struct permonst mons[] = {
         SIZ(600, 300, MS_GROWL, MZ_SMALL), 0, 0,
         M1_ANIMAL | M1_NOHANDS | M1_CARNIVORE, M2_HOSTILE, M3_INFRAVISIBLE,
         CLR_CYAN),
-    MON("美洲豹", S_FELINE, LVL(5, 15, 6, 0, 0), (G_GENO | 1),  //panther
+    MON("黑豹", S_FELINE, LVL(5, 15, 6, 0, 0), (G_GENO | 1),  //panther
         A(ATTK(AT_CLAW, AD_PHYS, 1, 6), ATTK(AT_CLAW, AD_PHYS, 1, 6),
           ATTK(AT_BITE, AD_PHYS, 1, 10), NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(600, 300, MS_GROWL, MZ_LARGE), 0, 0,
