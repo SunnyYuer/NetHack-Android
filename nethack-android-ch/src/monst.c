@@ -2543,7 +2543,7 @@ struct permonst _mons2[] = {
             | M2_NASTY | M2_PRINCE | M2_MALE,
         M3_WANTSAMUL | M3_WAITFORU | M3_INFRAVISIBLE | M3_INFRAVISION,
         HI_LORD),
-    MON("魔神", S_DEMON, LVL(106, 15, -8, 95, -20),  //Demogorgon
+    MON("狄摩高根", S_DEMON, LVL(106, 15, -8, 95, -20),  //Demogorgon
         (G_HELL | G_NOCORPSE | G_NOGEN | G_UNIQ),
         A(ATTK(AT_MAGC, AD_SPEL, 8, 6), ATTK(AT_STNG, AD_DRLI, 1, 4),
           ATTK(AT_CLAW, AD_DISE, 1, 6), ATTK(AT_CLAW, AD_DISE, 1, 6), NO_ATTK,
