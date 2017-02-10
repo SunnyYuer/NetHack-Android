@@ -120,7 +120,8 @@ struct class_sym {
 };
 
 struct objdescr {
-    const char *oc_name;  /* actual name */
+    const char *oc_ename; /* actual english name */
+    const char *oc_name;  /* actual chinese name */
     const char *oc_descr; /* description when name unknown */
 };
 
@@ -193,5 +194,6 @@ struct fruit {
 #define dealloc_fruit(rind) free((genericptr_t)(rind))
 
 #define OBJ_NAME(obj) (obj_descr[(obj).oc_name_idx].oc_name)
+#define OBJ_ENAME(obj) (obj_descr[(obj).oc_name_idx].oc_ename)
 #define OBJ_DESCR(obj) (obj_descr[(obj).oc_descr_idx].oc_descr)
 #endif /* OBJCLASS_H */

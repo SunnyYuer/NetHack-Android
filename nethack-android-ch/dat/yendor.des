@@ -46,22 +46,22 @@ NON_PASSWALL:(11,00,21,00)
 NON_PASSWALL:(11,10,27,12)
 NON_PASSWALL:(21,00,27,10)
 # The wizard and his guards
-MONSTER:('@',"岩德巫师"),(16,05),asleep
-MONSTER:('d',"地狱猎犬"),(15,05)
-MONSTER:('V',"吸血鬼领主"),(17,05)
+MONSTER:('@',"Wizard of Yendor"),(16,05),asleep
+MONSTER:('d',"hell hound"),(15,05)
+MONSTER:('V',"vampire lord"),(17,05)
 # The local treasure
-OBJECT:('+',"死亡之书"),(16,05)
+OBJECT:('+',"Book of the Dead"),(16,05)
 # Surrounding terror
-MONSTER:(';',"海妖"),(14,02)
-MONSTER:(';',"巨型鳗鱼"),(17,02)
-MONSTER:(';',"海妖"),(13,04)
-MONSTER:(';',"巨型鳗鱼"),(13,06)
-MONSTER:(';',"海妖"),(19,04)
-MONSTER:(';',"巨型鳗鱼"),(19,06)
-MONSTER:(';',"海妖"),(15,08)
-MONSTER:(';',"巨型鳗鱼"),(17,08)
-MONSTER:(';',"水虎鱼"),(15,02)
-MONSTER:(';',"水虎鱼"),(19,08)
+MONSTER:(';',"kraken"),(14,02)
+MONSTER:(';',"giant eel"),(17,02)
+MONSTER:(';',"kraken"),(13,04)
+MONSTER:(';',"giant eel"),(13,06)
+MONSTER:(';',"kraken"),(19,04)
+MONSTER:(';',"giant eel"),(19,06)
+MONSTER:(';',"kraken"),(15,08)
+MONSTER:(';',"giant eel"),(17,08)
+MONSTER:(';',"piranha"),(15,02)
+MONSTER:(';',"piranha"),(19,08)
 # Random monsters
 MONSTER:'D',random
 MONSTER:'H',random
@@ -80,7 +80,7 @@ TRAP:"sleep gas",random
 TRAP:"anti magic",random
 TRAP:"magic",random
 # Some random loot.
-OBJECT:('*',"红宝石"),random
+OBJECT:('*',"ruby"),random
 OBJECT:'!',random
 OBJECT:'!',random
 OBJECT:'?',random
@@ -191,12 +191,12 @@ NON_PASSWALL:(16,02,27,12)
 NON_PASSWALL:(06,12,16,12)
 #
 MONSTER:'L',(10,07)
-MONSTER:('V',"吸血鬼领主"),(12,07)
+MONSTER:('V',"vampire lord"),(12,07)
 # Some surrounding horrors
-MONSTER:(';',"海妖"),(08,05)
-MONSTER:(';',"巨型鳗鱼"),(08,08)
-MONSTER:(';',"海妖"),(14,05)
-MONSTER:(';',"巨型鳗鱼"),(14,08)
+MONSTER:(';',"kraken"),(08,05)
+MONSTER:(';',"giant eel"),(08,08)
+MONSTER:(';',"kraken"),(14,05)
+MONSTER:(';',"giant eel"),(14,08)
 # Other monsters
 MONSTER:'L',random
 MONSTER:'D',random
@@ -242,8 +242,8 @@ PORTAL:(4,4,4,4),(0,0,0,0),"巫师塔3"
 MAZEWALK:(08,05),east
 REGION:(04,03,06,06),unlit,"ordinary",unfilled,irregular
 MONSTER:'L',(04,04)
-MONSTER:('V',"吸血鬼领主"),(03,04)
-MONSTER:(';',"海妖"),(06,06)
+MONSTER:('V',"vampire lord"),(03,04)
+MONSTER:(';',"kraken"),(06,06)
 # And to make things a little harder.
 TRAP:"board",(04,03)
 TRAP:"board",(04,05)
@@ -270,8 +270,8 @@ TELEPORT_REGION:levregion(01,00,79,20),(2,2,6,6)
 MAZEWALK:(08,05),east
 REGION:(04,03,06,06),unlit,"ordinary",unfilled,irregular
 MONSTER:'L',(04,04)
-MONSTER:('V',"吸血鬼领主"),(03,04)
-MONSTER:(';',"海妖"),(06,06)
+MONSTER:('V',"vampire lord"),(03,04)
+MONSTER:(';',"kraken"),(06,06)
 # And to make things a little harder.
 TRAP:"board",(04,03)
 TRAP:"board",(04,05)

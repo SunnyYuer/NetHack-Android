@@ -53,21 +53,21 @@ BRANCH:levregion(01,00,79,20),(30,06,46,13)
 # Non diggable walls
 NON_DIGGABLE:(30,06,46,13)
 # Objects
-CONTAINER:('`',"雕像"),(36,10),uncursed,montype:"骑士",3,name:"珀尔修斯" {
-  [75%]: OBJECT:('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT:('[',"飘浮靴"),+0
-  [50%]: OBJECT:(')',"短弯刀"),blessed,+2
-  [50%]: OBJECT:('(',"布袋")
+CONTAINER:('`',"statue"),(36,10),uncursed,montype:"knight",3,name:"珀尔修斯" {
+  [75%]: OBJECT:('[',"shield of reflection"),cursed,+0
+  [25%]: OBJECT:('[',"levitation boots"),+0
+  [50%]: OBJECT:(')',"scimitar"),blessed,+2
+  [50%]: OBJECT:('(',"sack")
 }
 # These aren't really containers, but specifying CONTAINER forces them to be
 # empty, since CONTAINERs contain only what is explicitly specified.
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -85,15 +85,15 @@ TRAP:random,random
 TRAP:"board",(38,07)
 TRAP:"board",(38,12)
 # Random monsters
-MONSTER:('@',"美杜莎"),(36,10),asleep
-MONSTER:(';',"巨型鳗鱼"),(11,06)
-MONSTER:(';',"巨型鳗鱼"),(23,13)
-MONSTER:(';',"巨型鳗鱼"),(29,02)
-MONSTER:(';',"水母"),(02,02)
-MONSTER:(';',"水母"),(00,08)
-MONSTER:(';',"水母"),(04,18)
-MONSTER:('T',"水巨魔"),(51,03)
-MONSTER:('T',"水巨魔"),(64,11)
+MONSTER:('@',"Medusa"),(36,10),asleep
+MONSTER:(';',"giant eel"),(11,06)
+MONSTER:(';',"giant eel"),(23,13)
+MONSTER:(';',"giant eel"),(29,02)
+MONSTER:(';',"jellyfish"),(02,02)
+MONSTER:(';',"jellyfish"),(00,08)
+MONSTER:(';',"jellyfish"),(04,18)
+MONSTER:('T',"water troll"),(51,03)
+MONSTER:('T',"water troll"),(64,11)
 MONSTER:'S',(38,07)
 MONSTER:'S',(38,12)
 MONSTER:random,random
@@ -152,23 +152,23 @@ BRANCH:levregion(01,00,79,20),(59,01,73,17)
 NON_DIGGABLE:(01,02,06,17)
 NON_DIGGABLE:(60,02,73,17)
 # Objects
-CONTAINER:('`',"雕像"),(68,10),uncursed,montype:"骑士",3,name:"珀尔修斯" {
-  [25%]: OBJECT:('[',"反射之盾"),cursed,+0
-  [75%]: OBJECT:('[',"飘浮靴"),+0
-  [50%]: OBJECT:(')',"短弯刀"),blessed,+2
-  [50%]: OBJECT:('(',"布袋")
+CONTAINER:('`',"statue"),(68,10),uncursed,montype:"knight",3,name:"珀尔修斯" {
+  [25%]: OBJECT:('[',"shield of reflection"),cursed,+0
+  [75%]: OBJECT:('[',"levitation boots"),+0
+  [50%]: OBJECT:(')',"scimitar"),blessed,+2
+  [50%]: OBJECT:('(',"sack")
 }
-CONTAINER:('`',"雕像"),(64,08) { }
-CONTAINER:('`',"雕像"),(65,08) { }
-CONTAINER:('`',"雕像"),(64,09) { }
-CONTAINER:('`',"雕像"),(65,09) { }
-CONTAINER:('`',"雕像"),(64,10) { }
-CONTAINER:('`',"雕像"),(65,10) { }
-CONTAINER:('`',"雕像"),(64,11) { }
-CONTAINER:('`',"雕像"),(65,11) { }
-OBJECT:('`',"巨石"),(04,04)
+CONTAINER:('`',"statue"),(64,08) { }
+CONTAINER:('`',"statue"),(65,08) { }
+CONTAINER:('`',"statue"),(64,09) { }
+CONTAINER:('`',"statue"),(65,09) { }
+CONTAINER:('`',"statue"),(64,10) { }
+CONTAINER:('`',"statue"),(65,10) { }
+CONTAINER:('`',"statue"),(64,11) { }
+CONTAINER:('`',"statue"),(65,11) { }
+OBJECT:('`',"boulder"),(04,04)
 OBJECT:'/',(52,09)
-OBJECT:('`',"巨石"),(52,09)
+OBJECT:('`',"boulder"),(52,09)
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -182,26 +182,26 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters.
-MONSTER:('@',"美杜莎"),(68,10),asleep
-MONSTER:('g',"小鬼"),(02,14)
-MONSTER:('H',"提坦"),(02,05)
-MONSTER:(';',"电鳗"),(10,13)
-MONSTER:(';',"电鳗"),(11,13)
-MONSTER:(';',"电鳗"),(10,14)
-MONSTER:(';',"电鳗"),(11,14)
-MONSTER:(';',"电鳗"),(10,15)
-MONSTER:(';',"电鳗"),(11,15)
-MONSTER:(';',"水母"),(01,01)
-MONSTER:(';',"水母"),(00,08)
-MONSTER:(';',"水母"),(04,19)
-MONSTER:(''',"石魔像"),(64,08),asleep
-MONSTER:(''',"石魔像"),(65,08),asleep
-MONSTER:(''',"石魔像"),(64,09),asleep
-MONSTER:(''',"石魔像"),(65,09),asleep
-MONSTER:('S',"眼镜蛇"),(64,10),asleep
-MONSTER:('S',"眼镜蛇"),(65,10),asleep
+MONSTER:('@',"Medusa"),(68,10),asleep
+MONSTER:('g',"gremlin"),(02,14)
+MONSTER:('H',"titan"),(02,05)
+MONSTER:(';',"electric eel"),(10,13)
+MONSTER:(';',"electric eel"),(11,13)
+MONSTER:(';',"electric eel"),(10,14)
+MONSTER:(';',"electric eel"),(11,14)
+MONSTER:(';',"electric eel"),(10,15)
+MONSTER:(';',"electric eel"),(11,15)
+MONSTER:(';',"jellyfish"),(01,01)
+MONSTER:(';',"jellyfish"),(00,08)
+MONSTER:(';',"jellyfish"),(04,19)
+MONSTER:(''',"stone golem"),(64,08),asleep
+MONSTER:(''',"stone golem"),(65,08),asleep
+MONSTER:(''',"stone golem"),(64,09),asleep
+MONSTER:(''',"stone golem"),(65,09),asleep
+MONSTER:('S',"cobra"),(64,10),asleep
+MONSTER:('S',"cobra"),(65,10),asleep
 MONSTER:'A',(72,08)
-MONSTER:('y',"黄光"),(72,11),asleep
+MONSTER:('y',"yellow light"),(72,11),asleep
 MONSTER:random,(17,07)
 MONSTER:random,(28,11)
 MONSTER:random,(32,13)
@@ -270,26 +270,26 @@ DOOR:locked,(48,15)
 # 
 FOUNTAIN:$place[1]
 #
-CONTAINER:('`',"雕像"),$place[2],uncursed,montype:"骑士",3,name:"珀尔修斯" {
-  [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT: ('[',"飘浮靴"),+0
-  [50%]: OBJECT: (')',"短弯刀"),blessed,+2
-  [50%]: OBJECT: ('(',"布袋")
+CONTAINER:('`',"statue"),$place[2],uncursed,montype:"knight",3,name:"珀尔修斯" {
+  [75%]: OBJECT: ('[',"shield of reflection"),cursed,+0
+  [25%]: OBJECT: ('[',"levitation boots"),+0
+  [50%]: OBJECT: (')',"scimitar"),blessed,+2
+  [50%]: OBJECT: ('(',"sack")
 }
 #
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
 
 LOOP [8] {
   OBJECT:random,random
 }
-OBJECT:('?',"空白"),(48,18)
-OBJECT:('?',"空白"),(48,18)
+OBJECT:('?',"blank paper"),(48,18)
+OBJECT:('?',"blank paper"),(48,18)
 #
 TRAP:"rust",random
 TRAP:"rust",random
@@ -297,18 +297,18 @@ TRAP:"board",random
 TRAP:"board",random
 TRAP:random,random
 #
-MONSTER:('@',"美杜莎"),$place[0]
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"水母"),random
-MONSTER:(';',"水母"),random
-MONSTER:('n',"木仙女"),random
-MONSTER:('n',"木仙女"),random
-MONSTER:('n',"水仙女"),random
-MONSTER:('n',"水仙女"),random
+MONSTER:('@',"Medusa"),$place[0]
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"jellyfish"),random
+MONSTER:(';',"jellyfish"),random
+MONSTER:('n',"wood nymph"),random
+MONSTER:('n',"wood nymph"),random
+MONSTER:('n',"water nymph"),random
+MONSTER:('n',"water nymph"),random
 
 LOOP [30] {
-  MONSTER:('B',"乌鸦"),random,hostile
+  MONSTER:('B',"raven"),random,hostile
 }
 
 
@@ -368,22 +368,22 @@ BRANCH:levregion(27,00,79,20),(0,0,0,0)
 #
 NON_DIGGABLE:(01,01,22,14)
 #
-OBJECT:('(',"水晶球"),(07,08)
+OBJECT:('(',"crystal ball"),(07,08)
 #
-CONTAINER:('`',"雕像"),$place[1],uncursed,montype:"骑士",3,name:"珀尔修斯" {
-  [75%]: OBJECT: ('[',"反射之盾"),cursed,+0
-  [25%]: OBJECT: ('[',"飘浮靴"),+0
-  [50%]: OBJECT: (')',"短弯刀"),blessed,+2
-  [50%]: OBJECT: ('(',"布袋")
+CONTAINER:('`',"statue"),$place[1],uncursed,montype:"knight",3,name:"珀尔修斯" {
+  [75%]: OBJECT: ('[',"shield of reflection"),cursed,+0
+  [25%]: OBJECT: ('[',"levitation boots"),+0
+  [50%]: OBJECT: (')',"scimitar"),blessed,+2
+  [50%]: OBJECT: ('(',"sack")
 }
 #
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
-CONTAINER:('`',"雕像"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
+CONTAINER:('`',"statue"),random { }
 LOOP [8] {
   OBJECT:random,random
 }
@@ -392,25 +392,25 @@ LOOP [7] {
   TRAP:random,random
 }
 #
-MONSTER:('@',"美杜莎"),$place[0]
-MONSTER:(';',"海妖"),(07,07)
+MONSTER:('@',"Medusa"),$place[0]
+MONSTER:(';',"kraken"),(07,07)
 #
 # the nesting dragon
-MONSTER:('D',"黄龙"), (05,04), asleep
-[50%]: MONSTER: ('D',"幼黄龙"), (04,04), asleep
-[25%]: MONSTER: ('D',"幼黄龙"), (04,05), asleep
-OBJECT:('%',"蛋"), (05,04), montype:"黄龙"
-[50%]: OBJECT: ('%',"蛋"), (05,04), montype:"黄龙"
-[25%]: OBJECT: ('%',"蛋"), (05,04), montype:"黄龙"
+MONSTER:('D',"yellow dragon"), (05,04), asleep
+[50%]: MONSTER: ('D',"baby yellow dragon"), (04,04), asleep
+[25%]: MONSTER: ('D',"baby yellow dragon"), (04,05), asleep
+OBJECT:('%',"egg"), (05,04), montype:"yellow dragon"
+[50%]: OBJECT: ('%',"egg"), (05,04), montype:"yellow dragon"
+[25%]: OBJECT: ('%',"egg"), (05,04), montype:"yellow dragon"
 #
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"水母"),random
-MONSTER:(';',"水母"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"jellyfish"),random
+MONSTER:(';',"jellyfish"),random
 LOOP [14] {
   MONSTER:'S',random
 }
 LOOP [4] {
-  MONSTER:('N',"黑幼纳迦"), random
-  MONSTER:('N',"黑纳迦"), random
+  MONSTER:('N',"black naga hatchling"), random
+  MONSTER:('N',"black naga"), random
 }

@@ -229,6 +229,7 @@
 
 struct symdef {
     uchar sym;
+    const char *bexplanation;  //english explanation
     const char *explanation;
 #ifdef TEXTCOLOR
     uchar color;

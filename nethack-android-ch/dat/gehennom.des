@@ -76,28 +76,28 @@ NON_DIGGABLE:(00,00,75,19)
 # note: no priest(esse)s or monks - maybe Moloch has a *special*
 #       fate reserved for members of *those* classes.
 #
-OBJECT:('%',"尸体"),random,montype:"考古学家"
-OBJECT:('%',"尸体"),random,montype:"考古学家"
-OBJECT:('%',"尸体"),random,montype:"野蛮人"
-OBJECT:('%',"尸体"),random,montype:"野蛮人"
-OBJECT:('%',"尸体"),random,montype:"穴居人"
-OBJECT:('%',"尸体"),random,montype:"女穴居人"
-OBJECT:('%',"尸体"),random,montype:"医生"
-OBJECT:('%',"尸体"),random,montype:"医生"
-OBJECT:('%',"尸体"),random,montype:"骑士"
-OBJECT:('%',"尸体"),random,montype:"骑士"
-OBJECT:('%',"尸体"),random,montype:"游侠"
-OBJECT:('%',"尸体"),random,montype:"游侠"
-OBJECT:('%',"尸体"),random,montype:"盗贼"
-OBJECT:('%',"尸体"),random,montype:"盗贼"
-OBJECT:('%',"尸体"),random,montype:"武士"
-OBJECT:('%',"尸体"),random,montype:"武士"
-OBJECT:('%',"尸体"),random,montype:"游客"
-OBJECT:('%',"尸体"),random,montype:"游客"
-OBJECT:('%',"尸体"),random,montype:"女武神"
-OBJECT:('%',"尸体"),random,montype:"女武神"
-OBJECT:('%',"尸体"),random,montype:"巫师"
-OBJECT:('%',"尸体"),random,montype:"巫师"
+OBJECT:('%',"corpse"),random,montype:"archeologist"
+OBJECT:('%',"corpse"),random,montype:"archeologist"
+OBJECT:('%',"corpse"),random,montype:"barbarian"
+OBJECT:('%',"corpse"),random,montype:"barbarian"
+OBJECT:('%',"corpse"),random,montype:"caveman"
+OBJECT:('%',"corpse"),random,montype:"cavewoman"
+OBJECT:('%',"corpse"),random,montype:"healer"
+OBJECT:('%',"corpse"),random,montype:"healer"
+OBJECT:('%',"corpse"),random,montype:"knight"
+OBJECT:('%',"corpse"),random,montype:"knight"
+OBJECT:('%',"corpse"),random,montype:"ranger"
+OBJECT:('%',"corpse"),random,montype:"ranger"
+OBJECT:('%',"corpse"),random,montype:"rogue"
+OBJECT:('%',"corpse"),random,montype:"rogue"
+OBJECT:('%',"corpse"),random,montype:"samurai"
+OBJECT:('%',"corpse"),random,montype:"samurai"
+OBJECT:('%',"corpse"),random,montype:"tourist"
+OBJECT:('%',"corpse"),random,montype:"tourist"
+OBJECT:('%',"corpse"),random,montype:"valkyrie"
+OBJECT:('%',"corpse"),random,montype:"valkyrie"
+OBJECT:('%',"corpse"),random,montype:"wizard"
+OBJECT:('%',"corpse"),random,montype:"wizard"
 #
 # Some random weapons and armor.
 #
@@ -112,7 +112,7 @@ OBJECT:')',random
 #
 # Some random loot.
 #
-OBJECT:('*',"红宝石"),random
+OBJECT:('*',"ruby"),random
 OBJECT:'*',random
 OBJECT:'*',random
 OBJECT:'!',random
@@ -146,16 +146,16 @@ TRAP:"magic", random
 
 # Random monsters.
 # The ghosts.
-MONSTER:(' ',"鬼魂"),random
-MONSTER:(' ',"鬼魂"),random
-MONSTER:(' ',"鬼魂"),random
-MONSTER:(' ',"鬼魂"),random
-MONSTER:(' ',"鬼魂"),random
-MONSTER:(' ',"鬼魂"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
+MONSTER:(' ',"ghost"),random
 # Add a few bats for atmosphere.
-MONSTER:('B',"吸血蝙蝠"),random
-MONSTER:('B',"吸血蝙蝠"),random
-MONSTER:('B',"吸血蝙蝠"),random
+MONSTER:('B',"vampire bat"),random
+MONSTER:('B',"vampire bat"),random
+MONSTER:('B',"vampire bat"),random
 # And a lich for good measure.
 MONSTER:'L',random
 # Some undead nasties for good measure
@@ -185,7 +185,7 @@ xxx...xx
 xxxx.xxx
 xxxxxxxx
 ENDMAP
-OBJECT:('`',"巨石"),random
+OBJECT:('`',"boulder"),random
 GEOMETRY:right,top
 MAP
 xxxxxxxx
@@ -194,7 +194,7 @@ xxx...xx
 xx...xxx
 xxxxxxxx
 ENDMAP
-OBJECT:('`',"巨石"),random
+OBJECT:('`',"boulder"),random
 # lair
 GEOMETRY:center,center
 MAP
@@ -234,15 +234,15 @@ BRANCH:levregion(01,00,11,20),(0,0,50,17)
 TELEPORT_REGION:levregion(01,00,11,20),(0,0,50,17),up
 TELEPORT_REGION:levregion(69,00,79,20),(0,0,50,17),down
 FOUNTAIN:$place[0]
-MONSTER:('m',"巨型拟型怪"),$place[1],m_feature "喷泉"
-MONSTER:('m',"巨型拟型怪"),$place[2],m_feature "喷泉"
-MONSTER:('m',"巨型拟型怪"),$place[3],m_feature "喷泉"
+MONSTER:('m',"giant mimic"),$place[1],m_feature "fountain"
+MONSTER:('m',"giant mimic"),$place[2],m_feature "fountain"
+MONSTER:('m',"giant mimic"),$place[3],m_feature "fountain"
 # The demon of the swamp
-MONSTER:('&',"朱比烈斯"),(25,08)
+MONSTER:('&',"Juiblex"),(25,08)
 # And a couple demons
-MONSTER:('i',"劣魔"),(43,08)
-MONSTER:('i',"劣魔"),(44,08)
-MONSTER:('i',"劣魔"),(45,08)
+MONSTER:('i',"lemure"),(43,08)
+MONSTER:('i',"lemure"),(44,08)
+MONSTER:('i',"lemure"),(45,08)
 # Some liquids and gems
 OBJECT:'*',(43,06)
 OBJECT:'*',(45,06)
@@ -274,8 +274,8 @@ MONSTER:'F',random
 MONSTER:'F',random
 MONSTER:'m',random
 MONSTER:'m',random
-MONSTER:(';',"水母"),random
-MONSTER:(';',"水母"),random
+MONSTER:(';',"jellyfish"),random
+MONSTER:(';',"jellyfish"),random
 # Some random objects
 OBJECT:'!',random
 OBJECT:'!',random
@@ -283,7 +283,7 @@ OBJECT:'!',random
 OBJECT:'%',random
 OBJECT:'%',random
 OBJECT:'%',random
-OBJECT:('`',"巨石"),random
+OBJECT:('`',"boulder"),random
 # Some traps
 TRAP:"sleep gas",random
 TRAP:"sleep gas",random
@@ -325,30 +325,30 @@ STAIR:levregion(01,00,12,20),levregion(20,01,70,20),up
 BRANCH:levregion(01,00,12,20),levregion(20,01,70,20)
 TELEPORT_REGION:levregion(01,00,12,20),levregion(20,01,70,20)
 # Wall "ruins"
-OBJECT:('`',"巨石"),(19,02)
-OBJECT:('`',"巨石"),(20,02)
-OBJECT:('`',"巨石"),(21,02)
-OBJECT:('`',"巨石"),(36,02)
-OBJECT:('`',"巨石"),(36,03)
-OBJECT:('`',"巨石"),(06,04)
-OBJECT:('`',"巨石"),(05,05)
-OBJECT:('`',"巨石"),(06,05)
-OBJECT:('`',"巨石"),(07,05)
-OBJECT:('`',"巨石"),(39,05)
-OBJECT:('`',"巨石"),(08,08)
-OBJECT:('`',"巨石"),(09,08)
-OBJECT:('`',"巨石"),(10,08)
-OBJECT:('`',"巨石"),(11,08)
-OBJECT:('`',"巨石"),(06,10)
-OBJECT:('`',"巨石"),(05,11)
-OBJECT:('`',"巨石"),(06,11)
-OBJECT:('`',"巨石"),(07,11)
-OBJECT:('`',"巨石"),(21,11)
-OBJECT:('`',"巨石"),(21,12)
-OBJECT:('`',"巨石"),(13,13)
-OBJECT:('`',"巨石"),(14,13)
-OBJECT:('`',"巨石"),(15,13)
-OBJECT:('`',"巨石"),(14,14)
+OBJECT:('`',"boulder"),(19,02)
+OBJECT:('`',"boulder"),(20,02)
+OBJECT:('`',"boulder"),(21,02)
+OBJECT:('`',"boulder"),(36,02)
+OBJECT:('`',"boulder"),(36,03)
+OBJECT:('`',"boulder"),(06,04)
+OBJECT:('`',"boulder"),(05,05)
+OBJECT:('`',"boulder"),(06,05)
+OBJECT:('`',"boulder"),(07,05)
+OBJECT:('`',"boulder"),(39,05)
+OBJECT:('`',"boulder"),(08,08)
+OBJECT:('`',"boulder"),(09,08)
+OBJECT:('`',"boulder"),(10,08)
+OBJECT:('`',"boulder"),(11,08)
+OBJECT:('`',"boulder"),(06,10)
+OBJECT:('`',"boulder"),(05,11)
+OBJECT:('`',"boulder"),(06,11)
+OBJECT:('`',"boulder"),(07,11)
+OBJECT:('`',"boulder"),(21,11)
+OBJECT:('`',"boulder"),(21,12)
+OBJECT:('`',"boulder"),(13,13)
+OBJECT:('`',"boulder"),(14,13)
+OBJECT:('`',"boulder"),(15,13)
+OBJECT:('`',"boulder"),(14,14)
 # Doors
 DOOR:closed,(23,02)
 DOOR:open,(31,03)
@@ -392,39 +392,39 @@ OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
 # The resident nasty
-MONSTER:('&',"奥迦斯"),(33,15)
+MONSTER:('&',"Orcus"),(33,15)
 # And its preferred companions
-MONSTER:('Z',"人类僵尸"),(32,15)
-MONSTER:(' ',"魂灵"),(32,14)
-MONSTER:(' ',"魂灵"),(32,16)
-MONSTER:('V',"吸血鬼"),(35,16)
-MONSTER:('V',"吸血鬼"),(35,14)
-MONSTER:('V',"吸血鬼领主"),(36,14)
-MONSTER:('V',"吸血鬼领主"),(36,15)
+MONSTER:('Z',"human zombie"),(32,15)
+MONSTER:(' ',"shade"),(32,14)
+MONSTER:(' ',"shade"),(32,16)
+MONSTER:('V',"vampire"),(35,16)
+MONSTER:('V',"vampire"),(35,14)
+MONSTER:('V',"vampire lord"),(36,14)
+MONSTER:('V',"vampire lord"),(36,15)
 # Randomly placed companions
-MONSTER:('Z',"骷髅"),random
-MONSTER:('Z',"骷髅"),random
-MONSTER:('Z',"骷髅"),random
-MONSTER:('Z',"骷髅"),random
-MONSTER:('Z',"骷髅"),random
-MONSTER:(' ',"魂灵"),random
-MONSTER:(' ',"魂灵"),random
-MONSTER:(' ',"魂灵"),random
-MONSTER:(' ',"魂灵"),random
-MONSTER:('Z',"巨人僵尸"),random
-MONSTER:('Z',"巨人僵尸"),random
-MONSTER:('Z',"巨人僵尸"),random
-MONSTER:('Z',"双头僵尸"),random
-MONSTER:('Z',"双头僵尸"),random
-MONSTER:('Z',"双头僵尸"),random
-MONSTER:('Z',"人类僵尸"),random
-MONSTER:('Z',"人类僵尸"),random
-MONSTER:('Z',"人类僵尸"),random
-MONSTER:('V',"吸血鬼"),random
-MONSTER:('V',"吸血鬼"),random
-MONSTER:('V',"吸血鬼"),random
-MONSTER:('V',"吸血鬼领主"),random
-MONSTER:('V',"吸血鬼领主"),random
+MONSTER:('Z',"skeleton"),random
+MONSTER:('Z',"skeleton"),random
+MONSTER:('Z',"skeleton"),random
+MONSTER:('Z',"skeleton"),random
+MONSTER:('Z',"skeleton"),random
+MONSTER:(' ',"shade"),random
+MONSTER:(' ',"shade"),random
+MONSTER:(' ',"shade"),random
+MONSTER:(' ',"shade"),random
+MONSTER:('Z',"giant zombie"),random
+MONSTER:('Z',"giant zombie"),random
+MONSTER:('Z',"giant zombie"),random
+MONSTER:('Z',"ettin zombie"),random
+MONSTER:('Z',"ettin zombie"),random
+MONSTER:('Z',"ettin zombie"),random
+MONSTER:('Z',"human zombie"),random
+MONSTER:('Z',"human zombie"),random
+MONSTER:('Z',"human zombie"),random
+MONSTER:('V',"vampire"),random
+MONSTER:('V',"vampire"),random
+MONSTER:('V',"vampire"),random
+MONSTER:('V',"vampire lord"),random
+MONSTER:('V',"vampire lord"),random
 # A few more for the party
 MONSTER:random,random
 MONSTER:random,random
@@ -467,7 +467,7 @@ NON_DIGGABLE:(00,00,20,11)
 # Entire main area
 REGION:(01,01,20,10),unlit,"ordinary"
 # The fellow in residence
-MONSTER:('&',"阿斯莫德"),(12,07)
+MONSTER:('&',"Asmodeus"),(12,07)
 # Some random weapons and armor.
 OBJECT:'[',random
 OBJECT:'[',random
@@ -488,8 +488,8 @@ TRAP:"fire", random
 TRAP:"magic", random
 TRAP:"magic", random
 # Random monsters.
-MONSTER:(' ',"鬼魂"),(11,07)
-MONSTER:('&',"有角的魔鬼"),(10,05)
+MONSTER:(' ',"ghost"),(11,07)
+MONSTER:('&',"horned devil"),(10,05)
 MONSTER:'L',random
 # Some Vampires for good measure
 MONSTER:'V',random
@@ -543,7 +543,7 @@ NON_DIGGABLE:(00,00,46,12)
 MAZEWALK:(00,06),west
 STAIR:(44,06),down
 # The fellow in residence
-MONSTER:('&',"巴力西卜"),(35,06)
+MONSTER:('&',"Baalzebub"),(35,06)
 # Some random weapons and armor.
 OBJECT:'[',random
 OBJECT:'[',random
@@ -564,9 +564,9 @@ TRAP:"fire", random
 TRAP:"magic", random
 TRAP:"magic", random
 # Random monsters.
-MONSTER:(' ',"鬼魂"),(37,07)
-MONSTER:('&',"有角的魔鬼"),(32,05)
-MONSTER:('&',"哈玛魔"),(38,07)
+MONSTER:(' ',"ghost"),(37,07)
+MONSTER:('&',"horned devil"),(32,05)
+MONSTER:('&',"barbed devil"),(38,07)
 MONSTER:'L',random
 # Some Vampires for good measure
 MONSTER:'V',random
@@ -676,21 +676,21 @@ OBJECT:'?',random
 OBJECT:'?',random
 OBJECT:'?',random
 # Some monsters.
-MONSTER:('&',"有角的魔鬼"),(14,12),hostile
-MONSTER:('&',"哈玛魔"),(18,08),hostile
-MONSTER:('&',"伊里逆丝"),(10,04),hostile
-MONSTER:('&',"六臂蛇魔"),(07,09),hostile
-MONSTER:('&',"判魂魔"),(27,08),hostile
+MONSTER:('&',"horned devil"),(14,12),hostile
+MONSTER:('&',"barbed devil"),(18,08),hostile
+MONSTER:('&',"erinys"),(10,04),hostile
+MONSTER:('&',"marilith"),(07,09),hostile
+MONSTER:('&',"nalfeshnee"),(27,08),hostile
 # Moloch's horde
-MONSTER:('@',"虔诚的牧师"),(20,03),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(15,04),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(11,05),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(11,07),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(11,09),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(11,12),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(15,13),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(17,13),noalign,hostile
-MONSTER:('@',"虔诚的牧师"),(21,13),noalign,hostile
+MONSTER:('@',"aligned priest"),(20,03),noalign,hostile
+MONSTER:('@',"aligned priest"),(15,04),noalign,hostile
+MONSTER:('@',"aligned priest"),(11,05),noalign,hostile
+MONSTER:('@',"aligned priest"),(11,07),noalign,hostile
+MONSTER:('@',"aligned priest"),(11,09),noalign,hostile
+MONSTER:('@',"aligned priest"),(11,12),noalign,hostile
+MONSTER:('@',"aligned priest"),(15,13),noalign,hostile
+MONSTER:('@',"aligned priest"),(17,13),noalign,hostile
+MONSTER:('@',"aligned priest"),(21,13),noalign,hostile
 # A few nasties
 MONSTER:'L',random
 MONSTER:'L',random

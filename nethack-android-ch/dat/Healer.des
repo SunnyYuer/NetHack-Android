@@ -58,18 +58,18 @@ DOOR:closed,(47,08)
 DOOR:closed,(48,12)
 DOOR:locked,(50,10)
 # Hippocrates
-MONSTER:('@',"希波克拉底"),(37,10)
+MONSTER:('@',"Hippocrates"),(37,10)
 # The treasure of Hippocrates
-OBJECT:('(',"箱子"),(37,10)
+OBJECT:('(',"chest"),(37,10)
 # intern guards for the audience chamber
-MONSTER:('@',"护理者"),(29,08)
-MONSTER:('@',"护理者"),(29,09)
-MONSTER:('@',"护理者"),(29,10)
-MONSTER:('@',"护理者"),(29,11)
-MONSTER:('@',"护理者"),(40,09)
-MONSTER:('@',"护理者"),(40,10)
-MONSTER:('@',"护理者"),(40,11)
-MONSTER:('@',"护理者"),(40,13)
+MONSTER:('@',"attendant"),(29,08)
+MONSTER:('@',"attendant"),(29,09)
+MONSTER:('@',"attendant"),(29,10)
+MONSTER:('@',"attendant"),(29,11)
+MONSTER:('@',"attendant"),(40,09)
+MONSTER:('@',"attendant"),(40,10)
+MONSTER:('@',"attendant"),(40,11)
+MONSTER:('@',"attendant"),(40,13)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -80,18 +80,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty.
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: ('r',"狂鼠"),random
-MONSTER: (';',"巨型鳗鱼"),random
-MONSTER: (';',"鲨鱼"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: ('r',"rabid rat"),random
+MONSTER: (';',"giant eel"),random
+MONSTER: (';',"shark"),random
 MONSTER: ';', random
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile
@@ -166,25 +166,25 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
 MONSTER:'r',random,hostile
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"电鳗"),random
-MONSTER:(';',"电鳗"),random
-MONSTER:(';',"海妖"),random
-MONSTER:(';',"鲨鱼"),random
-MONSTER:(';',"鲨鱼"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"electric eel"),random
+MONSTER:(';',"electric eel"),random
+MONSTER:(';',"kraken"),random
+MONSTER:(';',"shark"),random
+MONSTER:(';',"shark"),random
 MONSTER:';', random,hostile
 MONSTER:';', random,hostile
 MONSTER: 'D',random,hostile
@@ -235,8 +235,8 @@ STAIR:(39,10),up
 # Non diggable walls
 NON_DIGGABLE:(00,00,40,11)
 # Objects
-OBJECT:(')',"铁头木棒"),(20,06),blessed,0,name:"阿斯克勒庇俄斯之杖"
-OBJECT:('/',"光亮"),(20,06)
+OBJECT:(')',"quarterstaff"),(20,06),blessed,0,name:"阿斯克勒庇俄斯之杖"
+OBJECT:('/',"lightning"),(20,06)
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -259,22 +259,22 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('H',"独眼巨人"),(20,06),hostile
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
-MONSTER:('r',"狂鼠"),random
+MONSTER:('H',"Cyclops"),(20,06),hostile
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
+MONSTER:('r',"rabid rat"),random
 MONSTER:'r',random,hostile
 MONSTER:'r',random,hostile
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"巨型鳗鱼"),random
-MONSTER:(';',"电鳗"),random
-MONSTER:(';',"电鳗"),random
-MONSTER:(';',"鲨鱼"),random
-MONSTER:(';',"鲨鱼"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"giant eel"),random
+MONSTER:(';',"electric eel"),random
+MONSTER:(';',"electric eel"),random
+MONSTER:(';',"shark"),random
+MONSTER:(';',"shark"),random
 MONSTER:';',random,hostile
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile
@@ -317,12 +317,12 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('r', "狂鼠"), random
+MONSTER: ('r', "rabid rat"), random
 MONSTER: 'r', random,hostile
 MONSTER: 'r', random,hostile
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "电鳗"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "electric eel"), random
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile
@@ -355,17 +355,17 @@ OBJECT: random, random
 OBJECT: random, random
 OBJECT: random, random
 #
-MONSTER: ('r', "狂鼠"), random
-MONSTER: ('r', "狂鼠"), random
+MONSTER: ('r', "rabid rat"), random
+MONSTER: ('r', "rabid rat"), random
 MONSTER: 'r', random,hostile
 MONSTER: 'r', random,hostile
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "巨型鳗鱼"), random
-MONSTER: (';', "电鳗"), random
-MONSTER: (';', "电鳗"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "giant eel"), random
+MONSTER: (';', "electric eel"), random
+MONSTER: (';', "electric eel"), random
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile
 MONSTER: 'D',random,hostile

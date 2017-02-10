@@ -52,18 +52,18 @@ DOOR:locked,(19,06)
 # The temple altar (this will force a priest(ess) to be created)
 ALTAR:(36,02),coaligned,shrine
 # Shaman Karnov
-MONSTER:('@',"萨满卡诺夫"),(35,02)
+MONSTER:('@',"Shaman Karnov"),(35,02)
 # The treasure of Shaman Karnov
-OBJECT:('(',"箱子"),(34,02)
+OBJECT:('(',"chest"),(34,02)
 # neanderthal guards for the audience chamber
-MONSTER:('@',"尼安德特人"),(20,03)
-MONSTER:('@',"尼安德特人"),(20,02)
-MONSTER:('@',"尼安德特人"),(20,01)
-MONSTER:('@',"尼安德特人"),(21,03)
-MONSTER:('@',"尼安德特人"),(21,02)
-MONSTER:('@',"尼安德特人"),(21,01)
-MONSTER:('@',"尼安德特人"),(22,01)
-MONSTER:('@',"尼安德特人"),(26,09)
+MONSTER:('@',"neanderthal"),(20,03)
+MONSTER:('@',"neanderthal"),(20,02)
+MONSTER:('@',"neanderthal"),(20,01)
+MONSTER:('@',"neanderthal"),(21,03)
+MONSTER:('@',"neanderthal"),(21,02)
+MONSTER:('@',"neanderthal"),(21,01)
+MONSTER:('@',"neanderthal"),(22,01)
+MONSTER:('@',"neanderthal"),(26,09)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Random traps
@@ -74,18 +74,18 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Monsters on siege duty (in the outer caves).
-MONSTER: ('h',"熊地精"),(47,02),hostile
-MONSTER: ('h',"熊地精"),(48,03),hostile
-MONSTER: ('h',"熊地精"),(49,04),hostile
-MONSTER: ('h',"熊地精"),(67,03),hostile
-MONSTER: ('h',"熊地精"),(69,04),hostile
-MONSTER: ('h',"熊地精"),(51,13),hostile
-MONSTER: ('h',"熊地精"),(53,14),hostile
-MONSTER: ('h',"熊地精"),(55,15),hostile
-MONSTER: ('h',"熊地精"),(63,10),hostile
-MONSTER: ('h',"熊地精"),(65,09),hostile
-MONSTER: ('h',"熊地精"),(67,10),hostile
-MONSTER: ('h',"熊地精"),(69,11),hostile
+MONSTER: ('h',"bugbear"),(47,02),hostile
+MONSTER: ('h',"bugbear"),(48,03),hostile
+MONSTER: ('h',"bugbear"),(49,04),hostile
+MONSTER: ('h',"bugbear"),(67,03),hostile
+MONSTER: ('h',"bugbear"),(69,04),hostile
+MONSTER: ('h',"bugbear"),(51,13),hostile
+MONSTER: ('h',"bugbear"),(53,14),hostile
+MONSTER: ('h',"bugbear"),(55,15),hostile
+MONSTER: ('h',"bugbear"),(63,10),hostile
+MONSTER: ('h',"bugbear"),(65,09),hostile
+MONSTER: ('h',"bugbear"),(67,10),hostile
+MONSTER: ('h',"bugbear"),(69,11),hostile
 WALLIFY
 
 #
@@ -154,32 +154,32 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('h',"熊地精"),(02,10),hostile
-MONSTER:('h',"熊地精"),(03,11),hostile
-MONSTER:('h',"熊地精"),(04,12),hostile
-MONSTER:('h',"熊地精"),(02,11),hostile
-MONSTER:('h',"熊地精"),(16,16),hostile
-MONSTER:('h',"熊地精"),(17,17),hostile
-MONSTER:('h',"熊地精"),(18,18),hostile
-MONSTER:('h',"熊地精"),(19,16),hostile
-MONSTER:('h',"熊地精"),(30,06),hostile
-MONSTER:('h',"熊地精"),(31,07),hostile
-MONSTER:('h',"熊地精"),(32,08),hostile
-MONSTER:('h',"熊地精"),(33,06),hostile
-MONSTER:('h',"熊地精"),(34,07),hostile
-MONSTER:('h',"熊地精"),random,hostile
-MONSTER:('h',"熊地精"),random,hostile
-MONSTER:('h',"熊地精"),random,hostile
-MONSTER:('h',"熊地精"),random,hostile
+MONSTER:('h',"bugbear"),(02,10),hostile
+MONSTER:('h',"bugbear"),(03,11),hostile
+MONSTER:('h',"bugbear"),(04,12),hostile
+MONSTER:('h',"bugbear"),(02,11),hostile
+MONSTER:('h',"bugbear"),(16,16),hostile
+MONSTER:('h',"bugbear"),(17,17),hostile
+MONSTER:('h',"bugbear"),(18,18),hostile
+MONSTER:('h',"bugbear"),(19,16),hostile
+MONSTER:('h',"bugbear"),(30,06),hostile
+MONSTER:('h',"bugbear"),(31,07),hostile
+MONSTER:('h',"bugbear"),(32,08),hostile
+MONSTER:('h',"bugbear"),(33,06),hostile
+MONSTER:('h',"bugbear"),(34,07),hostile
+MONSTER:('h',"bugbear"),random,hostile
+MONSTER:('h',"bugbear"),random,hostile
+MONSTER:('h',"bugbear"),random,hostile
+MONSTER:('h',"bugbear"),random,hostile
 MONSTER:'h',random,hostile
 MONSTER:'H',random,hostile
-MONSTER:('H',"丘陵巨人"),(03,12),hostile
-MONSTER:('H',"丘陵巨人"),(20,17),hostile
-MONSTER:('H',"丘陵巨人"),(35,08),hostile
-MONSTER:('H',"丘陵巨人"),random,hostile
-MONSTER:('H',"丘陵巨人"),random,hostile
-MONSTER:('H',"丘陵巨人"),random,hostile
-MONSTER:('H',"丘陵巨人"),random,hostile
+MONSTER:('H',"hill giant"),(03,12),hostile
+MONSTER:('H',"hill giant"),(20,17),hostile
+MONSTER:('H',"hill giant"),(35,08),hostile
+MONSTER:('H',"hill giant"),random,hostile
+MONSTER:('H',"hill giant"),random,hostile
+MONSTER:('H',"hill giant"),random,hostile
+MONSTER:('H',"hill giant"),random,hostile
 MONSTER:'H',random,hostile
 WALLIFY
 
@@ -222,7 +222,7 @@ STAIR:random,up
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,19)
 # Objects
-OBJECT:(')',"权杖"),(23,10),blessed,0,name:"力量权杖"
+OBJECT:(')',"mace"),(23,10),blessed,0,name:"力量权杖"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -238,10 +238,10 @@ OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
 # monsters.
-MONSTER:('D',"彩色龙"),(23,10),asleep
-MONSTER:('F',"尖叫蕈"),(26,13)
-MONSTER:('F',"尖叫蕈"),(25,8)
-MONSTER:('F',"尖叫蕈"),(45,11)
+MONSTER:('D',"Chromatic Dragon"),(23,10),asleep
+MONSTER:('F',"shrieker"),(26,13)
+MONSTER:('F',"shrieker"),(25,8)
+MONSTER:('F',"shrieker"),(45,11)
 WALLIFY
 
 #
@@ -273,13 +273,13 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 #
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
 MONSTER: 'h', random, hostile
-MONSTER: ('H', "丘陵巨人"), random, hostile
+MONSTER: ('H', "hill giant"), random, hostile
 
 MAZE: "Cav-filb" , ' '
 INIT_MAP: mines, '.' , ' ' , true , true , random , true
@@ -306,11 +306,11 @@ TRAP: random, random
 TRAP: random, random
 TRAP: random, random
 #
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
-MONSTER: ('h', "熊地精"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
+MONSTER: ('h', "bugbear"), random, hostile
 MONSTER: 'h', random, hostile
 MONSTER: 'h', random, hostile
-MONSTER: ('H', "丘陵巨人"), random, hostile
-MONSTER: ('H', "丘陵巨人"), random, hostile
+MONSTER: ('H', "hill giant"), random, hostile
+MONSTER: ('H', "hill giant"), random, hostile

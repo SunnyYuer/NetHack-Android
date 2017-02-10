@@ -1597,7 +1597,8 @@ struct mkroom *croom;
 
             case M_AP_FURNITURE:
                 for (i = 0; i < MAXPCHARS; i++)
-                    if (!strcmp(defsyms[i].explanation, m->appear_as.str))
+                    if (!strcmp(defsyms[i].bexplanation, m->appear_as.str)
+                        || !strcmp(defsyms[i].explanation, m->appear_as.str))
                         break;
                 if (i == MAXPCHARS) {
                     impossible("create_monster: can't find feature \"%s\"",
@@ -1611,7 +1612,8 @@ struct mkroom *croom;
             case M_AP_OBJECT:
                 for (i = 0; i < NUM_OBJECTS; i++)
                     if (OBJ_NAME(objects[i])
-                        && !strcmp(OBJ_NAME(objects[i]), m->appear_as.str))
+                        && (!strcmp(OBJ_ENAME(objects[i]), m->appear_as.str)
+                        || !strcmp(OBJ_NAME(objects[i]), m->appear_as.str)))
                         break;
                 if (i == NUM_OBJECTS) {
                     impossible("create_monster: can't find object \"%s\"",

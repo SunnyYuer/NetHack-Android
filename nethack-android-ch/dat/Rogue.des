@@ -47,9 +47,9 @@ $place = { (33,0), (0,12), (25,20), (75,05) }
 SHUFFLE: $place
 
 STAIR:$place[0],down
-MONSTER:('m',"巨型拟型怪"), $place[1], m_feature "通往下面的楼梯"
-MONSTER:('m',"大拟型怪"), $place[2], m_feature "通往下面的楼梯"
-MONSTER:('m',"小拟型怪"), $place[3], m_feature "通往下面的楼梯"
+MONSTER:('m',"giant mimic"), $place[1], m_feature "staircase down"
+MONSTER:('m',"large mimic"), $place[2], m_feature "staircase down"
+MONSTER:('m',"small mimic"), $place[3], m_feature "staircase down"
 # Portal arrival point
 BRANCH:(19,09,19,09),(0,0,0,0)
 # Doors (secret)
@@ -102,21 +102,21 @@ DOOR: closed, ( 6,18)
 DOOR: closed, (65,18)
 DOOR: closed, (68,18)
 # Master of Thieves
-MONSTER:('@',"盗贼大师"),(36,11)
+MONSTER:('@',"Master of Thieves"),(36,11)
 # The treasure of Master of Thieves
-OBJECT:('(',"箱子"),(36,11)
+OBJECT:('(',"chest"),(36,11)
 # thug guards, room #1
-MONSTER:('@',"刺客"),(28,10)
-MONSTER:('@',"刺客"),(29,11)
-MONSTER:('@',"刺客"),(30,09)
-MONSTER:('@',"刺客"),(31,07)
+MONSTER:('@',"thug"),(28,10)
+MONSTER:('@',"thug"),(29,11)
+MONSTER:('@',"thug"),(30,09)
+MONSTER:('@',"thug"),(31,07)
 # thug guards, room #2
-MONSTER:('@',"刺客"),(31,13)
-MONSTER:('@',"刺客"),(33,14)
-MONSTER:('@',"刺客"),(30,15)
+MONSTER:('@',"thug"),(31,13)
+MONSTER:('@',"thug"),(33,14)
+MONSTER:('@',"thug"),(30,15)
 #thug guards, room #3
-MONSTER:('@',"刺客"),(35,09)
-MONSTER:('@',"刺客"),(36,13)
+MONSTER:('@',"thug"),(35,09)
+MONSTER:('@',"thug"),(36,13)
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,20)
 # Random traps
@@ -140,24 +140,24 @@ TRAP:random,random
 # Monsters to get in the way.
 #
 # West exit
-MONSTER: ('l',"小矮妖"),(01,12),hostile
-MONSTER: ('n',"水仙女"),(02,12),hostile
+MONSTER: ('l',"leprechaun"),(01,12),hostile
+MONSTER: ('n',"water nymph"),(02,12),hostile
 # North exit
-MONSTER: ('n',"水仙女"),(33,01),hostile
-MONSTER: ('l',"小矮妖"),(33,02),hostile
+MONSTER: ('n',"water nymph"),(33,01),hostile
+MONSTER: ('l',"leprechaun"),(33,02),hostile
 # East exit
-MONSTER: ('n',"水仙女"),(74,05),hostile
-MONSTER: ('l',"小矮妖"),(74,04),hostile
+MONSTER: ('n',"water nymph"),(74,05),hostile
+MONSTER: ('l',"leprechaun"),(74,04),hostile
 # South exit
-MONSTER: ('l',"小矮妖"),(25,19),hostile
-MONSTER: ('n',"水仙女"),(25,18),hostile
+MONSTER: ('l',"leprechaun"),(25,19),hostile
+MONSTER: ('n',"water nymph"),(25,18),hostile
 # Wandering the streets.
 LOOP [ 4 + 1d3 ] {
-  MONSTER: ('n',"水仙女"),rndcoord($streets),hostile
-  MONSTER: ('l',"小矮妖"),rndcoord($streets),hostile
+  MONSTER: ('n',"water nymph"),rndcoord($streets),hostile
+  MONSTER: ('l',"leprechaun"),rndcoord($streets),hostile
 }
 LOOP [ 7 + 1d3 ] {
-  MONSTER: (':',"变色龙"),rndcoord($streets),hostile
+  MONSTER: (':',"chameleon"),rndcoord($streets),hostile
 }
 
 #
@@ -204,7 +204,7 @@ STAIR:random,down
 # Non diggable walls
 NON_DIGGABLE:(00,00,75,20)
 # Objects
-OBJECT:('?',"传送"),(11,18),cursed,0
+OBJECT:('?',"teleportation"),(11,18),cursed,0
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -227,39 +227,39 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
 MONSTER:'l',random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
 MONSTER:'N',random,hostile
 MONSTER:'N',random,hostile
 MONSTER:'N',random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
 
 #
 #	The "goal" level for the quest.  Teleportation and digging are
@@ -307,8 +307,8 @@ NON_DIGGABLE:(00,00,75,20)
 # One trap to keep the gnomes at bay.
 TRAP:"spiked pit",(37,07)
 # Objects
-OBJECT:('(',"万能钥匙"),(38,10),blessed,0,name:"盗窃专用万能钥匙"
-OBJECT:('%',"罐头"),(26,12),montype:"变色龙"
+OBJECT:('(',"skeleton key"),(38,10),blessed,0,name:"盗窃专用万能钥匙"
+OBJECT:('%',"tin"),(26,12),montype:"chameleon"
 OBJECT:random,random
 OBJECT:random,random
 OBJECT:random,random
@@ -335,45 +335,45 @@ TRAP:random,random
 TRAP:random,random
 TRAP:random,random
 # Random monsters.
-MONSTER:('@',"刺客大师"),(38,10),hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
-MONSTER:('l',"小矮妖"),random,hostile
+MONSTER:('@',"Master Assassin"),(38,10),hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
+MONSTER:('l',"leprechaun"),random,hostile
 MONSTER:'l',random,hostile
 MONSTER:'l',random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
-MONSTER:('N',"纳迦守卫"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
+MONSTER:('N',"guardian naga"),random,hostile
 MONSTER:'N',random,hostile
 MONSTER:'N',random,hostile
 MONSTER:'N',random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER: (':',"变色龙"),random,hostile
-MONSTER:(';',"鲨鱼"),(51,14),hostile
-MONSTER:(';',"鲨鱼"),(53,09),hostile
-MONSTER:(';',"鲨鱼"),(55,15),hostile
-MONSTER:(';',"鲨鱼"),(58,10),hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER: (':',"chameleon"),random,hostile
+MONSTER:(';',"shark"),(51,14),hostile
+MONSTER:(';',"shark"),(53,09),hostile
+MONSTER:(';',"shark"),(55,15),hostile
+MONSTER:(';',"shark"),(58,10),hostile
 
 #
 #	The "fill" level for the quest.
@@ -386,14 +386,14 @@ LEVEL: "Rog-fila"
 ROOM: "ordinary" , random, random, random, random {
   STAIR: random, up
   OBJECT: random,random
-  MONSTER: ('l', "小矮妖"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   OBJECT: random,random
-  MONSTER: ('l', "小矮妖"), random, hostile
-  MONSTER: ('N', "纳迦守卫"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
+  MONSTER: ('N', "guardian naga"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -401,7 +401,7 @@ ROOM: "ordinary" , random, random, random, random {
   TRAP: random, random
   TRAP: random, random
   OBJECT: random,random
-  MONSTER: ('n', "水仙女"), random, hostile
+  MONSTER: ('n', "water nymph"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -410,7 +410,7 @@ ROOM: "ordinary" , random, random, random, random {
   TRAP: random, random
   TRAP: random, random
   MONSTER: 'l', random, hostile
-  MONSTER: ('N', "纳迦守卫"), random, hostile
+  MONSTER: ('N', "guardian naga"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -418,15 +418,15 @@ ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   TRAP: random, random
-  MONSTER: ('l', "小矮妖"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   TRAP: random, random
-  MONSTER: ('l', "小矮妖"), random, hostile
-  MONSTER: ('n', "水仙女"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
+  MONSTER: ('n', "water nymph"), random, hostile
 }
 
 RANDOM_CORRIDORS
@@ -439,14 +439,14 @@ LEVEL: "Rog-filb"
 ROOM: "ordinary" , random, random, random, random {
   STAIR: random, up
   OBJECT: random,random
-  MONSTER: ('l', "小矮妖"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   OBJECT: random,random
-  MONSTER: ('l', "小矮妖"), random, hostile
-  MONSTER: ('N', "纳迦守卫"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
+  MONSTER: ('N', "guardian naga"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -454,7 +454,7 @@ ROOM: "ordinary" , random, random, random, random {
   TRAP: random, random
   TRAP: random, random
   OBJECT: random,random
-  MONSTER: ('n', "水仙女"), random, hostile
+  MONSTER: ('n', "water nymph"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -463,7 +463,7 @@ ROOM: "ordinary" , random, random, random, random {
   TRAP: random, random
   TRAP: random, random
   MONSTER: 'l', random, hostile
-  MONSTER: ('N', "纳迦守卫"), random, hostile
+  MONSTER: ('N', "guardian naga"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
@@ -471,15 +471,15 @@ ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   TRAP: random, random
-  MONSTER: ('l', "小矮妖"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
 }
 
 ROOM: "ordinary" , random, random, random, random {
   OBJECT: random, random
   TRAP: random, random
   TRAP: random, random
-  MONSTER: ('l', "小矮妖"), random, hostile
-  MONSTER: ('n', "水仙女"), random, hostile
+  MONSTER: ('l', "leprechaun"), random, hostile
+  MONSTER: ('n', "water nymph"), random, hostile
 }
 
 RANDOM_CORRIDORS

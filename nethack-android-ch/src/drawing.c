@@ -35,7 +35,7 @@ const char invisexplain[] = "记住的, 未看见的, 生物";
  */
 const struct class_sym def_oc_syms[MAXOCLASSES] = {
     { '\0', "", "" }, /* placeholder for the "random class" */
-    { ILLOBJ_SYM, "illegal objects", "strange object" },
+    { ILLOBJ_SYM, "非法的物品", "奇怪的物品" },
     { WEAPON_SYM, "武器", "武器" },
     { ARMOR_SYM, "防具", "一套或一件防具" },
     { RING_SYM, "戒指", "戒指" },
@@ -121,119 +121,119 @@ const struct class_sym def_monsyms[MAXMCLASSES] = {
 
 const struct symdef def_warnsyms[WARNCOUNT] = {
     /* white warning  */
-    { '0', "未知生物使你担忧",    C(CLR_WHITE) },
+    { '0', "unknown creature causing you worry", "未知生物使你担忧",    C(CLR_WHITE) },
     /* pink warning   */
-    { '1', "未知生物使你担心",  C(CLR_RED) },
+    { '1', "unknown creature causing you concern", "未知生物使你担心",  C(CLR_RED) },
     /* red warning    */
-    { '2', "未知生物使你焦虑",  C(CLR_RED) },
+    { '2', "unknown creature causing you anxiety", "未知生物使你焦虑",  C(CLR_RED) },
     /* ruby warning   */
-    { '3', "未知生物使你忧虑", C(CLR_RED) },
+    { '3', "unknown creature causing you disquiet", "未知生物使你忧虑", C(CLR_RED) },
     /* purple warning */
-    { '4', "未知生物使你惊恐",    C(CLR_MAGENTA) },
+    { '4', "unknown creature causing you alarm", "未知生物使你惊恐",    C(CLR_MAGENTA) },
     /* black warning  */
-    { '5', "未知生物使你恐惧",    C(CLR_BRIGHT_MAGENTA) },
+    { '5', "unknown creature causing you dread", "未知生物使你恐惧",    C(CLR_BRIGHT_MAGENTA) },
 };
 
 /*
  *  Default screen symbols with explanations and colors.
  */
 const struct symdef defsyms[MAXPCHARS] = {
-/* 0*/ { ' ', "房间的黑暗部分", C(NO_COLOR) },  /* stone */
-       { '|', "墙壁", C(CLR_GRAY) },                 /* vwall */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* hwall */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* tlcorn */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* trcorn */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* blcorn */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* brcorn */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* crwall */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* tuwall */
-       { '-', "墙壁", C(CLR_GRAY) },                 /* tdwall */
-/*10*/ { '|', "墙壁", C(CLR_GRAY) },                 /* tlwall */
-       { '|', "墙壁", C(CLR_GRAY) },                 /* trwall */
-       { '.', "门口", C(CLR_GRAY) },              /* ndoor */
-       { '-', "打开的门", C(CLR_BROWN) },           /* vodoor */
-       { '|', "打开的门", C(CLR_BROWN) },           /* hodoor */
-       { '+', "关上的门", C(CLR_BROWN) },         /* vcdoor */
-       { '+', "关上的门", C(CLR_BROWN) },         /* hcdoor */
-       { '#', "铁栅栏", C(HI_METAL) },            /* bars */
-       { '#', "树", C(CLR_GREEN) },                /* tree */
-       { '.', "房间的地板", C(CLR_GRAY) },      /* room */
-/*20*/ { '.', "房间的黑暗部分", C(CLR_BLACK) }, /* dark room */
-       { '#', "走廊", C(CLR_GRAY) },             /* dark corr */
-       { '#', "照亮了的走廊", C(CLR_GRAY) },   /* lit corr (see mapglyph.c) */
-       { '<', "通往上面的楼梯", C(CLR_GRAY) },         /* upstair */
-       { '>', "通往下面的楼梯", C(CLR_GRAY) },       /* dnstair */
-       { '<', "通往上面的梯子", C(CLR_BROWN) },           /* upladder */
-       { '>', "通往下面的梯子", C(CLR_BROWN) },         /* dnladder */
-       { '_', "祭坛", C(CLR_GRAY) },                /* altar */
-       { '|', "坟墓", C(CLR_GRAY) },                /* grave */
-       { '\\', "华丽的王座", C(HI_GOLD) },       /* throne */
-/*30*/ { '#', "水槽", C(CLR_GRAY) },                 /* sink */
-       { '{', "喷泉", C(CLR_BLUE) },             /* fountain */
-       { '}', "水", C(CLR_BLUE) },                /* pool */
-       { '.', "冰", C(CLR_CYAN) },                  /* ice */
-       { '}', "熔岩", C(CLR_RED) },           /* lava */
-       { '.', "放下的吊桥", C(CLR_BROWN) },  /* vodbridge */
-       { '.', "放下的吊桥", C(CLR_BROWN) },  /* hodbridge */
-       { '#', "升起的吊桥", C(CLR_BROWN) },   /* vcdbridge */
-       { '#', "升起的吊桥", C(CLR_BROWN) },   /* hcdbridge */
-       { ' ', "天空", C(CLR_CYAN) },                  /* open air */
-/*40*/ { '#', "云", C(CLR_GRAY) },                /* [part of] a cloud */
-       { '}', "水", C(CLR_BLUE) },                /* under water */
-       { '^', "箭陷阱", C(HI_METAL) },           /* trap */
-       { '^', "飞镖陷阱", C(HI_METAL) },            /* trap */
-       { '^', "落石陷阱", C(CLR_GRAY) },    /* trap */
-       { '^', "尖板", C(CLR_BROWN) },       /* trap */
-       { '^', "捕兽夹", C(HI_METAL) },            /* trap */
-       { '^', "地雷", C(CLR_RED) },             /* trap */
-       { '^', "滚动巨石陷阱", C(CLR_GRAY) }, /* trap */
-       { '^', "催眠气体陷阱", C(HI_ZAP) },      /* trap */
-/*50*/ { '^', "生锈陷阱", C(CLR_BLUE) },            /* trap */
-       { '^', "火焰陷阱", C(CLR_ORANGE) },          /* trap */
-       { '^', "坑", C(CLR_BLACK) },                 /* trap */
-       { '^', "尖刺坑", C(CLR_BLACK) },          /* trap */
-       { '^', "洞", C(CLR_BROWN) },                /* trap */
-       { '^', "陷阱门", C(CLR_BROWN) },           /* trap */
-       { '^', "传送陷阱", C(CLR_MAGENTA) },  /* trap */
-       { '^', "地层传送", C(CLR_MAGENTA) },    /* trap */
-       { '^', "魔法入口", C(CLR_BRIGHT_MAGENTA) }, /* trap */
-       { '"', "网", C(CLR_GRAY) },                    /* web */
-/*60*/ { '^', "雕像陷阱", C(CLR_GRAY) },            /* trap */
-       { '^', "魔法陷阱", C(HI_ZAP) },               /* trap */
-       { '^', "反魔法区域", C(HI_ZAP) },         /* trap */
-       { '^', "变形陷阱", C(CLR_BRIGHT_GREEN) }, /* trap */
-       { '^', "振动方块", C(CLR_YELLOW) },     /* trap */
-       { '|', "墙壁", C(CLR_GRAY) },            /* vbeam */
-       { '-', "墙壁", C(CLR_GRAY) },            /* hbeam */
-       { '\\', "墙壁", C(CLR_GRAY) },           /* lslant */
-       { '/', "墙壁", C(CLR_GRAY) },            /* rslant */
-       { '*', "", C(CLR_WHITE) },               /* dig beam */
-       { '!', "", C(CLR_WHITE) },               /* camera flash beam */
-       { ')', "", C(HI_WOOD) },                 /* boomerang open left */
-/*70*/ { '(', "", C(HI_WOOD) },                 /* boomerang open right */
-       { '0', "", C(HI_ZAP) },                  /* 4 magic shield symbols */
-       { '#', "", C(HI_ZAP) },
-       { '@', "", C(HI_ZAP) },
-       { '*', "", C(HI_ZAP) },
-       { '#', "毒云", C(CLR_BRIGHT_GREEN) },   /* part of a cloud */
-       { '?', "有效的位置", C(CLR_BRIGHT_GREEN) }, /*  target position */
-       { '/', "", C(CLR_GREEN) },         /* swallow top left      */
-       { '-', "", C(CLR_GREEN) },         /* swallow top center    */
-       { '\\', "", C(CLR_GREEN) },        /* swallow top right     */
-/*80*/ { '|', "", C(CLR_GREEN) },         /* swallow middle left   */
-       { '|', "", C(CLR_GREEN) },         /* swallow middle right  */
-       { '\\', "", C(CLR_GREEN) },        /* swallow bottom left   */
-       { '-', "", C(CLR_GREEN) },         /* swallow bottom center */
-       { '/', "", C(CLR_GREEN) },         /* swallow bottom right  */
-       { '/', "", C(CLR_ORANGE) },        /* explosion top left     */
-       { '-', "", C(CLR_ORANGE) },        /* explosion top center   */
-       { '\\', "", C(CLR_ORANGE) },       /* explosion top right    */
-       { '|', "", C(CLR_ORANGE) },        /* explosion middle left  */
-       { ' ', "", C(CLR_ORANGE) },        /* explosion middle center*/
-/*90*/ { '|', "", C(CLR_ORANGE) },        /* explosion middle right */
-       { '\\', "", C(CLR_ORANGE) },       /* explosion bottom left  */
-       { '-', "", C(CLR_ORANGE) },        /* explosion bottom center*/
-       { '/', "", C(CLR_ORANGE) },        /* explosion bottom right */
+/* 0*/ { ' ', "dark part of a room", "房间的黑暗部分", C(NO_COLOR) },  /* stone */
+       { '|', "wall", "墙壁", C(CLR_GRAY) },                 /* vwall */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* hwall */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* tlcorn */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* trcorn */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* blcorn */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* brcorn */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* crwall */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* tuwall */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },                 /* tdwall */
+/*10*/ { '|', "wall", "墙壁", C(CLR_GRAY) },                 /* tlwall */
+       { '|', "wall", "墙壁", C(CLR_GRAY) },                 /* trwall */
+       { '.', "doorway", "门口", C(CLR_GRAY) },              /* ndoor */
+       { '-', "open door", "打开的门", C(CLR_BROWN) },           /* vodoor */
+       { '|', "open door", "打开的门", C(CLR_BROWN) },           /* hodoor */
+       { '+', "closed door", "关上的门", C(CLR_BROWN) },         /* vcdoor */
+       { '+', "closed door", "关上的门", C(CLR_BROWN) },         /* hcdoor */
+       { '#', "iron bars", "铁栅栏", C(HI_METAL) },            /* bars */
+       { '#', "tree", "树", C(CLR_GREEN) },                /* tree */
+       { '.', "floor of a room", "房间的地板", C(CLR_GRAY) },      /* room */
+/*20*/ { '.', "dark part of a room", "房间的黑暗部分", C(CLR_BLACK) }, /* dark room */
+       { '#', "corridor", "走廊", C(CLR_GRAY) },             /* dark corr */
+       { '#', "lit corridor", "照亮了的走廊", C(CLR_GRAY) },   /* lit corr (see mapglyph.c) */
+       { '<', "staircase up", "通往上面的楼梯", C(CLR_GRAY) },         /* upstair */
+       { '>', "staircase down", "通往下面的楼梯", C(CLR_GRAY) },       /* dnstair */
+       { '<', "ladder up", "通往上面的梯子", C(CLR_BROWN) },           /* upladder */
+       { '>', "ladder down", "通往下面的梯子", C(CLR_BROWN) },         /* dnladder */
+       { '_', "altar", "祭坛", C(CLR_GRAY) },                /* altar */
+       { '|', "grave", "坟墓", C(CLR_GRAY) },                /* grave */
+       { '\\', "opulent throne", "华丽的王座", C(HI_GOLD) },       /* throne */
+/*30*/ { '#', "sink", "水槽", C(CLR_GRAY) },                 /* sink */
+       { '{', "fountain", "喷泉", C(CLR_BLUE) },             /* fountain */
+       { '}', "water", "水", C(CLR_BLUE) },                /* pool */
+       { '.', "ice", "冰", C(CLR_CYAN) },                  /* ice */
+       { '}', "molten lava", "熔岩", C(CLR_RED) },           /* lava */
+       { '.', "lowered drawbridge", "放下的吊桥", C(CLR_BROWN) },  /* vodbridge */
+       { '.', "lowered drawbridge", "放下的吊桥", C(CLR_BROWN) },  /* hodbridge */
+       { '#', "raised drawbridge", "升起的吊桥", C(CLR_BROWN) },   /* vcdbridge */
+       { '#', "raised drawbridge", "升起的吊桥", C(CLR_BROWN) },   /* hcdbridge */
+       { ' ', "air", "天空", C(CLR_CYAN) },                  /* open air */
+/*40*/ { '#', "cloud", "云", C(CLR_GRAY) },                /* [part of] a cloud */
+       { '}', "water", "水", C(CLR_BLUE) },                /* under water */
+       { '^', "arrow trap", "箭陷阱", C(HI_METAL) },           /* trap */
+       { '^', "dart trap", "飞镖陷阱", C(HI_METAL) },            /* trap */
+       { '^', "falling rock trap", "落石陷阱", C(CLR_GRAY) },    /* trap */
+       { '^', "squeaky board", "尖板", C(CLR_BROWN) },       /* trap */
+       { '^', "bear trap", "捕兽夹", C(HI_METAL) },            /* trap */
+       { '^', "land mine", "地雷", C(CLR_RED) },             /* trap */
+       { '^', "rolling boulder trap", "滚动巨石陷阱", C(CLR_GRAY) }, /* trap */
+       { '^', "sleeping gas trap", "催眠气体陷阱", C(HI_ZAP) },      /* trap */
+/*50*/ { '^', "rust trap", "生锈陷阱", C(CLR_BLUE) },            /* trap */
+       { '^', "fire trap", "火焰陷阱", C(CLR_ORANGE) },          /* trap */
+       { '^', "pit", "坑", C(CLR_BLACK) },                 /* trap */
+       { '^', "spiked pit", "尖刺坑", C(CLR_BLACK) },          /* trap */
+       { '^', "hole", "洞", C(CLR_BROWN) },                /* trap */
+       { '^', "trap door", "陷阱门", C(CLR_BROWN) },           /* trap */
+       { '^', "teleportation trap", "传送陷阱", C(CLR_MAGENTA) },  /* trap */
+       { '^', "level teleporter", "地层传送", C(CLR_MAGENTA) },    /* trap */
+       { '^', "magic portal", "魔法入口", C(CLR_BRIGHT_MAGENTA) }, /* trap */
+       { '"', "web", "网", C(CLR_GRAY) },                    /* web */
+/*60*/ { '^', "statue trap", "雕像陷阱", C(CLR_GRAY) },            /* trap */
+       { '^', "magic trap", "魔法陷阱", C(HI_ZAP) },               /* trap */
+       { '^', "anti-magic field", "反魔法区域", C(HI_ZAP) },         /* trap */
+       { '^', "polymorph trap", "变形陷阱", C(CLR_BRIGHT_GREEN) }, /* trap */
+       { '^', "vibrating square", "振动方块", C(CLR_YELLOW) },     /* trap */
+       { '|', "wall", "墙壁", C(CLR_GRAY) },            /* vbeam */
+       { '-', "wall", "墙壁", C(CLR_GRAY) },            /* hbeam */
+       { '\\', "wall", "墙壁", C(CLR_GRAY) },           /* lslant */
+       { '/', "wall", "墙壁", C(CLR_GRAY) },            /* rslant */
+       { '*', "", "", C(CLR_WHITE) },               /* dig beam */
+       { '!', "", "", C(CLR_WHITE) },               /* camera flash beam */
+       { ')', "", "", C(HI_WOOD) },                 /* boomerang open left */
+/*70*/ { '(', "", "", C(HI_WOOD) },                 /* boomerang open right */
+       { '0', "", "", C(HI_ZAP) },                  /* 4 magic shield symbols */
+       { '#', "", "", C(HI_ZAP) },
+       { '@', "", "", C(HI_ZAP) },
+       { '*', "", "", C(HI_ZAP) },
+       { '#', "poison cloud", "毒云", C(CLR_BRIGHT_GREEN) },   /* part of a cloud */
+       { '?', "valid position", "有效的位置", C(CLR_BRIGHT_GREEN) }, /*  target position */
+       { '/', "", "", C(CLR_GREEN) },         /* swallow top left      */
+       { '-', "", "", C(CLR_GREEN) },         /* swallow top center    */
+       { '\\', "", "", C(CLR_GREEN) },        /* swallow top right     */
+/*80*/ { '|', "", "", C(CLR_GREEN) },         /* swallow middle left   */
+       { '|', "", "", C(CLR_GREEN) },         /* swallow middle right  */
+       { '\\', "", "", C(CLR_GREEN) },        /* swallow bottom left   */
+       { '-', "", "", C(CLR_GREEN) },         /* swallow bottom center */
+       { '/', "", "", C(CLR_GREEN) },         /* swallow bottom right  */
+       { '/', "", "", C(CLR_ORANGE) },        /* explosion top left     */
+       { '-', "", "", C(CLR_ORANGE) },        /* explosion top center   */
+       { '\\', "", "", C(CLR_ORANGE) },       /* explosion top right    */
+       { '|', "", "", C(CLR_ORANGE) },        /* explosion middle left  */
+       { ' ', "", "", C(CLR_ORANGE) },        /* explosion middle center*/
+/*90*/ { '|', "", "", C(CLR_ORANGE) },        /* explosion middle right */
+       { '\\', "", "", C(CLR_ORANGE) },       /* explosion bottom left  */
+       { '-', "", "", C(CLR_ORANGE) },        /* explosion bottom center*/
+       { '/', "", "", C(CLR_ORANGE) },        /* explosion bottom right */
 };
 
 /* default rogue level symbols */

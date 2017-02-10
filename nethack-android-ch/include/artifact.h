@@ -42,6 +42,7 @@
 
 struct artifact {
     short otyp;
+    const char *ename;
     const char *name;
     unsigned long spfx;  /* special effect from wielding/wearing */
     unsigned long cspfx; /* special effect just from carrying obj */
