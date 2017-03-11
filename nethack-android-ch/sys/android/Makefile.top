@@ -95,8 +95,6 @@ $(GAME):
 
 all:	$(GAME) recover Guidebook $(VARDAT) dungeon spec_levs check-dlb
 	true; $(MOREALL)
-	cp -ruv dat sys/android/assets/nethackdir
-	cp -ruv sys/android/defaults.nh sys/android/assets/nethackdir/defaults.nh
 	@echo "Done."
 
 # Note: many of the dependencies below are here to allow parallel make

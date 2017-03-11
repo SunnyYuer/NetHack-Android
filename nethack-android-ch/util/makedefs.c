@@ -2037,14 +2037,14 @@ struct permonst *ptr;
         if ((tmp2 == AD_DRLI) || (tmp2 == AD_STON) || (tmp2 == AD_DRST)
             || (tmp2 == AD_DRDX) || (tmp2 == AD_DRCO) || (tmp2 == AD_WERE))
             n += 2;
-        else if (strcmp(ptr->mname, "grid bug"))
+        else if (strcmp(ptr->ename, "grid bug"))
             n += (tmp2 != AD_PHYS);
         n += ((int) (ptr->mattk[i].damd * ptr->mattk[i].damn) > 23);
     }
 
     /*  Leprechauns are special cases.  They have many hit dice so they can
         hit and are hard to kill, but they don't really do much damage. */
-    if (!strcmp(ptr->mname, "leprechaun"))
+    if (!strcmp(ptr->ename, "leprechaun"))
         n -= 2;
 
     /*  Finally, adjust the monster level  0 <= n <= 24 (approx.) */
@@ -2125,9 +2125,9 @@ do_permonst()
         SpinCursor(3);
 
         Fprintf(ofp, "\n#define\tPM_");
-        if (mons[i].mlet == S_HUMAN && !strncmp(mons[i].mname, "were", 4))
+        if (mons[i].mlet == S_HUMAN && !strncmp(mons[i].ename, "were", 4))
             Fprintf(ofp, "HUMAN_");
-        for (nam = c = tmpdup(mons[i].mname); *c; c++)
+        for (nam = c = tmpdup(mons[i].ename); *c; c++)
             if (*c >= 'a' && *c <= 'z')
                 *c -= (char) ('a' - 'A');
             else if (*c < 'A' || *c > 'Z')
@@ -2522,7 +2522,7 @@ do_objs()
         SpinCursor(3);
 
         objects[i].oc_name_idx = objects[i].oc_descr_idx = i; /* init */
-        if (!(objnam = tmpdup(OBJ_NAME(objects[i]))))
+        if (!(objnam = tmpdup(OBJ_ENAME(objects[i]))))
             continue;
 
         /* make sure probabilities add up to 1000 */

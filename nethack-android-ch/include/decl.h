@@ -251,9 +251,9 @@ E NEARDATA struct you u;
 E NEARDATA time_t ubirthday;
 E NEARDATA struct u_realtime urealtime;
 
-#include "onamest.h"
+#include "onames.h"
 #ifndef PM_H /* (pm.h has already been included via youprop.h) */
-#include "pmt.h"
+#include "pm.h"
 #endif
 
 E NEARDATA struct monst youmonst; /* init'd and defined in decl.c */
