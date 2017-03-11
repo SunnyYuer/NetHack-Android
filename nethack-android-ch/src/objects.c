@@ -197,10 +197,10 @@ WEAPON("scimitar", "短弯刀", "弯刀",  //"curved sword"
        0, 0, 0, 15,  40,  15,  8,  8, 0, S,   P_SCIMITAR, IRON, HI_METAL),
 WEAPON("silver saber", "银剑", None,
        1, 0, 0,  6,  40,  75,  8,  8, 0, S,   P_SABER, SILVER, HI_SILVER),
-WEAPON("broadsword", "大刀", None,
+WEAPON("broadsword", "阔剑", None,
        1, 0, 0,  8,  70,  10,  4,  6, 0, S,   P_BROAD_SWORD, IRON, HI_METAL),
         /* +d4 small, +1 large */
-WEAPON("elven broadsword", "精灵大刀", "符文大刀",  //"runed broadsword"
+WEAPON("elven broadsword", "精灵阔剑", "符文阔剑",  //"runed broadsword"
        0, 0, 0,  4,  70,  10,  6,  6, 0, S,   P_BROAD_SWORD, WOOD, HI_WOOD),
         /* +d4 small, +1 large */
 WEAPON("long sword", "长剑", None,
@@ -216,7 +216,7 @@ WEAPON("tsurugi", "武士剑", "武士长剑",  //"long samurai sword"
        0, 0, 1,  0,  60, 500, 16,  8, 2, S,   P_TWO_HANDED_SWORD,
                                                             METAL, HI_METAL),
         /* +2d6 large */
-WEAPON("runesword", "符文剑", "符文大刀",  //"runed broadsword"
+WEAPON("runesword", "符文剑", "符文阔剑",  //"runed broadsword"
        0, 0, 0,  0,  40, 300,  4,  6, 0, S,   P_BROAD_SWORD, IRON, CLR_BLACK),
         /* +d4 small, +1 large; Stormbringer: +5d2 +d8 from level drain */
 
@@ -911,7 +911,7 @@ SPELL("healing", "治愈",         "白色的",  //"white"
       P_HEALING_SPELL,     40,  2, 1, 1, IMMEDIATE, CLR_WHITE),
 SPELL("knock", "敲击",           "粉红的",  //"pink"
       P_MATTER_SPELL,      35,  1, 1, 1, IMMEDIATE, CLR_BRIGHT_MAGENTA),
-SPELL("force bolt", "魔力闪电",      "红色的",  //"red"
+SPELL("force bolt", "力冲击",      "红色的",  //"red"
       P_ATTACK_SPELL,      35,  2, 1, 1, IMMEDIATE, CLR_RED),
 SPELL("confuse monster", "迷惑怪物", "橙色的",  //"orange"
       P_ENCHANTMENT_SPELL, 30,  2, 2, 1, IMMEDIATE, CLR_ORANGE),
@@ -927,7 +927,7 @@ SPELL("create monster", "制造怪物",  "蓝绿色",  //"turquoise"
       P_CLERIC_SPELL,      35,  3, 2, 1, NODIR, CLR_BRIGHT_CYAN),
 SPELL("detect food", "探测食物",     "青色的",  //"cyan"
       P_DIVINATION_SPELL,  30,  3, 2, 1, NODIR, CLR_CYAN),
-SPELL("cause fear", "惊恐术",      "淡蓝色",  //"light blue"
+SPELL("cause fear", "造成恐惧",      "淡蓝色",  //"light blue"
       P_ENCHANTMENT_SPELL, 25,  3, 3, 1, NODIR, CLR_BRIGHT_BLUE),
 SPELL("clairvoyance", "千里眼",    "深蓝色",  //"dark blue"
       P_DIVINATION_SPELL,  15,  3, 3, 1, NODIR, CLR_BLUE),
@@ -1004,7 +1004,7 @@ WAND("enlightenment", "启蒙", "水晶", 15, 150, 1, NODIR, GLASS, HI_GLASS),  
 WAND("create monster", "制造怪物",  "枫木", 45, 200, 1, NODIR, WOOD, HI_WOOD),  //"maple"
 WAND("wishing", "许愿",          "松木",  5, 500, 1, NODIR, WOOD, HI_WOOD),  //"pine"
 WAND("nothing", "无",           "橡木", 25, 100, 0, IMMEDIATE, WOOD, HI_WOOD),  //"oak"
-WAND("striking", "敲击",        "乌木", 75, 150, 1, IMMEDIATE, WOOD, HI_WOOD),  //"ebony"
+WAND("striking", "冲击",        "乌木", 75, 150, 1, IMMEDIATE, WOOD, HI_WOOD),  //"ebony"
 WAND("make invisible", "隐身", "大理石", 45, 150, 1, IMMEDIATE, MINERAL, HI_MINERAL),  //"marble"
 WAND("slow monster", "减慢怪物",      "锡制", 50, 150, 1, IMMEDIATE, METAL, HI_METAL),  //"tin"
 WAND("speed monster", "加速怪物",   "黄铜", 50, 150, 1, IMMEDIATE, COPPER, HI_COPPER),  //"brass"

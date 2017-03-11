@@ -1120,7 +1120,7 @@ char *hittee;              /* target's name: "you" or mon_nam(mdef) */
                 Strcat(buf, "和");
             if (do_confuse)
                 Strcat(buf, "混乱");
-            pline("%s %s %s%c", hittee, vtense(fakename, ""), buf,
+            pline("%s %s %s%c", hittee, vtense(fakename, "被"), buf,
                   (do_stun && do_confuse) ? '!' : '.');
         }
     }

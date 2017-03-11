@@ -115,7 +115,7 @@ int expltype;
             adtyp = AD_DISN;
             break;
         case 5:
-            str = "光球";
+            str = "闪电球";
             adtyp = AD_ELEC;
             break;
         case 6:

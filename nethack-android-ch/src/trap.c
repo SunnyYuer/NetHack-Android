@@ -2275,8 +2275,8 @@ register struct monst *mtmp;
         case FIRE_TRAP:
         mfiretrap:
             if (in_sight)
-                pline("%s从%s喷出在%s下面!", tower_of_flame,
-                      surface(mtmp->mx, mtmp->my), mon_nam(mtmp));
+                pline("%s从%s下面的%s喷出!", tower_of_flame,
+                      mon_nam(mtmp), surface(mtmp->mx, mtmp->my));
             else if (see_it) /* evidently `mtmp' is invisible */
                 You_see("%s从%s喷出!", tower_of_flame,
                         surface(mtmp->mx, mtmp->my));

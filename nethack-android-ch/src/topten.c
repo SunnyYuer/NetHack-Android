@@ -655,8 +655,8 @@ time_t when;
                     char pbuf[BUFSZ];
 
                     Sprintf(pbuf,
-                            "你的排名为%d%s 进入了前%d.",
-                            rank0, ordin(rank0), sysopt.entrymax);
+                            "你的排名为第%d 进入了前%d.",
+                            rank0, sysopt.entrymax);
                     topten_print(pbuf);
                 }
                 topten_print("");

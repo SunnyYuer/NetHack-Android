@@ -1596,7 +1596,7 @@ int mode, final, attrindx;
         if (interesting_alimit) {
             Sprintf(eos(valubuf), "%s%s 极限:%s", paren_pfx,
                     /* more verbose if exceeding 'limit' due to magic bonus */
-                    (acurrent > alimit) ? "innate " : "",
+                    (acurrent > alimit) ? "天生" : "",
                     attrval(attrindx, alimit, valstring));
             /* paren_pfx = ", "; */
         }
@@ -1897,9 +1897,9 @@ int final;
     putstr(en_win, 0, final ? "最终属性:" : "当前属性:");
 
     if (u.uevent.uhand_of_elbereth) {
-        static const char *const hofe_titles[3] = { "the Hand of Elbereth",
-                                                    "the Envoy of Balance",
-                                                    "the Glory of Arioch" };
+        static const char *const hofe_titles[3] = { "伊尔碧绿丝之手",
+                                                    "平衡使者",
+                                                    "亚略的荣耀" };
         you_are(hofe_titles[u.uevent.uhand_of_elbereth - 1], "");
     }
 

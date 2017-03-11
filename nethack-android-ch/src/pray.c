@@ -729,7 +729,7 @@ gcrownu()
     switch (u.ualign.type) {
     case A_LAWFUL:
         u.uevent.uhand_of_elbereth = 1;
-        verbalize("我赐予你荣誉...  伊尔碧绿丝(Elbereth) 之手!");
+        verbalize("我赐予你荣誉...  伊尔碧绿丝之手!");
         break;
     case A_NEUTRAL:
         u.uevent.uhand_of_elbereth = 2;

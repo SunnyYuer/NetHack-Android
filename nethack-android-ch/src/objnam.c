@@ -620,7 +620,7 @@ struct obj *obj;
     if (m_shot.n > 1 && m_shot.o == obj->otyp) {
         /* "the Nth arrow"; value will eventually be passed to an() or
            The(), both of which correctly handle this "the " prefix */
-        Sprintf(tmpbuf, "the %d%s ", m_shot.i, ordin(m_shot.i));
+        Sprintf(tmpbuf, "第%d 支 ", m_shot.i);
         onm = strprepend(onm, tmpbuf);
     }
     return onm;
