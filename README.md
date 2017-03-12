@@ -25,7 +25,7 @@ http://developer.android.com/sdk/ndk
 2. 打开Makefile.src文件并更改NDK目录为你的NDK目录
 3. 终端操作./setup.sh
 4. 终端操作cd ../..
-5. 终端操作make all
+5. 终端操作make install
 
 === 编译app ===
 
