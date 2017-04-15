@@ -147,7 +147,9 @@ boolean exclude_cookie;
             Strcat(rumor_buf, xcrypt(line, xbuf));
         } while (
             count++ < 50 && exclude_cookie
-            && (strstri(rumor_buf, "fortune") || strstri(rumor_buf, "pity")));
+            && (strstri(rumor_buf, "fortune") || strstri(rumor_buf, "pity")
+            || strstri(rumor_buf, "幸运") || strstri(rumor_buf, "命运")
+            || strstri(rumor_buf, "可惜")));
         (void) dlb_fclose(rumors);
         if (count >= 50)
             impossible("Can't find non-cookie rumor?");
