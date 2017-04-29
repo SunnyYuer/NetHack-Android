@@ -1627,7 +1627,7 @@ struct obj *obj;
 
     /* simpleoname is singular if quan==1, plural otherwise */
     if (obj->quan == 1L)
-        simpleoname = an(simpleoname);
+        simpleoname = simpleoname;
     return simpleoname;
 }
 
@@ -2653,7 +2653,7 @@ struct obj *no_wish;
         *p = 0;
         dn = p + 10;
     }
-    if ((p = strstri(bp, " of spinach")) != 0) {
+    if ((p = strstri(bp, "之菠菜")) != 0) {
         *p = 0;
         contents = SPINACH;
     }
@@ -3010,7 +3010,7 @@ srch:
         Strcat(bp, " mail");
         goto retry;
     }
-    if (!strcmpi(bp, "spinach")) {
+    if (!strcmpi(bp, "菠菜")) {
         contents = SPINACH;
         typ = TIN;
         goto typfnd;
@@ -3492,7 +3492,7 @@ typfnd:
         artifact_exists(otmp, safe_oname(otmp), FALSE);
         obfree(otmp, (struct obj *) 0);
         otmp = &zeroobj;
-        pline("For a moment, you feel %s in your %s, but it disappears!",
+        pline("片刻间, 你感觉到%s在你的%s 中, 但它又消失了!",
               something, makeplural(body_part(HAND)));
     }
 
