@@ -1767,7 +1767,7 @@ register struct attack *mattk;
             if (Amphibious && !flaming(youmonst.data))
                 tmp = 0;
         } else {
-            You("被碎片打到!");
+            You("连续被碎渣打中!");
             exercise(A_STR, FALSE);
         }
         break;
@@ -1863,7 +1863,7 @@ register struct attack *mattk;
               is_animal(mtmp->data) ? "反胃" : "喷出");
         expels(mtmp, mtmp->data, FALSE);
     } else if (!u.uswldtim || youmonst.data->msize >= MZ_HUGE) {
-        You("被 %s!", is_animal(mtmp->data) ? "反胃" : "喷出");
+        You("被%s出来!", is_animal(mtmp->data) ? "反胃" : "喷射");
         if (flags.verbose
             && (is_animal(mtmp->data)
                 || (dmgtype(mtmp->data, AD_DGST) && Slow_digestion)))

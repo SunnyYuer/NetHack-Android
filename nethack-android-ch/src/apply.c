@@ -1100,7 +1100,7 @@ register struct obj *obj;
               (Blind ? "." : "明亮的!"));
     }
     if (!invocation_pos(u.ux, u.uy) || On_stairs(u.ux, u.uy)) {
-        pline_The("%s %s迅速被消耗!", s, vtense(s, ""));
+        pline_The("%s %s迅速消耗!", s, vtense(s, "被"));
         /* this used to be obj->age /= 2, rounding down; an age of
            1 would yield 0, confusing begin_burn() and producing an
            unlightable, unrefillable candelabrum; round up instead */
@@ -1157,7 +1157,7 @@ struct obj **optr;
             s = (obj->quan != 1) ? "蜡烛" : "蜡烛";
         } else
             *optr = 0;
-        You("附加 %ld%s%s到%s.", obj->quan, !otmp->spe ? "" : "个多的", s,
+        You("附加%ld %s%s到%s.", obj->quan, !otmp->spe ? "" : "个多的", s,
             the(xname(otmp)));
         if (!otmp->spe || otmp->age > obj->age)
             otmp->age = obj->age;
@@ -1223,7 +1223,7 @@ struct obj *obj;
             || obj->otyp == BRASS_LANTERN || obj->otyp == POT_OIL) {
             (void) get_obj_location(obj, &x, &y, 0);
             if (obj->where == OBJ_MINVENT ? cansee(x, y) : !Blind)
-                pline("%s %s熄灭了!", Yname2(obj), otense(obj, ""));
+                pline("%s %s了!", Yname2(obj), otense(obj, "熄灭"));
             end_burn(obj, TRUE);
             return TRUE;
         }
@@ -1310,7 +1310,7 @@ struct obj *obj;
             check_unpaid(obj);
             pline("%s灯现在点着.", Shk_Your(buf, obj));
         } else { /* candle(s) */
-            pline("%s 火焰%s %s%s", s_suffix(Yname2(obj)), plur(obj->quan),
+            pline("%s 火焰%s%s", s_suffix(Yname2(obj)),
                   otense(obj, "燃烧"), Blind ? "." : "得很明亮!");
             if (obj->unpaid && costly_spot(u.ux, u.uy)
                 && obj->age == 20L * (long) objects[obj->otyp].oc_cost) {

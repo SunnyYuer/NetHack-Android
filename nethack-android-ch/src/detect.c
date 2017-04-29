@@ -906,7 +906,7 @@ struct obj **optr;
     if (oops && (obj->spe > 0)) {
         switch (rnd(obj->oartifact ? 4 : 5)) {
         case 1:
-            pline("%s有太多要理解!", Tobjnam(obj, "有"));
+            pline("%s太多要理解!", Tobjnam(obj, "有"));
             break;
         case 2:
             pline("%s你混乱了!", Tobjnam(obj, "使"));

@@ -1184,8 +1184,8 @@ boolean
             } else {
                 int dmg = rn2(2);
                 if (!dmg) {
-                    pline(Blind ? "%s到达%s你的%s."
-                                : "%s了你, 到达%s你的%s.",
+                    pline(Blind ? "%s到达你的%s%s."
+                                : "%s了你, 到达你的%s%s.",
                           Blind ? Something : Tobjnam(obj, "回到"),
                           makeplural(body_part(FOOT)),
                           Levitation ? "下" : "");

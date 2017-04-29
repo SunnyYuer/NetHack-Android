@@ -2298,10 +2298,10 @@ struct monst *mtmp;
     if (mtmp->data->mlet == S_GOLEM) {
         /* it's a golem, and not a stone golem */
         if (canseemon(mtmp))
-            pline("%s 变硬了...", Monnam(mtmp));
+            pline("%s 凝固了...", Monnam(mtmp));
         if (newcham(mtmp, &mons[PM_STONE_GOLEM], FALSE, FALSE)) {
             if (canseemon(mtmp))
-                pline("现在它是一个%s.", an(mtmp->data->mname));
+                pline("现在它是一个%s.", mtmp->data->mname);
         } else {
             if (canseemon(mtmp))
                 pline("... 并恢复正常.");

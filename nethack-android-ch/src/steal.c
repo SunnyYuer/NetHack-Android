@@ -586,8 +586,8 @@ int ochance, achance; /* percent chance for ordinary item, artifact */
 
             if (bimanual(obj))
                 hand_s = makeplural(hand_s);
-            pline("%s %s从你的%s中被拉走!", upstart(yname(obj)),
-                  otense(obj, ""), hand_s);
+            pline("%s %s你的%s中被拉走!", upstart(yname(obj)),
+                  otense(obj, "从"), hand_s);
         }
         freeinv(obj);
     } else {

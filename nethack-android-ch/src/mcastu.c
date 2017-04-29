@@ -388,17 +388,17 @@ int spellnum;
             verbalize("消灭了这个贼, 我的宠物!");
         else {
             const char *mappear =
-                (count == 1) ? "一只怪物出现" : "怪物们出现";
+                (count == 1) ? "一只怪物" : "怪物们";
 
             /* messages not quite right if plural monsters created but
                only a single monster is seen */
             if (Invisible && !perceives(mtmp->data)
                 && (mtmp->mux != u.ux || mtmp->muy != u.uy))
-                pline("%s 在你附近的一点周围!", mappear);
+                pline("%s 在你附近的一个地方出现了!", mappear);
             else if (Displaced && (mtmp->mux != u.ux || mtmp->muy != u.uy))
-                pline("%s 在你的位移幻影周围!", mappear);
+                pline("%s 在你的位移幻影周围出现了!", mappear);
             else
-                pline("%s 了不知打哪儿来!", mappear);
+                pline("%s 不知道从哪里冒了出来!", mappear);
         }
         dmg = 0;
         break;

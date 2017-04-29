@@ -2212,8 +2212,8 @@ register boolean newlev;
             break;
         case MORGUE:
             if (midnight()) {
-                const char *run = locomotion(youmonst.data, "跑");
-                pline("%s 走!  %s 走!", run, run);
+                const char *run = locomotion(youmonst.data, "快");
+                pline("%s跑!  %s跑!", run, run);
             } else
                 You("有一种离奇的感觉...");
             break;

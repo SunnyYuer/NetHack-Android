@@ -561,14 +561,14 @@ NEARDATA struct permonst mons[] = {
     /*
      * mimics
      */
-    MON("small mimic", "小拟型怪", S_MIMIC, LVL(7, 3, 7, 0, 0), (G_GENO | 2),
+    MON("small mimic", "小拟形怪", S_MIMIC, LVL(7, 3, 7, 0, 0), (G_GENO | 2),
         A(ATTK(AT_CLAW, AD_PHYS, 3, 4), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(300, 200, MS_SILENT, MZ_MEDIUM), MR_ACID, 0,
         M1_BREATHLESS | M1_AMORPHOUS | M1_HIDE | M1_ANIMAL | M1_NOEYES
             | M1_NOHEAD | M1_NOLIMBS | M1_THICK_HIDE | M1_CARNIVORE,
         M2_HOSTILE, 0, CLR_BROWN),
-    MON("large mimic", "大拟型怪", S_MIMIC, LVL(8, 3, 7, 10, 0), (G_GENO | 1),
+    MON("large mimic", "大拟形怪", S_MIMIC, LVL(8, 3, 7, 10, 0), (G_GENO | 1),
         A(ATTK(AT_CLAW, AD_STCK, 3, 4), NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK,
           NO_ATTK),
         SIZ(600, 400, MS_SILENT, MZ_LARGE), MR_ACID, 0,
@@ -576,7 +576,7 @@ NEARDATA struct permonst mons[] = {
             | M1_NOEYES | M1_NOHEAD | M1_NOLIMBS | M1_THICK_HIDE
             | M1_CARNIVORE,
         M2_HOSTILE | M2_STRONG, 0, CLR_RED),
-    MON("giant mimic", "巨型拟型怪", S_MIMIC, LVL(9, 3, 7, 20, 0), (G_GENO | 1),
+    MON("giant mimic", "巨型拟形怪", S_MIMIC, LVL(9, 3, 7, 20, 0), (G_GENO | 1),
         A(ATTK(AT_CLAW, AD_STCK, 3, 6), ATTK(AT_CLAW, AD_STCK, 3, 6), NO_ATTK,
           NO_ATTK, NO_ATTK, NO_ATTK),
         SIZ(800, 500, MS_SILENT, MZ_LARGE), MR_ACID, 0,
