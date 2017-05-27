@@ -11,9 +11,9 @@
 
 MAZE:"earth",' '
 FLAGS: noteleport,hardfloor,shortsighted
-MESSAGE: "Well done, mortal!"
-MESSAGE: "But now thou must face the final Test..."
-MESSAGE: "Prove thyself worthy or perish!"
+MESSAGE: "做的好, 凡人!"
+MESSAGE: "但现在你必须面对最后的考验..."
+MESSAGE: "证明自己的价值或毁灭!"
 
 GEOMETRY:center,center
 # The player lands, upon arrival, in the
@@ -131,8 +131,8 @@ MAZE:"air",' '
 FLAGS: noteleport,hardfloor,shortsighted
 # The following messages are somewhat obtuse, to make then
 # equally meaningful if the player can see or not.
-MESSAGE: "What a strange feeling!"
-MESSAGE: "You notice that there is no gravity here."
+MESSAGE: "好奇怪的感觉!"
+MESSAGE: "你注意到这里没有重力."
 GEOMETRY:center,center
 # The player lands, upon arrival, in the
 # lower-left area.  The location of the
@@ -381,7 +381,7 @@ OBJECT:('`',"boulder"),random
 
 MAZE:"water",' '
 FLAGS: noteleport,hardfloor,shortsighted
-MESSAGE: "You find yourself suspended in an air bubble surrounded by water."
+MESSAGE: "你发现自己悬浮在被水包围的气泡中."
 GEOMETRY:center,center
 # The player lands upon arrival to an air bubble
 # within the leftmost third of the level.  The
@@ -478,9 +478,9 @@ MONSTER:('E',"water elemental"),random,hostile
 
 MAZE:"astral",' '
 FLAGS: noteleport,hardfloor,nommap,shortsighted,solidify
-MESSAGE: "You arrive on the Astral Plane!"
-MESSAGE: "Here the High Temple of %d is located."
-MESSAGE: "You sense alarm, hostility, and excitement in the air!"
+MESSAGE: "你到达了星界!"
+MESSAGE: "这里坐落着%d 的圣殿."
+MESSAGE: "你感觉到空气中的警觉, 敌意, 兴奋感!"
 GEOMETRY:center,center
 MAP
                               ---------------                              

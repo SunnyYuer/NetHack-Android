@@ -581,7 +581,7 @@ struct obj *otmp2;
                   inpack ? "在你的背包里" : "");
         }
     } else {
-        You_hear("一种微弱的泼溅声");
+        You_hear("一种微弱的泼溅声.");
     }
 }
 

@@ -1529,11 +1529,11 @@ struct obj *sobj; /* scroll, or fake spellbook object for scroll-like spell */
             Your("思想从世俗的关注中释放出来.");
         else if (!strncmpi(plname, "Maud", 4))
             pline(
-          "As your mind turns inward on itself, you forget everything else.");
+          "当你的内心转向内在, 你忘记了一切.");
         else if (rn2(2))
-            pline("Who was that Maud person anyway?");
+            pline("莫德到底是谁?");
         else
-            pline("Thinking of Maud you forget everything else.");
+            pline("你想起了莫德而忘记了一切.");
         exercise(A_WIS, FALSE);
         break;
     case SCR_FIRE:

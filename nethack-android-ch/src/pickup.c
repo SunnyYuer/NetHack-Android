@@ -2029,7 +2029,7 @@ register struct obj *obj;
         }
     } else if (Is_mbag(current_container) && mbag_explodes(obj, 0)) {
         /* explicitly mention what item is triggering the explosion */
-        pline("当你把%s放入, 你被一个魔法爆炸所冲击!",
+        pline("当你把%s 放入, 你被一个魔法爆炸所冲击!",
               doname(obj));
         /* did not actually insert obj yet */
         if (was_unpaid)
