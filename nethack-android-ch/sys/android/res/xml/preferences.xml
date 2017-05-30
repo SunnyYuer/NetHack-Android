@@ -230,7 +230,7 @@
 					android:title="命令按钮"
 					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="Z|施法 d|扔掉 Q|准备  f|发射 t|投掷 ^A|重复 z|挥杖 x|切换 o|开门 c|关门 +|魔法"
+					android:defaultValue="Z|施法 Q|准备  f|发射 t|投掷 ^A|重复 z|挥杖 ^D|踢 x|切换 M-m|能力"
 					android:singleLine="false"
 					android:key="pCmdString1"/>
 	
@@ -295,7 +295,7 @@
 					android:title="命令按钮"
 					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="a|使用 q|喝 e|吃 r|阅读 p|付款 :|查看 M-f|开锁 M-l|搜刮"
+					android:defaultValue="a|使用 q|喝 e|吃 r|阅读 p|付款 d|扔掉 ;|查看 M-l|搜刮 c|关门"
 					android:key="pCmdString2"/>
 	
 				<ListPreference
@@ -359,7 +359,7 @@
 					android:title="命令按钮"
 					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="w|持握 W|穿戴 T|脱下 P|佩戴 R|摘下 E|刻写 A| D| I|"
+					android:defaultValue="w|持握 W|穿戴 T|脱下 P|佩戴 R|摘下 E|刻写 M-o|献祭 M-p|祈祷 M-e|提升"
 					android:singleLine="false"
 					android:key="pCmdString3"/>
 	
