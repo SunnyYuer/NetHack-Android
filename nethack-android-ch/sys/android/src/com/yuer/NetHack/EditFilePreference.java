@@ -22,7 +22,6 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import com.yuer.NetHack.Log;
 
 public class EditFilePreference extends Preference implements DialogInterface.OnDismissListener
 {

@@ -30,8 +30,6 @@ import com.yuer.NetHack.Input.Modifier;
 
 import java.io.File;
 import java.util.EnumSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class NetHack extends Activity
 {

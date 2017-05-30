@@ -17,7 +17,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.*;
@@ -86,10 +88,6 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		});
 		mTilesetPath = (TextView)mRoot.findViewById(R.id.image_path);
 
-		///////////////////////////////////////////////////////////////////////////////////////////////////////
-		// Workaround for weird focus problem
-		// When the keyboard is opened because an input field receive focus the entire view is recreated,
-		// which makes the field lose focus again
 		mTileW.setSelectAllOnFocus(true);
 		mTileH.setSelectAllOnFocus(true);
 
@@ -108,25 +106,24 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 		};
 		mTileW.setOnEditorActionListener(onEditorActionListener);
 		mTileH.setOnEditorActionListener(onEditorActionListener);
-
-		mTileW.setOnFocusChangeListener(new View.OnFocusChangeListener()
-		{
+		
+		mTileW.setOnTouchListener(new OnTouchListener() {
+			
 			@Override
-			public void onFocusChange(View v, boolean hasFocus)
-			{
-				mTileWFocus = hasFocus;
+			public boolean onTouch(View v, MotionEvent event) {
+				mTileWFocus = true;
+				return false;
 			}
 		});
-
-		mTileH.setOnFocusChangeListener(new View.OnFocusChangeListener()
-		{
+		
+		mTileH.setOnTouchListener(new OnTouchListener() {
+			
 			@Override
-			public void onFocusChange(View v, boolean hasFocus)
-			{
-				mTileHFocus = hasFocus;
+			public boolean onTouch(View v, MotionEvent event) {
+				mTileHFocus = true;
+				return false;
 			}
 		});
-		///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		return mRoot;
 	}
@@ -209,7 +206,7 @@ public class TilesetPreference extends Preference implements PreferenceManager.O
 	public String queryPath(Uri uri)
 	{
 		String[] projection = {MediaStore.Images.Media.DATA};
-		Cursor cursor = mActivity.managedQuery(uri, projection, null, null, null);
+		Cursor cursor = mActivity.getContentResolver().query(uri, projection, null, null, null);
 		if(cursor != null)
 		{
 			int column_index = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
