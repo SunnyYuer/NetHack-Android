@@ -309,6 +309,13 @@ char *pname; /* caller-supplied output buffer */
         Strcat(pname, "隐形的 ");
     if (mon->isminion && EMIN(mon)->renegade)
         Strcat(pname, "背叛的 ");
+    
+    /* same as distant_monnam(), more or less... */
+    if (do_hallu || !high_priest || !Is_astralevel(&u.uz)
+        || distu(mon->mx, mon->my) <= 2 || program_state.gameover) {
+        Strcat(pname, halu_gname(mon_aligntyp(mon)));
+        Strcat(pname, "的");
+    }
 
     if (mon->ispriest || aligned_priest) { /* high_priest implies ispriest */
         if (!aligned_priest && !high_priest) {
@@ -329,12 +336,7 @@ char *pname; /* caller-supplied output buffer */
     }
 
     Strcat(pname, what);
-    /* same as distant_monnam(), more or less... */
-    if (do_hallu || !high_priest || !Is_astralevel(&u.uz)
-        || distu(mon->mx, mon->my) <= 2 || program_state.gameover) {
-        Strcat(pname, " 之 ");
-        Strcat(pname, halu_gname(mon_aligntyp(mon)));
-    }
+    
     return pname;
 }
 

@@ -2691,12 +2691,12 @@ char *buf;
     else if (IS_SINK(ltyp))
         cmap = S_sink; /* "sink" */
     else if (IS_ALTAR(ltyp)) {
-        Sprintf(altbuf, "%s祭坛之%s ( %s)",
+        Sprintf(altbuf, "%s%s祭坛 ( %s)",
+                a_gname(),
                 ((lev->altarmask & AM_SHRINE)
                  && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)))
-                    ? "主 "
+                    ? "主"
                     : "",
-                a_gname(),
                 align_str(Amask2align(lev->altarmask & ~AM_SHRINE)));
         dfeature = altbuf;
     } else if ((x == xupstair && y == yupstair)
@@ -2781,7 +2781,7 @@ boolean picked_some;
     if (Blind) {
         boolean drift = Is_airlevel(&u.uz) || Is_waterlevel(&u.uz);
 
-        if (dfeature && !strncmp(dfeature, "祭坛", 6)) {
+        if (dfeature && strstr(dfeature, "祭坛")) {
             /* don't say "altar" twice, dfeature has more info */
             You("试图感受这里有什么.");
         } else {
