@@ -28,7 +28,7 @@
 #
 # *** General options ***
 #
-OPTIONS=autopickup,pickup_types:$"=/!?+
+OPTIONS=!autopickup,pickup_types:$"=/!?+
 #OPTIONS=packorder:")[%?+/=!(*0_`
 OPTIONS=scores:10 top/2 around/own
 #OPTIONS=nolegacy,noverbose
@@ -40,10 +40,10 @@ OPTIONS=pile_limit:2,hilite_pile,hilite_pet
 # Colorize individual rows on a menu based on what regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
 MENUCOLOR=" 受祝福的"=黄色
-MENUCOLOR=" 圣"=黄色
+MENUCOLOR=" 圣水"=黄色
 MENUCOLOR=" 未被诅咒的"=白色
 MENUCOLOR=" 被诅咒的"=红色
-MENUCOLOR=" 邪"=红色
+MENUCOLOR=" 邪水"=红色
 MENUCOLOR=" 被诅咒的 .* 穿戴中"=红色&underline
 MENUCOLOR="天然磁石|消除.*魔杖|魔杖被称为.*消除"=白色&underline
 MENUCOLOR="岩德护身符 .*名为"=洋红色

@@ -446,7 +446,7 @@ unsigned cxn_flags; /* bitmask of CXN_xxx values */
                 Strcat(buf, " 之  ");
                 if (typ == POT_WATER && bknown
                     && (obj->blessed || obj->cursed)) {
-                    Strcat(buf, obj->blessed ? "圣 " : "邪 ");
+                    Strcat(buf, obj->blessed ? "圣" : "邪");
                 }
                 Strcat(buf, actualn);
             } else {
