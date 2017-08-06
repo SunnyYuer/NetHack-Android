@@ -16,9 +16,13 @@ char *outbuf;
     /* a random engraving may come from the "rumors" file,
        or from the "engrave" file (formerly in an array here) */
     if (!rn2(4) || !(rumor = getrumor(0, outbuf, TRUE)) || !*rumor)
+    {
         (void) get_rnd_text(ENGRAVEFILE, outbuf);
+        wipeout_text(outbuf, (int) (strlen(outbuf) / 4), 0);
+    }
+    else
+        wipeout_text(outbuf, (int) (strlen(outbuf) / 12), 0);
 
-    wipeout_text(outbuf, (int) (strlen(outbuf) / 4), 0);
     return outbuf;
 }
 
@@ -103,6 +107,14 @@ unsigned seed; /* for semi-controlled randomization */
             s = &engr[nxt];
             if (*s == ' ')
                 continue;
+            
+            if (*s <= -30)
+                continue;
+            if (*s > -30 && *s < -20)
+            {//处理中文
+                engr[nxt+1] = '?';
+                engr[nxt+2] = '?';
+            }
 
             /* rub out unreadable & small punctuation marks */
             if (index("?.,'`-|_", *s)) {
@@ -167,10 +179,10 @@ cant_reach_floor(x, y, up, check_pit)
 int x, y;
 boolean up, check_pit;
 {
-    You("can't reach the %s.",
+    You("不能够到%s.",
         up ? ceiling(x, y)
            : (check_pit && can_reach_floor(FALSE))
-               ? "bottom of the pit"
+               ? "坑的底部"
                : surface(x, y));
 }
 
@@ -218,7 +230,7 @@ register int x, y;
     if (*in_rooms(x, y, VAULT))
         what = "金库的天花板";
     else if (*in_rooms(x, y, TEMPLE))
-        what = "寺庙的天花板";
+        what = "神殿的天花板";
     else if (*in_rooms(x, y, SHOPBASE))
         what = "商店的天花板";
     else if (Is_waterlevel(&u.uz))
@@ -369,7 +381,7 @@ int x, y;
                 et = buf;
             } else
                 et = ep->engr_txt;
-            You("%s: \" %s\".", (Blind) ? "感受这句话" : "读道", et);
+            You("%s: \"%s\".", (Blind) ? "感受这句话" : "读道", et);
             if (context.run > 1)
                 nomul(0);
         }
@@ -1027,8 +1039,20 @@ doengrave()
         if (((type == DUST || type == ENGR_BLOOD) && !rn2(25))
             || (Blind && !rn2(11)) || (Confusion && !rn2(7))
             || (Stunned && !rn2(4)) || (Hallucination && !rn2(2)))
+        {
+            if (*sp <= -30)
+                continue;
+            if (*sp > -30 && *sp < -20)
+            {//处理中文
+                *sp = ' ' + rnd(96 - 2);
+                sp++;
+                *sp = ' ' + rnd(96 - 2);
+                sp++;
+            }
             *sp = ' ' + rnd(96 - 2); /* ASCII '!' thru '~'
                                         (excludes ' ' and DEL) */
+        }
+
     }
 
     /* Previous engraving is overwritten */
