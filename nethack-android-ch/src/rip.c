@@ -27,12 +27,12 @@ static const char *rip_txt[] = {
     "                    /       息      \\",
     "                   /        吧       \\",
     "                  /                  \\",
-    "                  |                  |            ", /* Name of player */
+    "                  |                  |        ", /* Name of player */
     "                  |                  |", /* Amount of $ */
-    "                  |                  |            ", /* Type of death */
-    "                  |                  |            ", /* . */
-    "                  |                  |", /* . */
-    "                  |                  |", /* . */
+    "                  |                  |        ", /* Type of death */
+    "                  |                  |        ", /* . */
+    "                  |                  |        ", /* . */
+    "                  |                  |        ", /* . */
     "                  |       1001       |", /* Real year of death */
     "                 *|     *  *  *      | *",
     "        _________)/\\\\_//(\\/(/\\)/\\//\\/|_)_______", 0
@@ -72,19 +72,50 @@ static const char *rip_txt[] = {
 static char **rip;
 
 int chcharlen(char *text)
-{
+{//计算中文占位空格数
     double len=0.0;
-    int i=0;
-    for (i=0;i<strlen(text);i++)
+    int i=0, l=strlen(text);
+    for (i=0;i<l;i++)
     {
         if(text[i]<=127&&text[i]>=0) len=len+1;
         else
         {
             i=i+2;
-            len=len+1.5;  /*大约2个汉字和3个字母对齐*/
+            len=len+5/3;  /*大约3个汉字和5个字母对齐*/
         }
     }
     return (int)len;
+}
+
+int cnextra(char *text)
+{
+    int len=0, ext=0;
+    int i=0, l=strlen(text);
+    for (i=0;i<l;i++)
+    {
+        if(text[i]<0)
+        {
+            i=i+2;
+            len++;
+        }
+    }
+    if(len==1) ext=2;
+    if(len==2) ext=4;
+    if(len==3) ext=5;
+    if(len==4) ext=6;
+    if(len==5) ext=8;
+    return ext;
+}
+
+STATIC_OVL void
+cncenter(line, text)
+int line;
+char *text;
+{
+    char buf[BUFSZ];
+    int slen = (18 - chcharlen(text)) >> 1, ext = cnextra(text);
+    Sprintf(buf, "%18s|%%%ds%%-%ds|", " ", slen, 18 - slen + ext);
+    Sprintf(rip[line], buf, " ", text);
 }
 
 STATIC_OVL void
@@ -94,15 +125,9 @@ char *text;
 {
     register char *ip, *op;
     ip = text;
-    op = &rip[line][STONE_LINE_CENT - ((chcharlen(text) + 1) >> 1)];
-    int start=STONE_LINE_CENT - ((chcharlen(text) + 1) >> 1);
-    int rlen=37-start-chcharlen(text);
+    op = &rip[line][STONE_LINE_CENT - ((strlen(text) + 1) >> 1)];
     while (*ip)
         *op++ = *ip++;
-    if(start+strlen(text)<=37)  /*未覆盖'|'*/
-        op[37-start-strlen(text)]=' ';
-    op[rlen]='|';
-    if(op[rlen+1]) op[rlen+1]='\0';
 }
 
 void
@@ -126,7 +151,7 @@ time_t when;
     /* Put name on stone */
     Sprintf(buf, "%s", plname);
     buf[STONE_LINE_LEN] = 0;
-    center(NAME_LINE, buf);
+    cncenter(NAME_LINE, buf);
 
     /* Put $ on stone */
     Sprintf(buf, "%ld Au", done_money);
@@ -150,7 +175,7 @@ time_t when;
         }
         tmpchar = dpx[i0];
         dpx[i0] = 0;
-        center(line, dpx);
+        cncenter(line, dpx);
         if (tmpchar != ' ') {
             dpx[i0] = tmpchar;
             dpx = &dpx[i0];
