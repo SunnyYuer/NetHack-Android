@@ -524,7 +524,7 @@ drinksink()
         if (Fire_resistance)
             pline("似乎相当可口.");
         else
-            losehp(rnd(6), "喝沸腾的水", KILLED_BY);
+            losehp(rnd(6), "一小口沸腾的水", KILLED_BY);
         /* boiling water burns considered fire damage */
         break;
     case 3:

@@ -1035,7 +1035,7 @@ struct obj *obj;
         if (dam <= 0)
             dam = 1;
         You("用%s打你自己.", yname(uwep));
-        Sprintf(buf, "%s 自己的 %s", uhis(), OBJ_NAME(objects[obj->otyp]));
+        Sprintf(buf, "%s自己的%s", uhis(), OBJ_NAME(objects[obj->otyp]));
         losehp(Maybe_Half_Phys(dam), buf, KILLED_BY);
         context.botl = 1;
         return 1;

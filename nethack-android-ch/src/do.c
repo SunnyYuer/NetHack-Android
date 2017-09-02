@@ -163,7 +163,7 @@ const char *verb;
             } else {
                 if (!Passes_walls && !throws_rocks(youmonst.data)) {
                     losehp(Maybe_Half_Phys(rnd(15)),
-                           "在巨石下被挤扁", NO_KILLER_PREFIX);
+                           "在巨石下被压扁", NO_KILLER_PREFIX);
                     return FALSE; /* player remains trapped */
                 } else
                     u.utrap = 0;

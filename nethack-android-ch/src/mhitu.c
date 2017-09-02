@@ -726,7 +726,7 @@ register struct monst *mtmp;
         if (sum[i] == 1) { /* successful attack */
             if (u.usleep && u.usleep < monstermoves && !rn2(10)) {
                 multi = -1;
-                nomovemsg = "The combat suddenly awakens you.";
+                nomovemsg = "战斗突然唤醒了你.";
             }
         }
         if (sum[i] == 2)
@@ -1208,7 +1208,7 @@ register struct attack *mattk;
 
                     pline("%s 淹死了你...", Monnam(mtmp));
                     killer.format = KILLED_BY_AN;
-                    Sprintf(killer.name, "%s 的 %s",
+                    Sprintf(killer.name, "%s 的%s",
                             mtmp->data->mname,
                             moat ? "护城河" : "池水");
                     done(DROWNING);

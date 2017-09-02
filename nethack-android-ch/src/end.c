@@ -277,6 +277,7 @@ NH_panictrace_gdb()
  */
 static NEARDATA const char *deaths[] = {
     /* the array of death */
+    //只有最后5个使用了，使用在killer.name
     "死", "噎死", "毒死", "饥饿", "淹死", "烧死",
     "溶化于热量和压力", "压死", "变成了石头",
     "变成了粘液", "灭绝", "panic", "作弊", "退出",
@@ -285,6 +286,7 @@ static NEARDATA const char *deaths[] = {
 
 static NEARDATA const char *ends[] = {
     /* "when you %s" */
+    //用在坟墓下边的文字里
     "死亡", "噎死", "被毒死",
     "饿死", "淹死", "烧死",
     "溶化于熔岩",
@@ -1119,7 +1121,10 @@ int how;
         done_stopprint = 1; /* just avoid any more output */
 
     if (u.uhave.amulet) {
-        Strcat(killer.name, " ( 带着护身符)");
+        char tbuf[BUFSZ];
+        Strcpy(tbuf, killer.name);
+        Strcpy(killer.name, "带着护身符被");
+        Strcat(killer.name, tbuf);
     } else if (how == ESCAPED) {
         if (Is_astralevel(&u.uz)) /* offered Amulet to wrong deity */
             Strcat(killer.name, " ( 在神的耻辱中)");

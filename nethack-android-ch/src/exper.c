@@ -190,7 +190,7 @@ const char *drainer; /* cause of death, if drain should be fatal */
 
     /* override life-drain resistance when handling an explicit
        wizard mode request to reduce level; never fatal though */
-    if (drainer && !strcmp(drainer, "#levelchange"))
+    if (drainer && !strcmp(drainer, "#改变等级"))
         drainer = 0;
     else if (resists_drli(&youmonst))
         return;

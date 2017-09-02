@@ -1740,8 +1740,8 @@ int final;
         } else {
             Strcpy(predicament, "被困");
             if ((t = t_at(u.ux, u.uy)) != 0)
-                Sprintf(eos(predicament), " 在 %s",
-                        an(defsyms[trap_to_defsym(t->ttyp)].explanation));
+                Sprintf(eos(predicament), "在%s",
+                        defsyms[trap_to_defsym(t->ttyp)].explanation);
         }
         if (u.usteed) { /* not `Riding' here */
             Sprintf(buf, "%s%s ", anchored ? "你和 " : "", steedname);
@@ -2185,7 +2185,7 @@ int final;
     if (Unchanging && Upolyd) /* !Upolyd handled above */
         you_have("不能改变你当前的外貌", from_what(UNCHANGING));
     if (Hate_silver)
-        you_are("受到银制品的伤害", "");
+        you_are("会受到银制品的伤害", "");
     /* movement and non-armor-based protection */
     if (Fast)
         you_are(Very_fast ? "速度非常快" : "速度快", from_what(FAST));

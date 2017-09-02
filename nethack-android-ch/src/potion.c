@@ -817,7 +817,7 @@ register struct obj *otmp;
                 int typ = rn2(A_MAX);
 
                 Sprintf(contaminant, "%s%s",
-                        (Poison_resistance) ? "稍微 " : "",
+                        (Poison_resistance) ? "稍微" : "",
                         (otmp->fromsink) ? "污染的自来水"
                                          : "污染的药水");
                 if (!Fixed_abil) {

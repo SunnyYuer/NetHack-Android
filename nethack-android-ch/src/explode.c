@@ -101,7 +101,7 @@ int expltype;
             break;
         case 1:
             str = (olet == BURNING_OIL) ? "燃烧的油"
-                     : (olet == SCROLL_CLASS) ? "火之塔" : "火球";
+                     : (olet == SCROLL_CLASS) ? "火焰塔" : "火球";
             /* fire damage, not physical damage */
             adtyp = AD_FIRE;
             break;
@@ -476,10 +476,10 @@ int expltype;
                     killer.format = KILLED_BY_AN;
                 } else if (type >= 0 && olet != SCROLL_CLASS) {
                     killer.format = NO_KILLER_PREFIX;
-                    Sprintf(killer.name, "使%s自己卷入%s 自己的 %s", uhim(),
+                    Sprintf(killer.name, "使%s自己卷入%s自己的%s", uhim(),
                             uhis(), str);
                 } else {
-                    killer.format = (!strcmpi(str, "火之塔")
+                    killer.format = (!strcmpi(str, "火焰塔")
                                      || !strcmpi(str, "火球"))
                                         ? KILLED_BY_AN
                                         : KILLED_BY;

@@ -1022,7 +1022,7 @@ rehumanize()
         /* can only happen if some bit of code reduces u.uhp
            instead of u.mh while poly'd */
         Your("旧外貌不够健康来生存.");
-        Sprintf(killer.name, "恢复到不健康的%s 外貌", urace.adj);
+        Sprintf(killer.name, "恢复到不健康的%s外貌", urace.adj);
         killer.format = KILLED_BY;
         done(DIED);
     }

@@ -1031,7 +1031,7 @@ aligntyp g_align;
         /* Otherwise, falls into next case */
         case 2:
             if (!Blind)
-                You("被%s光芒所环绕.", an(hcolor(NH_GOLDEN)));
+                You("被%s光芒所环绕.", hcolor(NH_GOLDEN));
             /* if any levels have been lost (and not yet regained),
                treat this effect like blessed full healing */
             if (u.ulevel < u.ulevelmax) {
@@ -1060,7 +1060,7 @@ aligntyp g_align;
             if (Blind)
                 You_feel("到%s的力量.", u_gname());
             else
-                You("被%s 光环所环绕.", an(hcolor(NH_LIGHT_BLUE)));
+                You("被%s 光环所环绕.", hcolor(NH_LIGHT_BLUE));
             for (otmp = invent; otmp; otmp = otmp->nobj) {
                 if (otmp->cursed) {
                     if (!Blind) {
@@ -1462,7 +1462,7 @@ dosacrifice()
                 pline("%s 耸了耸肩并保持着对%s的统治,", Moloch,
                       u_gname());
                 pline("然后残忍地扼杀了你的生命.");
-                Sprintf(killer.name, "%s 冷漠", s_suffix(Moloch));
+                Sprintf(killer.name, "%s冷漠", s_suffix(Moloch));
                 killer.format = KILLED_BY;
                 done(DIED);
                 /* life-saved (or declined to die in wizard/explore mode) */

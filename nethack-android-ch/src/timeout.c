@@ -286,7 +286,7 @@ nh_timeout()
                     Strcpy(killer.name, kptr->name);
                 } else {
                     killer.format = NO_KILLER_PREFIX;
-                    Strcpy(killer.name, "变成了绿粘液");
+                    Strcpy(killer.name, "变成了绿色粘液");
                 }
                 dealloc_killer(kptr);
                 /* involuntarily break "never changed form" conduct */

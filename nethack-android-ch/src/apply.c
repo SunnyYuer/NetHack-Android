@@ -2510,7 +2510,7 @@ struct obj *obj;
             }
             if (otmp && proficient) {
                 You("把你的牛鞭缠绕在%s周围到%s上.",
-                    an(singular(otmp, xname)), surface(u.ux, u.uy));
+                    singular(otmp, xname), surface(u.ux, u.uy));
                 if (rnl(6) || pickup_object(otmp, 1L, TRUE) < 1)
                     pline1(msg_slipsfree);
                 return 1;
@@ -2520,7 +2520,7 @@ struct obj *obj;
         if (dam <= 0)
             dam = 1;
         You("用你的牛鞭打中你的%s.", body_part(FOOT));
-        Sprintf(buf, "被%s牛鞭所杀", uhis());
+        Sprintf(buf, "被%s牛鞭杀死", uhis());
         losehp(Maybe_Half_Phys(dam), buf, NO_KILLER_PREFIX);
         context.botl = 1;
         return 1;
@@ -3263,7 +3263,7 @@ struct obj *obj;
             }
             damage = zapyourself(obj, FALSE);
             if (damage) {
-                Sprintf(buf, "被折断一个魔杖所杀");
+                Sprintf(buf, "被折断一个魔杖杀死");
                 losehp(Maybe_Half_Phys(damage), buf, NO_KILLER_PREFIX);
             }
             if (context.botl)

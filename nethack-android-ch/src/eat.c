@@ -543,7 +543,7 @@ int *dmg_p; /* for dishing out extra damage in lieu of Int loss */
          */
         /* no such thing as mindless players */
         if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
-            static NEARDATA const char brainlessness[] = "无脑的";
+            static NEARDATA const char brainlessness[] = "没脑子";
 
             if (Lifesaved) {
                 Strcpy(killer.name, brainlessness);

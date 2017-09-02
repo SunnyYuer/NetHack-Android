@@ -88,11 +88,11 @@ int how;
 {
     static NEARDATA const char *const killed_by_prefix[] = {
         /* DIED, CHOKING, POISONING, STARVING, */
-        "所杀", "所噎死", "所毒死", "致死",
+        "杀死", "噎死", "毒死", "致死",
         /* DROWNING, BURNING, DISSOLVED, CRUSHING, */
         "淹死", "烧死", "溶化", "压死",
         /* STONING, TURNED_SLIME, GENOCIDED, */
-        "石化", "变成了粘液", "所杀",
+        "石化", "粘液化", "杀死",
         /* PANICKED, TRICKED, QUIT, ESCAPED, ASCENDED */
         "", "", "", "", ""
     };
@@ -111,13 +111,11 @@ int how;
         kname = kname;
         /*FALLTHRU*/
     case KILLED_BY:
-        strcpy(buf,"被");
+        if(!strstr(kname,"被")) strcpy(buf,"被");
         (void) strncat(buf, kname, siz - 1);
         (void) strncat(buf, killed_by_prefix[how], siz - 1);
         break;
     }
-    /* we're writing into buf[0] (after possibly advancing buf) rather than
-       appending, but strncat() appends a terminator and strncpy() doesn't */
 }
 
 STATIC_OVL void
@@ -269,10 +267,10 @@ struct toptenentry *tt;
     static const char fmt33[] = "%s %s %s %s "; /* role,race,gndr,algn */
 #ifndef NO_SCAN_BRACK
     static const char fmt0[] = "%d.%d.%d %ld %d %d %d %d %d %d %ld %ld %d ";
-    static const char fmtX[] = "%s,%s%s%s\n";
+    static const char fmtX[] = "%s,%s\n";
 #else /* NO_SCAN_BRACK */
     static const char fmt0[] = "%d %d %d %ld %d %d %d %d %d %d %ld %ld %d ";
-    static const char fmtX[] = "%s %s%s%s\n";
+    static const char fmtX[] = "%s %s\n";
 
     nsb_mung_line(tt->name);
     nsb_mung_line(tt->death);
@@ -288,9 +286,7 @@ struct toptenentry *tt;
         (void) fprintf(rfile, fmt33, tt->plrole, tt->plrace, tt->plgend,
                        tt->plalign);
     (void) fprintf(rfile, fmtX, onlyspace(tt->name) ? "_" : tt->name,
-                   tt->death,
-                   (multi ? ", 那时正" : ""),
-                   (multi ? (multi_reason ? multi_reason : "无助") : ""));
+                   tt->death);
 
 #ifdef NO_SCAN_BRACK
     nsb_unmung_line(tt->name);
@@ -613,7 +609,7 @@ time_t when;
                     char pbuf[BUFSZ];
 
                     Sprintf(pbuf,
-                        "你没能打败你之前的分数%ld.",
+                        "你没能超过你之前的分数%ld.",
                             t1->points);
                     topten_print(pbuf);
                     topten_print("");
@@ -796,26 +792,8 @@ boolean so;
                 (t1->plgend[0] == 'F') ? "女" : "");
         second_line = FALSE;
     } else {
-        if (!strncmp(t1->death, "退出", 6)) {
-            Strcat(linebuf, "退出");
-            second_line = FALSE;
-        } else if (!strncmp(t1->death, "被饥饿", 9)) {
-            Strcat(linebuf, "饿死");
-            second_line = FALSE;
-        } else if (strstr(t1->death, "噎死")) {
-            Sprintf(eos(linebuf), "被%s的食物噎死",
-                    (t1->plgend[0] == 'F') ? "她" : "他");
-        } else if (strstr(t1->death, "毒死")) {
-            Strcat(linebuf, "被毒死");
-        } else if (strstr(t1->death, "压死")) {
-            Strcat(linebuf, "被压死");
-        } else if (strstr(t1->death, "石化")) {
-            Strcat(linebuf, "变成了石头");
-        } else
-            Strcat(linebuf, "死");
-
         if (t1->deathdnum == astral_level.dnum) {
-            const char *arg, *fmt = " 在%s位面";
+            const char *arg, *fmt = "  在%s位面";
 
             switch (t1->deathlev) {
             case -5:
@@ -840,12 +818,30 @@ boolean so;
             }
             Sprintf(eos(linebuf), fmt, arg);
         } else {
-            Sprintf(eos(linebuf), " 在%s", dungeons[t1->deathdnum].dname);
+            Sprintf(eos(linebuf), "  在%s", dungeons[t1->deathdnum].dname);
             if (t1->deathdnum != knox_level.dnum)
                 Sprintf(eos(linebuf), " 层数%d", t1->deathlev);
             if (t1->deathlev != t1->maxlvl)
                 Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);
         }
+
+        if (!strncmp(t1->death, "退出", 6)) {
+            Strcat(linebuf, "退出了游戏");
+            second_line = FALSE;
+        } else if (!strncmp(t1->death, "被饥饿", 9)) {
+            Strcat(linebuf, "饿死了");
+            second_line = FALSE;
+        } else if (strstr(t1->death, "噎死")) {
+            Sprintf(eos(linebuf), "被%s的食物噎死",
+                    (t1->plgend[0] == 'F') ? "她" : "他");
+        } else if (strstr(t1->death, "毒死")) {
+            Strcat(linebuf, "被毒死");
+        } else if (strstr(t1->death, "压死")) {
+            Strcat(linebuf, "被压死");
+        } else if (strstr(t1->death, "石化")) {
+            Strcat(linebuf, "变成了石头");
+        } else
+            Strcat(linebuf, "死亡");
 
         /* kludge for "quit while already on Charon's boat" */
         if (!strncmp(t1->death, "退出了", 9))

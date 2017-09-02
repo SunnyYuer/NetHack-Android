@@ -92,7 +92,7 @@ int shotlimit;
             /* throwing with one hand, but pluralize since the
                expression "with your bare hands" sounds better */
             );
-        Sprintf(killer.name, "投掷%s赤手的", killer_xname(obj));
+        Sprintf(killer.name, "赤手投掷%s", killer_xname(obj));
         instapetrify(killer.name);
     }
     if (welded(obj)) {
