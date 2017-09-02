@@ -913,7 +913,7 @@ SPELL("knock", "敲击",           "粉红的",  //"pink"
       P_MATTER_SPELL,      35,  1, 1, 1, IMMEDIATE, CLR_BRIGHT_MAGENTA),
 SPELL("force bolt", "力冲击",      "红色的",  //"red"
       P_ATTACK_SPELL,      35,  2, 1, 1, IMMEDIATE, CLR_RED),
-SPELL("confuse monster", "迷惑怪物", "橙色的",  //"orange"
+SPELL("confuse monster", "混乱怪物", "橙色的",  //"orange"
       P_ENCHANTMENT_SPELL, 30,  2, 2, 1, IMMEDIATE, CLR_ORANGE),
 SPELL("cure blindness", "治疗失明",  "黄色的",  //"yellow"
       P_HEALING_SPELL,     25,  2, 2, 1, IMMEDIATE, CLR_YELLOW),

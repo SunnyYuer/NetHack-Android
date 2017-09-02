@@ -3636,7 +3636,7 @@ crawl:
         if (lost)
             You("倒出一些你的齿轮来减轻重量...");
         if (succ) {
-            pline("Pheew!  那是关闭的.");
+            pline("呼!  好险.");
             teleds(x, y, TRUE);
             return TRUE;
         }

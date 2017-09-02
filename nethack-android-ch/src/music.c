@@ -592,7 +592,7 @@ struct obj *instr;
         } else if (c == 'y') {
             Strcpy(buf, tune);
         } else {
-            getlin("你在演奏什么曲调? [5 notes, A-G]", buf);
+            getlin("你要演奏什么曲调? [5 音符, A-G]", buf);
             (void) mungspaces(buf);
             if (*buf == '\033')
                 goto nevermind;

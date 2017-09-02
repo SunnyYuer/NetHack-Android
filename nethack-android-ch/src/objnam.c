@@ -3551,17 +3551,17 @@ struct obj *suit;
     const char *suitnm, *esuitp;
 
     if (Is_dragon_mail(suit))
-        return "dragon mail"; /* <color> dragon scale mail */
+        return "龙甲"; /* <color> dragon scale mail */
     else if (Is_dragon_scales(suit))
-        return "dragon scales";
+        return "龙鳞";
     suitnm = OBJ_NAME(objects[suit->otyp]);
     esuitp = eos((char *) suitnm);
-    if (strlen(suitnm) > 5 && !strcmp(esuitp - 5, " mail"))
-        return "mail"; /* most suits fall into this category */
-    else if (strlen(suitnm) > 7 && !strcmp(esuitp - 7, " jacket"))
-        return "jacket"; /* leather jacket */
+    if (strlen(suitnm) > 3 && !strcmp(esuitp - 3, "甲"))
+        return "盔甲"; /* most suits fall into this category */
+    else if (strlen(suitnm) > 6 && !strcmp(esuitp - 6, "夹克"))
+        return "夹克"; /* leather jacket */
     /* suit is lame but armor is ambiguous and body armor is absurd */
-    return "suit";
+    return "套装";
 }
 
 const char *

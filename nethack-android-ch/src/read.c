@@ -267,7 +267,7 @@ doread()
             You("感受雕刻的签名:");
         else
             pline("署名是:");
-        pline("\"欧丁.\"");
+        pline("\" 欧丁.\"");
         u.uconduct.literate++;
         return 1;
     } else if (scroll->otyp == CANDY_BAR) {
@@ -2241,7 +2241,7 @@ int how;
             /* accumulated 'cnt' doesn't take groups into account;
                assume bringing in new mon(s) didn't remove any old ones */
             cnt = monster_census(FALSE) - census;
-            pline("拿出了%s%s.", (cnt > 1) ? "一些" : "",
+            pline("派来了%s%s.", (cnt > 1) ? "一些" : "",
                   (cnt > 1) ? makeplural(buf) : buf);
         } else
             pline1(nothing_happens);

@@ -509,7 +509,7 @@ int reason; /* Player was thrown off etc. */
             return;
         }
         if (!has_mname(mtmp)) {
-            pline("你度过了地牢中的没有名字的%s .",
+            pline("你和没有名字的%s 曾一起在地牢里闯荡.",
                   mtmp->data->mname);
             if (Hallucination)
                 pline("从雨中走出来感觉很好.");
