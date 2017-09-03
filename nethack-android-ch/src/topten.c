@@ -776,9 +776,9 @@ boolean so;
      */
     Sprintf(eos(linebuf), "-%s", t1->plgend);
     if (t1->plalign[0] != '?')
-        Sprintf(eos(linebuf), "-%s ", t1->plalign);
+        Sprintf(eos(linebuf), "-%s  ", t1->plalign);
     else
-        Strcat(linebuf, " ");
+        Strcat(linebuf, "  ");
     if (!strncmp("escaped", t1->death, 7)) {
         Sprintf(eos(linebuf), "逃离了地牢 %s[ 最大层数%d]",
                 !strncmp(" (", t1->death + 7, 2) ? t1->death + 7 + 2 : "",
@@ -793,11 +793,11 @@ boolean so;
         second_line = FALSE;
     } else {
         if (t1->deathdnum == astral_level.dnum) {
-            const char *arg, *fmt = "  在%s位面";
+            const char *arg, *fmt = "在%s位面";
 
             switch (t1->deathlev) {
             case -5:
-                fmt = " 在%s界";
+                fmt = "在%s界";
                 arg = "星";
                 break;
             case -4:
@@ -818,11 +818,11 @@ boolean so;
             }
             Sprintf(eos(linebuf), fmt, arg);
         } else {
-            Sprintf(eos(linebuf), "  在%s", dungeons[t1->deathdnum].dname);
+            Sprintf(eos(linebuf), "在%s", dungeons[t1->deathdnum].dname);
             if (t1->deathdnum != knox_level.dnum)
-                Sprintf(eos(linebuf), " 层数%d", t1->deathlev);
+                Sprintf(eos(linebuf), "层数%d ", t1->deathlev);
             if (t1->deathlev != t1->maxlvl)
-                Sprintf(eos(linebuf), " [max %d]", t1->maxlvl);
+                Sprintf(eos(linebuf), "[max %d] ", t1->maxlvl);
         }
 
         if (!strncmp(t1->death, "退出", 6)) {
