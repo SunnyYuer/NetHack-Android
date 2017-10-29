@@ -2718,7 +2718,7 @@ struct obj *no_wish;
     if (strncmpi(bp, "武士刀", 9))   /* not the "samurai" monster! */
         if (strncmpi(bp, "巫师锁", 9)) /* not the "wizard" monster! */
         if (strncmpi(bp, "巫师帽", 9)) /* not the "wizard" monster! */
-            if (strncmpi(bp, "ninja-to", 8)) /* not the "ninja" rank */
+            if (strncmpi(bp, "忍者大刀", 8)) /* not the "ninja" rank */
                 if (strncmpi(bp, "万能钥匙",
                              12)) /* not the "master" rank */
                     if (strncmpi(bp, "洋红色", 9)) /* not the "mage" rank */
@@ -2833,15 +2833,16 @@ struct obj *no_wish;
 
     /* Search for class names: XXXXX potion, scroll of XXXXX.  Avoid */
     /* false hits on, e.g., rings for "ring mail". */
-    if (strncmpi(bp, "防具附魔", 12) && strncmpi(bp, "防具毁坏", 12)
+    if (strncmpi(bp, "防具附魔", 12)
+        && strncmpi(bp, "防具毁坏", 12)
         && strncmpi(bp, "武器附魔", 12)
         && strncmpi(bp, "探测食物", 12)
+        && strncmpi(bp, "食物探测", 12)
         && strncmpi(bp, "长柄武器", 12)
-        && strncmpi(bp, "食物探测", 12) && strncmpi(bp, "锁环甲", 9)
-        && strncmpi(bp, "嵌皮甲", 9)
-        && strncmpi(bp, "皮甲", 6)
-        && strncmpi(bp, "加工号角", 12) && strncmpi(bp, "口粮", 6)
-        && strncmpi(bp, "肉环", 6))  //这些不当做物品类别
+        && strncmpi(bp, "红宝石", 9)
+        && strncmpi(bp, "蓝宝石", 9)
+        && strncmpi(bp, "海蓝宝石", 12)
+        && strncmpi(bp, "黄宝石", 9))  //这些不能被当做物品类别
         for (i = 0; i < (int) (sizeof wrpsym); i++) {
             register int j = strlen(wrp[i]);
             if (!strncmpi(bp, wrp[i], j)) {
@@ -2916,7 +2917,7 @@ retry:
             goto typfnd;
         }
 
-    if (!BSTRCMPI(bp, p - 6, "石头") || !BSTRCMPI(bp, p - 6, "宝石")) {
+    if (!BSTRCMPI(bp, p - 9, "的石头") || !BSTRCMPI(bp, p - 9, "的宝石")) {
         p[!strcmpi(p - 6, "宝石") ? -6 : -6] = '\0';
         oclass = GEM_CLASS;
         dn = actualn = bp;
