@@ -10,13 +10,13 @@
  */
 
 #define NEED_VARARGS
-#include "hack.h"
 #include <dos.h>
 #ifndef __BORLANDC__
 #include <direct.h>
 #endif
 #include <ctype.h>
 #include "win32api.h"
+#include "hack.h"
 #include "wintty.h"
 #ifdef WIN32
 

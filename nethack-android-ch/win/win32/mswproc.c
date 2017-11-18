@@ -7,11 +7,11 @@
  * code in the mswin port and the rest of the nethack game engine.
 */
 
+#include "winMS.h"
+#include <assert.h>
 #include "hack.h"
 #include "dlb.h"
 #include "func_tab.h" /* for extended commands */
-#include "winMS.h"
-#include <assert.h>
 #include "mhmap.h"
 #include "mhstatus.h"
 #include "mhtext.h"

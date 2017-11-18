@@ -8,7 +8,8 @@
 /* nhregex interface documented in sys/share/posixregex.c */
 
 extern "C" {
-  #include <hack.h>
+  #include <config.h>
+  #include <global.h>
 
   extern const char regex_id[] = "cppregex";
 

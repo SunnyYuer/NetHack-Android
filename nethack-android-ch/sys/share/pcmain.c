@@ -4,9 +4,6 @@
 
 /* main.c - MSDOS, OS/2, ST, Amiga, and Windows NetHack */
 
-#include "hack.h"
-#include "dlb.h"
-
 #ifndef NO_SIGNAL
 #include <signal.h>
 #endif
@@ -28,6 +25,9 @@
 #ifdef __DJGPP__
 #include <unistd.h> /* for getcwd() prototype */
 #endif
+
+#include "hack.h"
+#include "dlb.h"
 
 char orgdir[PATHLEN]; /* also used in pcsys.c, amidos.c */
 
