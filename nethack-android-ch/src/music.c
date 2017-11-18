@@ -1,4 +1,4 @@
-/* NetHack 3.6	music.c	$NHDT-Date: 1446808448 2015/11/06 11:14:08 $  $NHDT-Branch: master $:$NHDT-Revision: 1.40 $ */
+﻿/* NetHack 3.6	music.c	$NHDT-Date: 1446808448 2015/11/06 11:14:08 $  $NHDT-Branch: master $:$NHDT-Revision: 1.40 $ */
 /*      Copyright (c) 1989 by Jean-Christophe Collet */
 /* NetHack may be freely redistributed.  See license for details. */
 

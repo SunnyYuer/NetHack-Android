@@ -1,4 +1,4 @@
-/* NetHack 3.6	drawing.c	$NHDT-Date: 1447124657 2015/11/10 03:04:17 $  $NHDT-Branch: master $:$NHDT-Revision: 1.49 $ */
+﻿/* NetHack 3.6	drawing.c	$NHDT-Date: 1447124657 2015/11/10 03:04:17 $  $NHDT-Branch: master $:$NHDT-Revision: 1.49 $ */
 /* Copyright (c) NetHack Development Team 1992.                   */
 /* NetHack may be freely redistributed.  See license for details. */
 

@@ -1,4 +1,4 @@
-/* NetHack 3.6	priest.c	$NHDT-Date: 1446892452 2015/11/07 10:34:12 $  $NHDT-Branch: master $:$NHDT-Revision: 1.41 $ */
+﻿/* NetHack 3.6	priest.c	$NHDT-Date: 1446892452 2015/11/07 10:34:12 $  $NHDT-Branch: master $:$NHDT-Revision: 1.41 $ */
 /* Copyright (c) Izchak Miller, Steve Linhart, 1989.              */
 /* NetHack may be freely redistributed.  See license for details. */
 
