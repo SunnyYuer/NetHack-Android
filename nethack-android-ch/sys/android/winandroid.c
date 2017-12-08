@@ -1517,7 +1517,7 @@ void and_askname()
     for(i = 0; i < nSaves; i++)
     	(*jEnv)->SetObjectArrayElement(jEnv, strings, i, (*jEnv)->NewStringUTF(jEnv, saves[i]));
 
-	jstr = (jstring)JNICallO(jAskName, PL_NSIZ, strings);
+	jstr = (jstring)JNICallO(jAskName, PL_NSIZ/3, strings);
 
     for(i = 0; i < nSaves; i++)
     	destroy_jobject((*jEnv)->GetObjectArrayElement(jEnv, strings, i));
