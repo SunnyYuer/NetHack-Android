@@ -298,7 +298,7 @@ doread()
         if (scroll->oclass == SPBOOK_CLASS)
             what = "神秘的符文";
         else if (!scroll->dknown)
-            what = "卷轴上的公式";
+            what = "卷轴上的术式";
         if (what) {
             pline("作为盲人, 你不能阅读%s.", what);
             return 0;
@@ -344,8 +344,8 @@ doread()
                            && scroll->cursed));
         if (Blind)
             pline(nodisappear
-                      ? "你%s 卷轴上的公式."
-                      : "当你%s 它上面的公式, 卷轴消失了.",
+                      ? "你%s 卷轴上的术式."
+                      : "当你%s 它上面的术式, 卷轴消失了.",
                   is_silent(youmonst.data) ? "思考" : "朗读");
         else
             pline(nodisappear ? "你阅读卷轴."

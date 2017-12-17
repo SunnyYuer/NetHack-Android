@@ -991,7 +991,7 @@ fumaroles()
         }
     }
     if (snd && !Deaf)
-        Norep("You hear a %swhoosh!", loud ? "loud " : "");
+        Norep("你听见%s长嘶声!", loud ? "响亮的" : "");
 }
 
 /*
@@ -1196,7 +1196,7 @@ water_friction()
         eff = TRUE;
     }
     if (eff)
-        pline("Water turbulence affects your movements.");
+        pline("水的湍流影响了你的行动.");
 }
 
 void
