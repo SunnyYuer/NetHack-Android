@@ -2718,7 +2718,7 @@ struct obj *no_wish;
     if (strncmpi(bp, "武士刀", 9))   /* not the "samurai" monster! */
         if (strncmpi(bp, "巫师锁", 9)) /* not the "wizard" monster! */
         if (strncmpi(bp, "巫师帽", 9)) /* not the "wizard" monster! */
-            if (strncmpi(bp, "忍者大刀", 8)) /* not the "ninja" rank */
+            if (strncmpi(bp, "忍者大刀", 12)) /* not the "ninja" rank */
                 if (strncmpi(bp, "万能钥匙",
                              12)) /* not the "master" rank */
                     if (strncmpi(bp, "洋红色", 9)) /* not the "mage" rank */

@@ -5362,19 +5362,19 @@ struct fruit *replace_fruit;
             if (isspace((uchar) *c) || *c == 0)
                 numeric = TRUE;
         }
-        if (found || numeric || !strncmp(str, "被诅咒的 ", 7)
-            || !strncmp(str, "未被诅咒的 ", 9) || !strncmp(str, "受祝福的 ", 8)
-            || !strncmp(str, "partly eaten ", 13)
-            || (!strncmp(str, "tin of ", 7)
-                && (!strcmp(str + 7, "spinach")
-                    || name_to_mon(str + 7) >= LOW_PM))
-            || !strcmp(str, "empty tin")
-            || ((str_end_is(str, " corpse")
-                 || str_end_is(str, " egg"))
+        if (found || numeric || !strncmp(str, "被诅咒的", 12)
+            || !strncmp(str, "未被诅咒的", 15) || !strncmp(str, "受祝福的", 12)
+            || !strncmp(str, "部分食用的", 15)
+            || (str_end_is(str, "罐头")
+                && (!strcmp(str, "菠菜")
+                    || name_to_mon(str) >= LOW_PM))
+            || !strcmp(str, "空罐头")
+            || ((str_end_is(str, "尸体")
+                 || str_end_is(str, "蛋"))
                 && name_to_mon(str) >= LOW_PM)) {
             Strcpy(buf, pl_fruit);
-            Strcpy(pl_fruit, "candied ");
-            nmcpy(pl_fruit + 8, buf, PL_FSIZ - 8);
+            Strcpy(pl_fruit, "糖制的");
+            nmcpy(pl_fruit + 9, buf, PL_FSIZ - 9);
         }
         *altname = '\0';
         /* This flag indicates that a fruit has been made since the
