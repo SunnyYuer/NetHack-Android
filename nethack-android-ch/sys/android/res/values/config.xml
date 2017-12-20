@@ -5,7 +5,7 @@
 	<string name="nativeDataDir">nethackdir</string>
 	<string name="libraryName">nethack</string>
 	<string name="defaultsFile">defaults.nh</string>
-	<string name="DefaultPanel">menu|设置 #|扩展 ... .|休息 ,|拾取 i|物品 10s|搜索 ^P|消息 ^X|属性 10.</string>
+	<string name="DefaultPanel">menu|设置 ?|帮助 #|扩展 ... .|休息 ,|拾取 i|物品 10s|搜索 ^P|消息 ^X|属性</string>
 	<bool name="useCP437Decoder">true</bool>
 	<bool name="hearseAvailable">true</bool>
 	<string name="hearseClientName">Gurr Android Nethack 3.6.0</string>
