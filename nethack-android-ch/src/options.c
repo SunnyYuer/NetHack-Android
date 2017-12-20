@@ -5366,7 +5366,7 @@ struct fruit *replace_fruit;
             || !strncmp(str, "未被诅咒的", 15) || !strncmp(str, "受祝福的", 12)
             || !strncmp(str, "部分食用的", 15)
             || (str_end_is(str, "罐头")
-                && (!strcmp(str, "菠菜")
+                && (!strncmp(str, "菠菜", 6)
                     || name_to_mon(str) >= LOW_PM))
             || !strcmp(str, "空罐头")
             || ((str_end_is(str, "尸体")
