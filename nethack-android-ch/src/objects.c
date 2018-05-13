@@ -350,7 +350,7 @@ HELM("cornuthaum", "巫师帽", "圆锥形帽",  //"conical hat"
            blocks clairvoyance if worn by role other than wizard */
 HELM("dunce cap", "愚人帽", "圆锥形帽",  //"conical hat"
      0, 1,           0,  3, 1,  4,  1, 10, 0, CLOTH, CLR_BLUE),
-HELM("dented pot", "瘪罐", None,
+HELM("dented pot", "瘪锅", None,
      1, 0,           0,  2, 0, 10,  8,  9, 0, IRON, CLR_BLACK),
 /* with shuffled appearances... */
 HELM("helmet", "钢盔", "羽饰头盔",  //"plumed helmet"
@@ -1095,7 +1095,7 @@ GEM("worthless piece of violet glass", "毫无价值的一块紫色玻璃", "紫
  * (inclusive).
  */
 ROCK("luckstone", "幸运石", "灰色的",  0,  10,  10, 60, 3, 3, 1, 10, 7, MINERAL, CLR_GRAY),  //"gray"
-ROCK("loadstone", "天然磁石", "灰色的",  0,  10, 500,  1, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),  //"gray"
+ROCK("loadstone", "负重石", "灰色的",  0,  10, 500,  1, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),  //"gray"
 ROCK("touchstone", "试金石", "灰色的", 0,   8,  10, 45, 3, 3, 1, 10, 6, MINERAL, CLR_GRAY),  //"gray"
 ROCK("flint", "打火石", "灰色的",      0,  10,  10,  1, 6, 6, 0, 10, 7, MINERAL, CLR_GRAY),  //"gray"
 ROCK("rock", "岩石", None,         1, 100,  10,  0, 3, 3, 0, 10, 7, MINERAL, CLR_GRAY),

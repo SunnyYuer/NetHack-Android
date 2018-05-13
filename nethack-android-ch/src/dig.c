@@ -1332,19 +1332,19 @@ boolean unexpected;
 
     if (unexpected) {
         if (!Hallucination)
-            You_feel("到一个突然的草案.");
+            You_feel("到一股突然的气流.");
         else
             /* U.S. classification system uses 1-A for eligible to serve
                and 4-F for ineligible due to physical or mental defect;
                some intermediate values exist but are rarely seen */
-            You_feel("你像是%s等级.",
+            You_feel("你像是%s 等级.",
                      (ACURR(A_STR) < 6 || ACURR(A_DEX) < 6
                       || ACURR(A_CON) < 6 || ACURR(A_CHA) < 6
                       || ACURR(A_INT) < 6 || ACURR(A_WIS) < 6) ? "4-F"
                                                                : "1-A");
     } else {
         if (!Hallucination) {
-            You_feel("到一个草案.");
+            You_feel("到一股气流.");
         } else {
             /* "marching" is deliberately ambiguous; it might mean drills
                 after entering military service or mean engaging in protests */

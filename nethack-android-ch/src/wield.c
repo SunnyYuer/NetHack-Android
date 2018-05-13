@@ -662,7 +662,7 @@ register int amount;
         wepname = ONAME(uwep);
     if (amount < 0 && uwep->oartifact && restrict_name(uwep, wepname)) {
         if (!Blind)
-            pline("%s %sgm光芒.", Yobjnam2(uwep, "微弱地发出"), color);
+            pline("%s %s光芒.", Yobjnam2(uwep, "微弱地发出"), color);
         return 1;
     }
     /* there is a (soft) upper and lower limit to uwep->spe */
