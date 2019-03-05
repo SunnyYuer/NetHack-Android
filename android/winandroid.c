@@ -3,16 +3,71 @@
 #include <jni.h>
 
 #include "hack.h"
-#include "winandroid.h"
 #include "func_tab.h"   /* for extended commands */
 #include "dlb.h"
+
+static void FDECL(and_init_nhwindows, (int *, char **));
+static void NDECL(and_player_selection);
+static void NDECL(and_askname);
+static void NDECL(and_get_nh_event) ;
+static void FDECL(and_exit_nhwindows, (const char *));
+static void FDECL(and_suspend_nhwindows, (const char *));
+static void NDECL(and_resume_nhwindows);
+static winid FDECL(and_create_nhwindow, (int));
+static void FDECL(and_clear_nhwindow, (winid));
+static void FDECL(and_display_nhwindow, (winid, BOOLEAN_P));
+static void FDECL(and_dismiss_nhwindow, (winid));
+static void FDECL(and_destroy_nhwindow, (winid));
+static void FDECL(and_curs, (winid,int,int));
+static void FDECL(and_putstr, (winid, int, const char *));
+static void FDECL(and_putmixed, (winid, int, const char *));
+static void FDECL(and_display_file, (const char *, BOOLEAN_P));
+static void FDECL(and_start_menu, (winid));
+static void FDECL(and_add_menu, (winid,int,const ANY_P *, CHAR_P,CHAR_P,int,const char *, BOOLEAN_P));
+static void FDECL(and_end_menu, (winid, const char *));
+static int FDECL(and_select_menu, (winid, int, MENU_ITEM_P **));
+static char FDECL(and_message_menu, (CHAR_P, int, const char *));
+static void NDECL(and_update_inventory);
+static void NDECL(and_mark_synch);
+static void NDECL(and_wait_synch);
+#ifdef CLIPPING
+static void FDECL(and_cliparound, (int, int));
+#endif
+#ifdef POSITIONBAR
+static void FDECL(and_update_positionbar, (char *));
+#endif
+static void FDECL(and_print_glyph, (winid,XCHAR_P,XCHAR_P,int,int));
+static void FDECL(and_raw_print, (const char *));
+static void FDECL(and_raw_print_bold, (const char *));
+static int NDECL(and_nhgetch);
+static int FDECL(and_nh_poskey, (int *, int *, int *));
+static void NDECL(and_nhbell);
+static int NDECL(and_doprev_message);
+static char FDECL(and_yn_function, (const char *, const char *, CHAR_P));
+static void FDECL(and_getlin, (const char *,char *));
+static int NDECL(and_get_ext_cmd);
+static void FDECL(and_number_pad, (int));
+static void NDECL(and_delay_output);
+#ifdef CHANGE_COLOR
+static void FDECL(and_change_color,(int color,long rgb,int reverse));
+static char * NDECL(and_get_color_string);
+#endif
+static void NDECL(and_start_screen);
+static void NDECL(and_end_screen);
+static char* FDECL(and_getmsghistory, (BOOLEAN_P));
+static void FDECL(and_putmsghistory, (const char *, BOOLEAN_P));
+static void save_msg(const char* msg);
+static void FDECL(and_status_update, (int, genericptr_t, int, int, int, unsigned long *));
+static void and_status_flush();
+
+int NetHackMain(int argc, char** argv);
 
 extern short glyph2tile[];
 
 struct window_procs and_procs = {
 	"and",
-	WC_COLOR | WC_HILITE_PET, /* window port capability options supported */
-	0, /* additional window port capability options supported */
+	WC_COLOR | WC_HILITE_PET | WC_INVERSE,	/* window port capability options supported */
+	WC2_HILITE_STATUS | WC2_FLUSH_STATUS,	/* additional window port capability options supported */
 	and_init_nhwindows,
 	and_player_selection,
 	and_askname,
@@ -61,17 +116,14 @@ struct window_procs and_procs = {
 	and_start_screen,
 	and_end_screen,
 	genl_outrip,
-	and_preference_update,
-	genl_getmsghistory,
-	genl_putmsghistory,
-#ifdef STATUS_VIA_WINDOWPORT
-    genl_status_init, genl_status_finish, genl_status_enablefield,
-    genl_status_update,
-#ifdef STATUS_HILITES
-    genl_status_threshold,
-#endif
-#endif
-    genl_can_suspend_no,
+	genl_preference_update,
+	and_getmsghistory,
+	and_putmsghistory,
+	genl_status_init,
+	genl_status_finish,
+	genl_status_enablefield,
+	and_status_update,
+	genl_can_suspend_no,
 };
 
 static void and_n_getline(const char* question, char* buf, int nMax, int showLog);
@@ -108,8 +160,46 @@ static jmethodID jShowLog;
 static jmethodID jSetUsername;
 static jmethodID jSetNumPadOption;
 static jmethodID jAskName;
+static jmethodID jLoadSound;
+static jmethodID jPlaySound;
+static jmethodID jGetDumplogDir;
 
 static boolean quit_if_possible;
+static boolean restoring_msghistory;
+
+static char* msghistory[32];
+static int msghistory_idx;
+static int msghistory_idx0;
+
+extern const char *status_fieldfmt[MAXBLSTATS];
+// Need to separate conditions in order to color them properly
+enum bl_conditions {
+	BL_COND_STONE,
+	BL_COND_SLIME,
+	BL_COND_STRNGL,
+	BL_COND_FOODPOIS,
+	BL_COND_TERMILL,
+	BL_COND_BLIND,
+	BL_COND_DEAF,
+	BL_COND_STUN,
+	BL_COND_CONF,
+	BL_COND_HALLU,
+	BL_COND_LEV,
+	BL_COND_FLY,
+	BL_COND_RIDE
+};
+
+#define MAXBLCONDITIONS 13
+extern char *status_vals[MAXBLSTATS];
+static int status_colors[MAXBLSTATS];
+extern boolean status_activefields[MAXBLSTATS];
+extern unsigned long cond_hilites[BL_ATTCLR_MAX];
+static unsigned long active_conditions;
+static const char* cond_names[] = {
+	"Stone", "Slime", "Strngl", "FoodPois", "TermIll", "Blind",
+	"Deaf", "Stun", "Conf", "Hallu", "Lev", "Fly", "Ride"
+};
+
 
 //____________________________________________________________________________________
 //
@@ -171,12 +261,16 @@ void Java_com_tbd_forkfront_NetHackIO_RunNetHack(JNIEnv* env, jobject thiz, jstr
 	jSetUsername = (*jEnv)->GetMethodID(jEnv, jApp, "setUsername", "([B)V");
 	jSetNumPadOption = (*jEnv)->GetMethodID(jEnv, jApp, "setNumPadOption", "(I)V");
 	jAskName = (*jEnv)->GetMethodID(jEnv, jApp, "askName", "(I[Ljava/lang/String;)Ljava/lang/String;");
+	jLoadSound = (*jEnv)->GetMethodID(jEnv, jApp, "loadSound", "([B)V");
+	jPlaySound = (*jEnv)->GetMethodID(jEnv, jApp, "playSound", "([BI)V");
+	jGetDumplogDir = (*jEnv)->GetMethodID(jEnv, jApp, "getDumplogDir", "()Ljava/lang/String;");
 
 	if(!(jReceiveKey && jReceivePosKey && jCreateWindow && jClearWindow && jDisplayWindow &&
 			jDestroyWindow && jPutString && jRawPrint && jSetCursorPos && jPrintTile &&
 			jYNFunction && jGetLine && jStartMenu && jAddMenu && jEndMenu && jSelectMenu &&
 			jCliparound && jDelayOutput && jShowDPad && jShowLog && jSetUsername &&
-			jSetNumPadOption && jAskName && jSetHealthColor && jRedrawStatus))
+			jSetNumPadOption && jAskName && jSetHealthColor && jRedrawStatus &&
+			jLoadSound && jPlaySound && jGetDumplogDir))
 	{
 		debuglog("baaaaad");
 		return;
@@ -208,7 +302,7 @@ boolean SaveAndExit()
 			/* make sure they see the Saving message */
 			display_nhwindow(WIN_MESSAGE, TRUE);
 			exit_nhwindows("Be seeing you...");
-			terminate(EXIT_SUCCESS);
+			nh_terminate(EXIT_SUCCESS);
 		}
 		return FALSE;
 	}
@@ -231,7 +325,7 @@ void quit_possible()
 		if(!SaveAndExit())
 		{
 			if(and_yn_function("Error saving game. Quit anyway?", ynchars, 'n') == 'y')
-				terminate(EXIT_SUCCESS);
+				nh_terminate(EXIT_SUCCESS);
 		}
 	}
 }
@@ -357,7 +451,7 @@ void and_player_selection()
 		{
 		    clearlocks();
 		    and_exit_nhwindows("bye");
-		    terminate(EXIT_SUCCESS);
+		    nh_terminate(EXIT_SUCCESS);
 		}
 
 		/* Select a race, if necessary */
@@ -558,49 +652,33 @@ void and_curs(winid wid, int x, int y)
 	JNICallV(jSetCursorPos, wid, x, y);
 }
 
-// For STATUSCOLORS
+// For TEXTCOLOR
 static int text_attribs = 0;
-static int text_color = 0xffffffff;
+static int text_color = CLR_WHITE;
 
+static int palette[CLR_MAX] = {
+	0xFF555555,	// CLR_BLACK
+	0xFFFF0000,	// CLR_RED
+	0xFF008800,	// CLR_GREEN
+	0xFF664411, // CLR_BROWN
+	0xFF0000FF,	// CLR_BLUE
+	0xFFFF00FF,	// CLR_MAGENTA
+	0xFF00FFFF,	// CLR_CYAN
+	0xFF888888,	// CLR_GRAY
+	0xFFFFFFFF,	// NO_COLOR
+	0xFFFF9900,	// CLR_ORANGE
+	0xFF00FF00,	// CLR_BRIGHT_GREEN
+	0xFFFFFF00,	// CLR_YELLOW
+	0xFF0088FF,	// CLR_BRIGHT_BLUE
+	0xFFFF77FF,	// CLR_BRIGHT_MAGENTA
+	0xFF77FFFF,	// CLR_BRIGHT_CYAN
+	0xFFFFFFFF	// CLR_WHITE
+};
 int nhcolor_to_RGB(int c)
 {
-	switch(c)
-	{
-	case CLR_BLACK:
-		return 0xFF555555;
-	case CLR_RED:
-		return 0xFFFF0000;
-	case CLR_GREEN:
-		return 0xFF008000;
-	case CLR_BROWN:
-		return 0xFF4d2121;//A52A2A;
-	case CLR_BLUE:
-		return 0xFF0000FF;
-	case CLR_MAGENTA:
-		return 0xFFFF00FF;
-	case CLR_CYAN:
-		return 0xFF00FFFF;
-	case CLR_GRAY:
-		return 0xFF909090;
-	case NO_COLOR:
-		return 0xFFFFFFFF;
-	case CLR_ORANGE:
-		return 0xFFFFA500;
-	case CLR_BRIGHT_GREEN:
-		return 0xFF00FF00;
-	case CLR_YELLOW:
-		return 0xFFFFFF00;
-	case CLR_BRIGHT_BLUE:
-		return 0xFF00C0FF;
-	case CLR_BRIGHT_MAGENTA:
-		return 0xFFFF80FF;
-	case CLR_BRIGHT_CYAN:
-		return 0xFF80FFFF; /* something close to aquamarine */
-	case CLR_WHITE:
-		return 0xFFFFFFFF;
-	default:
-		return 0xFF000000; /* black */
-	}
+	if(c >= 0 && c < CLR_MAX)
+		return palette[c];
+	return 0xFF000000;
 }
 
 const char* colname(int color)
@@ -646,13 +724,13 @@ term_start_color(color)
 int color;
 {
 	//debuglog("term_start_color %s", colname(color));
-	text_color = nhcolor_to_RGB(color);
+	text_color = color;
 }
 
 void
 term_end_color()
 {
-	text_color = 0xffffffff;
+	text_color = CLR_WHITE;
 }
 
 //____________________________________________________________________________________
@@ -677,34 +755,37 @@ term_end_color()
 //		   then the second.  In the tty port, pline() achieves this
 //		   by calling more() or displaying both on the same line.
 //____________________________________________________________________________________
-void and_putstr_ex(winid wid, int attr, const char *str, int append)
+void and_putstr_ex(winid wid, int attr, const char *str, int append, int nhcolor)
 {
+	if(!str || !*str)
+		return;
 	jbyteArray jstr = create_bytearray(str);
-
-	if(wid == NHW_STATUS)
-	{
-		if(context.botlx)
-			append = 0;
-		else
-			append = 1;
-	}
-	if(attr)
-		attr = 1<<attr;
-	else
-		attr = text_attribs;
-
-	JNICallV(jPutString, wid, attr, jstr, append, text_color);
+	JNICallV(jPutString, wid, attr, jstr, append, nhcolor_to_RGB(nhcolor));
 	destroy_jobject(jstr);
 }
 
 void and_putstr(winid wid, int attr, const char *str)
 {
-	and_putstr_ex(wid, attr, str, 0);
+	if(attr)
+		attr = 1<<attr;
+	else
+		attr = text_attribs;
+
+	and_putstr_ex(wid, attr, str, 0, text_color);
+
+	if(wid == NHW_MESSAGE)
+	{
+		save_msg(str);
+#ifdef USER_SOUNDS
+		if(!restoring_msghistory)
+			play_sound_for_message(str);
+#endif
+	}
 }
 
-void and_set_health_color(struct color_option colop)
+void and_set_health_color(int nhcolor)
 {
-	JNICallV(jSetHealthColor, nhcolor_to_RGB(colop.color));
+	JNICallV(jSetHealthColor, nhcolor_to_RGB(nhcolor));
 }
 
 void and_bot_updated()
@@ -713,8 +794,305 @@ void and_bot_updated()
 }
 
 //____________________________________________________________________________________
-void
-and_putmixed(window, attr, str)
+//status_update(int fldindex, genericptr_t ptr, int chg, int percentage, int color, long *colormasks)
+//		-- update the value of a status field.
+//		-- the fldindex identifies which field is changing and
+//		   is an integer index value from botl.h
+//		-- fldindex could be any one of the following from botl.h:
+//		   BL_TITLE, BL_STR, BL_DX, BL_CO, BL_IN, BL_WI, BL_CH,
+//		   BL_ALIGN, BL_SCORE, BL_CAP, BL_GOLD, BL_ENE, BL_ENEMAX,
+//		   BL_XP, BL_AC, BL_HD, BL_TIME, BL_HUNGER, BL_HP, BL_HPMAX,
+//		   BL_LEVELDESC, BL_EXP, BL_CONDITION
+//		-- The value passed for BL_GOLD includes a leading
+//		   symbol for GOLD "$:nnn". If the window port needs to use
+//		   the textual gold amount without the leading "$:" the port
+//		   will have to add 2 to the passed "ptr" for the BL_GOLD case.
+//		-- fldindex could also be BL_FLUSH (-1), which is not really
+//		   a field index, but is a special trigger to tell the
+//		   windowport that it should redisplay all its status fields,
+//		   even if no changes have been presented to it.
+//		-- ptr is usually a "char *", unless fldindex is BL_CONDITION.
+//		   If fldindex is BL_CONDITION, then ptr is a long value with
+//		   any or none of the following bits set (from botl.h):
+//                        BL_MASK_STONE           0x00000001L
+//                        BL_MASK_SLIME           0x00000002L
+//                        BL_MASK_STRNGL          0x00000004L
+//                        BL_MASK_FOODPOIS        0x00000008L
+//                        BL_MASK_TERMILL         0x00000010L
+//                        BL_MASK_BLIND           0x00000020L
+//                        BL_MASK_DEAF            0x00000040L
+//                        BL_MASK_STUN            0x00000080L
+//                        BL_MASK_CONF            0x00000100L
+//                        BL_MASK_HALLU           0x00000200L
+//                        BL_MASK_LEV             0x00000400L
+//                        BL_MASK_FLY             0x00000800L
+//                        BL_MASK_RIDE            0x00001000L
+//      -- color is an unsigned int.
+//             int & 0x00FF = color CLR_*
+//             int >> 8 = attribute (if any)
+//         This contains the color and attribute that the field should
+//         be displayed in.
+//         This is relevant for everything except BL_CONDITION fldindex.
+//         If fldindex is BL_CONDITION, this parameter should be ignored,
+//         as condition hilighting is done via the next colormasks
+//         parameter instead.
+//      -- colormasks - pointer to cond_hilites[] array of colormasks.
+//         Only relevant for BL_CONDITION fldindex. The window port
+//         should ignore this parameter for other fldindex values.
+//         Each condition bit must only ever appear in one of the
+//         CLR_ array members, but can appear in multiple HL_ATTCLR_
+//         offsets (because more than one attribute can co-exist).
+//         For the user's chosen set of BL_MASK_ condition bits,
+//         They are stored internally in the cond_hilites[] array,
+//         at the array offset aligned to the color those condtion
+//         bits should display in.
+//         For example, if the user has chosen to display strngl
+//         and stone and termill in red and inverse,
+//              BL_MASK_SLIME           0x00000002
+//              BL_MASK_STRNGL          0x00000004
+//              BL_MASK_TERMILL         0x00000010
+//         The bitmask corresponding to those conditions is
+//         0x00000016 (or 00010110 in binary) and the color
+//         is at offset 1 (CLR_RED).
+//         Here is how that is stored in the cond_hilites[] array:
+//         +------+----------------------+--------------------+
+//         |array |                      |                    |
+//         |offset| macro for indexing   |   bitmask          |
+//         |------+----------------------+--------------------+
+//         |   0  |   CLR_BLACK          |                    |
+//         +------+----------------------+--------------------+
+//         |   1  |   CLR_RED            |   00010110         |
+//         +------+----------------------+--------------------+
+//         |   2  |   CLR_GREEN          |                    |
+//         +------+----------------------+--------------------+
+//         |   3  |   CLR_BROWN          |                    |
+//         +------+----------------------+--------------------+
+//         |   4  |   CLR_BLUE           |                    |
+//         +------+----------------------+--------------------+
+//         |   5  |   CLR_MAGENTA        |                    |
+//         +------+----------------------+--------------------+
+//         |   6  |   CLR_CYAN           |                    |
+//         +------+----------------------+--------------------+
+//         |   7  |   CLR_GRAY           |                    |
+//         +------+----------------------+--------------------+
+//         |   8  |   NO_COLOR           |                    |
+//         +------+----------------------+--------------------+
+//         |   9  |   CLR_ORANGE         |                    |
+//         +------+----------------------+--------------------+
+//         |  10  |   CLR_BRIGHT_GREEN   |                    |
+//         +------+----------------------+--------------------+
+//         |  11  |   CLR_BRIGHT_YELLOW  |                    |
+//         +------+----------------------+--------------------+
+//         |  12  |   CLR_BRIGHT_BLUE    |                    |
+//         +------+----------------------+--------------------+
+//         |  13  |   CLR_BRIGHT_MAGENTA |                    |
+//         +------+----------------------+--------------------+
+//         |  14  |   CLR_BRIGHT_CYAN    |                    |
+//         +------+----------------------+--------------------+
+//         |  15  |   CLR_WHITE          |                    |
+//         +------+----------------------+--------------------+
+//         |  16  |   HL_ATTCLR_DIM      |                    | CLR_MAX
+//         +------+----------------------+--------------------+
+//         |  17  |   HL_ATTCLR_BLINK    |                    |
+//         +------+----------------------+--------------------+
+//         |  18  |   HL_ATTCLR_ULINE    |                    |
+//         +------+----------------------+--------------------+
+//         |  19  |   HL_ATTCLR_INVERSE  |   00010110         |
+//         +------+----------------------+--------------------+
+//         |  20  |   HL_ATTCLR_BOLD     |                    |
+//         +------+----------------------+--------------------+
+//         |  21  |  beyond array boundary                    | BL_ATTCLR_MAX
+//         The window port can AND (&) the bits passed in the
+//         ptr argument to status_update() with any non-zero
+//         entries in the cond_hilites[] array to determine
+//         the color and attributes for displaying the
+//         condition on the screen for the user.
+//         If the bit for a particular condition does not
+//         appear in any of the cond_hilites[] array offsets,
+//         that condition should be displayed in the default
+//         color and attributes.
+//____________________________________________________________________________________
+int hl_attridx_to_attrmask(int idx)
+{
+	switch(idx)
+	{
+	case HL_ATTCLR_DIM: 	return (1<<ATR_DIM);
+	case HL_ATTCLR_BLINK:	return (1<<ATR_BLINK);
+	case HL_ATTCLR_ULINE:   return (1<<ATR_ULINE);
+	case HL_ATTCLR_INVERSE:	return (1<<ATR_INVERSE);
+	case HL_ATTCLR_BOLD:	return (1<<ATR_BOLD);
+	}
+	return 0;
+}
+
+int hl_attrmask_to_attrmask(int mask)
+{
+	int attr = 0;
+	if(mask & HL_DIM) attr |= (1<<ATR_DIM);
+	if(mask & HL_BLINK) attr |= (1<<ATR_BLINK);
+	if(mask & HL_ULINE) attr |= (1<<ATR_ULINE);
+	if(mask & HL_INVERSE) attr |= (1<<ATR_INVERSE);
+	if(mask & HL_BOLD) attr |= (1<<ATR_BOLD);
+	return attr;
+}
+
+void and_status_update(int idx, genericptr_t ptr, int chg, int percent, int color, unsigned long *colormasks)
+{
+	long cond, *condptr = (long *) ptr;
+	char *nb, *text = (char *) ptr;
+	int i;
+
+	if(idx == BL_FLUSH)
+	{
+		and_status_flush();
+	}
+	else if(status_activefields[idx])
+	{
+		if(idx == BL_CONDITION)
+		{
+			active_conditions = condptr ? *condptr : 0L;
+			*status_vals[idx] = 0;
+		}
+		else if(idx == BL_GOLD && *text == '\\')
+		{
+			// Remove encoded glyph value. (This might break in the future if the format is changed in botl.c)
+			text += 10;
+			Sprintf(status_vals[idx], "$%s", text);
+			status_colors[idx] = color;
+		}
+		else
+		{
+			Sprintf(status_vals[idx], status_fieldfmt[idx] ? status_fieldfmt[idx] : "%s", text ? text : "");
+			status_colors[idx] = color;
+		}
+	}
+}
+
+int get_condition_color(int cond_mask)
+{
+	int i;
+	for(i = 0; i < CLR_MAX; i++)
+		if(cond_hilites[i] & cond_mask)
+			return i;
+	return CLR_WHITE;
+}
+
+int get_condition_attr(int cond_mask)
+{
+	int i;
+	int attr = 0;
+	for(i = CLR_MAX; i < BL_ATTCLR_MAX; i++)
+		if(cond_hilites[i] & cond_mask)
+			attr |= hl_attridx_to_attrmask(i);
+	return attr;
+}
+
+void print_conditions(const char** names)
+{
+	int i;
+	for(i = 0; i < MAXBLCONDITIONS; i++) {
+		int cond_mask = 1 << i;
+		if(active_conditions & cond_mask)
+		{
+			const char* name = names[i];
+			int color = get_condition_color(cond_mask);
+			int attr = get_condition_attr(cond_mask);
+			//debuglog("cond '%s' active. col=%s attr=%x", name, colname(color), attr);
+			and_putstr_ex(WIN_STATUS, ATR_NONE, " ", 0, CLR_WHITE);
+			and_putstr_ex(WIN_STATUS, attr, name, 0, color);
+		}
+	}
+}
+
+void print_status_field(int idx, boolean first_field)
+{
+	if(!status_activefields[idx])
+		return;
+
+	const char* val = status_vals[idx];
+
+	if(first_field && *val == ' ')
+	{
+		// Remove leading space of first field
+		val++;
+	}
+	else if(idx == BL_LEVELDESC && !first_field)
+	{
+		/* leveldesc has no leading space, so if we've moved
+		   it past the first position, provide one */
+		and_putstr_ex(WIN_STATUS, ATR_NONE, " ", 0, CLR_WHITE);
+	}
+
+	// Don't want coloring on leading spaces (ATR_INVERSE would show), so print those first
+	while(*val == ' ')
+	{
+		and_putstr_ex(WIN_STATUS, ATR_NONE, " ", 0, CLR_WHITE);
+		val++;
+	}
+
+	if(idx == BL_CONDITION)
+	{
+		print_conditions(cond_names);
+	}
+	else
+	{
+		int attr = (status_colors[idx] >> 8) & 0xFF;
+		int color = status_colors[idx] & 0xFF;
+		if(idx == BL_HP)
+		{
+			and_set_health_color(color);
+		}
+		else if(idx == BL_HPMAX)
+		{
+			// Set hp-max to same color as hp if it's not explicitly defined
+			if(color == NO_COLOR && attr == ATR_NONE && status_activefields[BL_HP])
+			{
+				attr = (status_colors[BL_HP] >> 8) & 0xFF;
+				color = status_colors[BL_HP] & 0xFF;
+			}
+		}
+		else if(idx == BL_ENEMAX)
+		{
+			// Set power-max to same color as power if it's not explicitly defined
+			if(color == NO_COLOR && attr == ATR_NONE && status_activefields[BL_ENE])
+			{
+				attr = (status_colors[BL_ENE] >> 8) & 0xFF;
+				color = status_colors[BL_ENE] & 0xFF;
+			}
+		}
+		and_putstr_ex(WIN_STATUS, hl_attrmask_to_attrmask(attr), val, 0, color);
+	//	debuglog("field %d: %s color %s", idx+1, val, colname(color));
+	}
+}
+
+void and_status_flush()
+{
+	enum statusfields idx, *fieldlist;
+	register int i;
+
+	static enum statusfields fieldorder_line1[] = {
+		BL_TITLE, BL_STR, BL_DX, BL_CO, BL_IN, BL_WI, BL_CH, BL_ALIGN, BL_SCORE,
+		BL_FLUSH, BL_FLUSH, BL_FLUSH, BL_FLUSH, BL_FLUSH, BL_FLUSH
+	};
+
+	static enum statusfields fieldorder_line2[] = {
+		BL_LEVELDESC, BL_GOLD, BL_HP, BL_HPMAX, BL_ENE, BL_ENEMAX, BL_AC, BL_XP,
+		BL_EXP, BL_HD, BL_TIME, BL_HUNGER, BL_CAP, BL_CONDITION, BL_FLUSH
+	};
+
+	curs(WIN_STATUS, 1, 0);
+	for(i = 0; (idx = fieldorder_line1[i]) != BL_FLUSH; ++i)
+		print_status_field(idx, i == 0);
+
+	curs(WIN_STATUS, 1, 1);
+	for(i = 0; (idx = fieldorder_line2[i]) != BL_FLUSH; ++i)
+		print_status_field(idx, i == 0);
+
+	and_bot_updated();
+}
+
+//____________________________________________________________________________________
+void and_putmixed(window, attr, str)
 winid window;
 int attr;
 const char *str;
@@ -1210,7 +1588,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 	//else
 	//	debuglog("yn %s", question);
 
-	if(iflags.automenu && choices && nChoices <= 4 && esc < 0 && !allow_num)
+	if(iflags.force_invmenu && choices && nChoices <= 4 && esc < 0 && !allow_num)
 	{
 		int i;
 		// pop up dialog
@@ -1252,7 +1630,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 		// directional choice
 		and_clear_nhwindow(WIN_MESSAGE);
 		and_putstr(WIN_MESSAGE, ATR_BOLD, message);
-		if(iflags.automenu)
+		if(iflags.force_invmenu)
 		{
 			JNICallV(jShowDPad);
 			ch = and_nhgetch();
@@ -1325,13 +1703,13 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 			char z, digit_string[2];
 			int n_len = 0;
 			long value = 0;
-			and_putstr_ex(WIN_MESSAGE, ATR_BOLD, "#", 1);
+			and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, "#", 1, CLR_WHITE);
 			n_len++;
 			digit_string[1] = '\0';
 			if(ch != '#')
 			{
 				digit_string[0] = ch;
-				and_putstr_ex(WIN_MESSAGE, ATR_BOLD, digit_string, 1);
+				and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, digit_string, 1, CLR_WHITE);
 				n_len++;
 				value = ch - '0';
 				ch = '#';
@@ -1345,7 +1723,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 					if(value < 0)
 						break; /* overflow: try again */
 					digit_string[0] = z;
-					and_putstr(WIN_MESSAGE, ATR_BOLD, digit_string);
+					and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, digit_string, 0, CLR_WHITE);
 					n_len++;
 				}
 				else if(z == 'y' || index(quitchars, z))
@@ -1364,7 +1742,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 					else
 					{
 						value /= 10;
-						and_putstr_ex(WIN_MESSAGE, ATR_BOLD, digit_string, -2);
+						and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, digit_string, -2, CLR_WHITE);
 						n_len--;
 					}
 				}
@@ -1382,7 +1760,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 				ch = 'n'; /* 0 => "no" */
 			else
 			{ /* remove number from top line, then try again */
-				and_putstr_ex(WIN_MESSAGE, ATR_BOLD, digit_string, -n_len-1);
+				and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, digit_string, -n_len-1, CLR_WHITE);
 				n_len = 0;
 				ch = (char)0;
 			}
@@ -1397,7 +1775,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 		{
 			res_ch[0] = ch;
 			res_ch[1] = '\x0';
-			and_putstr_ex(WIN_MESSAGE, ATR_BOLD, res_ch, 1);
+			and_putstr_ex(WIN_MESSAGE, 1<<ATR_BOLD, res_ch, 1, CLR_WHITE);
 		}
 	}
 	else
@@ -1533,7 +1911,7 @@ void and_askname()
 		{
 			clearlocks();
 			and_exit_nhwindows("bye");
-			terminate(EXIT_SUCCESS);
+			nh_terminate(EXIT_SUCCESS);
 		}
 
 		if( pChars[w] == '1' )
@@ -1557,12 +1935,12 @@ void and_askname()
 //		-- Get an extended command in a window-port specific way.
 //		   An index into extcmdlist[] is returned on a successful
 //		   selection, -1 otherwise.
-int do_ext_cmd_menu()
+int do_ext_cmd_menu(BOOLEAN_P complete)
 {
 //	debuglog("and_get_ext_cmd");
 
 	winid wid;
-	int i, count, what;
+	int i, count, what, flgs;
 	menu_item *selected = NULL;
 	anything any;
 	char accelerator = 'a', tmp_acc = 0;
@@ -1572,6 +1950,13 @@ int do_ext_cmd_menu()
 	and_start_menu(wid);
 	for(i = 0; (ptr = extcmdlist[i].ef_txt); i++)
 	{
+		flgs = extcmdlist[i].flags;
+		if((flgs & WIZMODECMD) && !wizard)
+			continue;
+
+		if(!complete && !(flgs & AUTOCOMPLETE) && !(flgs & WIZMODECMD))
+			continue;
+
 		any.a_int = i+1;
 		and_add_menu(wid, NO_GLYPH, &any, accelerator, 0, ATR_NONE, ptr, FALSE);
 
@@ -1582,6 +1967,9 @@ int do_ext_cmd_menu()
 		else
 			accelerator++;
 	}
+	any.a_int = i+1;
+	if(!complete)
+		and_add_menu(wid, NO_GLYPH, &any, '*', 0, ATR_NONE, "(list everything)", FALSE);
 	and_end_menu(wid, "Extended command");
 	count = and_select_menu(wid, PICK_ONE, &selected);
 	what = count > 0 ? selected->item.a_int - 1 : -1;
@@ -1589,7 +1977,7 @@ int do_ext_cmd_menu()
 		free(selected);
 	and_destroy_nhwindow(wid);
 
-	return (what);
+	return what == any.a_int-1 ? do_ext_cmd_menu(TRUE) : what;
 }
 
 const char* complete_ext_cmd(const char* base)
@@ -1628,11 +2016,13 @@ void get_ext_cmd_auto(const char *query, register char *bufp)
 		if(c == EOF || c == '\n')
 		{
 			bufp[n] = 0;
+			if(complete)
+				strcpy(bufp, complete);
+			save_msg(bufp);
 			break;
 		}
 		if(c == '\033')
 		{
-			complete = 0;
 			bufp[0] = c;
 			bufp[1] = 0;
 			break;
@@ -1648,16 +2038,14 @@ void get_ext_cmd_auto(const char *query, register char *bufp)
 			bufp[++n] = 0;
 		}
 		complete = complete_ext_cmd(bufp);
-		and_putstr_ex(WIN_MESSAGE, ATR_NONE, bufp, -nl-1);
-		if(complete)
-			and_putstr_ex(WIN_MESSAGE, ATR_INVERSE, complete + n, 1);
+		and_putstr_ex(WIN_MESSAGE, 0, bufp, -nl-1, CLR_WHITE);
+		if(complete) {
+			and_putstr_ex(WIN_MESSAGE, 1<<ATR_INVERSE, complete + n, 1, CLR_WHITE);
+		}
 		nl = complete ? strlen(complete) : n;
 	}
-	if(complete)
-		strcpy(bufp, complete);
 	clear_nhwindow(WIN_MESSAGE);	/* clean up after ourselves */
 }
-
 
 /*
  * Read in an extended command, doing command line completion.  We
@@ -1676,14 +2064,12 @@ int do_ext_cmd_text()
 	for (i = 0; extcmdlist[i].ef_txt != (char *)0; i++)
 		if (!strcmpi(buf, extcmdlist[i].ef_txt)) break;
 
-#ifdef REDO
 	if (!in_doagain) {
 	    int j;
 	    for (j = 0; buf[j]; j++)
-		savech(buf[j]);
+			savech(buf[j]);
 	    savech('\n');
 	}
-#endif
 
 	if (extcmdlist[i].ef_txt == (char *)0) {
 		pline("%s: unknown extended command.", buf);
@@ -1693,11 +2079,10 @@ int do_ext_cmd_text()
 	return i;
 }
 
-
 int and_get_ext_cmd()
 {
-	if(iflags.automenu)
-		return do_ext_cmd_menu();
+	if(iflags.extmenu)
+		return do_ext_cmd_menu(FALSE);
 	return do_ext_cmd_text();
 }
 
@@ -1722,9 +2107,11 @@ void and_delay_output()
 
 //____________________________________________________________________________________
 #ifdef CHANGE_COLOR
-void and_change_color(int a,long b,int c)
+void and_change_color(int color_number, long rgb, int reverse)
 {
-//	debuglog("and_change_color(%d, %d, %d)", a, b, c);
+	// debuglog("and_change_color %d == 0x%X %s", color_number, rgb, reverse?" reverse":"");
+	if(color_number >= 0 && color_number < CLR_MAX)
+		palette[color_number] = 0xFF000000 | rgb;
 }
 
 //____________________________________________________________________________________
@@ -1755,18 +2142,76 @@ void and_end_screen()
 }
 
 //____________________________________________________________________________________
-//preference_update(preference)
-//		-- The player has just changed one of the wincap preference
-//		   settings, and the NetHack core is notifying your window
-//		   port of that change.  If your window-port is capable of
-//		   dynamically adjusting to the change then it should do so.
-//		   Your window-port will only be notified of a particular
-//		   change if it indicated that it wants to be by setting the
-//		   corresponding bit in the wincap mask.
-void and_preference_update(const char *pref)
+// and_getmsghistory(init)
+// 		window ports can provide their own getmsghistory() routine to
+// 		preserve message history between games. The routine is called
+// 		repeatedly from the core save routine, and the window port is
+// 		expected to successively return each message that it wants
+// 		saved, starting with the oldest message first, finishing with
+// 		the most recent. Return null pointer when finished.
+int add_msghistory_idx(int idx)
 {
-//	debuglog("and_preference_update %s", pref);
-	//genl_preference_update(pref);
+	return (idx + 1) % (sizeof(msghistory)/sizeof(char*));
+}
+char* and_getmsghistory(BOOLEAN_P init)
+{
+	if(init)
+	{
+		msghistory_idx0 = msghistory_idx;
+		while(1)
+		{
+			if(msghistory[msghistory_idx0])
+				return msghistory[msghistory_idx0];
+			msghistory_idx0 = add_msghistory_idx(msghistory_idx0);
+			if(msghistory_idx0 == msghistory_idx)
+				return 0;
+		};
+	}
+	else
+	{
+		msghistory_idx0 = add_msghistory_idx(msghistory_idx0);
+		if(msghistory_idx0 == msghistory_idx)
+			return 0;
+		return msghistory[msghistory_idx0];
+	}
+}
+
+// and_putmsghistory(msg, restoring)
+//		window ports can provide their own putmsghistory() routine
+//		to load message history from a saved game. The routine is
+//		called repeatedly from the core restore routine, starting
+//		with the oldest saved message first, and finishing with
+//		the latest. The window port routine is expected to load
+//		the message recall buffers in such a way that the ordering
+//		is preserved. The window port routine should make no
+// 		assumptions about how many messages are forthcoming, nor
+//		should it assume that another message will follow this
+//		one, so it should keep all pointers/indexes intact at the
+//		end of each call.
+void and_putmsghistory(const char *msg, BOOLEAN_P restoring)
+{
+	if(!msg) return;
+	if(restoring)
+	{
+//		debuglog("restore msghistory: %s", msg);
+		restoring_msghistory = TRUE;
+		and_putstr(WIN_MESSAGE, ATR_NONE, msg);
+		restoring_msghistory = FALSE;
+	}
+	else
+	{
+//		debuglog("put msghistory: %s", msg);
+	}
+}
+
+void save_msg(const char* msg)
+{
+	if(!msg || !*msg || !strcmp("Restoring save file...", msg))
+		return;
+	if(msghistory[msghistory_idx])
+		free(msghistory[msghistory_idx]);
+	msghistory[msghistory_idx] = strdup(msg);
+	msghistory_idx = add_msghistory_idx(msghistory_idx);
 }
 
 int doshowlog()
@@ -1775,4 +2220,48 @@ int doshowlog()
 	JNICallV(jShowLog, 0);
 	return 0;
 }
+
+#ifdef USER_SOUNDS
+void load_usersound(const char *filename)
+{
+	//debuglog("load_usersound(%s)", filename);
+	jbyteArray jstr = create_bytearray(filename);
+	JNICallV(jLoadSound, jstr);
+	destroy_jobject(jstr);
+}
+
+void play_usersound(const char *filename, int volume)
+{
+	//debuglog("play_usersound(%s, %d)", filename, volume);
+	jbyteArray jstr = create_bytearray(filename);
+	JNICallV(jPlaySound, jstr, volume);
+	destroy_jobject(jstr);
+}
+#endif
+
+#ifdef DUMPLOG
+void and_get_dumplog_dir(char* buf)
+{
+	int i, n;
+	const jchar* pChars;
+	jstring jstr;
+
+	jstr = (jstring)JNICallO(jGetDumplogDir);
+	n = (*jEnv)->GetStringLength(jEnv, jstr);
+
+	if(n > 0 && n < BUFSZ - 1)
+	{
+		pChars = (*jEnv)->GetStringChars(jEnv, jstr, 0);
+		for(i = 0; i < n; i++)
+			buf[i] = pChars[i];
+		(*jEnv)->ReleaseStringChars(jEnv, jstr, pChars);
+		if(buf[n - 1] != '/')
+			buf[n++] = '/';
+	}
+	else
+		n = 0;
+	buf[n] = 0;
+	destroy_jobject(jstr);
+}
+#endif
 
