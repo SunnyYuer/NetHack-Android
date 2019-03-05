@@ -1,40 +1,35 @@
 package com.tbd.forkfront;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.widget.TextView;
 
-public class AutoFitTextView extends TextView {
+public class AutoFitTextView extends NH_TextView {
+	private static final float MIN_SIZE_SP = 10;
+
 	private boolean mTextChanged;
 	private int mLastMeasuredWidth;
-	private float mTextSize;
-	private float mAdd;
-	private float mMul;
-	private final float minSize;
+	private boolean mIsMonospaceMode;
+	private float mMeasuredTextSize = getOriginalTextSize();
 
 	// ____________________________________________________________________________________
 	public AutoFitTextView(Context context)
 	{
-		this(context, null, 0);
+		super(context);
 	}
 
 	// ____________________________________________________________________________________
 	public AutoFitTextView(Context context, AttributeSet attrs)
 	{
-		this(context, attrs, 0);
+		super(context, attrs);
 	}
 
 	// ____________________________________________________________________________________
 	public AutoFitTextView(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
-		mTextSize = getTextSize();
-		mAdd = 0.f;
-		mMul = 1.f;
-		final float density = context.getResources().getDisplayMetrics().density;
-		minSize = 11.f * density;
 	}
 
 	// ____________________________________________________________________________________
@@ -71,56 +66,46 @@ public class AutoFitTextView extends TextView {
 	}
 
 	// ____________________________________________________________________________________
-	public void fitText(int viewW)
+	private void fitText(int viewW)
 	{
 		CharSequence text = getText();
 		if(text.length() <= 0)
 			return;
 
+		float minSize = getMinTextSize();
 		TextPaint paint = new TextPaint();
 		paint.set(super.getPaint());
-		paint.setTextSize(mTextSize);
-		float textSize = mTextSize;
+		float textSize = getOriginalTextSize();
+		paint.setTextSize(textSize);
 		float textW = paint.measureText(text, 0, text.length());
-		while(textSize > minSize && textW > viewW)
+		while(textSize > minSize && textW > viewW) // fast enough
 		{
 			textSize--;
 			paint.setTextSize(textSize);
 			textW = paint.measureText(text, 0, text.length());
 		}
-		Log.print("Size: " + textSize);
-		super.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize*1.0f);
-		super.setLineSpacing(mAdd, mMul);
-	}
 
-	// ____________________________________________________________________________________
-	@Override
-	public void setTextSize(float size)
-	{
-		super.setTextSize(size);
-		mTextSize = getTextSize();
-	}
+		mMeasuredTextSize = textSize;
 
-	// ____________________________________________________________________________________
-	@Override
-	public void setTextSize(int unit, float size)
-	{
-		super.setTextSize(unit, size);
-		mTextSize = getTextSize();
-	}
-
-	// ____________________________________________________________________________________
-	@Override
-	public void setLineSpacing(float add, float mult)
-	{
-		super.setLineSpacing(add, mult);
-		mAdd = add;
-		mMul = mult;
+		if(!mIsMonospaceMode) {
+			super.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+		}
 	}
 
 	// ____________________________________________________________________________________
 	public float getMinTextSize()
 	{
-		return minSize;
+		float scaledDensity = getContext().getResources().getDisplayMetrics().scaledDensity;
+		return MIN_SIZE_SP * scaledDensity;
+	}
+
+	@Override
+	protected void updateMode(boolean monospaceMode, Typeface typeface, float size) {
+		mIsMonospaceMode = monospaceMode;
+		setTypeface(typeface);
+		if(mIsMonospaceMode)
+			setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+		else
+			setTextSize(TypedValue.COMPLEX_UNIT_PX, mMeasuredTextSize);
 	}
 }

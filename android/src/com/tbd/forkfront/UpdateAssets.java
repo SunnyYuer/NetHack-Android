@@ -1,10 +1,7 @@
 package com.tbd.forkfront;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.Date;
 import java.util.Scanner;
 
 import android.app.Activity;
@@ -28,13 +25,22 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 	private static String VERDAT_KEY = "verDat";
 	private static String SRCVER_KEY = "srcVer";
 
+	enum FileStatus {
+		UP_TO_DATE,
+		CORRUPT,
+		OLD_VERSION,
+		INCOMPATIBLE_VERSION,
+	}
+
 	private AssetManager mAM;
 	private SharedPreferences mPrefs;
 	private boolean mIsInitiating;
 	private ProgressDialog mProgress;
 	private File mDstPath;
 	private String mError;
-	private boolean mWipeUserdata;
+	private FileStatus mFileStatus;
+	private boolean mBackupDefaultsFile;
+	private boolean mDefaultsFileBackedUp;
 	private long mRequiredSpace;
 	private long mTotalRead;
 	private Activity mActivity;
@@ -109,6 +115,10 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		}
 		else
 		{
+			if(mDefaultsFileBackedUp) {
+				String symLinkedPath = "/sdcard/Android/data/" + mNamespace + "/";
+				showMessage("Your " + mDefaultsFile + " file was replaced during the update. A backup is saved in:\n" + symLinkedPath);
+			}
 			Log.print("Starting on: " + mDstPath.getAbsolutePath());
 			mListener.onAssetsReady(mDstPath);
 		}
@@ -146,12 +156,14 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		try
 		{
 			File dstPath = new File(mPrefs.getString(DATADIR_KEY, ""));
-			if(!isUpToDate(dstPath))
+			mFileStatus = checkFiles(dstPath);
+			if(mFileStatus != FileStatus.UP_TO_DATE)
 			{
 				dstPath = findDataPath();
 	
-				if(mWipeUserdata)
+				if(mFileStatus == FileStatus.INCOMPATIBLE_VERSION)
 				{
+					// TODO confirm dialog or just make backup of saves and bones
 					deleteDirContent(dstPath);
 				}
 				
@@ -213,12 +225,25 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 	}
 
 	// ____________________________________________________________________________________
-	private boolean isUpToDate(File dstPath) throws IOException
+	private void showMessage(String msg)
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
+		builder.setMessage(msg).setPositiveButton("Ok", new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int id)
+			{}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+
+	// ____________________________________________________________________________________
+	private FileStatus checkFiles(File dstPath) throws IOException
 	{
 		if(!dstPath.exists() || !dstPath.isDirectory())
 		{
 			Log.print("Update required. '" + dstPath + "' doesn't exist");
-			return false;
+			return FileStatus.CORRUPT;
 		}
 
 		long verDat = mPrefs.getLong(VERDAT_KEY, 0);
@@ -230,8 +255,16 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		if(verDat == 0 || srcVer != curVer)
 		{
 			Log.print("Update required. old version");
-			mWipeUserdata = true;
-			return false;
+
+			File dst = new File(dstPath, mDefaultsFile);
+			if(dst.exists() && dst.lastModified() > verDat)
+				mBackupDefaultsFile = true;
+
+			if((srcVer / 100) != (curVer / 100)) {
+				Log.print("Really old. Must remove incompatible save and bones files");
+				return FileStatus.INCOMPATIBLE_VERSION;
+			}
+			return FileStatus.OLD_VERSION;
 		}
 
 		String[] files = mAM.list(mNativeDataDir);
@@ -241,17 +274,17 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			if(!dst.exists())
 			{
 				Log.print("Update required. '" + file + "' doesn't exist");
-				return false;
+				return FileStatus.CORRUPT;
 			}
 			
 			if(!file.equals(mDefaultsFile) && dst.lastModified() > verDat)
 			{
 				Log.print("Update required. '" + file + "' has been tampered with");
-				return false;
+				return FileStatus.CORRUPT;
 			}
 		}
 		Log.print("Data is up to date");
-		return true;
+		return FileStatus.UP_TO_DATE;
 	}
 
 	// ____________________________________________________________________________________
@@ -264,9 +297,21 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		byte[] buf = new byte[10240];
 		String[] files = mAM.list(mNativeDataDir);
 
+		if(mBackupDefaultsFile)
+		{
+			doDefaultsBackup(dstPath, buf);
+		}
+
 		for(String file : files)
 		{
 			File dstFile = new File(dstPath, file);
+
+			// Don't overwrite defaults file if we're just fixing corruption
+			if(file.equals(mDefaultsFile) && dstFile.exists() && mFileStatus == FileStatus.CORRUPT) {
+				InputStream is = mAM.open(mNativeDataDir + "/" + file);
+				mTotalRead += is.skip(0x7fffffff);
+				continue;
+			}
 
 			InputStream is = mAM.open(mNativeDataDir + "/" + file);
 			OutputStream os = new FileOutputStream(dstFile, false);
@@ -299,6 +344,34 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		edit.putString(DATADIR_KEY, dstPath.getAbsolutePath());
 
 		edit.commit();
+	}
+
+	private void doDefaultsBackup(File dstPath, byte[] buf) {
+		try {
+			File srcFile = new File(dstPath, mDefaultsFile);
+			if(!srcFile.exists())
+				return;
+
+			File dstFile = new File(dstPath, mDefaultsFile + ".bak");
+
+			InputStream is = new FileInputStream(srcFile);
+			OutputStream os = new FileOutputStream(dstFile, false);
+
+			while(true) {
+				int nRead = is.read(buf);
+				if(nRead > 0)
+					os.write(buf, 0, nRead);
+				else
+					break;
+			}
+
+			os.flush();
+			os.close();
+
+			mDefaultsFileBackedUp = true;
+		} catch(IOException e) {
+			Log.print("Failed to backup defaults file: " + e.toString());
+		}
 	}
 
 	// ____________________________________________________________________________________

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:forkfront="forkfront">
 	<PreferenceCategory
 		android:title="Settings"
 		android:key="settings">
@@ -57,6 +58,13 @@
                 android:defaultValue="true"
                 android:key="lockView"/>
 
+		<CheckBoxPreference
+			android:title="Monospace mode"
+			android:summary="Use a monospace font for nicer typography"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="monospace"/>
+
 		<com.tbd.forkfront.SliderPreference
 			android:title="Status background opacity"
 			android:summary="The background opacity of the status lines"
@@ -64,6 +72,16 @@
 			android:key="statusOpacity"
 			android:dialogMessage="The opacity between invisible (0) and opaque (255)"
 			android:defaultValue="0"
+			android:text=""
+			android:max="255"/>
+
+		<com.tbd.forkfront.SliderPreference
+			android:title="Map border opacity"
+			android:summary="The opacity of the border around the map"
+			android:persistent="true"
+			android:key="borderOpacity"
+			android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+			android:defaultValue="50"
 			android:text=""
 			android:max="255"/>
 
@@ -112,6 +130,17 @@
 				android:defaultValue="255"
 				android:text=""
 				android:max="255"/>
+
+			<com.tbd.forkfront.SliderPreference
+					android:title="Size"
+					android:summary="The relative size of the overlay"
+					android:persistent="true"
+					android:key="ovlSize"
+					android:dialogMessage="Change the relative size of the overlay buttons"
+					android:defaultValue="0"
+					android:text=""
+					forkfront:min="-10"
+					android:max="10"/>
 
 			<CheckBoxPreference
 				android:title="Allow map input with overlay"
@@ -188,7 +217,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-				
+
+				<com.tbd.forkfront.SliderPreference
+					android:title="Size"
+					android:summary="The relative size of the panel"
+					android:persistent="true"
+					android:key="pSize0"
+					android:dialogMessage="Change the relative size of this panel"
+					android:defaultValue="0"
+					android:text=""
+					forkfront:min="-10"
+					android:max="10"/>
+
 			</PreferenceScreen>
 			
 			<PreferenceScreen
@@ -252,7 +292,17 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-				
+
+				<com.tbd.forkfront.SliderPreference
+						android:title="Size"
+						android:summary="The relative size of the panel"
+						android:persistent="true"
+						android:key="pSize1"
+						android:dialogMessage="Change the relative size of this panel"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
 			</PreferenceScreen>
 			
 			
@@ -317,7 +367,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.tbd.forkfront.SliderPreference
+						android:title="Size"
+						android:summary="The relative size of the panel"
+						android:persistent="true"
+						android:key="pSize2"
+						android:dialogMessage="Change the relative size of this panel"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -382,7 +443,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.tbd.forkfront.SliderPreference
+						android:title="Size"
+						android:summary="The relative size of the panel"
+						android:persistent="true"
+						android:key="pSize3"
+						android:dialogMessage="Change the relative size of this panel"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -447,7 +519,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.tbd.forkfront.SliderPreference
+						android:title="Size"
+						android:summary="The relative size of the panel"
+						android:persistent="true"
+						android:key="pSize4"
+						android:dialogMessage="Change the relative size of this panel"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -512,7 +595,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.tbd.forkfront.SliderPreference
+						android:title="Size"
+						android:summary="The relative size of the panel"
+						android:persistent="true"
+						android:key="pSize5"
+						android:dialogMessage="Change the relative size of this panel"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 		</PreferenceScreen>

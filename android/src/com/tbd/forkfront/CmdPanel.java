@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnDismissListener;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.ContextMenu;
@@ -31,17 +30,17 @@ public class CmdPanel
 	private NH_State mState;
 	private LinearLayout mBtnPanel;
 	private Button mContextView;
-	private int mMinBtnW;
-	private int mMinBtnH;
+	private int mMinBtnSize;
 	private LayoutParams mParams;
 	private NH_Dialog mEditDlg;
 	private EditText mInput;
 	private int mItemId;
 	private CmdPanelLayout mLayout;
 	private int mOpacity;
+	private int mRelSize;
 
 	// ____________________________________________________________________________________
-	public CmdPanel(Activity context, NH_State state, CmdPanelLayout layout, String cmds, int opacity)
+	public CmdPanel(Activity context, NH_State state, CmdPanelLayout layout, String cmds, int opacity, int relSize)
 	{
 		mContext = context;
 		mState = state;
@@ -49,16 +48,21 @@ public class CmdPanel
 		mBtnPanel = new LinearLayout(context);
 		mBtnPanel.setLayoutParams(new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		mOpacity = opacity;
+		updateMinButtonSize(relSize);
 		loadCmds(cmds);
+	}
+
+	private void updateMinButtonSize(int relSize) {
+		final float density = mContext.getResources().getDisplayMetrics().density;
+		mRelSize = relSize;
+		int scale = mRelSize > 0 ? 2 : 1;
+		mMinBtnSize = (int)((50 + scale * mRelSize) * density + 0.5f);
 	}
 
 	// ____________________________________________________________________________________
 	private void loadCmds(String cmds)
 	{
-		final float density = mContext.getResources().getDisplayMetrics().density;
-		mMinBtnW = (int)(50 * density + 0.5f);
-		mMinBtnH = (int)(50 * density + 0.5f);
-		mParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		mParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, mMinBtnSize);
 
 		mBtnPanel.removeAllViews();
 
@@ -127,13 +131,44 @@ public class CmdPanel
 		Button btn = new Button(mContext);
 		btn.setTypeface(Typeface.MONOSPACE);
 		btn.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-		btn.setMinimumWidth(mMinBtnW);
-		btn.setMinimumHeight(mMinBtnH);
+		btn.setMinimumWidth(mMinBtnSize);
+		btn.setMinimumHeight(0);
 		btn.setLayoutParams(mParams);
 		btn.setFocusable(false);
 		btn.setFocusableInTouchMode(false);
+
 		mContext.registerForContextMenu(btn);
+
 		return btn;
+	}
+
+	// ____________________________________________________________________________________
+	private void updatePanelSize()
+	{
+		mParams.height = mMinBtnSize;
+
+		int nButtons = mBtnPanel.getChildCount();
+		for(int i = 0; i < nButtons; i++)
+		{
+			Button btn = (Button)mBtnPanel.getChildAt(i);
+			btn.setMinimumWidth(mMinBtnSize);
+			btn.requestLayout();
+		}
+	}
+
+	// ____________________________________________________________________________________
+	private void updatePanelOpacity()
+	{
+		int nButtons = mBtnPanel.getChildCount();
+		for(int i = 0; i < nButtons; i++)
+		{
+			Button btn = (Button)mBtnPanel.getChildAt(i);
+			btn.getBackground().setAlpha(mOpacity);
+			if(mOpacity <= 127)
+				btn.setTextColor(0xffffffff);
+			else
+				btn.setTextColor(0xff000000);
+		}
 	}
 
 	// ____________________________________________________________________________________
@@ -152,7 +187,7 @@ public class CmdPanel
 		{
 			public void onClick(View v)
 			{
-				cmd.execute();
+				mLayout.executeCmd(cmd);
 			}
 		});
 		return btn;
@@ -172,7 +207,11 @@ public class CmdPanel
 		menu.setHeaderTitle(title);
 		mContextView = (Button)v;
 	}
-
+	// ____________________________________________________________________________________
+	public void onContextMenuClosed()
+	{
+		mContextView = null;
+	}
 	// ____________________________________________________________________________________
 	public void onContextItemSelected(MenuItem item)
 	{
@@ -185,69 +224,65 @@ public class CmdPanel
 		{
 			mBtnPanel.removeView(mContextView);
 			mLayout.savePanelCmds(this);
-			mContextView = null;
 		}
 		else if(mItemId == R.id.add_kbd)
 		{
 			int idx = mBtnPanel.indexOfChild(mContextView);
 			mBtnPanel.addView(createCmdButtonFromString("...", ""), idx);
 			mLayout.savePanelCmds(this);
-			mContextView = null;
 		}
 		else if(mItemId == R.id.add_settings)
 		{
 			int idx = mBtnPanel.indexOfChild(mContextView);
 			mBtnPanel.addView(createCmdButtonFromString("menu", ""), idx);
 			mLayout.savePanelCmds(this);
-			mContextView = null;
 		}
 		else if(mItemId == R.id.label)
 		{
 			mInput = new EditText(mContext);
 			mInput.setMaxLines(1);
+			mInput.setSingleLine();
 			mInput.setText(((Cmd)mContextView.getTag()).getLabel());
 			mInput.selectAll();
 
-			mEditDlg = new NH_Dialog(mContext);
+			mEditDlg = new NH_Dialog(mContext, mContextView);
 			mEditDlg.setTitle("Type custom label");
 			mEditDlg.setView(mInput);
 			mEditDlg.setNegativeButton("Cancel", null);
 			mEditDlg.setPositiveButton("Ok", onPositiveButton);
-			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();
+		}
+		else if(mItemId == R.id.opacity)
+		{
+			mLayout.openCmdPanelOpacity(this);
+		}
+		else if(mItemId == R.id.resize)
+		{
+			mLayout.openCmdPanelSize(this);
 		}
 		else
 		{
 			mInput = new EditText(mContext);
 			mInput.setMaxLines(1);
+			mInput.setSingleLine();
 			if(mItemId == R.id.change)
 				mInput.setText(((Cmd)mContextView.getTag()).getCommand());
 			mInput.selectAll();
 
-			mEditDlg = new NH_Dialog(mContext);
+			mEditDlg = new NH_Dialog(mContext, mContextView);
 			mEditDlg.setTitle("Type command sequence");
 			mEditDlg.setView(mInput);
 			mEditDlg.setNegativeButton("Cancel", null);
 			mEditDlg.setPositiveButton("Ok", onPositiveButton);
-			mEditDlg.setOnDismissListener(onDismiss);
 			mInput.setOnEditorActionListener(onEditorActionListener);
 			mEditDlg.show();
 		}
+		mContextView = null;
 	}
 
 	// ____________________________________________________________________________________
-	OnDismissListener onDismiss = new OnDismissListener()
-	{
-		@Override
-		public void onDismiss(DialogInterface dialog)
-		{
-			mContextView = null;
-		}
-	};
-
-	// ____________________________________________________________________________________
-	OnEditorActionListener onEditorActionListener = new OnEditorActionListener()
+	private OnEditorActionListener onEditorActionListener = new OnEditorActionListener()
 	{
 		public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
 		{
@@ -263,12 +298,14 @@ public class CmdPanel
 		}
 	};
 
-	DialogInterface.OnClickListener onPositiveButton = new DialogInterface.OnClickListener()
+	// ____________________________________________________________________________________
+	private DialogInterface.OnClickListener onPositiveButton = new DialogInterface.OnClickListener()
 	{
 		@Override
 		public void onClick(DialogInterface dialog, int whichButton)
 		{
-			int idx = mBtnPanel.indexOfChild(mContextView);
+			View panelButton = ((NH_Dialog)dialog).getTag();
+			int idx = mBtnPanel.indexOfChild(panelButton);
 			if(idx >= 0)
 			{
 				String cmd = "";
@@ -280,22 +317,27 @@ public class CmdPanel
 				else if(mItemId == R.id.change)
 				{
 					cmd = mInput.getText().toString();
-					label = ((Cmd)mContextView.getTag()).getLabel();
+					label = ((Cmd)panelButton.getTag()).getLabel();
 				}
 				else if(mItemId == R.id.label)
 				{
-					cmd = ((Cmd)mContextView.getTag()).getCommand();
+					cmd = ((Cmd)panelButton.getTag()).getCommand();
 					label = mInput.getText().toString();
 				}
 				if(mItemId == R.id.change || mItemId == R.id.label)
 					mBtnPanel.removeViewAt(idx);
-				mBtnPanel.addView(createCmdButtonFromString(cmd, label), idx);
+				mBtnPanel.addView(createCmdButtonFromString(sanitize(cmd), sanitize(label)), idx);
 				mBtnPanel.refreshDrawableState();
 				mLayout.savePanelCmds(CmdPanel.this);
 			}
 		}
+
+		private String sanitize(String cmd) {
+			return cmd.replace("\n", "\\n").replace("\r", "\\n");
+		}
 	};
 
+	// ____________________________________________________________________________________
 	public void attach(ViewGroup newParent, boolean bHorizontal)
 	{
 		ViewGroup parent = (ViewGroup)mBtnPanel.getParent();
@@ -310,5 +352,35 @@ public class CmdPanel
 				mBtnPanel.setOrientation(LinearLayout.VERTICAL);
 		}
 
+	}
+
+	// ____________________________________________________________________________________
+	public int getRelSize()
+	{
+		return mRelSize;
+	}
+
+	// ____________________________________________________________________________________
+	public int getOpacity()
+	{
+		return mOpacity;
+	}
+
+	// ____________________________________________________________________________________
+	public void setRelSize(int relSize)
+	{
+		if(mRelSize != relSize) {
+			updateMinButtonSize(relSize);
+			updatePanelSize();
+		}
+	}
+
+	// ____________________________________________________________________________________
+	public void setOpacity(int opacity)
+	{
+		if(mOpacity != opacity) {
+			mOpacity = opacity;
+			updatePanelOpacity();
+		}
 	}
 }

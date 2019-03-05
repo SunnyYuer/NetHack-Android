@@ -8,7 +8,10 @@ import com.tbd.forkfront.Input.Modifier;
 
 public interface Cmd
 {
-	void execute();
+	interface ExecuteFinishedHandler {
+		void onExecuteFinished();
+	}
+	void execute(ExecuteFinishedHandler handler);
 
 	boolean hasLabel();
 
@@ -31,9 +34,10 @@ public interface Cmd
 
 		// ____________________________________________________________________________________
 		@Override
-		public void execute()
+		public void execute(ExecuteFinishedHandler handler)
 		{
 			mState.showKeyboard();
+			handler.onExecuteFinished();
 		}
 
 		// ____________________________________________________________________________________
@@ -82,9 +86,10 @@ public interface Cmd
 
 		// ____________________________________________________________________________________
 		@Override
-		public void execute()
+		public void execute(ExecuteFinishedHandler handler)
 		{
 			mState.startPreferences();
+			handler.onExecuteFinished();
 		}
 
 		// ____________________________________________________________________________________
@@ -134,7 +139,6 @@ public interface Cmd
 		}
 
 		private NH_State mState;
-		private boolean mExecuting;
 		private String mLabel = "";
 		private ArrayList<KeyCmd> mSeq = new ArrayList<KeyCmd>();
 		private String mCommand;
@@ -173,17 +177,14 @@ public interface Cmd
 
 		// ____________________________________________________________________________________
 		@Override
-		public void execute()
+		public void execute(final ExecuteFinishedHandler executeHandler)
 		{
-			// Prevent re-entry while already executing the command!
-			if(mExecuting)
-				return;
 			if(mSeq.isEmpty())
 				rebuildSequence();
-			if(mSeq.isEmpty())
+			if(mSeq.isEmpty()) {
+				executeHandler.onExecuteFinished();
 				return;
-
-			mExecuting = true;
+			}
 
 			// Handle response from NetHack for each key, before posting the next
 			final Handler handler = mState.getHandler();
@@ -205,7 +206,7 @@ public interface Cmd
 						handler.post(this);
 					}
 					else
-						mExecuting = false;
+						executeHandler.onExecuteFinished();
 				}
 			});
 		}
@@ -249,6 +250,11 @@ public interface Cmd
 					else if(n == 'n')
 					{
 						ch = '\n';
+						i++;
+					}
+					else if(n == 'b')
+					{
+						ch = (char)0x7f;
 						i++;
 					}
 				}

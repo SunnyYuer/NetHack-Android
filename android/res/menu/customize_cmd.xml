@@ -25,4 +25,12 @@
 		android:id="@+id/remove"
 		android:titleCondensed="Remove command"
 		android:title="Remove command"/>
+	<item
+		android:id="@+id/opacity"
+		android:titleCondensed="Opacity..."
+		android:title="Change opacity..."/>
+	<item
+		android:id="@+id/resize"
+		android:titleCondensed="Resize..."
+		android:title="Resize panel..."/>
 </menu>

@@ -27,4 +27,6 @@ public interface NH_Handler
 	void setLastUsername(String s);
 	void setNumPadOption(boolean b);
 	void askName(int nMaxChars, String[] saves);
+	void loadSound(String filename);
+	void playSound(String filename, int volume);
 }

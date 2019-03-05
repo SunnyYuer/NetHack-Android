@@ -1,8 +1,7 @@
 package com.tbd.forkfront;
 
 import android.app.Activity;
-import com.tbd.forkfront.Input;
-import com.tbd.forkfront.KeyEventResult;
+import android.content.SharedPreferences;
 
 import java.util.Set;
 
@@ -17,4 +16,5 @@ public interface NH_Window
 	void setContext(Activity context);
 	String getTitle();
 	void setCursorPos(int x, int y);
+	void preferencesUpdated(SharedPreferences prefs);
 }

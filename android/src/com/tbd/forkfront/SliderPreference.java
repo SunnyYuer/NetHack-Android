@@ -17,13 +17,14 @@ import android.widget.TextView;
 public class SliderPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
 {
 	private static final String androidns = "http://schemas.android.com/apk/res/android";
+	private static final String thisns = "forkfront";
 
 	private SeekBar mSeekBar;
 	private TextView mSplashText, mValueText;
 	private Context mContext;
 
 	private String mDialogMessage, mSuffix;
-	private int mDefault, mMax, mValue = 0;
+	private int mDefault, mMin, mMax, mValue;
 
 	public SliderPreference(Context context, AttributeSet attrs)
 	{
@@ -33,8 +34,8 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 		mDialogMessage = attrs.getAttributeValue(androidns, "dialogMessage");
 		mSuffix = attrs.getAttributeValue(androidns, "text");
 		mDefault = attrs.getAttributeIntValue(androidns, "defaultValue", 0);
+		mMin = attrs.getAttributeIntValue(thisns, "min", 0);
 		mMax = attrs.getAttributeIntValue(androidns, "max", 100);
-
 	}
 
 	@Override
@@ -56,15 +57,16 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 		params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 		layout.addView(mValueText, params);
 
+		mValue = getPersistedInt(mDefault);
+
 		mSeekBar = new SeekBar(mContext);
+		mSeekBar.setMax(mMax - mMin);
+		mSeekBar.setProgress(mValue - mMin);
 		mSeekBar.setOnSeekBarChangeListener(this);
 		layout.addView(mSeekBar, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-		if(shouldPersist())
-			mValue = getPersistedInt(mDefault);
+		onProgressChanged(mSeekBar, mValue - mMin, false);
 
-		mSeekBar.setMax(mMax);
-		mSeekBar.setProgress(mValue);
 		return layout;
 	}
 
@@ -72,8 +74,8 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 	protected void onBindDialogView(View v)
 	{
 		super.onBindDialogView(v);
-		mSeekBar.setMax(mMax);
-		mSeekBar.setProgress(mValue);
+		mSeekBar.setMax(mMax - mMin);
+		mSeekBar.setProgress(mValue - mMin);
 	}
 
 	@Override
@@ -81,19 +83,20 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 	{
 		super.onSetInitialValue(restore, defaultValue);
 		if(restore)
-			mValue = shouldPersist() ? getPersistedInt(mDefault) : 0;
+			mValue = getPersistedInt(mDefault);
 		else
 			mValue = (Integer)defaultValue;
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
+	public void onProgressChanged(SeekBar seek, int progress, boolean fromTouch)
 	{
-		String t = String.valueOf(value);
+		mValue = progress + mMin;
+		String t = String.valueOf(mValue);
 		mValueText.setText(mSuffix == null ? t : t.concat(mSuffix));
 		if(shouldPersist())
-			persistInt(value);
-		callChangeListener(new Integer(value));
+			persistInt(mValue);
+		callChangeListener(new Integer(mValue));
 	}
 
 	@Override
@@ -104,27 +107,5 @@ public class SliderPreference extends DialogPreference implements SeekBar.OnSeek
 	@Override
 	public void onStopTrackingTouch(SeekBar seek)
 	{
-	}
-
-	public void setMax(int max)
-	{
-		mMax = max;
-	}
-
-	public int getMax()
-	{
-		return mMax;
-	}
-
-	public void setProgress(int progress)
-	{
-		mValue = progress;
-		if(mSeekBar != null)
-			mSeekBar.setProgress(progress);
-	}
-
-	public int getProgress()
-	{
-		return mValue;
 	}
 }

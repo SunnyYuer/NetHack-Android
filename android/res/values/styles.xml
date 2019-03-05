@@ -32,7 +32,9 @@
 	<style name="dPadBtn" parent="@android:style/Widget.Button">
 		<item name="android:typeface">monospace</item>
 		<item name="android:textSize">14sp</item>
-				<item name="android:layout_width">50dip</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">none</item>
+		<item name="android:layout_width">50dip</item>
 		<item name="android:layout_height">50dip</item>
 		<item name="android:gravity">center</item>
 	</style>

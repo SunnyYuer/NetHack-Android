@@ -7,7 +7,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<TextView
+	<com.tbd.forkfront.NH_TextView
 		android:id="@+id/text_view"
 		style="@style/WindowText"
 		android:background="#00000000"

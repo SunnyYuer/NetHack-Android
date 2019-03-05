@@ -17,6 +17,7 @@ public class NHW_Status implements NH_Window
 	private boolean mIsVisible;
 	private int mWid;
 	private int mOpacity;
+	boolean mOldMode; // TODO get rid of this by fixing proper cursor movement and remove append parameter to putString
 
 	// ____________________________________________________________________________________
 	public NHW_Status(Activity context, NetHackIO io)
@@ -26,6 +27,7 @@ public class NHW_Status implements NH_Window
 		mRows[0] = new SpannableStringBuilder();
 		mRows[1] = new SpannableStringBuilder();
 		mCurRow = 0;
+		mOldMode = context.getResources().getBoolean(R.bool.oldStatusMode);
 		setContext(context);
 	}
 
@@ -100,12 +102,16 @@ public class NHW_Status implements NH_Window
 	@Override
 	public void printString(int attr, String str, int append, int color)
 	{
-		if( append == 0 || str.length() < mRows[mCurRow].length() ) {
-			mRows[mCurRow] = new SpannableStringBuilder( TextAttr.style(str, attr, color) );
+		if(mOldMode) {
+			if(append == 0 || str.length() < mRows[mCurRow].length()) {
+				mRows[mCurRow] = new SpannableStringBuilder(TextAttr.style(str, attr, color));
+			} else {
+				int nToAppend = str.length() - mRows[mCurRow].length();
+				if(nToAppend > 0)
+					mRows[mCurRow].append(TextAttr.style(str.substring(mRows[mCurRow].length(), str.length()), attr, color));
+			}
 		} else {
-			int nToAppend = str.length() - mRows[mCurRow].length();
-			if(nToAppend > 0)
-				mRows[mCurRow].append(TextAttr.style(str.substring(mRows[mCurRow].length(), str.length()), attr, color));
+			mRows[mCurRow].append(TextAttr.style(str, attr, color));
 		}
 	}
 
@@ -134,6 +140,7 @@ public class NHW_Status implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void preferencesUpdated(SharedPreferences prefs)
 	{
 		mOpacity = prefs.getInt("statusOpacity", 0);

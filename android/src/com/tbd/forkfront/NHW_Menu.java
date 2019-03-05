@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.text.SpannableStringBuilder;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
-import com.tbd.forkfront.*;
 import com.tbd.forkfront.Input.Modifier;
 
 public class NHW_Menu implements NH_Window
@@ -216,6 +212,12 @@ public class NHW_Menu implements NH_Window
 		show(false);
 	}
 
+	// ____________________________________________________________________________________
+	@Override
+	public void preferencesUpdated(SharedPreferences prefs) {
+		mUI.preferencesUpdated(prefs);
+	}
+
 	// ____________________________________________________________________________________ //
 	// 																						//
 	// ____________________________________________________________________________________ //
@@ -226,6 +228,7 @@ public class NHW_Menu implements NH_Window
 		
 		private ListView mListView;
 		private AmountSelector mAmountSelector;
+		private Button mSelectAllBtn;
 
 		public UI(Activity context)
 		{
@@ -340,10 +343,23 @@ public class NHW_Menu implements NH_Window
 						if(mKeyboardCount < 0)
 							mKeyboardCount = 0;
 						mKeyboardCount = mKeyboardCount * 10 + ch - '0';
+						return KeyEventResult.HANDLED;
 					}
 					else if(menuSelect(ch))
 						return KeyEventResult.HANDLED;
-
+					else if(mHow == MenuSelectMode.PickMany)
+					{
+						if(ch == '.' || keyCode == KeyEvent.KEYCODE_PERIOD)
+						{
+							selectAll();
+							return KeyEventResult.HANDLED;
+						}
+						else if(ch == '-' || keyCode == KeyEvent.KEYCODE_MINUS)
+						{
+							clearAll();
+							return KeyEventResult.HANDLED;
+						}
+					}
 					return KeyEventResult.RETURN_TO_SYSTEM;
 				}
 				return KeyEventResult.HANDLED;
@@ -587,6 +603,8 @@ public class NHW_Menu implements NH_Window
 				}
 				((MenuItemAdapter)mListView.getAdapter()).notifyDataSetChanged();
 				mKeyboardCount = -1;
+				if(mSelectAllBtn != null)
+					mSelectAllBtn.setText("Clear all");
 			}
 		}
 
@@ -603,6 +621,8 @@ public class NHW_Menu implements NH_Window
 				}
 				((MenuItemAdapter)mListView.getAdapter()).notifyDataSetChanged();
 				mKeyboardCount = -1;
+				if(mSelectAllBtn != null)
+					mSelectAllBtn.setText("Select all");
 			}
 		}
 
@@ -692,24 +712,17 @@ public class NHW_Menu implements NH_Window
 			break;
 			}
 
-			final Button selectAllBtn = (Button)mRoot.findViewById(R.id.btn_all);
-			if(selectAllBtn != null)
-				selectAllBtn.setOnClickListener(new OnClickListener()
+			mSelectAllBtn = (Button)mRoot.findViewById(R.id.btn_all);
+			if(mSelectAllBtn != null)
+				mSelectAllBtn.setOnClickListener(new OnClickListener()
 				{
 					@Override
 					public void onClick(View view)
 					{
-						if("Clear all".equals(selectAllBtn.getText().toString()))
-						{
+						if("Clear all".equals(mSelectAllBtn.getText().toString()))
 							clearAll();
-							selectAllBtn.setText("Select all");
-						}
 						else
-						{
 							selectAll();
-							selectAllBtn.setText("Clear all");
-						}
-
 					}
 				});
 
@@ -837,6 +850,13 @@ public class NHW_Menu implements NH_Window
 			case PickMany:
 				sendSelectChecked();
 			break;
+			}
+		}
+
+		public void preferencesUpdated(SharedPreferences prefs) {
+			if(mListView != null && mListView.getAdapter() != null) {
+				mListView.invalidateViews();
+				((MenuItemAdapter)mListView.getAdapter()).notifyDataSetChanged();
 			}
 		}
 	}

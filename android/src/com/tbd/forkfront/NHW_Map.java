@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.tbd.forkfront.*;
 
 public class NHW_Map implements NH_Window
 {
@@ -119,6 +118,7 @@ public class NHW_Map implements NH_Window
 	private int mWid;
 	private NH_State mNHState;
 	private final ByteDecoder mDecoder;
+	private int mBorderColor;
 
 	// ____________________________________________________________________________________
 	public NHW_Map(Activity context, Tileset tileset, NHW_Status status, NH_State nhState, ByteDecoder decoder)
@@ -138,6 +138,7 @@ public class NHW_Map implements NH_Window
 		mPlayerPos = new Point();
 		mCursorPos = new Point(-1, -1);
 		mStatus = status;
+		mBorderColor = 0;
 		clear();
 		setContext(context);
 	}
@@ -385,6 +386,18 @@ public class NHW_Map implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
+	public void preferencesUpdated(SharedPreferences prefs) {
+		int borderOpacity = prefs.getInt("borderOpacity", 50);
+		int borderColor = Color.rgb(0xc9*borderOpacity/256, 0xc9*borderOpacity/256, 0xf9*borderOpacity/256);
+		if(borderColor != mBorderColor)
+		{
+			mBorderColor = borderColor;
+			mUI.invalidate();
+		}
+	}
+
+	// ____________________________________________________________________________________
 	public void pan(float dx, float dy)
 	{
 		if(canPan())
@@ -578,8 +591,8 @@ public class NHW_Map implements NH_Window
 	{
 		private CountDownTimer mPressCountDown;
 		private TextPaint mPaint;
-		private PointF mPointer0;
-		private PointF mPointer1;
+		private final PointF mPointer0;
+		private final PointF mPointer1;
 		private int mPointerId0;
 		private int mPointerId1;
 		private float mPointerDist;
@@ -599,7 +612,6 @@ public class NHW_Map implements NH_Window
 			super(mContext);
 			setFocusable(false);
 			setFocusableInTouchMode(false);
-			setBackgroundColor(0xff19191f);
 
 			((ViewGroup)mContext.findViewById(R.id.map_frame)).addView(this, 0);
 			mPaint = new TextPaint();
@@ -645,6 +657,8 @@ public class NHW_Map implements NH_Window
 		protected void onDraw(Canvas canvas)
 		{
 			super.onDraw(canvas);
+
+			drawBorder(canvas);
 
 			if(isTTY())
 				drawAscii(canvas);
@@ -795,6 +809,37 @@ public class NHW_Map implements NH_Window
 			}
 
 			//drawCursor(canvas, tileW, tileH);
+		}
+
+		// ____________________________________________________________________________________
+		private void drawBorder(Canvas canvas)
+		{
+			if((mBorderColor & 0xffffff) == 0)
+				return;
+
+			float tileW = getScaledTileWidth();
+			float tileH = getScaledTileHeight();
+
+			float borderSize = 2;
+
+			Rect clipRect = new Rect();
+			if (!canvas.getClipBounds(clipRect)) {
+				clipRect.set(0, 0, canvas.getWidth(), canvas.getHeight());
+			}
+
+			float x = FloatMath.floor(mViewOffset.x - 2 * borderSize);
+			float y = FloatMath.floor(mViewOffset.y - 2 * borderSize);
+			float w = FloatMath.ceil(tileW * TileCols + 4 * borderSize);
+			float h = FloatMath.ceil(tileH * TileRows + 4 * borderSize);
+
+			mPaint.setAntiAlias(false);
+			mPaint.setColor(mBorderColor);
+			mPaint.setStrokeWidth(borderSize);
+			mPaint.setStyle(Style.STROKE);
+
+			canvas.drawRect(x, y, x + w, y + h, mPaint);
+
+			mPaint.setStyle(Style.FILL);
 		}
 
 		// ____________________________________________________________________________________

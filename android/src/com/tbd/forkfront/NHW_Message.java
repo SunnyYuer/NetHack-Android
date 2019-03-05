@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import com.tbd.forkfront.*;
 
 public class NHW_Message implements NH_Window
 {
@@ -210,6 +209,7 @@ public class NHW_Message implements NH_Window
 	}
 
 	// ____________________________________________________________________________________
+	@Override
 	public void preferencesUpdated(SharedPreferences prefs)
 	{
 		mOpacity = prefs.getInt("statusOpacity", 0);

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/base_frame"
+    android:background="#ff000000"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:baselineAligned="false"
@@ -41,13 +42,13 @@
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <TextView
+                    <com.tbd.forkfront.NH_TextView
                         android:id="@+id/nh_message"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <TextView
+                    <com.tbd.forkfront.NH_TextView
                         android:id="@+id/more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -59,7 +60,7 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <TextView
+                <com.tbd.forkfront.NH_TextView
                     android:id="@+id/nh_blockmsg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

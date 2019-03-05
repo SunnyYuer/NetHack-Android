@@ -19,6 +19,8 @@ import android.widget.ScrollView;
 
 public class CmdPanelLayout extends FrameLayout
 {
+	private static final int MAX_PANELS = 6;
+
 	private class Panel
 	{
 		int idx;
@@ -31,6 +33,7 @@ public class CmdPanelLayout extends FrameLayout
 		public int pLoc;
 		public int lLoc;
 		public int opacity;
+		public int relSize;
 	}
 
 	private ArrayList<Panel> mPanelCmds = new ArrayList<>();
@@ -40,6 +43,9 @@ public class CmdPanelLayout extends FrameLayout
 	private boolean mShowPanels = true;
 	private Rect mViewRect = new Rect();
 	private View mViewArea;
+	private CmdPanelSizeOpacity mCmdPanelSize;
+	private CmdPanelSizeOpacity mCmdPanelOpacity;
+	private Cmd mExecutingCmd;
 
 	// ____________________________________________________________________________________
 	public CmdPanelLayout(Context context)
@@ -275,6 +281,30 @@ public class CmdPanelLayout extends FrameLayout
 	}
 
 	// ____________________________________________________________________________________
+	public void openCmdPanelSize(CmdPanel panel) {
+		mCmdPanelSize = new CmdPanelSizeOpacity(mContext, mContext.findViewById(R.id.dlg_frame), this, panel, false,
+			new CmdPanelSizeOpacity.CmdPanelResizeHandler() {
+				@Override
+				public void onDismiss() {
+					mCmdPanelSize = null;
+				}
+			}
+		);
+	}
+
+	// ____________________________________________________________________________________
+	public void openCmdPanelOpacity(CmdPanel panel) {
+		mCmdPanelOpacity = new CmdPanelSizeOpacity(mContext, mContext.findViewById(R.id.dlg_frame), this, panel, true,
+				new CmdPanelSizeOpacity.CmdPanelResizeHandler() {
+					@Override
+					public void onDismiss() {
+						mCmdPanelOpacity = null;
+					}
+				}
+		);
+	}
+
+	// ____________________________________________________________________________________
 	public void preferencesUpdated(SharedPreferences prefs)
 	{
 		loadPanels(prefs);
@@ -329,6 +359,11 @@ public class CmdPanelLayout extends FrameLayout
 	// ____________________________________________________________________________________
 	private void loadPanels(SharedPreferences prefs)
 	{
+		if(mCmdPanelSize != null)
+			mCmdPanelSize.dismiss();
+		if(mCmdPanelOpacity != null)
+			mCmdPanelOpacity.dismiss();
+
 		Editor editor = prefs.edit();
 
 		boolean bResetPanel = prefs.getBoolean("reset", false);
@@ -361,13 +396,13 @@ public class CmdPanelLayout extends FrameLayout
 		editor.commit();
 
 		ArrayList<Panel> panelCmds = new ArrayList<Panel>();
-		for(int iPanel = 0; iPanel < 6; iPanel++)
+		for(int iPanel = 0; iPanel < MAX_PANELS; iPanel++)
 		{
 			String idx = Integer.toString(iPanel);
 			boolean bPortActive = prefs.getBoolean("pPortActive" + idx, false);
 			boolean bLandActive = prefs.getBoolean("pLandActive" + idx, false);
 			int opacity = prefs.getInt("pOpacity" + idx, 255);
-			Log.print("panel" + idx + ": " + Boolean.toString(bPortActive));
+			int relSize = prefs.getInt("pSize" + idx, 0);
 			if(bPortActive || bLandActive)
 			{
 				Panel panel = new Panel();
@@ -378,6 +413,7 @@ public class CmdPanelLayout extends FrameLayout
 				panel.portActive = bPortActive;
 				panel.landActive = bLandActive;
 				panel.opacity = opacity;
+				panel.relSize = relSize;
 				panelCmds.add(panel);
 			}
 		}
@@ -401,7 +437,7 @@ public class CmdPanelLayout extends FrameLayout
 				else
 					panel.landScrollView = createScrollView(panel.lLoc);
 				
-				panel.panel = new CmdPanel(mContext, mState, this, panel.cmds, panel.opacity);
+				panel.panel = new CmdPanel(mContext, mState, this, panel.cmds, panel.opacity, panel.relSize);
 				if(mPortraitMode)
 				{
 					if(mShowPanels && panel.portActive)
@@ -444,6 +480,8 @@ public class CmdPanelLayout extends FrameLayout
 			if(pa.lLoc != pb.lLoc)
 				return true;
 			if(pa.opacity != pb.opacity)
+				return true;
+			if(pa.relSize != pb.relSize)
 				return true;
 		}
 		return false;
@@ -503,7 +541,7 @@ public class CmdPanelLayout extends FrameLayout
 		editor.putString("pPortLoc0", "3");
 		editor.putString("pLandLoc0", "3");
 
-		for(int iPanel = 1; iPanel < 6; iPanel++)
+		for(int iPanel = 1; iPanel < MAX_PANELS; iPanel++)
 		{
 			String idx = Integer.toString(iPanel);
 			editor.putBoolean("pPortActive" + idx, false);
@@ -517,13 +555,13 @@ public class CmdPanelLayout extends FrameLayout
 		// Add menu command to first non-empty active panel
 
 		// Unless some of them already has it
-		for(int iPanel = 0; iPanel < 6; iPanel++)
+		for(int iPanel = 0; iPanel < MAX_PANELS; iPanel++)
 		{
 			if((" " + prefs.getString("pCmdString" + iPanel, "") + " ").contains(" menu "))
 				return;
 		}
 
-		for(int iPanel = 0; iPanel < 6; iPanel++)
+		for(int iPanel = 0; iPanel < MAX_PANELS; iPanel++)
 		{
 			String idx = Integer.toString(iPanel);
 			boolean bPortActive = prefs.getBoolean("pPortActive" + idx, false);
@@ -548,7 +586,12 @@ public class CmdPanelLayout extends FrameLayout
 		for(Panel p : mPanelCmds)
 			p.panel.onCreateContextMenu(menu, v);
 	}
-
+	// ____________________________________________________________________________________
+	public void onContextMenuClosed()
+	{
+		for(Panel p : mPanelCmds)
+			p.panel.onContextMenuClosed();
+	}
 	// ____________________________________________________________________________________
 	public void onContextItemSelected(MenuItem item)
 	{
@@ -574,4 +617,131 @@ public class CmdPanelLayout extends FrameLayout
 			}
 		}
 	}
+
+	// ____________________________________________________________________________________
+	private Panel findPanel(CmdPanel cmdPanel)
+	{
+		for(Panel panel : mPanelCmds)
+		{
+			if(panel.panel == cmdPanel)
+				return panel;
+		}
+		return null;
+	}
+
+	// ____________________________________________________________________________________
+	private Panel findPanel(int idx)
+	{
+		for(Panel panel : mPanelCmds)
+		{
+			if(panel.idx == idx)
+				return panel;
+		}
+		return null;
+	}
+
+	// ____________________________________________________________________________________
+	private Editor getEditor(boolean permanent)
+	{
+		if(!permanent)
+			return null;
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		return prefs.edit();
+	}
+
+	// ____________________________________________________________________________________
+	private void resizePanel(int iPanel, int relSize, Editor editor)
+	{
+		Panel panel = findPanel(iPanel);
+		if(panel != null)
+			panel.panel.setRelSize(relSize);
+		if(editor != null)
+		{
+			if(panel != null)
+				panel.relSize = relSize;
+			editor.putInt("pSize" + Integer.toString(iPanel), relSize);
+		}
+	}
+
+	// ____________________________________________________________________________________
+	public void resizePanel(CmdPanel cmdPanel, int size, boolean permanent)
+	{
+		Editor editor = getEditor(permanent);
+		resizePanel(findPanel(cmdPanel).idx, size, editor);
+		if(permanent)
+			editor.commit();
+	}
+
+	// ____________________________________________________________________________________
+	public void resizeAllPanels(int relSize, boolean permanent)
+	{
+		Editor editor = getEditor(permanent);
+		for(int iPanel = 0; iPanel < MAX_PANELS; iPanel++)
+			resizePanel(iPanel, relSize, editor);
+		if(permanent)
+			editor.commit();
+	}
+
+	// ____________________________________________________________________________________
+	public void resetPanelSize()
+	{
+		for(Panel panel : mPanelCmds)
+			panel.panel.setRelSize(panel.relSize);
+	}
+
+	// ____________________________________________________________________________________
+	private void setPanelOpacity(int iPanel, int opacity, Editor editor)
+	{
+		Panel panel = findPanel(iPanel);
+		if(panel != null)
+			panel.panel.setOpacity(opacity);
+		if(editor != null)
+		{
+			if(panel != null)
+				panel.opacity = opacity;
+			editor.putInt("pOpacity" + Integer.toString(iPanel), opacity);
+		}
+	}
+
+	// ____________________________________________________________________________________
+	public void setPanelOpacity(CmdPanel cmdPanel, int opacity, boolean permanent)
+	{
+		Editor editor = getEditor(permanent);
+		setPanelOpacity(findPanel(cmdPanel).idx, opacity, editor);
+		if(permanent)
+			editor.commit();
+	}
+
+	// ____________________________________________________________________________________
+	public void setAllPanelsOpacity(int opacity, boolean permanent)
+	{
+		Editor editor = getEditor(permanent);
+		for(int iPanel = 0; iPanel < MAX_PANELS; iPanel++)
+			setPanelOpacity(iPanel, opacity, editor);
+		if(permanent)
+			editor.commit();
+	}
+
+	// ____________________________________________________________________________________
+	public void resetPanelOpacity()
+	{
+		for(Panel panel : mPanelCmds)
+			panel.panel.setOpacity(panel.opacity);
+	}
+
+
+	// ____________________________________________________________________________________
+	public void executeCmd(Cmd cmd) {
+		if(mExecutingCmd == null) {
+			mExecutingCmd = cmd;
+			cmd.execute(ExecuteFinishedHandler);
+		}
+	}
+
+	private Cmd.ExecuteFinishedHandler ExecuteFinishedHandler = new Cmd.ExecuteFinishedHandler() {
+		@Override
+		public void onExecuteFinished() {
+			mExecutingCmd = null;
+		}
+	};
 }

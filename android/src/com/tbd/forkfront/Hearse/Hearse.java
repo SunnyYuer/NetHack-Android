@@ -9,7 +9,6 @@ import com.tbd.forkfront.R;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -33,7 +32,7 @@ import java.util.regex.Pattern;
  * This class communicates with the Hearse server and provides all Hearse functionality.
  * @author Ranbato
  */
-public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class Hearse {
 
 	private final String CLIENT_ID;
 	private final String HEARSE_CRC;
@@ -92,14 +91,14 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 	private final Activity context;
 	private final SharedPreferences prefs;
 	private final String dataDirString;
-	private final String userNick;
-	private final String userEmail;
+	private String userNick;
+	private String userEmail;
 	private String userToken;
-	private final boolean keepUploaded;
+	private boolean keepUploaded;
 	private long lastUpload;
-	private final HttpClient httpClient;
-	private final boolean mLittleEndian;
-	private final String mNethackVersion;
+	private HttpClient httpClient;
+	private boolean mLittleEndian;
+	private String mNethackVersion;
 
 	/**
 	 * Creates a new instance of Hearse
@@ -118,6 +117,8 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		CLIENT_ID = context.getResources().getString(R.string.hearseClientName);
 		HEARSE_CRC = getStringMD5(CLIENT_ID);
 		PATTERN = Pattern.compile("^bon[A-Z](0|(" + context.getResources().getString(R.string.hearseRoles) + "))\\.([A-Z]|\\d+)\\z", Pattern.CASE_INSENSITIVE);
+		if(HEARSE_CRC == null)
+			return;
 		mLittleEndian = context.getResources().getBoolean(R.bool.hearseLittleEndian);
 		mNethackVersion = context.getResources().getString(R.string.hearseNethackVersion);
 
@@ -128,7 +129,7 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		lastUpload = prefs.getLong(PREFS_HEARSE_LAST_UPLOAD, 0);
 		httpClient = new DefaultHttpClient();
 
-		prefs.registerOnSharedPreferenceChangeListener(this);
+		prefs.registerOnSharedPreferenceChangeListener(preferenceChangeListener);
 
 		if(prefs.getBoolean(PREFS_HEARSE_ENABLE, false)) {
 			hearseThread.start();
@@ -241,48 +242,49 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		@Override
 		public void run() {
 
-			if(isHearseReachable()) {
+			try {
+				if(isHearseReachable()) {
 
-				boolean newUser = false;
-				if(userToken.length() == 0) {
-					if(userEmail.length() > 0) {
-						userToken = createNewUser();
-						newUser = true;
-					} else {
-						showEmailRequired();
-					}
-				} else {
-					Log.print("using existing token " + userToken);
-
-					// Check if userNick information has changed and update.
-					if(prefs.getBoolean(PREFS_HEARSE_UPDATE_USER, false)) {
+					if(userToken.length() == 0) {
 						if(userEmail.length() > 0) {
-							changeUserInfo();
+							userToken = createNewUser();
 						} else {
 							showEmailRequired();
 						}
+					} else {
+						Log.print("using existing token " + userToken);
+
+						// Check if userNick information has changed and update.
+						if(prefs.getBoolean(PREFS_HEARSE_UPDATE_USER, false)) {
+							if(userEmail.length() > 0) {
+								changeUserInfo();
+							} else {
+								showEmailRequired();
+							}
+						}
 					}
+
+					if(prefs.contains(PREFS_HEARSE_UPDATE_USER))
+						prefs.edit().remove(PREFS_HEARSE_UPDATE_USER).commit();
+
+					if(userToken.length() > 0) {
+						int nUp = uploadBones();
+						int nDown = 0;
+						if(nUp > 0) {
+							nDown = downloadBones();
+						}
+						Log.print("Hearse uploaded " + nUp + ", downloaded " + nDown);
+
+						if(nUp > 0 || nDown > 0) {
+							updateLastUpload();
+						}
+					}
+				} else {
+					Log.print("Hearse not reachable");
 				}
-
-				if(prefs.contains(PREFS_HEARSE_UPDATE_USER))
-					prefs.edit().remove(PREFS_HEARSE_UPDATE_USER).commit();
-
-				if(userToken.length() > 0) {
-					int nUp = uploadBones();
-					int nDown = 0;
-					if(nUp > 0) {
-						nDown = downloadBones();
-					}
-					Log.print("Hearse uploaded " + nUp + ", downloaded " + nDown);
-
-					if(nUp > 0 || nDown > 0) {
-						updateLastUpload();
-					}
-				}
-			} else {
-				Log.print("Hearse not reachable");
+			} catch(Exception e) {
+				e.printStackTrace();
 			}
-
 		}
 	};
 
@@ -318,27 +320,21 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 
 		headerList.add(new BasicHeader(HEADER_NICK, userNick));
 
-		HttpResponse resp = doGet(BASE_URL, NEW_USER, headerList);
+		HttpResponse resp;
+		try {
+			resp = doGet(BASE_URL, NEW_USER, headerList);
+		} catch (IOException e) {
+			// Log exception
+			e.printStackTrace();
+			return "";
+		}
 
 		if (resp.getFirstHeader(HEADER_HEARSE) == null) {
 			consumeContent(resp);
 			return "";
 		}
 		if (resp.getFirstHeader(HEADER_ERROR) != null) {
-
-			HttpEntity e = resp.getEntity();
-			BufferedReader in;
-			try {
-				in = new BufferedReader(new InputStreamReader(e.getContent()));
-
-				String line;
-				while ((line = in.readLine()) != null) {
-					Log.print(line); //@todo output this to screen
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-
+			printContent(resp);
 			consumeContent(resp);
 			return "";
 
@@ -376,7 +372,13 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 				headerList.add(new BasicHeader(HEADER_NETHACKVER, hackver));
 			}
 
-			HttpResponse resp = doGet(BASE_URL, DOWNLOAD, headerList);
+			HttpResponse resp;
+			try {
+				resp = doGet(BASE_URL, DOWNLOAD, headerList);
+			} catch(IOException e) {
+				e.printStackTrace();
+				return 0;
+			}
 
 			if (resp.getFirstHeader(HEADER_HEARSE) == null) {
 				consumeContent(resp);
@@ -387,34 +389,9 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 
 				if (header.getValue().equals(F_ERROR_INFO)) {
 					// This is a warning so pretend we succeeded.
-					HttpEntity e = resp.getEntity();
-					BufferedReader in;
-					try {
-						in = new BufferedReader(new InputStreamReader(e.getContent()));
-
-						String line;
-						while ((line = in.readLine()) != null) {
-							Log.print(line); //@todo output this to screen
-
-						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+					printContent(resp);
 				} else {
-					HttpEntity e = resp.getEntity();
-					BufferedReader in;
-					try {
-						in = new BufferedReader(new InputStreamReader(e.getContent()));
-
-						String line;
-						while ((line = in.readLine()) != null) {
-							Log.print(line); //@todo output this to screen
-
-						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-
+					printContent(resp);
 				}
 				consumeContent(resp);
 				break;
@@ -457,8 +434,7 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 					}
 				}
 
-				String md5Check = getFileMD5(tmpBonesFile);
-				if (md5Check.equals(md5.getValue())) {
+				if(checkMD5(md5.getValue(), tmpBonesFile)) {
 					tmpBonesFile.renameTo(bonesFile);
 					Log.print("Downloaded " + bonesFile.getName());
 					existingBonesSet = existingBonesSet + bonesFile.getName() + ",";
@@ -524,7 +500,14 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 
 			headerList.add(new BasicHeader(HEADER_BONES_CRC, info.md5));
 
-			HttpResponse resp = doPost(BASE_URL, UPLOAD, headerList, info.data);
+			HttpResponse resp;
+			try {
+				resp = doPost(BASE_URL, UPLOAD, headerList, info.data);
+			} catch (IOException e) {
+				// Log exception
+				e.printStackTrace();
+				continue;
+			}
 
 			if (resp.getFirstHeader(HEADER_HEARSE) == null) {
 				consumeContent(resp);
@@ -541,34 +524,10 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 					if (!keepUploaded) {
 						files.get(i).delete();
 					}
-					HttpEntity entity = resp.getEntity();
-					BufferedReader in;
-					try {
-						in = new BufferedReader(new InputStreamReader(entity.getContent()));
 
-						String line;
-						while ((line = in.readLine()) != null) {
-							Log.print(line); //@todo output this to screen
-
-						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
+					printContent(resp);
 				} else {
-					HttpEntity e = resp.getEntity();
-					BufferedReader in;
-					try {
-						in = new BufferedReader(new InputStreamReader(e.getContent()));
-
-						String line;
-						while ((line = in.readLine()) != null) {
-							Log.print(line); //@todo output this to screen
-
-						}
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-
+					printContent(resp);
 				}
 			} else {
 				// Save the version for requests. Will help prevent bad bones.
@@ -636,32 +595,21 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		return results;
 	}
 
-	private HttpResponse doGet(String baseUrl, String action, List<Header> headers) {
+	private HttpResponse doGet(String baseUrl, String action, List<Header> headers) throws IOException {
 		HttpGet httpGet = new HttpGet(baseUrl + action);
 
 		httpGet.setHeaders(headers.toArray(new Header[headers.size()]));
 		httpGet.addHeader(HEADER_HEARSE_CRC, HEARSE_CRC);
 		httpGet.addHeader(HEADER_CLIENT, CLIENT_ID);
 
-
 		//making GET request.
-		HttpResponse response = null;
-		try {
-			response = httpClient.execute(httpGet);
-			// write response to log
-			Log.print("Http Get Response:" + response.toString());
-		} catch (ClientProtocolException e) {
-			// Log exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			// Log exception
-			e.printStackTrace();
-		}
-
+		HttpResponse response = httpClient.execute(httpGet);
+		// write response to log
+		Log.print("Http Get Response:" + response.toString());
 		return response;
 	}
 
-	private HttpResponse doPost(String baseUrl, String action, List<Header> headers, byte[] data) {
+	private HttpResponse doPost(String baseUrl, String action, List<Header> headers, byte[] data) throws IOException {
 
 		HttpPost httpPost = new HttpPost(baseUrl + action);
 
@@ -675,21 +623,10 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		}
 
 		//making POST request.
-		HttpResponse response = null;
-		try {
-			response = httpClient.execute(httpPost);
-			// write response to log
-			Log.print("Http Post Response:" + response.toString());
-		} catch (ClientProtocolException e) {
-			// Log exception
-			e.printStackTrace();
-		} catch (IOException e) {
-			// Log exception
-			e.printStackTrace();
-		}
-
+		HttpResponse response = httpClient.execute(httpPost);
+		// write response to log
+		Log.print("Http Post Response:" + response.toString());
 		return response;
-
 	}
 
 	private boolean isValidBonesFileName(String name) {
@@ -723,23 +660,17 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 
 		headerList.add(new BasicHeader(HEADER_TOKEN, userToken));
 
-		HttpResponse resp = doGet(BASE_URL, UPDATE_USER, headerList);
+		HttpResponse resp;
+		try {
+			resp = doGet(BASE_URL, UPDATE_USER, headerList);
+		} catch(IOException e) {
+			e.printStackTrace();
+			return;
+		}
 
 		if (resp.getFirstHeader(HEADER_HEARSE) != null && resp.getFirstHeader(HEADER_ERROR) != null) {
 
-			HttpEntity e = resp.getEntity();
-			BufferedReader in;
-			try {
-				in = new BufferedReader(new InputStreamReader(e.getContent()));
-
-				String line;
-				while ((line = in.readLine()) != null) {
-					Log.print(line); //@todo output this to screen
-				}
-
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			printContent(resp);
 		}
 
 		consumeContent(resp);
@@ -756,30 +687,45 @@ public class Hearse implements SharedPreferences.OnSharedPreferenceChangeListene
 		}
 	}
 
+	private void printContent(HttpResponse resp) {
+		try {
+			HttpEntity entity = resp.getEntity();
+			BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				Log.print(line); //@todo output this to screen
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Method to allow this class to listen for email or nickname changes and send them to Hearse
 	 * @param sharedPreferences Preferences
 	 * @param key changed key
 	 */
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		// Java 7 switch would be nice
-		boolean enabled = sharedPreferences.getBoolean(PREFS_HEARSE_ENABLE, false);
-		boolean enableChange = PREFS_HEARSE_ENABLE.equals(key);
-		boolean emailChange = PREFS_HEARSE_MAIL.equals(key);
-		boolean nickChange = PREFS_HEARSE_NAME.equals(key);
+	private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+		@Override
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+			// Java 7 switch would be nice
+			boolean enabled = sharedPreferences.getBoolean(PREFS_HEARSE_ENABLE, false);
+			boolean enableChange = PREFS_HEARSE_ENABLE.equals(key);
+			boolean emailChange = PREFS_HEARSE_MAIL.equals(key);
+			boolean nickChange = PREFS_HEARSE_NAME.equals(key);
 
-		if (emailChange || nickChange) {
-			sharedPreferences.edit().putBoolean(PREFS_HEARSE_UPDATE_USER, true).commit();
-		}
+			if(emailChange || nickChange) {
+				sharedPreferences.edit().putBoolean(PREFS_HEARSE_UPDATE_USER, true).commit();
+			}
 
-		if(enabled && (emailChange || enableChange)) {
-			String mail = sharedPreferences.getString(PREFS_HEARSE_MAIL,"");
-			if(mail.length() == 0) {
-				showEmailRequired();
+			if(enabled && (emailChange || enableChange)) {
+				String mail = sharedPreferences.getString(PREFS_HEARSE_MAIL, "");
+				if(mail.length() == 0) {
+					showEmailRequired();
+				}
 			}
 		}
-	}
+	};
 
 	private class NHFileInfo {
 		public byte[] data;

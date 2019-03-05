@@ -225,6 +225,12 @@ public class ForkFront extends Activity
 	}
 
 	// ____________________________________________________________________________________
+	public void onContextMenuClosed(Menu menu) {
+		super.onContextMenuClosed(menu);
+		nhState.onContextMenuClosed();
+	}
+
+	// ____________________________________________________________________________________
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{

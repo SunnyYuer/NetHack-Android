@@ -22,7 +22,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="0dip">
 
-			<TextView
+			<com.tbd.forkfront.NH_TextView
 				android:id="@+id/text_view"
 				style="@style/DialogText"
 				android:padding="12dip"

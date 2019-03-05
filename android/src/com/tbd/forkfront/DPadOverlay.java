@@ -26,6 +26,7 @@ public class DPadOverlay
 	private int mLandLoc;
 	public int mOrientation;
 	private int mOpacity;
+	private int mRelSize;
 
 	// ____________________________________________________________________________________
 	public DPadOverlay(NH_State nhState)
@@ -76,7 +77,9 @@ public class DPadOverlay
 		mPortLoc = getGravity(prefs.getString("ovlPortLoc", "1"));
 		mLandLoc = getGravity(prefs.getString("ovlLandLoc", "1"));
 		mOpacity = prefs.getInt("ovlOpacity", 255);
+		mRelSize = prefs.getInt("ovlSize", 0);
 		mUI.setTransparent();
+		mUI.updateSize();
 		setOrientation(mOrientation);
 	}
 	
@@ -163,6 +166,7 @@ public class DPadOverlay
 			mButtons[8].setOnLongClickListener(onDPadLong);
 
 			setTransparent();
+			updateSize();
 			updateNumPadState();
 		}
 
@@ -343,6 +347,20 @@ public class DPadOverlay
 					b.setTextColor(mDefaultTextColor);
 				else
 					b.setTextColor(0xffffffff);
+			}
+		}
+
+		// ____________________________________________________________________________________
+		private void updateSize()
+		{
+			final float density = mContext.getResources().getDisplayMetrics().density;
+			int scale = mRelSize > 0 ? 2 : 1;
+			int size = (int)((50 + scale * mRelSize) * density + 0.5f);
+			for(Button b : mButtons)
+			{
+				b.getLayoutParams().width = size;
+				b.getLayoutParams().height = size;
+				b.requestLayout();
 			}
 		}
 	}

@@ -1,10 +1,12 @@
 package com.tbd.forkfront;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import android.app.Activity;
 import android.content.res.Resources;
+import android.os.Environment;
 import android.os.Handler;
 import com.tbd.forkfront.*;
 
@@ -799,7 +801,49 @@ public class NetHackIO
 		});
 		return waitForLine();
 	}
-	
+
+	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
+	private void loadSound(final byte[] filename)
+	{
+		mHandler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				mNhHandler.loadSound(new String(filename));
+			}
+		});
+	}
+
+	// ____________________________________________________________________________________
+	@SuppressWarnings("unused")
+	private void playSound(final byte[] filename, final int volume)
+	{
+		mHandler.post(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				mNhHandler.playSound(new String(filename), volume);
+			}
+		});
+	}
+
+	@SuppressWarnings("unused")
+	private String getDumplogDir()
+	{
+		String path = "";
+		try
+		{
+			File file = new File(Environment.getExternalStorageDirectory(), "Documents" + File.separator + "nethack");
+			if(!file.exists())
+				file.mkdirs();
+			path = file.getAbsolutePath();
+		} catch(Exception e) {}
+		return path;
+	}
+
 	// ____________________________________________________________________________________
 	private native void RunNetHack(String path);
 	private native void SaveNetHackState();
