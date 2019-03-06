@@ -13,15 +13,22 @@
 
 === 准备 ===
 
-1. 在linux中安装ndk
-http://developer.android.com/sdk/ndk
- 
-2. 下载源代码并解压
-[下载](https://github.com/SunnyEric/NetHack-Android/archive/master.zip)
+1. 下载Android端源码并解压
+[下载](https://github.com/SunnyEric/NetHack-Android/archive/Android-cn.zip)
+
+下载NetHack源码并解压
+[下载](https://github.com/SunnyEric/NetHack-cn/archive/NetHack-Android.zip)
+
+2. 将Android-cn/android目录整个复制进NetHack-Android/NetHack/sys/目录下
+
+3. 在linux中安装ndk
+https://developer.android.google.cn/ndk/downloads/
+
+4. 安装Android Studio
 
 === 编译NetHack ===
 
-1. 进入nethack-android-ch/sys/android目录
+1. 进入NetHack-Android/NetHack/sys/android目录
 2. 打开Makefile.src文件并更改NDK目录为你的NDK目录
 3. 终端操作./setup.sh
 4. 终端操作cd ../..
@@ -29,17 +36,12 @@ http://developer.android.com/sdk/ndk
 
 === 编译app ===
 
-1. 打开Eclipse
-2. 导入安卓工程
-3. 运行
-
-##NetHack中文维基
-[NetHack中文维基](http://nhcnwiki.wealthlibre.info/%E9%A6%96%E9%A1%B5)
+1. 打开Android Studio
+2. 选导入Eclipse ADT工程，选择NetHack-Android/NetHack/sys/android目录
+3. 工程结构里选java1.7以上的版本
+4. 生成签名的APK
 
 ##问题反馈或建议
 * 百度贴吧http://tieba.baidu.com/p/4720022918
 * [Github Issues](https://github.com/SunnyEric/NetHack-Android/issues)
-* 邮箱956768385@qq.com
-
-##协议
-[NetHack 通用公共许可证](https://github.com/SunnyEric/NetHack-Android/blob/master/nethack-android-ch/dat/license)
+* 邮箱sunnyuer@qq.com
