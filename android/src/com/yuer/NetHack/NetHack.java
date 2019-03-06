@@ -24,9 +24,8 @@ import android.preference.PreferenceManager;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
-
-import com.yuer.NetHack.R;
 import com.yuer.NetHack.Input.Modifier;
+import com.yuer.NetHack.R;
 
 import java.io.File;
 import java.util.EnumSet;
@@ -45,7 +44,7 @@ public class NetHack extends Activity
 		super.onCreate(savedInstanceState);
 
 		Log.print("onCreate");
-		
+
 		if(DEBUG.isOn())
 		{
 			if(getResources().getString(R.string.namespace).length() == 0
@@ -105,7 +104,7 @@ public class NetHack extends Activity
 		nhState.onConfigurationChanged(newConfig);
 		super.onConfigurationChanged(newConfig);
 	}
-	
+
 	// ____________________________________________________________________________________
 	private UpdateAssets.Listener onAssetsReady = new UpdateAssets.Listener()
 	{
@@ -173,12 +172,12 @@ public class NetHack extends Activity
 	{
 		mCtrlDown = false;
 		mMetaDown = false;
-		
+
 		Log.print("onDestroy()");
 		if(nhState != null)
             nhState.saveAndQuit();
 		nhState = null;
-		
+
 		super.onDestroy();
 	}
 
@@ -222,6 +221,12 @@ public class NetHack extends Activity
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		nhState.onCreateContextMenu(menu, v);
+	}
+
+	// ____________________________________________________________________________________
+	public void onContextMenuClosed(Menu menu) {
+		super.onContextMenuClosed(menu);
+		nhState.onContextMenuClosed();
 	}
 
 	// ____________________________________________________________________________________
@@ -303,7 +308,7 @@ public class NetHack extends Activity
 
 		return super.dispatchKeyEvent(event);
 	}
-	
+
 	// ____________________________________________________________________________________
 	public boolean handleKeyDown(int keyCode, int unicodeChar, int repeatCount, EnumSet<Modifier> modifiers)
 	{
@@ -316,14 +321,14 @@ public class NetHack extends Activity
 			mCtrlDown = true;
 		else if(fixedCode == KeyAction.Meta)
 			mMetaDown = true;
-		
+
 		if(mCtrlDown)
 			modifiers.add(Modifier.Control);
 		else if(mMetaDown)
 			modifiers.add(Modifier.Meta);
-		
+
 		char ch = (char)unicodeChar;
-		
+
 		int nhKey = Input.nhKeyFromKeyCode(fixedCode, ch, modifiers, nhState.isNumPadOn());
 		
 		if(nhState.handleKeyDown(ch, nhKey, fixedCode, modifiers, repeatCount, false))

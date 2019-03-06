@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="namespace">com.yuer.NetHack</string>
+	<string name="namespace">com.yuer.NetHack</string>
 	<string name="oldActivityName">NetHack</string>
 	<string name="nativeDataDir">nethackdir</string>
 	<string name="libraryName">nethack</string>
@@ -12,4 +12,5 @@
 	<string name="hearseRoles">Arc|Bar|Cav|Hea|Kni|Mon|Pri|Rog|Ran|Sam|Tou|Val|Wiz</string>
 	<string name="hearseNethackVersion">54</string>
 	<bool name="hearseLittleEndian">false</bool>
+	<bool name="oldStatusMode">false</bool>
 </resources>

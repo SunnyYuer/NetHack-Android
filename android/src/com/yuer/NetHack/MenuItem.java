@@ -26,14 +26,18 @@ public class MenuItem
 		mIdent = ident;
 		mAccelerator = (char)accelerator;
 		mGroupacc = (char)groupacc;
-		mAttr = attr == TextAttr.ATTR_BOLD ? TextAttr.ATTR_INVERSE : attr;
+
+		if(mAccelerator == 0 && mIdent == 0 && attr == TextAttr.ATTR_BOLD)
+			mAttr = TextAttr.ATTR_INVERSE; // Special case for group headers
+		else
+			mAttr = attr; // Else regular entry
 
 		String text = str;
-		int lsp = text.lastIndexOf('(');
+		int lsp = text.lastIndexOf(" (") + 1;
 		int rsp = text.lastIndexOf(')');
 		int lwp = text.lastIndexOf('{');
 		int rwp = text.lastIndexOf('}');
-		if(accelerator != 0 && (lsp > 0 || lwp > 0) && (rsp > lsp && rsp == text.length() - 1 || rwp > lwp && rwp == text.length() - 1))
+		if(!isHeader() && (lsp > 0 || lwp > 0) && (rsp > lsp && rsp == text.length() - 1 || rwp > lwp && rwp == text.length() - 1))
 		{
 			boolean hasStatus = rsp > lsp;
 			mName = text.substring(0, hasStatus ? lsp : lwp);
@@ -110,7 +114,7 @@ public class MenuItem
 	// ____________________________________________________________________________________
 	public boolean isHeader()
 	{
-		return mAttr == TextAttr.ATTR_INVERSE;
+		return mAccelerator == 0 && mIdent == 0 && mAttr == TextAttr.ATTR_INVERSE;
 	}
 
 	// ____________________________________________________________________________________
@@ -175,9 +179,9 @@ public class MenuItem
 	{
 		mAccelerator = acc;
 		if(acc != 0)
-			mAccText = new SpannableString(Character.toString(acc));
+			mAccText = new SpannableString(Character.toString(acc) + "   ");
 		else
-			mAccText = null;
+			mAccText = new SpannableString("    ");
 	}
 
 	// ____________________________________________________________________________________
@@ -201,5 +205,4 @@ public class MenuItem
 	{
 		return mView;
 	}
-
 }

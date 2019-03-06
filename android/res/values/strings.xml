@@ -14,11 +14,13 @@
     <string name="more">更多</string>
     <string name="ChooseTile">选择tile图像</string>
     <string name="preparing">准备中</string>
+    <string name="Really">确定</string>
     
     <string name="ChooseNum">选择数量</string>
     <string name="WizardMode">向导模式</string>
     <string name="save">保存</string>
     <string name="more2">--更多--</string>
+    <string name="ApplyAllPanels">应用到所有面板</string>
     <string name="custom">本地</string>
     <string name="TileImg">地图图像</string>
     <string name="IndiTileSize">个人地图尺寸</string>

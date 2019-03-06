@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:forkfront="forkfront">
 	<PreferenceCategory
 		android:title="设置"
 		android:key="settings">
@@ -56,8 +57,15 @@
                 android:persistent="true"
                 android:defaultValue="true"
                 android:key="lockView"/>
-        
-        <com.yuer.NetHack.SliderPreference
+
+		<CheckBoxPreference
+			android:title="等宽字体模式"
+			android:summary="使用等宽字体进行更好的排版"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="monospace"/>
+
+		<com.yuer.NetHack.SliderPreference
 			android:title="状态背景透明度"
 			android:summary="状态行的背景透明度"
 			android:persistent="true"
@@ -66,15 +74,16 @@
 			android:defaultValue="0"
 			android:text=""
 			android:max="255"/>
-        
-        <ListPreference
-				android:title="按钮大小"
-				android:summary="设置命令按钮相对于默认按钮大小而改变的倍数"
-				android:persistent="true"
-				android:key="ovlButSize"
-				android:defaultValue="10"
-				android:entries="@array/btnSizeNames"
-				android:entryValues="@array/btnSizeValues"/>
+
+		<com.yuer.NetHack.SliderPreference
+			android:title="地图边界透明度"
+			android:summary="地图边界的透明度"
+			android:persistent="true"
+			android:key="borderOpacity"
+			android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
+			android:defaultValue="50"
+			android:text=""
+			android:max="255"/>
 
 		<PreferenceScreen
 			android:title="方向键"
@@ -121,7 +130,18 @@
 				android:defaultValue="255"
 				android:text=""
 				android:max="255"/>
-			
+
+			<com.yuer.NetHack.SliderPreference
+					android:title="大小"
+					android:summary="按钮的相对大小"
+					android:persistent="true"
+					android:key="ovlSize"
+					android:dialogMessage="改变按钮的相对大小"
+					android:defaultValue="0"
+					android:text=""
+					forkfront:min="-10"
+					android:max="10"/>
+
 			<CheckBoxPreference
 				android:title="允许地图输入"
 				android:summary="当方向键显示时允许点击地图输入方向"
@@ -197,7 +217,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-				
+
+				<com.yuer.NetHack.SliderPreference
+					android:title="大小"
+					android:summary="面板的相对大小"
+					android:persistent="true"
+					android:key="pSize0"
+					android:dialogMessage="改变面板的相对大小"
+					android:defaultValue="0"
+					android:text=""
+					forkfront:min="-10"
+					android:max="10"/>
+
 			</PreferenceScreen>
 			
 			<PreferenceScreen
@@ -261,7 +292,17 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-				
+
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
+						android:persistent="true"
+						android:key="pSize1"
+						android:dialogMessage="改变面板的相对大小"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
 			</PreferenceScreen>
 			
 			
@@ -325,7 +366,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
+						android:persistent="true"
+						android:key="pSize2"
+						android:dialogMessage="改变面板的相对大小"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -390,7 +442,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
+						android:persistent="true"
+						android:key="pSize3"
+						android:dialogMessage="改变面板的相对大小"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -455,7 +518,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
+						android:persistent="true"
+						android:key="pSize4"
+						android:dialogMessage="改变面板的相对大小"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 			
@@ -520,7 +594,18 @@
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
-						
+
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
+						android:persistent="true"
+						android:key="pSize5"
+						android:dialogMessage="改变面板的相对大小"
+						android:defaultValue="0"
+						android:text=""
+						forkfront:min="-10"
+						android:max="10"/>
+
 			</PreferenceScreen>
 			
 		</PreferenceScreen>
@@ -531,7 +616,7 @@
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="reset"/>
-		
+
 	</PreferenceCategory>
 
 	<PreferenceCategory
@@ -596,43 +681,24 @@
 		<com.yuer.NetHack.EditFilePreference
 			android:title="编辑配置文件"
 			android:summary="在'defaults.nh'中手动设置特别的选项"/>
-		
+
 		<CheckBoxPreference
 			android:title="使用回退渲染"
 			android:summary="如果你遇到渲染问题就检查这个"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="fallbackRenderer"/>
-	
+
 	</PreferenceCategory>
 
 	<PreferenceCategory
 		android:title="关于">
-		
-	    <PreferenceScreen
-			android:title="介绍"
-			android:summary="如何操作">
-
-			<com.yuer.NetHack.TextViewPreference
-				android:title="Instructions"
-				android:summary="如何操作"/>
-
-		</PreferenceScreen>
-		
-	    <PreferenceScreen
-			android:title="License"
-			android:summary="NETHACK GENERAL PUBLIC LICENSE">
-
-			<com.yuer.NetHack.TextViewPreference
-				android:title="License"
-				android:summary="NETHACK GENERAL PUBLIC LICENSE"/>
-		</PreferenceScreen>
 
 		<PreferenceScreen
 			android:title="贡献者"
 			android:summary="为此安卓版NetHack作出贡献的人">
 
-			<com.yuer.NetHack.TextViewPreference
+			<com.yuer.NetHack.CreditsPreference
 				android:title="Credits"
 				android:summary="为此安卓版NetHack作出贡献的人"/>
 

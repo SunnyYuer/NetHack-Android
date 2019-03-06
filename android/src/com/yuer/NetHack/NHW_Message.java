@@ -40,7 +40,7 @@ public class NHW_Message implements NH_Window
 	{
 		return "NHW_Message";
 	}
-	
+
 	// ____________________________________________________________________________________
 	@Override
 	public void setContext(Activity context)
@@ -124,9 +124,9 @@ public class NHW_Message implements NH_Window
 	public String getLogLine( int maxLineCount ) {
 		if(mDispCount <= 0)
 			return "";
-		
+
 		int nLines = Math.min(mDispCount, maxLineCount);
-		
+
 		StringBuilder line = new StringBuilder();
 		for( int i = nLines - 1; i >= 0; i-- ) {
 			int idx = getIndex(mCurrentIdx - i);
@@ -136,7 +136,7 @@ public class NHW_Message implements NH_Window
 		line.append('\n');
 		return line.toString();
 	}
-	
+
 	// ____________________________________________________________________________________
 	@Override
 	public void show(boolean bBlocking)
@@ -203,21 +203,22 @@ public class NHW_Message implements NH_Window
 	{
 		mWid = wid;
 	}
-	
+
 	// ____________________________________________________________________________________
 	@Override
 	public int id()
 	{
 		return mWid;
 	}
-	
+
 	// ____________________________________________________________________________________
+	@Override
 	public void preferencesUpdated(SharedPreferences prefs)
 	{
 		mOpacity = prefs.getInt("statusOpacity", 0);
 		mUI.updateOpacity();
 	}
-	
+
 	// ____________________________________________________________________________________ //
 	// 																						//
 	// ____________________________________________________________________________________ //
@@ -306,7 +307,7 @@ public class NHW_Message implements NH_Window
 				}
 			}
 		}
-		
+
 		// ____________________________________________________________________________________
 		public void updateOpacity()
 		{

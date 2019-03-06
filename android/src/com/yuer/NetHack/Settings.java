@@ -54,7 +54,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 
 		mTilesetPref = (TilesetPreference)findPreference("tilesetPreference");
 		mTilesetPref.setActivity(this);
-		
+
 		if(!getApplicationContext().getResources().getBoolean(R.bool.hearseAvailable))
 		{
 			PreferenceCategory hearseParent = (PreferenceCategory)findPreference("advanced");

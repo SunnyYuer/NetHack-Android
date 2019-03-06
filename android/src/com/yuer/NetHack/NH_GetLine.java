@@ -33,6 +33,7 @@ public class NH_GetLine
 	private int mMaxChars;
 	private NH_State mState;
 	private Context mContext;
+	private List<String> mHistory;
 
 	// ____________________________________________________________________________________
 	public NH_GetLine(NetHackIO io, NH_State state)
@@ -47,7 +48,8 @@ public class NH_GetLine
 		mContext = context;
 		mTitle = title;
 		mMaxChars = nMaxChars;
-		mUI = new UI(context, loadHistory(), true, true, false, !isWishingPrompt());
+		mHistory = loadHistory();
+		mUI = new UI(context, true, true, false, getInitText());
 	}
 	
 	// ____________________________________________________________________________________
@@ -56,7 +58,8 @@ public class NH_GetLine
 		mContext = context;
 		mTitle = mContext.getString(R.string.WhoAreYou);
 		mMaxChars = nMaxChars;
-		mUI = new UI(context, history, false, false, true, true);
+		mHistory = history;
+		mUI = new UI(context, false, false, true, getInitText());
 	}
 
 	// ____________________________________________________________________________________
@@ -64,12 +67,38 @@ public class NH_GetLine
 	{
 		mContext = context;
 		if(mUI != null)
-			mUI = new UI(context, mUI.mHistory, mUI.mSaveHistory, mUI.mSaveHistory, mUI.mShowWizard, !isWishingPrompt());
+			mUI = new UI(context, mUI.mSaveHistory, mUI.mSaveHistory, mUI.mShowWizard, getInitText());
 	}
 
-	private boolean isWishingPrompt()
+	private String getInitText()
 	{
-		return mTitle.contains("For what do you wish");
+		if(mTitle.contains("For what do you wish"))
+			return "";
+		if(mTitle.startsWith("Replace annotation \""))
+		{
+			int i = mTitle.lastIndexOf('"');
+			if(i > 19)
+				return mTitle.substring(20, i);
+		}
+		if(mTitle.startsWith("Replace previous annotation \""))
+		{
+			int i = mTitle.lastIndexOf('"');
+			if(i > 28)
+				return mTitle.substring(29, i);
+		}
+		if(mTitle.startsWith("What do you want to call") || mTitle.startsWith("Call ")) {
+			int i = mTitle.indexOf(" called ");
+			if(i > 0)
+				return mTitle.substring(i+8, mTitle.length() - 1);
+		}
+		if(mTitle.startsWith("What do you want to name")) {
+			int i = mTitle.indexOf(" named ");
+			if(i > 0)
+				return mTitle.substring(i+7, mTitle.length() - 1);
+		}
+		if(mHistory.size() > 0)
+			return mHistory.get(0);
+		return "";
 	}
 
 	// ____________________________________________________________________________________
@@ -107,7 +136,7 @@ public class NH_GetLine
 	{
 		String value = PreferenceManager.getDefaultSharedPreferences(mContext).getString("lineHistory", "");
 		String[] strings = value.split(";");
-		List<String> history = new ArrayList<String>(strings.length);
+		List<String> history = new ArrayList<>(strings.length);
 		for(String s : strings)
 		{
 			s = s.replace("%2", ";");
@@ -129,17 +158,15 @@ public class NH_GetLine
 		//private NH_Dialog mDialog;
 		private View mRoot;
 		private ArrayAdapter<String> mAdapter;
-		private List<String> mHistory;
 		public boolean mSaveHistory;
 		public boolean mShowWizard;
 
 		// ____________________________________________________________________________________
-		public UI(Activity context, List<String> history, boolean saveHistory, boolean showKeyboard, boolean showWizard, boolean initWithHistory)
+		public UI(Activity context, boolean saveHistory, boolean showKeyboard, boolean showWizard, String initText)
 		{
 			mContext = context;
 			
 			mSaveHistory = saveHistory;
-			mHistory = history;
 			mShowWizard = showWizard;
 
 			mRoot = Util.inflate(context, R.layout.dialog_getline, R.id.dlg_frame);
@@ -202,7 +229,7 @@ public class NH_GetLine
 			mWizardCheck = (CheckBox)mRoot.findViewById(R.id.wizard);
 			mWizardCheck.setVisibility(showWizard ? View.VISIBLE : View.GONE);
 			
-			mAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, mHistory);
+			mAdapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, mHistory);
 			mHistoryList.setAdapter(mAdapter);
 			
 			mHistoryList.setVisibility(View.GONE);
@@ -251,8 +278,7 @@ public class NH_GetLine
 			mState.hideControls();
 			mInput.requestFocus();
 			
-			if(initWithHistory && mHistory.size() > 0)
-				mInput.setText(mHistory.get(0));
+			mInput.setText(initText);
 			mInput.selectAll();
 			
 			if(showKeyboard)
@@ -279,15 +305,19 @@ public class NH_GetLine
 			case KeyEvent.KEYCODE_ENTER:
 				ok();
 			break;
-			
+
 			default:
 				if(ch == '\033')
 					cancel();
 				else if(bSoftInput)
 				{
-					if(mInput.hasSelection())
+					boolean hasSelection = mInput.hasSelection();
+					if(hasSelection)
 						mInput.setText(mInput.getText().replace(mInput.getSelectionStart(), mInput.getSelectionEnd(), ""));
-					mInput.append(""+ch);
+					if(ch != 0x7f)
+						mInput.append(""+ch);
+					else if(!hasSelection)
+						doBackspace();
 					return KeyEventResult.HANDLED;
 				}
 				else
@@ -295,7 +325,17 @@ public class NH_GetLine
 			}
 			return KeyEventResult.HANDLED;
 		}
-		
+
+		private void doBackspace() {
+			int caretPos = mInput.getSelectionEnd();
+			if(caretPos == -1)
+				caretPos = mInput.getText().length();
+			if(caretPos == 0)
+				return;
+			mInput.setText(mInput.getText().delete(caretPos - 1, caretPos));
+			mInput.setSelection(caretPos - 1);
+		}
+
 		// ____________________________________________________________________________________
 		public void dismiss()
 		{

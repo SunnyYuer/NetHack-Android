@@ -5,13 +5,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 
 public class NH_Dialog extends AlertDialog
 {
-	
-	public NH_Dialog(Context context)
+	private final View mTag;
+
+	public NH_Dialog(Context context, View tag)
 	{
 		super(context);
+		mTag = tag;
+	}
+
+	public View getTag() {
+		return mTag;
 	}
 /*
 	public NH_Dialog(Context context, int theme)

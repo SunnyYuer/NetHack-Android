@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string
+	<string
 		name="credits">
 <![CDATA[
 
-<p><h1>NetHack Android Port</h1><br/>
-Based on NetHack 3.6.0<br/>
+<h1>NetHack Android Port</h1>
+<a href="https://github.com/gurrhack/NetHack-Android">Project Home</a><br/>
+<p>Based on NetHack 3.6.1<br/>
 <a href="http://www.nethack.org">http://www.nethack.org</a></p>
 <p><small>Inspired by NetHack iPhone Port by <a href="http://code.google.com/p/iNetHack/">Dirk Zimmermann</a></small></p>
 
@@ -44,8 +45,6 @@ Modified by Brendan Dwyer</p>
 <a href="http://pan.baidu.com/s/1jGCUMA6">http://pan.baidu.com/s/1jGCUMA6</a><br/>
 最后谢谢大家的支持和翻译建议<br/>
 </p>
-
-<p><br/><small>&copy; 2015 Martin Gustafsson</small></p>
 ]]>
 	</string>
 </resources>

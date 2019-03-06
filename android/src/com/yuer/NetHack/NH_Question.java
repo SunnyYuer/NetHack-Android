@@ -3,6 +3,7 @@ package com.yuer.NetHack;
 import java.util.Set;
 
 import android.app.Activity;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.yuer.NetHack.R;
 import com.yuer.NetHack.Input.Modifier;
 
 public class NH_Question
@@ -41,12 +41,12 @@ public class NH_Question
 		mDefCh = def;
 		mQuestion = question;
 		mChoices = new char[choices.length];
-		mDefIdx = mBtns[0];
+		mDefIdx = 0;
 		for(int i = 0; i < choices.length; i++)
 		{
 			mChoices[i] = (char)choices[i];
 			if(mChoices[i] == def)
-				mDefIdx = mBtns[i];
+				mDefIdx = i;
 		}
 
 		mUI = new UI(context);
@@ -66,17 +66,20 @@ public class NH_Question
 			return KeyEventResult.IGNORED;
 		return mUI.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
 	}
-	
+
 	// ____________________________________________________________________________________ //
 	// 																						//
 	// ____________________________________________________________________________________ //
 	private class UI
 	{
 		private View mRoot;
+		private boolean mIsDisabled;
+		private Activity mContext;
 
 		// ____________________________________________________________________________________
 		public UI(Activity context)
 		{
+			mContext = context;
 			switch(mChoices.length)
 			{
 			case 1:
@@ -125,21 +128,42 @@ public class NH_Question
 			((TextView)mRoot.findViewById(R.id.title)).setText(mQuestion);
 
 			mRoot.setOnKeyListener(mKeyListener);
-			
+
 			// mRoot.setClickable(true);
 			// mRoot.setFocusable(true);
 			// mRoot.setFocusableInTouchMode(true);
 
-			final View def = mRoot.findViewById(mDefIdx);
+			final View def = mRoot.findViewById(mBtns[mDefIdx]);
 			if(def != null)
 			{
 				def.requestFocus();
 				def.requestFocusFromTouch();
+
+				maybeDisableInput();
 			}
-			else
+			else {
 				mRoot.requestFocus();
-			
+			}
+
 			mState.hideControls();
+		}
+
+		private void maybeDisableInput() {
+			if(mChoices.length == 2 && mQuestion.startsWith(mContext.getString(R.string.Really))) {
+				// Disable the non-default choice for a while. Gives the player a chance to react if moving quickly
+				final View nonDef = mRoot.findViewById(mBtns[mDefIdx^1]);
+				if(nonDef != null) {
+					mIsDisabled = true;
+					nonDef.setEnabled(false);
+					mState.getHandler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							mIsDisabled = false;
+							nonDef.setEnabled(true);
+						}
+					}, 500);
+				}
+			}
 		}
 
 		OnKeyListener mKeyListener = new OnKeyListener()
@@ -147,7 +171,7 @@ public class NH_Question
 			public boolean onKey(View v, int keyCode, KeyEvent event)
 			{
 				Log.print("QUES ONKEY");
-				if(event.getAction() != KeyEvent.ACTION_DOWN)
+				if(event.getAction() != KeyEvent.ACTION_DOWN || mIsDisabled)
 					return false;
 /*
 				int ch = event.getUnicodeChar();
@@ -163,11 +187,11 @@ public class NH_Question
 				return false;
 			}
 		};
-		
+
 		// ____________________________________________________________________________________
 		public KeyEventResult handleKeyDown(char ch, int nhKey, int keyCode, Set<Modifier> modifiers, int repeatCount, boolean bSoftInput)
 		{
-			if(mRoot == null)
+			if(mRoot == null || mIsDisabled)
 				return KeyEventResult.IGNORED;
 			
 			switch(keyCode)

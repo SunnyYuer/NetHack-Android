@@ -61,7 +61,7 @@ int NetHackMain(int argc, char** argv)
 	if(val)
 	{
 		debuglog("exiting...");
-		return;
+		return 0;
 	}
 
 
@@ -171,7 +171,6 @@ int NetHackMain(int argc, char** argv)
 			iflags.news = FALSE; /* in case dorecover() fails */
 		}
 #endif
-		raw_print("restore save");
 		pline("Restoring save file...");
 		mark_synch(); /* flush output */
 		if(!dorecover(fd))
@@ -186,7 +185,7 @@ int NetHackMain(int argc, char** argv)
 
 		if(discover || wizard)
 		{
-                        if(yn("你想保留保存记录吗?") == 'n')
+        	if(yn("你想保留保存记录吗?") == 'n')
 			{
 				(void)delete_savefile();
 			}
@@ -337,7 +336,7 @@ port_help()
 static void wd_message()
 {
 	if(discover)
-                You("现在是无分数探索模式.");
+    	You("现在是无分数探索模式.");
 }
 
 /*

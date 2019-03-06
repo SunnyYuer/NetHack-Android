@@ -31,7 +31,7 @@ public class Tileset
 	private int mnCols;
 	private Context mContext;
 	private boolean mFallbackRenderer;
-	private final Map<Integer, Bitmap> mTileCache = new HashMap<Integer, Bitmap>();
+	private final Map<Integer, Bitmap> mTileCache = new HashMap<>();
 	private final String mNamespace;
 
 	// ____________________________________________________________________________________

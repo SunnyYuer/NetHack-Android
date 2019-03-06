@@ -25,4 +25,12 @@
 		android:id="@+id/remove"
 		android:titleCondensed="Remove command"
 		android:title="删除命令"/>
+	<item
+		android:id="@+id/opacity"
+		android:titleCondensed="Opacity..."
+		android:title="改变透明度..."/>
+	<item
+		android:id="@+id/resize"
+		android:titleCondensed="Resize..."
+		android:title="面板大小..."/>
 </menu>

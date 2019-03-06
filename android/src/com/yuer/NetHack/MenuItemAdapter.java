@@ -3,7 +3,9 @@ package com.yuer.NetHack;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,18 +14,14 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yuer.NetHack.R;
-import com.yuer.NetHack.MenuItem;
-import com.yuer.NetHack.MenuSelectMode;
-import com.yuer.NetHack.TileDrawable;
-import com.yuer.NetHack.Tileset;
-
 public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 {
 	private ArrayList<MenuItem> mItems;
 	private Context mContext;
 	private Tileset mTileset;
 	private MenuSelectMode mHow;
+	private boolean mMenuHasTiles;
+	private boolean mIsMonospaceMode;
 
 	// ____________________________________________________________________________________
 	public MenuItemAdapter(Activity context, int textViewResourceId, ArrayList<MenuItem> items, Tileset tileset, MenuSelectMode how)
@@ -33,12 +31,32 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 		mContext = context;
 		mTileset = tileset;
 		mHow = how;
+		mMenuHasTiles = menuHasTiles(items);
+		updateMonospaceFlag();
+	}
+
+	private void updateMonospaceFlag() {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		mIsMonospaceMode = prefs.getBoolean("monospace", false);
+	}
+
+	// ____________________________________________________________________________________
+	private static boolean menuHasTiles(ArrayList<MenuItem> items) {
+		for(MenuItem item : items) {
+			if(item.hasTile())
+				return true;
+		}
+		return false;
 	}
 
 	// ____________________________________________________________________________________
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
+		final float density = mContext.getResources().getDisplayMetrics().density;
+		final int clickableItemMinH = (int)(35 * density + 0.5f);
+		final int clickableHeaderMinH = (int)(25 * density + 0.5f);
+
 		View v = convertView;
 		if(v == null)
 		{
@@ -51,22 +69,39 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 			if(item.isHeader())
 			{
 				v.setBackgroundColor(Color.WHITE);
-				v.setMinimumHeight(0);
+				if(mHow == MenuSelectMode.PickMany)
+					v.setMinimumHeight(clickableHeaderMinH);
+				else
+					v.setMinimumHeight(0);
 			}
 			else
 			{
 				v.setBackgroundColor(Color.TRANSPARENT);
-				final float density = mContext.getResources().getDisplayMetrics().density;
-				int minH = (int)(35 * density + 0.5f);
-				v.setMinimumHeight(minH);
+				if(mHow == MenuSelectMode.PickNone)
+					v.setMinimumHeight(0);
+				else
+					v.setMinimumHeight(clickableItemMinH);
 			}
 
 			TextView tt = (TextView)v.findViewById(R.id.item_text);
 			tt.setText(item.getText());
-			
+
 			TextView at = (TextView)v.findViewById(R.id.item_acc);
-			at.setText(item.getAccText());
-			
+			if(item.isHeader()) {
+				at.setVisibility(View.GONE);
+			} else {
+				at.setVisibility(View.VISIBLE);
+				at.setText(item.getAccText());
+				if(mIsMonospaceMode) {
+					at.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+					at.requestLayout();
+					at.invalidate();
+				} else {
+					int fixedW = (int)((mMenuHasTiles && mTileset.hasTiles() ? 20 : 40) * density);
+					at.setWidth(fixedW);
+				}
+			}
+
 			TextView st = (TextView)v.findViewById(R.id.item_sub);
 			st.setText(item.getSubText());
 			if(item.hasSubText())
@@ -81,19 +116,20 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 				ic.setText("");
 			
 			ImageView tile = (ImageView)v.findViewById(R.id.item_tile);
-			if(item.hasTile() && mTileset.hasTiles())
+			if(mMenuHasTiles && mTileset.hasTiles() && !item.isHeader())
 			{
-				tile.setVisibility(View.VISIBLE);
-				tile.setImageDrawable(new TileDrawable(mTileset, item.getTile()));
-				v.findViewById(R.id.item_sub).setVisibility(View.VISIBLE);
-			}
-			else
-			{
-				if(item.isHeader())
-					tile.setVisibility(View.GONE);
-				else
+				if(item.hasTile()) {
+					tile.setVisibility(View.VISIBLE);
+					tile.setImageDrawable(new TileDrawable(mTileset, item.getTile()));
+					v.findViewById(R.id.item_sub).setVisibility(View.VISIBLE);
+				} else {
+					// Don't show it but reserve its space for alignment
 					tile.setVisibility(View.INVISIBLE);
+				}
+			} else {
+				tile.setVisibility(View.GONE);
 			}
+
 			CheckBox cb = (CheckBox)v.findViewById(R.id.item_check);
 			if(mHow == MenuSelectMode.PickMany && !item.isHeader())
 			{
@@ -114,5 +150,11 @@ public class MenuItemAdapter extends ArrayAdapter<MenuItem>
 			item.setView(v);
 		}
 		return v;
+	}
+
+	@Override
+	public void notifyDataSetChanged() {
+		super.notifyDataSetChanged();
+		updateMonospaceFlag();
 	}
 }

@@ -59,19 +59,4 @@
 		<item>1</item>
 		<item>2</item>
 	</string-array>
-	
-	<string-array name="btnSizeNames">
-	    <item>0.9倍</item>
-        <item>不变</item>
-        <item>1.1倍</item>
-    	<item>1.2倍</item>
-    	<item>1.3倍</item>
-    </string-array>
-    <string-array name="btnSizeValues">
-        <item>9</item>
-        <item>10</item>
-        <item>11</item>
-        <item>12</item>
-        <item>13</item>
-    </string-array>
 </resources>

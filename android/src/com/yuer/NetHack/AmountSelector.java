@@ -64,7 +64,7 @@ public class AmountSelector
 
 			long dt = (int)(System.currentTimeMillis() - mTime);
 			int max = mSeek.getMax() / 10;
-			
+
 			int amount = 1;
 			if(dt > 700 && max > 0)
 				amount = Math.min(max, (int)Math.pow(3.0, (double)dt / 700.0));

@@ -48,13 +48,14 @@ public class NH_State
 	private boolean mIsMouseLocked;
 	private Hearse mHearse;
 	private SoftKeyboard.KEYBOARD mRegularKeyboard;
+	private SoundPlayer mSoundPlayer;
 
 	// ____________________________________________________________________________________
 	public NH_State(Activity context, ByteDecoder decoder)
 	{
 		mIO = new NetHackIO(context, NhHandler, decoder);
 		mTileset = new Tileset(context);
-		mWindows = new ArrayList<NH_Window>();
+		mWindows = new ArrayList<>();
 		mGetLine = new NH_GetLine(mIO, this);
 		mQuestion = new NH_Question(mIO, this);
 		mMessage = new NHW_Message(context, mIO);
@@ -63,6 +64,7 @@ public class NH_State
 		mCmdPanelLayout = (CmdPanelLayout)context.findViewById(R.id.cmdPanelLayout1);
 		mDPad = new DPadOverlay(this);
 		mKeyboard = new SoftKeyboard(context, this);
+		mSoundPlayer = new SoundPlayer();
 		mMode = CmdMode.Panel;
 
 		setContext(context);
@@ -105,7 +107,7 @@ public class NH_State
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		return prefs.getString("lastUsername", "");
 	}
-	
+
 	// ____________________________________________________________________________________
 	public void onConfigurationChanged(Configuration newConfig)
 	{
@@ -116,7 +118,7 @@ public class NH_State
 			hideKeyboard();
 			showKeyboard();
 		}
-		
+
 		mCmdPanelLayout.setOrientation(newConfig.orientation);
 		mDPad.setOrientation(newConfig.orientation);
 	}
@@ -128,8 +130,14 @@ public class NH_State
 
 		mCmdPanelLayout.preferencesUpdated(prefs);
 		mDPad.preferencesUpdated(prefs);
+		mMap.preferencesUpdated(prefs);
 		mStatus.preferencesUpdated(prefs);
 		mMessage.preferencesUpdated(prefs);
+		for(NH_Window w : mWindows)
+		{
+			if(w != mMap && w != mStatus && w != mMessage)
+				w.preferencesUpdated(prefs);
+		}
 
 		if(mMode == CmdMode.Panel)
 			mCmdPanelLayout.show();
@@ -148,6 +156,11 @@ public class NH_State
 	}
 
 	// ____________________________________________________________________________________
+	public void onContextMenuClosed() {
+		mCmdPanelLayout.onContextMenuClosed();
+	}
+
+	// ____________________________________________________________________________________
 	public void onContextItemSelected(android.view.MenuItem item)
 	{
 		mCmdPanelLayout.onContextItemSelected(item);
@@ -162,7 +175,18 @@ public class NH_State
 			restoreRegularKeyboard();
 			return true;
 		}
-		
+
+		if(repeatCount > 0) switch(keyCode) {
+			case KeyAction.Keyboard:
+				if(mMode == CmdMode.Keyboard)
+					mStickyKeyboard = false;
+			case KeyAction.Control:
+			case KeyAction.Meta:
+			case KeyEvent.KEYCODE_ESCAPE:
+				// Ignore repeat on these actions
+				return true;
+		}
+
 		KeyEventResult ret = mGetLine.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
 
 		if(ret == KeyEventResult.IGNORED)
@@ -173,12 +197,12 @@ public class NH_State
 			NH_Window w = mWindows.get(i);
 			ret = w.handleKeyDown(ch, nhKey, keyCode, modifiers, repeatCount, bSoftInput);
 		}
-		
+
 		if(ret == KeyEventResult.HANDLED)
 			return true;
 		if(ret == KeyEventResult.RETURN_TO_SYSTEM)
 			return false;
-				
+
 		if(keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME)
 		{
 			if(mMode == CmdMode.Keyboard)
@@ -186,24 +210,19 @@ public class NH_State
 				hideKeyboard();
 				return true;
 			}
-			
+
 			if(mIsDPadActive)
 				return sendKeyCmd('\033');
 		}
 		else if(keyCode == KeyAction.Keyboard)
 		{
-			if(repeatCount == 0)
-			{
-				mStickyKeyboard = true;
-				toggleKeyboard();
-			}
-			else if(mMode == CmdMode.Keyboard)
-				mStickyKeyboard = false;
+			mStickyKeyboard = true;
+			toggleKeyboard();
 			return true;
 		}
 		else if(keyCode == KeyAction.Control || keyCode == KeyAction.Meta)
 		{
-			if(repeatCount == 0 && !Util.hasPhysicalKeyboard(mContext))
+			if(!Util.hasPhysicalKeyboard(mContext))
 			{
 				saveRegularKeyboard();
 				if(mMode != CmdMode.Keyboard)
@@ -227,7 +246,7 @@ public class NH_State
 		int i = getWindowI(wid);
 		return i >= 0 ? mWindows.get(i) : null;
 	}
-	
+
 	// ____________________________________________________________________________________
 	public int getWindowI(int wid)
 	{
@@ -236,7 +255,7 @@ public class NH_State
 				return i;
 		return -1;
 	}
-	
+
 	// ____________________________________________________________________________________
 	public NH_Window toFront(int wid)
 	{
@@ -275,7 +294,7 @@ public class NH_State
 					hideKeyboard();
 				restoreRegularKeyboard();
 			}
-					
+
 			mHideQuickKeyboard = false;
 			return true;
 		}
@@ -428,7 +447,7 @@ public class NH_State
 	{
 		return mMode == CmdMode.Keyboard && mControlsVisible;
 	}
-	
+
 	// ____________________________________________________________________________________
 	public void updateVisibleState()
 	{
@@ -484,19 +503,16 @@ public class NH_State
 	}
 
 	// ____________________________________________________________________________________
-	private NH_Handler NhHandler = new NH_Handler()
-	{
+	private NH_Handler NhHandler = new NH_Handler() {
 		@Override
-		public void setLastUsername(String username)
-		{
+		public void setLastUsername(String username) {
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 			prefs.edit().putString("lastUsername", username).commit();
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void setCursorPos(int wid, int x, int y)
-		{
+		public void setCursorPos(int wid, int x, int y) {
 			NH_Window wnd = getWindow(wid);
 			if(wnd != null)
 				wnd.setCursorPos(x, y);
@@ -504,51 +520,43 @@ public class NH_State
 
 		// ____________________________________________________________________________________
 		@Override
-		public void putString(int wid, int attr, String msg, int append, int color)
-		{
+		public void putString(int wid, int attr, String msg, int append, int color) {
 			NH_Window wnd = getWindow(wid);
-			if(wnd == null)
-			{
+			if(wnd == null) {
 				Log.print("[no wnd] " + msg);
 				mMessage.printString(attr, msg, append, color);
-			}
-			else
+			} else
 				wnd.printString(attr, msg, append, color);
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void setHealthColor(int color)
-		{
+		public void setHealthColor(int color) {
 			if(mMap != null)
 				mMap.setHealthColor(color);
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void rawPrint(int attr, String msg)
-		{
+		public void rawPrint(int attr, String msg) {
 			mMessage.printString(attr, msg, 0, -1);
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void printTile(int wid, int x, int y, int tile, int ch, int col, int special)
-		{
+		public void printTile(int wid, int x, int y, int tile, int ch, int col, int special) {
 			mMap.printTile(x, y, tile, ch, col, special);
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void ynFunction(String question, byte[] choices, int def)
-		{
+		public void ynFunction(String question, byte[] choices, int def) {
 			mQuestion.show(mContext, question, choices, def);
 		}
 
 		// ____________________________________________________________________________________
 		@Override
-		public void getLine(String title, int nMaxChars, boolean showLog)
-		{
+		public void getLine(String title, int nMaxChars, boolean showLog) {
 			if(showLog)
 				mGetLine.show(mContext, mMessage.getLogLine(2) + title, nMaxChars);
 			else
@@ -559,15 +567,27 @@ public class NH_State
 		@Override
 		public void askName(int nMaxChars, String[] saves) {
 			String last = getLastUsername();
-			List<String> list = new ArrayList<String>();
-			for(String s : saves)
-			{
+			List<String> list = new ArrayList<>();
+			for(String s : saves) {
 				if(last.equals(s))
 					list.add(0, s);
 				else
 					list.add(s);
 			}
 			mGetLine.showWhoAreYou(mContext, nMaxChars, list);
+		}
+
+		// ____________________________________________________________________________________
+		@Override
+		public void loadSound(String filename)
+		{
+			mSoundPlayer.load(filename);
+		}
+
+		@Override
+		public void playSound(String filename, int volume)
+		{
+			mSoundPlayer.play(filename, volume);
 		}
 
 		// ____________________________________________________________________________________

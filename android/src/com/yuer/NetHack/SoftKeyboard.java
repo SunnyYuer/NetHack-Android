@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.FrameLayout;
+import com.yuer.NetHack.Input.Modifier;
 
 import com.yuer.NetHack.R;
-import com.yuer.NetHack.Input.Modifier;
 
 public class SoftKeyboard implements OnKeyboardActionListener
 {

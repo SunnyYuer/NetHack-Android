@@ -13,7 +13,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 
-		<TextView
+		<com.yuer.NetHack.NH_TextView
 			android:id="@+id/title"
 			style="@style/DialogTitle"
 			android:layout_width="fill_parent"
