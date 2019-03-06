@@ -4,8 +4,7 @@
 
 1. 下载Android端源码并解压
 [下载](https://github.com/SunnyEric/NetHack-Android/archive/Android-cn.zip)
-
-下载NetHack源码并解压
+   下载NetHack源码并解压
 [下载](https://github.com/SunnyEric/NetHack-cn/archive/NetHack-Android.zip)
 
 2. 将Android-cn/android目录整个复制进NetHack-Android/NetHack/sys/目录下
