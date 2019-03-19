@@ -16,6 +16,7 @@ public class NetHackIO
 	private final NH_Handler mNhHandler;
 	private final Thread mThread;
 	private final ByteDecoder mDecoder;
+	private Chinese ch;
 	private final String mLibraryName;
 	private final ConcurrentLinkedQueue<Integer> mCmdQue;
 	private int mNextWinId;
@@ -45,6 +46,7 @@ public class NetHackIO
 		mCmdQue = new ConcurrentLinkedQueue<>();
 		mHandler = new Handler();
 		mThread = new Thread(ThreadMain, "nh_thread");
+		ch = new Chinese();
 	}
 
 	// ____________________________________________________________________________________
@@ -190,7 +192,6 @@ public class NetHackIO
 	public void sendLineCmd(String str)
 	{
 		mCmdQue.add(LineCmd);
-		Chinese ch = new Chinese();
 		byte[] by = ch.encode(str);
 		for(int i = 0; i < by.length; i++)
 		{
@@ -406,9 +407,8 @@ public class NetHackIO
 	@SuppressWarnings("unused")
 	private void putString(final int wid, final int attr, final byte[] cmsg, final int append, final int color)
 	{
-		Chinese ch = new Chinese();
 		final String msg = ch.encode(cmsg);
-		//final String msg = CP437.decode(cmsg);
+		//final String msg = mDecoder.decode(cmsg);
 		if(wid == mMessageWid)
 			Log.print(msg);
 
@@ -484,9 +484,8 @@ public class NetHackIO
 	@SuppressWarnings("unused")
 	private void ynFunction(final byte[] cquestion, final byte[] choices, final int def)
 	{
-		Chinese ch = new Chinese();
 		final String question = ch.encode(cquestion);
-		//final String question = CP437.decode(cquestion);
+		//final String question = mDecoder.decode(cquestion);
 		//Log.print("nhthread: ynFunction");
 		mHandler.post(new Runnable()
 		{
@@ -505,9 +504,8 @@ public class NetHackIO
 	{
 		if(reentry == 0)
 		{
-			Chinese ch = new Chinese();
 			final String msg = ch.encode(title);
-			//final String msg = CP437.decode(title);
+			//final String msg = mDecoder.decode(title);
 			//Log.print("nhthread: getLine");
 			mHandler.post(new Runnable()
 			{
@@ -640,9 +638,8 @@ public class NetHackIO
 	@SuppressWarnings("unused")
 	private void addMenu(final int wid, final int tile, final int id, final int acc, final int groupAcc, final int attr, final byte[] text, final int bSelected, final int color)
 	{
-		Chinese ch = new Chinese();
 		final String msg = ch.encode(text);
-		//final String msg = CP437.decode(text);
+		//final String msg = mDecoder.decode(text);
 		mHandler.post(new Runnable()
 		{
 			@Override
@@ -657,9 +654,8 @@ public class NetHackIO
 	@SuppressWarnings("unused")
 	private void endMenu(final int wid, final byte[] prompt)
 	{
-		Chinese ch = new Chinese();
 		final String msg = ch.encode(prompt);
-		//final String msg = CP437.decode(prompt);
+		//final String msg = mDecoder.decode(prompt);
 		//Log.print("nhthread: endMenu");
 		mHandler.post(new Runnable()
 		{
