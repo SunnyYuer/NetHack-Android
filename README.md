@@ -37,7 +37,7 @@ https://developer.android.google.cn/ndk/downloads/
 
 1. 打开Android Studio
 2. 选导入Eclipse ADT工程，选择NetHack-Android/NetHack/sys/android目录
-3. 工程结构里选java1.7以上的版本
+3. 工程结构里，选择编译SDK版本，目标SDK版本，最小SDK版本
 4. 生成签名的APK
 
 ##问题反馈或建议
