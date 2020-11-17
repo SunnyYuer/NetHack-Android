@@ -413,7 +413,7 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 		File dataDir = null;
 		String state = Environment.getExternalStorageState();
 		if(Environment.MEDIA_MOUNTED.equals(state))
-			dataDir = new File(Environment.getExternalStorageDirectory(), "/Android/data/" + mNamespace);
+			dataDir = mActivity.getExternalFilesDir(null);
 		return dataDir;
 	}
 
