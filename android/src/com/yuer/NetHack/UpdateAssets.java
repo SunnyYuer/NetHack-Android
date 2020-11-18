@@ -159,13 +159,13 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 			mFileStatus = checkFiles(dstPath);
 			if(mFileStatus != FileStatus.UP_TO_DATE)
 			{
-				dstPath = findDataPath();
-	
 				if(mFileStatus == FileStatus.INCOMPATIBLE_VERSION)
 				{
 					// TODO confirm dialog or just make backup of saves and bones
 					deleteDirContent(dstPath);
 				}
+
+				dstPath = findDataPath();
 				
 				if(dstPath == null)
 					mError = String.format("Not enough space. %.2fMb required", (float)(mRequiredSpace)/(1024.f*1024.f));
