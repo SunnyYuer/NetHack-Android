@@ -6,7 +6,7 @@
 	android:paddingLeft="4dip"
 	android:paddingRight="4dip">
 
-	<com.tbd.forkfront.NH_TextView
+	<com.yuer.NetHack.NH_TextView
 		android:id="@+id/item_acc"
 		style="@style/ListText1"
 		android:text="t"
@@ -30,21 +30,21 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 
-		<com.tbd.forkfront.NH_TextView
+		<com.yuer.NetHack.NH_TextView
 			android:id="@+id/item_text"
 			style="@style/ListText1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="item_text"/>
 
-		<com.tbd.forkfront.NH_TextView
+		<com.yuer.NetHack.NH_TextView
 			android:id="@+id/item_sub"
 			style="@style/ListText2"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="item_sub"/>
 	</LinearLayout>
-	<com.tbd.forkfront.NH_TextView
+	<com.yuer.NetHack.NH_TextView
 		android:id="@+id/item_count"
 		style="@style/ListText1"
 		android:text="1234"

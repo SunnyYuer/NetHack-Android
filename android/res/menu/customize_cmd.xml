@@ -4,33 +4,33 @@
 	<item
 		android:id="@+id/change"
 		android:titleCondensed="Change..."
-		android:title="Change command..."/>
+		android:title="更改命令"/>
 	<item
 		android:id="@+id/label"
 		android:titleCondensed="Label..."
-		android:title="Set custom label..."/>
+		android:title="设置本地标签"/>
 	<item
 		android:id="@+id/add"
 		android:titleCondensed="New command..."
-		android:title="New command..."/>
+		android:title="新建命令"/>
 	<item
 		android:id="@+id/add_kbd"
 		android:titleCondensed="Add kbd"
-		android:title="Add keyboard command"/>
+		android:title="增加键盘命令"/>
 	<item
 		android:id="@+id/add_settings"
 		android:titleCondensed="Add menu..."
-		android:title="Add menu command"/>
+		android:title="增加设置命令"/>
 	<item
 		android:id="@+id/remove"
 		android:titleCondensed="Remove command"
-		android:title="Remove command"/>
+		android:title="删除命令"/>
 	<item
 		android:id="@+id/opacity"
 		android:titleCondensed="Opacity..."
-		android:title="Change opacity..."/>
+		android:title="改变透明度..."/>
 	<item
 		android:id="@+id/resize"
 		android:titleCondensed="Resize..."
-		android:title="Resize panel..."/>
+		android:title="面板大小..."/>
 </menu>

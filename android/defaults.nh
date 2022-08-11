@@ -96,15 +96,15 @@ OPTIONS=boulder:0
 # Colorize individual rows on a menu based on what
 # regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
-MENUCOLOR=" blessed "=green
-MENUCOLOR=" holy "=green
-MENUCOLOR=" uncursed "=yellow
-MENUCOLOR=" cursed "=red
-MENUCOLOR=" unholy "=red
-MENUCOLOR=" cursed .* \(being worn\)"=red&underline
-MENUCOLOR="loadstone|wand (of|called) cancellation"=white&underline
-MENUCOLOR="Amulet of Yendor named"=magenta
-MENUCOLOR="gold piece"=yellow
+MENUCOLOR="受祝福的 "=yellow
+MENUCOLOR="圣水"=yellow
+MENUCOLOR="未诅咒的 "=white
+MENUCOLOR="被诅咒的 "=red
+MENUCOLOR="邪水"=red
+MENUCOLOR="被诅咒的 .*穿戴中"=red&underline
+MENUCOLOR="负重石|消除.*魔杖|魔杖被称为.*消除"=white&underline
+MENUCOLOR="岩德护身符.*名为"=magenta
+MENUCOLOR=" 金币"=yellow
 
 
 # *** Status hilites ***
@@ -139,10 +139,10 @@ OPTIONS=hilite_status:hunger/weak/red&bold/fainting/red&inverse
 OPTIONS=hilite_status:hunger/fainted/red&inverse
 
 ## Encumbrance
-OPTIONS=hilite_status:carrying-capacity/burdened/yellow/stressed/orange
-OPTIONS=hilite_status:carrying-capacity/strained/red&bold
-OPTIONS=hilite_status:carrying-capacity/overtaxed/red&inverse
-OPTIONS=hilite_status:carrying-capacity/overloaded/red&inverse
+OPTIONS=hilite_status:carrying-capacity/负担/yellow/压力/orange
+OPTIONS=hilite_status:carrying-capacity/强压/red&bold
+OPTIONS=hilite_status:carrying-capacity/过重/red&inverse
+OPTIONS=hilite_status:carrying-capacity/超重/red&inverse
 
 
 

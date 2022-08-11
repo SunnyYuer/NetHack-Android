@@ -3,30 +3,30 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:forkfront="forkfront">
 	<PreferenceCategory
-		android:title="Settings"
+		android:title="设置"
 		android:key="settings">
 		<PreferenceScreen
-			android:title="Tileset"
-			android:summary="The visual style of the game world">
+			android:title="地图风格"
+			android:summary="游戏的图形视觉效果">
 
-			<com.tbd.forkfront.TilesetPreference
-				android:title="Tileset"
+			<com.yuer.NetHack.TilesetPreference
+				android:title="地图风格"
 				android:key="tilesetPreference"
-				android:summary="The visual style of the game world"
+				android:summary="游戏的图形视觉效果"
 				android:layout="@layout/tileset_select_menu"/>
 
 		</PreferenceScreen>
 
 		<CheckBoxPreference
-			android:title="Fullscreen"
-			android:summary="Enable fullscreen mode"
+			android:title="全屏"
+			android:summary="允许全屏模式"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="fullscreen"/>
 
 		<ListPreference
-			android:title="Volume up action"
-			android:summary="The action performed when pressing the volume up key"
+			android:title="增大音量键的动作"
+			android:summary="当按下增大音量键的时候应用将执行何种动作"
 			android:persistent="true"
 			android:key="volup"
 			android:defaultValue="0"
@@ -34,8 +34,8 @@
 			android:entryValues="@array/actionValues"/>
 			
 		<ListPreference
-			android:title="Volume down action"
-			android:summary="The action performed when pressing the volume down key"
+			android:title="减小音量键的动作"
+			android:summary="当按下减小音量键的时候应用将执行何种动作"
 			android:persistent="true"
 			android:key="voldown"
 			android:defaultValue="0"
@@ -43,69 +43,69 @@
 			android:entryValues="@array/actionValues"/>
 
 		<ListPreference
-			android:title="Travel command"
-			android:summary="When to invoke the Travel command if a position is clicked"
+			android:title="移动命令"
+			android:summary="当点击一个位置何时调用移动命令"
 			android:persistent="true"
 			android:key="travelOnClick"
-			android:defaultValue="1"
+			android:defaultValue="0"
 			android:entries="@array/travelNames"
 			android:entryValues="@array/travelValues"/>
 
         <CheckBoxPreference
-                android:title="Lock view"
-                android:summary="Do not move the view with the character when the entire map can fit the screen"
+                android:title="锁定视图"
+                android:summary="在整个地图可以适合屏幕的时候，不要移动视图"
                 android:persistent="true"
                 android:defaultValue="true"
                 android:key="lockView"/>
 
 		<CheckBoxPreference
-			android:title="Monospace mode"
-			android:summary="Use a monospace font for nicer typography"
+			android:title="等宽字体模式"
+			android:summary="使用等宽字体进行更好的排版"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="monospace"/>
 
-		<com.tbd.forkfront.SliderPreference
-			android:title="Status background opacity"
-			android:summary="The background opacity of the status lines"
+		<com.yuer.NetHack.SliderPreference
+			android:title="状态背景透明度"
+			android:summary="状态行的背景透明度"
 			android:persistent="true"
 			android:key="statusOpacity"
-			android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+			android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 			android:defaultValue="0"
 			android:text=""
 			android:max="255"/>
 
-		<com.tbd.forkfront.SliderPreference
-			android:title="Map border opacity"
-			android:summary="The opacity of the border around the map"
+		<com.yuer.NetHack.SliderPreference
+			android:title="地图边界透明度"
+			android:summary="地图边界的透明度"
 			android:persistent="true"
 			android:key="borderOpacity"
-			android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+			android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 			android:defaultValue="50"
 			android:text=""
 			android:max="255"/>
 
 		<PreferenceScreen
-			android:title="Directional overlay"
-			android:summary="Configure the directional overlay">
+			android:title="方向键"
+			android:summary="设置方向键">
 
 			<CheckBoxPreference
-				android:title="Always show in portrait"
-				android:summary="Always show the directional overlay in portrait mode"
+				android:title="竖屏时显示"
+				android:summary="总是在竖屏时显示"
 				android:persistent="true"
 				android:key="ovlPortAlways"
 				android:defaultValue="false"/>
 
 			<CheckBoxPreference
-				android:title="Always show in landscape"
-				android:summary="Always show the directional overlay in landscape mode"
+				android:title="横屏时显示"
+				android:summary="总是在横屏时显示"
 				android:persistent="true"
 				android:key="ovlLandAlways"
 				android:defaultValue="false"/>
 
 			<ListPreference
-				android:title="Portrait location"
-				android:summary="The location of the overlay in portrait mode"
+				android:title="竖屏时位置"
+				android:summary="使用竖屏模式时方向键的位置"
 				android:persistent="true"
 				android:key="ovlPortLoc"
 				android:defaultValue="1"
@@ -113,86 +113,86 @@
 				android:entryValues="@array/dirLocationValues"/>
 
 			<ListPreference
-				android:title="Landscape location"
-				android:summary="The location of the overlay in landscape mode"
+				android:title="横屏时位置"
+				android:summary="使用横屏模式时方向键的位置"
 				android:persistent="true"
 				android:key="ovlLandLoc"
 				android:defaultValue="1"
 				android:entries="@array/dirLocationNames"
 				android:entryValues="@array/dirLocationValues"/>
 
-			<com.tbd.forkfront.SliderPreference
-				android:title="Opacity"
-				android:summary="The opacity of the overlay"
+			<com.yuer.NetHack.SliderPreference
+				android:title="透明度"
+				android:summary="方向键的透明度"
 				android:persistent="true"
 				android:key="ovlOpacity"
-				android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+				android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 				android:defaultValue="255"
 				android:text=""
 				android:max="255"/>
 
-			<com.tbd.forkfront.SliderPreference
-					android:title="Size"
-					android:summary="The relative size of the overlay"
+			<com.yuer.NetHack.SliderPreference
+					android:title="大小"
+					android:summary="按钮的相对大小"
 					android:persistent="true"
 					android:key="ovlSize"
-					android:dialogMessage="Change the relative size of the overlay buttons"
+					android:dialogMessage="改变按钮的相对大小"
 					android:defaultValue="0"
 					android:text=""
 					forkfront:min="-10"
 					android:max="10"/>
 
 			<CheckBoxPreference
-				android:title="Allow map input with overlay"
-				android:summary="Allow directional input by clicking on the map when the overlay is shown"
+				android:title="允许地图输入"
+				android:summary="当方向键显示时允许点击地图输入方向"
 				android:persistent="true"
 				android:key="allowMapDir"
 				android:defaultValue="false"/>
-
+			
 		</PreferenceScreen>
 		
 		<PreferenceScreen
-			android:title="Command panels"
-			android:summary="Configure layout and content of the command panels"
+			android:title="命令面板"
+			android:summary="设置命令面板的排列方式和内容"
 			android:orderingFromXml="true">
 
 			<PreferenceScreen
-				android:title="Panel 0"
+				android:title="标准面板"
 				android:key="panel0">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="在竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="true"
 					android:key="pPortActive0"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="在横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="true"
 					android:key="pLandActive0"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Standard panel"
+					android:defaultValue="标准面板"
 					android:singleLine="true"
 					android:key="pName0"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue="@string/defaultCmdPanel"
+					android:defaultValue="@string/DefaultPanel"
 					android:singleLine="false"
 					android:key="pCmdString0"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc0"
 					android:defaultValue="3"
@@ -200,30 +200,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc0"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity0"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-					android:title="Size"
-					android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="大小"
+					android:summary="面板的相对大小"
 					android:persistent="true"
 					android:key="pSize0"
-					android:dialogMessage="Change the relative size of this panel"
+					android:dialogMessage="改变面板的相对大小"
 					android:defaultValue="0"
 					android:text=""
 					forkfront:min="-10"
@@ -232,42 +232,42 @@
 			</PreferenceScreen>
 			
 			<PreferenceScreen
-				android:title="Panel 2"
+				android:title="面板 2"
 				android:key="panel1">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="在竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pPortActive1"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="在横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pLandActive1"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 2"
+					android:defaultValue="面板 2"
 					android:singleLine="true"
 					android:key="pName1"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue=""
+					android:defaultValue="Z|施法 Q|准备  f|发射 t|投掷 ^A|重复 z|挥杖 ^D|踢 x|切换 M-m|能力"
 					android:singleLine="false"
 					android:key="pCmdString1"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc1"
 					android:defaultValue="3"
@@ -275,30 +275,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc1"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity1"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-						android:title="Size"
-						android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
 						android:persistent="true"
 						android:key="pSize1"
-						android:dialogMessage="Change the relative size of this panel"
+						android:dialogMessage="改变面板的相对大小"
 						android:defaultValue="0"
 						android:text=""
 						forkfront:min="-10"
@@ -307,42 +307,41 @@
 			
 			
 			<PreferenceScreen
-				android:title="Panel 3"
+				android:title="面板 3"
 				android:key="panel2">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pPortActive2"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pLandActive2"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 3"
+					android:defaultValue="面板 3"
 					android:singleLine="true"
 					android:key="pName2"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue=""
-					android:singleLine="false"
+					android:defaultValue="a|使用 q|喝 e|吃 r|阅读 p|付款 d|扔掉 ;|查看 M-l|搜刮 c|关门"
 					android:key="pCmdString2"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc2"
 					android:defaultValue="3"
@@ -350,30 +349,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc2"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity2"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-						android:title="Size"
-						android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
 						android:persistent="true"
 						android:key="pSize2"
-						android:dialogMessage="Change the relative size of this panel"
+						android:dialogMessage="改变面板的相对大小"
 						android:defaultValue="0"
 						android:text=""
 						forkfront:min="-10"
@@ -383,42 +382,42 @@
 			
 			
 			<PreferenceScreen
-				android:title="Panel 4"
+				android:title="面板 4"
 				android:key="panel3">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pPortActive3"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pLandActive3"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 4"
+					android:defaultValue="面板 4"
 					android:singleLine="true"
 					android:key="pName3"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
-					android:defaultValue=""
+					android:defaultValue="w|持握 W|穿戴 T|脱下 P|佩戴 R|摘下 E|刻写 M-o|献祭 M-p|祈祷 M-e|提升"
 					android:singleLine="false"
 					android:key="pCmdString3"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc3"
 					android:defaultValue="3"
@@ -426,30 +425,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc3"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity3"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-						android:title="Size"
-						android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
 						android:persistent="true"
 						android:key="pSize3"
-						android:dialogMessage="Change the relative size of this panel"
+						android:dialogMessage="改变面板的相对大小"
 						android:defaultValue="0"
 						android:text=""
 						forkfront:min="-10"
@@ -459,42 +458,42 @@
 			
 			
 			<PreferenceScreen
-				android:title="Panel 5"
+				android:title="面板 5"
 				android:key="panel4">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pPortActive4"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pLandActive4"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 5"
+					android:defaultValue="面板 5"
 					android:singleLine="true"
 					android:key="pName4"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
 					android:defaultValue=""
 					android:singleLine="false"
 					android:key="pCmdString4"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc4"
 					android:defaultValue="3"
@@ -502,30 +501,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc4"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity4"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-						android:title="Size"
-						android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
 						android:persistent="true"
 						android:key="pSize4"
-						android:dialogMessage="Change the relative size of this panel"
+						android:dialogMessage="改变面板的相对大小"
 						android:defaultValue="0"
 						android:text=""
 						forkfront:min="-10"
@@ -535,42 +534,42 @@
 			
 			
 			<PreferenceScreen
-				android:title="Panel 6"
+				android:title="面板 6"
 				android:key="panel5">
 				
 				<CheckBoxPreference
-					android:title="Active in portrait"
-					android:summary="Whether this panel is active in portrait mode"
+					android:title="竖屏时激活"
+					android:summary="该面板是否在竖屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pPortActive5"/>
 	
 				<CheckBoxPreference
-					android:title="Active in landscape"
-					android:summary="Whether this panel is active in landscape mode"
+					android:title="横屏时激活"
+					android:summary="该面板是否在横屏状态下激活使用"
 					android:persistent="true"
 					android:defaultValue="false"
 					android:key="pLandActive5"/>
 	
 				<EditTextPreference
-					android:title="Name"
-					android:summary="Set the name of this panel"
+					android:title="名称"
+					android:summary="给这个面板设定一个名称"
 					android:persistent="true"
-					android:defaultValue="Panel 6"
+					android:defaultValue="面板 6"
 					android:singleLine="true"
 					android:key="pName5"/>
 	
 				<EditTextPreference
-					android:title="Command buttons"
-					android:summary="Space separated list of commands in this panel"
+					android:title="命令按钮"
+					android:summary="在这个面板中设置你的需要的命令按钮和排列方式，每个命令使用 空格 分开"
 					android:persistent="true"
 					android:defaultValue=""
 					android:singleLine="false"
 					android:key="pCmdString5"/>
 	
 				<ListPreference
-					android:title="Portrait location"
-					android:summary="The panel's location in portrait mode"
+					android:title="竖屏位置"
+					android:summary="该面板在竖屏模式下的位置"
 					android:persistent="true"
 					android:key="pPortLoc5"
 					android:defaultValue="3"
@@ -578,30 +577,30 @@
 					android:entryValues="@array/locationValues"/>
 	
 				<ListPreference
-					android:title="Landscape location"
-					android:summary="The panel's location in landscape mode"
+					android:title="横屏位置"
+					android:summary="该面板在横屏模式下的位置"
 					android:persistent="true"
 					android:key="pLandLoc5"
 					android:defaultValue="3"
 					android:entries="@array/locationNames"
 					android:entryValues="@array/locationValues"/>
 		
-				<com.tbd.forkfront.SliderPreference
-					android:title="Opacity"
-					android:summary="The opacity of the panel"
+				<com.yuer.NetHack.SliderPreference
+					android:title="透明度"
+					android:summary="该面板的透明度"
 					android:persistent="true"
 					android:key="pOpacity5"
-					android:dialogMessage="The opacity between invisible (0) and opaque (255)"
+					android:dialogMessage="透明度的区间为从 完全不可见(0) 到 完全不透明(255)"
 					android:defaultValue="255"
 					android:text=""
 					android:max="255"/>
 
-				<com.tbd.forkfront.SliderPreference
-						android:title="Size"
-						android:summary="The relative size of the panel"
+				<com.yuer.NetHack.SliderPreference
+						android:title="大小"
+						android:summary="面板的相对大小"
 						android:persistent="true"
 						android:key="pSize5"
-						android:dialogMessage="Change the relative size of this panel"
+						android:dialogMessage="改变面板的相对大小"
 						android:defaultValue="0"
 						android:text=""
 						forkfront:min="-10"
@@ -610,81 +609,27 @@
 			</PreferenceScreen>
 			
 		</PreferenceScreen>
-
+		
 		<CheckBoxPreference
-			android:title="Reset command panel"
-			android:summary="Restore the command panel to its original layout"
+			android:title="重置命令面板"
+			android:summary="将命令面板的排列重设为默认"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="reset"/>
+
 	</PreferenceCategory>
 
 	<PreferenceCategory
-		android:title="Advanced"
+		android:title="高级设置"
 		android:key="advanced">
 
-		<PreferenceScreen
-			android:title="Hearse"
-			android:key="hearse"
-			android:summary="Allow players to share bones files over the internet">
+		<com.yuer.NetHack.EditFilePreference
+			android:title="编辑配置文件"
+			android:summary="在'defaults.nh'中手动设置特别的选项"/>
 
-			<CheckBoxPreference
-				android:title="Enable Hearse"
-				android:summary="Bones sharing. Don't use Hearse with Wizard Mode bones"
-				android:persistent="true"
-				android:key="hearseEnable"
-				android:defaultValue="false"/>
-
-			<EditTextPreference
-				android:title="Email"
-				android:summary="How Hearse admins can contact you if needed"
-				android:persistent="true"
-				android:defaultValue=""
-				android:singleLine="true"
-				android:key="hearseMail"/>
-
-			<EditTextPreference
-				android:title="Nickname"
-				android:summary="The name displayed on Hearse website"
-				android:persistent="true"
-				android:defaultValue=""
-				android:singleLine="true"
-				android:maxLength="39"
-				android:key="hearseName"/>
-
-			<EditTextPreference
-				android:title="User token"
-				android:summary="You can copy this to keep your identity across multiple devices"
-				android:persistent="true"
-				android:defaultValue=""
-				android:singleLine="true"
-				android:key="hearseID"/>
-
-			<CheckBoxPreference
-				android:title="Keep my bones"
-				android:summary="Default is to delete bones after upload"
-				android:persistent="true"
-				android:defaultValue="false"
-				android:key="hearseKeepUploaded"/>
-
-			<Preference
-				android:summary="Hearse is hosted by Krollmark. Click here to visit the Hearse website">
-
-				<intent
-					android:action="android.intent.action.VIEW"
-					android:data="http://hearse.krollmark.com"/>
-
-			</Preference>
-
-		</PreferenceScreen>
-
-		<com.tbd.forkfront.EditFilePreference
-			android:title="Edit options file"
-			android:summary=""/>
-	
 		<CheckBoxPreference
-			android:title="Use fallback renderer"
-			android:summary="Check this if you experience rendering problems"
+			android:title="使用回退渲染"
+			android:summary="如果你遇到渲染问题就检查这个"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="fallbackRenderer"/>
@@ -692,16 +637,24 @@
 	</PreferenceCategory>
 
 	<PreferenceCategory
-		android:title="About">
+		android:title="关于">
+
+		<Preference
+			android:title="隐私政策">
+			<intent
+				android:action="android.intent.action.VIEW"
+				android:data="https://gitee.com/sunnyuer/NetHack-Android/wikis/%E9%9A%90%E7%A7%81%E6%94%BF%E7%AD%96"/>
+		</Preference>
 
 		<PreferenceScreen
-			android:title="Credits"
-			android:summary="Contributors of this port">
+			android:title="贡献者"
+			android:summary="为此安卓版NetHack作出贡献的人">
 
-			<com.tbd.forkfront.CreditsPreference
+			<com.yuer.NetHack.CreditsPreference
 				android:title="Credits"
-				android:summary="Contributors of this port"/>
+				android:summary="为此安卓版NetHack作出贡献的人"/>
 
 		</PreferenceScreen>
+
 	</PreferenceCategory>
 </PreferenceScreen>

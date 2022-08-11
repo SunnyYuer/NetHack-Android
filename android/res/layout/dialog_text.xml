@@ -22,7 +22,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="0dip">
 
-			<com.tbd.forkfront.NH_TextView
+			<com.yuer.NetHack.NH_TextView
 				android:id="@+id/text_view"
 				style="@style/DialogText"
 				android:padding="12dip"
@@ -38,7 +38,7 @@
 			android:layout_height="wrap_content">
 			<Button
 			    style="@style/ButtonText"
-				android:text="Ok"
+				android:text="@string/ok"
 				android:layout_gravity="center"
 				android:id="@+id/btn_ok"
 				android:layout_width="fill_parent"

@@ -13,7 +13,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content">
 
-		<com.tbd.forkfront.NH_TextView
+		<com.yuer.NetHack.NH_TextView
 			android:id="@+id/title"
 			style="@style/DialogTitle"
 			android:layout_width="fill_parent"
@@ -35,21 +35,21 @@
 			<Button
 				android:id="@+id/btn_all"
 				style="@style/ButtonText"
-				android:text="Select all"
+				android:text="@string/SelectAll"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 				android:id="@+id/btn_ok"
 				style="@style/ButtonText"
-				android:text="Ok"
+				android:text="@string/ok"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 				android:id="@+id/btn_cancel"
 				style="@style/ButtonText"
-				android:text="Cancel"
+				android:text="@string/cancel"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>

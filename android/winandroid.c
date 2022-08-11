@@ -196,8 +196,8 @@ extern boolean status_activefields[MAXBLSTATS];
 extern unsigned long cond_hilites[BL_ATTCLR_MAX];
 static unsigned long active_conditions;
 static const char* cond_names[] = {
-	"Stone", "Slime", "Strngl", "FoodPois", "TermIll", "Blind",
-	"Deaf", "Stun", "Conf", "Hallu", "Lev", "Fly", "Ride"
+	"石化", "污秽", "束缚", "食物中毒", "生病", "失明",
+	"耳聋", "眩晕", "混乱", "幻觉", "飘浮", "飞行", "乘骑"
 };
 
 
@@ -227,7 +227,7 @@ void destroy_jobject(jstring jstr)
 #define JNICallO(func, ...) (*jEnv)->CallObjectMethod(jEnv, jAppInstance, func, ## __VA_ARGS__);
 
 //____________________________________________________________________________________
-void Java_com_tbd_forkfront_NetHackIO_RunNetHack(JNIEnv* env, jobject thiz, jstring path, jstring username)
+void Java_com_yuer_NetHack_NetHackIO_RunNetHack(JNIEnv* env, jobject thiz, jstring path, jstring username)
 {
 	char* params[10];
 	const char* pChars;
@@ -310,7 +310,7 @@ boolean SaveAndExit()
 }
 
 //____________________________________________________________________________________
-void Java_com_tbd_forkfront_NetHackIO_SaveNetHackState(JNIEnv* env, jobject thiz)
+void Java_com_yuer_NetHack_NetHackIO_SaveNetHackState(JNIEnv* env, jobject thiz)
 {
 	if(!program_state.gameover && program_state.something_worth_saving)
 		save_currentstate();
@@ -380,6 +380,61 @@ void and_init_nhwindows(int* argcp, char** argv)
 	iflags.window_inited = TRUE;
 }
 
+char getrolech(int i)
+{
+	switch(i)
+	{
+		case 0: return 'a';
+		case 1: return 'b';
+		case 2: return 'c';
+		case 3: return 'h';
+		case 4: return 'k';
+		case 5: return 'm';
+		case 6: return 'p';
+		case 7: return 'r';
+		case 8: return 'R';
+		case 9: return 's';
+		case 10: return 't';
+		case 11: return 'v';
+		case 12: return 'w';
+		default: return 'z';
+	}
+}
+
+char getracech(int i)
+{
+	switch(i)
+	{
+		case 0: return 'h';
+		case 1: return 'e';
+		case 2: return 'd';
+		case 3: return 'g';
+		case 4: return 'o';
+		default: return 'z';
+	}
+}
+
+char getgenderch(int i)
+{
+	switch(i)
+	{
+		case 0: return 'm';
+		case 1: return 'f';
+		default: return 'z';
+	}
+}
+
+char getalignch(int i)
+{
+	switch(i)
+	{
+		case 0: return 'l';
+		case 1: return 'n';
+		case 2: return 'c';
+		default: return 'z';
+	}
+}
+
 //____________________________________________________________________________________
 //player_selection()
 //		-- Do a window-port specific player type selection.  If
@@ -425,20 +480,16 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randrole()+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "Random", MENU_UNSELECTED);
+        	and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; roles[i].name.m; i++)
 			{
 				if(ok_role(i, flags.initrace, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
-					thisch = lowc(roles[i].name.m[0]);
-					if(thisch == lastch)
-						thisch = highc(thisch);
-					and_add_menu(win, NO_GLYPH, &any, thisch, 0, ATR_NONE, roles[i].name.m, MENU_UNSELECTED);
-					lastch = thisch;
+					and_add_menu(win, NO_GLYPH, &any, getrolech(i), 0, ATR_NONE, roles[i].name.m, MENU_UNSELECTED);
 				}
 			}
-			and_end_menu(win, "Pick a role");
+        	and_end_menu(win, "选择职业");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -467,14 +518,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randrace(flags.initrole)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+        	and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; races[i].noun; i++)
 				if(ok_race(flags.initrole, i, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
-					and_add_menu(win, NO_GLYPH, &any, races[i].noun[0], 0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, getracech(i), 0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick a race");
+        	and_end_menu(win, "选择种族");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -503,14 +554,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randgend(flags.initrole, flags.initrace)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+        	and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; i < ROLE_GENDERS; i++)
 				if(ok_gend(flags.initrole, flags.initrace, i, flags.initalign))
 				{
 					any.a_int = i + 1;
-					and_add_menu(win, NO_GLYPH, &any, genders[i].adj[0], 0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, getgenderch(i), 0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick a gender");
+        	and_end_menu(win, "选择性别");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -537,14 +588,14 @@ void and_player_selection()
 			and_start_menu(win);
 			any.a_void = 0; /* zero out all bits */
 			any.a_int = randalign(flags.initrole, flags.initrace)+1;
-			and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "random", MENU_UNSELECTED);
+        	and_add_menu(win, NO_GLYPH, &any, '*', 0, ATR_NONE, "随机", MENU_UNSELECTED);
 			for(i = 0; i < ROLE_ALIGNS; i++)
 				if(ok_align(flags.initrole, flags.initrace, flags.initgend, i))
 				{
 					any.a_int = i + 1;
-					and_add_menu(win, NO_GLYPH, &any, aligns[i].adj[0], 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, getalignch(i), 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
 				}
-			and_end_menu(win, "Pick an alignment");
+        	and_end_menu(win, "选择阵营");
 			result = and_select_menu(win, PICK_ONE, &selected);
 			and_destroy_nhwindow(win);
 
@@ -1625,7 +1676,7 @@ char and_yn_function(const char *question, const char *choices, CHAR_P def)
 		strcat(message, " ");
 	}
 
-	if(strstr(question, "what direction"))
+	if(strstr(question, "哪个方向"))
 	{
 		// directional choice
 		and_clear_nhwindow(WIN_MESSAGE);
@@ -1807,11 +1858,11 @@ void and_n_getline_r(const char* question, char* buf, int nMax, int showLog, int
 	n = (*jEnv)->GetStringLength(jEnv, jstr);
 	if(n >= nMax)
 		n = nMax - 1;
-    i = 0;
+	i = 0;
 	if(n > 0)
 	{
 		pChars = (*jEnv)->GetStringChars(jEnv, jstr, 0);
-	//debuglog("    returned %c %s", *pChars, pChars);
+		//debuglog("    returned %c %s", *pChars, pChars);
 		if(*pChars == 0x80)
 		{
 			// special case: ABORT
@@ -1837,10 +1888,12 @@ void and_n_getline_r(const char* question, char* buf, int nMax, int showLog, int
 		{
 			for(; i < n; i++)
 			{
+				buf[i] = pChars[i];
+				/*
 				if(isprint(pChars[i]))
 					buf[i] = pChars[i];
 				else
-					buf[i] = '?';
+					buf[i] = '?';*/
 			}
 		}
 		(*jEnv)->ReleaseStringChars(jEnv, jstr, pChars);
@@ -1893,7 +1946,7 @@ void and_askname()
     for(i = 0; i < nSaves; i++)
     	(*jEnv)->SetObjectArrayElement(jEnv, strings, i, (*jEnv)->NewStringUTF(jEnv, saves[i]));
 
-	jstr = (jstring)JNICallO(jAskName, PL_NSIZ, strings);
+	jstr = (jstring)JNICallO(jAskName, PL_NSIZ/3, strings);
 
     for(i = 0; i < nSaves; i++)
     	destroy_jobject((*jEnv)->GetObjectArrayElement(jEnv, strings, i));
@@ -1903,7 +1956,7 @@ void and_askname()
 	w = n;
 	if(n >= PL_NSIZ)
 		n = PL_NSIZ - 1;
-    i = 0;
+	i = 0;
 	if(n > 0)
 	{
 		pChars = (*jEnv)->GetStringChars(jEnv, jstr, 0);
@@ -1919,10 +1972,12 @@ void and_askname()
 
 		for(; i < n; i++)
 		{
+			plname[i] = pChars[i];
+			/*
 			if(isprint(pChars[i]))
 				plname[i] = pChars[i];
 			else
-				plname[i] = '?';
+				plname[i] = '?';*/
 		}
 		(*jEnv)->ReleaseStringChars(jEnv, jstr, pChars);
 	}
@@ -1969,8 +2024,8 @@ int do_ext_cmd_menu(BOOLEAN_P complete)
 	}
 	any.a_int = i+1;
 	if(!complete)
-		and_add_menu(wid, NO_GLYPH, &any, '*', 0, ATR_NONE, "(list everything)", FALSE);
-	and_end_menu(wid, "Extended command");
+		and_add_menu(wid, NO_GLYPH, &any, '*', 0, ATR_NONE, "(列出所有)", FALSE);
+	and_end_menu(wid, "扩展命令");
 	count = and_select_menu(wid, PICK_ONE, &selected);
 	what = count > 0 ? selected->item.a_int - 1 : -1;
 	if(selected)

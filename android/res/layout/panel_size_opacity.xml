@@ -39,7 +39,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="12dip"
 			android:layout_marginBottom="10dip"
-			android:text="Apply to all panels"/>
+			android:text="@string/ApplyAllPanels"/>
 
 		<LinearLayout
 			style="@android:style/ButtonBar"
@@ -48,14 +48,14 @@
 			<Button
 			    style="@style/ButtonText"
 				android:id="@+id/btn_0"
-				android:text="Ok"
+				android:text="@string/ok"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>
 			<Button
 			    style="@style/ButtonText"
 				android:id="@+id/btn_1"
-				android:text="Cancel"
+				android:text="@string/cancel"
 				android:layout_weight="1"
 				android:layout_width="0dip"
 				android:layout_height="wrap_content"/>

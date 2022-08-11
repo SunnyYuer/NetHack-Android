@@ -19,7 +19,7 @@
             android:layout_height="fill_parent"
             android:descendantFocusability="blocksDescendants" >
 
-            <com.tbd.forkfront.CmdPanelLayout
+            <com.yuer.NetHack.CmdPanelLayout
                 android:id="@+id/cmdPanelLayout1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
@@ -30,29 +30,29 @@
                     android:layout_gravity="top|fill_horizontal"
                     android:orientation="vertical" >
 
-                    <com.tbd.forkfront.AutoFitTextView
+                    <com.yuer.NetHack.AutoFitTextView
                         android:id="@+id/nh_stat0"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <com.tbd.forkfront.AutoFitTextView
+                    <com.yuer.NetHack.AutoFitTextView
                         android:id="@+id/nh_stat1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <com.tbd.forkfront.NH_TextView
+                    <com.yuer.NetHack.NH_TextView
                         android:id="@+id/nh_message"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp" />
 
-                    <com.tbd.forkfront.NH_TextView
+                    <com.yuer.NetHack.NH_TextView
                         android:id="@+id/more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="--More--"
+                        android:text="@string/more2"
                         android:background="@android:color/background_light"
                         android:textColor="@android:color/black"
                         android:clickable="true"
@@ -60,7 +60,7 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-                <com.tbd.forkfront.NH_TextView
+                <com.yuer.NetHack.NH_TextView
                     android:id="@+id/nh_blockmsg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                      android:layout_width="fill_parent"
                      android:layout_height="fill_parent" />
                 
-            </com.tbd.forkfront.CmdPanelLayout>
+            </com.yuer.NetHack.CmdPanelLayout>
         </FrameLayout>
     </FrameLayout>
 
