@@ -25,8 +25,8 @@
 			android:key="fullscreen"/>
 
 		<CheckBoxPreference
-			android:title="Immersive mode"
-			android:summary="Hide the on-screen navigation bar"
+			android:title="沉浸模式"
+			android:summary="隐藏屏幕上的导航栏"
 			android:persistent="true"
 			android:defaultValue="false"
 			android:key="immersive"/>
