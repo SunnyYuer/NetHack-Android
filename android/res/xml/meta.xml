@@ -24,8 +24,8 @@
 		<Key android:codes="243" android:keyLabel="M-s"/>
 		<Key android:codes="228" android:keyLabel="M-d"/>
 		<Key android:codes="230" android:keyLabel="M-f"/>
-		<Key android:codes="0" android:keyLabel=""/>
-		<Key android:codes="0" android:keyLabel=""/>
+		<Key android:codes="210" android:keyLabel="M-R"/>
+		<Key android:codes="212" android:keyLabel="M-T"/>
 		<Key android:codes="234" android:keyLabel="M-j"/>
 		<Key android:codes="0" android:keyLabel=""/>
 		<Key android:codes="236" android:keyLabel="M-l" android:keyEdgeFlags="right"/>
@@ -33,8 +33,8 @@
     
     <Row>
         <Key android:codes="-1" android:keyIcon="@drawable/sym_keyboard_shift" android:keyWidth="15%p" android:isModifier="true" android:isSticky="true" android:keyEdgeFlags="left"/>
-        <Key android:codes="0" android:keyLabel=""/>
-        <Key android:codes="0" android:keyLabel=""/>
+        <Key android:codes="193" android:keyLabel="M-A"/>
+        <Key android:codes="195" android:keyLabel="M-C"/>
 		<Key android:codes="227" android:keyLabel="M-c"/>
 		<Key android:codes="246" android:keyLabel="M-v"/>
         <Key android:codes="0" android:keyLabel=""/>

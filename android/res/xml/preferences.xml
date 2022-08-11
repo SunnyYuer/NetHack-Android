@@ -24,6 +24,13 @@
 			android:defaultValue="false"
 			android:key="fullscreen"/>
 
+		<CheckBoxPreference
+			android:title="Immersive mode"
+			android:summary="Hide the on-screen navigation bar"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="immersive"/>
+
 		<ListPreference
 			android:title="Volume up action"
 			android:summary="The action performed when pressing the volume up key"

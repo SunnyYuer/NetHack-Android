@@ -47,7 +47,7 @@
                 android:ems="10"
                 android:nextFocusRight="@+id/history"
                 android:nextFocusDown="@+id/history_list"
-                android:imeOptions="actionSend|flagNoExtractUi|flagNoEnterAction|flagNoAccessoryAction"
+                android:imeOptions="actionSend|flagNoExtractUi|flagNoAccessoryAction"
                 android:inputType="textNoSuggestions|textLongMessage"
                 android:maxLength="200"
                 android:maxLines="1"

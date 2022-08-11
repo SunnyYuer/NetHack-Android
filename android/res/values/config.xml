@@ -11,4 +11,6 @@
 	<string name="hearseClientName">Gurr Android Nethack 3.6.0</string>
 	<string name="hearseRoles">Arc|Bar|Cav|Hea|Kni|Mon|Pri|Rog|Ran|Sam|Tou|Val|Wiz</string>
 	<string name="hearseNethackVersion">54</string>
+	<bool name="hearseLittleEndian">false</bool>
+	<bool name="oldStatusMode">false</bool>
 </resources>

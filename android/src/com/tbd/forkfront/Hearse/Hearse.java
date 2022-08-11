@@ -6,15 +6,15 @@ import android.text.TextUtils;
 import android.widget.Toast;
 import com.tbd.forkfront.Log;
 import com.tbd.forkfront.R;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.HttpEntity;
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.client.methods.HttpPost;
+import cz.msebera.android.httpclient.entity.ByteArrayEntity;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicHeader;
 
 import java.io.*;
 import java.math.BigInteger;
@@ -243,46 +243,42 @@ public class Hearse {
 		public void run() {
 
 			try {
-				if(isHearseReachable()) {
+				if(userToken.length() == 0) {
+					if(userEmail.length() > 0) {
+						userToken = createNewUser();
+					} else {
+						showEmailRequired();
+					}
+				} else {
+					Log.print("using existing token " + userToken);
 
-					if(userToken.length() == 0) {
+					// Check if userNick information has changed and update.
+					if(prefs.getBoolean(PREFS_HEARSE_UPDATE_USER, false)) {
 						if(userEmail.length() > 0) {
-							userToken = createNewUser();
+							changeUserInfo();
 						} else {
 							showEmailRequired();
 						}
-					} else {
-						Log.print("using existing token " + userToken);
-
-						// Check if userNick information has changed and update.
-						if(prefs.getBoolean(PREFS_HEARSE_UPDATE_USER, false)) {
-							if(userEmail.length() > 0) {
-								changeUserInfo();
-							} else {
-								showEmailRequired();
-							}
-						}
 					}
+				}
 
-					if(prefs.contains(PREFS_HEARSE_UPDATE_USER))
-						prefs.edit().remove(PREFS_HEARSE_UPDATE_USER).commit();
+				if(prefs.contains(PREFS_HEARSE_UPDATE_USER))
+					prefs.edit().remove(PREFS_HEARSE_UPDATE_USER).commit();
 
-					if(userToken.length() > 0) {
-						int nUp = uploadBones();
-						int nDown = 0;
-						if(nUp > 0) {
-							nDown = downloadBones();
-						}
-						Log.print("Hearse uploaded " + nUp + ", downloaded " + nDown);
-
-						if(nUp > 0 || nDown > 0) {
-							updateLastUpload();
-						}
+				if(userToken.length() > 0) {
+					int nUp = uploadBones();
+					int nDown = 0;
+					if(nUp > 0) {
+						nDown = downloadBones();
 					}
-				} else {
-					Log.print("Hearse not reachable");
+					Log.print("Hearse uploaded " + nUp + ", downloaded " + nDown);
+
+					if(nUp > 0 || nDown > 0) {
+						updateLastUpload();
+					}
 				}
 			} catch(Exception e) {
+				showToast("Hearse not reachable");
 				e.printStackTrace();
 			}
 		}
@@ -312,7 +308,7 @@ public class Hearse {
 		});
 	}
 
-	private String createNewUser() {
+	private String createNewUser() throws IOException {
 		List<Header> headerList = new ArrayList<Header>();
 
 
@@ -320,14 +316,7 @@ public class Hearse {
 
 		headerList.add(new BasicHeader(HEADER_NICK, userNick));
 
-		HttpResponse resp;
-		try {
-			resp = doGet(BASE_URL, NEW_USER, headerList);
-		} catch (IOException e) {
-			// Log exception
-			e.printStackTrace();
-			return "";
-		}
+		HttpResponse resp = doGet(BASE_URL, NEW_USER, headerList);
 
 		if (resp.getFirstHeader(HEADER_HEARSE) == null) {
 			consumeContent(resp);
@@ -348,7 +337,7 @@ public class Hearse {
 		return tokenHeader.getValue();
 	}
 
-	private int downloadBones() {
+	private int downloadBones() throws IOException {
 
 		int nDownloaded = 0;
 		String hackver = prefs.getString(HEADER_NETHACKVER, mNethackVersion);
@@ -372,13 +361,7 @@ public class Hearse {
 				headerList.add(new BasicHeader(HEADER_NETHACKVER, hackver));
 			}
 
-			HttpResponse resp;
-			try {
-				resp = doGet(BASE_URL, DOWNLOAD, headerList);
-			} catch(IOException e) {
-				e.printStackTrace();
-				return 0;
-			}
+			HttpResponse resp = doGet(BASE_URL, DOWNLOAD, headerList);
 
 			if (resp.getFirstHeader(HEADER_HEARSE) == null) {
 				consumeContent(resp);
@@ -637,19 +620,7 @@ public class Hearse {
 		return result;
 	}
 
-	private boolean isHearseReachable() {
-		boolean reachable = false;
-		try {
-			reachable = InetAddress.getByName(HOST).isReachable(3000);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return reachable;
-	}
-
-
-	private void changeUserInfo() {
+	private void changeUserInfo() throws IOException {
 		Log.print("Hearse updating user info: " + userNick + ", " + userEmail);
 
 		List<Header> headerList = new ArrayList<Header>();
@@ -660,13 +631,7 @@ public class Hearse {
 
 		headerList.add(new BasicHeader(HEADER_TOKEN, userToken));
 
-		HttpResponse resp;
-		try {
-			resp = doGet(BASE_URL, UPDATE_USER, headerList);
-		} catch(IOException e) {
-			e.printStackTrace();
-			return;
-		}
+		HttpResponse resp = doGet(BASE_URL, UPDATE_USER, headerList);
 
 		if (resp.getFirstHeader(HEADER_HEARSE) != null && resp.getFirstHeader(HEADER_ERROR) != null) {
 
@@ -691,10 +656,14 @@ public class Hearse {
 		try {
 			HttpEntity entity = resp.getEntity();
 			BufferedReader in = new BufferedReader(new InputStreamReader(entity.getContent()));
+			StringBuilder message = new StringBuilder();
 			String line;
 			while ((line = in.readLine()) != null) {
-				Log.print(line); //@todo output this to screen
+				if(message.length() > 0)
+					message.append('\n');
+				message.append(line);
 			}
+			showToast(message.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,8 +1,6 @@
 package com.tbd.forkfront;
 
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -66,26 +64,61 @@ public class CmdPanel
 
 		mBtnPanel.removeAllViews();
 
-		Pattern p = Pattern.compile("\\s*((\\\\\\s|[^\\s])+)");
-		Pattern p1 = Pattern.compile("((\\\\\\||[^\\|])+)");
-		Matcher m = p.matcher(cmds);
-		ArrayList<String> cmdList = new ArrayList<String>();
-		while(m.find())
-			cmdList.add(m.group(1));		
-		for(String c : cmdList)
+		ArrayList<String> cmdList = parseCmds(cmds);
+		for(int i = 0; i < cmdList.size() - 1;)
 		{
-			m = p1.matcher(c);
-			if(!m.find())
-				continue;
-			String cmd = m.group(1);
-			String label = "";
-			if(m.find())
-				label = m.group(1);
-			cmd = cmd.replace("\\ ", " ");
-			label = label.replace("\\ ", " ");
+			String cmd = cmdList.get(i++);
+			String label  = cmdList.get(i++);
 			View v = createCmdButtonFromString(cmd, label);
 			mBtnPanel.addView(v);
 		}
+	}
+
+	// ____________________________________________________________________________________
+	private ArrayList<String> parseCmds(String cmds)
+	{
+		ArrayList<String> parts = new ArrayList<>();
+		StringBuilder cmd = new StringBuilder();
+		boolean esc = false;
+		boolean label = false;
+		for(int i = 0; i < cmds.length(); i++)
+		{
+			char ch = cmds.charAt(i);
+			if(esc)
+			{
+				cmd.append(ch);
+				esc = false;
+			}
+			else if(ch == '\\')
+			{
+				esc = true;
+			}
+			else if(ch == '|')
+			{
+				parts.add(cmd.toString());
+				cmd = new StringBuilder();
+				label = true;
+			}
+			else if(ch == ' ')
+			{
+				parts.add(cmd.toString());
+				cmd = new StringBuilder();
+				if(!label)
+					parts.add("");
+				label = false;
+			}
+			else
+			{
+				cmd.append(ch);
+			}
+		}
+		if(cmd.length() > 0 || label)
+		{
+			parts.add(cmd.toString());
+			if(!label)
+				parts.add("");
+		}
+		return parts;
 	}
 
 	// ____________________________________________________________________________________
@@ -98,13 +131,19 @@ public class CmdPanel
 		{
 			Button btn = (Button)mBtnPanel.getChildAt(i);
 			Cmd cmd = (Cmd)btn.getTag();
-			builder.append(cmd.getCommand().replace("|", "\\|").replace(" ", "\\ "));
+			builder.append(escape(cmd.getCommand()));
 			if(cmd.hasLabel())
-				builder.append("|").append(cmd.getLabel().replace("|", "\\|").replace(" ", "\\ "));
+				builder.append("|").append(escape(cmd.getLabel()));
 			if(i != nButtons - 1)
 				builder.append(' ');
 		}
 		return builder.toString();
+	}
+
+	// ____________________________________________________________________________________
+	private String escape(String cmd)
+	{
+		return cmd.replace("\\", "\\\\").replace("|", "\\|").replace(" ", "\\ ");
 	}
 
 	// ____________________________________________________________________________________

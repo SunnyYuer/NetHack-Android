@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Debug;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.view.ContextMenu;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import com.tbd.forkfront.*;
 import com.tbd.forkfront.Hearse.Hearse;
 
@@ -124,6 +123,7 @@ public class NH_State
 	}
 
 	// ____________________________________________________________________________________
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public void preferencesUpdated()
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -144,9 +144,7 @@ public class NH_State
 
 		mTileset.updateTileset(prefs, mContext.getResources());
 		mMap.updateZoomLimits();
-
-		int flag = prefs.getBoolean("fullscreen", false) ? WindowManager.LayoutParams.FLAG_FULLSCREEN : 0;
-		mContext.getWindow().setFlags(flag, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		updateSystemUiVisibilityFlags(prefs);
 	}
 
 	// ____________________________________________________________________________________
@@ -158,6 +156,23 @@ public class NH_State
 	// ____________________________________________________________________________________
 	public void onContextMenuClosed() {
 		mCmdPanelLayout.onContextMenuClosed();
+		updateSystemUiVisibilityFlags(PreferenceManager.getDefaultSharedPreferences(mContext));
+	}
+
+	// ____________________________________________________________________________________
+	private void updateSystemUiVisibilityFlags(SharedPreferences prefs)
+	{
+		boolean isFullscreen = prefs.getBoolean("fullscreen", false);
+		int fullscreenFlag = isFullscreen ? WindowManager.LayoutParams.FLAG_FULLSCREEN : 0;
+		mContext.getWindow().setFlags(fullscreenFlag, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+		{
+			boolean isImmersive = prefs.getBoolean("immersive", false);
+			int uiVisibilityFlags = isImmersive ?
+					(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+					: 0;
+			mContext.getWindow().getDecorView().setSystemUiVisibility(uiVisibilityFlags);
+		}
 	}
 
 	// ____________________________________________________________________________________
