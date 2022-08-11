@@ -261,10 +261,20 @@ public class UpdateAssets extends AsyncTask<Void, Void, Void>
 				mBackupDefaultsFile = true;
 
 			if((srcVer / 100) != (curVer / 100)) {
-				Log.print("Really old. Must remove incompatible save and bones files");
+				Log.print("Really old. Must remove incompatible save and bones files.");
 				return FileStatus.INCOMPATIBLE_VERSION;
 			}
-			return FileStatus.OLD_VERSION;
+
+			// This is a hack on top of a hack. Handle updates in some better way
+			if((srcVer / 10) != (curVer / 10)) {
+				Log.print("Old version with updated defaults.");
+				return FileStatus.OLD_VERSION;
+			}
+
+			// Update assets but keep defaults, so no need for backup
+			mBackupDefaultsFile = false;
+
+			return FileStatus.CORRUPT;
 		}
 
 		String[] files = mAM.list(mNativeDataDir);

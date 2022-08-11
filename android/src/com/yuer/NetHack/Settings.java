@@ -5,6 +5,7 @@ import com.yuer.NetHack.R;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -61,6 +62,15 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 			Preference hearsePref = findPreference("hearse");
 			if(hearsePref != null)
 				hearseParent.removePreference(hearsePref);
+		}
+
+		// Immersive mode only available on API 11 and up
+		PreferenceCategory settingsCategory = (PreferenceCategory)findPreference("settings");
+		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
+		{
+			Preference fullscreenPref = findPreference("immersive");
+			if(fullscreenPref != null)
+				settingsCategory.removePreference(fullscreenPref);
 		}
 	}
 

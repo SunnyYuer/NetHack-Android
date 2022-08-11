@@ -15,9 +15,12 @@
  */
 package com.yuer.NetHack;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Debug;
 import android.preference.PreferenceManager;
@@ -36,6 +39,15 @@ public class NetHack extends Activity
 	private boolean mCtrlDown;
 	private boolean mMetaDown;
 	private boolean mBackTracking;
+
+	private final int SETTINGS_ACTIVITY_CODE = 42;
+	private final int REQUEST_EXTERNAL_STORAGE = 43;
+
+	public interface RequestExternalStorageResult {
+		void onGranted();
+		void onDenied();
+	}
+	private RequestExternalStorageResult mRequestExternalStorageResult;
 
 	// ____________________________________________________________________________________
 	@Override
@@ -68,6 +80,20 @@ public class NetHack extends Activity
 
 		setContentView(R.layout.mainwindow);
 
+		ensureReadWritePermissions(new RequestExternalStorageResult() {
+			@Override
+			public void onGranted() {
+				goodToGo();
+			}
+
+			@Override
+			public void onDenied() {
+				finish();
+			}
+		});
+	}
+
+	private void goodToGo() {
 		if(nhState == null)
 		{
 			ByteDecoder decoder;
@@ -93,6 +119,66 @@ public class NetHack extends Activity
 		{
 			Log.print("restoring state");
 			nhState.setContext(this);
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.M)
+	public void ensureReadWritePermissions(final RequestExternalStorageResult requestExternalStorageResult)
+	{
+		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			if(checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
+			{
+				if(mRequestExternalStorageResult == null)
+				{
+					mRequestExternalStorageResult = requestExternalStorageResult;
+					requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_EXTERNAL_STORAGE);
+				}
+				else
+				{
+					// Chain callbacks if several requests are activated in parallel. This shouldn't happen though.
+					final RequestExternalStorageResult prevRequest = mRequestExternalStorageResult;
+					mRequestExternalStorageResult = new RequestExternalStorageResult()
+					{
+						@Override
+						public void onGranted()
+						{
+							prevRequest.onGranted();
+							requestExternalStorageResult.onGranted();
+						}
+
+						@Override
+						public void onDenied()
+						{
+							prevRequest.onDenied();
+							requestExternalStorageResult.onDenied();
+						}
+					};
+				}
+			}
+			else
+			{
+				requestExternalStorageResult.onGranted();
+			}
+		}
+		else
+		{
+			requestExternalStorageResult.onGranted();
+		}
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		Log.print("onRequestPermissionsResult");
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		if(requestCode == REQUEST_EXTERNAL_STORAGE)
+		{
+			if(permissions.length == 1 && permissions[0].equals(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			&& grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+				mRequestExternalStorageResult.onGranted();
+			} else {
+				mRequestExternalStorageResult.onDenied();
+			}
 		}
 	}
 
@@ -205,7 +291,7 @@ public class NetHack extends Activity
 		if(item.getItemId() == 1)
 		{
 			Intent prefsActivity = new Intent(getBaseContext(), Settings.class);
-			startActivityForResult(prefsActivity, 42);
+			startActivityForResult(prefsActivity, SETTINGS_ACTIVITY_CODE);
 			return true;
 		}
 
@@ -247,7 +333,7 @@ public class NetHack extends Activity
 		mCtrlDown = false;
 		mMetaDown = false;
 
-		if(requestCode == 42)
+		if(requestCode == SETTINGS_ACTIVITY_CODE)
 		{
 			nhState.preferencesUpdated();
 		}
@@ -282,7 +368,7 @@ public class NetHack extends Activity
 				else if(mBackTracking && event.isLongPress())
 				{
 					Intent prefsActivity = new Intent(getBaseContext(), Settings.class);
-					startActivityForResult(prefsActivity, 42);
+					startActivityForResult(prefsActivity, SETTINGS_ACTIVITY_CODE);
 					mBackTracking = false;
 				}
 			}

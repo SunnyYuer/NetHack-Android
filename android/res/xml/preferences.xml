@@ -24,6 +24,13 @@
 			android:defaultValue="false"
 			android:key="fullscreen"/>
 
+		<CheckBoxPreference
+			android:title="Immersive mode"
+			android:summary="Hide the on-screen navigation bar"
+			android:persistent="true"
+			android:defaultValue="false"
+			android:key="immersive"/>
+
 		<ListPreference
 			android:title="增大音量键的动作"
 			android:summary="当按下增大音量键的时候应用将执行何种动作"

@@ -2,7 +2,6 @@ package com.yuer.NetHack;
 
 import java.util.Set;
 import android.app.Activity;
-import android.util.FloatMath;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -100,7 +99,7 @@ public class AmountSelector
 		int pad = 9;
 		while(pad <= mMax)
 			pad = pad * 10 + 9;
-		int w = (int)FloatMath.floor(mAmountText.getPaint().measureText(" " + Integer.toString(pad)));
+		int w = (int)Math.floor(mAmountText.getPaint().measureText(" " + Integer.toString(pad)));
 		mAmountText.setWidth(w);
 
 		seek.setOnSeekBarChangeListener(new OnSeekBarChangeListener()

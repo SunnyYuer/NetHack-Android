@@ -8,7 +8,6 @@ import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.FloatMath;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -117,7 +116,7 @@ public class NH_TextView extends TextView {
 		String max = "01234567890123456789012345678901234567890123456789012345678901234567890123456789";
 		float baseWidth = paint.measureText(max);
 		float fontScale = DISPLAY_WIDTH_PX / baseWidth;
-		FITTED_SIZE_PX = FloatMath.floor(baseSize * fontScale);
+		FITTED_SIZE_PX = (float)Math.floor(baseSize * fontScale);
 		float maxSizePx = MAX_SIZE_SP * displayMetrics.scaledDensity;
 		if(FITTED_SIZE_PX > maxSizePx)
 			FITTED_SIZE_PX = maxSizePx;

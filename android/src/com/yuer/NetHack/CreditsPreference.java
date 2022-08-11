@@ -20,17 +20,15 @@ public class CreditsPreference extends Preference
 	{
 		super(context, attrs);
 		setPersistent(false);
+		setLayoutResource(R.layout.textwindow);
 	}
 
 	// ____________________________________________________________________________________
 	@Override
 	protected View onCreateView(ViewGroup parent)
 	{
-		TextView text;
-		View view;
-
-		view = Util.inflate(getContext(), R.layout.textwindow);
-		text = (TextView)view.findViewById(R.id.text_view);
+		View view = super.onCreateView(parent);//Util.inflate(getContext(), R.layout.textwindow);
+		TextView text = (TextView)view.findViewById(R.id.text_view);
 
 		text.setText(Html.fromHtml(getContext().getString(R.string.credits)), TextView.BufferType.SPANNABLE);
 

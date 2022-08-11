@@ -15,7 +15,6 @@ import android.graphics.Paint.Style;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.text.TextPaint;
-import android.util.FloatMath;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,7 +27,7 @@ public class NHW_Map implements NH_Window
 	public static final int TileCols = 80;
 	public static final int TileRows = 21;
 	private static final double ZOOM_BASE = 1.005;
-	private static final float PIE_SLICE = FloatMath.sqrt(2)-1;// tan(pi/8)
+	private static final float PIE_SLICE = (float)Math.sqrt(2)-1;// tan(pi/8)
 	private static final float SELF_RADIUS_FACTOR = 25;
 	private static final float MIN_TILE_SIZE_FACTOR = 5;
 	private static final float MAX_TILE_SIZE_FACTOR = 100;
@@ -684,13 +683,13 @@ public class NHW_Map implements NH_Window
 			}
 
 			int minTileX = clamp((int) ((clipRect.left - mViewOffset.x) / tileW), 0, TileCols - 1);
-			int maxTileX = clamp((int) FloatMath.ceil((clipRect.right - mViewOffset.x) / tileW), minTileX, TileCols - 1);
+			int maxTileX = clamp((int) Math.ceil((clipRect.right - mViewOffset.x) / tileW), minTileX, TileCols - 1);
 			int minTileY = clamp((int) ((clipRect.top - mViewOffset.y) / tileH), 0, TileRows - 1);
-			int maxTileY = clamp((int) FloatMath.ceil((clipRect.bottom - mViewOffset.y) / tileH), minTileY, TileRows - 1);
+			int maxTileY = clamp((int) Math.ceil((clipRect.bottom - mViewOffset.y) / tileH), minTileY, TileRows - 1);
 
-			float left = FloatMath.floor(mViewOffset.x + minTileX * tileW);
+			float left = (float)Math.floor(mViewOffset.x + minTileX * tileW);
 			float x = left;
-			float y = FloatMath.floor(mViewOffset.y + minTileY * tileH);
+			float y = (float)Math.floor(mViewOffset.y + minTileY * tileH);
 
 			mPaint.setAntiAlias(false);
 
@@ -726,8 +725,8 @@ public class NHW_Map implements NH_Window
 		// ____________________________________________________________________________________
 		protected void drawCursor(Canvas canvas, float tileW, float tileH)
 		{
-			float x = FloatMath.floor(mViewOffset.x);
-			float y = FloatMath.floor(mViewOffset.y);
+			float x = (float)Math.floor(mViewOffset.x);
+			float y = (float)Math.floor(mViewOffset.y);
 
 			if(mCursorPos.x >= 0 && mHealthColor != 0)
 			{
@@ -763,8 +762,8 @@ public class NHW_Map implements NH_Window
 			int minTileY = clamp((int) ((clipRect.top - mViewOffset.y) / tileH), 0, TileRows - 1);
 			int maxTileY = clamp((int) Math.ceil((clipRect.bottom - mViewOffset.y) / tileH), minTileY, TileRows - 1);
 			
-			float x = FloatMath.floor(mViewOffset.x + minTileX * tileW);
-			float y = FloatMath.floor(mViewOffset.y + minTileY * tileH);
+			float x = (float)Math.floor(mViewOffset.x + minTileX * tileW);
+			float y = (float)Math.floor(mViewOffset.y + minTileY * tileH);
 
 			dst.set(x, y, x + tileW, y + tileH);
 
@@ -829,10 +828,10 @@ public class NHW_Map implements NH_Window
 				clipRect.set(0, 0, canvas.getWidth(), canvas.getHeight());
 			}
 
-			float x = FloatMath.floor(mViewOffset.x - 2 * borderSize);
-			float y = FloatMath.floor(mViewOffset.y - 2 * borderSize);
-			float w = FloatMath.ceil(tileW * TileCols + 4 * borderSize);
-			float h = FloatMath.ceil(tileH * TileRows + 4 * borderSize);
+			float x = (float)Math.floor(mViewOffset.x - 2 * borderSize);
+			float y = (float)Math.floor(mViewOffset.y - 2 * borderSize);
+			float w = (float)Math.ceil(tileW * TileCols + 4 * borderSize);
+			float h = (float)Math.ceil(tileH * TileRows + 4 * borderSize);
 
 			mPaint.setAntiAlias(false);
 			mPaint.setColor(mBorderColor);
@@ -869,8 +868,8 @@ public class NHW_Map implements NH_Window
 			// r^2=x^2+y^2
 			// PIE_SLICE=y/x
 			// y = sqrt(r^2/(1+1/PIE_SLICE^2))
-			float y0 = FloatMath.sqrt(radius0*radius0 / (1 + 1 / (PIE_SLICE * PIE_SLICE)));
-			float y1 = FloatMath.sqrt(radius1*radius1 / (1 + 1 / (PIE_SLICE * PIE_SLICE)));
+			float y0 = (float)Math.sqrt(radius0*radius0 / (1 + 1 / (PIE_SLICE * PIE_SLICE)));
+			float y1 = (float)Math.sqrt(radius1*radius1 / (1 + 1 / (PIE_SLICE * PIE_SLICE)));
 			float x0 = y0/ PIE_SLICE;
 			float x1 = y1/ PIE_SLICE;
 			canvas.drawLine( x0+cx, y0+cy, x1+cx, y1+cy, mPaint);
@@ -1183,7 +1182,7 @@ public class NHW_Map implements NH_Window
 			int idx1 = event.findPointerIndex(mPointerId1);
 			float dx = event.getX(idx0) - event.getX(idx1);
 			float dy = event.getY(idx0) - event.getY(idx1);
-			return FloatMath.sqrt(dx * dx + dy * dy);
+			return (float)Math.sqrt(dx * dx + dy * dy);
 		}
 
 		// ____________________________________________________________________________________
@@ -1428,7 +1427,7 @@ public class NHW_Map implements NH_Window
 			{
 				mPaint.setTextSize(mBaseTextSize * mScale);
 				float w = mPaint.measureText("\u2550");
-				return FloatMath.floor(w) - 1;
+				return (float)Math.floor(w) - 1;
 			}
 
 			return mTileset.getTileWidth() * mScale;
@@ -1441,7 +1440,7 @@ public class NHW_Map implements NH_Window
 			{
 				mPaint.setTextSize(mBaseTextSize * mScale);
 				FontMetrics metrics = mPaint.getFontMetrics();
-				return FloatMath.floor(metrics.descent - metrics.ascent);
+				return (float)Math.floor(metrics.descent - metrics.ascent);
 			}
 
 			return mTileset.getTileHeight() * mScale;
