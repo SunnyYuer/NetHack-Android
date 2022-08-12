@@ -96,15 +96,15 @@ OPTIONS=boulder:0
 # Colorize individual rows on a menu based on what
 # regular expressions match its text
 # http://nethackwiki.com/wiki/Menucolors
-MENUCOLOR="受祝福的 "=yellow
-MENUCOLOR="圣水"=yellow
+MENUCOLOR="受祝福的 "=green
+MENUCOLOR="圣水"=green
 MENUCOLOR="未诅咒的 "=white
 MENUCOLOR="被诅咒的 "=red
 MENUCOLOR="邪水"=red
 MENUCOLOR="被诅咒的 .*穿戴中"=red&underline
 MENUCOLOR="负重石|消除.*魔杖|魔杖被称为.*消除"=white&underline
 MENUCOLOR="岩德护身符.*名为"=magenta
-MENUCOLOR=" 金币"=yellow
+MENUCOLOR=" 金币"=white
 
 
 # *** Status hilites ***
