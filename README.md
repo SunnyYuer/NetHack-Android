@@ -13,15 +13,12 @@
 
 === 准备 ===
 
-1. 下载Android端源码并解压
-[下载](https://github.com/SunnyEric/NetHack-Android/archive/Android-cn.zip)
-   下载NetHack源码并解压
-[下载](https://github.com/SunnyEric/NetHack-cn/archive/NetHack-Android.zip)
+1. 下载本项目master分支源码并解压，并下载NetHack的安卓端源码并解压
+[下载](https://github.com/SunnyYuer/NetHack-cn/archive/refs/heads/NetHack-Android.zip)
 
-2. 将Android-cn/android目录整个复制进NetHack-Android/NetHack/sys/目录下
+2. 将本项目的android目录整个复制进NetHack-Android/NetHack/sys/目录下
 
-3. 在linux中安装ndk
-https://developer.android.google.cn/ndk/downloads/
+3. 在linux中安装ndk-r19c
 
 4. 安装Android Studio
 
@@ -37,10 +34,10 @@ https://developer.android.google.cn/ndk/downloads/
 
 1. 打开Android Studio
 2. 选导入Eclipse ADT工程，选择NetHack-Android/NetHack/sys/android目录
-3. 工程结构里，选择编译SDK版本，目标SDK版本，最小SDK版本
+3. 工程结构里，选择编译SDK版本，目标SDK版本28，最小SDK版本7
 4. 生成签名的APK，勾选签名版本V1和V2
 
 ##问题反馈或建议
 * 百度贴吧http://tieba.baidu.com/p/4720022918
-* [Github Issues](https://github.com/SunnyEric/NetHack-Android/issues)
+* [Github Issues](https://github.com/SunnyYuer/NetHack-Android/issues)
 * 邮箱sunnyuer@qq.com
