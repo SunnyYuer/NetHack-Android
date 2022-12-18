@@ -382,61 +382,6 @@ void and_init_nhwindows(int* argcp, char** argv)
 	iflags.window_inited = TRUE;
 }
 
-char getrolech(int i)
-{
-	switch(i)
-	{
-		case 0: return 'a';
-		case 1: return 'b';
-		case 2: return 'c';
-		case 3: return 'h';
-		case 4: return 'k';
-		case 5: return 'm';
-		case 6: return 'p';
-		case 7: return 'r';
-		case 8: return 'R';
-		case 9: return 's';
-		case 10: return 't';
-		case 11: return 'v';
-		case 12: return 'w';
-		default: return 'z';
-	}
-}
-
-char getracech(int i)
-{
-	switch(i)
-	{
-		case 0: return 'h';
-		case 1: return 'e';
-		case 2: return 'd';
-		case 3: return 'g';
-		case 4: return 'o';
-		default: return 'z';
-	}
-}
-
-char getgenderch(int i)
-{
-	switch(i)
-	{
-		case 0: return 'm';
-		case 1: return 'f';
-		default: return 'z';
-	}
-}
-
-char getalignch(int i)
-{
-	switch(i)
-	{
-		case 0: return 'l';
-		case 1: return 'n';
-		case 2: return 'c';
-		default: return 'z';
-	}
-}
-
 //____________________________________________________________________________________
 //player_selection()
 //		-- Do a window-port specific player type selection.  If
@@ -488,7 +433,7 @@ void and_player_selection()
 				if(ok_role(i, flags.initrace, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
-					and_add_menu(win, NO_GLYPH, &any, getrolech(i), 0, ATR_NONE, roles[i].name.m, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, role_choices[i], 0, ATR_NONE, roles[i].name.m, MENU_UNSELECTED);
 				}
 			}
         	and_end_menu(win, "选择职业");
@@ -525,7 +470,7 @@ void and_player_selection()
 				if(ok_race(flags.initrole, i, flags.initgend, flags.initalign))
 				{
 					any.a_int = i + 1; /* must be non-zero */
-					and_add_menu(win, NO_GLYPH, &any, getracech(i), 0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, race_choices[i], 0, ATR_NONE, races[i].noun, MENU_UNSELECTED);
 				}
         	and_end_menu(win, "选择种族");
 			result = and_select_menu(win, PICK_ONE, &selected);
@@ -561,7 +506,7 @@ void and_player_selection()
 				if(ok_gend(flags.initrole, flags.initrace, i, flags.initalign))
 				{
 					any.a_int = i + 1;
-					and_add_menu(win, NO_GLYPH, &any, getgenderch(i), 0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, gender_choices[i], 0, ATR_NONE, genders[i].adj, MENU_UNSELECTED);
 				}
         	and_end_menu(win, "选择性别");
 			result = and_select_menu(win, PICK_ONE, &selected);
@@ -595,7 +540,7 @@ void and_player_selection()
 				if(ok_align(flags.initrole, flags.initrace, flags.initgend, i))
 				{
 					any.a_int = i + 1;
-					and_add_menu(win, NO_GLYPH, &any, getalignch(i), 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
+					and_add_menu(win, NO_GLYPH, &any, alignment_choices[i], 0, ATR_NONE, aligns[i].adj, MENU_UNSELECTED);
 				}
         	and_end_menu(win, "选择阵营");
 			result = and_select_menu(win, PICK_ONE, &selected);
